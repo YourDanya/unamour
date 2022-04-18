@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Cross from "../cross/cross.component";
 import NavShoppingCartItem, {NavShoppingCartItemProps} from "./nav-shopping-cart-item/nav-shopping-cart-item.component";
-import shoppingCart from '/public/big-shopping-cart.svg'
+import shoppingCart from '/public/icons/big-shopping-cart.svg'
 
 const NavShoppingCart: React.FC = () => {
 

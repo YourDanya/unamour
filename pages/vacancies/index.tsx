@@ -4,11 +4,11 @@ import React from 'react'
 const Vacancies: React.FC = () => {
     return (
         <div className={'vacancies'}>
-            <div className="vacancies__store-name">NAMELAZZ</div>
+            <div className="vacancies__store-name">UNAMOUR</div>
             <div className="vacancies__word">ВАКАНСИИ</div>
             <div className="vacancies__country">Украина</div>
             <div className="vacancies__city">Киев</div>
-            <div className="vacancies__block">
+            <div className="vacancies__content">
                 <div className="vacancies__position">
                     <div className="vacancies__position">
                         ТРЕБУЕТСЯ КОПИРАЙТЕР

@@ -1,14 +1,21 @@
 .sidebar
   position: fixed
-  width: 100vw
-  height: 100vh
-  left: 0
+  width: 400px
+  height: 100%
   top: 0
-  z-index: 20
-  background-color: black
-  visibility: hidden
-  opacity: 0
+  z-index: 30
+  background-color: white
   transition: 0.8s all
+  &--top
+    z-index: 100
+  &--left
+    left: -500px
+    &--active
+      left: 0
+  &--right
+    right: -500px
+    &--active
+      right: 0
   &__cross
     cursor: pointer
     height: 20px
@@ -26,19 +33,24 @@
   &--active
     opacity: .6
     visibility: visible
-  &-block
-    position: fixed
-    width: 400px
-    height: 100%
-    top: 0
-    z-index: 30
-    background-color: white
-    transition: 0.8s all
-    &--left
-      left: -500px
-      &--active
-        left: 0
-    &--right
-      right: -500px
-      &--active
-        right: 0
+  &__back
+    position: absolute
+    top: 40px
+    left: 40px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    width: 15px
+    height: 30px
+    transform: translateY(-10px)
+    &-line
+      background-color: black
+      width: 12px
+      height: 1px
+      &--first
+        transform: translateY(-3.8px) rotate(-45deg)
+      &--last
+        transform: translateY(3.8px) rotate(45deg)
+

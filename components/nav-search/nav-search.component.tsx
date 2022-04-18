@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {element} from "prop-types";
 import NavSearchResult, {NavSearchResultProps} from "./nav-search-result/nav-search-result.component";
 import Cross from "../cross/cross.component";
-import search from '/public/search.svg';
+import search from '/public/icons/search.svg';
+import CustomInput from "../custom-input/custom-input.component";
 
 interface SearchResultInterface {
     name: string,
@@ -41,29 +42,13 @@ const NavSearch: React.FC = () => {
 
     const [hidden, setHidden] = useState(true)
 
-    const [input, setInput] = useState('')
-
-    console.log(input)
-
     return (
         <div className={`nav__search ${hidden? 'nav__search-hidden' : ''}`}>
             <Cross onClick={() => setHidden(true)}/>
             <div className="nav__search-title">
                 ПОИСК
             </div>
-            <div className="nav__search-input-wrapper">
-                <input
-                    className="nav__search-input"
-                    placeholder={'Поиск'}
-                    value={input}
-                    onChange={(event) => setInput(event.target.value)}
-                />
-                {
-                   input? (
-                       <img src={search.src} className={'nav__search-icon'}/>
-                       ) : (null)
-                }
-            </div>
+            <CustomInput src={search.src} onChange={() => {}} onSubmit={() => {}} placeholder={'Найти'}/>
             {
                 searchArr ? (
                     <div className="nav__search-results">

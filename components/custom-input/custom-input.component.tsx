@@ -1,0 +1,55 @@
+import React, {useState} from "react";
+
+type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
+    (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
+
+type customInputProps = RequireAllIfOne<{
+    placeholder: string
+    sign?: boolean
+    onTopChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    name: string
+    error?: string
+}, {
+    onSubmit: (param: string) => void
+    src: string
+}>
+
+const CustomInput: React.FC<customInputProps> = (
+    {src, onSubmit, onTopChange, placeholder, sign, ...otherProps}) => {
+
+    const [input, setInput] = useState('')
+
+    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+        setInput(event.target.value)
+        onTopChange && onTopChange(event)
+    }
+
+    return (
+        <div className= {`custom-input ${ sign &&'custom-input--sign'}`}>
+            <input
+                {...otherProps}
+                className="custom-input__input"
+                value={input}
+                onChange={handleChange}
+            />
+            <div className="custom-input__placeholder">
+                {placeholder}
+            </div>
+            {
+                src && input && onSubmit && (
+                    <img
+                        src={src}
+                        className={'custom-input__icon'}
+                        alt={'/custom-input'}
+                        onClick={() => {
+                            onSubmit(input)
+                            setInput('')
+                        }}
+                    />
+                )
+            }
+        </div>
+    )
+}
+
+export default CustomInput

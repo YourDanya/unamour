@@ -1,7 +1,7 @@
 import React from 'react'
 import MapComponent from "../../components/map/map.component";
 
-const ContactCmponent: React.FC = () => {
+const ContactComponent: React.FC = () => {
 
     return (
         <div className={'contacts'}>
@@ -59,4 +59,4 @@ const ContactCmponent: React.FC = () => {
     )
 }
 
-export default ContactCmponent
+export default ContactComponent

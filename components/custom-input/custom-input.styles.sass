@@ -1,0 +1,36 @@
+.custom-input
+  flex-grow: 1
+  position: relative
+  &__input
+    font-size: 12px
+    padding: 10px 35px 10px 0
+    width: 100%
+    outline: none
+    border: none
+    border-bottom: 1px solid
+    position: relative
+    &:focus + .custom-input__placeholder
+      visibility: hidden
+  &--sign
+    margin-top: 25px
+    .custom-input__input
+      padding: 10px 35px 15px 0
+      border-color: #e0e0e0
+      &:focus
+        border-color: black
+      &:focus + .custom-input__placeholder
+        visibility: visible
+        font-size: 10px
+        transform: translateY(-20px)
+  &__placeholder
+    pointer-events: none
+    transition: font-size 0.3s, transform 0.3s
+    position: absolute
+    top: 10px
+    color: #a1a1a1
+    font-size: 12px
+  &__icon
+    top: 50%
+    transform: translateY(-50%)
+    right: 0
+    position: absolute

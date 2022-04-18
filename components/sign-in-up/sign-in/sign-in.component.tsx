@@ -1,15 +1,19 @@
 import React, {MouseEventHandler, useState} from 'react'
 import Link from "next/link";
-import {AiOutlineGoogle, FaFacebookF} from "react-icons/all";
+import CustomInput from "../../custom-input/custom-input.component";
 
-interface setInterface {
+type setType = {
     email: string,
-    password: string
+    password: string,
 }
 
-const SignIn: React.FC = () => {
+type propsType= {
+    setSign: () => void
+}
 
-    const [values, setValues] = useState<setInterface>({
+const SignIn: React.FC<propsType> = ({setSign}) => {
+
+    const [values, setValues] = useState<setType>({
         email: '',
         password: ''
     })
@@ -19,32 +23,31 @@ const SignIn: React.FC = () => {
     }
 
     return (
-        <div className={'sign'}>
-            <div className="sign__form-title">ВХОД</div>
-            <div className="sign__form_link">РЕГИСТРАЦИЯ</div>
+        <div className={'sign__content'}>
+            <div className="sign__content-top">
+                <div className="sign__content-title">ВХОД</div>
+                <div className="sign__content-link" onClick={setSign}>РЕГИСТРАЦИЯ</div>
+            </div>
             <form className={'sign__form'}>
-                <input
-                    className="sign__form-input"
-                    type={'text'}
-                    name={'name'}
-                    onChange={handleChange}
-                />
-                <input
-                    className="sign__form-title"
-                    type={'password'}
-                    name={'name'}
-                    onChange={handleChange}
-                />
-                <div className="sign__form-button-container">
+                <CustomInput
+                    placeholder={'Ваш e-mail'}
+                    sign={true}
+                    name={'email'}
+                    onTopChange={handleChange}/>
+                <CustomInput
+                    placeholder={'Ваш пароль'}
+                    sign={true}
+                    name={'password'}
+                    onTopChange={handleChange}/>
+                <div className="sign__form-footer">
                     <button className="sign__form-button">ВОЙТИ</button>
                     <Link href={'/'}>
                         <a className="sign__form-forget">Забыли пароль?</a>
                     </Link>
-                    <p className={'sign__form-text'}>
+                    <p className='sign__form-text'>
                         Нажимая кнопку Войти, я даю согласие на обработку и <br/> передачу моих персональных данных.
                     </p>
                 </div>
-                <div className="sign__form-line"/>
             </form>
         </div>
     )

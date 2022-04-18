@@ -10,13 +10,20 @@
     color: #9b3030
     display: flex
     justify-content: center
-    font-family: SeasonsLight, sans-serif
+    font-family: SeasonsRegular, sans-serif
     font-size: 25px
   &__shop
     &-items
       width: 45%
       display: flex
       justify-content: flex-end
+      a
+        &:first-child
+          img
+            margin-left: 0
+        &:last-child
+          img
+            margin-right: 0
     &-item
       cursor: pointer
       display: flex
@@ -37,6 +44,7 @@
       &-second
         margin-top: 50px
     &-link
+      cursor: pointer
       color: #333
       font-size: 11.5px
       margin-bottom: 18px

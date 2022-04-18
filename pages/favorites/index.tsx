@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 interface favoritesProps {
 
 }
 
 const Index: React.FC<favoritesProps> = () => {
-    const [favoriteItems, setFavoriteItems] =
+    const [favoriteItems, setFavoriteItems] = useState(null)
     return (
         <div className={'favorites'}>
             {

@@ -1,3 +1,5 @@
+import '/components/modal/modal.styles.sass'
+import '/components/custom-input/custom-input.styles.sass'
 import '/components/sidebar/sidebar.styles.sass'
 import '/components/nav/nav.styles.sass'
 import '/components/shop-items/shop-items.styles.sass'
@@ -5,6 +7,12 @@ import '/components/items-collection/items-collection.styles.sass'
 import '/components/shop-item/shop-item.styles.sass'
 import '/components/nav-search/nav-search.styles.sass'
 import '/components/nav-shopping-cart/nav-shopping-cart.styles.sass'
+import '/components/footer/footer.styles.sass'
+import '/components/sign-in-up/sign-in-up.styles.sass'
+import '/components/sign-in-up/sign-in/sign-in.styles.sass'
+import '/components/sign-in-up/sign-up/sign-up.styles.sass'
+import '/pages/contacts/contact.styles.sass'
+import '/pages/vacancies/vacancies.styles.sass'
 import '../styles/home.sass'
 import '../styles/global.sass'
 import type {AppProps} from 'next/app'
@@ -18,7 +26,7 @@ function MyApp({Component, pageProps}: AppProps) {
             <Nav/>
             <Component {...pageProps}/>
             {/*<CookieComponent/>*/}
-            {/*<Footer/>*/}
+            <Footer/>
         </>
     )
 }
