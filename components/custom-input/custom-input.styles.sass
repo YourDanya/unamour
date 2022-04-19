@@ -14,14 +14,21 @@
   &--sign
     margin-top: 25px
     .custom-input__input
-      padding: 10px 35px 15px 0
-      border-color: #e0e0e0
-      &:focus
-        border-color: black
       &:focus + .custom-input__placeholder
         visibility: visible
         font-size: 10px
         transform: translateY(-20px)
+  &--contact
+    margin-top: 15px
+  &--contact, &--sign
+    .custom-input__input
+      padding-bottom: 15px
+      border-color: #e0e0e0
+      &:focus
+        border-color: black
+  &--contact
+    .custom-input__input
+      padding-bottom: 15px
   &__placeholder
     pointer-events: none
     transition: font-size 0.3s, transform 0.3s

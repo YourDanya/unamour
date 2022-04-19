@@ -1,3 +1,6 @@
+import '/components/custom-button/custom-button.styles.sass'
+import '/components/custom-slider/custom-slider.styles.sass'
+import '/components/custom-textarea/custom-textarea.styles.sass'
 import '/components/modal/modal.styles.sass'
 import '/components/custom-input/custom-input.styles.sass'
 import '/components/sidebar/sidebar.styles.sass'
