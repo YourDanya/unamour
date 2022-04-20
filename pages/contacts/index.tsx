@@ -7,6 +7,7 @@ import CustomButton from "../../components/custom-button/custom-button.component
 
 const ContactComponent: React.FC = () => {
 
+
     return (
         <div className={'contacts'}>
             <h2 className="contacts__title">КОНТАКТЫ</h2>
@@ -15,8 +16,8 @@ const ContactComponent: React.FC = () => {
                     <div className="contacts__label--main">ИНТЕРНЕТ-МАГАЗИН</div>
                     <div className="contacts__label">+38 (066) 384-78-22 по всей Украине</div>
                     <div className="contacts__label">Режим работы: ПН-ПТ с 9:00 до 18:00</div>
-                    <div className="contacts__label">unamour@gmail.com</div>
-                    <div className="contacts__label">Мы в Instagram @unamour</div>
+                    <div className="contacts__label">Наша почта - unamour@gmail.com</div>
+                    <div className="contacts__label">Мы в Instagram - @unamour</div>
                 </div>
                 <div className="contacts__feedback">
                     <form className={'contacts__form'}>
@@ -43,13 +44,16 @@ const ContactComponent: React.FC = () => {
             </div>
             <div className="contacts__second-section">
                 <div className="contacts__address">
-                    <div className="contacts__address-elem">Киев</div>
+                    <div className="contacts__address-elem contacts__address-elem--city">КИЕВ</div>
                     <div className="contacts__address-elem">Режим работы: с 11:00 до 22:00</div>
-                    <div className="contacts__address-elem">+380 (66) 384-78-22</div>
+                    <div className="contacts__address-elem contacts__address-elem--number">+380 (66) 384-78-22</div>
                 </div>
                 <CustomSlider/>
-                <MapComponent/>
             </div>
+            <div className={'contacts__test'}>
+                <MapComponent classes={['map--contact']}/>
+            </div>
+
         </div>
     )
 }

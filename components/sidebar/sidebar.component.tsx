@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {modalProps} from "../modal/modal.component";
 
-interface sidebarProps{
+type sidebarProps = {
     left: boolean,
     top?: true,
     hideTopNav?: () => void,
@@ -11,6 +11,8 @@ interface sidebarProps{
 
 const Sidebar: React.FC<sidebarProps> = (
     {left, children, active, hideModal, top, hideTopNav}) => {
+
+    console.log('lagging')
 
     return (
         <>
@@ -39,4 +41,6 @@ const Sidebar: React.FC<sidebarProps> = (
     )
 }
 
-export default Sidebar
+const shouldUpdate = (prevProps: sidebarProps, currentProps: sidebarProps) => prevProps.active===currentProps.active
+
+export default React.memo(Sidebar, shouldUpdate)

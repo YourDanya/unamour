@@ -31,12 +31,12 @@ const SignIn: React.FC<propsType> = ({setSign}) => {
             <form className={'sign__form'}>
                 <CustomInput
                     placeholder={'Ваш e-mail'}
-                    sign={true}
+                    classes={['custom-input--sign']}
                     name={'email'}
                     onTopChange={handleChange}/>
                 <CustomInput
                     placeholder={'Ваш пароль'}
-                    sign={true}
+                    classes={['custom-input--sign']}
                     name={'password'}
                     onTopChange={handleChange}/>
                 <div className="sign__form-footer">

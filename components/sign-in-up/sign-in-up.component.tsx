@@ -8,9 +8,6 @@ import SignUp from "./sign-up/sign-up.component";
 const SignInUp: React.FC = () => {
     const [sign, setSign] = useState<'in' | 'up'>('in')
 
-    console.log('in')
-    console.log('up')
-
     return (
         <div className={'sign'}>
             {

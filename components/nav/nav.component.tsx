@@ -8,6 +8,7 @@ import NavSearch from "../nav-search/nav-search.component";
 import NavShoppingCart from "../nav-shopping-cart/nav-shopping-cart.component";
 import SignInUp from "../sign-in-up/sign-in-up.component";
 import Modal from "../modal/modal.component";
+import NavMenu from "../nav-menu/nav-menu.component";
 
 const Nav: React.FC = () => {
 
@@ -45,7 +46,6 @@ const Nav: React.FC = () => {
 
     const showTopNav = (event: React.MouseEvent<HTMLElement>) => {
         const param = event.currentTarget.id
-        console.log(true)
         setActive(prevState => ({
                 ...prevState,
                 [param]: !prevState[param as keyof typeof active]
@@ -53,7 +53,7 @@ const Nav: React.FC = () => {
         )
     }
 
-    console.log(active.sign)
+    console.log('rerender')
 
     return (
         <>
@@ -84,41 +84,7 @@ const Nav: React.FC = () => {
                     </div>
                 </div>
                 <Sidebar left={true} active={active.hamburger} hideModal={hideModal}>
-                    <div className="nav__menu">
-                        <div className="nav__menu-links nav__menu-links-first">
-                            <Link href={'/'}>
-                                <a className={'nav__menu-link'}>НОВЫЕ ПОСТУПЛЕНИЯ</a>
-                            </Link>
-                            <Link href={'/'}>
-                                <a className={'nav__menu-link'}>ОДЕЖДА И АКСЕСУАРЫ</a>
-                            </Link>
-                            <Link href={'/'}>
-                                <a className={'nav__menu-link'}>БЕСТСЕЛЛЕРЫ</a>
-                            </Link>
-                            <Link href={'/'}>
-                                <a className={'nav__menu-link'}>СПЕЦИАЛЬНАЯ ЦЕНА</a>
-                            </Link>
-                        </div>
-                        <div
-                            className={`nav__menu-links nav__menu-links-second ${active.hamburger ? 'nav__menu-links2--active' : ''}`}>
-                            <Link href={'/'}>
-                                <a className={'nav__menu-link'}>ИЗБРАННОЕ</a>
-                            </Link>
-                            <Link href={'/'}>
-                                <a className={'nav__menu-link'}>КЛИЕНТСКИЙ СЕРВИС</a>
-                            </Link>
-                            <Link href={'/vacancies'}>
-                                <a className={'nav__menu-link'} onClick={hideModal}>ВАКАНСИИ</a>
-                            </Link>
-                            <Link href={'/contacts'}>
-                                <a className={'nav__menu-link'}>КОНТАКТЫ</a>
-                            </Link>
-                            <a id='sign' className={'nav__menu-link'} onClick={
-                                showTopNav}>
-                                ВОЙТИ
-                            </a>
-                        </div>
-                    </div>
+                    <NavMenu active={active} hideModal={hideModal} showTopNav={showTopNav}/>
                 </Sidebar>
                 <Sidebar left={true} active={active.sign} top={true} hideTopNav={() =>hideTopNav('sign')}>
                     <SignInUp/>
@@ -127,8 +93,10 @@ const Nav: React.FC = () => {
                     <NavSearch/>
                 </Sidebar>
                 <Sidebar left={false} active={active.shopping} hideModal={hideModal}>
-                    <NavShoppingCart/>
+
                 </Sidebar>
+                    {/*<NavShoppingCart/>*/}
+
                 <Modal active={active.modal} hideModal={hideModal}/>
             </nav>
         </>

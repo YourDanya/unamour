@@ -2,6 +2,7 @@
   padding: 100px 160px
   font-size: 12px
   margin-top: 20px
+  color: #4f4f4f
   &__first-section
     display: flex
   &__text
@@ -28,9 +29,42 @@
     &--main
       margin-bottom: 20px
   &__address
+    margin-bottom: 20px
     &-elem
+      margin-bottom: 6px
+      &--number
+        width: fit-content
+        border-bottom: 1px solid #eee
+      &--city
+        margin-bottom: 20px
+  &__test
+    width: 100%
+    display: flex
+    justify-content: flex-end
 
-//@media(max-width: 1200px)
-//@media(max-width: 992px)
-//@media(max-width: 768px)
-//@media(max-width: 576px)
+@media(max-width: 1200px)
+  .contacts
+    padding: 100px 130px
+
+@media(max-width: 992px)
+  .contacts
+    padding: 100px 5%
+
+@media(max-width: 768px)
+  .contacts
+    padding: 80px 15%
+    &__first-section
+      display: flex
+      flex-direction: column
+    &__text
+      width: 100%
+    &__feedback
+      width: 100%
+    &__form
+      margin-top: 50px
+    &__address
+      margin-top: 50px
+
+@media(max-width: 576px)
+  .contacts
+    padding: 50px 10%

@@ -1,13 +1,19 @@
 import Map, {Layer, LayerProps, Source, ViewState} from "react-map-gl"
-import {useState} from "react"
+import React, {Suspense, useState} from "react"
 import {Feature, FeatureCollection, GeoJsonProperties, Geometry} from "geojson"
 
-const MapComponent: React.FC = () => {
+type mapProps = {
+    classes?: string[]
+}
+
+const MapComponent: React.FC<mapProps> = () => {
     let [viewport, setViewport] = useState<ViewState | Object>({
         latitude: 43.8975,
         longitude: -78.9429,
         zoom: 10,
     })
+
+    console.log('map renders')
 
     const geojson: string | Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties> | undefined = {
         type: 'FeatureCollection',
@@ -35,17 +41,20 @@ const MapComponent: React.FC = () => {
 
     return (
         <div className={'map'}>
-            <Map
-                mapStyle={'mapbox://styles/danylt/cl0msozno000o16me9md1urdo'}
-                mapboxAccessToken={'pk.eyJ1IjoiZGFueWx0IiwiYSI6ImNrc29icnllODFiMDgzMnBuYXN3NjU0dWcifQ.ZIp31u3mLyHo520yf0D-ag'}
-                {...viewport}
-                style={{width: '100%', height: '100%'}}
-                onMove={evt => setViewport(evt.viewState)}
-            >
-                <Source id="my-data" type="geojson" data={geojson}>
-                    <Layer {...layerStyle} />
-                </Source>
-            </Map>
+            {/*<Suspense fallback={''}>*/}
+                <Map
+                    mapStyle={'mapbox://styles/danylt/cl0msozno000o16me9md1urdo'}
+                    mapboxAccessToken={'pk.eyJ1IjoiZGFueWx0IiwiYSI6ImNrc29icnllODFiMDgzMnBuYXN3NjU0dWcifQ.ZIp31u3mLyHo520yf0D-ag'}
+                    {...viewport}
+                    style={{width: '100%', height: '100%'}}
+                    onMove={evt => setViewport(evt.viewState)}
+                    onLoad={() => console.log('map loaded')}
+                >
+                    <Source id="my-data" type="geojson" data={geojson}>
+                        <Layer {...layerStyle} />
+                    </Source>
+                </Map>
+            {/*</Suspense>*/}
         </div>
     )
 }

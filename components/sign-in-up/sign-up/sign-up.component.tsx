@@ -42,25 +42,25 @@ const SignUp: React.FC<propsType> = ({setSign}) => {
             </div>
             <form className={'sign__form'}>
                 <CustomInput
-                    sign={true}
+                    classes={['custom-input--sign']}
                     placeholder={'Имя'}
                     onTopChange={handleChange}
                     name={'name'}
                     error={errors.name}/>
                 <CustomInput
-                    sign={true}
+                    classes={['custom-input--sign']}
                     placeholder={'Ваш e-mail'}
                     onTopChange={handleChange}
                     name={'email'}
                     error={errors.email}/>
                 <CustomInput
-                    sign={true}
+                    classes={['custom-input--sign']}
                     placeholder={'Пароль'}
                     onTopChange={handleChange}
                     name={'password'}
                     error={errors.password}/>
                 <CustomInput
-                    sign={true}
+                    classes={['custom-input--sign']}
                     placeholder={'Подтверждение пароля'}
                     onTopChange={handleChange}
                     name={'passwordConfirm'}
