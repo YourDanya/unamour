@@ -50,10 +50,7 @@ const ContactComponent: React.FC = () => {
                 </div>
                 <CustomSlider/>
             </div>
-            <div className={'contacts__test'}>
-                <MapComponent classes={['map--contact']}/>
-            </div>
-
+            <MapComponent classes={['map--contact']}/>
         </div>
     )
 }

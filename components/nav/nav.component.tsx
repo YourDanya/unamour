@@ -9,6 +9,7 @@ import NavShoppingCart from "../nav-shopping-cart/nav-shopping-cart.component";
 import SignInUp from "../sign-in-up/sign-in-up.component";
 import Modal from "../modal/modal.component";
 import NavMenu from "../nav-menu/nav-menu.component";
+import {useRouter} from "next/router";
 
 const Nav: React.FC = () => {
 
@@ -53,7 +54,15 @@ const Nav: React.FC = () => {
         )
     }
 
-    console.log('rerender')
+    const router= useRouter()
+
+    useEffect(() => {
+        router.events.on('routeChangeComplete', hideModal)
+        console.log('here')
+        return () => {
+            console.log('i am unmounted')
+        }
+    }, [])
 
     return (
         <>
@@ -93,10 +102,8 @@ const Nav: React.FC = () => {
                     <NavSearch/>
                 </Sidebar>
                 <Sidebar left={false} active={active.shopping} hideModal={hideModal}>
-
+                    <NavShoppingCart/>
                 </Sidebar>
-                    {/*<NavShoppingCart/>*/}
-
                 <Modal active={active.modal} hideModal={hideModal}/>
             </nav>
         </>

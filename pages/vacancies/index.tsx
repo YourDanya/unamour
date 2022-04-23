@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const Vacancies: React.FC = () => {
-    
+    console.log('inside vacancies')
     return (
         <div className={'vacancies'}>
             <div className="vacancies__store-name">UNAMOUR</div>

@@ -48,7 +48,7 @@ const NavSearch: React.FC = () => {
             <div className="nav__search-title">
                 ПОИСК
             </div>
-            <CustomInput src={search.src} onChange={() => {}} onSubmit={() => {}} placeholder={'Найти'}/>
+            <CustomInput src={search.src} placeholder={'Найти'} name={'search'}/>
             {
                 searchArr ? (
                     <div className="nav__search-results">

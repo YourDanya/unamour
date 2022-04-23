@@ -1,15 +1,17 @@
 import React from "react";
 
-export interface modalProps {
+export type modalProps = {
     active: boolean,
     hideModal: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 const Modal: React.FC<modalProps> = ({active, hideModal}) => {
-    console.log(active)
+    console.log('inside modal')
     return (
         <div className={`modal ${active? 'modal--active' : ''}`} onClick={hideModal}/>
     )
 }
 
-export default Modal
+const shouldUpdate = (prevProps: modalProps, currentProps: modalProps) => prevProps.active===currentProps.active
+
+export default React.memo(Modal, shouldUpdate)

@@ -6,13 +6,14 @@ type sidebarProps = {
     top?: true,
     hideTopNav?: () => void,
     active: boolean,
-    hideModal?: (event: React.MouseEvent<HTMLElement>) => void
+    hideModal?: (event: React.MouseEvent<HTMLElement>) => void,
+    children: React.ReactNode
 }
 
 const Sidebar: React.FC<sidebarProps> = (
     {left, children, active, hideModal, top, hideTopNav}) => {
 
-    console.log('lagging')
+    console.log('inside sidebar')
 
     return (
         <>

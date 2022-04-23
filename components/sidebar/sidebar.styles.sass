@@ -5,17 +5,19 @@
   top: 0
   z-index: 30
   background-color: white
-  transition: .8s all
+  transition: 1s transform ease-out
   &--top
     z-index: 100
   &--left
-    left: -500px
+    left: 0
+    transform: translateX(-600px)
     &--active
-      left: 0
+      transform: translateX(0)
   &--right
-    right: -500px
+    right: 0
+    transform: translateX(500px)
     &--active
-      right: 0
+      transform: translateX(0)
   &__cross
     cursor: pointer
     height: 20px

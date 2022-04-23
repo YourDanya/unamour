@@ -27,7 +27,7 @@ const ShopItem: React.FC<shopItemProps> = ({images, colors, sizes, name, price})
                     <div className="shop-item__slider-elements">
                         {
                             images.map(elem =>
-                                <img className='shop-item__slider-element' src={elem}/>
+                                <img className='shop-item__slider-element' src={elem} alt={'slider-elem'}/>
                             )
                         }
                     </div>

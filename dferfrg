@@ -1,0 +1,41 @@
+[33mcommit 38706c5448587efefe4beb1a4ad0f5991583b46a[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Danyl <pochtaformumumu@gmail.com>
+Date:   Wed Apr 20 01:08:31 2022 +0300
+
+    finishing vacancies component, creating custom-button and custom-slider component, working on contact component
+
+[33mcommit fbcb02f22dd0057033dc2cd23cf9291fddd0a8a7[m
+Author: Danyl <pochtaformumumu@gmail.com>
+Date:   Mon Apr 18 23:53:52 2022 +0300
+
+    finishing styling sign components and starting styling pages
+
+[33mcommit 2f7ddd5aa347467161fe61b4326b4ea1fdd7c260[m
+Author: Danyl <pochtaformumumu@gmail.com>
+Date:   Mon Apr 18 02:13:21 2022 +0300
+
+    adding styles and updating sign components and custom-input
+
+[33mcommit 4d3c97c28ea9b189d788346b146ed8d76f27dda1[m
+Author: Danyl <pochtaformumumu@gmail.com>
+Date:   Tue Apr 5 23:39:57 2022 +0300
+
+    styling nav
+
+[33mcommit 22b124ad14a3c5f8d4b513fa4aaa02cb1c5d3a63[m
+Author: Danyl <pochtaformumumu@gmail.com>
+Date:   Sun Apr 3 12:08:53 2022 +0300
+
+    creating main components
+
+[33mcommit a3d48012da9afbb76599c66f1598c242dab154f8[m
+Author: Danyl <pochtaformumumu@gmail.com>
+Date:   Wed Mar 23 14:44:55 2022 +0200
+
+    creating unamour project
+
+[33mcommit d936accad3546545211a9d6eee3f5bf01033d5ec[m
+Author: Danyl <pochtaformumumu@gmail.com>
+Date:   Wed Mar 23 14:40:32 2022 +0200
+
+    Initial commit from Create Next App

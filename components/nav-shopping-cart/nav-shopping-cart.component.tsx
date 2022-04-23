@@ -39,7 +39,7 @@ const NavShoppingCart: React.FC = () => {
     return (
         <div className={`nav-shopping-cart`}>
 
-            <img className="nav-shopping-cart__icon" src={shoppingCart.src}/>
+            <img className="nav-shopping-cart__icon" src={shoppingCart.src} alt={'nav-shopping-cart-icon'}/>
             {
                 cartItems ? (
                     <div className={'nav-shopping-cart__items'}>

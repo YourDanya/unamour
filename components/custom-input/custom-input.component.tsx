@@ -3,17 +3,16 @@ import React, {useState} from "react";
 type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
 
-type customInputProps = RequireAllIfOne<{
+type customInputProps = {
     placeholder: string
     name: string
     classes?: string[]
     onTopChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string,
     grey?: boolean,
-}, {
-    onSubmit: (param: string) => void
-    src: string
-}>
+    src?: string
+    onSubmit?: (param: string) => void
+}
 
 const CustomInput: React.FC<customInputProps> = (
     {src, onSubmit, onTopChange, placeholder, classes, ...otherProps}) => {
