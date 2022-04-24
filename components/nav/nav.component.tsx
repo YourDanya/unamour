@@ -93,7 +93,7 @@ const Nav: React.FC = () => {
                     </div>
                 </div>
                 <Sidebar left={true} active={active.hamburger} hideModal={hideModal}>
-                    <NavMenu active={active} hideModal={hideModal} showTopNav={showTopNav}/>
+                    <NavMenu active={active.hamburger} hideModal={hideModal} showTopNav={showTopNav}/>
                 </Sidebar>
                 <Sidebar left={true} active={active.sign} top={true} hideTopNav={() =>hideTopNav('sign')}>
                     <SignInUp/>

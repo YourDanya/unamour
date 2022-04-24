@@ -40,7 +40,7 @@ const config = (plop) => {
         actions: [
             {
                 type: 'add',
-                path: 'pages/{{name}}/TestLayout.tsx',
+                path: 'pages/{{name}}/index.tsx',
                 templateFile: 'templates/component/component.tsx.hbs'
             },
             {

@@ -1,14 +1,14 @@
 import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
 
-const Return = () => {
+const Delivery = () => {
     return (
-        <div className={'return'}>
-            return
+        <div className={'delivery'}>
+            delivery
         </div>
     )
 }
 
-Return.getLayout = getClientServiceLayout
+Delivery.getLayout = getClientServiceLayout
 
-export default Return
+export default Delivery

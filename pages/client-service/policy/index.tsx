@@ -1,14 +1,14 @@
 import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
 
-const Return = () => {
+const Policy = () => {
     return (
-        <div className={'return'}>
-            return
+        <div className={'policy'}>
+            policy
         </div>
     )
 }
 
-Return.getLayout = getClientServiceLayout
+Policy.getLayout = getClientServiceLayout
 
-export default Return
+export default Policy

@@ -37,12 +37,13 @@ const MapComponent: React.FC<mapProps> = () => {
         }
     }
 
-    const [renderMap, setRenderMap] = useState(true)
+    const [renderMap, setRenderMap] = useState(false)
 
     useEffect(() => {
         // setTimeout(() => {
         //     setRenderMap(true)
         // }, 400)
+        setRenderMap(true)
     }, [])
 
     return (

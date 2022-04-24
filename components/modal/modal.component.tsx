@@ -6,7 +6,7 @@ export type modalProps = {
 }
 
 const Modal: React.FC<modalProps> = ({active, hideModal}) => {
-    console.log('inside modal')
+
     return (
         <div className={`modal ${active? 'modal--active' : ''}`} onClick={hideModal}/>
     )
