@@ -2,54 +2,45 @@ import React, {ReactNode, useEffect, useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
-interface clientServiceProps {
+type clientServiceProps = {
 
 }
 
 const urls = [
-    {name: 'УХОД ЗА ОДЕЖДОЙ', url: 'clothing-care'}, // 1
-    {name: 'ОПЛАТА И ДОСТАВКА', url: 'delivery'}, // 2
-    {name: 'ОТСЛЕЖИВАНИЕ ЗАКАЗА', url: 'order-tracking'}, //
-    {name: 'ВОЗВРАТ ТОВАРА', url: 'return'}, // 4
-    {name: 'КАК ОФОРМИТЬ ЗАКАЗ', url: 'ordering'}, //
-    {name: 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ', url: 'policy'}, // 3
-    {name: 'ПУБЛИЧНАЯ ОФЕРТА', url: 'privacy'}, //
-    {name: 'ГАРАНТИЙНЫЙ СРОК', url: 'warranty-period'}, // 5
+    {name: 'УХОД ЗА ОДЕЖДОЙ', url: 'clothing-care', className: 'client-service__link--first'},
+    {name: 'ОПЛАТА И ДОСТАВКА', url: 'delivery'},
+    {name: 'ОТСЛЕЖИВАНИЕ ЗАКАЗА', url: 'order-tracking'},
+    {name: 'ВОЗВРАТ ТОВАРА', url: 'return'},
+    {name: 'КАК ОФОРМИТЬ ЗАКАЗ', url: 'ordering'},
+    {name: 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ', url: 'policy'},
+    {name: 'ПУБЛИЧНАЯ ОФЕРТА', url: 'privacy'},
+    {name: 'ГАРАНТИЙНЫЙ СРОК', url: 'warranty-period'},
 ]
 
 const ClientService: React.FC<clientServiceProps> = ({children}) => {
 
-    useEffect(() => {
-
-    }, [])
-
     const router = useRouter()
-
-    useEffect(() => {
-        console.log('mounted client service')
-    }, [])
 
     const [counter, setCounter] = useState(0)
 
     return (
         <div className={'client-service'}>
-            {
-                urls.map(({name, url}) =>
-                    <Link href={`/client-service/${url}`} key={name}>
-                        <a className={`client-service__link ${url === router.pathname ? 'client-service__link--active' : ''}`}>
-                            {name}
-                        </a>
-                    </Link>
-                )
-            }
-            <div className="client-service--page">
+            <div className="client-service__links">
+                {
+                    urls.map(({name, url, className}) =>
+                        <Link href={`/client-service/${url}`} key={name}>
+                            <a className={`client-service__link ${url === router.pathname ? 'client-service__link--active' : ''} ${className ?? ''}`}>
+                                {name}
+                            </a>
+                        </Link>
+                    )
+                }
+            </div>
+            <div className="client-service__page">
                 {
                     children
                 }
             </div>
-            <button onClick={() => setCounter(counter + 1)}>
-                {counter}
-            </button>
         </div>
     )
 }

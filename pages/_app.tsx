@@ -31,20 +31,9 @@ import '/components/sign-in-up/sign-in-up.styles.sass'
 import '/components/sign-in-up/sign-in/sign-in.styles.sass'
 import '/components/sign-in-up/sign-up/sign-up.styles.sass'
 
-import type {AppProps} from 'next/app'
 import Nav from "../components/nav/nav.component";
-import CookieComponent from "../components/cookie/cookie.component";
 import Footer from "../components/footer/footer.component";
-import {NextPage} from "next";
-import {ReactElement, ReactNode} from "react";
-
-type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => ReactNode
-}
-
-type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout
-}
+import {AppPropsWithLayout} from "../types/types";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)

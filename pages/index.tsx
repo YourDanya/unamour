@@ -1,11 +1,13 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import Nav from "../components/nav/nav.component";
-import Footer from "../components/footer/footer.component";
-import CookieComponent from "../components/cookie/cookie.component";
+import {useRouter} from "next/router";
 
 const Home: NextPage = () => {
+
+    let router = useRouter()
+
+    console.log(router.locale)
+
     return (
         <div className={'container'}>
             <Head>
