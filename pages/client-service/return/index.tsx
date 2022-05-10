@@ -1,48 +1,46 @@
 import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
+import {NextPageWithLayout} from "../../../types/types";
+import {ReturnContent} from "./return.content";
+import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
 
-const Return = () => {
+type ReturnProps = {
+    content: typeof ReturnContent.ua
+}
+
+const Return: NextPageWithLayout<ReturnProps> = ({content}) => {
     return (
         <div className={'return'}>
             <div className="client-service__page-title">
-                ВОЗВРАТ ТОВАРА
+                {content.title1}
             </div>
             <div className="client-service__page-subtitle">
-                Умови обміну та повернення
+                {content.subtitle1}
             </div>
             <div className="client-service__page-text">
-                Ви можете повернути або обміняти будь-яку річ, куплену в інтернет магазині UNAMOUR,
-                якщо вона Вам не підійшла, протягом 14 днів, не рахуючи дня покупки.
-                Обмін і повернення товару належної якості можливий тільки в тому випадку, якщо Ви зберегли чек,
-                річ має товарний вигляд, всі супровідні бірки і не була у використанні.
-                Для оформлення повернення Вам необхідно: <br/>
-                Заповнити заяву на повернення (висилається за запитом менеджером інтернет магазину) і перевірити комплектацію товару.
+                {content.text1}
+                <br/><br/>
+                <div className="client-service__page-label">
+                    {content.label1}
+                </div>
+                {content.text2}
             </div>
             <div className="client-service__page-subtitle">
-                Можливі способи відправки повернення
+                {content.subtitle2}
             </div>
             <div className="client-service__page-text">
-                Важливо: всі витрати, пов'язані з поверненням / обміном товару належної якості, купленого в інтернет магазині, несе покупець.
+                {content.text3}
             </div>
             <div className="client-service__page-subtitle">
-                Повернення ТК "Нова Пошта"
+                {content.subtitle3}
             </div>
             <div className="client-service__page-text">
-                Відправлення здійснюється за тарифами ТК "Нова Пошта".
-                Увага: в разі, якщо дані одержувача вказані невірно, ми не зможемо гарантувати доставку посилки на наш склад.
-                При поверненні до товару необхідно докласти чек та заповнену заяву (висилається за запитом менеджером інтернет магазину).
-                <br/> Зверніть увагу! <br/>
-                Повернути річ належної якості можливо лише за умови збереження її споживчих властивостей і товарного
-                вигляду (відсутність слідів носки, наявність оригінальних ярликів та бірок).
-                Для розгляду заявки на повернення вам необхідно вислати нам товар і заповнену заяву на повернення;
-                Термін повернення грошових коштів за куплений товар становить до 10 банківських днів (розраховується
-                від дати надходження повернутого товару на склад разом з заповненою заявою на повернення) на банківську карту.
-                Товар з браком / неправильної комплектації (товар, який Ви не замовляли, або розмір не відповідає
-                замовленому) повинен бути повернений нам з оригінальними ярликами і в оригінальній упаковці.
-                Витрати на пересилку товару неналежної якості ми беремо на себе . Для цього необхідно надати чек
-                за пересилку, прикріплений до заповненої заяви на повернення.
-                Деякі категорії товарів, наприклад боді, не підлягають поверненню та обміну згідно з
-                Постановою Кабінету Міністрів України від 19 березня 1994 р М 172. Детальніше тут
+                {content.text4}
+                <br/><br/>
+                <div className="client-service__page-label">
+                    {content.label2}
+                </div>
+                {content.text5}
             </div>
         </div>
     )
@@ -50,4 +48,4 @@ const Return = () => {
 
 Return.getLayout = getClientServiceLayout
 
-export default Return
+export default InternHoc(Return, ReturnContent)

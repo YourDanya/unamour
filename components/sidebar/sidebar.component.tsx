@@ -1,5 +1,4 @@
 import React, {useMemo} from "react";
-import {modalProps} from "../modal/modal.component";
 
 type sidebarProps = {
     left: boolean,
@@ -12,8 +11,6 @@ type sidebarProps = {
 
 const Sidebar: React.FC<sidebarProps> = (
     {left, children, active, hideModal, top, hideTopNav}) => {
-
-    console.log('inside sidebar')
 
     return (
         <>

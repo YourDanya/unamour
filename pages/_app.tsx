@@ -38,6 +38,8 @@ import {AppPropsWithLayout} from "../types/types";
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)
 
+    console.log(getLayout)
+
     return (
         <>
             <Nav/>

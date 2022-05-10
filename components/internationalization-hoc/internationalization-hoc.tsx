@@ -8,11 +8,18 @@ type InternHocProps ={
 
 const InternHoc= <P extends {content: object},>  (Component : InternEssence<P>, content: object)  => {
 
-    return (props: P) => {
+    const InternComp= (props: P) => {
+
         const router = useRouter()
-        console.log(router)
-        return <Component {...props}/>
+
+        const componentContent = content[router.locale as keyof typeof content]
+
+        return <Component {...props} content={componentContent}/>
     }
+
+    if ('getLayout' in Component) InternComp.getLayout = Component.getLayout
+
+    return InternComp
 }
 
 

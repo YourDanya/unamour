@@ -1,49 +1,38 @@
 import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
+import {DeliveryContent} from "./delivery.content";
+import {NextPageWithLayout} from "../../../types/types";
+import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
 
-const Delivery = () => {
+type DeliveryContentProps = {
+    content: typeof DeliveryContent.ua
+}
+
+const Delivery: NextPageWithLayout<DeliveryContentProps> = ({content}) => {
     return (
         <div className={'delivery'}>
             <div className="client-service__page-title">
-                ОПЛАТА И ДОСТАВКА
+                {content.title1}
             </div>
             <div className="client-service__page-subtitle">
-                УСЛОВИЯ И СПОСОБЫ ДОСТАВКИ
+                {content.subtitle1}
             </div>
             <div className="client-service__page-text">
-                Доставка заказа осуществляется после 100% оплаты заказа на сайте.
-                Срок формирования заказа 1-3 рабочих дня после оплаты.
-                После передачи посылки в транспортную компанию на адрес электронной
-                почты который был указан в заказе отправляется трек-номер для отслеживания посылки.
-                В случае отказа от получения заказа, стоимость доставки не возвращается. <br/> <br/>
-                Срок доставки начинает исчисляться с первого рабочего дня после поступления письма
-                с трек-номером. Рабочими считаются не праздничные дни с понедельника по пятницу.
-                Суббота, воскресенье и праздничные дни не входят в сроки доставки. Учитываются государственные,
-                региональные и местные праздники, а также праздники, установленные на территории страны доставки.
+                {content.text1}
+                <br/><br/>
+                {content.text2}
             </div>
             <div className="client-service__page-subtitle">
-                УСЛОВИЯ И СПОСОБЫ ДОСТАВКИ
-            </div>
-            <div className="client-service__page-label">
-                Транспортна компанія «Нова пошта»
+                {content.subtitle2}
             </div>
             <div className="client-service__page-text">
-                Доставка здійснюється у відділення «Нова пошта» по всій Україні, крім тимчасово окупованих
-                територій (Донецька область, Луганська область, АРК Крим).
-                Після того, як менеджер відправить Ваше замовлення, Ви отримаєте текстове повідомлення з номером
-                експрес накладної. За цим номером Ви зможете в будь-який момент відстежити Ваше замовлення і дізнатися,
-                коли воно буде в відділенні на офіційному сайті компанії «Нова пошта».
-                В обов'язковому порядку перевірте цілісність посилки та її відповідність замовленню у відділенні, перш ніж оплачувати.
+                {content.text3}
             </div>
-            <div className="client-service__page-title">
-                Міжнародна доставка
+            <div className="client-service__page-subtitle">
+                {content.subtitle3}
             </div>
             <div className="client-service__page-text">
-                Вартість, терміни і конкретна служба доставки обговорюються в індивідуальному порядку з менеджером інтернет магазину.
-                При замовленні до Польщі на суму від 2000 гривень, робимо доставку в подарунок.
-                При замовленні до Польщі на суму до 2000 гривень, вартість доставки 150-250 гривень.
-                При замовлені в інші країни - тарифікація доставки згідно вартості на Укрпошті чи Новою Поштою, яка зараз пропонує максимально вигідні ціни.
-                Строк доставки - в середньому півтора тижні.
+                {content.text4}
             </div>
         </div>
     )
@@ -51,4 +40,4 @@ const Delivery = () => {
 
 Delivery.getLayout = getClientServiceLayout
 
-export default Delivery
+export default InternHoc(Delivery, DeliveryContent)
