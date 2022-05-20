@@ -3,12 +3,14 @@ import {getClientServiceLayout} from "../../../components/client-service/client-
 import {NextPageWithLayout} from "../../../types/types";
 import {ReturnContent} from "./return.content";
 import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
+import Link from "next/link";
 
 type ReturnProps = {
     content: typeof ReturnContent.ua
 }
 
 const Return: NextPageWithLayout<ReturnProps> = ({content}) => {
+    console.log('content', content)
     return (
         <div className={'return'}>
             <div className="client-service__page-title">
@@ -41,6 +43,9 @@ const Return: NextPageWithLayout<ReturnProps> = ({content}) => {
                     {content.label2}
                 </div>
                 {content.text5}
+                <Link href="https://zakon.rada.gov.ua/laws/show/172-94-%D0%BF#Text">
+                    <a className={'client-service__page-link'}>{content.link1}</a>
+                </Link>
             </div>
         </div>
     )

@@ -1,48 +1,93 @@
 import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
+import {NextPageWithLayout} from "../../../types/types";
+import {PolicyContent} from "./policy.content";
+import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
+import layer from "react-map-gl/src/components/layer";
+import {string} from "prop-types";
 
-const Policy = () => {
+type PolicyPageProps = {
+    content: typeof PolicyContent.ua
+}
 
-    const data1 = [
-        ['база персональних даних', 'іменована сукупність упорядкованих персональних даних в електронній формі та/або у формі картотек персональних даних.'],
-        ['відповідальна особа', 'визначена особа, яка організовує роботу, пов’язану із захистом персональних даних при їх обробці, відповідно до закону.'],
-        ['володілець бази персональних даних', 'фізична або юридична особа, якій законом або за згодою суб’єкта персональних даних надано право на обробку цих даних, яка затверджує мету обробки персональних даних у цій базі даних, встановлює склад цих даних та процедури їх обробки, якщо інше не визначено законом.'],
-        ['Державний реєстр баз персональних даних', 'єдина державна інформаційна система збору, накопичення та обробки відомостей про зареєстровані бази персональних даних.'],
-        ['загальнодоступні джерела персональних даних', 'довідники, адресні книги, реєстри, списки, каталоги, інші систематизовані збірники відкритої інформації, які містять персональні дані, розміщені та опубліковані з відома суб’єкта персональних даних.'],
-        ['згода суб’єкта персональних даних', 'будь-яке документоване, добровільне волевиявлення фізичної особи щодо надання дозволу на обробку її персональних даних відповідно до сформульованої мети їх обробки;'],
-        ['знеособлення персональних даних', 'вилучення відомостей, які дають змогу ідентифікувати особу.'],
-        ['обробка персональних даних', 'будь-яка дія або сукупність дій, здійснених повністю або частково в інформаційній (автоматизованій) системі та/або в картотеках персональних даних, які пов’язані зі збиранням, реєстрацією, накопиченням, зберіганням, адаптуванням, зміною, поновленням, використанням і поширенням (розповсюдженням, реалізацією, передачею), знеособленням, знищенням відомостей про фізичну особу.'],
-        ['персональні дані', 'відомості чи сукупність відомостей про фізичну особу, яка ідентифікована або може бути конкретно ідентифікована;'],
-        ['розпорядник бази персональних даних', 'фізична чи юридична особа, якій володільцем бази персональних даних або законом надано право обробляти ці дані. \n Не є розпорядником бази персональних даних особа, якій володільцем та/або розпорядником бази персональних даних доручено здійснювати роботи технічного характеру з базою персональних даних без доступу до змісту персональних даних.'],
-        ['суб’єкт персональних даних', 'фізична особа, стосовно якої відповідно до закону здійснюється обробка її персональних даних;'],
-        ['третя особа', 'будь-яка особа, за винятком суб’єкта персональних даних, володільця чи розпорядника бази персональних даних та уповноваженого державного органу з питань захисту персональних даних, якій володільцем чи розпорядником бази персональних даних здійснюється передача персональних даних відповідно до закону.'],
-        ['особливі категорії даних', 'персональні дані про расове або етнічне походження, політичні, релігійні або світоглядні переконання, членство в політичних партіях та професійних спілках, а також даних, що стосуються здоров’я чи статевого життя.'],
-    ]
+const Policy: NextPageWithLayout<PolicyPageProps> = ({content}) => {
+
+    const mapList = (list: Array<string>) => (
+        <div className={'client-service__page-list'}>
+            {
+                list.map((item: string) => (
+                    <div className={'client-service__page-list-item'}>
+
+                    </div>
+                ))
+            }
+        </div>
+    )
+
+    const loopThroughContentObject = (loopContent: typeof content) => {
+        const html: JSX.Element []  = []
+        let property:  keyof typeof loopContent
+        let y = -1
+        let x = 0
+        for (property in loopContent) {
+            let pushElem: JSX.Element | null
+
+            if(property.startsWith('title')) {
+                pushElem = (
+                    <div className={'client-service__page-title'}>
+                        {loopContent[property]}
+                    </div>
+                )
+            }
+            else if (property.startsWith('subtitle')) {
+                pushElem = (
+                    <div className={'client-service__page-subtitle client-service__page-subtitle--policy'}>
+                        {y>=0 && `${y+1}. `}
+                        {loopContent[property]}
+                    </div>
+                )
+                y++
+                x=1
+            }
+            else if (property.startsWith('list')) {
+                const arr = loopContent[property] as Array<string>
+                pushElem = (
+                    <div className='list list--policy'>
+                        {
+                            arr.map((item: string, index) => (
+                                <div className={`list__item ${ y===0 && 'list__item--no-dash' }`}>
+                                    {property==='list1' && `${index+1}.`}
+                                    {item}
+                                </div>
+                            ))
+                        }
+                    </div>
+                )
+            }
+            else  {
+                pushElem = (
+                    <div className={'client-service__page-text client-service__page-text--policy'}>
+                        {y}.{x}. {loopContent[property]}
+                    </div>
+                )
+                x++
+            }
+            html.push(pushElem)
+        }
+        return html
+    }
+
+    const html: JSX.Element [] = loopThroughContentObject(content)
 
     return (
         <div className={'policy'}>
-            <div className="client-service__page-title">
-                ПОЛИТИКА КОНФИДЕЦИАЛЬНОСТИ
-            </div>
-            <div className="client-service__page-subtitle">
-                1. ВИЗНАЧЕННЯ ТЕРМІНІВ:
-            </div>
-            <div className="client-service__page-list">
-                {
-                    data1.map(([text1, text2]) =>
-                        <div className={'client-service__page-list-item'}>
-                            {text1} -
-                            <div className="client-service__page-list-item-span">
-                                {text2}
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
+            {
+               html
+            }
         </div>
     )
 }
 
 Policy.getLayout = getClientServiceLayout
 
-export default Policy
+export default InternHoc(Policy, PolicyContent)

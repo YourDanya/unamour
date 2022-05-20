@@ -1,8 +1,9 @@
 .client-service
   padding: 30px 40px
-  font-size: 11px
+  font-size: 10px
   display: flex
   &__links
+    color: #333
     margin-right: 45px
     display: flex
     flex-direction: column
@@ -14,14 +15,25 @@
   &__page
     width: 70%
     &-label
-      //margin-bottom: 5px
       font-weight: 700
     &-title
       margin-bottom: 40px
+    &-list
+      &-item
+        margin-bottom: 5px
     &-subtitle
       width: 100%
       text-align: center
       margin-bottom: 20px
       font-weight: 700
+      &--policy
+        text-align: start
+        font-weight: 500
+        margin-top: 30px
+        margin-bottom: 20px
     &-text
       margin-bottom: 30px
+      &--policy
+        margin-bottom: 15px
+    &-link
+      font-weight: 700
