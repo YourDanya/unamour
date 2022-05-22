@@ -13,10 +13,10 @@ type PolicyPageProps = {
 const Policy: NextPageWithLayout<PolicyPageProps> = ({content}) => {
 
     const mapList = (list: Array<string>) => (
-        <div className={'client-service__page-list'}>
+        <div className={'service__list'}>
             {
                 list.map((item: string) => (
-                    <div className={'client-service__page-list-item'}>
+                    <div className={'service__list-item'}>
 
                     </div>
                 ))
@@ -34,14 +34,14 @@ const Policy: NextPageWithLayout<PolicyPageProps> = ({content}) => {
 
             if(property.startsWith('title')) {
                 pushElem = (
-                    <div className={'client-service__page-title'}>
+                    <div className={'service__title'}>
                         {loopContent[property]}
                     </div>
                 )
             }
             else if (property.startsWith('subtitle')) {
                 pushElem = (
-                    <div className={'client-service__page-subtitle client-service__page-subtitle--policy'}>
+                    <div className={'service__subtitle service__subtitle--policy'}>
                         {y>=0 && `${y+1}. `}
                         {loopContent[property]}
                     </div>
@@ -66,7 +66,7 @@ const Policy: NextPageWithLayout<PolicyPageProps> = ({content}) => {
             }
             else  {
                 pushElem = (
-                    <div className={'client-service__page-text client-service__page-text--policy'}>
+                    <div className={'service__text service__text--policy'}>
                         {y}.{x}. {loopContent[property]}
                     </div>
                 )

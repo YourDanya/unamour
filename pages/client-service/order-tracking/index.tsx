@@ -11,12 +11,12 @@ type OrderTrackingProps = {
 const OrderTracking: NextPageWithLayout<OrderTrackingProps> = ({content}) => {
     return (
         <div className={'order-tracking'}>
-            <div className="client-service__page-title">
+            <div className="service__title">
                 {
                     content.title
                 }
             </div>
-            <div className="client-service__page-text">
+            <div className="service__text">
                 {
                     content.text
                 }

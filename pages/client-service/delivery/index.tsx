@@ -11,27 +11,27 @@ type DeliveryContentProps = {
 const Delivery: NextPageWithLayout<DeliveryContentProps> = ({content}) => {
     return (
         <div className={'delivery'}>
-            <div className="client-service__page-title">
+            <div className="service__title">
                 {content.title1}
             </div>
-            <div className="client-service__page-subtitle">
+            <div className="service__subtitle">
                 {content.subtitle1}
             </div>
-            <div className="client-service__page-text">
+            <div className="service__text">
                 {content.text1}
                 <br/><br/>
                 {content.text2}
             </div>
-            <div className="client-service__page-subtitle">
+            <div className="service__subtitle">
                 {content.subtitle2}
             </div>
-            <div className="client-service__page-text">
+            <div className="service__text">
                 {content.text3}
             </div>
-            <div className="client-service__page-subtitle">
+            <div className="service__subtitle">
                 {content.subtitle3}
             </div>
-            <div className="client-service__page-text">
+            <div className="service__text">
                 {content.text4}
             </div>
         </div>

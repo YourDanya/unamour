@@ -7,7 +7,7 @@ type clientServiceProps = {
 }
 
 const urls = [
-    {name: 'УХОД ЗА ОДЕЖДОЙ', url: 'clothing-care', className: 'client-service__link--first'},
+    {name: 'УХОД ЗА ОДЕЖДОЙ', url: 'clothing-care', className: 'service__link--first'},
     {name: 'ОПЛАТА И ДОСТАВКА', url: 'delivery'},
     {name: 'ОТСЛЕЖИВАНИЕ ЗАКАЗА', url: 'order-tracking'},
     {name: 'ВОЗВРАТ ТОВАРА', url: 'return'},
@@ -24,19 +24,19 @@ const ClientService: React.FC<clientServiceProps> = ({children}) => {
     const [counter, setCounter] = useState(0)
 
     return (
-        <div className={'client-service'}>
-            <div className="client-service__links">
+        <div className={'service'}>
+            <div className="service__links">
                 {
                     urls.map(({name, url, className}) =>
                         <Link href={`/client-service/${url}`} key={name}>
-                            <a className={`client-service__link ${url === router.pathname ? 'client-service__link--active' : ''} ${className ?? ''}`}>
+                            <a className={`service__link ${url === router.pathname ? 'service__link--active' : ''} ${className ?? ''}`}>
                                 {name}
                             </a>
                         </Link>
                     )
                 }
             </div>
-            <div className="client-service__page">
+            <div className="service__page">
                 {
                     children
                 }

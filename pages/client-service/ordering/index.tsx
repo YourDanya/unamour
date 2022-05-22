@@ -14,10 +14,10 @@ const Ordering: NextPageWithLayout<OrderingPageProps> = ({content}) => {
 
     return (
         <div className={'ordering'}>
-            <div className="client-service__page-title">
+            <div className="service__title">
                 ИНСТРУКЦИЯ ПО ОФОРМЛЕНИЮ ЗАКАЗА
             </div>
-            <div className="list client-service__page-list">
+            <div className="list service__list">
                 {
                     content.list1.map(item =>
                         <div className={'list__item'}>
@@ -26,10 +26,10 @@ const Ordering: NextPageWithLayout<OrderingPageProps> = ({content}) => {
                     )
                 }
             </div>
-            <div className="client-service__page-text">
+            <div className="service__text">
                 {content.text1}
             </div>
-            <div className="client-service__page-text">
+            <div className="service__text">
                 {content.text2}
             </div>
         </div>
