@@ -1,8 +1,8 @@
 export const PolicyContent = {
     ua: {
         title1: 'ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ',
-        subtitle1: 'Зміст',
-        list1: [
+        numSubtitle1: 'Зміст',
+        numList1: [
             'Загальні поняття та сфера застосування.',
             'Перелік баз персональних даних.',
             'Мета обробки персональних даних.',
@@ -15,9 +15,9 @@ export const PolicyContent = {
             'Державна реєстрація бази персональних даних.',
             'Загальні поняття та сфера застосування.'
         ],
-        subtitle2: 'ВИЗНАЧЕННЯ ТЕРМІНІВ',
-        text0: 'Основні терміни:',
-        list2: [
+        numSubtitle2: 'ВИЗНАЧЕННЯ ТЕРМІНІВ',
+        numText0: 'Основні терміни:',
+        list1: [
             'база персональних даних - іменована сукупність упорядкованих персональних даних в електронній формі та/або у формі картотек персональних даних.',
             'відповідальна особа - визначена особа, яка організовує роботу, пов’язану із захистом персональних даних при їх обробці, відповідно до закону.',
             'володілець бази персональних даних - фізична або юридична особа, якій законом або за згодою суб’єкта персональних даних надано право на обробку цих даних, яка затверджує мету обробки персональних даних у цій базі даних, встановлює склад цих даних та процедури їх обробки, якщо інше не визначено законом.',
@@ -32,33 +32,33 @@ export const PolicyContent = {
             'третя особа - будь-яка особа, за винятком суб’єкта персональних даних, володільця чи розпорядника бази персональних даних та уповноваженого державного органу з питань захисту персональних даних, якій володільцем чи розпорядником бази персональних даних здійснюється передача персональних даних відповідно до закону.',
             'особливі категорії даних - персональні дані про расове або етнічне походження, політичні, релігійні або світоглядні переконання, членство в політичних партіях та професійних спілках, а також даних, що стосуються здоров’я чи статевого життя.'
         ],
-        text1: 'Дане Положення обов’язкове для застосування відповідальною особою та співробітниками продавця, які безпосередньо здійснюють обробку та/або мають доступ до персональних даних у зв’язку з виконанням своїх службових обов’язків.',
-        subtitle3: 'ПЕРЕЛІК БАЗ ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text2: 'Продавець є власником наступних баз персональних даних:',
-        list3: [
+        numText1: 'Дане Положення обов’язкове для застосування відповідальною особою та співробітниками продавця, які безпосередньо здійснюють обробку та/або мають доступ до персональних даних у зв’язку з виконанням своїх службових обов’язків.',
+        numSubtitle3: 'ПЕРЕЛІК БАЗ ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText2: 'Продавець є власником наступних баз персональних даних:',
+        list2: [
             'база персональних даних контрагенти.'
         ],
-        subtitle4: 'МЕТА ОБРОБКИ ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text3: 'Метою обробки персональних даних у системі є зберігання та обслуговування даних контрагентів, відповідно до статей 6, 7 Закону України «Про захист персональних даних»:.',
-        text4: 'Метою обробки персональних даних є забезпечення реалізації цивільно-правових відносин, надання/ отримання та здійснення розрахунків за придбані товари/послуги відповідно до Податкового кодексу України, Закону України «Про бухгалтерський облік та фінансову звітність в Україні».',
-        subtitle5: 'ПОРЯДОК ОБРОБКИ ПЕРСОНАЛЬНИХ ДАНИХ: ОТРИМАННЯ ЗГОДИ, ПОВІДОМЛЕННЯ ПРО ПРАВА ТА ДІЇ З ПЕРСОНАЛЬНИМИ ДАНИМИ СУБ’ЄКТА ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text5: 'Згода суб’єкта персональних даних має бути добровільним волевиявленням фізичної особи щодо надання дозволу на обробку її персональних даних відповідно до сформульованої мети їх обробки. Згода суб’єкта персональних даних може бути надана у наступних формах:',
-        list4: [
+        numSubtitle4: 'МЕТА ОБРОБКИ ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText3: 'Метою обробки персональних даних у системі є зберігання та обслуговування даних контрагентів, відповідно до статей 6, 7 Закону України «Про захист персональних даних»:.',
+        numText4: 'Метою обробки персональних даних є забезпечення реалізації цивільно-правових відносин, надання/ отримання та здійснення розрахунків за придбані товари/послуги відповідно до Податкового кодексу України, Закону України «Про бухгалтерський облік та фінансову звітність в Україні».',
+        numSubtitle5: 'ПОРЯДОК ОБРОБКИ ПЕРСОНАЛЬНИХ ДАНИХ: ОТРИМАННЯ ЗГОДИ, ПОВІДОМЛЕННЯ ПРО ПРАВА ТА ДІЇ З ПЕРСОНАЛЬНИМИ ДАНИМИ СУБ’ЄКТА ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText5: 'Згода суб’єкта персональних даних має бути добровільним волевиявленням фізичної особи щодо надання дозволу на обробку її персональних даних відповідно до сформульованої мети їх обробки. Згода суб’єкта персональних даних може бути надана у наступних формах:',
+        list3: [
             'документ на паперовому носії з реквізитами, що дає змогу ідентифікувати цей документ і фізичну особу.',
             'електронний документ, який має містити обов’язкові реквізити, що дають змогу ідентифікувати цей документ та фізичну особу. Добровільне волевиявлення фізичної особи щодо надання дозволу на обробку її персональних даних доцільно засвідчувати електронним підписом суб’єкта персональних даних.',
             'відмітка на електронній сторінці документа чи в електронному файлі, що обробляється в інформаційній системі на основі документованих програмно-технічних рішень.'
         ],
-        text6: 'Згода суб’єкта персональних даних надається під час оформлення цивільно-правових відносин відповідно до чинного законодавства.',
-        text7: 'Повідомлення суб’єкта персональних даних про включення його персональних даних до бази персональних даних, права, визначені Законом України «Про захист персональних даних», мету збору даних та осіб, яким передаються його персональні дані здійснюється під час оформлення цивільно-правових відносин відповідно до чинного законодавства.',
-        text8: 'Обробка персональних даних про расове або етнічне походження, політичні, релігійні або світоглядні переконання, членство в політичних партіях та професійних спілках, а також даних, що стосуються здоров’я чи статевого життя (особливі категорії даних) забороняється.',
-        subtitle6: 'МІСЦЕЗНАХОДЖЕННЯ БАЗИ ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text9: 'Вказані у розділі 2 цього Положення бази персональних даних знаходяться за адресою продавця.',
-        subtitle7: 'УМОВИ РОЗКРИТТЯ ІНФОРМАЦІЇ ПРО ПЕРСОНАЛЬНІ ДАНІ ТРЕТІМ ОСОБАМ.',
-        text10: 'Порядок доступу до персональних даних третіх осіб визначається умовами згоди суб’єкта персональних даних, наданої володільцю бази персональних даних на обробку цих даних, або відповідно до вимог закону.',
-        text11: 'Доступ до персональних даних третій особі не надається, якщо зазначена особа відмовляється взяти на себе зобов’язання щодо забезпечення виконання вимог Закону України «Про захист персональних даних» або неспроможна їх забезпечити.',
-        text12: 'Суб’єкт відносин, пов’язаних з персональними даними, подає запит щодо доступу (далі — запит) до персональних даних володільцю бази персональних даних.',
-        text13: 'У запиті зазначаються:',
-        list5: [
+        numText6: 'Згода суб’єкта персональних даних надається під час оформлення цивільно-правових відносин відповідно до чинного законодавства.',
+        numText7: 'Повідомлення суб’єкта персональних даних про включення його персональних даних до бази персональних даних, права, визначені Законом України «Про захист персональних даних», мету збору даних та осіб, яким передаються його персональні дані здійснюється під час оформлення цивільно-правових відносин відповідно до чинного законодавства.',
+        numText8: 'Обробка персональних даних про расове або етнічне походження, політичні, релігійні або світоглядні переконання, членство в політичних партіях та професійних спілках, а також даних, що стосуються здоров’я чи статевого життя (особливі категорії даних) забороняється.',
+        numSubtitle6: 'МІСЦЕЗНАХОДЖЕННЯ БАЗИ ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText9: 'Вказані у розділі 2 цього Положення бази персональних даних знаходяться за адресою продавця.',
+        numSubtitle7: 'УМОВИ РОЗКРИТТЯ ІНФОРМАЦІЇ ПРО ПЕРСОНАЛЬНІ ДАНІ ТРЕТІМ ОСОБАМ.',
+        numText10: 'Порядок доступу до персональних даних третіх осіб визначається умовами згоди суб’єкта персональних даних, наданої володільцю бази персональних даних на обробку цих даних, або відповідно до вимог закону.',
+        numText11: 'Доступ до персональних даних третій особі не надається, якщо зазначена особа відмовляється взяти на себе зобов’язання щодо забезпечення виконання вимог Закону України «Про захист персональних даних» або неспроможна їх забезпечити.',
+        numText12: 'Суб’єкт відносин, пов’язаних з персональними даними, подає запит щодо доступу (далі — запит) до персональних даних володільцю бази персональних даних.',
+        numText13: 'У запиті зазначаються:',
+        list4: [
             'прізвище, ім’я та по батькові, місце проживання (місце перебування) і реквізити документа, що посвідчує фізичну особу, яка подає запит (для фізичної особи - заявника).',
             'найменування, місцезнаходження юридичної особи, яка подає запит, посада, прізвище, ім’я та по батькові особи, яка засвідчує запит; підтвердження того, що зміст запиту відповідає повноваженням юридичної особи (для юридичної особи — заявника).',
             'прізвище, ім’я та по батькові, а також інші відомості, що дають змогу ідентифікувати фізичну особу, стосовно якої робиться запит.',
@@ -66,31 +66,31 @@ export const PolicyContent = {
             'перелік персональних даних, що запитуються.',
             'мета запиту.'
         ],
-        text14: 'Строк вивчення запиту на предмет його задоволення не може перевищувати десяти робочих днів з дня його надходження.',
-        text15: 'Протягом цього строку володілець бази персональних даних доводить до відома особи, яка подає запит, що запит буде задоволене або відповідні персональні дані не підлягають наданню, із зазначенням підстави, визначеної у відповідному нормативно-правовому акті.\n\n Запит задовольняється протягом тридцяти календарних днів з дня його надходження, якщо інше не передбачено законом.',
-        text16: 'Усі працівники володільця бази персональних даних зобов’язані додержуватися вимог конфіденційності щодо персональних даних та інформації щодо рахунків у цінних паперах та обігу цінних паперів.',
-        text17: 'Відстрочення доступу до персональних даних третіх осіб допускається у разі, якщо необхідні дані не можуть бути надані протягом тридцяти календарних днів з дня надходження запиту. При цьому загальний термін вирішення питань, порушених у запиті, не може перевищувати сорока п’яти календарних днів.',
-        text18: 'Повідомлення про відстрочення доводиться до відома третьої особи, яка подала запит, у письмовій формі з роз’ясненням порядку оскарження такого рішення.',
-        text19: 'У повідомленні про відстрочення зазначаються:',
-        list6: [
+        numText14: 'Строк вивчення запиту на предмет його задоволення не може перевищувати десяти робочих днів з дня його надходження.',
+        numText15: 'Протягом цього строку володілець бази персональних даних доводить до відома особи, яка подає запит, що запит буде задоволене або відповідні персональні дані не підлягають наданню, із зазначенням підстави, визначеної у відповідному нормативно-правовому акті.\n\n Запит задовольняється протягом тридцяти календарних днів з дня його надходження, якщо інше не передбачено законом.',
+        numText16: 'Усі працівники володільця бази персональних даних зобов’язані додержуватися вимог конфіденційності щодо персональних даних та інформації щодо рахунків у цінних паперах та обігу цінних паперів.',
+        numText17: 'Відстрочення доступу до персональних даних третіх осіб допускається у разі, якщо необхідні дані не можуть бути надані протягом тридцяти календарних днів з дня надходження запиту. При цьому загальний термін вирішення питань, порушених у запиті, не може перевищувати сорока п’яти календарних днів.',
+        numText18: 'Повідомлення про відстрочення доводиться до відома третьої особи, яка подала запит, у письмовій формі з роз’ясненням порядку оскарження такого рішення.',
+        numText19: 'У повідомленні про відстрочення зазначаються:',
+        list5: [
             'прізвище, ім’я та по батькові посадової особи.',
             'дата відправлення повідомлення.',
             'причина відстрочення.',
             'строк, протягом якого буде задоволене запит.'
         ],
-        text20: 'Відмова у доступі до персональних даних допускається, якщо доступ до них заборонено згідно із законом.',
-        text21: 'У повідомленні про відмову зазначаються:',
-        list7: [
+        numText20: 'Відмова у доступі до персональних даних допускається, якщо доступ до них заборонено згідно із законом.',
+        numText21: 'У повідомленні про відмову зазначаються:',
+        list6: [
             'прізвище, ім’я, по батькові посадової особи, яка відмовляє у доступі.',
             'дата відправлення повідомлення.',
             'причина відмови.'
         ],
-        text22: 'Рішення про відстрочення або відмову із доступі до персональних даних може бути оскаржено до уповноваженого державного органу з питань захисту персональних даних, інших органів державної влади та органів місцевого самоврядування, до повноважень яких належить здійснення захисту персональних даних, або до суду.',
-        subtitle8: 'ЗАХИСТ ПЕРСОНАЛЬНИХ ДАНИХ: СПОСОБИ ЗАХИСТУ, ВІДПОВІДАЛЬНА ОСОБА, ПРАЦІВНИКИ, ЯКІ БЕЗПОСЕРЕДНЬО ЗДІЙСНЮЮТЬ ОБРОБКУ ТА/АБО МАЮТЬ ДОСТУП ДО ПЕРСОНАЛЬНИХ ДАНИХ У ЗВ’ЯЗКУ З ВИКОНАННЯМ СВОЇХ СЛУЖБОВИХ ОБОВ’ЯЗКІВ, СТРОК ЗБЕРІГАННЯ ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text23: 'Володільця бази персональних даних обладнано системними і програмно-технічними засобами та засобами зв’язку, які запобігають втратам, крадіжкам, несанкціонованому знищенню, викривленню, підробленню, копіюванню інформації і відповідають вимогам міжнародних та національних стандартів.',
-        text24: 'Відповідальна особа організовує роботу, пов’язану із захистом персональних даних при їх обробці, відповідно до закону. Відповідальна особа визначається наказом Володільця бази персональних даних.\n\n Обов’язки відповідальної особи щодо організації роботи, пов’язаної із захистом персональних даних при їх обробці зазначаються у посадовій інструкції.',
-        text25: 'Відповідальна особа зобов’язана:',
-        list8: [
+        numText22: 'Рішення про відстрочення або відмову із доступі до персональних даних може бути оскаржено до уповноваженого державного органу з питань захисту персональних даних, інших органів державної влади та органів місцевого самоврядування, до повноважень яких належить здійснення захисту персональних даних, або до суду.',
+        numSubtitle8: 'ЗАХИСТ ПЕРСОНАЛЬНИХ ДАНИХ: СПОСОБИ ЗАХИСТУ, ВІДПОВІДАЛЬНА ОСОБА, ПРАЦІВНИКИ, ЯКІ БЕЗПОСЕРЕДНЬО ЗДІЙСНЮЮТЬ ОБРОБКУ ТА/АБО МАЮТЬ ДОСТУП ДО ПЕРСОНАЛЬНИХ ДАНИХ У ЗВ’ЯЗКУ З ВИКОНАННЯМ СВОЇХ СЛУЖБОВИХ ОБОВ’ЯЗКІВ, СТРОК ЗБЕРІГАННЯ ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText23: 'Володільця бази персональних даних обладнано системними і програмно-технічними засобами та засобами зв’язку, які запобігають втратам, крадіжкам, несанкціонованому знищенню, викривленню, підробленню, копіюванню інформації і відповідають вимогам міжнародних та національних стандартів.',
+        numText24: 'Відповідальна особа організовує роботу, пов’язану із захистом персональних даних при їх обробці, відповідно до закону. Відповідальна особа визначається наказом Володільця бази персональних даних.\n\n Обов’язки відповідальної особи щодо організації роботи, пов’язаної із захистом персональних даних при їх обробці зазначаються у посадовій інструкції.',
+        numText25: 'Відповідальна особа зобов’язана:',
+        list7: [
             'знати законодавство України в сфері захисту персональних даних.',
             'розробити процедури доступу до персональних даних співробітників відповідно до їхніх професійних чи службових або трудових обов’язків.',
             'забезпечити виконання співробітниками Володільця бази персональних даних вимог законодавства України в сфері захисту персональних даних та внутрішніх документів, що регулюють діяльність Володільця бази персональних даних щодо обробки і захисту персональних даних у базах персональних даних.',
@@ -98,8 +98,8 @@ export const PolicyContent = {
             'повідомляти Володільця бази персональних даних про факти порушень співробітниками вимог законодавства України в сфері захисту персональних даних та внутрішніх документів, що регулюють діяльність Володільця бази персональних даних щодо обробки і захисту персональних даних у базах персональних даних у термін не пізніше одного робочого дня з моменту виявлення таких порушень',
             'забезпечити зберігання документів, що підтверджують надання суб’єктом персональних даних згоди на обробку своїх персональних даних та повідомлення вказаного суб’єкта про його права.'
         ],
-        text26: 'З метою виконання своїх обов’язків відповідальна особа має право:',
-        list9: [
+        numText26: 'З метою виконання своїх обов’язків відповідальна особа має право:',
+        list8: [
             'отримувати необхідні документи, у тому числі накази й інші розпорядчі документи, видані Володільцем бази персональних даних , пов’язані із обробкою персональних даних.',
             'робити копії з отриманих документів, у тому числі копії файлів, будь-яких записів, що зберігаються в локальних обчислювальних мережах і автономних комп’ютерних системах.',
             'брати участь в обговоренні виконуваних ним обов’язків організації роботи, пов’язаної із захистом персональних даних при їх обробці.',
@@ -107,13 +107,13 @@ export const PolicyContent = {
             'одержувати пояснення з питань здійснення обробки персональних даних.',
             'підписувати та візувати документи в межах своєї компетенції.'
         ],
-        text27: 'Працівники, які безпосередньо здійснюють обробку та/або мають доступ до персональних даних у зв’язку з виконанням своїх службових (трудових) обов’язків зобов’язані дотримуватись вимог законодавства України в сфері захисту персональних даних та внутрішніх документів, щодо обробки і захисту персональних даних у базах персональних даних.',
-        text28: 'Працівники, що мають доступ до персональних даних, у тому числі, здійснюють їх обробку зобов’язані не допускати розголошення у будь-який спосіб персональних даних, які їм було довірено або які стали відомі у зв’язку з виконанням професійних чи службових або трудових обов’язків. Таке зобов’язання чинне після припинення ними діяльності, пов’язаної з персональними даними, крім випадків, установлених законом.',
-        text29: 'Особи, що мають доступ до персональних даних, у тому числі, здійснюють їх обробку у разі порушення ними вимог Закону України «Про захист персональних даних» несуть відповідальність згідно законодавства України.',
-        text30: 'Персональні дані не повинні зберігатися довше, ніж це необхідно для мети, для якої такі дані зберігаються, але у будь-якому разі не довше строку зберігання даних, визначеного згодою суб’єкта персональних даних на обробку цих даних.',
-        subtitle9: 'ПРАВА СУБ’ЄКТА ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text31: 'Суб’єкт персональних даних має право:',
-        list10: [
+        numText27: 'Працівники, які безпосередньо здійснюють обробку та/або мають доступ до персональних даних у зв’язку з виконанням своїх службових (трудових) обов’язків зобов’язані дотримуватись вимог законодавства України в сфері захисту персональних даних та внутрішніх документів, щодо обробки і захисту персональних даних у базах персональних даних.',
+        numText28: 'Працівники, що мають доступ до персональних даних, у тому числі, здійснюють їх обробку зобов’язані не допускати розголошення у будь-який спосіб персональних даних, які їм було довірено або які стали відомі у зв’язку з виконанням професійних чи службових або трудових обов’язків. Таке зобов’язання чинне після припинення ними діяльності, пов’язаної з персональними даними, крім випадків, установлених законом.',
+        numText29: 'Особи, що мають доступ до персональних даних, у тому числі, здійснюють їх обробку у разі порушення ними вимог Закону України «Про захист персональних даних» несуть відповідальність згідно законодавства України.',
+        numText30: 'Персональні дані не повинні зберігатися довше, ніж це необхідно для мети, для якої такі дані зберігаються, але у будь-якому разі не довше строку зберігання даних, визначеного згодою суб’єкта персональних даних на обробку цих даних.',
+        numSubtitle9: 'ПРАВА СУБ’ЄКТА ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText31: 'Суб’єкт персональних даних має право:',
+        list9: [
             'знати про місцезнаходження бази персональних даних, яка містить його персональні дані, її призначення та найменування, місцезнаходження та / або місце проживання (перебування) володільця чи розпорядника цієї бази або дати відповідне доручення щодо отримання цієї інформації уповноваженим ним особам, крім випадків, встановлених законом.',
             'отримувати інформацію про умови надання доступу до персональних даних, зокрема інформацію про третіх осіб, яким передаються його персональні дані, що містяться у відповідній базі персональних даних.',
             'на доступ до своїх персональних даних, що містяться у відповідній базі персональних даних',
@@ -124,26 +124,26 @@ export const PolicyContent = {
             'звертатися з питань захисту своїх прав щодо персональних даних до органів державної влади, органів місцевого самоврядування, до повноважень яких належить здійснення захисту персональних даних.',
             'застосовувати засоби правового захисту в разі порушення законодавства про захист персональних даних.'
         ],
-        subtitle10: 'ПОРЯДОК РОБОТИ З ЗАПИТАМИ СУБ’ЄКТА ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text32: 'Суб’єкт персональних даних має право на одержання будь-яких відомостей про себе у будь-якого суб’єкта відносин, пов’язаних з персональними даними, без зазначення мети запиту, крім випадків, установлених законом.',
-        text33: 'Доступ суб’єкта персональних даних до даних про себе здійснюється безоплатно.',
-        text34: 'Суб’єкт персональних даних подає запит щодо доступу (далі — запит) до персональних даних володільцю бази персональних даних.\n\n У запиті зазначаються:',
-        list11: [
+        numSubtitle10: 'ПОРЯДОК РОБОТИ З ЗАПИТАМИ СУБ’ЄКТА ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText32: 'Суб’єкт персональних даних має право на одержання будь-яких відомостей про себе у будь-якого суб’єкта відносин, пов’язаних з персональними даними, без зазначення мети запиту, крім випадків, установлених законом.',
+        numText33: 'Доступ суб’єкта персональних даних до даних про себе здійснюється безоплатно.',
+        numText34: 'Суб’єкт персональних даних подає запит щодо доступу (далі — запит) до персональних даних володільцю бази персональних даних.\n\n У запиті зазначаються:',
+        list10: [
           'прізвище, ім’я та по батькові, місце проживання (місце перебування) і реквізити документа, що посвідчує особу суб’єкта персональних даних.',
           'інші відомості, що дають змогу ідентифікувати особу суб’єкта персональних даних.',
           'відомості про базу персональних даних, стосовно якої подається запит, чи відомості про володільця чи розпорядника цієї бази.',
           'перелік персональних даних, що запитуються.'
         ],
-        text35: 'Строк вивчення запиту на предмет його задоволення не може перевищувати десяти робочих днів з дня його надходження.',
-        text36: 'Протягом цього строку володілець бази персональних даних доводить до відома суб’єкта персональних даних, що запит буде задоволене або відповідні персональні дані не підлягають наданню, із зазначенням підстави, визначеної у відповідному нормативно-правовому акті.',
-        text37: 'Запит задовольняється протягом тридцяти календарних днів з дня його надходження, якщо інше не передбачено законом.',
-        subtitle11: 'ДЕРЖАВНА РЕЄСТРАЦІЯ БАЗИ ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text38: 'Державна реєстрація баз персональних даних здійснюється відповідно до статті 9 Закону України «Про захист персональних даних».'
+        numText35: 'Строк вивчення запиту на предмет його задоволення не може перевищувати десяти робочих днів з дня його надходження.',
+        numText36: 'Протягом цього строку володілець бази персональних даних доводить до відома суб’єкта персональних даних, що запит буде задоволене або відповідні персональні дані не підлягають наданню, із зазначенням підстави, визначеної у відповідному нормативно-правовому акті.',
+        numText37: 'Запит задовольняється протягом тридцяти календарних днів з дня його надходження, якщо інше не передбачено законом.',
+        numSubtitle11: 'ДЕРЖАВНА РЕЄСТРАЦІЯ БАЗИ ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText38: 'Державна реєстрація баз персональних даних здійснюється відповідно до статті 9 Закону України «Про захист персональних даних».'
     },
     eng: {
         title1: 'PRIVACY POLICY',
-        subtitle1: 'Contents',
-        list1: [
+        numSubtitle1: 'Contents',
+        numList1: [
             'General concepts and scope.',
             'List of personal databases.',
             'Purpose of personal data processing.',
@@ -156,9 +156,9 @@ export const PolicyContent = {
             'State registration of personal data base.',
             'General concepts and scope.'
         ],
-        subtitle2: 'DEFINITION OF TERMS',
-        text0: 'Basic terms:',
-        list2: [
+        numSubtitle2: 'DEFINITION OF TERMS',
+        numText0: 'Basic terms:',
+        list1: [
             'personal data base - a named set of organized personal data in electronic form and / or in the form of personal data files.',
             'responsible person - a designated person who organizes work related to the protection of personal data during their processing, in accordance with the law.',
             'owner of personal data base - a natural or legal person who by law or with the consent of the personal data subject has the right to process this data, who approves the purpose of personal data processing in this database, establishes the composition of these data and processing procedures, if otherwise not defined by law. ',
@@ -173,33 +173,33 @@ export const PolicyContent = {
             'third party - any person, except for the personal data subject, owner or administrator of the personal database and the authorized state body for personal data protection, to whom the owner or administrator of the personal database transfers personal data in accordance with the law.',
             'special categories of data - personal data on racial or ethnic origin, political, religious or ideological beliefs, membership in political parties and trade unions, as well as data related to health or sexual life.'
         ],
-        text1: 'This Regulation is binding on the responsible person and employees of the seller who directly process and / or have access to personal data in connection with the performance of their official duties.',
-        subtitle3: 'LIST OF PERSONAL DATABASES.',
-        text2: 'The seller owns the following personal databases:',
-        list3: [
+        numText1: 'This Regulation is binding on the responsible person and employees of the seller who directly process and / or have access to personal data in connection with the performance of their official duties.',
+        numSubtitle3: 'LIST OF PERSONAL DATABASES.',
+        numText2: 'The seller owns the following personal databases:',
+        list2: [
             'personal data counterparties.'
         ],
-        subtitle4: 'PURPOSE OF PERSONAL DATA PROCESSING.',
-        text3: 'The purpose of personal data processing in the system is the storage and maintenance of counterparty data, in accordance with Articles 6, 7 of the Law of Ukraine "On Personal Data Protection" :.',
-        text4: 'The purpose of personal data processing is to ensure the implementation of civil relations, providing / receiving and making payments for purchased goods / services in accordance with the Tax Code of Ukraine, the Law of Ukraine "On Accounting and Financial Reporting in Ukraine".',
-        subtitle5: 'PROCEDURE FOR PROCESSING PERSONAL DATA: OBTAINING CONSENT, NOTIFICATION OF RIGHTS AND ACTIONS WITH PERSONAL DATA OF A PERSONAL PERSON',
-        text5: 'The consent of the personal data subject must be a voluntary expression of the will of the individual to allow the processing of his or her personal data in accordance with the stated purpose of their processing. The consent of the personal data subject may be given in the following forms: ',
-        list4: [
+        numSubtitle4: 'PURPOSE OF PERSONAL DATA PROCESSING.',
+        numText3: 'The purpose of personal data processing in the system is the storage and maintenance of counterparty data, in accordance with Articles 6, 7 of the Law of Ukraine "On Personal Data Protection" :.',
+        numText4: 'The purpose of personal data processing is to ensure the implementation of civil relations, providing / receiving and making payments for purchased goods / services in accordance with the Tax Code of Ukraine, the Law of Ukraine "On Accounting and Financial Reporting in Ukraine".',
+        numSubtitle5: 'PROCEDURE FOR PROCESSING PERSONAL DATA: OBTAINING CONSENT, NOTIFICATION OF RIGHTS AND ACTIONS WITH PERSONAL DATA OF A PERSONAL PERSON',
+        numText5: 'The consent of the personal data subject must be a voluntary expression of the will of the individual to allow the processing of his or her personal data in accordance with the stated purpose of their processing. The consent of the personal data subject may be given in the following forms: ',
+        list3: [
             'paper document with details, which allows to identify this document and an individual.',
             'an electronic document, which must contain the obligatory details that allow to identify this document and the individual. Voluntary expression of will of an individual to grant permission for the processing of his personal data should be certified by an electronic signature of the subject of personal data. ',
             'mark on the electronic page of the document or in the electronic file processed in the information system on the basis of documented software and hardware solutions.'
         ],
-        text6: 'The consent of the personal data subject is given during the registration of civil relations in accordance with applicable law.',
-        text7: 'Notification of the subject of personal data on the inclusion of his personal data in the personal database, rights under the Law of Ukraine "On Personal Data Protection", the purpose of data collection and persons to whom his personal data is transferred during the registration of civil relations in accordance with current legislation. ',
-        text8: 'The processing of personal data on racial or ethnic origin, political, religious or ideological beliefs, membership of political parties and trade unions, and data relating to health or sexual life (special categories of data) is prohibited.',
-        subtitle6: 'LOCATION OF PERSONAL DATABASE.',
-        text9: 'The personal data bases specified in section 2 of this Regulation are located at the seller\'s address.',
-        subtitle7: 'TERMS OF DISCLOSURE OF PERSONAL INFORMATION TO THIRD PARTIES.',
-        text10: 'The procedure for access to personal data of third parties is determined by the conditions of consent of the personal data subject provided to the owner of the personal data base for the processing of such data, or in accordance with the law.',
-        text11: 'Access to personal data shall not be granted to a third party if the said person refuses to undertake to ensure compliance with the requirements of the Law of Ukraine "On Personal Data Protection" or is unable to provide them.',
-        text12: 'The subject of the personal data relationship shall submit a request for access (hereinafter - the request) to personal data to the owner of the personal data base.',
-        text13: 'The query states:',
-        list5: [
+        numText6: 'The consent of the personal data subject is given during the registration of civil relations in accordance with applicable law.',
+        numText7: 'Notification of the subject of personal data on the inclusion of his personal data in the personal database, rights under the Law of Ukraine "On Personal Data Protection", the purpose of data collection and persons to whom his personal data is transferred during the registration of civil relations in accordance with current legislation. ',
+        numText8: 'The processing of personal data on racial or ethnic origin, political, religious or ideological beliefs, membership of political parties and trade unions, and data relating to health or sexual life (special categories of data) is prohibited.',
+        numSubtitle6: 'LOCATION OF PERSONAL DATABASE.',
+        numText9: 'The personal data bases specified in section 2 of this Regulation are located at the seller\'s address.',
+        numSubtitle7: 'TERMS OF DISCLOSURE OF PERSONAL INFORMATION TO THIRD PARTIES.',
+        numText10: 'The procedure for access to personal data of third parties is determined by the conditions of consent of the personal data subject provided to the owner of the personal data base for the processing of such data, or in accordance with the law.',
+        numText11: 'Access to personal data shall not be granted to a third party if the said person refuses to undertake to ensure compliance with the requirements of the Law of Ukraine "On Personal Data Protection" or is unable to provide them.',
+        numText12: 'The subject of the personal data relationship shall submit a request for access (hereinafter - the request) to personal data to the owner of the personal data base.',
+        numText13: 'The query states:',
+        list4: [
             'last name, first name and patronymic, place of residence (location) and details of the document certifying the natural person submitting the request (for the natural person - the applicant). ',
             'name, location of the legal entity submitting the request, position, surname, name and patronymic of the person certifying the request; confirmation that the content of the request corresponds to the powers of the legal entity (for the legal entity - the applicant). ',
             'surname, name and patronymic, as well as other information that allows to identify the natural person in respect of whom the request is made.',
@@ -207,31 +207,31 @@ export const PolicyContent = {
             'list of personal data requested.',
             'request query.'
         ],
-        text14: 'The time limit for examining a request for satisfaction shall not exceed ten working days from the date of its receipt.',
-        text15: 'During this period, the owner of the personal data base shall notify the person submitting the request that the request will be granted or the relevant personal data shall not be provided, indicating the grounds specified in the relevant legal act. \ N \ n The request shall be satisfied within thirty calendar days. days from the date of its receipt, unless otherwise provided by law. ',
-        text16: 'All employees of the owner of the personal data base are obliged to observe the requirements of confidentiality regarding personal data and information on securities accounts and securities circulation.',
-        text17: 'Deferment of access to personal data of third parties is allowed if the necessary data can not be provided within thirty calendar days from the date of receipt of the request. However, the total time limit for resolving the issues raised in the request may not exceed forty-five calendar days. ',
-        text18: 'Notice of deferment shall be given to the known third party who made the request in writing, explaining how to appeal against such a decision.',
-        text19: 'Delay messages indicate:',
-        list6: [
+        numText14: 'The time limit for examining a request for satisfaction shall not exceed ten working days from the date of its receipt.',
+        numText15: 'During this period, the owner of the personal data base shall notify the person submitting the request that the request will be granted or the relevant personal data shall not be provided, indicating the grounds specified in the relevant legal act. \ N \ n The request shall be satisfied within thirty calendar days. days from the date of its receipt, unless otherwise provided by law. ',
+        numText16: 'All employees of the owner of the personal data base are obliged to observe the requirements of confidentiality regarding personal data and information on securities accounts and securities circulation.',
+        numText17: 'Deferment of access to personal data of third parties is allowed if the necessary data can not be provided within thirty calendar days from the date of receipt of the request. However, the total time limit for resolving the issues raised in the request may not exceed forty-five calendar days. ',
+        numText18: 'Notice of deferment shall be given to the known third party who made the request in writing, explaining how to appeal against such a decision.',
+        numText19: 'Delay messages indicate:',
+        list5: [
             'surname, name and patronymic of the official.',
             'date of sending the message.',
             'reason for postponement.',
             'the period during which the request will be satisfied.'
         ],
-        text20: 'Denial of access to personal data is permitted if access to it is prohibited by law.',
-        text21: 'The notice of refusal shall state:',
-        list7: [
+        numText20: 'Denial of access to personal data is permitted if access to it is prohibited by law.',
+        numText21: 'The notice of refusal shall state:',
+        list6: [
             'last name, first name, patronymic of the official who refuses access.',
             'date of sending the message.',
             'reason for refusal.'
         ],
-        text22: 'Decisions to suspend or deny access to personal data may be appealed to the authorized state body for personal data protection, other public authorities and local governments, whose powers include the protection of personal data, or to the court.',
-        Subtitle8: 'Personal data protection: protection methods, responsible person, employees who directly process and/or have access to personal data in connection with their duties, the term of storage of personal data.',
-        text23: 'The owners of the personal database are equipped with system and software and hardware and means of communication that prevent loss, theft, unauthorized destruction, distortion, forgery, copying of information and meet the requirements of international and national standards.',
-        text24: 'The responsible person organizes the work related to the protection of personal data during their processing, in accordance with the law. The responsible person is determined by the order of the Owner of the personal data base. \ N \ n The responsibilities of the responsible person for the organization of work related to the protection of personal data during their processing are specified in the job description. ',
-        text25: 'Responsible person must:',
-        list8: [
+        numText22: 'Decisions to suspend or deny access to personal data may be appealed to the authorized state body for personal data protection, other public authorities and local governments, whose powers include the protection of personal data, or to the court.',
+        numSubtitle8: 'Personal data protection: protection methods, responsible person, employees who directly process and/or have access to personal data in connection with their duties, the term of storage of personal data.',
+        numText23: 'The owners of the personal database are equipped with system and software and hardware and means of communication that prevent loss, theft, unauthorized destruction, distortion, forgery, copying of information and meet the requirements of international and national standards.',
+        numText24: 'The responsible person organizes the work related to the protection of personal data during their processing, in accordance with the law. The responsible person is determined by the order of the Owner of the personal data base. \ N \ n The responsibilities of the responsible person for the organization of work related to the protection of personal data during their processing are specified in the job description. ',
+        numText25: 'Responsible person must:',
+        list7: [
             'know the legislation of Ukraine in the field of personal data protection.',
             'develop procedures for accessing personal data of employees in accordance with their professional or official or employment responsibilities.',
             'ensure compliance with the Personal Database Owner\'s requirements of the legislation of Ukraine in the field of personal data protection and internal documents governing the activities of the Personal Database Owner regarding the processing and protection of personal data in personal data bases. ',
@@ -239,8 +239,8 @@ export const PolicyContent = {
             'inform the Owner of the personal data base about the facts of violations by employees of the legislation of Ukraine in the field of personal data protection and internal documents governing the activities of the Personal Database Owner regarding processing and protection of personal data in personal databases within one working day. violations',
             'ensure the storage of documents confirming the personal data subject\'s consent to the processing of his personal data and the notification of the specified subject about his rights.'
         ],
-        text26: 'In order to perform his duties, the responsible person has the right to:',
-        list9: [
+        numText26: 'In order to perform his duties, the responsible person has the right to:',
+        list8: [
             'receive the necessary documents, including orders and other administrative documents issued by the Owner of the personal data base related to the processing of personal data.',
             'make copies of the documents received, including copies of files, any records stored on local area networks and autonomous computer systems.',
             'participate in the discussion of his responsibilities for the organization of work related to the protection of personal data during their processing.',
@@ -248,13 +248,13 @@ export const PolicyContent = {
             'receive explanations on the processing of personal data.',
             'sign and endorse documents within its competence.'
         ],
-        text27: 'Employees who directly process and/or have access to personal data in connection with the performance of their official (employment) duties are required to comply with the requirements of Ukrainian legislation in the field of personal data protection and internal documents regarding the processing and protection of personal data in personal databases. ',
-        text28: 'Employees who have access to personal data, including those who process them, are obliged not to disclose in any way personal data entrusted to them or which became known in connection with the performance of professional or official or job responsibilities. This obligation shall apply after the termination of their activities related to personal data, except as provided by law. ',
-        text29: 'Persons who have access to personal data, including their processing in case of violation of the Law of Ukraine "On Personal Data Protection" are liable under the laws of Ukraine.',
-        text30: 'Personal data shall not be stored longer than necessary for the purpose for which such data are stored, but in any case not longer than the retention period determined by the personal data subject\'s consent to the processing of such data.',
-        subtitle9: 'RIGHTS OF THE PERSONAL DATA SUBJECT.',
-        text31: 'The personal data subject has the right to:',
-        list10: [
+        numText27: 'Employees who directly process and/or have access to personal data in connection with the performance of their official (employment) duties are required to comply with the requirements of Ukrainian legislation in the field of personal data protection and internal documents regarding the processing and protection of personal data in personal databases. ',
+        numText28: 'Employees who have access to personal data, including those who process them, are obliged not to disclose in any way personal data entrusted to them or which became known in connection with the performance of professional or official or job responsibilities. This obligation shall apply after the termination of their activities related to personal data, except as provided by law. ',
+        numText29: 'Persons who have access to personal data, including their processing in case of violation of the Law of Ukraine "On Personal Data Protection" are liable under the laws of Ukraine.',
+        numText30: 'Personal data shall not be stored longer than necessary for the purpose for which such data are stored, but in any case not longer than the retention period determined by the personal data subject\'s consent to the processing of such data.',
+        numSubtitle9: 'RIGHTS OF THE PERSONAL DATA SUBJECT.',
+        numText31: 'The personal data subject has the right to:',
+        list9: [
             'know about the location of the personal data base containing its personal data, its purpose and name, location and / or place of residence (stay) of the owner or administrator of this database or give a corresponding order to obtain this information to authorized persons, except as provided by law . ',
             'receive information on the conditions for granting access to personal data, in particular information on third parties to whom his personal data contained in the relevant personal data base are transferred.',
             'access to their personal data contained in the relevant personal database',
@@ -265,26 +265,26 @@ export const PolicyContent = {
             'apply for protection of their personal data rights to public authorities, local governments, whose powers include the implementation of personal data protection.',
             'apply legal remedies in case of violation of personal data protection legislation.'
         ],
-        subtitle10: 'PROCEDURE FOR WORKING WITH PERSONAL DATA REQUESTS.',
-        text32: 'The personal data subject has the right to obtain any information about himself from any subject of personal data relations, without specifying the purpose of the request, except as provided by law.',
-        text33: 'The personal data subject has access to personal data free of charge.',
-        text34: 'The personal data subject shall submit a request for access (hereinafter referred to as a request) to the personal data to the owner of the personal data base. \ n \ n The request shall specify:',
-        list11: [
+        numSubtitle10: 'PROCEDURE FOR WORKING WITH PERSONAL DATA REQUESTS.',
+        numText32: 'The personal data subject has the right to obtain any information about himself from any subject of personal data relations, without specifying the purpose of the request, except as provided by law.',
+        numText33: 'The personal data subject has access to personal data free of charge.',
+        numText34: 'The personal data subject shall submit a request for access (hereinafter referred to as a request) to the personal data to the owner of the personal data base. \ n \ n The request shall specify:',
+        list10: [
             'surname, name and patronymic, place of residence (location) and details of the identity document of the personal data subject.',
             'other information enabling the identity of the data subject to be identified.',
             'information on the personal data base in respect of which the request is made, or information on the owner or administrator of this database.',
             'list of personal data requested.'
         ],
-        text35: 'The time limit for examining a request for its satisfaction may not exceed ten working days from the date of its receipt.',
-        text36: 'During this period, the owner of the personal data base informs the personal data subject that the request will be satisfied or the relevant personal data are not subject to provision, indicating the grounds specified in the relevant legal act.',
-        text37: 'The request shall be satisfied within thirty calendar days from the date of its receipt, unless otherwise provided by law.',
-        subtitle11: 'STATE REGISTRATION OF PERSONAL DATABASE.',
-        text38: 'State registration of personal data bases is carried out in accordance with Article 9 of the Law of Ukraine "On Personal Data Protection".'
+        numText35: 'The time limit for examining a request for its satisfaction may not exceed ten working days from the date of its receipt.',
+        numText36: 'During this period, the owner of the personal data base informs the personal data subject that the request will be satisfied or the relevant personal data are not subject to provision, indicating the grounds specified in the relevant legal act.',
+        numText37: 'The request shall be satisfied within thirty calendar days from the date of its receipt, unless otherwise provided by law.',
+        numSubtitle11: 'STATE REGISTRATION OF PERSONAL DATABASE.',
+        numText38: 'State registration of personal data bases is carried out in accordance with Article 9 of the Law of Ukraine "On Personal Data Protection".'
     },
     ru: {
         title1: 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ',
-        subtitle1: 'Содержание',
-        list1: [
+        numSubtitle1: 'Содержание',
+        numList1: [
             'Общие понятия и область применения.',
             'Перечень баз персональных данных.',
             'Цель обработки персональных данных.',
@@ -297,9 +297,9 @@ export const PolicyContent = {
             'Государственная регистрация базы персональных данных.',
             'Общие понятия и область применения.'
         ],
-        subtitle2: 'ОПРЕДЕЛЕНИЕ ТЕРМИНОВ',
-        text0: 'Основные термины:',
-        list2: [
+        numSubtitle2: 'ОПРЕДЕЛЕНИЕ ТЕРМИНОВ',
+        numText0: 'Основные термины:',
+        list1: [
             'база персональных данных - именуемая совокупность упорядоченных персональных данных в электронной форме и/или в форме картотек персональных данных.',
             'ответственное лицо - определенное лицо, организующее работу, связанную с защитой персональных данных при их обработке, в соответствии с законом.',
             'обладатель базы персональных данных - физическое или юридическое лицо, которому законом или с согласия субъекта персональных данных предоставлено право на обработку этих данных, утверждающее цель обработки персональных данных в этой базе данных, устанавливает состав этих данных и процедуры их обработки, если иное не определен законом.',
@@ -314,33 +314,33 @@ export const PolicyContent = {
             'третье лицо - любое лицо, за исключением субъекта персональных данных, владельца или распорядителя базы персональных данных и уполномоченного государственного органа по вопросам защиты персональных данных, которому владельцем или распорядителем базы персональных данных осуществляется передача персональных данных в соответствии с законом.',
             'особые категории данных - персональные данные о расовом или этническом происхождении, политических, религиозных или мировоззренческих убеждениях, членстве в политических партиях и профессиональных союзах, а также данных, касающихся здоровья или половой жизни.'
         ],
-        text1: 'Данное Положение обязательно для применения ответственным лицом и сотрудниками продавца, непосредственно осуществляющими обработку и/или имеющими доступ к персональным данным в связи с исполнением своих служебных обязанностей.',
-        subtitle3: 'ПЕРЕЧЕНЬ БАЗ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
-        text2: 'Продавец является владельцем следующих баз персональных данных:',
-        list3: [
+        numText1: 'Данное Положение обязательно для применения ответственным лицом и сотрудниками продавца, непосредственно осуществляющими обработку и/или имеющими доступ к персональным данным в связи с исполнением своих служебных обязанностей.',
+        numSubtitle3: 'ПЕРЕЧЕНЬ БАЗ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
+        numText2: 'Продавец является владельцем следующих баз персональных данных:',
+        list2: [
             'база персональных данных контрагенты.'
         ],
-        subtitle4: 'ЦЕЛЬ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
-        text3: 'Целью обработки персональных данных в системе является хранение и обслуживание данных контрагентов, в соответствии со статьями 6, 7 Закона Украины «О защите персональных данных»:.',
-        text4: 'Целью обработки персональных данных является обеспечение реализации гражданско-правовых отношений, предоставление/получение и осуществление расчетов за приобретенные товары/услуги в соответствии с Налоговым кодексом Украины, Законом Украины «О бухгалтерском учете и финансовой отчетности в Украине».',
-        subtitle5: 'ПОРЯДОК ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ: ПОЛУЧЕНИЕ СОГЛАШЕНИЯ, СООБЩЕНИЕ О ПРАВАХ И ДЕЙСТВИЯХ С ПЕРСОНАЛЬНЫМИ ДАННЫМИ СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ.',
-        text5: 'Згода суб’єкта персональних даних має бути добровільним волевиявленням фізичної особи щодо надання дозволу на обробку її персональних даних відповідно до сформульованої мети їх обробки. Згода суб’єкта персональних даних може бути надана у наступних формах:',
-        list4: [
+        numSubtitle4: 'ЦЕЛЬ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
+        numText3: 'Целью обработки персональных данных в системе является хранение и обслуживание данных контрагентов, в соответствии со статьями 6, 7 Закона Украины «О защите персональных данных»:.',
+        numText4: 'Целью обработки персональных данных является обеспечение реализации гражданско-правовых отношений, предоставление/получение и осуществление расчетов за приобретенные товары/услуги в соответствии с Налоговым кодексом Украины, Законом Украины «О бухгалтерском учете и финансовой отчетности в Украине».',
+        numSubtitle5: 'ПОРЯДОК ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ: ПОЛУЧЕНИЕ СОГЛАШЕНИЯ, СООБЩЕНИЕ О ПРАВАХ И ДЕЙСТВИЯХ С ПЕРСОНАЛЬНЫМИ ДАННЫМИ СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ.',
+        numText5: 'Згода суб’єкта персональних даних має бути добровільним волевиявленням фізичної особи щодо надання дозволу на обробку її персональних даних відповідно до сформульованої мети їх обробки. Згода суб’єкта персональних даних може бути надана у наступних формах:',
+        list3: [
             'документ на бумажном носителе с реквизитами, позволяющий идентифицировать этот документ и физическое лицо.',
             'электронный документ, который должен содержать обязательные реквизиты, позволяющие идентифицировать этот документ и физическое лицо. Добровольное волеизъявление физического лица относительно предоставления разрешения на обработку его персональных данных целесообразно удостоверять электронной подписью субъекта персональных данных.',
             'отметка на электронной странице документа или в электронном файле, обрабатываемом в информационной системе на основе документированных программно-технических решений.'
         ],
-        text6: 'Согласие субъекта персональных данных предоставляется при оформлении гражданско-правовых отношений в соответствии с действующим законодательством.',
-        text7: 'Сообщение субъекта персональных данных о включении его персональных данных в базу персональных данных, права, определенные Законом Украины «О защите персональных данных», цель сбора данных и лиц, которым передаются его персональные данные, осуществляется при оформлении гражданско-правовых отношений в соответствии с действующим законодательством.',
-        text8: 'Обработка персональных данных о расовом или этническом происхождении, политических, религиозных или мировоззренческих убеждениях, членстве в политических партиях и профессиональных союзах, а также данных, касающихся здоровья или половой жизни (особые категории данных) запрещается.',
-        subtitle6: 'МЕСТОНАХОЖДЕНИЕ БАЗЫ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
-        text9: 'Указанные в разделе 2 настоящего Положения базы персональных данных находятся по адресу продавца.',
-        subtitle7: 'УСЛОВИЯ РАСКРЫТИЯ ИНФОРМАЦИИ О ПЕРСОНАЛЬНЫХ ДАННЫХ ТРЕТЬИМ ЛИЦАМ.',
-        text10: 'Порядок доступа к персональным данным третьих лиц определяется условиями согласия субъекта персональных данных, предоставленной владельцу базы персональных данных на обработку этих данных, или в соответствии с требованиями закона.',
-        text11: 'Доступ к персональным данным третьему лицу не предоставляется, если указанное лицо отказывается взять на себя обязательство по обеспечению выполнения требований Закона Украины «О защите персональных данных» или не может их обеспечить.',
-        text12: 'Субъект отношений, связанных с персональными данными, подает запрос о доступе (далее — запрос) к персональным данным владельцу базы персональных данных.',
-        text13: 'В запросе указываются:',
-        list5: [
+        numText6: 'Согласие субъекта персональных данных предоставляется при оформлении гражданско-правовых отношений в соответствии с действующим законодательством.',
+        numText7: 'Сообщение субъекта персональных данных о включении его персональных данных в базу персональных данных, права, определенные Законом Украины «О защите персональных данных», цель сбора данных и лиц, которым передаются его персональные данные, осуществляется при оформлении гражданско-правовых отношений в соответствии с действующим законодательством.',
+        numText8: 'Обработка персональных данных о расовом или этническом происхождении, политических, религиозных или мировоззренческих убеждениях, членстве в политических партиях и профессиональных союзах, а также данных, касающихся здоровья или половой жизни (особые категории данных) запрещается.',
+        numSubtitle6: 'МЕСТОНАХОЖДЕНИЕ БАЗЫ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
+        numText9: 'Указанные в разделе 2 настоящего Положения базы персональных данных находятся по адресу продавца.',
+        numSubtitle7: 'УСЛОВИЯ РАСКРЫТИЯ ИНФОРМАЦИИ О ПЕРСОНАЛЬНЫХ ДАННЫХ ТРЕТЬИМ ЛИЦАМ.',
+        numText10: 'Порядок доступа к персональным данным третьих лиц определяется условиями согласия субъекта персональных данных, предоставленной владельцу базы персональных данных на обработку этих данных, или в соответствии с требованиями закона.',
+        numText11: 'Доступ к персональным данным третьему лицу не предоставляется, если указанное лицо отказывается взять на себя обязательство по обеспечению выполнения требований Закона Украины «О защите персональных данных» или не может их обеспечить.',
+        numText12: 'Субъект отношений, связанных с персональными данными, подает запрос о доступе (далее — запрос) к персональным данным владельцу базы персональных данных.',
+        numText13: 'В запросе указываются:',
+        list4: [
             'фамилия, имя и отчество, место жительства (место пребывания) и реквизиты документа, удостоверяющего физическое лицо, подающее запрос (для физического лица - заявителя).',
             'наименование, местонахождение юридического лица, подающего запрос, должность, фамилию, имя и отчество лица, удостоверяющего запрос; подтверждение того, что содержание запроса соответствует полномочиям юридического лица (для юридического лица – заявителя).',
             'фамилия, имя и отчество, а также другие сведения, позволяющие идентифицировать физическое лицо, в отношении которого делается запрос.',
@@ -348,31 +348,31 @@ export const PolicyContent = {
             'перечень запрашиваемых персональных данных.',
             'цель запроса.'
         ],
-        text14: 'Срок изучения запроса на предмет его удовлетворения не может превышать десяти рабочих дней со дня его поступления.',
-        text15: 'В течение этого срока владелец базы персональных данных доводит до сведения лица, подающего запрос, что запрос будет удовлетворен или соответствующие персональные данные не подлежат предоставлению, с указанием основания, определенного в соответствующем нормативно-правовом акте.\n\n Запрос удовлетворяется в течение тридцати календарных дней со дня его поступления, если иное не предусмотрено законом.',
-        text16: 'Все работники владельца базы персональных данных обязаны соблюдать требования конфиденциальности по персональным данным и информации о счетах в ценных бумагах и обращении ценных бумаг.',
-        text17: 'Отсрочка доступа к персональным данным третьих лиц допускается, если необходимые данные не могут быть предоставлены в течение тридцати календарных дней со дня поступления запроса. При этом общий срок решения вопросов, поднятых в запросе, не может превышать сорока пяти календарных дней.',
-        text18: 'Сообщение об отсрочке доводится до сведения третьего лица, подавшего запрос, в письменной форме с разъяснением порядка обжалования такого решения.',
-        text19: 'В сообщении об отсрочке указываются:',
-        list6: [
+        numText14: 'Срок изучения запроса на предмет его удовлетворения не может превышать десяти рабочих дней со дня его поступления.',
+        numText15: 'В течение этого срока владелец базы персональных данных доводит до сведения лица, подающего запрос, что запрос будет удовлетворен или соответствующие персональные данные не подлежат предоставлению, с указанием основания, определенного в соответствующем нормативно-правовом акте.\n\n Запрос удовлетворяется в течение тридцати календарных дней со дня его поступления, если иное не предусмотрено законом.',
+        numText16: 'Все работники владельца базы персональных данных обязаны соблюдать требования конфиденциальности по персональным данным и информации о счетах в ценных бумагах и обращении ценных бумаг.',
+        numText17: 'Отсрочка доступа к персональным данным третьих лиц допускается, если необходимые данные не могут быть предоставлены в течение тридцати календарных дней со дня поступления запроса. При этом общий срок решения вопросов, поднятых в запросе, не может превышать сорока пяти календарных дней.',
+        numText18: 'Сообщение об отсрочке доводится до сведения третьего лица, подавшего запрос, в письменной форме с разъяснением порядка обжалования такого решения.',
+        numText19: 'В сообщении об отсрочке указываются:',
+        list5: [
             'фамилия, имя и отчество должностного лица.',
             'дата отправки сообщения.',
             'причина отсрочки.',
             'строк, в течение которого будет удовлетворен запрос.'
         ],
-        text20: 'Отказ в доступе к персональным данным допускается, если доступ к ним запрещен по закону.',
-        text21: 'В сообщении об отказе указываются:',
-        list7: [
+        numText20: 'Отказ в доступе к персональным данным допускается, если доступ к ним запрещен по закону.',
+        numText21: 'В сообщении об отказе указываются:',
+        list6: [
             'фамилия, имя, отчество должностного лица, отказывающего в доступе.',
             'дата отправки сообщения.',
             'причина отказа.'
         ],
-        text22: 'Решение об отсрочке или отказе по доступу к персональным данным может быть обжаловано в уполномоченный государственный орган по вопросам защиты персональных данных, других органов государственной власти и органов местного самоуправления, к полномочиям которых относится осуществление защиты персональных данных или в суд.',
-        subtitle8: 'ЗАХИСТ ПЕРСОНАЛЬНИХ ДАНИХ: СПОСОБИ ЗАХИСТУ, ВІДПОВІДАЛЬНА ОСОБА, ПРАЦІВНИКИ, ЯКІ БЕЗПОСЕРЕДНЬО ЗДІЙСНЮЮТЬ ОБРОБКУ ТА/АБО МАЮТЬ ДОСТУП ДО ПЕРСОНАЛЬНИХ ДАНИХ У ЗВ’ЯЗКУ З ВИКОНАННЯМ СВОЇХ СЛУЖБОВИХ ОБОВ’ЯЗКІВ, СТРОК ЗБЕРІГАННЯ ПЕРСОНАЛЬНИХ ДАНИХ.',
-        text23: 'Владелец базы персональных данных оборудован системными и программно-техническими средствами и средствами связи, которые предотвращают потери, кражи, несанкционированное уничтожение, искривление, подделку, копирование информации и отвечают требованиям международных и национальных стандартов.',
-        text24: 'Ответственное лицо организует работу, связанную с защитой персональных данных при их обработке в соответствии с законом. Ответственное лицо определяется приказом владельца базы персональных данных.\n\n Обязанности ответственного лица по организации работы, связанной с защитой персональных данных при их обработке указываются в должностной инструкции.',
-        text25: 'Ответственное лицо обязано:',
-        list8: [
+        numText22: 'Решение об отсрочке или отказе по доступу к персональным данным может быть обжаловано в уполномоченный государственный орган по вопросам защиты персональных данных, других органов государственной власти и органов местного самоуправления, к полномочиям которых относится осуществление защиты персональных данных или в суд.',
+        numSubtitle8: 'ЗАХИСТ ПЕРСОНАЛЬНИХ ДАНИХ: СПОСОБИ ЗАХИСТУ, ВІДПОВІДАЛЬНА ОСОБА, ПРАЦІВНИКИ, ЯКІ БЕЗПОСЕРЕДНЬО ЗДІЙСНЮЮТЬ ОБРОБКУ ТА/АБО МАЮТЬ ДОСТУП ДО ПЕРСОНАЛЬНИХ ДАНИХ У ЗВ’ЯЗКУ З ВИКОНАННЯМ СВОЇХ СЛУЖБОВИХ ОБОВ’ЯЗКІВ, СТРОК ЗБЕРІГАННЯ ПЕРСОНАЛЬНИХ ДАНИХ.',
+        numText23: 'Владелец базы персональных данных оборудован системными и программно-техническими средствами и средствами связи, которые предотвращают потери, кражи, несанкционированное уничтожение, искривление, подделку, копирование информации и отвечают требованиям международных и национальных стандартов.',
+        numText24: 'Ответственное лицо организует работу, связанную с защитой персональных данных при их обработке в соответствии с законом. Ответственное лицо определяется приказом владельца базы персональных данных.\n\n Обязанности ответственного лица по организации работы, связанной с защитой персональных данных при их обработке указываются в должностной инструкции.',
+        numText25: 'Ответственное лицо обязано:',
+        list7: [
             'знать законодательство Украины в сфере защиты персональных данных.',
             'разработать процедуры доступа к персональным данным сотрудников в соответствии с их профессиональными или служебными или трудовыми обязанностями.',
             'обеспечить выполнение сотрудниками владельца базы персональных данных требований законодательства Украины в сфере защиты персональных данных и внутренних документов, регулирующих деятельность владельца базы персональных данных по обработке и защите персональных данных в базах персональных данных.',
@@ -380,8 +380,8 @@ export const PolicyContent = {
             'сообщать владельцу базы персональных данных о фактах нарушений сотрудниками требований законодательства Украины в сфере защиты персональных данных и внутренних документов, регулирующих деятельность владельца базы персональных данных по обработке и защите персональных данных в базах персональных данных в срок не позднее одного рабочего дня с момента обнаружения таких нарушений',
             'обеспечить хранение документов, подтверждающих предоставление субъектом персональных данных согласия на обработку своих персональных данных и уведомления указанного субъекта о его правах.'
         ],
-        text26: 'С целью выполнения своих обязанностей ответственное лицо имеет право:',
-        list9: [
+        numText26: 'С целью выполнения своих обязанностей ответственное лицо имеет право:',
+        list8: [
             'получать необходимые документы, в том числе приказы и другие распорядительные документы, выданные Обладателем базы персональных данных, связанные с обработкой персональных данных.',
             'производить копии из полученных документов, в том числе копии файлов, любых записей, хранящихся в локальных вычислительных сетях и автономных компьютерных системах.',
             'участвовать в обсуждении выполняемых им обязанностей организации работы, связанной с защитой персональных данных при их обработке.',
@@ -389,13 +389,13 @@ export const PolicyContent = {
             'получать объяснения по вопросам обработки персональных данных.',
             'подписывать и визировать документы в пределах своей компетенции.'
         ],
-        text27: 'Работники, непосредственно осуществляющие обработку и/или имеющие доступ к персональным данным в связи с исполнением своих служебных (трудовых) обязанностей, обязаны соблюдать требования законодательства Украины в сфере защиты персональных данных и внутренних документов, по обработке и защиты персональных данных в базах персональных данных.',
-        text28: 'Работники, имеющие доступ к персональным данным, в том числе, осуществляющие их обработку, обязаны не допускать разглашения любым способом персональных данных, которые им были доверены или которые стали известны в связи с выполнением профессиональных или служебных или трудовых обязанностей. Такое обязательство действует после прекращения ими деятельности, связанной с персональными данными, кроме случаев, установленных законом.',
-        text29: 'Лица, имеющие доступ к персональным данным, в том числе, производят их обработку в случае нарушения ими требований Закона Украины «О защите персональных данных» несут ответственность согласно законодательству Украины.',
-        text30: 'Персональные данные не должны храниться дольше, чем это необходимо для целей, для которых такие данные хранятся, но в любом случае не дольше срока хранения данных, определенного согласием субъекта персональных данных на обработку этих данных.',
-        subtitle9: 'ПРАВА СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ.',
-        text31: 'Субъект персональных данных имеет право:',
-        list10: [
+        numText27: 'Работники, непосредственно осуществляющие обработку и/или имеющие доступ к персональным данным в связи с исполнением своих служебных (трудовых) обязанностей, обязаны соблюдать требования законодательства Украины в сфере защиты персональных данных и внутренних документов, по обработке и защиты персональных данных в базах персональных данных.',
+        numText28: 'Работники, имеющие доступ к персональным данным, в том числе, осуществляющие их обработку, обязаны не допускать разглашения любым способом персональных данных, которые им были доверены или которые стали известны в связи с выполнением профессиональных или служебных или трудовых обязанностей. Такое обязательство действует после прекращения ими деятельности, связанной с персональными данными, кроме случаев, установленных законом.',
+        numText29: 'Лица, имеющие доступ к персональным данным, в том числе, производят их обработку в случае нарушения ими требований Закона Украины «О защите персональных данных» несут ответственность согласно законодательству Украины.',
+        numText30: 'Персональные данные не должны храниться дольше, чем это необходимо для целей, для которых такие данные хранятся, но в любом случае не дольше срока хранения данных, определенного согласием субъекта персональных данных на обработку этих данных.',
+        numSubtitle9: 'ПРАВА СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ.',
+        numText31: 'Субъект персональных данных имеет право:',
+        list9: [
             'знать о местонахождении базы персональных данных, содержащей его персональные данные, ее назначении и наименовании, местонахождении и/или местожительстве (нахождении) владельца или распорядителя этой базы или дать соответствующее поручение по получению этой информации уполномоченным им лицам, кроме случаев, установленных законом .',
             'получать информацию об условиях предоставления доступа к персональным данным, в частности информацию о третьих лицах, которым передаются его персональные данные, содержащиеся в соответствующей базе персональных данных.',
             'на доступ к своим персональным данным, содержащимся в соответствующей базе персональных данных',
@@ -406,20 +406,20 @@ export const PolicyContent = {
             'обращаться по вопросам защиты своих прав в отношении персональных данных в органы государственной власти, органы местного самоуправления, к полномочиям которых относится осуществление защиты персональных данных.',
             'применять средства правовой защиты в случае нарушения законодательства о защите персональных данных.'
         ],
-        subtitle10: 'ПОРЯДОК РАБОТЫ С ВОПРОСАМИ СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ.',
-        text32: 'Субъект персональных данных имеет право на получение каких-либо сведений о себе у любого субъекта отношений, связанных с персональными данными, без указания цели запроса, кроме случаев, установленных законом.',
-        text33: 'Доступ субъекта персональных данных к данным о себе осуществляется безвозмездно.',
-        text34: 'Субъект персональных данных подает запрос о доступе (далее — запрос) к персональным данным владельцу базы персональных данных.\n\nВ запросе указываются:',
-        list11: [
+        numSubtitle10: 'ПОРЯДОК РАБОТЫ С ВОПРОСАМИ СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ.',
+        numText32: 'Субъект персональных данных имеет право на получение каких-либо сведений о себе у любого субъекта отношений, связанных с персональными данными, без указания цели запроса, кроме случаев, установленных законом.',
+        numText33: 'Доступ субъекта персональных данных к данным о себе осуществляется безвозмездно.',
+        numText34: 'Субъект персональных данных подает запрос о доступе (далее — запрос) к персональным данным владельцу базы персональных данных.\n\nВ запросе указываются:',
+        list10: [
             'фамилия, имя и отчество, место жительства (место пребывания) и реквизиты документа, удостоверяющего личность субъекта персональных данных.',
             'другие сведения, позволяющие идентифицировать личность субъекта персональных данных.',
             'сведения о базе персональных данных, в отношении которой подается запрос, или сведения о владельце или распорядителе этой базы.',
             'перечень запрашиваемых персональных данных.'
         ],
-        text35: 'Срок изучения запроса на предмет его удовлетворения не может превышать десяти рабочих дней со дня его поступления.',
-        text36: 'В течение этого срока владелец базы персональных данных доводит до сведения субъекта персональных данных, что запрос будет удовлетворен или соответствующие персональные данные не подлежат предоставлению с указанием основания, определенного в соответствующем нормативно-правовом акте.',
-        text37: 'Запрос удовлетворяется в течение тридцати календарных дней со дня его поступления, если иное не предусмотрено законом.',
-        subtitle11: 'ГОСУДАРСТВЕННАЯ РЕГИСТРАЦИЯ БАЗЫ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
-        text38: 'Государственная регистрация баз персональных данных осуществляется в соответствии со статьей 9 Закона Украины "О защите персональных данных".'
+        numText35: 'Срок изучения запроса на предмет его удовлетворения не может превышать десяти рабочих дней со дня его поступления.',
+        numText36: 'В течение этого срока владелец базы персональных данных доводит до сведения субъекта персональных данных, что запрос будет удовлетворен или соответствующие персональные данные не подлежат предоставлению с указанием основания, определенного в соответствующем нормативно-правовом акте.',
+        numText37: 'Запрос удовлетворяется в течение тридцати календарных дней со дня его поступления, если иное не предусмотрено законом.',
+        numSubtitle11: 'ГОСУДАРСТВЕННАЯ РЕГИСТРАЦИЯ БАЗЫ ПЕРСОНАЛЬНЫХ ДАННЫХ.',
+        numText38: 'Государственная регистрация баз персональных данных осуществляется в соответствии со статьей 9 Закона Украины "О защите персональных данных".'
     }
 }

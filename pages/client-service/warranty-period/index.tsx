@@ -1,6 +1,6 @@
 import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
-import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
 import {WarrantyPeriodContent} from "./warranty-period.content";
 import {NextPageWithLayout} from "../../../types/types";
 
@@ -38,4 +38,4 @@ const WarrantyPeriod: NextPageWithLayout<WarrantyPeriodProps> = ({content}) => {
 
 WarrantyPeriod.getLayout = getClientServiceLayout
 
-export default InternHoc(WarrantyPeriod, WarrantyPeriodContent)
+export default WithIntern(WarrantyPeriod, WarrantyPeriodContent)

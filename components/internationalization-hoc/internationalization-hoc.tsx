@@ -2,11 +2,11 @@ import React from "react";
 import {InternEssence} from "../../types/types";
 import {useRouter} from "next/router";
 
-type InternHocProps ={
+type WithInternProps ={
     Component: InternEssence, content: object
 }
 
-const InternHoc= <P extends {content: object},>  (Component : InternEssence<P>, content: object)  => {
+const WithIntern= <P extends {content: object},>  (Component : InternEssence<P>, content: object)  => {
 
     const InternComp= (props: P) => {
 
@@ -23,4 +23,4 @@ const InternHoc= <P extends {content: object},>  (Component : InternEssence<P>, 
 }
 
 
-export default InternHoc
+export default WithIntern

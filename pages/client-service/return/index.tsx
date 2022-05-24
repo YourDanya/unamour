@@ -2,7 +2,7 @@ import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
 import {NextPageWithLayout} from "../../../types/types";
 import {ReturnContent} from "./return.content";
-import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
 import Link from "next/link";
 
 type ReturnProps = {
@@ -53,4 +53,4 @@ const Return: NextPageWithLayout<ReturnProps> = ({content}) => {
 
 Return.getLayout = getClientServiceLayout
 
-export default InternHoc(Return, ReturnContent)
+export default WithIntern(Return, ReturnContent)

@@ -3,7 +3,7 @@ import {getClientServiceLayout} from "../../../components/client-service/client-
 import axios from "axios";
 import {NextPage} from "next";
 import {NextPageWithLayout} from "../../../types/types";
-import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
 import {OrderingContent} from "./ordering.content";
 
 type OrderingPageProps = {
@@ -38,4 +38,4 @@ const Ordering: NextPageWithLayout<OrderingPageProps> = ({content}) => {
 
 Ordering.getLayout = getClientServiceLayout
 
-export default InternHoc(Ordering, OrderingContent)
+export default WithIntern(Ordering, OrderingContent)

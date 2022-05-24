@@ -2,7 +2,7 @@ import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
 import {DeliveryContent} from "./delivery.content";
 import {NextPageWithLayout} from "../../../types/types";
-import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
 
 type DeliveryContentProps = {
     content: typeof DeliveryContent.ua
@@ -40,4 +40,4 @@ const Delivery: NextPageWithLayout<DeliveryContentProps> = ({content}) => {
 
 Delivery.getLayout = getClientServiceLayout
 
-export default InternHoc(Delivery, DeliveryContent)
+export default WithIntern(Delivery, DeliveryContent)

@@ -1,7 +1,7 @@
 import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
 import {NextPageWithLayout} from "../../../types/types";
-import InternHoc from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
 import {OrderTrackingContent} from "./order-tracking.content";
 
 type OrderTrackingProps = {
@@ -27,4 +27,4 @@ const OrderTracking: NextPageWithLayout<OrderTrackingProps> = ({content}) => {
 
 OrderTracking.getLayout = getClientServiceLayout
 
-export default InternHoc(OrderTracking, OrderTrackingContent)
+export default WithIntern(OrderTracking, OrderTrackingContent)
