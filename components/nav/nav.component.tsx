@@ -58,9 +58,7 @@ const Nav: React.FC = () => {
 
     useEffect(() => {
         router.events.on('routeChangeComplete', hideModal)
-        console.log('here')
         return () => {
-            console.log('i am unmounted')
         }
     }, [])
 

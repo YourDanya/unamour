@@ -2,7 +2,7 @@ import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
 import {DeliveryContent} from "./delivery.content";
 import {NextPageWithLayout} from "../../../types/types";
-import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/hoc/with-intern/with-intern";
 
 type DeliveryContentProps = {
     content: typeof DeliveryContent.ua

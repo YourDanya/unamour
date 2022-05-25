@@ -3,7 +3,7 @@ import {getClientServiceLayout} from "../../../components/client-service/client-
 import axios from "axios";
 import {NextPage} from "next";
 import {NextPageWithLayout} from "../../../types/types";
-import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/hoc/with-intern/with-intern";
 import {OrderingContent} from "./ordering.content";
 
 type OrderingPageProps = {

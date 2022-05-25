@@ -2,7 +2,7 @@ import React from "react";
 import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
 import {NextPageWithLayout} from "../../../types/types";
 import {ReturnContent} from "./return.content";
-import WithIntern from "../../../components/internationalization-hoc/internationalization-hoc";
+import WithIntern from "../../../components/hoc/with-intern/with-intern";
 import Link from "next/link";
 
 type ReturnProps = {
