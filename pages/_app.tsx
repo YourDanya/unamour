@@ -34,18 +34,20 @@ import '/components/sign-in-up/sign-up/sign-up.styles.sass'
 import Nav from "../components/nav/nav.component";
 import Footer from "../components/footer/footer.component";
 import {AppPropsWithLayout} from "../types/types";
+import {Provider} from "react-redux";
+import store from "../redux/store";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)
 
     return (
-        <>
+        <Provider store={store}>
             <Nav/>
             {
                 getLayout(<Component {...pageProps}/>)
             }
             <Footer/>
-        </>
+        </Provider>
     )
 }
 

@@ -3,6 +3,7 @@ import telegram from '/public/icons/telegram.svg'
 import CustomInput from "../custom-input/custom-input.component";
 
 const Footer: React.FC = () => {
+
     return (
         <footer className={'footer'}>
             <div className="footer__social-section">

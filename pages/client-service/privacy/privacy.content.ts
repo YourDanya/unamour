@@ -1,5 +1,5 @@
 export const PrivacyContent = {
-    ua: {
+    ua:{
         title1: 'ПУБЛІЧНА ОФЕРТА',
         numSubtitle1: 'ЗАГАЛЬНІ УМОВИ',
         numList1: [
@@ -83,9 +83,168 @@ export const PrivacyContent = {
         text4: 'Якщо товар, що повертається, не підлягає обміну та поверненню, відправка товару назад відбувається за рахунок клієнта.\n\n У разі невиконання умов, встановлених цим пунктом, Інтернет-магазин-склад UNAMOUR має право відмовити у задоволенні претензії про брак або нестачу будь-якого товару.'
     },
     eng: {
-
+        title1: 'PUBLIC OFFER',
+        numSubtitle1: 'GENERAL TERMS',
+        numList1: [
+            'These conditions establish the order of interaction between the UNAMOR online store and the customers of the UNAMOR online store - individuals and legal entities who have placed an order using the "Basket" clothing-care located on the UNAMOUR website (hereinafter - the website).',
+            'The UNAMOR online store sells and delivers goods throughout Ukraine.',
+            'UNAMOR online store sells goods at retail. The action of returning the goods is carried out in accordance with the Law of Ukraine "On Consumer Protection". ',
+            'By placing an order on the site, the customer unconditionally agrees to abide by these terms and confirms that he is familiar with them.'
+        ],
+        numSubtitle2: 'ORDER',
+        numText1: 'The order is placed by the customer by adding the product to the cart.',
+        numText2: 'An order is considered to be properly executed if the customer has filled in all the fields of the form that allow to identify the customer and contact him:',
+        list1: [
+            'Full name / name.',
+            'Contact phone.',
+            'Address.',
+            'Desirable order of payment (payment methods are listed in item 5.1).',
+            'Preferred method of delivery.'
+        ],
+        numSubtitle3: 'ACCEPTANCE OF ORDER BY UNAMOUR ONLINE STORE',
+        numText3: 'The manager of the UNAMOUR online store upon receipt of the order checks the availability of goods and if the order is made in accordance with paragraph 2.2. under these conditions, accepts the order and contacts the customer to confirm the details. ',
+        numText4: 'From the moment of accepting the order by the UNAMOR online store, the customer has the right to cancel the order or make changes to the order (delete / add goods to the order, change the characteristics of the goods (color, size, quantity, etc.)). After payment of the invoice, the removal of product items from the order is not allowed. ',
+        numSubtitle4: 'ORDER FORMATION.',
+        numText5: 'Employees of the UNAMOR online store form orders. Orders with the status "PROCESSED", formed and confirmed by 15-00, are sent on the same day. In that case, if you made an order on a Sunday or public holiday, its sending is postponed to the first working day following the day of ordering. City of sender - Kyiv. ',
+        numText6: 'In the absence of any goods in the online store UNAMOUR employee checks availability throughout the network and makes an internal movement after agreeing on terms with the customer. If the product is not available throughout the network, the manager of the UNAMOUR online store may offer the customer to replace the missing product with any other product. With the consent of the client, the other offered goods are added to the order, in case of disagreement, the order becomes the status of "REFUSAL". ',
+        numText7: 'At the end of the order formation, the manager of the online store-warehouse UNAMOUR notifies the customer of the status of the order and issues an invoice to the customer for payment, if the chosen payment method complies with paragraph 5.1.2.',
+        numSubtitle5: 'ORDER PAYMENT',
+        numText8: 'Payment for the order is made in the following ways:',
+        list2: [
+            'Payment on receipt (invoice).',
+            'Online card payment.',
+            'Payment via liqpay system.',
+            'Payment through invoice.'
+        ],
+        numText9: 'You can pay for the order in cash upon receipt of the parcel at any branch of Nova Poshta. The commission for sending funds is paid by the buyer. The cost of postpay transfer is UAH 20 + 2% of the amount (Nova Poshta fee). Payment of the order from the Visa or MasteCard card on the website immediately after placing the order through the liqpay system. Payment is made on a page protected by security certificates. You only pay the cost of the goods, no fee is charged when paying online. ',
+        numSubtitle6: 'ORDER DELIVERY',
+        numText10: 'Delivery by postal services. Free delivery to all branches of Nova Poshta and Ukrposhta when ordering from UAH 1,500. Delivery of the order to 1500 UAH. carried out at the expense of the client at the rates of the carrier in the following ways: ',
+        list3: [
+            'Nova Poshta Delivery Service.',
+            'Ukrposhta Delivery Service.'
+        ],
+        numText11: 'Delivery of the order to the selected UNAMOUR clothing studio. \ n Delivery is free within 3-4 working days. The generated order in the open status "WAITING FOR MOVEMENT" is transferred to the central warehouse, and from there to the studio. Upon arrival of the order, the client can try on the thing and pay in a convenient way at the checkout. ',
+        numText12: 'Online store-warehouse UNAMOUR is considered to have fulfilled its obligation to deliver the order at the time of transfer to the delivery clothing-care. The risk of death or damage to the goods after delivery to the delivery clothing-care is borne by the customer. ',
+        numText13: 'FREE SHIPPING. Delivery for the client is free in the following cases: ',
+        list4: [
+            'when ordering in the amount of 1500 (one thousand five hundred) hryvnias: to the branches of delivery services located in the client\'s city.',
+            'when moving the order to the studio internally.'
+        ],
+        label1: 'UNAMOUR online store-warehouse agrees on the method of delivery with the customer, but has the right to choose and use any most favorable method of delivery.',
+        numSubtitle7: 'RETURN OF DEFECTIVE GOODS',
+        numText14: 'If the order is delivered to the studio, a refund is only possible at the same address where the purchase was made.',
+        numText15: 'Goods of good quality ordered from UNAMOR and not fitted for any reason (style, size, color) shall be returned and exchanged within 14 days, excluding the day of purchase, provided that:',
+        list5: [
+            'no traces of operation and wear.',
+            'preservation of the appearance and consumer properties.',
+            'original and undamaged packaging and labels.',
+            'The cost of delivery on return / exchange of goods is paid by the buyer. *'
+        ],
+        label2: '* Exception: production defect or resort (other size, color or article). In this case, the return is made at our expense. \ N \ n Goods of improper quality (after use or with damaged labels) ordered on UNAMOUR, are not subject to exchange and return. ',
+        text1: 'Return process:',
+        list6: [
+            'Fill in the return form (sent by the manager at the customer\'s request to the messenger or e-mail).',
+            'Send the goods and the completed form to the address indicated in it.',
+            'Get money by bank transfer *',
+            'The refund period is within 10 working days of receiving the return from the online store manager.'
+        ],
+        label3: '* If you received a defective product or sent it not what you ordered, and you paid for delivery - the manager will offer free delivery of your next order.',
+        text2: 'Product exchange process:',
+        list7: [
+            'means and objects of sanitary hygiene (including toothbrushes).',
+            'perfumery and cosmetics.',
+            'children\'s toys (soft, rubber, inflatable).',
+            'combs, combs, brushes (including massage).',
+            'delicate underwear (underwear, swimwear, nightgowns, pajamas)',
+            'bed linen',
+            'hosiery',
+            'products in aerosol packaging',
+            'semi-precious stone products, etc.'
+        ],
+        text3: 'The full list of goods and the text of the Law of Ukraine "On Consumer Protection" can be found',
+        textLink1: {text: 'here', ref: '/'},
+        text4: 'If the returned goods are not subject to exchange and return, the goods are sent back at the expense of the customer. \ n \ n In case of non-compliance with the conditions set out in this paragraph, the online store-warehouse UNAMOUR has the right to refuse or shortage of any goods. '
     },
     ru: {
-
+        title1: 'ПУБЛИЧЕСКАЯ ОФЕРТА',
+        numSubtitle1: 'ОБЩИЕ УСЛОВИЯ',
+        numList1: [
+            'Данные условия устанавливают порядок взаимодействия между Интернет-магазином UNAMOUR и клиентами Интернет-магазина UNAMOUR – физическими и юридическими лицами, которые оформили заказ с помощью сервиса «Корзина», расположенном на сайте UNAMOUR (далее – сайт).',
+            'Интернет-магазин UNAMOUR осуществляет реализацию и доставку товара по всей территории Украины.',
+            'Интернет магазин UNAMOUR реализует товары в розницу. Действие возврата товара осуществляется согласно Закону Украины "О защите прав потребителей".',
+            'Оформляя заказ на сайте, клиент безусловно соглашается соблюдать эти условия и подтверждает, что ознакомлен с ними.'
+        ],
+        numSubtitle2: 'ОФОРМЛЕНИЕ ЗАКАЗА',
+        numText1: 'Оформление заказа осуществляется клиентом путем добавления товара в корзину.',
+        numText2: 'Заказ считается надлежащим образом оформленным, если клиент заполнил все поля формы, позволяющие идентифицировать клиента и связаться с ним:',
+        list1: [
+            'Ф.И.О./наименование.',
+            'Контактный телефон.',
+            'Адрес.',
+            'Желаемый порядок оплаты (способы оплаты перечислены в п.5.1).',
+            'Желаемый способ доставки товара.'
+        ],
+        numSubtitle3: 'ПРИНЯТИЕ ЗАКАЗА ИНТЕРНЕТ-МАГАЗИНОМ UNAMOUR',
+        numText3: 'Менеджер интернет-магазина UNAMOUR при получении заказа проверяет наличие товара и если заказ оформлен в соответствии с пунктом 2.2. этих условий, принимает заказ и связывается с клиентом для подтверждения деталей.',
+        numText4: 'С момента принятия заказа Интернет-магазином UNAMOUR клиент имеет право отказаться от заказа или вносить в заказ изменения (удалять/добавлять в заказ товары, изменять характеристику товара (цвет, размер, количество и т.д.)). После оплаты счета удаление товарных позиций из заказа не допускается.',
+        numSubtitle4: 'ФОРМИРОВАНИЕ ЗАКАЗА.',
+        numText5: 'Сотрудники Интернет-магазина UNAMOUR формируют заказ. Заказы со статусом «ОБРАБОТАННЫЕ», сформированные и подтвержденные до 15-00, присылаются в этот же день. В том случае, если Вы сделали заказ в воскресенье или праздничный день, его отправка сдвигается на первый рабочий день, следующий за днем ​​оформления заказа. Город отправителя – Киев.',numText6: 'В разі відсутності будь-якого товару в Інтернет-магазині UNAMOUR співробітник перевіряє наявність по всій мережі та оформляє внутрішнє переміщення після погодження термінів із замовником. Якщо товар відсутній по всій мережі, менеджер Інтернет-магазину UNAMOUR може запропонувати клієнту заміну відсутнього товару на будь-який інший товар. За згодою клієнта інший запропонований товар додається на замовлення, у разі незгоди замовлення переходить у статус «ВІДМОВА».',
+        numText7: 'В момент окончания формирования заказа менеджер Интернет-магазина-склада UNAMOUR уведомляет клиента о статусе заказа и выставляет клиенту счет на оплату, если выбранный способ оплаты соответствует п. 5.1.2.',
+        numSubtitle5: 'ОПЛАТА ЗАКАЗА',
+        numText8: 'Оплата заказа осуществляется следующими способами:',
+        list2 : [
+            'Оплата при получении (накладной платеж).',
+            'Оплата на карту онлайн.',
+            'Оплата через систему liqpay.',
+            'Оплата через инвойс.'
+        ],
+        numText9: 'Оплатить заказ наличными можно при получении посылки в любом отделении Новой Почты. Комиссию за пересылку средств уплачивает покупатель. Стоимость перевода наложенного платежа составляет 20 грн + 2% от суммы (сбор «Новая почта»). Оплата заказа с карты Visa или MasteCard на сайте сразу после оформления заказа через систему liqpay. Оплата производится на странице, защищенной сертификатами безопасности. Вы платите только стоимость товара, комиссия при оплате онлайн не взимается.',
+        numSubtitle6: 'ДОСТАВКА ЗАКАЗ',
+        numText10: 'Доставка по почтовым службам. Бесплатная доставка во все отделения Новой почты и Укрпочты при заказе от 1500 грн. Доставка заказа до 1500 грн. осуществляется за счет клиента по тарифам перевозчика следующими способами:',
+        list3: [
+            'Службой доставки "Новая Почта".',
+            'Служба доставки "Укрпочта".'
+        ],
+        numText11: 'Доставка заказа на выбранную студию одежды UNAMOUR.\n Доставка осуществляется бесплатно в течение 3-4 рабочих дней. Сформированный заказ в открытом статусе «ЖДЕТ ПЕРЕМЕЩЕНИЕ» передается на центральный склад, а оттуда на студию. По приезде заказ клиент может примерить вещь и оплатить удобным способом на кассе.',
+        numText12: 'Интернет-магазин-склад UNAMOUR считается выполнившим свой долг по доставке заказа в момент передачи службе доставки. Риск гибели или порчи товара после передачи в службу доставки несет клиент.',
+        numText13: 'БЕСПЛАТНАЯ ДОСТАВКА. Доставка для клиента бесплатна в следующих случаях:',
+        list4: [
+            'при заказе на сумму от 1500 (тысяча пятьсот) гривен: в отделения служб доставки, расположенные в городе клиента.',
+            'при внутреннем перемещении заказа на студию.'
+        ],
+        label1: 'Интернет-магазин-склад UNAMOUR согласовывает способ доставки с клиентом, но имеет право по своему усмотрению выбрать и использовать любой наиболее выгодный для себя способ доставки.',
+        numSubtitle7: 'ВОЗВРАЩЕНИЕ НЕКАЧЕСТВЕННОГО ТОВАРА',
+        numText14: 'В случае доставки заказа на студию возврат возможен только по тому же адресу, по которому производилась покупка.',
+        numText15: 'Товары надлежащего качества, заказанные на UNAMOUR и не подошедшие по какой-либо причине (фасон, размер, цвет), подлежат возврату и обмену в течение 14 дней, за исключением дня покупки, при условии:',
+        list5: [
+            'отсутствия следов эксплуатации и ношения.',
+            'сохранение товарного вида и потребительских свойств.',
+            'наличия оригинальной и невредимой упаковки и ярлыков.',
+            'Стоимость доставки по возврату/обмену товара оплачивает покупатель.*'
+        ],
+        label2: '* Исключение: производственный брак или пересорт (другой размер, цвет или артикул). В этом случае возврат осуществляется за наш счет.\n\nТовары ненадлежащего качества (после эксплуатации или с поврежденными ярлыками) заказаны на UNAMOUR, обмену и возврату не подлежат.',
+        text1: 'Процесс возврата товара:',
+        list6: [
+            'Заполните бланк возврата (отправляется менеджером по запросу клиента на мессенджер или электронную почту).',
+            'Отправьте товар и заполненный бланк по адресу, указанному в нем.',
+            'Получите деньги банковским переводом*',
+            'Срок возврата средств – в течение 10 рабочих дней с момента получения возврата менеджером интернет-магазина.'
+        ],
+        label3: '* Если Вы получили товар с браком или вам послали не то, что Вы заказывали, и при этом Вы заплатили за доставку – менеджер предложит бесплатную доставку Вашего следующего заказа.',
+        text2: 'Процесс обмена товара:',
+        list7: [
+            'средства и предметы санитарной гигиены (в т.ч. зубные щетки).',
+            'парфюмерно-косметические товары.',
+            'детские игрушки (мягкие, резиновые, надувные).',
+            'гребни, расчески, щетки (в т.ч. массажные).',
+            'белье нежное (нижнее белье, купальники, ночные рубашки, пижамы)',
+            'белье постельное',
+            'чулочные и носочные товары',
+            'товары в аэрозольной упаковке',
+            'изделия из полудрагоценного камня и др.'
+        ],
+        text3: 'С полным перечнем товаров и текстом закона Украины "О защите прав потребителей" можно ознакомиться',
+        textLink1: {text: 'здесь', ref: '/'},
+        text4: 'Если возвращаемый товар не подлежит обмену и возврату, отправка товара обратно происходит за счет клиента.\n\n В случае невыполнения условий, установленных настоящим пунктом, Интернет-магазин UNAMOUR имеет право отказать в удовлетворении претензии о браке или недостаток любого товара.'
     }
 }

@@ -110,7 +110,7 @@ const WithService= <P extends ComponentContent,>  (Component : NextPageWithLayou
     const ServiceComponent: NextPageWithLayout<P> = ( props) => {
         const {content} = props
         const html: Array<JSX.Element | undefined> = loopThroughContentObject(content)
-        console.log('service hoc')
+        console.log('clothing-care hoc')
         return (
             <Component {...props}>
                 {html}

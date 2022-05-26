@@ -10,6 +10,8 @@ import SignInUp from "../sign-in-up/sign-in-up.component";
 import Modal from "../modal/modal.component";
 import NavMenu from "../nav-menu/nav-menu.component";
 import {useRouter} from "next/router";
+import {useSelector} from "react-redux";
+import {AppState} from "../../redux/store";
 
 const Nav: React.FC = () => {
 

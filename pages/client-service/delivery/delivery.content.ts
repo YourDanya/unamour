@@ -17,7 +17,7 @@ export const DeliveryContent = {
         subtitle2: 'NOVA POSHTA TRANSPORT COMPANY',
         text3: 'Delivery is carried out to the Nova Poshta branch throughout Ukraine, except for the temporarily occupied territories. After the manager sends your order, you will receive a text message with the number of the express invoice. With this number you will be able to track your order at any time and find out when it will be in the branch on the official website of the company "New Mail". Be sure to check the integrity of the parcel and its compliance with the order in the office before paying.',
         subtitle3: 'INTERNATIONAL DELIVERY',
-        text4: 'Cost, terms and specific delivery service are discussed individually with the online store manager. When ordering in Poland in the amount of 2000 hryvnias, we make delivery as a gift. When ordering in Poland in the amount of up to 2000 hryvnia, delivery cost 150-250 hryvnia. When ordering in other countries - delivery tariffs according to the cost of Ukrposhta or Nova Poshta, which now offers the best prices. Delivery time - an average of one and a half weeks.'
+        text4: 'Cost, terms and specific delivery clothing-care are discussed individually with the online store manager. When ordering in Poland in the amount of 2000 hryvnias, we make delivery as a gift. When ordering in Poland in the amount of up to 2000 hryvnia, delivery cost 150-250 hryvnia. When ordering in other countries - delivery tariffs according to the cost of Ukrposhta or Nova Poshta, which now offers the best prices. Delivery time - an average of one and a half weeks.'
     },
     ru: {
         title1: 'ОПЛАТА И ДОСТАВКА',
