@@ -5,7 +5,7 @@ import Link from "next/link";
 const WithService= <P extends ComponentContent,>  (Component : NextPageWithLayout<P>)  => {
     
     const loopThroughContentObject = (content: ElementContent) => {
-        const html: Array<JSX.Element | undefined> = []
+        const html: Array<JSX.Element> = []
         let property: keyof typeof content
 
         let count1 = -1
@@ -109,8 +109,8 @@ const WithService= <P extends ComponentContent,>  (Component : NextPageWithLayou
 
     const ServiceComponent: NextPageWithLayout<P> = ( props) => {
         const {content} = props
-        const html: Array<JSX.Element | undefined> = loopThroughContentObject(content)
-        console.log('clothing-care hoc')
+        const html: Array<JSX.Element> | undefined = content && loopThroughContentObject(content)
+
         return (
             <Component {...props}>
                 {html}

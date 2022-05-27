@@ -18,7 +18,7 @@ export type ElementContent =  Record<string, string | string[] | { ref: string, 
 
 export type InternContent = {ua: ElementContent, eng: ElementContent, ru: ElementContent}
 
-export type ComponentContent = {content: ElementContent}
+export type ComponentContent = {content?: ElementContent}
 
 
 

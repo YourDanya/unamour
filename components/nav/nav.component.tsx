@@ -12,6 +12,7 @@ import NavMenu from "../nav-menu/nav-menu.component";
 import {useRouter} from "next/router";
 import {useSelector} from "react-redux";
 import {AppState} from "../../redux/store";
+import axios from "axios";
 
 const Nav: React.FC = () => {
 

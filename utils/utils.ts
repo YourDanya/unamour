@@ -1,1 +1,0 @@
-export const getClasses = (arr: string[] | undefined) => arr?.join(' ') || ''
