@@ -2,7 +2,7 @@ import React from "react";
 import {ComponentContent, ElementContent, NextPageWithLayout} from "../../../types/types";
 import Link from "next/link";
 
-const WithService= <P extends ComponentContent,>  (Component : NextPageWithLayout<P>)  => {
+const WithService= <P,>  (Component : NextPageWithLayout<P>)  => {
     
     const loopThroughContentObject = (content: ElementContent) => {
         const html: Array<JSX.Element> = []
@@ -107,7 +107,7 @@ const WithService= <P extends ComponentContent,>  (Component : NextPageWithLayou
         return html
     }
 
-    const ServiceComponent: NextPageWithLayout<P> = ( props) => {
+    const ServiceComponent: NextPageWithLayout<P & ComponentContent> = ( props) => {
         const {content} = props
         const html: Array<JSX.Element> | undefined = content && loopThroughContentObject(content)
 

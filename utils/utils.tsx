@@ -1,6 +1,6 @@
 export const getClasses = (arr: string[] | undefined) => arr?.join(' ') || ''
 
-export const mapArr = (arr: [], listClass: string, elemClass: string) => {
+export const mapList = (arr: any [], listClass: string, elemClass: string) => {
     return (
         <div className={elemClass}>
             {

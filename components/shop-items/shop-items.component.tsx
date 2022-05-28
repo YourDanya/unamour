@@ -3,22 +3,23 @@ import React from "react";
 import {ComponentContent, NextPageWithLayout} from "../../types/types";
 import WithIntern from "../hoc/with-intern/with-intern";
 import {ShopItemsContent} from "./shop-items.content";
-import {mapArr} from "../../utils/utils";
+import {mapList} from "../../utils/utils";
+import {useRouter} from "next/router";
 
 type shopItemsProps = {
-
 }
 
-const ShopItems: NextPageWithLayout<shopItemsProps & ComponentContent> =
+const ShopItems: React.FC<shopItemsProps> =
     WithIntern(
         ({children, content}) => {
-            console.log(content)
-
+            const router = useRouter()
+            const active = router.asPath.split('/').pop()
             return (
                 <div className={'shop-items'}>
                     <div className={'shop-items__menu'}>
                         {
-                            // mapArr(content.list1, 'shop-items__menu-list', 'shop-items__menu-list-item')
+                            content.list1
+                            // mapList(content?.list1 as Array<string>, 'shop-items__menu-list', 'shop-items__menu-item', true)
                         }
                     </div>
                     <div className="shop-items__page">
