@@ -9,7 +9,7 @@ export const DeliveryContent = {
         subtitle3: 'МІЖНАРОДНА ДОСТАВКА',
         text4: 'Вартість, терміни і конкретна служба доставки обговорюються в індивідуальному порядку з менеджером інтернет магазину. При замовленні до Польщі на суму від 2000 гривень, робимо доставку в подарунок. При замовленні до Польщі на суму до 2000 гривень, вартість доставки 150-250 гривень. При замовлені в інші країни - тарифікація доставки згідно вартості на Укрпошті чи Новою Поштою, яка зараз пропонує максимально вигідні ціни. Строк доставки - в середньому півтора тижні.'
     },
-    en: {
+    eng: {
         title1: 'PAYMENT AND DELIVERY',
         subtitle1: 'TERMS AND METHODS OF DELIVERY',
         text1: 'Delivery of the order is carried out after 100% payment of the order on the website. The term of order formation is 1-3 working days after payment. After sending the parcel to the transport company to the e-mail address specified in the sent track number to send the parcel. In case of refusal to receive the order, the delivery cost is not refundable.',
@@ -17,7 +17,7 @@ export const DeliveryContent = {
         subtitle2: 'NOVA POSHTA TRANSPORT COMPANY',
         text3: 'Delivery is carried out to the Nova Poshta branch throughout Ukraine, except for the temporarily occupied territories. After the manager sends your order, you will receive a text message with the number of the express invoice. With this number you will be able to track your order at any time and find out when it will be in the branch on the official website of the company "New Mail". Be sure to check the integrity of the parcel and its compliance with the order in the office before paying.',
         subtitle3: 'INTERNATIONAL DELIVERY',
-        text4: 'Cost, terms and specific delivery clothing-care are discussed individually with the online store manager. When ordering in Poland in the amount of 2000 hryvnias, we make delivery as a gift. When ordering in Poland in the amount of up to 2000 hryvnia, delivery cost 150-250 hryvnia. When ordering in other countries - delivery tariffs according to the cost of Ukrposhta or Nova Poshta, which now offers the best prices. Delivery time - an average of one and a half weeks.'
+        text4: 'Cost, terms and specific delivery clothing-care are discussed individually with the online store manager. When ordering in Poland in the amount of 2000 hryvnias, we make delivery as a gift. When ordering in Poland in the amount of up to 2000 hryvnia, delivery cost 150-250 hryvnia. When ordering in other countries - delivery tariffs according to the cost of Ukrposhta or Nova Poshta, which now offers the best.tsx prices. Delivery time - an average of one and a half weeks.'
     },
     ru: {
         title1: 'ОПЛАТА И ДОСТАВКА',

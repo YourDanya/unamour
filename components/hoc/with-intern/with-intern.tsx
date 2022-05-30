@@ -15,7 +15,10 @@ const WithIntern= <P,>  (Component : React.FC<P & ComponentContent> | NextPageWi
         return (component as NextPageWithLayout).getLayout !== undefined;
     }
 
-    if (isNextPageWithLayout(Component) && isNextPageWithLayout(InternComp)) InternComp.getLayout =  Component.getLayout
+    console.log('isNextPageWithLayout Component', isNextPageWithLayout(Component))
+    console.log('isNextPageWithLayout', isNextPageWithLayout(InternComp))
+
+    if (isNextPageWithLayout(Component)) (InternComp as NextPageWithLayout).getLayout =  Component.getLayout
 
     return InternComp
 }

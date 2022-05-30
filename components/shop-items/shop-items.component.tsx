@@ -1,10 +1,10 @@
 import React from "react";
 
-import {ComponentContent, NextPageWithLayout} from "../../types/types";
 import WithIntern from "../hoc/with-intern/with-intern";
 import {ShopItemsContent} from "./shop-items.content";
-import {mapList} from "../../utils/utils";
 import {useRouter} from "next/router";
+import Link from "next/link";
+import {mapList} from "../../utils/utils";
 
 type shopItemsProps = {
 }
@@ -18,8 +18,7 @@ const ShopItems: React.FC<shopItemsProps> =
                 <div className={'shop-items'}>
                     <div className={'shop-items__menu'}>
                         {
-                            content.list1
-                            // mapList(content?.list1 as Array<string>, 'shop-items__menu-list', 'shop-items__menu-item', true)
+                            mapList(content.list1 as Array<string>, 'shop-items__menu-list', 'shop-items__menu-item')
                         }
                     </div>
                     <div className="shop-items__page">
@@ -27,6 +26,12 @@ const ShopItems: React.FC<shopItemsProps> =
                             children
                         }
                     </div>
+                    {/*<Link href={'/shop-items/all'}>*/}
+                    {/*    <a>all</a>*/}
+                    {/*</Link>*/}
+                    {/*<Link href={'/shop-items/best'}>*/}
+                    {/*    <a>best</a>*/}
+                    {/*</Link>*/}
                 </div>
             )
         }, ShopItemsContent

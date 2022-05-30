@@ -16,7 +16,9 @@ export type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
 
-export type ElementContent =  Record<string, string | string[] | { ref: string, text: string }>
+export type LinkList = { text: string, ref: string }
+
+export type ElementContent =  Record<string, string | string[] | LinkList | LinkList[]>
 
 export type InternContent = {ua: ElementContent, eng: ElementContent, ru: ElementContent}
 

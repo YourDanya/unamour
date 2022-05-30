@@ -8,7 +8,7 @@ import WithService from "../../../components/hoc/with-service/with-service";
 type PolicyProps = {
 }
 
-const Policy: NextPageWithLayout<PolicyProps & ComponentContent> = ({children, content}) => {
+const Policy: NextPageWithLayout = ({children}) => {
 
     console.log('policy page')
 

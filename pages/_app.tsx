@@ -38,14 +38,14 @@ import {Provider} from "react-redux";
 import store from "../redux/store";
 import axios from "axios";
 
-export async function getStaticProps() {
-    console.log('//////////////////')
-    const res = await axios.get('https://localhost:5000/shop-item/all')
-    console.log(res)
-    return {
-        props: {}
-    }
-}
+// export async function getStaticProps() {
+//     console.log('//////////////////')
+//     const res = await axios.get('https://localhost:5000/shop-item/all')
+//     console.log(res)
+//     return {
+//         props: {}
+//     }
+// }
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)

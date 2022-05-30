@@ -3,8 +3,8 @@ import {getClientServiceLayout} from "../../../components/client-service/client-
 import axios from "axios";
 import {NextPage} from "next";
 import {NextPageWithLayout} from "../../../types/types";
-import WithIntern from "../../../components/hoc/with-intern/with-intern";
 import {OrderingContent} from "./ordering.content";
+import WithIntern from "../../../components/hoc/with-intern/with-intern";
 
 type OrderingPageProps = {
     content: typeof OrderingContent.ua
@@ -15,12 +15,12 @@ const Ordering: NextPageWithLayout<OrderingPageProps> = ({content}) => {
     return (
         <div className={'ordering'}>
             <div className="service__title">
-                ИНСТРУКЦИЯ ПО ОФОРМЛЕНИЮ ЗАКАЗА
+                {content.title1}
             </div>
             <div className="list service__list">
                 {
                     content.list1.map(item =>
-                        <div className={'list__item'}>
+                        <div className={'list__item'} key={item}>
                             {item}
                         </div>
                     )

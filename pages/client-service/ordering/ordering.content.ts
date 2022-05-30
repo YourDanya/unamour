@@ -1,5 +1,6 @@
 export const OrderingContent = {
     ua: {
+        title1: 'ІНСТРУКЦІЯ З ОФОРМЛЕННЯ ЗАМОВЛЕННЯ',
         list1: [
             'Виберіть групу товарів (тип речі).',
             'Перегляньте товар, що вас цікавить. У картці товару ознайомтеся з параметрами виробу на кожен розмір, дізнайтеся про склад тканини, доступні розміри та ціну.',
@@ -17,6 +18,7 @@ export const OrderingContent = {
         text2: 'Приємних покупок!'
     },
     eng: {
+        title1: 'ORDERING INSTRUCTIONS',
         list1: [
             'Select a product group (item type).',
             'View the item you are interested in. In the product card, read the parameters of the product for each size, find out the composition of the fabric, available sizes and price.',
@@ -34,6 +36,7 @@ export const OrderingContent = {
         text2: 'Happy shopping!'
     },
     ru: {
+        title1: 'ИНСТРУКЦИЯ ПО ОФОРМЛЕНИЮ ЗАКАЗА',
         list1: [
             'Выберите группу товаров (тип вещи).',
             'Просмотрите интересующий вас товар. В карточке товара ознакомьтесь с параметрами изделия на каждый размер, узнайте состав ткани, доступные размеры и цену.',
