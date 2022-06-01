@@ -1,0 +1,23 @@
+.dropdown
+  cursor: pointer
+  width: 100%
+  &__top
+    display: flex
+    align-items: center
+    padding: 20px 0
+  &__sign
+    &--show
+    &-line
+      background-color: #828282
+      width: 9px
+      height: 1px
+      &--first
+        transform: rotate(45deg)
+      &--last
+        transform: translateX(6.2px) translateY(-1px) rotate(-45deg)
+  &__name
+    margin-left: 14px
+  &__content
+    height: 0
+    &--show
+      height: auto

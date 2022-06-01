@@ -12,7 +12,7 @@ export const WarrantyPeriodContent = {
         ],
         text2: 'Гарантійний термін на фурнітуру відповідає гарантійному терміну на виріб загалом. Після закінчення терміну гарантії ми завжди готові, якщо є можливість на платній основі надати необхідну фурнітуру для ремонту.'
     },
-    en: {
+    eng: {
         title1: 'WARRANTY PERIOD',
         text1: 'The warranty period for all products is 30 days from the date of sale. The term for eliminating defects under warranty obligations cannot exceed 45 days.\n\n For seasonal goods (eg coats), the warranty period is calculated from the moment of the respective season and not earlier than the date of sale. The start date of the season is determined by the authorized state body of the constituent entity of the Russian Federation, based on the climatic conditions of the buyer\'s location.\n\n We recommend that you read the care instructions on the product label, in the product card on the official website Namelazz.com or in the brochure that is included with each product. In case of violation of the terms of use and care of the product, the seller does not bear warranty obligations to the Buyer.',
         label1: 'Warranty does not cover:',

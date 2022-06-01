@@ -13,7 +13,7 @@ export const ReturnContent = {
         text5: 'Повернути річ належної якості можливо лише за умови збереження її споживчих властивостей і товарного вигляду (відсутність слідів носки, наявність оригінальних ярликів та бірок). Для розгляду заявки на повернення вам необхідно вислати нам товар і заповнену заяву на повернення; Термін повернення грошових коштів за куплений товар становить до 10 банківських днів (розраховується від дати надходження повернутого товару на склад разом з заповненою заявою на повернення) на банківську карту. Товар з браком / неправильної комплектації (товар, який Ви не замовляли, або розмір не відповідає замовленому) повинен бути повернений нам з оригінальними ярликами і в оригінальній упаковці. Витрати на пересилку товару неналежної якості ми беремо на себе . Для цього необхідно надати чек за пересилку, прикріплений до заповненої заяви на повернення. Деякі категорії товарів, наприклад боді, не підлягають поверненню та обміну згідно з Постановою Кабінету Міністрів України від 19 березня 1994 р М 172. Детальніше ',
         link1: 'тут'
     },
-    en: {
+   eng: {
         title1: 'RETURN OF GOODS',
         subtitle1: 'TERMS OF EXCHANGE AND RETURN',
         text1: 'You can return or exchange any item purchased in the UNAMOR online store, if it did not suit you, within 14 days, not counting the day of purchase. Exchange and return of goods of proper quality is possible only if you keep the check, the thing has a commercial appearance, all the accompanying tags and was not in use. To make a return you need: you can find out about the status and location of your order.',
