@@ -27,27 +27,36 @@ const ShopItems: React.FC<shopItemsProps> =
                             <CustomDropdown
                                 name={'СОРТИРОВКА'}
                                 content={
-                                    <div>1</div>
+                                    <>
+                                        <div>1</div>
+                                        <div>1</div>
+                                        <div>1</div>
+                                        <div>1</div>
+                                        <div>1</div>
+                                        <div>1</div>
+                                        <div>1</div>
+                                        <div>1</div>
+                                    </>
                                 }
                             />
-                            <CustomDropdown
-                                name={'ЦЕНА'}
-                                content={
-                                    <div>2</div>
-                                }
-                            />
-                            <CustomDropdown
-                                name={'РАЗМЕР'}
-                                content={
-                                    <div>3</div>
-                                }
-                            />
-                            <CustomDropdown
-                                name={'ЦВЕТ'}
-                                content={
-                                    <div>4</div>
-                                }
-                            />
+                            {/*<CustomDropdown*/}
+                            {/*    name={'ЦЕНА'}*/}
+                            {/*    content={*/}
+                            {/*        <div>2</div>*/}
+                            {/*    }*/}
+                            {/*/>*/}
+                            {/*<CustomDropdown*/}
+                            {/*    name={'РАЗМЕР'}*/}
+                            {/*    content={*/}
+                            {/*        <div>3</div>*/}
+                            {/*    }*/}
+                            {/*/>*/}
+                            {/*<CustomDropdown*/}
+                            {/*    name={'ЦВЕТ'}*/}
+                            {/*    content={*/}
+                            {/*        <div>4</div>*/}
+                            {/*    }*/}
+                            {/*/>*/}
                             <div className={'shop-items__sorting-reset'}>
 
                             </div>

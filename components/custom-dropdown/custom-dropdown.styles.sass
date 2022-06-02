@@ -1,23 +1,40 @@
 .dropdown
   cursor: pointer
   width: 100%
+  overflow: clip
   &__top
     display: flex
     align-items: center
     padding: 20px 0
+    border-bottom: 1.5px solid #eeeeee
+    position: relative
+    z-index: 10
   &__sign
+    width: 14px
+    height: 10px
+    display: flex
+    align-items: center
     &--show
+      .dropdown__sign-line
+        transform: rotate(0)
+        height: 1.5px
+        &--last
+          transform: translateX(-2.2px)
     &-line
+      transition: 0.2s all
       background-color: #828282
-      width: 9px
+      width: 7px
       height: 1px
       &--first
         transform: rotate(45deg)
       &--last
-        transform: translateX(6.2px) translateY(-1px) rotate(-45deg)
+        transform: translateX(-2.2px) rotate(-45deg)
   &__name
-    margin-left: 14px
+    margin-left: 12px
   &__content
-    height: 0
+    transition: 0.4s all
+    visibility: hidden
     &--show
-      height: auto
+      visibility: visible
+    &-wrapper
+      overflow: hidden
