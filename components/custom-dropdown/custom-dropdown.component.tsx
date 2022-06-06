@@ -21,13 +21,11 @@ const CustomDropdown: React.FC<customDropdownProps> = ({name, content }) => {
                     {name}
                 </div>
             </div>
-            {/*<div className='dropdown__content-wrapper'>*/}
                 <div className={`dropdown__content ${show? 'dropdown__content--show' : ''}`}>
                     {
                         content
                     }
                 </div>
-            {/*</div>*/}
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import '/components/custom-checkbox/custom-checkbox.styles.sass'
 import '/components/custom-dropdown/custom-dropdown.styles.sass'
 import '/pages/client-service/ordering/ordering.styles.sass'
 import '/pages/client-service/order-tracking/order-tracking.styles.sass'
