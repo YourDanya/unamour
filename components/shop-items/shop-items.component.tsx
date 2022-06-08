@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 import {mapList, removeFromArr} from "../../utils/utils";
 import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
+import {set} from "immer/dist/utils/common";
 
 type shopItemsProps = {}
 
@@ -18,16 +19,27 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
     const router = useRouter()
 
     const [sort, setSort] = useState<string | undefined>()
-    const [price, setPrice] = useState<Object>()
+    const [price, setPrice] = useState<{ num1: string, num2: string }>({
+        num1: content.price.num1,
+        num2: content.price.num2
+    })
     const [sizes, setSizes] = useState<string[]>([])
     const [colors, setColors] = useState<string[]>([])
+    const [sliderValue, setSliderValue] = useState('1')
 
     const handleSortClick = (param: string) => {
         setSort(param)
     }
-    const handlePriceClick = () => {
 
+    const handlePriceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value.length > 5) return
+        setPrice({...price, [event.target.name]: event.target.value})
     }
+
+    const handlePrizeSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSliderValue(event.target.value)
+    }
+
     const handleSizeClick = (size: string) => {
         if (sizes?.includes(size)) {
             sizes.push(size)
@@ -35,6 +47,7 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
             setSizes(removeFromArr(sizes, size))
         }
     }
+
     const handleColorClick = (color: string) => {
         if (colors?.includes(color)) {
             colors.push(color)
@@ -71,8 +84,41 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                     <CustomDropdown
                         name={content.filter2}
                         content={
-                            <div className={'prices'}>
-
+                            <div className={'shop-items__price'}>
+                                <div className='shop-items__price-input-block'>
+                                    <label className={'shop-items__price-label'}>
+                                        {content.price.from}
+                                    </label>
+                                    <input className={'shop-items__price-input'}
+                                           name='num1'
+                                           onChange={handlePriceInputChange}
+                                           value={price.num1}
+                                           type={'number'}
+                                    />
+                                    <div className={'shop-items__price-currency'}>₴</div>
+                                </div>
+                                <div className='shop-items__price-input-block'>
+                                    <label className={'shop-items__price-label'}>
+                                        {content.price.to}
+                                    </label>
+                                    <input className='shop-items__price-input'
+                                           name='num2'
+                                           onChange={handlePriceInputChange}
+                                           value={price.num2}
+                                           type={'number'}
+                                    />
+                                    <div className={'shop-items__price-currency'}>₴</div>
+                                </div>
+                                <div className={'shop-items__price-slider'}>
+                                    <input type="range"
+                                           min="1"
+                                           max="75"
+                                           value={sliderValue}
+                                           className="shop-items__price-range"
+                                           onChange={handlePrizeSliderChange}
+                                    />
+                                    <div className={'shop-items__price-progress'}/>
+                                </div>
                             </div>
                         }
                     />
@@ -88,19 +134,19 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                             )
                         }
                     />
-                    {/*<CustomDropdown*/}
-                    {/*    name={content.filter4}*/}
-                    {/*    content={*/}
-                    {/*        mapList(*/}
-                    {/*            content.colors,*/}
-                    {/*            'shop-items__colors',*/}
-                    {/*            'shop-items__color',*/}
-                    {/*            handleSizeClick*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*/>*/}
+                    <CustomDropdown
+                        name={content.filter4}
+                        content={
+                            mapList(
+                                content.colors,
+                                'shop-items__colors',
+                                'shop-items__color',
+                                handleSizeClick,
+                                CustomCheckbox
+                            )
+                        }
+                    />
                     <div className={'shop-items__reset'}>
-
                     </div>
                 </div>
             </div>

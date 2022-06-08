@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, {RefObject, useRef, useState} from "react";
 
 type customCheckboxProps = {
-    text: string,
+    name: string,
     code?: string,
     handleClick?: () => {}
 }
 
-const CustomCheckbox: React.FC<customCheckboxProps> = ({text, code, handleClick}) => {
+const CustomCheckbox: React.FC<customCheckboxProps> = ({name, code, handleClick}) => {
     const [checked, setChecked] = useState(false)
 
     const handleNativeClick = () => {
@@ -14,7 +14,9 @@ const CustomCheckbox: React.FC<customCheckboxProps> = ({text, code, handleClick}
         if (handleClick) handleClick()
     }
 
-    console.log('inside custom checkbox')
+    const ref = useRef<HTMLInputElement>(null)
+
+    console.log(name)
 
     return (
         <div className={'checkbox'} onClick={handleNativeClick}>
@@ -22,19 +24,30 @@ const CustomCheckbox: React.FC<customCheckboxProps> = ({text, code, handleClick}
                 code ?
                     (
                         <>
-                            <div className={`checkbox__color-check ${checked ? 'checkbox__color-check--active' : ''}`}
-                                 style={{backgroundColor: `${code}`}}/>
-                            <input className={`checkbox__input`}/>
+                            <input className={`checkbox__input`}
+                                   id={name}
+                                   type={'checkbox'}
+                                   checked={checked}
+                                   onChange={() => {}}
+                                   ref={ref}/>
+                            <div className='checkbox__color-check' style={{backgroundColor: `${code}`}}/>
                         </>
                     ) : (
                         <>
-                            <input className={`checkbox__input `} id={text} type={'checkbox'} checked={checked}/>
-                            <div className={`checkbox__check ${checked ? 'checkbox__check--active' : ''}`}/>
+                            <input className={`checkbox__input`}
+                                   id={name}
+                                   type={'checkbox'}
+                                   checked={checked}
+                                   onChange={(e) => {}}
+                                   ref={ref}/>
+                            <div className="checkbox__check"/>
                         </>
                     )
             }
-            <label className={'checkbox__label'} htmlFor={text}>
-                {text}
+            <label className={'checkbox__label'}
+                   htmlFor={name}
+                   onClick={(e) => e.preventDefault()}>
+                {name}
             </label>
         </div>
     )

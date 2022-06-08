@@ -20,3 +20,86 @@
     border-bottom: 1px solid rgba(224,224,224,.4)
   &__size
     margin-bottom: 9px
+  &__colors
+    padding: 20px 0 20px 28px
+  &__color
+    margin-bottom: 15px
+  &__price
+    font-size: 10px
+    padding: 20px 0
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    &-input-block
+      padding: 0 5px
+      width: 95px
+      height: 36px
+      display: flex
+      align-items: center
+      border: 1px solid #efefef
+      justify-content: space-between
+    &-label
+      color: #c7c7c7
+    &-currency
+      position: relative
+      right: 0
+      top: 0
+      font-size: 12px
+    &-input
+      font-size: 11px
+      border: none
+      outline: none
+      height: auto
+      width: 40%
+      text-align: center
+      padding: 0
+      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+        -webkit-appearance: none
+        margin: 0
+      &[type=number]
+        -moz-appearance: textfield
+    &-slider
+      margin-top: 30px
+      width: 100%
+      height: 2.5px
+      position: relative
+    &-range
+      margin: 0
+      -webkit-appearance: none
+      width: 99%
+      height: 100%
+      background-color: black
+      outline: none
+      border-radius: 5px
+      position: absolute
+      top: 0
+      left: 50%
+      z-index: 1
+      transform: translateX(-50%)
+      &::-webkit-slider-thumb
+        position: relative
+        z-index: 100
+        -webkit-appearance: none
+        appearance: none
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        background: black
+        cursor: pointer
+      &::-moz-range-thumb
+        position: relative
+        z-index: 100
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        background: black
+        cursor: pointer
+    &-progress
+      position: absolute
+      z-index: 1
+      top: 0
+      left: 0
+      height: 100%
+      width: 50%
+      background-color: #e0e0e0
+      border-radius: 5px

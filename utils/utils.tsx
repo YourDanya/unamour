@@ -47,10 +47,16 @@ export const mapList = (
                     </div>
                 ))
         } else if (Component) {
-            mapArr =
-                arr.map((text) => (
-                    <div className={elemClass} key={text}>
-                        <Component text={text} handleClick={handleClick}/>
+            console.log(arr[0])
+            mapArr = typeof arr[0] === 'string' ?
+                arr.map((name) => (
+                    <div className={elemClass}>
+                        <Component name={name} handleClick={handleClick}/>
+                    </div>
+                )) :
+                arr.map((params) => (
+                    <div className={elemClass}>
+                        <Component {...params} handleClick={handleClick}/>
                     </div>
                 ))
         } else {

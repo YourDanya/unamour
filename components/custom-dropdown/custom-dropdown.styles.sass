@@ -1,14 +1,13 @@
 .dropdown
-  cursor: pointer
   width: 100%
   overflow: clip
   &__top
+    cursor: pointer
     display: flex
     align-items: center
     padding: 20px 0
     border-bottom: 1.5px solid #eeeeee
     position: relative
-    z-index: 10
   &__sign
     width: 14px
     height: 10px
@@ -32,7 +31,9 @@
   &__name
     margin-left: 12px
   &__content
+    position: relative
     transition: 0.4s all
     max-height: 0
     &--show
-      max-height: 500px
+      height: auto
+      max-height: 1000px

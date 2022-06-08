@@ -32,8 +32,12 @@ export const ShopItemsContent = {
             }
         ],
         filter2: 'ЦІНА',
-        price1: '500',
-        price2: '15000',
+        price: {
+            from: 'ВІД',
+            num1: '1000',
+            to: 'ДО',
+            num2: '16000',
+        },
         filter3: 'РОЗМІР',
         sizes: [
             'XXS',
