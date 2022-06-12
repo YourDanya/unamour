@@ -8,8 +8,6 @@ type customDropdownProps = {
 const CustomDropdown: React.FC<customDropdownProps> = ({name, content }) => {
     const [show, setShow] = useState(false)
 
-    console.log(show)
-
     return (
         <div className='dropdown'>
             <div className='dropdown__top' onClick={() => setShow(!show)}>

@@ -1,3 +1,4 @@
+import '/components/custom-range-slider/custom-range-slider.styles.sass'
 import '/components/custom-checkbox/custom-checkbox.styles.sass'
 import '/components/custom-dropdown/custom-dropdown.styles.sass'
 import '/pages/client-service/ordering/ordering.styles.sass'
@@ -16,7 +17,6 @@ import '/components/back/back.styles.sass'
 import '/components/client-service/client-service.styles.sass'
 import '/components/nav-menu/nav-menu.styles.sass'
 import '/components/custom-button/custom-button.styles.sass'
-import '/components/custom-slider/custom-slider.styles.sass'
 import '/components/custom-textarea/custom-textarea.styles.sass'
 import '/components/modal/modal.styles.sass'
 import '/components/custom-input/custom-input.styles.sass'
@@ -39,6 +39,7 @@ import {AppPropsWithLayout} from "../types/types";
 import {Provider} from "react-redux";
 import store from "../redux/store";
 import axios from "axios";
+import {useEffect} from "react";
 
 // export async function getStaticProps() {
 //     console.log('//////////////////')
@@ -51,6 +52,7 @@ import axios from "axios";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)
+
 
     return (
         <Provider store={store}>

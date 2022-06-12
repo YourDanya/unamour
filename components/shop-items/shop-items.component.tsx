@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 import WithIntern from "../hoc/with-intern/with-intern";
 import {ShopItemsContent} from "./shop-items.content";
@@ -6,7 +6,8 @@ import {useRouter} from "next/router";
 import {mapList, removeFromArr} from "../../utils/utils";
 import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
-import {set} from "immer/dist/utils/common";
+import {number} from "prop-types";
+import CustomRangeSlider from "../custom-range-slider/custom-range-slider.component";
 
 type shopItemsProps = {}
 
@@ -21,11 +22,10 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
     const [sort, setSort] = useState<string | undefined>()
     const [price, setPrice] = useState<{ num1: string, num2: string }>({
         num1: content.price.num1,
-        num2: content.price.num2
+        num2: content.price.num2,
     })
     const [sizes, setSizes] = useState<string[]>([])
     const [colors, setColors] = useState<string[]>([])
-    const [sliderValue, setSliderValue] = useState('1')
 
     const handleSortClick = (param: string) => {
         setSort(param)
@@ -34,10 +34,6 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
     const handlePriceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value.length > 5) return
         setPrice({...price, [event.target.name]: event.target.value})
-    }
-
-    const handlePrizeSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSliderValue(event.target.value)
     }
 
     const handleSizeClick = (size: string) => {
@@ -55,10 +51,6 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
             setColors(removeFromArr(colors, color))
         }
     }
-
-    useEffect(() => {
-
-    }, [sort])
 
     return (
         <div className='shop-items'>
@@ -109,16 +101,7 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                                     />
                                     <div className={'shop-items__price-currency'}>₴</div>
                                 </div>
-                                <div className={'shop-items__price-slider'}>
-                                    <input type="range"
-                                           min="1"
-                                           max="75"
-                                           value={sliderValue}
-                                           className="shop-items__price-range"
-                                           onChange={handlePrizeSliderChange}
-                                    />
-                                    <div className={'shop-items__price-progress'}/>
-                                </div>
+                                <CustomRangeSlider/>
                             </div>
                         }
                     />

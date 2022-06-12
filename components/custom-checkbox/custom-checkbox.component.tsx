@@ -16,8 +16,6 @@ const CustomCheckbox: React.FC<customCheckboxProps> = ({name, code, handleClick}
 
     const ref = useRef<HTMLInputElement>(null)
 
-    console.log(name)
-
     return (
         <div className={'checkbox'} onClick={handleNativeClick}>
             {

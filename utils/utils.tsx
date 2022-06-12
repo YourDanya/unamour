@@ -26,8 +26,6 @@ export const mapList = (
         return typeof (list[0].ref) === 'string' && typeof (list[0].text) === 'string'
     }
 
-    console.log('Component', Component)
-
     const render = () => {
         let mapArr: React.ReactNode
         if (isLinkList(arr)) {
@@ -47,7 +45,6 @@ export const mapList = (
                     </div>
                 ))
         } else if (Component) {
-            console.log(arr[0])
             mapArr = typeof arr[0] === 'string' ?
                 arr.map((name) => (
                     <div className={elemClass}>
