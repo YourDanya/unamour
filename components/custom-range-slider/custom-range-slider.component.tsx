@@ -23,10 +23,10 @@ const CustomRangeSlider: React.FC<customRangeSliderProps> = ({setState}) => {
     const ref1 = useRef(null)
     const ref2 = useRef(null)
 
-    console.log('\n')
-    console.log('value1', sliderValue.value1)
-    console.log('value2', sliderValue.value2)
-    console.log('slider center', sliderValue.center)
+    // console.log('\n')
+    // console.log('value1', sliderValue.value1)
+    // console.log('value2', sliderValue.value2)
+    // console.log('slider center', sliderValue.center)
 
     const gradient1 = `linear-gradient(to right, 
         #e0e0e0 ${Math.round((sliderValue.value1 / sliderValue.center) * 100)}%,

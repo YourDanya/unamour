@@ -5,8 +5,6 @@ import ShopItems from "../components/shop-items/shop-items.component";
 
 const Home: NextPage = () => {
 
-    let router = useRouter()
-
     return (
         <div className={'container'}>
             <Head>
