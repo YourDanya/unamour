@@ -1,17 +1,23 @@
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
-import {increment, selectCounterValue} from "../redux/counter/counter.slice";
+import {decrement, increment, selectCounterValue} from "../redux/counter/counter.slice";
 import {wrapper} from "../redux/store";
 
-export const getServerSideProps = wrapper.getServerSideProps(store =>
-    async () => {
-        store.dispatch(increment())
-        return {
-            props: {
-                data: 'data'
+export const getServerSideProps = wrapper.getServerSideProps(
+    (store) =>
+        async () => {
+            // const response = await fetch(
+            //     `https://reqres.in/api/users/${Math.floor(Math.random() * 10 + 1)}`
+            // );
+            // const {data} = await response.json();
+            // store.dispatch(addUser(`${data.first_name} ${data.last_name}`));
+            store.dispatch(increment())
+            return {
+                props: {
+                    data: 'data'
+                }
             }
         }
-    }
 )
 
 const Page = ({data}: any) => {

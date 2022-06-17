@@ -10,7 +10,7 @@ type ReturnProps = {
 }
 
 const Return: NextPageWithLayout<ReturnProps> = ({content}) => {
-    console.log('content', content)
+
     return (
         <div className={'return'}>
             <div className="service__title">

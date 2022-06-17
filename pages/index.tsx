@@ -2,9 +2,22 @@ import type {NextPage} from 'next'
 import Head from 'next/head'
 import {useRouter} from "next/router";
 import ShopItems from "../components/shop-items/shop-items.component";
+import {wrapper} from "../redux/store";
+import {increment, selectCounterValue} from "../redux/counter/counter.slice";
+import {useDispatch, useSelector} from "react-redux";
+
+export const getServerSideProps = wrapper.getServerSideProps(store =>
+    async () => {
+        store.dispatch(increment())
+        return {
+            props: {
+                data: 'data'
+            }
+        }
+    }
+)
 
 const Home: NextPage = () => {
-
     return (
         <div className={'container'}>
             <Head>

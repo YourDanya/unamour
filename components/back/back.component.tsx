@@ -1,5 +1,5 @@
 import React from "react";
-import {getClasses} from "../../utils/utils";
+import {getClasses} from "../../utils/component-utils";
 
 type backProps = {
     handleClick?: () => void,

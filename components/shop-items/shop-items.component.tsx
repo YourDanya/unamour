@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import WithIntern from "../hoc/with-intern/with-intern";
 import {ShopItemsContent} from "./shop-items.content";
 import {useRouter} from "next/router";
-import {mapList, removeFromArr} from "../../utils/utils";
+import {mapList, removeFromArr} from "../../utils/component-utils";
 import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 import {number} from "prop-types";

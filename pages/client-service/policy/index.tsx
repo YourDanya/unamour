@@ -10,8 +10,6 @@ type PolicyProps = {
 
 const Policy: NextPageWithLayout = ({children}) => {
 
-    console.log('policy page')
-
     return (
         <div className={'policy'}>
             {children}

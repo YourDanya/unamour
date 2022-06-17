@@ -43,4 +43,3 @@ let newArr = arr.map(({name}) => {
     return {name, colors: nameMap[name]}
 })
 
-console.log(newArr)

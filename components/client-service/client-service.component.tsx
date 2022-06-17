@@ -23,8 +23,6 @@ const ClientService: React.FC<clientServiceProps> = ({children}) => {
 
     const [counter, setCounter] = useState(0)
 
-    console.log('client service')
-
     return (
         <div className={'service'}>
             <div className="service__links">

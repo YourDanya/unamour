@@ -1,62 +1,36 @@
-import {NextPage} from "next";
-import {wrapper} from "../../redux/store";
-import {increment, selectCounterValue} from "../../redux/counter/counter.slice";
+import {AppDispatch, AppThunkDispatch, wrapper} from "../../redux/store";
+import {selectCounterValue} from "../../redux/counter/counter.slice";
 import {NextPageWithLayout} from "../../types/types";
 import {getShopItemsLayout} from "../../components/shop-items/shop-items.component";
 import {useDispatch, useSelector} from "react-redux";
-
-export const getServerSideProps = wrapper.getServerSideProps(store =>
-    async () => {
-        // let res
-        // store.dispatch(increment())
-        // res=store.getState().counter.value
-        // console.log(res)
-        // store.dispatch(increment())
-        // res=store.getState().counter.value
-        // console.log(res)
-        // store.dispatch(increment())
-        // res=store.getState().counter.value
-        // console.log(res)
-        return {
-            props: {
-                data: 'data'
-            }
-        }
-    }
-)
-
-// export async function getServerSideProps() {
-//     return {
-//         props: {},
-//     }
-// }
-
-// export async function getStaticPaths() {
-//     return {
-//         paths: [
-//             {
-//                 params: {
-//                     id: 'all'
-//                 }
-//             }
-//         ],
-//         fallback: true
-//     };
-// }
+import {Api} from "../../utils/api-utils";
+import {ApiCall} from "../../redux/shop-items/shop-items.slice";
+import {AnyAction} from "redux";
 
 type shopItemsProps = {
     test: string
 }
 
+export const getServerSideProps = wrapper.getServerSideProps(store =>
+    async () => {
+        const items = store.getState().shopItems.items
+        const dispatch = store.dispatch as AppThunkDispatch
+        await dispatch(ApiCall())
+        console.log('inside get server side props')
+        return {
+            props: {
+
+            }
+        }
+    }
+)
+
 const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({test}) => {
     const dispatch = useDispatch()
     const counterValue = useSelector(selectCounterValue)
-    console.log(counterValue)
     return (
         <div>
-            <button onClick={() =>dispatch(increment())}>
-                click here {counterValue}
-            </button>
+            {counterValue}
         </div>
     )
 }
