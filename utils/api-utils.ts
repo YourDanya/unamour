@@ -10,28 +10,28 @@ let instance = axios.create({
 const handleApiResponse = async (apiCall: Function) => {
     try {
         const res = await apiCall()
-        return res.data.data
+        return res
     } catch (err: any) {
-        return err.data.message
+        return err
     }
 }
 
 export const Api = {
     get:
         async (url: string) => {
-            return await handleApiResponse(() => instance.get(url))
+            return await instance.get(url)
         },
     post:
         async (url: string, options: object) => {
-            return await handleApiResponse(() => instance.post(url, options))
+            return await instance.post(url, options)
         },
     put:
         async (url: string, options: object) => {
-            return await handleApiResponse(() => instance.put(url, options))
+            return await instance.put(url, options)
         },
     patch:
         async (url: string, options: string) => {
-            return await handleApiResponse(() => instance.patch(url, options))
+            return await  instance.patch(url, options)
         },
     delete:
         async (url: string, options: string) => {
