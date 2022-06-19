@@ -7,7 +7,11 @@ const WithIntern= <P, C>  (Component : React.FC<P> | NextPageWithLayout<P>, cont
     const InternComp: React.FC<Omit<P, 'content'>> | NextPageWithLayout<Omit<P, 'content'>> = (props) => {
         const router = useRouter()
         const componentContent = content[router.locale as keyof typeof content] as typeof content.ua
-
+        // for (let prop in props) {
+        //     if (typeof prop === 'object' && 'ua' in prop) {
+        //
+        //     }
+        // }
         return <Component {...props as P} content={componentContent}/>
     }
 

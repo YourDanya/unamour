@@ -23,7 +23,7 @@ import '/components/custom-input/custom-input.styles.sass'
 import '/components/sidebar/sidebar.styles.sass'
 import '/components/nav/nav.styles.sass'
 import '/components/shop-items/shop-items.styles.sass'
-import '/components/items-collection/items-collection.styles.sass'
+import '/components/shop-items-collection/shop-items-collection.styles.sass'
 import '/components/shop-item/shop-item.styles.sass'
 import '/components/nav-search/nav-search.styles.sass'
 import '/components/nav-shopping-cart/nav-shopping-cart.styles.sass'
@@ -36,7 +36,7 @@ import '/components/sign-in-up/sign-up/sign-up.styles.sass'
 import Nav from "../components/nav/nav.component";
 import Footer from "../components/footer/footer.component";
 import {AppPropsWithLayout} from "../types/types";
-import {store, wrapper} from "../redux/store";
+import { wrapper} from "../redux/store";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)

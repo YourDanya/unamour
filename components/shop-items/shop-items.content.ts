@@ -65,7 +65,7 @@ export const ShopItemsContent = {
             },
             {
                 code: '#cfc0b6',
-                name: 'СІР'
+                name: 'СІРИЙ'
             },
             {
                 code: '#ffffff',
