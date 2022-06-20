@@ -28,7 +28,11 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
     const [colors, setColors] = useState<string[]>([])
 
     const handleSortClick = (param: string) => {
-        setSort(param)
+        if(param === sort) {
+            setSort(undefined)
+        } else {
+            setSort(param)
+        }
     }
 
     const handlePriceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,7 +73,10 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                                 content.sort,
                                 'shop-items__filter',
                                 'shop-items__sort-item',
-                                handleSortClick
+                                handleSortClick,
+                                null,
+                                sort,
+                                'shop-items__sort-item--active'
                             )
                         }
                     />

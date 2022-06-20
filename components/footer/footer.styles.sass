@@ -1,30 +1,29 @@
 .footer
   display: flex
   flex-wrap: wrap
+  font-size: 11px
   &__social
     &-section
       padding: 20px 30px
       width: 100%
       display: flex
+      justify-content: space-between
       border-bottom: 1px solid #e8e4e4
       border-top: 1px solid #e8e4e4
     &-items
-      width: 60%
       display: flex
     &-item
       display: flex
       align-items: center
-      font-size: 11px
       margin-right: 11px
       &:last-child
         margin-right: 0
     &-subscription
-      width: 40%
+      width: 420px
       display: flex
       align-items: center
       &-text
         margin-right: 20px
-        font-size: 11px
   &__copyright
     &-section
       width: 100%
@@ -40,6 +39,16 @@
     &-made-by
       margin-left: 40px
       color: #828282
-      font-size: 11px
       display: flex
       align-items: center
+
+@media(max-width: 1200px)
+  .footer
+    font-size: 10px
+
+@media(max-width: 992px)
+  .footer
+    &__social
+      &-section
+        display: flex
+      &-subscription

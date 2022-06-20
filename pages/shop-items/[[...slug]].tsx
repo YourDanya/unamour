@@ -10,8 +10,8 @@ import ShopItemsCollection from "../../components/shop-items-collection/shop-ite
 import WithIntern from "../../components/hoc/with-intern/with-intern";
 
 type shopItemsProps = {
-    items?: ShopItemObject[],
-    item?: ShopItemObject,
+    items?: ShopItemObject['ua'][],
+    item?: ShopItemObject['ua'],
     title?: string
 }
 
@@ -19,43 +19,56 @@ type localeType = 'ua' | 'eng' | 'ru'
 
 export const getServerSideProps = wrapper.getServerSideProps(store =>
     async (context) => {
-        let items = store.getState().shopItems.items
 
+        // checking if items are in redux
+        let items:ShopItemObject[] | ShopItemObject[localeType][] = store.getState().shopItems.items
         if (items.length === 0) {
             const dispatch = store.dispatch as AppThunkDispatch
             await dispatch(fetchItems())
             items = store.getState().shopItems.items
         }
 
+        //checking if categories are in redux
         let categories = store.getState().shopItems.categories
-
         if (categories.length === 0) {
             categories = ShopItemsContent.ua.list1.map(({ref}) => ref)
             store.dispatch(setCategories(categories))
         }
 
-        let query = context.query
         let locale = context.locale as localeType
+
+        //mapping items according to locale
+        items = items.map(item => item[locale])
+
+        let query = context.query
         const slug = query.slug
 
         if (!slug || slug.length > 2) {
+            //wrong path
             return {notFound: true}
         } else if (!categories.find(category => category.includes(slug[0]))) {
+            //category not found
             return {notFound: true}
         } else if (slug[1]) {
-            const item = items.find(item => item[locale].slug === slug[1])
+            //one item//
+            const item = items.find(item => item.slug === slug[1])
             if (item) {
-                return {props: {item: item[locale]}}
+                return {props: {item}}
             } else {
+                // item not found
                 return {notFound: true}
             }
         } else {
+            //item category//
+
             return {props: {items, title: slug[0]}}
         }
     }
 )
 
 const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({items, item, title}) => {
+
+    console.log(items)
 
     return (
         <div>

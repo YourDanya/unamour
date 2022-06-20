@@ -2,11 +2,9 @@ import React from 'react'
 import MapComponent from "../../components/map/map.component";
 import CustomInput from "../../components/custom-input/custom-input.component";
 import CustomTextarea from "../../components/custom-textarea/custom-textarea.component";
-import CustomSlider from "../../components/custom-slider/custom-slider.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 
 const ContactComponent: React.FC = () => {
-
 
     return (
         <div className={'contacts'}>
@@ -48,11 +46,11 @@ const ContactComponent: React.FC = () => {
                     <div className="contacts__address-elem">Режим работы: с 11:00 до 22:00</div>
                     <div className="contacts__address-elem contacts__address-elem--number">+380 (66) 384-78-22</div>
                 </div>
-                <CustomSlider/>
             </div>
             <MapComponent classes={['map--contact']}/>
         </div>
     )
+
 }
 
 export default ContactComponent

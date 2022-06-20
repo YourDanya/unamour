@@ -10,17 +10,8 @@ import SignInUp from "../sign-in-up/sign-in-up.component";
 import Modal from "../modal/modal.component";
 import NavMenu from "../nav-menu/nav-menu.component";
 import {useRouter} from "next/router";
-import {useSelector} from "react-redux";
-import {AppState} from "../../redux/store";
-import axios from "axios";
 
 const Nav: React.FC = () => {
-
-    // const [hamburgerActive, setHamburgerActive] = useState(false)
-    // const [searchActive, setSearchActive] = useState(false)
-    // const [shoppingCartActive, setShoppingCartActive] = useState(false)
-    // const [signActive, setSignActive] = useState(false)
-    // const [modalActive, setModalActive] = useState(false)
 
     const initialModalState = {hamburger: false, search: false, shopping: false, sign: false, modal: false}
 

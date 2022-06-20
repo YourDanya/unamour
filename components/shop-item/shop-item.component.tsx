@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import Link from "next/link";
-import ItemsCollection from "../shop-items-collection/shop-items-collection.component";
-import {shopItemObject} from "../../redux/shop-items/shop-items.slice";
 
-const ShopItem: React.FC<shopItemObject> = ({name}) => {
+import {ShopItemObject} from "../../redux/shop-items/shop-items.slice";
+
+const ShopItem: React.FC<ShopItemObject['ua']> = ({name}) => {
 
     // const [images, setImages] = useState(['link1', 'link2', 'link3', 'link4'])
     // const [currentImage, setCurrentImage] = useState('link1')
