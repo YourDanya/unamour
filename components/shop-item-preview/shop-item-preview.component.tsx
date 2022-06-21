@@ -2,19 +2,41 @@ import React, {useState} from 'react'
 import Link from "next/link";
 import {ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 
-const ShopItemPreview: React.FC<ShopItemObject['ua']> = ({images, name, price, ...otherProps}) => {
-    const [img, setImg] = useState<0 | 1>(0)
+const ShopItemPreview: React.FC<ShopItemObject['ua']> = (
+    {images, name, price,slug, slugCategory, ...otherProps}) => {
+
+    const [hovered, setHovered] = useState(false)
+
+    console.log('first image',images[0])
+    console.log('second image',images[1])
+
+    const handleMouse = () => {
+        setHovered(!hovered)
+    }
+
     return (
-        <div className={'shop-item-preview'}>
-            {/*<Link href={'/'}>*/}
-            {/*    <img className={'shop-item-preview__img'} src={images[0]} alt="preview item image"/>*/}
-            {/*</Link>*/}
-            {/*<div className="shop-item-preview__name">*/}
-            {/*    {name}*/}
-            {/*</div>*/}
-            {/*<div className="shop-item-preview__price">*/}
-            {/*    {price}*/}
-            {/*</div>*/}
+        <div className='shop-item-preview'>
+            <div className={`shop-item-preview__img-wrapper`}
+                 onMouseEnter={handleMouse}
+                 onMouseLeave={handleMouse}>
+                <Link href={`shop-items/${slugCategory}/${slug}`}>
+                    <img className={`shop-item-preview__img ${hovered? 'shop-item-preview__img--hidden' : ''}`}
+                         src={images[0]} alt="preview item image"/>
+                </Link>
+                <Link href={`shop-items/${slugCategory}/${slug}`}>
+                    <img className={`shop-item-preview__img ${hovered? '' : 'shop-item-preview__img--hidden'} `}
+                         src={images[1]} alt="preview item image"/>
+                </Link>
+            </div>
+
+            <div className={'shop-item-preview__bottom'}>
+                <div className="shop-item-preview__name">
+                    {name}
+                </div>
+                <div className="shop-item-preview__price">
+                    {price} ₴
+                </div>
+            </div>
         </div>
     )
 }

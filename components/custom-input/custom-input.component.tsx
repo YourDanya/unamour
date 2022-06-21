@@ -5,19 +5,21 @@ type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
 
 type customInputProps = {
     placeholder: string
-    name: string
+    name: string,
+    value?: string,
     classes?: string[]
     onTopChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string,
     grey?: boolean,
     src?: string
-    onSubmit?: (param: string) => void
+    onSubmit?: (param: string) => void,
 }
 
 const CustomInput: React.FC<customInputProps> = (
-    {src, onSubmit, onTopChange, placeholder, classes, ...otherProps}) => {
+    {src, value, onSubmit,
+        onTopChange, placeholder, classes, ...otherProps}) => {
 
-    const [input, setInput] = useState('')
+    const [input, setInput] = useState(value)
 
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
         setInput(event.target.value)

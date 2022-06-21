@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
                     © 2020-2022
                     <span className={'footer__copyright-name'}>UNAMOUR</span>
                 </div>
-                <div className="footer__copyright-made-by">Сделано на React</div>
+                <div className="footer__copyright-made-by">Сделано на Next.js</div>
             </div>
         </footer>
     )

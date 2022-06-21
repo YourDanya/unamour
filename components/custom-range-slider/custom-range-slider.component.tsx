@@ -80,7 +80,6 @@ const CustomRangeSlider: React.FC<customRangeSliderProps> = ({setState}) => {
     }
 
 
-
     return (
         <div className='range-slider'>
             <div className="range-slider__track"/>

@@ -4,10 +4,8 @@ import {getShopItemsLayout} from "../../components/shop-items/shop-items.compone
 import {setCategories, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 
 import {fetchItems} from "../../redux/shop-items/shop-items.thunk";
-import {ShopItemsContent} from "../../components/shop-items/shop-items.content";
 import ShopItem from "../../components/shop-item/shop-item.component";
 import ShopItemsCollection from "../../components/shop-items-collection/shop-items-collection.component";
-import WithIntern from "../../components/hoc/with-intern/with-intern";
 
 type shopItemsProps = {
     items?: ShopItemObject['ua'][],
@@ -31,7 +29,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         //checking if categories are in redux
         let categories = store.getState().shopItems.categories
         if (categories.length === 0) {
-            categories = ShopItemsContent.ua.list1.map(({ref}) => ref)
             store.dispatch(setCategories(categories))
         }
 
@@ -50,7 +47,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
             //category not found
             return {notFound: true}
         } else if (slug[1]) {
-            //one item//
+            //one item
             const item = items.find(item => item.slug === slug[1])
             if (item) {
                 return {props: {item}}
@@ -59,7 +56,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
                 return {notFound: true}
             }
         } else {
-            //item category//
+            //item category
 
             return {props: {items, title: slug[0]}}
         }
@@ -67,8 +64,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 )
 
 const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({items, item, title}) => {
-
-    console.log(items)
 
     return (
         <div>

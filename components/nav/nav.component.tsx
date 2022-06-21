@@ -69,12 +69,14 @@ const Nav: React.FC = () => {
                             <span className="hamburger__line"/>
                         </div>
                     </div>
-                    <div className="nav__title">UNAMOUR</div>
+                    <Link href={'/'}>
+                        <a className="nav__title">UNAMOUR</a>
+                    </Link>
                     <div className="nav__shop-items">
                         <a id='search' onClick={toggleModal}>
                             <img src={search.src} className={'nav__shop-item'} alt={'shop-item'}/>
                         </a>
-                        <Link href={'/'}>
+                        <Link href={'/favorites'}>
                             <a>
                                 <img src={bookmark.src} className={'nav__shop-item'} alt={'shop-item'}/>
                             </a>

@@ -1,3 +1,5 @@
+import '/pages/cart/cart.styles.sass'
+import '/pages/admin/admin.styles.sass'
 import '/components/custom-range-slider/custom-range-slider.styles.sass'
 import '/components/custom-checkbox/custom-checkbox.styles.sass'
 import '/components/custom-dropdown/custom-dropdown.styles.sass'
@@ -11,6 +13,7 @@ import '/pages/client-service/return/return.styles.sass'
 import '/pages/client-service/delivery/delivery.styles.sass'
 import '/pages/contacts/contact.styles.sass'
 import '/pages/vacancies/vacancies.styles.sass'
+import '/pages/favorites/favorites.styles.sass'
 import '../styles/home.sass'
 import '../styles/global.sass'
 import '/components/back/back.styles.sass'
@@ -43,9 +46,11 @@ function MyApp({Component, pageProps}: AppPropsWithLayout) {
     return (
         <>
             <Nav/>
-            {
-                getLayout(<Component {...pageProps}/>)
-            }
+            <div className={'page'}>
+                {
+                    getLayout(<Component {...pageProps}/>)
+                }
+            </div>
             <Footer/>
         </>
     )

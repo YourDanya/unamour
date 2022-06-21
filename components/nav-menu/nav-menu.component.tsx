@@ -21,33 +21,39 @@ const NavMenu: React.FC<navMenuProps> = ({active, hideModal, showTopNav}) => {
         <>
             <div className="menu">
                 <div className="menu__links menu__links--first">
-                    <Link href={'/'}>
-                        <a className={'menu__link'}>НОВЫЕ ПОСТУПЛЕНИЯ</a>
+                    <Link href={'/shop-items/all'}>
+                        <a className={'menu__link'}>ОДЯГ ТА АКСЕСУАРИ</a>
                     </Link>
-                    <Link href={'/'}>
-                        <a className={'menu__link'}>ОДЕЖДА И АКСЕСУАРЫ</a>
+                    <Link href={'/shop-items/new'}>
+                        <a className={'menu__link'}>НОВІ НАДХОДЖЕННЯ</a>
                     </Link>
-                    <Link href={'/'}>
-                        <a className={'menu__link'}>БЕСТСЕЛЛЕРЫ</a>
+                    <Link href={'/shop-items/best'}>
+                        <a className={'menu__link'}>БЕСТСЕЛЕРИ</a>
                     </Link>
-                    <Link href={'/'}>
-                        <a className={'menu__link'}>СПЕЦИАЛЬНАЯ ЦЕНА</a>
+                    <Link href={'/shop-items/coming'}>
+                        <a className={'menu__link'}>СКОРО У ПРОДАЖІ</a>
+                    </Link>
+                    <Link href={'/shop-items/special-price'}>
+                        <a className={'menu__link'}>СПЕЦІАЛЬНА ЦІНА</a>
                     </Link>
                 </div>
                 <div className={`menu__links menu__links--second`}>
                     <Link href={'/'}>
-                        <a className={'menu__link'}>ИЗБРАННОЕ</a>
+                        <a className={'menu__link'}>ОБРАНЕ</a>
                     </Link>
-                    <a className={'menu__link'} onClick={handleClientClick}>КЛИЕНТСКИЙ СЕРВИС</a>
+                    <a className={'menu__link'}
+                       onClick={handleClientClick}>
+                        КЛІЄНТСЬКИЙ СЕРВІС
+                    </a>
                     <Link href={'/vacancies'}>
-                        <a className={'menu__link'}>ВАКАНСИИ</a>
+                        <a className={'menu__link'}>ВАКАНСІЇ</a>
                     </Link>
                     <Link href={'/contacts'}>
-                        <a className={'menu__link'}>КОНТАКТЫ</a>
+                        <a className={'menu__link'}>КОНТАКТИ</a>
                     </Link>
                     <a id='sign' className={'menu__link'} onClick={
                         showTopNav}>
-                        ВОЙТИ
+                        УВІЙТИ
                     </a>
                 </div>
             </div>
@@ -66,31 +72,31 @@ const NavMenu: React.FC<navMenuProps> = ({active, hideModal, showTopNav}) => {
                 </div>
                 <div className="menu__links">
                     <a className="menu__link menu__link--bold">
-                        КЛИЕНТСКИЙ СЕРВИС
+                        КЛІЄНТСЬКИЙ СЕРВІС
                     </a>
                     <Link href={'/client-service/delivery'}>
                         <a className="menu__link">
-                            ОПЛАТА И ДОСТАВКА
+                            ОПЛАТА І ДОСТАВКА
                         </a>
                     </Link>
                     <Link href={'/client-service/return'}>
                         <a className="menu__link">
-                            ВОЗВРАТ
+                            ПОВЕРНЕННЯ
                         </a>
                     </Link>
                     <Link href={'/client-service/clothing-care'}>
                         <a className="menu__link">
-                            СОТСАВ И УХОД
+                            СКЛАД І ДОГЛЯД
                         </a>
                     </Link>
                     <Link href={'/client-service/policy'}>
                         <a className="menu__link">
-                            ПОЛИТИКА И КОНФИДЕЦИАЛЬНОСТЬ
+                            ПОЛІТИКА І КОНФІДЕЦІЙНІСТЬ
                         </a>
                     </Link>
                     <Link href={'/client-service/warranty-period'}>
                         <a className="menu__link">
-                            ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ
+                             УГОДА КОРИСТУВАЧА
                         </a>
                     </Link>
                 </div>

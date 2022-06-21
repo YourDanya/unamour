@@ -8,15 +8,16 @@ interface itemsCollectionProps {
 }
 
 const ShopItemsCollection: React.FC<itemsCollectionProps> = ({items, title}) => {
-
     return (
         <div className={'shop-items-collection'}>
             <div className="shop-items-collection__title">
                 {title}
             </div>
-            {
-                items && items.map((props) =>  <ShopItemPreview {...props}/>)
-            }
+            <div className={'shop-items-collection__items'}>
+                {
+                    items && items.map((props) =>  <ShopItemPreview {...props}/>)
+                }
+            </div>
         </div>
     )
 }
