@@ -1,1 +1,84 @@
-
+.shop-item
+  color: #4f4f4f
+  &__content
+    display: flex
+  &__slider
+    width: 50%
+  &__about
+    width: 50%
+  &__links
+    color: #a1a1a1
+    font-size: 11px
+    margin-bottom: 25px
+    &-slash
+      color: #a1a1a1
+      padding: 0 4px
+  &__link
+    text-transform: capitalize
+  &__name
+    font-size: 13px
+    text-transform: uppercase
+    margin-bottom: 25px
+  &__prices
+    display: flex
+    margin-bottom: 30px
+  &__price
+    font-weight: 300
+    font-size: 14px
+    &--old
+      position: relative
+      color: #828282
+      margin-right: 12px
+    &-crossed
+      position: absolute
+      top: 40%
+      left: 0
+      width: 100%
+      height: 0.5px
+      background-color: #828282
+  &__sizes
+    margin-bottom: 48px
+    &-top
+      width: 100%
+      justify-content: space-between
+      display: flex
+      margin-bottom: 10px
+    &-choose
+      cursor: pointer
+      line-height: 14px
+      border-bottom: 1px solid #e0e0e0
+    &-list
+      display: flex
+    &-square
+      cursor: pointer
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 65px
+      height: 31px
+      border: 1px solid #828282
+      margin-right: 10px
+      &--active
+        border-color: #bd944d
+        color: #bd944d
+  &__buttons
+    margin-bottom: 40px
+    display: flex
+    justify-content: space-between
+  &__checkout-button
+    width: 85%
+    height: 45px
+    border-radius: 2px
+    background-color: black
+    color: white
+    cursor: pointer
+  &__favorite
+    &-button
+      height: 45px
+      width: 45px
+      border-radius: 2px
+      border: 1px solid black
+      cursor: pointer
+      background-color: white
+    &-img
+      height: 26px

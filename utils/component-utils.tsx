@@ -20,8 +20,9 @@ export const mapList = (
     elemClass: string,
     handleClick?: (param: any) => void,
     Component?: React.FC<any> | null,
-    active?: string,
-    activeClass?: string
+    active?: string | null,
+    activeClass?: string | null,
+    style?: object
 ) => {
 
     const isLinkList = (list: Array<LinkList> | Array<any>): list is Array<LinkList> => {
@@ -81,3 +82,4 @@ export const mapList = (
 
     return render()
 }
+
