@@ -7,9 +7,6 @@ const ShopItemPreview: React.FC<ShopItemObject['ua']> = (
 
     const [hovered, setHovered] = useState(false)
 
-    console.log('first image',images[0])
-    console.log('second image',images[1])
-
     const handleMouse = () => {
         setHovered(!hovered)
     }

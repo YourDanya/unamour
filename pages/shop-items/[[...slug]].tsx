@@ -65,16 +65,10 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 
 const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({items, item, title}) => {
 
-    console.log(item)
-
     return (
         <div>
-            {
-                items && <ShopItemsCollection items={items} title={title as string}/>
-            }
-            {
-                item && <ShopItem {...item}/>
-            }
+            {items && <ShopItemsCollection items={items} title={title as string}/>}
+            {item && <ShopItem {...item}/>}
         </div>
     )
 }

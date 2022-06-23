@@ -18,6 +18,7 @@ type ShopItemsPropsWithIntern = {
 const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, content}) => {
 
     const router = useRouter()
+    console.log(router.query)
 
     const [sort, setSort] = useState<string | undefined>()
     const [price, setPrice] = useState<{ num1: string, num2: string }>({

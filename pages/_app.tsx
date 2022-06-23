@@ -1,3 +1,4 @@
+import '/components/custom-slider/custom-slider.styles.sass'
 import '/pages/cart/cart.styles.sass'
 import '/pages/admin/admin.styles.sass'
 import '/components/custom-range-slider/custom-range-slider.styles.sass'
@@ -41,16 +42,17 @@ import Nav from "../components/nav/nav.component";
 import Footer from "../components/footer/footer.component";
 import {AppPropsWithLayout} from "../types/types";
 import { wrapper} from "../redux/store";
+import {useRouter} from "next/router";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
-    const getLayout = Component.getLayout ?? ((page) => page)
+    let getLayout = Component.getLayout ?? ((page) => page)
+    const slug = useRouter().query.slug
+    if (slug && slug.length!==1) getLayout = ((page) => page)
     return (
         <>
             <Nav/>
             <div className={'page'}>
-                {
-                    getLayout(<Component {...pageProps}/>)
-                }
+                {getLayout(<Component {...pageProps}/>)}
             </div>
             <Footer/>
         </>

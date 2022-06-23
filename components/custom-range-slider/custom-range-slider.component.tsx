@@ -1,10 +1,10 @@
-import React, {useRef, useState} from "react";
+import React, {RefObject, useRef, useState} from "react";
 
 interface customRangeSliderProps {
     setState?: () => {}
 }
 
-const CustomRangeSlider: React.FC<customRangeSliderProps> = ({setState}) => {
+const CustomRangeSlider: React.FC<customRangeSliderProps> = ({}) => {
 
     // const [sliderValue, setSliderValue] = useState(
     //     {
@@ -57,33 +57,89 @@ const CustomRangeSlider: React.FC<customRangeSliderProps> = ({setState}) => {
     //
     // }
 
-    let x = 0
-    let y = 0
 
-    function handleMouseUp ()  {
-        console.log('mouse up')
+    const [state, setState] = useState({x: 0, left: 0, percent: 0})
+    const stateRef = useRef(state)
+
+    const handleMouseUp = () => {
+        // console.log('mouse up')
         document.removeEventListener('mousemove', handleMouseMove)
         document.removeEventListener('mouseup', handleMouseUp)
     }
 
-    function handleMouseMove (event: any)  {
-        console.log('mouse move')
-        const dx = event.clientX - x
-        const dy = event.clientY - y
+    function handleMouseMove(event: any) {
+        // console.log('mouse move')
+        console.log('\n')
+        const getRect = (ref.current?.parentNode as Element).getBoundingClientRect()
+        // start coordinate
+        const start = getRect.x
+        //width of track
+        const trackWidth = getRect.width
+        //current mouse x coordinate
+        let x = event.clientX
+        //width from start to current
+        let left = (stateRef.current.left + (x - stateRef.current.x))
+
+        console.log('left', stateRef.current.left)
+        console.log('x prev', stateRef.current.x)
+        console.log('x coming', event.clientX)
+
+        // if mouse position less than 0
+        if (left < 0) {
+            if (x<start) x=start
+            const stateObj = {x, left: 0, percent: 0}
+            stateRef.current = stateObj
+            setState(stateObj)
+            return
+        }
+        // if mouse position more than trackWidth
+        if (left > trackWidth - 16) {
+            if (x> start + trackWidth) x = start + trackWidth
+            const stateObj = {x, left: trackWidth - 16, percent: 100}
+            stateRef.current = stateObj
+            setState(stateObj)
+            return
+        }
+
+        const percent = left / trackWidth * 100
+        stateRef.current = {x, left, percent}
+        setState({x, left, percent})
     }
 
-    function handleMouseDown (event: any) {
-        console.log('mouse down')
+    function handleMouseDown(event: any) {
+        // console.log('mouse down')
         event.preventDefault()
+
+        setState({...state, x: event.clientX})
+        stateRef.current = {...stateRef.current, x: event.clientX}
+
         document.addEventListener('mousemove', handleMouseMove)
         document.addEventListener('mouseup', handleMouseUp)
     }
 
+    const ref = useRef<HTMLDivElement>(null)
 
     return (
         <div className='range-slider'>
             <div className="range-slider__track"/>
-            <div className="range-slider__thumb" onMouseDown={handleMouseDown}/>
+            <div className="range-slider__thumb"
+                 onMouseDown={handleMouseDown}
+                 ref={ref}
+                 style={{
+                     // left: `calc(${state.percent}% -
+                     // ${16*state.percent/100}px
+                     // `,
+                     transform: `translateY(-50%) translateX(${state.left}px)`
+                 }}/>
+            <div className="range-slider__thumb"
+                 onMouseDown={handleMouseDown}
+                 ref={ref}
+                 style={{
+                     // left: `calc(${state.percent}% -
+                     // ${16*state.percent/100}px
+                     // `,
+                     transform: `translateY(-50%) translateX(${184}px)`
+                 }}/>
 
             {/*<input type="range"*/}
             {/*       min="0"*/}
