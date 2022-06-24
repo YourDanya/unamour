@@ -2,10 +2,11 @@ import React, {useState} from "react";
 
 type customDropdownProps = {
     name: string,
-    content: React.ReactNode
+    content: React.ReactNode,
+    sign?: string
 }
 
-const CustomDropdown: React.FC<customDropdownProps> = ({name, content }) => {
+const CustomDropdown: React.FC<customDropdownProps> = ({name, content, sign }) => {
     const [show, setShow] = useState(false)
 
     return (

@@ -16,7 +16,7 @@ export type ShopItemObject = {
         oldPrice: number,
         images: string[],
         sizes: string[],
-        color: string,
+        color: {code: string, name: string},
         otherColors: {code: string, ref: string, name: string}[],
         isAvailable: boolean,
         description: string,

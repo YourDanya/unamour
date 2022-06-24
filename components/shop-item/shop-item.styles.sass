@@ -1,5 +1,6 @@
 .shop-item
   color: #4f4f4f
+  padding: 0 40px
   &__content
     display: flex
   &__slider
@@ -61,6 +62,31 @@
       &--active
         border-color: #bd944d
         color: #bd944d
+  &__colors
+    margin-bottom: 27px
+    &-label
+      font-size: 10px
+      margin-bottom: 10px
+    &-list
+      display: flex
+  &__color
+    border: 0.1px solid #e8e4e4
+    cursor: pointer
+    width: 28px
+    height: 28px
+    margin-right: 5px
+    &--current
+      position: relative
+      &:before
+        content: ''
+        position: absolute
+        bottom: -4px
+        left: 50%
+        transform: translateX(-50%)
+        width: 32px
+        z-index: 10
+        height: 0.5px
+        background-color: black
   &__buttons
     margin-bottom: 40px
     display: flex
@@ -82,3 +108,27 @@
       background-color: white
     &-img
       height: 26px
+  &__present
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    position: relative
+    cursor: pointer
+    &:hover
+      .shop-item__present-img
+        animation: shake 0.5s
+    &-label
+      font-size: 10px
+      margin-right: 25px
+    &-img
+      bottom: -1px
+      position: absolute
+      cursor: pointer
+
+@keyframes shake
+  60%
+    transform: rotate(-15deg)
+  80%
+    transform: rotate(15deg)
+  100%
+    transform: rotate(0deg)

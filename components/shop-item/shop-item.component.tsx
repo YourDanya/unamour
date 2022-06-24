@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react"
 
-import {ShopItemObject} from "../../redux/shop-items/shop-items.slice"
 import Link from "next/link"
-import {mapList} from "../../utils/component-utils"
-import {element} from "prop-types"
 import bookmark from '/public/icons/bookmark.svg'
+import {ShopItemObject} from "../../redux/shop-items/shop-items.slice"
+import present from '/public/icons/present.svg'
+import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
 
 const ShopItem: React.FC<ShopItemObject['ua']> = (
     {
@@ -14,9 +14,13 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (
 
     const [size, setSize] = useState<string | null>(null)
 
+    const [animate, setAnimate] = useState(false)
+
     const handleSizeClick = (size: string) => {
         setSize(size)
     }
+
+    console.log(color)
 
     return (
         <div className={'shop-item'}>
@@ -55,7 +59,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (
                         <div className={'shop-item__sizes-list'}>
                             {sizes.map(size =>
                                 <div className={`shop-item__sizes-square`}
-                                     id={color}
+                                     id={color.code + new Date()}
                                      onClick={() => handleSizeClick(size)}
                                 >
                                     {size}
@@ -63,31 +67,49 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (
                             )}
                         </div>
                     </div>
-                    {/*<div className="shop-item__colors">*/}
-                    {/*    {<div className='shop-item__color shop-items__color--current'>{color}</div>}*/}
-                    {/*    {otherColors.map(({name, code}) =>*/}
-                    {/*            <div className={`shop-items__color`}*/}
-                    {/*                 style={{backgroundColor: code}}*/}
-                    {/*                 id={color}*/}
-                    {/*                 onClick={(event) => console.log(event.target)}*/}
-                    {/*            />*/}
-                    {/*    )}*/}
-                    {/*</div>*/}
+                    <div className="shop-item__colors">
+                        <div className={'shop-item__colors-label'}>Колір: {color.name}</div>
+                        <div className="shop-item__colors-list">
+                            {<div className='shop-item__color shop-item__color--current'
+                                  style={{backgroundColor: color.code}}/>
+                            }
+                            {otherColors.map(({name, code, ref}) =>
+                                <Link href={`/shop-item/${slugCategory}/${ref}`}>
+                                    <div className={`shop-item__color`}
+                                         style={{backgroundColor: code}}
+                                         id={color.code + new Date()}
+                                         onClick={(event) => console.log(event.target)}
+                                    />
+                                </Link>
+                            )}
+                        </div>
+                    </div>
                     <div className={'shop-item__buttons'}>
                         <button className="shop-item__checkout-button">ДОДАТИ ДО КОРЗИНИ</button>
                         <button className="shop-item__favorite-button">
                             <img src={bookmark.src} className={'shop-item__favorite-img'} alt={'shop-item'}/>
                         </button>
                     </div>
-                    <div className="shop-items__present"></div>
+                    <div className="shop-item__present">
+                        <div className='shop-item__present-label'>ПОДАРУВАТИ</div>
+                        <img className='shop-item__present-img' src={present.src}/>
+                    </div>
+                    <div className='shop-item__dropdown'>
+                        <CustomDropdown content={<div>{description}</div>} name={'ОПИС'}/>
+                        <CustomDropdown content={<div>{}</div>} name={'СКЛАД І ДОГЛЯД'}/>
+                        <CustomDropdown content={<div>{}</div>} name={'ПАРАМЕТРИ ВИРОБУ'}/>
+                        <CustomDropdown content={<div>{}</div>} name={'ДОСТАВКА І ОПЛАТА'}/>
+                    </div>
                 </div>
+
             </div>
-            {/*<div className="shop-item__similar">*/}
-            {/*    <div className="shop-item__similar">СХОЖІ ТОВАРИ</div>*/}
-            {/*    <div className="shop-item__slider">*/}
-            {/*        /!*<ItemsCollection title={''} shopItems={shopItems as shopItemProps[]}/>*!/*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className="shop-item__similar">
+                <div className="shop-item__similar">СХОЖІ ТОВАРИ</div>
+            </div>
+            <div className="shop-item__viewed">
+                <div className="shop-item__similar">ПЕРЕГЛЯНУТІ ТОВАРИ</div>
+                {/*<ShopitemCollection item={} title={}/>*/}
+            </div>
         </div>
     )
 }
