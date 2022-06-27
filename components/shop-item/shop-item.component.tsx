@@ -3,24 +3,59 @@ import React, {useEffect, useState} from "react"
 import Link from "next/link"
 import bookmark from '/public/icons/bookmark.svg'
 import {ShopItemObject} from "../../redux/shop-items/shop-items.slice"
-import present from '/public/icons/present.svg'
+import presentImg from '/public/icons/present.svg'
 import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
+import Modal from "../modal/modal.component";
 
-const ShopItem: React.FC<ShopItemObject['ua']> = (
-    {
-        name, color, otherColors, sizes, images, price, delivery, description
-        , composition, parameters, isAvailable, category, slugCategory, oldPrice
-    }) => {
+const ShopItem: React.FC<ShopItemObject['ua']> = ({
+                                                      name, color, otherColors, sizes, images,
+                                                      price, delivery, description, composition, parameters,
+                                                      isAvailable, category, slugCategory, oldPrice
+                                                  }) => {
 
-    const [size, setSize] = useState<string | null>(null)
-
-    const [animate, setAnimate] = useState(false)
+    const [activeSize, setSize] = useState<string | null>(null)
 
     const handleSizeClick = (size: string) => {
-        setSize(size)
+        if (size === activeSize) {
+            setSize(null)
+        } else {
+            setSize(size)
+        }
     }
 
-    console.log(color)
+    const [checkout, setCheckout] = useState(true)
+
+    const handleCheckoutButtonMouseEnter = () => {
+        if (!activeSize) {
+            setCheckout(false)
+        }
+    }
+
+    const handleCheckoutButtonMouseLeave = () => {
+        if (!checkout) {
+            setCheckout(true)
+        }
+    }
+
+    const [present, setPresent] = useState(true)
+
+    const handlePresentClick = () => {
+        if(!activeSize) {
+            setPresent(false)
+        }
+    }
+
+    const handlePresentMouseLeave = () => {
+        if(!present) {
+            setPresent(true)
+        }
+    }
+
+    const [modalActive, setModalActive] = useState(false)
+
+    const handleModalSize = () => {
+        // setModalActive()
+    }
 
     return (
         <div className={'shop-item'}>
@@ -54,17 +89,43 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (
                     <div className="shop-item__sizes">
                         <div className="shop-item__sizes-top">
                             <div className="shop-item__sizes-label">Розміри</div>
-                            <div className="shop-item__sizes-choose">Підібрати розмір</div>
+                            <div className="shop-item__sizes-choose" onClick={handleModalSize}>Підібрати розмір</div>
                         </div>
                         <div className={'shop-item__sizes-list'}>
                             {sizes.map(size =>
-                                <div className={`shop-item__sizes-square`}
-                                     id={color.code + new Date()}
-                                     onClick={() => handleSizeClick(size)}
+                                <div
+                                    className={`shop-item__size ${activeSize === size ? 'shop-item__size--active' : ''}`}
+                                    key={color.code}
+                                    onClick={() => handleSizeClick(size)}
                                 >
                                     {size}
                                 </div>
                             )}
+                        </div>
+                        <div className={'shop-item__sizes-modal'}>
+                            <div className={'text'}>
+                                НЕОБХІДНИЙ ВАМ РОЗМІР ВИ МОЖЕТЕ ПІДІБРАТИ ВИХОДЯЧИ З ІНФОРМАЦІЇ У ВКЛАДЦІ ОБМІРИ НА СТОРІНЦІ ТОВАРУ
+                            </div>
+                            <div className={'text'}>
+                                Як визначити відповідний розмір
+                            </div>
+                            <div className={'list'}>
+                                <div className={'list__item'}>
+                                    Виміряйте обхват грудей по самій опуклій точці бюста.
+                                </div>
+                                <div className={'list__item'}>
+                                    Виміряйте обхват талії по найвужчій частині талії.
+                                </div>
+                                <div className={'list__item'}>
+                                    Виміряйте обхват стегон по лінії максимальної ширини стегон.
+                                </div>
+                            </div>
+                            <div className={'text'}>
+                                Розмір Onesize передбачає універсальну посадку, розраховану параметри розмірів XS, S, M.
+                            </div>
+                            <div className={'text'}>
+                                Якщо виникнуть труднощі, ми з радістю допоможемо Вам із вибором розміру. Зв`яжіться з нами в онлайн-чаті, Instagram або зателефонуйте за безкоштовним номером 8 (800) 707-71-04
+                            </div>
                         </div>
                     </div>
                     <div className="shop-item__colors">
@@ -74,10 +135,9 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (
                                   style={{backgroundColor: color.code}}/>
                             }
                             {otherColors.map(({name, code, ref}) =>
-                                <Link href={`/shop-item/${slugCategory}/${ref}`}>
+                                <Link href={`/shop-item/${slugCategory}/${ref}`} key={color.code}>
                                     <div className={`shop-item__color`}
                                          style={{backgroundColor: code}}
-                                         id={color.code + new Date()}
                                          onClick={(event) => console.log(event.target)}
                                     />
                                 </Link>
@@ -85,31 +145,81 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (
                         </div>
                     </div>
                     <div className={'shop-item__buttons'}>
-                        <button className="shop-item__checkout-button">ДОДАТИ ДО КОРЗИНИ</button>
+                        <button className="shop-item__checkout-button"
+                                onMouseEnter={handleCheckoutButtonMouseEnter}
+                                onMouseLeave={handleCheckoutButtonMouseLeave}
+                        >
+                            <div className={`shop-item__checkout-button-text fade
+                                ${checkout ? 'fade--show' : ''}`}>
+                                ДОДАТИ ДО КОРЗИНИ
+                            </div>
+                            <div className={`shop-item__checkout-button-text fade
+                                ${checkout? '' : 'fade--show'}`}>
+                                ОБЕРІТЬ РОЗМІР
+                            </div>
+                        </button>
                         <button className="shop-item__favorite-button">
                             <img src={bookmark.src} className={'shop-item__favorite-img'} alt={'shop-item'}/>
                         </button>
                     </div>
-                    <div className="shop-item__present">
-                        <div className='shop-item__present-label'>ПОДАРУВАТИ</div>
-                        <img className='shop-item__present-img' src={present.src}/>
+                    <div className="shop-item__present"
+                         onClick={handlePresentClick}
+                         onMouseLeave={handlePresentMouseLeave}
+                    >
+                        <div className={`shop-item__present-label 
+                            fade ${present? 'fade--show' : ''}`}>
+                            ПОДАРУВАТИ
+                        </div>
+                        <div className={`shop-item__present-label
+                            fade ${present? '' : 'fade--show'}`}>
+                            ОБЕРІТЬ РОЗМІР
+                        </div>
+                        <img className='shop-item__present-img' src={presentImg.src}/>
                     </div>
                     <div className='shop-item__dropdown'>
-                        <CustomDropdown content={<div>{description}</div>} name={'ОПИС'}/>
-                        <CustomDropdown content={<div>{}</div>} name={'СКЛАД І ДОГЛЯД'}/>
-                        <CustomDropdown content={<div>{}</div>} name={'ПАРАМЕТРИ ВИРОБУ'}/>
-                        <CustomDropdown content={<div>{}</div>} name={'ДОСТАВКА І ОПЛАТА'}/>
+                        <CustomDropdown
+                            content={
+                                <div className={'shop-item__dropdown-element'}>
+                                    {description}
+                                </div>
+                            }
+                            name={'ОПИС'}
+                            plus
+                        />
+                        <CustomDropdown
+                            content={
+                                <div className={'shop-item__dropdown-element'}>
+                                    {composition}
+                                </div>}
+                            name={'СКЛАД І ДОГЛЯД'}
+                            plus
+                        />
+                        <CustomDropdown
+                            content={
+                                <div className={'shop-item__dropdown-element'}>
+                                    {parameters}
+                                </div>}
+                            name={'ПАРАМЕТРИ ВИРОБУ'}
+                            plus
+                        />
+                        <CustomDropdown
+                            content={
+                                <div className={'shop-item__dropdown-element'}>
+                                    {delivery}
+                                </div>}
+                            name={'ДОСТАВКА І ОПЛАТА'}
+                            plus
+                        />
                     </div>
                 </div>
-
             </div>
             <div className="shop-item__similar">
-                <div className="shop-item__similar">СХОЖІ ТОВАРИ</div>
+                <div className="shop-item__similar-title">СХОЖІ ТОВАРИ</div>
             </div>
             <div className="shop-item__viewed">
-                <div className="shop-item__similar">ПЕРЕГЛЯНУТІ ТОВАРИ</div>
-                {/*<ShopitemCollection item={} title={}/>*/}
+                <div className="shop-item__similar-title">ПЕРЕГЛЯНУТІ ТОВАРИ</div>
             </div>
+            <Modal active={modalActive} hideModal={() => setModalActive(false)}/>
         </div>
     )
 }

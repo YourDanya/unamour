@@ -59,16 +59,17 @@ const Nav: React.FC = () => {
     return (
         <>
             <nav className={'nav'}>
-                <div className="nav__header">
-                    <div className="hamburger-wrapper">
-                        <div id={'hamburger'}
-                             className={`hamburger ${active.hamburger ? 'hamburger--active' : ''}`}
-                             onClick={toggleModal}>
-                            <span className="hamburger__line"/>
-                            <span className="hamburger__line"/>
-                            <span className="hamburger__line"/>
-                        </div>
+                <div className="hamburger-wrapper">
+                    <div id={'hamburger'}
+                         className={`hamburger ${active.hamburger ? 'hamburger--active' : ''}`}
+                         onClick={toggleModal}>
+                        <span className="hamburger__line"/>
+                        <span className="hamburger__line"/>
+                        <span className="hamburger__line"/>
                     </div>
+                </div>
+                <div className="nav__header">
+                    <div style={{width: '45%'}}/>
                     <Link href={'/'}>
                         <a className="nav__title">UNAMOUR</a>
                     </Link>

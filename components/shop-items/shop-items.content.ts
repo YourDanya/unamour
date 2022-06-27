@@ -120,7 +120,7 @@ export const ShopItemsContent = {
                 name: 'БЛАКИТИЙ'
             },
             {
-                code: '#ffffff',
+                code: '#fffff2',
                 name: 'ЛЕОПАРД'
             },
             {
@@ -136,7 +136,7 @@ export const ShopItemsContent = {
                 name: 'СВІТЛО-СІР'
             },
             {
-                code: '#ffffff',
+                code: '#fffff1',
                 name: 'ФУКСІЯ'
             },
             {

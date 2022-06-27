@@ -67,7 +67,7 @@ const CustomRangeSlider: React.FC<customRangeSliderProps> = ({}) => {
         document.removeEventListener('mouseup', handleMouseUp)
     }
 
-    function handleMouseMove(event: any) {
+    const handleMouseMove= (event: any) => {
         // console.log('mouse move')
         console.log('\n')
         const getRect = (ref.current?.parentNode as Element).getBoundingClientRect()
@@ -106,7 +106,7 @@ const CustomRangeSlider: React.FC<customRangeSliderProps> = ({}) => {
         setState({x, left, percent})
     }
 
-    function handleMouseDown(event: any) {
+    const handleMouseDown= (event: any) =>  {
         // console.log('mouse down')
         event.preventDefault()
 

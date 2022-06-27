@@ -8,6 +8,8 @@ import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 import {number} from "prop-types";
 import CustomRangeSlider from "../custom-range-slider/custom-range-slider.component";
+import {Property} from "csstype";
+import Position = Property.Position;
 
 type shopItemsProps = {}
 
@@ -18,7 +20,6 @@ type ShopItemsPropsWithIntern = {
 const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, content}) => {
 
     const router = useRouter()
-    console.log(router.query)
 
     const [sort, setSort] = useState<string | undefined>()
     const [price, setPrice] = useState<{ num1: string, num2: string }>({
@@ -29,7 +30,7 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
     const [colors, setColors] = useState<string[]>([])
 
     const handleSortClick = (param: string) => {
-        if(param === sort) {
+        if (param === sort) {
             setSort(undefined)
         } else {
             setSort(param)
@@ -57,91 +58,170 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
         }
     }
 
+    const [menuState, setMenuState] = useState<{
+        position: Position,
+        translateY?: number | string,
+        top?: number | string,
+        bottom?: number | string
+    }>({
+        position: 'fixed',
+        top: 100,
+        bottom: 'unset'
+    })
+
+    const positionRef = useRef({position: 'fixed', top1: 100, scrollY: 0, top2:0})
+    const divRef = useRef<HTMLDivElement | null>(null)
+    const pageRef = useRef<HTMLDivElement | null>(null)
+
+    const handleScroll = (event: Event) => {
+        const scrollY = window.scrollY
+        const viewPort = window.innerHeight
+        const menuHeight = divRef.current?.clientHeight as number
+
+        if (scrollY>positionRef.current.scrollY) {
+            //scrolling down
+            if (scrollY + viewPort >= menuHeight + positionRef.current.top1 + 10) {
+                //reaching menu end
+                if(positionRef.current.position!=='fixed') {
+                    //checking if we already set position
+                    positionRef.current.position='fixed'
+                    setMenuState({position: 'fixed', bottom: 10, top: 'unset'})
+                }
+                positionRef.current.top2 = scrollY + viewPort - menuHeight
+            } else {
+                if(positionRef.current.position!=='absolute') {
+                    //checking if we already set position
+                    positionRef.current.position='absolute'
+                    setMenuState({position: 'absolute', top: positionRef.current.top1})
+                }
+            }
+        } else {
+            //scrolling up
+            if (positionRef.current.top2>=scrollY+100) {
+                //reaching menu top
+                if(positionRef.current.position!=='fixed') {
+                    //checking if we already set position
+                    positionRef.current.position='fixed'
+                    setMenuState({position: 'fixed', top: 100, bottom: 'unset'})
+                }
+                positionRef.current.top1 = scrollY + 100
+            } else {
+                if(positionRef.current.position!=='absolute') {
+                    //checking if we already set position
+                    positionRef.current.position='absolute'
+                    setMenuState({position: 'absolute', top: positionRef.current.top2})
+                }
+            }
+        }
+
+        positionRef.current.scrollY= scrollY
+    }
+
+    useEffect(() => {
+        if (typeof window !== undefined) {
+            window.addEventListener('scroll', handleScroll)
+            return () => {
+                window.removeEventListener('scroll', handleScroll)
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log('update div height')
+    }, [divRef.current?.clientHeight])
+
     return (
         <div className='shop-items'>
             <div className='shop-items__menu'>
-                {
-                    mapList(content.list1,
+                <div className='shop-items__menu-fixed'
+                     style={{
+                         position: menuState.position,
+                         top: menuState.top,
+                         bottom: menuState.bottom,
+                         transform: `translateY(${menuState.translateY}px)`
+                     }}
+                     ref={divRef}
+                >
+                    {mapList(content.list1,
                         'shop-items__menu-list',
                         'shop-items__menu-item'
-                    )
-                }
-                <div className='shop-items__filters'>
-                    <CustomDropdown
-                        name={content.filter1}
-                        content={
-                            mapList(
-                                content.sort,
-                                'shop-items__filter',
-                                'shop-items__sort-item',
-                                handleSortClick,
-                                null,
-                                sort,
-                                'shop-items__sort-item--active'
-                            )
-                        }
-                    />
-                    <CustomDropdown
-                        name={content.filter2}
-                        content={
-                            <div className={'shop-items__price'}>
-                                <div className='shop-items__price-input-block'>
-                                    <label className={'shop-items__price-label'}>
-                                        {content.price.from}
-                                    </label>
-                                    <input className={'shop-items__price-input'}
-                                           name='num1'
-                                           onChange={handlePriceInputChange}
-                                           value={price.num1}
-                                           type={'number'}
-                                    />
-                                    <div className={'shop-items__price-currency'}>₴</div>
+                    )}
+                    <div className='shop-items__filters'>
+                        <CustomDropdown
+                            name={content.filter1}
+                            content={
+                                mapList(
+                                    content.sort,
+                                    'shop-items__filter',
+                                    'shop-items__sort-item',
+                                    handleSortClick,
+                                    null,
+                                    sort,
+                                    'shop-items__sort-item--active'
+                                )
+                            }
+                        />
+                        <CustomDropdown
+                            name={content.filter2}
+                            content={
+                                <div className={'shop-items__price'}>
+                                    <div className='shop-items__price-input-block'>
+                                        <label className={'shop-items__price-label'}>
+                                            {content.price.from}
+                                        </label>
+                                        <input className={'shop-items__price-input'}
+                                               name='num1'
+                                               onChange={handlePriceInputChange}
+                                               value={price.num1}
+                                               type={'number'}
+                                        />
+                                        <div className={'shop-items__price-currency'}>₴</div>
+                                    </div>
+                                    <div className='shop-items__price-input-block'>
+                                        <label className={'shop-items__price-label'}>
+                                            {content.price.to}
+                                        </label>
+                                        <input className='shop-items__price-input'
+                                               name='num2'
+                                               onChange={handlePriceInputChange}
+                                               value={price.num2}
+                                               type={'number'}
+                                        />
+                                        <div className={'shop-items__price-currency'}>₴</div>
+                                    </div>
+                                    <CustomRangeSlider/>
                                 </div>
-                                <div className='shop-items__price-input-block'>
-                                    <label className={'shop-items__price-label'}>
-                                        {content.price.to}
-                                    </label>
-                                    <input className='shop-items__price-input'
-                                           name='num2'
-                                           onChange={handlePriceInputChange}
-                                           value={price.num2}
-                                           type={'number'}
-                                    />
-                                    <div className={'shop-items__price-currency'}>₴</div>
-                                </div>
-                                <CustomRangeSlider/>
-                            </div>
-                        }
-                    />
-                    <CustomDropdown
-                        name={content.filter3}
-                        content={
-                            mapList(
-                                content.sizes,
-                                'shop-items__filter shop-items__sizes',
-                                'shop-items__size',
-                                handleColorClick,
-                                CustomCheckbox
-                            )
-                        }
-                    />
-                    <CustomDropdown
-                        name={content.filter4}
-                        content={
-                            mapList(
-                                content.colors,
-                                'shop-items__colors',
-                                'shop-items__color',
-                                handleSizeClick,
-                                CustomCheckbox
-                            )
-                        }
-                    />
-                    <div className={'shop-items__reset'}>
+                            }
+                        />
+                        <CustomDropdown
+                            name={content.filter3}
+                            content={
+                                mapList(
+                                    content.sizes,
+                                    'shop-items__filter shop-items__sizes',
+                                    'shop-items__size',
+                                    handleColorClick,
+                                    CustomCheckbox
+                                )
+                            }
+                        />
+                        <CustomDropdown
+                            name={content.filter4}
+                            content={
+                                mapList(
+                                    content.colors,
+                                    'shop-items__colors',
+                                    'shop-items__color',
+                                    handleSizeClick,
+                                    CustomCheckbox
+                                )
+                            }
+                        />
+                        <div className={'shop-items__reset'}/>
                     </div>
                 </div>
             </div>
-            <div className="shop-items__page">
+            <div className="shop-items__page" ref={pageRef}>
                 {
                     children
                 }

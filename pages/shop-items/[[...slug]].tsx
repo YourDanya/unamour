@@ -6,6 +6,7 @@ import {setCategories, ShopItemObject} from "../../redux/shop-items/shop-items.s
 import {fetchItems} from "../../redux/shop-items/shop-items.thunk";
 import ShopItem from "../../components/shop-item/shop-item.component";
 import ShopItemsCollection from "../../components/shop-items-collection/shop-items-collection.component";
+import {increment} from "../../redux/counter/counter.slice";
 
 type shopItemsProps = {
     items?: ShopItemObject['ua'][],
@@ -18,9 +19,16 @@ type localeType = 'ua' | 'eng' | 'ru'
 export const getServerSideProps = wrapper.getServerSideProps(store =>
     async (context) => {
 
+        // test with counter
+        const counter = store.getState().counter.value
+        await store.dispatch(increment())
+
+        console.log(counter)
+
         // checking if items are in redux
         let items:ShopItemObject[] | ShopItemObject[localeType][] = store.getState().shopItems.items
         if (items.length === 0) {
+            console.log(items)
             const dispatch = store.dispatch as AppThunkDispatch
             await dispatch(fetchItems())
             items = store.getState().shopItems.items
@@ -57,7 +65,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
             }
         } else {
             //item category
-
             return {props: {items, title: slug[0]}}
         }
     }
@@ -67,6 +74,7 @@ const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({items, item, title})
 
     return (
         <div>
+
             {items && <ShopItemsCollection items={items} title={title as string}/>}
             {item && <ShopItem {...item}/>}
         </div>

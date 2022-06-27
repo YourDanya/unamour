@@ -9,7 +9,6 @@ export const ApiCall = (
     return async (dispatch) => {
         try{
             const res = await ApiCall()
-            console.log(res.data)
             dispatch(successDispatch(res.data))
         } catch(err: any) {
             dispatch(errorDispatch(err))

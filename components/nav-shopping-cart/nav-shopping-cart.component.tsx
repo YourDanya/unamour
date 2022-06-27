@@ -16,7 +16,7 @@ const NavShoppingCart: React.FC = () => {
                     <div className={'nav-shopping-cart__items'}>
                         {
                             cartItems.map(({name, imgUrl}) =>
-                                <NavShoppingCartItem imgUrl={imgUrl} name={name}/>)
+                                <NavShoppingCartItem imgUrl={imgUrl} name={name} key={name}/>)
                         }
                     </div>
                 ) : (

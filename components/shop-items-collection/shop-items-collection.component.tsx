@@ -15,7 +15,7 @@ const ShopItemsCollection: React.FC<itemsCollectionProps> = ({items, title}) => 
             </div>
             <div className={'shop-items-collection__items'}>
                 {
-                    items && items.map((props) =>  <ShopItemPreview {...props}/>)
+                    items && items.map((props, index) =>  <ShopItemPreview key={props.slug + index} {...props}/>)
                 }
             </div>
         </div>

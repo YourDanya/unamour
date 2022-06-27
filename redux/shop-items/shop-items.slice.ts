@@ -110,7 +110,7 @@ export const shopItemsSlice = createSlice({
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            state.items = [...state.items, ...action.payload.shopItems.items]
+            state.items = [...action.payload.shopItems.items]
         },
     }
 })

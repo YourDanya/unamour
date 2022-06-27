@@ -55,12 +55,12 @@ export const mapList = (
             //map list of component
             mapArr = typeof arr[0] === 'string' ?
                 arr.map((name) => (
-                    <div className={elemClass}>
+                    <div className={elemClass} key={name}>
                         <Component name={name} handleClick={handleClick}/>
                     </div>
                 )) :
                 arr.map((params) => (
-                    <div className={elemClass}>
+                    <div className={elemClass} key={params.code}>
                         <Component {...params} handleClick={handleClick}/>
                     </div>
                 ))

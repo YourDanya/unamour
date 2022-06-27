@@ -42,5 +42,3 @@
 // let newArr = arr.map(({name}) => {
 //     return {name, colors: nameMap[name]}
 // })
-
-req.url.replace()

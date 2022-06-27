@@ -3,28 +3,35 @@ import React, {useState} from "react";
 type customDropdownProps = {
     name: string,
     content: React.ReactNode,
-    sign?: string
+    plus?: boolean
 }
 
-const CustomDropdown: React.FC<customDropdownProps> = ({name, content, sign }) => {
+const CustomDropdown: React.FC<customDropdownProps> = ({name, content, plus}) => {
     const [show, setShow] = useState(false)
 
     return (
-        <div className='dropdown'>
-            <div className='dropdown__top' onClick={() => setShow(!show)}>
-                <div className={`dropdown__sign ${show? 'dropdown__sign--show' : ''  }`}>
-                    <div className={'dropdown__sign-line dropdown__sign-line--first'}/>
-                    <div className={'dropdown__sign-line dropdown__sign-line--last'}/>
-                </div>
+        <div className={`dropdown`}>
+            <div className={`dropdown__top ${plus? 'dropdown__top--plus' : '' }`} onClick={() => setShow(!show)}>
+                {plus ? (
+                    <></>
+                ) : (
+                    <div className={`dropdown__sign ${show ? 'dropdown__sign--show' : ''}`}>
+                        <div className={'dropdown__sign-line dropdown__sign-line--first'}/>
+                        <div className={'dropdown__sign-line dropdown__sign-line--last'}/>
+                    </div>
+                )}
                 <div className={`dropdown__name`}>
                     {name}
                 </div>
+                {plus ? (
+                    <div className={'dropdown__plus'}/>
+                ) : (
+                    <></>
+                )}
             </div>
-                <div className={`dropdown__content ${show? 'dropdown__content--show' : ''}`}>
-                    {
-                        content
-                    }
-                </div>
+            <div className={`dropdown__content  ${show ? 'dropdown__content--show' : ''}`}>
+                {content}
+            </div>
         </div>
     )
 }
