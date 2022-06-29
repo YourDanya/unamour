@@ -26,6 +26,8 @@ const CustomInput: React.FC<customInputProps> = (
         onTopChange && onTopChange(event)
     }
 
+    console.log(input)
+
     return (
         <div className= {`custom-input ${classes?.join(' ')}`}>
             <input
@@ -34,7 +36,7 @@ const CustomInput: React.FC<customInputProps> = (
                 value={input}
                 onChange={handleChange}
             />
-            <div className="custom-input__placeholder">
+            <div className={`custom-input__placeholder ${input? 'custom-input__placeholder--hide' : ''}`}>
                 {placeholder}
             </div>
             {

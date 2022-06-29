@@ -1,16 +1,27 @@
 .custom-input
   flex-grow: 1
   position: relative
+  border-bottom: 1px solid black
   &__input
+    box-sizing: border-box
     font-size: 12px
     padding: 10px 35px 10px 0
     width: 100%
     outline: none
     border: none
-    border-bottom: 1px solid
     position: relative
     &:focus + .custom-input__placeholder
       visibility: hidden
+  &--present
+    border-color: #e0e0e0
+    margin-bottom: 28px
+    .custom-input__input
+      &:focus + .custom-input__placeholder
+        visibility: visible
+      &:focus + .custom-input__input
+        border-color: black
+    .custom-input__placeholder--hide
+      visibility: hidden!important
   &--sign
     margin-top: 25px
     .custom-input__input
@@ -24,7 +35,7 @@
     .custom-input__input
       padding-bottom: 15px
       border-color: #e0e0e0
-      &:focus
+      &:focus + .custom-input
         border-color: black
   &--contact
     .custom-input__input
@@ -35,7 +46,7 @@
     position: absolute
     top: 10px
     color: #a1a1a1
-    font-size: 12px
+    font-size: 11px
   &__icon
     top: 50%
     transform: translateY(-50%)

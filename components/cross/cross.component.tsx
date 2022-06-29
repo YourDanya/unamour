@@ -7,8 +7,6 @@ interface CrossProps {
 const Cross: React.FC<CrossProps> = () => {
     return (
         <div className="cross">
-            <span className="cross__item"/>
-            <span className="cross__item"/>
         </div>
     )
 }

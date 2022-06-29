@@ -20,7 +20,7 @@ const WarrantyPeriod: NextPageWithLayout<WarrantyPeriodProps> = ({content}) => {
                 <div className={'service__label service__label--mb20'}>
                     {content.label1}
                 </div>
-                <div className="list list--pl20">
+                <div className="list list--pl-20">
                     {
                         content.list1.map((item) => (
                             <div className={'list__item'} key={item}>

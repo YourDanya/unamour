@@ -3,10 +3,11 @@ import React, {RefObject, useRef, useState} from "react";
 type customCheckboxProps = {
     name: string,
     code?: string,
-    handleClick?: () => {}
+    handleClick?: () => {},
+    classes?: string[],
 }
 
-const CustomCheckbox: React.FC<customCheckboxProps> = ({name, code, handleClick}) => {
+const CustomCheckbox: React.FC<customCheckboxProps> = ({name, code, handleClick, classes}) => {
     const [checked, setChecked] = useState(false)
 
     const handleNativeClick = () => {
@@ -17,7 +18,7 @@ const CustomCheckbox: React.FC<customCheckboxProps> = ({name, code, handleClick}
     const ref = useRef<HTMLInputElement>(null)
 
     return (
-        <div className={'checkbox'} onClick={handleNativeClick}>
+        <div className={`checkbox ${classes?.join(' ')}`} onClick={handleNativeClick}>
             {
                 code ?
                     (
