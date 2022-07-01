@@ -3,42 +3,39 @@ import {element} from "prop-types";
 import {sleep} from "../../utils/main-utils";
 
 type customSliderProps = {
-    elements: ReactNode[]
+    elements: ReactNode[],
+    current: number
 }
 
-const CustomSlider: React.FC<customSliderProps> = ({elements}) => {
+const CustomSlider: React.FC<customSliderProps> = ({elements, current}) => {
 
-    let [count, setCount] = useState(0)
-
-    const size = elements.length
-
-    let [transition, setTransition] = useState('0.5 s all')
-
-    const ref = useRef(0)
-
-    const [arr, setArr] = useState(elements)
-
-    const handleForwardClick = () => {
-        setCount(count + 1)
-        if (count > size- 2) {
-            setCount(count + 1 - size)
-        }
-    }
+    let [count, setCount] = useState(current)
 
     const setCountBy = (count: number) => {
         setCount(count)
     }
 
-    const handleBackClick = async () => {
-        setCount(count - 1)
-        if (count < 1) {
-            setCount(count - 1 + size)
+    const handleForwardClick = () => {
+        if (count===elements.length-1) {
+            setCount(0)
+        }
+        else {
+            setCount(count + 1)
         }
     }
 
-    // console.log('\nrender')
-    // console.log('count', count)
-    // console.log('transition', transition)
+    const handleBackClick = () => {
+        if (count===0) {
+            setCount(elements.length-1)
+        } else {
+            setCount(count - 1)
+        }
+
+    }
+
+    const handleButtonClick = () => {
+
+    }
 
     return (
         <div className={'slider'}>
@@ -46,20 +43,16 @@ const CustomSlider: React.FC<customSliderProps> = ({elements}) => {
                 <div className={'slider__arrow slider__arrow--back'}/>
             </button>
             <div className={'slider__track'} style={{
-                transform: `translateX(${-100 * count}%)`,
-                transition: transition
+                transform: `translateX(${-100 * count}%)`
             }}>
-                <div className={'slider__element'} style={{left: `${-200}%`}}>{elements[size - 2]}</div>
-                <div className={'slider__element'} style={{left: `${-100}%`}}>{elements[size - 1]}</div>
-                {arr.map((element, index) =>
+                {elements.map((element, index) =>
                     <div className={'slider__element'} key={index} style={{left: `${100 * index}%`}}>
                         {element}
                     </div>
                 )}
-                <div className={'slider__element'}
-                     style={{transform: `translateX(-${100 * size}%)`}}>{elements[0]}</div>
-                <div className={'slider__element'}
-                     style={{transform: `translateX(-${100 * size + 1}%)`}}>{elements[1]}</div>
+                <div className={'slider__element slider__element--hidden'}>
+                    {elements[0]}
+                </div>
             </div>
             <button className={'slider__button slider__forward'} onClick={handleForwardClick}>
                 <div className={'slider__arrow slider__arrow--forward'}/>

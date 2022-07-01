@@ -3,6 +3,6 @@
     "next/core-web-vitals"
   ],
   "rules": {
-    "no-unused-vars": "off"
+    "react/no-unescaped-entities": 0
   }
 }

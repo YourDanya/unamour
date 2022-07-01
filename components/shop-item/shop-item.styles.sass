@@ -1,12 +1,32 @@
 .shop-item
   color: #4f4f4f
-  padding: 40px
+  padding: 20px 200px
   &__content
     display: flex
+    margin-bottom: 50px
+  &__tab
+    cursor: pointer
+    height: 90px
+    margin-bottom: 5px
+  &__tabs
+    display: flex
+    flex-direction: column
+  &__images
+    width: 57%
+    display: flex
+    align-self: flex-start
   &__slider
-    width: 50%
+    margin-left: 25px
+    width: 100%
+  &__test-div
+    width: 100%
+    background-color: black
+    height: 200px
+  &__test-img
+    width: 100%
   &__about
-    width: 50%
+    padding-left: 50px
+    width: 43%
   &__links
     color: #a1a1a1
     font-size: 11px
@@ -129,7 +149,7 @@
     justify-content: flex-end
     position: relative
     cursor: pointer
-    margin-bottom: 10px
+    margin-bottom: 15px
     &:hover
       .shop-item__present-img
         animation: shake 0.5s
@@ -149,6 +169,14 @@
   width: 1050px
   height: 99%
   display: flex
+  &:after
+    content: ''
+    position: absolute
+    bottom: 0
+    left: 0
+    height: 48px
+    width: 100%
+    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%)
   &__item
     width: 44%
     display: flex
@@ -157,6 +185,7 @@
     width: 56%
     padding: 48px 100px
     overflow-y: auto
+    position: relative
     -ms-overflow-style: none
     scrollbar-width: none
     &::-webkit-scrollbar
@@ -192,7 +221,48 @@
     width: 14px
     border: 0.1px solid #828282
   &__question
-    margin-bottom: 23px
+    margin-bottom: 22px
+  &__index
+    margin-top: -20px
+    margin-bottom: 22px
+  &__delivery
+    margin-bottom: 25px
+    &-type
+      margin-bottom: 10px
+      display: flex
+      align-items: center
+    &-label
+      margin-left: 10px
+    &-check
+      cursor: pointer
+      width: 16px
+      height: 16px
+      border-radius: 100px
+      outline: 1px solid #d2d2d2
+      position: relative
+      &:after
+        content: ''
+        position: absolute
+        border-radius: 100px
+        left: 50%
+        top: 50%
+        width: 0
+        height: 0
+        transform: translateY(-50%) translateX(-50%)
+        background-color: #4f4f4f
+        transition: 0.4s all
+      &--active
+        &:after
+          width: 9px
+          height: 9px
+  &__total
+    margin-bottom: 32px
+    &-label
+      font-size: 12px
+      color: #828282
+      margin-bottom: 10px
+  &__checkboxes
+    margin-bottom: 30px
 
 @keyframes shake
   60%

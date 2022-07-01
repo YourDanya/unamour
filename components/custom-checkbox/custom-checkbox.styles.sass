@@ -3,12 +3,19 @@
   align-items: center
   cursor: pointer
   &--present
-    margin-bottom: 10px
-    .checkbox__check
-      border: 1px solid black
-      &:before
-        background-color: transparent
-        background-image: url('../../public/icons/check-mark.svg')
+    margin-bottom: 12px
+    .checkbox
+      &__check
+        width: 16px
+        height: 16px
+        border: 1px solid #bdbdbd
+        &:before
+          width: 10px
+          height: 10px
+          background-color: transparent
+          background-image: url('../../public/icons/check-mark.svg')
+      &__label
+        font-size: 11px
   &__check
     width: 18px
     height: 18px
@@ -28,7 +35,7 @@
       left: 50%
       transform: translateY(-50%) translateX(-50%)
       opacity: 0
-      transition: 0.4s all
+      transition: 0.4s opacity
   &__input
     opacity: 0
     margin: 0

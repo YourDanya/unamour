@@ -9,6 +9,8 @@ import Modal from "../modal/modal.component";
 import Cross from "../cross/cross.component";
 import CustomInput from "../custom-input/custom-input.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
+import CustomButton from "../custom-button/custom-button.component";
+import CustomSlider from "../custom-slider/custom-slider.component";
 
 const ShopItem: React.FC<ShopItemObject['ua']> = ({
                                                       name, color, otherColors, sizes, images,
@@ -51,7 +53,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
     const handlePresentClick = () => {
         if (!activeSize) {
             setPresentLabel(false)
-        }else{
+        } else {
             setModalActive({modal: true, size: false, present: true})
         }
     }
@@ -62,10 +64,37 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
         }
     }
 
+    const [deliveryType, setDeliveryType] = useState('novaPoshta')
+
+    const handleDeliveryChange = (event: any) => {
+        setDeliveryType(event.target.value)
+    }
+
+    const [sliderCount, setSliderCount] = useState(0)
+
+    const slideImages = images.map((url, index) => <img src={url} alt={`image ${index} ${name}`} key={url}/>)
+
     return (
-        <div className={'shop-item'}>
+        <div className='shop-item'>
             <div className="shop-item__content">
-                <div className="shop-item__slider">
+                <div className="shop-item__images">
+                    <div className="shop-item__tabs">
+                        {images.map((url, index) =>
+                            <img className='shop-item__tab'
+                                 src={url}
+                                 alt={`image ${index} ${name}`}
+                                 key={url}
+                                 onChange={() => setSliderCount(index)}
+                            />
+                        )}
+                    </div>
+                    <div className="shop-item__slider">
+                        <CustomSlider elements={slideImages} current={sliderCount}/>
+                    </div>
+
+                    {/*<div className='shop-item__test-div'>*/}
+                    {/*    <img className={'shop-item__test-img'} src={images[0]} alt={'bl'}/>*/}
+                    {/*</div>*/}
                 </div>
                 <div className={'shop-item__about'}>
                     <div className="shop-item__links">
@@ -100,14 +129,15 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                             {sizes.map(size =>
                                 <div
                                     className={`shop-item__size ${activeSize === size ? 'shop-item__size--active' : ''}`}
-                                    key={color.code}
+                                    key={size}
                                     onClick={() => handleSizeClick(size)}
                                 >
                                     {size}
                                 </div>
                             )}
                         </div>
-                        <div className={`shop-item__sizes-modal modal-content ${modalActive.size ? 'modal-content--active' : ''}`}>
+                        <div
+                            className={`shop-item__sizes-modal modal-content ${modalActive.size ? 'modal-content--active' : ''}`}>
                             <div className={'close close--right-10 close--top-10'}
                                  onClick={() => setModalActive({modal: false, size: false, present: false})}/>
                             <div className={'text text--mb-10 text--lh-15'}>
@@ -145,7 +175,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                                   style={{backgroundColor: color.code}}/>
                             }
                             {otherColors.map(({name, code, ref}) =>
-                                <Link href={`/shop-item/${slugCategory}/${ref}`} key={color.code}>
+                                <Link href={`/shop-item/${slugCategory}/${ref}`} key={code}>
                                     <div className={`shop-item__color`}
                                          style={{backgroundColor: code}}
                                          onClick={(event) => console.log(event.target)}
@@ -172,7 +202,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                             <img src={bookmark.src} className={'shop-item__favorite-img'} alt={'shop-item'}/>
                         </button>
                     </div>
-                        <div className="shop-item__present"
+                    <div className="shop-item__present"
                          onClick={handlePresentClick}
                          onMouseLeave={handlePresentMouseLeave}
                     >
@@ -186,7 +216,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                         </div>
                         <img className='shop-item__present-img' src={presentImg.src}/>
                     </div>
-                    <div className={`present modal-content ${modalActive.present? 'modal-content--active' : ''}`}>
+                    <div className={`present modal-content ${modalActive.present ? 'modal-content--active' : ''}`}>
                         <div className='close close--top-10 close--right-10'
                              onClick={() => setModalActive({modal: false, size: false, present: false})}/>
                         <div className="present__item">
@@ -209,32 +239,72 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                                 </div>
                             </div>
                         </div>
-                        <form className={'present__data'}>
+                        <div className={'present__data'}>
                             <div className={'present__question'}>
                                 КОМУ ВИ ХОЧЕТЕ ЗРОБИТИ ПОДАРУНОК?
                             </div>
-                            <CustomInput classes={['custom-input--present']} placeholder={'Ім\'я отримувача'} name={'recName'}/>
-                            <CustomInput classes={['custom-input--present']} placeholder={'Фамилия получателя'} name={'recSurname'}/>
-                            <CustomInput classes={['custom-input--present']} placeholder={'E-mail отримувача'} name={'recEmail'}/>
-                            <CustomInput classes={['custom-input--present']} placeholder={'Номер отримувача'} name={'recPhone'}/>
+                            <CustomInput classes={['custom-input--present']} placeholder={'Ім\'я отримувача'}
+                                         name={'recName'}/>
+                            <CustomInput classes={['custom-input--present']} placeholder={'Фамилия получателя'}
+                                         name={'recSurname'}/>
+                            <CustomInput classes={['custom-input--present']} placeholder={'E-mail отримувача'}
+                                         name={'recEmail'}/>
+                            <CustomInput classes={['custom-input--present']} placeholder={'Номер отримувача'}
+                                         name={'recPhone'}/>
                             <div className={'present__question'}>ВІД КОГО</div>
-                            <CustomInput classes={['custom-input--present']} placeholder={'Ім\'я відправника'} name={'sendName'}/>
-                            <CustomInput classes={['custom-input--present']} placeholder={'E-mail відправника'} name={'sendEmail'}/>
+                            <CustomInput classes={['custom-input--present']} placeholder={'Ім\'я відправника'}
+                                         name={'sendName'}/>
+                            <CustomInput classes={['custom-input--present']} placeholder={'E-mail відправника'}
+                                         name={'sendEmail'}/>
                             <div className={'present__question'}>КУДИ ВІДПРАВИТИ?</div>
                             <CustomInput classes={['custom-input--present']} placeholder={'Країна'} name={'country'}/>
                             <CustomInput classes={['custom-input--present']} placeholder={'Місто'} name={'city'}/>
                             <CustomInput classes={['custom-input--present']} placeholder={'Індекс'} name={'index'}/>
-                            <div className={'present__question'}>Введіть 00000, якщо у вашої країни немає індексу</div>
+                            <div className={'present__index'}>Введіть 00000, якщо у вашої країни немає індексу</div>
                             <CustomInput classes={['custom-input--present']} placeholder={'Вулиця'} name={'street'}/>
                             <CustomInput classes={['custom-input--present']} placeholder={'Дім'} name={'house'}/>
-                            <CustomInput classes={['custom-input--present']} placeholder={'Квартира, офіс'} name={'apartment'}/>
+                            <CustomInput classes={['custom-input--present']} placeholder={'Квартира, офіс'}
+                                         name={'apartment'}/>
+                            <div className={'present__question'}>ОБЕРІТЬ ДОСТАВКУ</div>
                             <div className={'present__delivery'}>
+                                <input className='radio-button'
+                                       type="radio"
+                                       value='novaPoshta'
+                                       name="deliveryType"
+                                       onChange={handleDeliveryChange}
+                                       checked={deliveryType === 'novaPoshta'}
+                                />
+                                <input className='radio-button'
+                                       type="radio"
+                                       value='ukrPoshta'
+                                       name="deliveryType"
+                                       onChange={handleDeliveryChange}
+                                       checked={deliveryType === 'ukrPoshta'}
+                                       style={{transform: 'translateY(26px)'}}
+                                />
+                                <div className='present__delivery-type'>
+                                    <div className={`present__delivery-check 
+                                        ${deliveryType === 'novaPoshta' ? 'present__delivery-check--active' : ''}`}/>
+                                    <div className="present__delivery-label">Кур'єр "Нової Пошти"</div>
+                                </div>
+                                <div className='present__delivery-type'>
+                                    <div className={`present__delivery-check 
+                                        ${deliveryType === 'ukrPoshta' ? 'present__delivery-check--active' : ''}`}/>
+                                    <div className="present__delivery-label">Кур'єр "Укр Пошти"</div>
+                                </div>
+                            </div>
+                            <div className='present__total'>
+                                <div className="present__total-label">Вартість: {price} ₴</div>
+                                <div className="present__total-label">Доставка: 0 ₴</div>
+                            </div>
+                            <div className={'present__checkboxes'}>
                                 <CustomCheckbox name={'Подарувати анонімно?'} classes={['checkbox--present']}/>
                                 <CustomCheckbox name={'Зробити сюрприз?'} classes={['checkbox--present']}/>
                             </div>
-                        </form>
+                            <CustomButton text={`СПЛАТИТИ ${price} ₴`} classes={['custom-button--present']}/>
+                        </div>
                     </div>
-                    <div className='shop-item__dropdown'>
+                    <div className='shop-item__dropdowns'>
                         <CustomDropdown
                             content={
                                 <div className={'shop-item__dropdown-element'}>

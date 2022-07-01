@@ -26,8 +26,6 @@ const CustomInput: React.FC<customInputProps> = (
         onTopChange && onTopChange(event)
     }
 
-    console.log(input)
-
     return (
         <div className= {`custom-input ${classes?.join(' ')}`}>
             <input
