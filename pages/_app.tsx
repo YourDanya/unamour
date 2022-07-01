@@ -43,11 +43,26 @@ import Footer from "../components/footer/footer.component";
 import {AppPropsWithLayout} from "../types/types";
 import { wrapper} from "../redux/store";
 import {useRouter} from "next/router";
+import {useDispatch, useSelector} from "react-redux";
+import {selectShopItems} from "../redux/shop-items/shop-items.slice";
+import {fetchItems} from "../redux/shop-items/shop-items.thunk";
+import {LocaleType} from "./shop-items/[[...slug]]";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     let getLayout = Component.getLayout ?? ((page) => page)
     const slug = useRouter().query.slug
     if (slug && slug.length!==1) getLayout = ((page) => page)
+
+    const dispatch = useDispatch()
+
+    const locale = useRouter().locale as LocaleType
+
+    const items = useSelector(selectShopItems(locale))
+
+    if (items.length==0) {
+        dispatch(fetchItems())
+    }
+
     return (
         <>
             <Nav/>

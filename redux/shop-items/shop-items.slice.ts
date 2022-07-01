@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit'
 import {HYDRATE} from "next-redux-wrapper"
 import {AppState} from "../store"
+import {LocaleType} from "../../pages/shop-items/[[...slug]]";
 
 export type ShopItemObject = {
     ua: {
@@ -16,8 +17,8 @@ export type ShopItemObject = {
         oldPrice: number,
         images: string[],
         sizes: string[],
-        color: {code: string, name: string},
-        otherColors: {code: string, ref: string, name: string}[],
+        color: { code: string, name: string },
+        otherColors: { code: string, ref: string, name: string }[],
         isAvailable: boolean,
         description: string,
         composition: string,
@@ -34,7 +35,7 @@ export type ShopItemObject = {
         images: string[],
         sizes: string[],
         color: string,
-        otherColors: {code: string, ref: string, name: string}[],
+        otherColors: { code: string, ref: string, name: string }[],
         isAvailable: boolean,
         description: string,
         composition: string,
@@ -51,7 +52,7 @@ export type ShopItemObject = {
         images: string [],
         sizes: string [],
         color: string,
-        otherColors: {code: string, ref: string, name: string} [],
+        otherColors: { code: string, ref: string, name: string } [],
         isAvailable: boolean,
         description: string,
         composition: string,
@@ -118,9 +119,10 @@ export const shopItemsSlice = createSlice({
 export const {fetchItemsSuccess, fetchItemsError, resetItems, setCategories} = shopItemsSlice.actions
 
 export const selectShopItemsStore = (state: AppState) => state.shopItems
-export const selectShopItems = createSelector(
-    [selectShopItemsStore],
-    shopItems => shopItems.items
-)
+
+export const selectShopItems = (locale: LocaleType) =>
+    createSelector([selectShopItemsStore],
+        shopItems => shopItems.items.map(item => item[locale])
+    )
 
 export default shopItemsSlice.reducer

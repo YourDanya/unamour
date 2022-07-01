@@ -2,15 +2,18 @@ import React, {useEffect, useState} from "react"
 
 import Link from "next/link"
 import bookmark from '/public/icons/bookmark.svg'
-import {ShopItemObject} from "../../redux/shop-items/shop-items.slice"
+import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice"
 import presentImg from '/public/icons/present.svg'
 import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
 import Modal from "../modal/modal.component";
-import Cross from "../cross/cross.component";
 import CustomInput from "../custom-input/custom-input.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 import CustomButton from "../custom-button/custom-button.component";
 import CustomSlider from "../custom-slider/custom-slider.component";
+import {useSelector} from "react-redux";
+import {useRouter} from "next/router";
+import {LocaleType} from "../../pages/shop-items/[[...slug]]";
+import ShopItemPreview from "../shop-item-preview/shop-item-preview.component";
 
 const ShopItem: React.FC<ShopItemObject['ua']> = ({
                                                       name, color, otherColors, sizes, images,
@@ -72,7 +75,19 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
 
     const [sliderCount, setSliderCount] = useState(0)
 
-    const slideImages = images.map((url, index) => <img src={url} alt={`image ${index} ${name}`} key={url}/>)
+    const slideImages = images.map((url, index) => <img src={url} alt={`image ${index} ${name}`} key={url + index}/>)
+
+    const locale = useRouter().locale as LocaleType
+
+    let items: ShopItemObject[] | ShopItemObject[LocaleType][] = useSelector(selectShopItems(locale))
+
+    const similarItems: ShopItemObject[LocaleType][] = []
+    const watchedItems: ShopItemObject[LocaleType][] = []
+
+    for (let i = 0; i < items.length; i++) {
+        if (i < 4) similarItems.push(items[i])
+        if (i > items.length - 5) watchedItems.push(items[i])
+    }
 
     return (
         <div className='shop-item'>
@@ -83,7 +98,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                             <img className='shop-item__tab'
                                  src={url}
                                  alt={`image ${index} ${name}`}
-                                 key={url}
+                                 key={url + index}
                                  onChange={() => setSliderCount(index)}
                             />
                         )}
@@ -175,7 +190,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                                   style={{backgroundColor: color.code}}/>
                             }
                             {otherColors.map(({name, code, ref}) =>
-                                <Link href={`/shop-item/${slugCategory}/${ref}`} key={code}>
+                                <Link href={`/shop-items/${slugCategory}/${ref}`} key={code}>
                                     <div className={`shop-item__color`}
                                          style={{backgroundColor: code}}
                                          onClick={(event) => console.log(event.target)}
@@ -341,14 +356,25 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                     </div>
                 </div>
             </div>
-            <div className="shop-item__similar">
-                <div className="shop-item__similar-title">СХОЖІ ТОВАРИ</div>
+            <div className='shop-item__additional'>
+                <div className="shop-item__additional-title">СХОЖІ ТОВАРИ</div>
+                <div className="shop-item__similar">
+                    {similarItems.map((props, index) => (
+                        <div className={'shop-item__add'} key={props.name + index}>
+                            <ShopItemPreview key={props.slug + index} {...props}/>
+                        </div>
+                    ))}
+                </div>
+                <div className="shop-item__additional-title">ПЕРЕГЛЯНУТІ ТОВАРИ</div>
+                <div className="shop-item__viewed">
+                    {similarItems.map((props, index) => (
+                        <div className={'shop-item__add'} key={props.slug + index}>
+                            <ShopItemPreview key={props.slug + index} {...props}/>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className="shop-item__viewed">
-                <div className="shop-item__similar-title">ПЕРЕГЛЯНУТІ ТОВАРИ</div>
-            </div>
-            <Modal active={modalActive.modal}
-                   hideModal={() => setModalActive({modal: false, size: false, present: false})}/>
+            <Modal active={modalActive.modal} hideModal={() => setModalActive({modal: false, size: false, present: false})}/>
         </div>
     )
 }

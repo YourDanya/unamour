@@ -9,12 +9,12 @@ import ShopItemsCollection from "../../components/shop-items-collection/shop-ite
 import {increment} from "../../redux/counter/counter.slice";
 
 type shopItemsProps = {
-    items?: ShopItemObject['ua'][],
+    items?: ShopItemObject['ua' | 'ru'| 'eng'][],
     item?: ShopItemObject['ua'],
     title?: string
 }
 
-type localeType = 'ua' | 'eng' | 'ru'
+export type LocaleType = 'ua' | 'eng' | 'ru'
 
 export const getServerSideProps = wrapper.getServerSideProps(store =>
     async (context) => {
@@ -26,13 +26,11 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         console.log(counter)
 
         // checking if items are in redux
-        let items:ShopItemObject[] | ShopItemObject[localeType][] = store.getState().shopItems.items
-        if (items.length === 0) {
-            console.log(items)
+        let items
             const dispatch = store.dispatch as AppThunkDispatch
             await dispatch(fetchItems())
             items = store.getState().shopItems.items
-        }
+
 
         //checking if categories are in redux
         let categories = store.getState().shopItems.categories
@@ -40,7 +38,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
             store.dispatch(setCategories(categories))
         }
 
-        let locale = context.locale as localeType
+        let locale = context.locale as LocaleType
 
         //mapping items according to locale
         items = items.map(item => item[locale])
@@ -71,6 +69,8 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 )
 
 const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({items, item, title}) => {
+
+    console.log('inside home page')
 
     return (
         <div>

@@ -8,48 +8,29 @@ type customInputProps = {
     name: string,
     value?: string,
     classes?: string[]
-    onTopChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string,
     grey?: boolean,
-    src?: string
     onSubmit?: (param: string) => void,
+    img?: React.ReactNode
 }
 
 const CustomInput: React.FC<customInputProps> = (
-    {src, value, onSubmit,
-        onTopChange, placeholder, classes, ...otherProps}) => {
-
-    const [input, setInput] = useState(value)
-
-    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setInput(event.target.value)
-        onTopChange && onTopChange(event)
-    }
+    {img, value, onSubmit,
+        handleChange, placeholder, classes, ...otherProps}) => {
 
     return (
         <div className= {`custom-input ${classes?.join(' ')}`}>
             <input
                 {...otherProps}
                 className={`custom-input__input`}
-                value={input}
+                value={value}
                 onChange={handleChange}
             />
-            <div className={`custom-input__placeholder ${input? 'custom-input__placeholder--hide' : ''}`}>
+            <div className={`custom-input__placeholder ${value? 'custom-input__placeholder--hide' : ''}`}>
                 {placeholder}
             </div>
-            {
-                src && input && onSubmit && (
-                    <img
-                        src={src}
-                        className={'custom-input__icon'}
-                        alt={'/custom-input'}
-                        onClick={() => {
-                            onSubmit(input)
-                            setInput('')
-                        }}
-                    />
-                )
-            }
+            {img}
         </div>
     )
 }

@@ -1,9 +1,23 @@
 .shop-item
   color: #4f4f4f
-  padding: 20px 200px
+  padding: 20px 0
   &__content
+    padding: 0 200px
     display: flex
-    margin-bottom: 50px
+    margin-bottom: 60px
+  &__additional
+    padding: 0 40px
+    &-title
+      font-size: 12px
+      margin-bottom: 30px
+  &__similar, &__viewed
+    display: flex
+    div
+      &:first-child
+        margin-left: 0
+  &__add
+    width: 100%
+    margin-left: 5px
   &__tab
     cursor: pointer
     height: 90px
@@ -17,12 +31,6 @@
     align-self: flex-start
   &__slider
     margin-left: 25px
-    width: 100%
-  &__test-div
-    width: 100%
-    background-color: black
-    height: 200px
-  &__test-img
     width: 100%
   &__about
     padding-left: 50px
