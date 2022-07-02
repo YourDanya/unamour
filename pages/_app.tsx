@@ -1,3 +1,7 @@
+import '../styles/home.sass'
+import '../styles/global.sass'
+import '/components/cart-item/cart-item.styles.sass'
+import '/pages/search/search.styles.sass'
 import '/components/custom-slider/custom-slider.styles.sass'
 import '/pages/cart/cart.styles.sass'
 import '/pages/admin/admin.styles.sass'
@@ -15,8 +19,6 @@ import '/pages/client-service/delivery/delivery.styles.sass'
 import '/pages/contacts/contact.styles.sass'
 import '/pages/vacancies/vacancies.styles.sass'
 import '/pages/favorites/favorites.styles.sass'
-import '../styles/home.sass'
-import '../styles/global.sass'
 import '/components/back/back.styles.sass'
 import '/components/client-service/client-service.styles.sass'
 import '/components/nav-menu/nav-menu.styles.sass'
@@ -47,6 +49,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectShopItems} from "../redux/shop-items/shop-items.slice";
 import {fetchItems} from "../redux/shop-items/shop-items.thunk";
 import {LocaleType} from "./shop-items/[[...slug]]";
+import {useEffect} from "react";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     let getLayout = Component.getLayout ?? ((page) => page)
@@ -54,14 +57,14 @@ function MyApp({Component, pageProps}: AppPropsWithLayout) {
     if (slug && slug.length!==1) getLayout = ((page) => page)
 
     const dispatch = useDispatch()
-
     const locale = useRouter().locale as LocaleType
-
     const items = useSelector(selectShopItems(locale))
 
-    if (items.length==0) {
-        dispatch(fetchItems())
-    }
+    useEffect(() => {
+        if (items.length==0) {
+            dispatch(fetchItems())
+        }
+    }, [])
 
     return (
         <>

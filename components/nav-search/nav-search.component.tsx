@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 import {useRouter} from "next/router";
 import {LocaleType} from "../../pages/shop-items/[[...slug]]";
+import Link from 'next/link';
 
 interface SearchResultInterface {
     name: string,
@@ -14,21 +15,27 @@ interface SearchResultInterface {
 
 const NavSearch: React.FC = () => {
 
-    const [searchArr, setSearchArr] = useState(null)
-
     const [hidden, setHidden] = useState(true)
 
     const locale = useRouter().locale as LocaleType
 
     const items = useSelector(selectShopItems(locale))
 
-    const searchItems = useState<ShopItemObject[LocaleType][]>([])
+    const [searchItems, setSearchItems] = useState<ShopItemObject[LocaleType][]>([])
 
-    const [input, setInput] = useState()
+    const [input, setInput] = useState('')
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInput()
+        const input = event.target.value
+        if (input) {
+            const searchItems = items.filter(item => item.name.toLowerCase().includes(input.toLowerCase()))
+            setSearchItems(searchItems)
+        } else {
+            setSearchItems([])
+        }
+        setInput(input)
     }
+
 
     return (
         <div className={`search ${hidden ? 'search--hidden' : ''}`}>
@@ -44,9 +51,21 @@ const NavSearch: React.FC = () => {
                              img={<img className={'search__icon'} src={search.src} alt={'search icon'}/>}
                 />
             </div>
-            {searchArr ? (
+            {searchItems.length > 0 ? (
                 <div className="search__results">
-
+                    {searchItems.filter((item, index) => index < 4).map((item, index) =>
+                        <Link href={`/shop-items/${item.slugCategory}/${item.slug}`} key={item.name+index}>
+                            <a className='search__item'>
+                                <img className='search__item-img' src={item.images[0]} alt={'search item image'}/>
+                                <div className='search__item-name'>{item.name}</div>
+                            </a>
+                        </Link>
+                    )}
+                    <div className='search__button-wrapper'>
+                        <Link href={`/search?query=${input}`}>
+                            <a className='search__button'>УСІ РЕЗУЛЬТАТИ</a>
+                        </Link>
+                    </div>
                 </div>
             ) : (
                 <div className="search__popular">
@@ -60,8 +79,7 @@ const NavSearch: React.FC = () => {
                     {/*<div className="search-popular-element">Комбинезоны</div>*/}
                     {/*<div className="search-popular-element">Трикотаж</div>*/}
                 </div>
-            )
-            }
+            )}
         </div>
     )
 }

@@ -10,16 +10,19 @@ import CustomInput from "../custom-input/custom-input.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 import CustomButton from "../custom-button/custom-button.component";
 import CustomSlider from "../custom-slider/custom-slider.component";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {LocaleType} from "../../pages/shop-items/[[...slug]]";
 import ShopItemPreview from "../shop-item-preview/shop-item-preview.component";
+import {addItem} from "../../redux/cart/cart.slice";
 
 const ShopItem: React.FC<ShopItemObject['ua']> = ({
                                                       name, color, otherColors, sizes, images,
                                                       price, delivery, description, composition, parameters,
-                                                      isAvailable, category, slugCategory, oldPrice
+                                                      isAvailable, category, slugCategory, oldPrice, slug
                                                   }) => {
+
+    const dispatch = useDispatch()
 
     const [activeSize, setSize] = useState<string | null>(null)
 
@@ -87,6 +90,22 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
     for (let i = 0; i < items.length; i++) {
         if (i < 4) similarItems.push(items[i])
         if (i > items.length - 5) watchedItems.push(items[i])
+    }
+
+    const handleCartClick = () => {
+        console.log('handle cart click')
+        if (activeSize) {
+            dispatch(addItem({
+                name,
+                slug,
+                slugCategory,
+                size: activeSize,
+                images,
+                price,
+                category,
+                color,
+            }))
+        }
     }
 
     return (
@@ -203,6 +222,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                         <button className="shop-item__checkout-button"
                                 onMouseEnter={handleCheckoutButtonMouseEnter}
                                 onMouseLeave={handleCheckoutButtonMouseLeave}
+                                onClick={handleCartClick}
                         >
                             <div className={`shop-item__checkout-button-text fade
                                 ${checkout ? 'fade--show' : ''}`}>
@@ -374,7 +394,8 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
                     ))}
                 </div>
             </div>
-            <Modal active={modalActive.modal} hideModal={() => setModalActive({modal: false, size: false, present: false})}/>
+            <Modal active={modalActive.modal}
+                   hideModal={() => setModalActive({modal: false, size: false, present: false})}/>
         </div>
     )
 }

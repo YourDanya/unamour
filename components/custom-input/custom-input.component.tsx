@@ -27,7 +27,7 @@ const CustomInput: React.FC<customInputProps> = (
                 value={value}
                 onChange={handleChange}
             />
-            <div className={`custom-input__placeholder ${value? 'custom-input__placeholder--hide' : ''}`}>
+            <div className={`custom-input__placeholder ${value? 'custom-input__placeholder--hidden' : ''}`}>
                 {placeholder}
             </div>
             {img}

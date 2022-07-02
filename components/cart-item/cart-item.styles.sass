@@ -1,0 +1,71 @@
+.cart-item
+  padding: 20px 0
+  border-bottom: 1px solid #eee
+  border-top: 1px solid #eee
+  display: flex
+  position: relative
+  &__img
+    margin-right: 20px
+    width: 85px
+    height: auto
+  &__about
+    flex-grow: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+  &__name
+    text-transform: uppercase
+    font-size: 12px
+  &__price-block
+    display: flex
+  &__price
+    font-size: 12px
+    &-block
+      align-items: center
+    &-label
+      margin-right: 10px
+      font-size: 12px
+  &__property
+    width: 33.3%
+    &-label
+      font-size: 12px
+      color: #828282
+      margin-bottom: 8px
+    &-value
+      height: 20px
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: flex-start
+  &__properties
+    width: 100%
+    display: flex
+  &__color
+    height: 20px
+    width: 20px
+  &__size
+    font-size: 12px
+  &__quantity
+    font-size: 12px
+    &-block
+      display: flex
+      align-items: center
+  &__plus
+    cursor: pointer
+    height: 6px
+    width: 6px
+    margin-left: 14px
+  &__minus
+    cursor: pointer
+    width: 6px
+    height: 6px
+    margin-right: 14px
+  &__close
+    position: absolute
+    right: 0
+    top: 20px
+    &:before
+      height: 1px
+    &:after
+      height: 1px
+    
