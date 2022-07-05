@@ -11,11 +11,11 @@ const NavShoppingCart: React.FC = () => {
 
     const total = useSelector(selectTotalPrice)
 
-    console.log(total)
+    const length = cartItems.length
 
     return (
         <div className={`nav-cart`}>
-            {cartItems ? (
+            {length>0 ? (
                 <>
                     <div className="nav-cart__title">КОРЗИНА</div>
                     <div className={'nav-cart__items'}>
@@ -34,9 +34,11 @@ const NavShoppingCart: React.FC = () => {
                     </div>
                 </>
             )}
-            <button className={'nav-cart__button nav-cart__button--black'}>
-                {cartItems ? 'ОФРМИТИ ЗАМОВЛЕННЯ' : 'ДИВИТИСЯ ОБРАНЕ'}
-            </button>
+            <Link href={length>0? '/cart' : '/favorite'}>
+                <a className="nav-cart__button nav-cart__link">
+                    {length>0? 'ОФРМИТИ ЗАМОВЛЕННЯ' : 'ДИВИТИСЯ ОБРАНЕ'}
+                </a>
+            </Link>
             <button className={'nav-cart__button nav-cart__button--white'}>
                 ПРОДОВЖИТИ ПОКУПКИ
             </button>

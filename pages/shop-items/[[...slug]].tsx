@@ -72,7 +72,6 @@ const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({items, item, title})
 
     return (
         <div>
-
             {items && <ShopItemsCollection items={items} title={title as string}/>}
             {item && <ShopItem {...item}/>}
         </div>

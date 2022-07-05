@@ -1,5 +1,15 @@
 .nav
   height: 60px
+  &--home
+    height: 0
+    .nav__header
+      background-color: transparent
+    .hamburger__line
+      background-color: white
+    .nav__title
+      color: white
+    .nav__shop-item
+
   &__header
     height: 60px
     padding: 0 40px
@@ -61,6 +71,7 @@
       margin-bottom: 0
   &--active
     span
+      background-color: black!important
       margin-bottom: 0
       width: 22px
       &:nth-child(1)

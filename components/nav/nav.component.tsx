@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react'
-import Link from "next/link";
+import Link from "next/link"
 import search from '/public/icons/search.svg'
-import bookmark from '/public/icons/bookmark.svg'
+import searchWhite from '/public/icons/search-white.svg'
 import shoppingCart from '/public/icons/shopping-cart.svg'
-import Sidebar from "../sidebar/sidebar.component";
-import NavSearch from "../nav-search/nav-search.component";
-import NavShoppingCart from "../nav-shopping-cart/nav-shopping-cart.component";
-import SignInUp from "../sign-in-up/sign-in-up.component";
-import Modal from "../modal/modal.component";
-import NavMenu from "../nav-menu/nav-menu.component";
-import {useRouter} from "next/router";
+import shoppingCartWhite from '/public/icons/shopping-cart-white.svg'
+import bookmark from '/public/icons/bookmark.svg'
+import bookmarkWhite from '/public/icons/bookmark-white.svg'
+import Sidebar from "../sidebar/sidebar.component"
+import NavSearch from "../nav-search/nav-search.component"
+import NavShoppingCart from "../nav-shopping-cart/nav-shopping-cart.component"
+import SignInUp from "../sign-in-up/sign-in-up.component"
+import Modal from "../modal/modal.component"
+import NavMenu from "../nav-menu/nav-menu.component"
+import {useRouter} from "next/router"
 
 const Nav: React.FC = () => {
 
@@ -17,7 +20,7 @@ const Nav: React.FC = () => {
 
     const [active, setActive] = useState(initialModalState)
 
-    const hideModal = (event: React.MouseEvent<HTMLElement>) => {
+    const hideModal = () => {
         setActive(initialModalState)
     }
 
@@ -50,15 +53,45 @@ const Nav: React.FC = () => {
 
     const router= useRouter()
 
+    const [home, setHome] = useState(false)
+
+    const handleRouteChange = () => {
+        console.log('route change')
+        if(router.pathname==='/'){
+            if (!home) {
+                setHome(true)
+            }
+        }
+        else {
+            if(home){
+                setHome(false)
+            }
+        }
+        hideModal()
+    }
+
     useEffect(() => {
-        router.events.on('routeChangeComplete', hideModal)
+        router.events.on('routeChangeComplete', handleRouteChange)
         return () => {
         }
     }, [])
 
+    useEffect(() => {
+        if(router.pathname==='/'){
+            if (!home) {
+                setHome(true)
+            }
+        }
+        else {
+            if(home){
+                setHome(false)
+            }
+        }
+    }, [router.pathname])
+
     return (
         <>
-            <nav className={'nav'}>
+            <nav className={`nav ${home? 'nav--home' : ''}`}>
                 <div className="hamburger-wrapper">
                     <div id={'hamburger'}
                          className={`hamburger ${active.hamburger ? 'hamburger--active' : ''}`}
@@ -75,15 +108,15 @@ const Nav: React.FC = () => {
                     </Link>
                     <div className="nav__shop-items">
                         <a id='search' onClick={toggleModal}>
-                            <img src={search.src} className={'nav__shop-item'} alt={'shop-item'}/>
+                            <img src={home? searchWhite.src : search.src  } className={'nav__shop-item'} alt={'shop-item'}/>
                         </a>
                         <Link href={'/favorites'}>
                             <a>
-                                <img src={bookmark.src} className={'nav__shop-item'} alt={'shop-item'}/>
+                                <img src={home? bookmarkWhite.src : bookmark.src } className={'nav__shop-item'} alt={'shop-item'}/>
                             </a>
                         </Link>
                         <a id='shopping' onClick={toggleModal}>
-                            <img src={shoppingCart.src} className={'nav__shop-item'} alt={'shop-item'}/>
+                            <img src={home? shoppingCartWhite.src: shoppingCart.src} className={'nav__shop-item'} alt={'shop-item'}/>
                         </a>
                     </div>
                 </div>

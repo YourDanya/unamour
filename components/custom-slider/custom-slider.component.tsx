@@ -1,6 +1,4 @@
 import React, {ReactNode, useEffect, useRef, useState} from "react";
-import {element} from "prop-types";
-import {sleep} from "../../utils/main-utils";
 
 type customSliderProps = {
     elements: ReactNode[],

@@ -32,7 +32,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem: (state, action: PayloadAction<CartData>) => {
-            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload.slug)
+            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload.slug && item.data.size === action.payload.size)
             console.log(itemIndex)
             if (itemIndex===-1) {
                 state.items.push({data: action.payload, quantity: 1})
@@ -40,25 +40,27 @@ export const cartSlice = createSlice({
                 state.items[itemIndex].quantity++
             }
         },
-        removeItem: (state, action: PayloadAction<string>) => {
-            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload)
+        removeItem: (state, action: PayloadAction<{slug: string, size: string}>) => {
+            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload.slug && item.data.size === action.payload.size)
             if (itemIndex!==-1) {
                 state.items.splice(itemIndex)
             }
         },
-        increaseQuantity: (state, action: PayloadAction<string>) => {
-            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload)
+        increaseQuantity: (state, action: PayloadAction<{slug: string, size: string}>) => {
+            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload.slug && item.data.size === action.payload.size)
             if (itemIndex!==-1) {
                 state.items[itemIndex].quantity++
             }
         },
-        decreaseQuantity: (state, action: PayloadAction<string>) => {
-            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload)
+        decreaseQuantity: (state, action: PayloadAction<{slug: string, size: string}>) => {
+            const itemIndex = state.items.findIndex(item => item.data.slug === action.payload.slug && item.data.size === action.payload.size)
             if (itemIndex!==-1) {
-                if (itemIndex === 0) {
+                if (state.items[itemIndex].quantity === 1) {
                     state.items.splice(itemIndex)
                 }
-                state.items[itemIndex].quantity--
+                else {
+                    state.items[itemIndex].quantity--
+                }
             }
         }
     },
