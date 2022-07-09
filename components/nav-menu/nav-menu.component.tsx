@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
-import Link from "next/link";
-import Back from "../back/back.component";
+import React, {useEffect, useState} from "react"
+import Link from "next/link"
 
 type navMenuProps = {
     active: boolean,
@@ -59,13 +58,6 @@ const NavMenu: React.FC<navMenuProps> = ({active, hideModal, showTopNav}) => {
             </div>
             <div className={`menu service-menu ${clientService && 'service-menu--active'}`}>
                 <div className="service-menu__back" onClick={handleClientClick}>
-                    <Back
-                        handleClick={() => setClientService(false)}
-                        mainClasses={['service-menu__arrow']}
-                        lineClasses={{
-                            left: ['service-menu__arrow-line--left'],
-                            right: ['service-menu__arrow-line--right']
-                        }}/>
                     <div className="service-menu__back-title">
                         НАЗАД
                     </div>

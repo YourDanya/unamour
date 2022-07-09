@@ -6,7 +6,6 @@ import {useRouter} from "next/router";
 import {mapList, removeFromArr} from "../../utils/component-utils";
 import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
-import {number} from "prop-types";
 import CustomRangeSlider from "../custom-range-slider/custom-range-slider.component";
 import {Property} from "csstype";
 import Position = Property.Position;
@@ -78,16 +77,27 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
         const viewPort = window.innerHeight
         const menuHeight = divRef.current?.clientHeight as number
 
+        // console.log('difference', scrollY + viewPort - menuHeight - positionRef.current.top2)
+
+        const rect= divRef.current?.getBoundingClientRect()
+
+        console.log('\n')
+        for (let prop in rect) {
+            console.log(prop, rect[prop as keyof typeof rect])
+        }
+
+        console.log('view port', viewPort)
+
         if (scrollY>positionRef.current.scrollY) {
             //scrolling down
-            if (scrollY + viewPort >= menuHeight + positionRef.current.top1 + 10) {
+            if (rect.bottom< viewPort) {
                 //reaching menu end
+                positionRef.current.top2 = scrollY + viewPort - menuHeight
                 if(positionRef.current.position!=='fixed') {
                     //checking if we already set position
                     positionRef.current.position='fixed'
                     setMenuState({position: 'fixed', bottom: 10, top: 'unset'})
                 }
-                positionRef.current.top2 = scrollY + viewPort - menuHeight
             } else {
                 if(positionRef.current.position!=='absolute') {
                     //checking if we already set position
@@ -127,7 +137,6 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
     }, [])
 
     useEffect(() => {
-        console.log('update div height')
     }, [divRef.current?.clientHeight])
 
     return (

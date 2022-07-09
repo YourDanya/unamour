@@ -1,0 +1,98 @@
+.present
+  width: 1050px
+  height: 99%
+  display: flex
+  &:after
+    content: ''
+    position: absolute
+    bottom: 0
+    left: 0
+    height: 48px
+    width: 100%
+    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%)
+  &__item
+    width: 44%
+    display: flex
+    flex-direction: column
+  &__data
+    width: 56%
+    padding: 48px 100px
+    overflow-y: auto
+    position: relative
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar
+      display: none
+  &__img
+    background-color: black
+  &__info
+    padding: 0 40px
+    flex-grow: 1
+    display: flex
+    flex-direction: column
+    justify-content: center
+  &__properties
+    display: flex
+    justify-content: space-between
+  &__name
+    margin-bottom: 20px
+    width: 100%
+    text-transform: uppercase
+    font-size: 11px
+  &__property
+    font-size: 11px
+    margin-right: 6px
+    &-block
+      align-items: center
+      display: flex
+  &__price
+    font-size: 13px
+  &__size
+    font-size: 11px
+  &__color
+    height: 14px
+    width: 14px
+    border: 0.1px solid #828282
+  &__question
+    margin-bottom: 22px
+  &__index
+    margin-top: -20px
+    margin-bottom: 22px
+  &__delivery
+    margin-bottom: 25px
+    &-type
+      margin-bottom: 10px
+      display: flex
+      align-items: center
+    &-label
+      margin-left: 10px
+    &-check
+      cursor: pointer
+      width: 16px
+      height: 16px
+      border-radius: 100px
+      outline: 1px solid #d2d2d2
+      position: relative
+      &:after
+        content: ''
+        position: absolute
+        border-radius: 100px
+        left: 50%
+        top: 50%
+        width: 0
+        height: 0
+        transform: translateY(-50%) translateX(-50%)
+        background-color: #4f4f4f
+        transition: 0.4s all
+      &--active
+        &:after
+          width: 9px
+          height: 9px
+  &__total
+    margin-bottom: 32px
+    &-label
+      font-size: 12px
+      color: #828282
+      margin-bottom: 10px
+  &__checkboxes
+    margin-bottom: 30px

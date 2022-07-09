@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Cross from "../cross/cross.component";
 import search from '/public/icons/search.svg';
 import CustomInput from "../custom-input/custom-input.component";
 import {useSelector} from "react-redux";
@@ -36,10 +35,9 @@ const NavSearch: React.FC = () => {
         setInput(input)
     }
 
-
     return (
         <div className={`search ${hidden ? 'search--hidden' : ''}`}>
-            <Cross onClick={() => setHidden(true)}/>
+            {/*<div className='close' onClick={() => setHidden(true)}/>*/}
             <div className="search__title">
                 ПОШУК
             </div>

@@ -36,7 +36,9 @@ const Page = ({data}: any) => {
         //     </Link>
         // </div>
         <div className={'slider-page'}>
-            <CustomSlider elements={images}/>
+            <div className='slider-div'>
+                <CustomSlider elements={images}/>
+            </div>
         </div>
     )
 }
