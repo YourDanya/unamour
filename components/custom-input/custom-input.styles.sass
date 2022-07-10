@@ -12,16 +12,19 @@
     position: relative
     &:focus + .custom-input__placeholder
       visibility: hidden
-  &--present
+    border: #e0e0e0
+  &--cart
+    .custom-input__input
+      padding-bottom: 20px
+    .custom-input__placeholder
+      font-size: 12px
+  &--present, &--cart
     border-color: #e0e0e0
-    margin-bottom: 35px
     .custom-input__input
       &:focus + .custom-input__placeholder
         visibility: visible
       &:focus + .custom-input__input
         border-color: black
-    //.custom-input__placeholder--hidden
-    //  visibility: hidden!important
   &--sign
     margin-top: 25px
     .custom-input__input

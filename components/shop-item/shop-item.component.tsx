@@ -14,11 +14,10 @@ import ShopItemPreview from "../shop-item-preview/shop-item-preview.component";
 import {addItem} from "../../redux/cart/cart.slice";
 import Present from "../present/present.component";
 
-const ShopItem: React.FC<ShopItemObject['ua']> = ({
-                                                      name, color, otherColors, sizes, images,
-                                                      price, delivery, description, composition, parameters,
-                                                      isAvailable, category, slugCategory, oldPrice, slug
-                                                  }) => {
+const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
+
+    const {name, color, otherColors, sizes, images, price, delivery, description, composition, parameters,
+        isAvailable, category, slugCategory, oldPrice, slug} = props
 
     const dispatch = useDispatch()
 
@@ -85,7 +84,6 @@ const ShopItem: React.FC<ShopItemObject['ua']> = ({
     }
 
     const handleCartClick = () => {
-        console.log('handle cart click')
         if (activeSize) {
             dispatch(addItem({
                 name,

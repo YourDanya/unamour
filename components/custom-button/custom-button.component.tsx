@@ -1,14 +1,15 @@
 import React from "react";
 
 type customButtonProps = {
-    classes?: string[]
-    text: string
+    className?: string
+    text?: string
 }
 
-const CustomButton: React.FC<customButtonProps> = ({classes, text}) => {
+const CustomButton: React.FC<customButtonProps> = ({className, text, children}) => {
     return (
-        <button className={`custom-button ${classes?.join(' ')}`}>
+        <button className={`custom-button ${className}`}>
             {text}
+            {children}
         </button>
     )
 }

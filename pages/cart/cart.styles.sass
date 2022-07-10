@@ -1,0 +1,87 @@
+.cart
+  padding: 50px 0
+  max-width: 1160px
+  margin: 0 auto
+  display: flex
+  &__content
+    width: 57%
+    margin-right: 150px
+  &__order
+    width: calc(43% - 100px)
+    &-title
+      text-align: center
+      margin-bottom: 35px
+      font-size: 12px
+    &-properties
+      margin-bottom: 40px
+    &-property
+      margin-bottom: 20px
+      display: flex
+      justify-content: space-between
+    &-label
+      font-size: 12px
+    &-value
+      font-size: 12px
+    &-button
+      margin-bottom: 15px
+      &:hover
+        .cart__present-img
+          animation: 0.5s shake
+  &__policy
+    white-space: pre
+    text-align: center
+    font-size: 10px
+    color: #828282
+    line-height: 14px
+    &-link
+      font-size: 10px
+      color: #4f4f4f
+  &__present-img
+    position: relative
+    top: -2px
+    margin-left: 5px
+    height: 16px
+  &__title
+    width: 100%
+    font-size: 12px
+    margin-bottom: 30px
+  &__form
+    display: flex
+    flex-wrap: wrap
+  &__input
+    width: 100%
+    margin-bottom: 25px
+  &__country
+  &__city
+    width: calc(65% - 30px)
+    margin-right: 30px
+    margin-bottom: 40px
+  &__index
+    position: relative
+    width: 35%
+    &:after
+      z-index: 100
+      font-size: 10px
+      position: absolute
+      bottom: -30px
+      color: #828282
+      line-height: 12px
+      content: 'Введіть 00000, якщо у вашої країни немає індексу'
+  &__street
+    width: calc(60% - 40px)
+    margin-right: 20px
+  &__house
+    margin-right: 20px
+    width: 20%
+  &__apartment
+    width: 20%
+  &__name, &__email
+    margin-right: 15px
+    width: calc(50% - 15px)
+  &__surname, &__number
+    margin-left: 15px
+    width: calc(50% - 15px)
+  &__comment
+    width: 100%
+
+

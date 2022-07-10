@@ -7,7 +7,7 @@ type customInputProps = {
     placeholder: string
     name: string,
     value?: string,
-    classes?: string[]
+    className?: string
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string,
     grey?: boolean,
@@ -15,12 +15,11 @@ type customInputProps = {
     img?: React.ReactNode
 }
 
-const CustomInput: React.FC<customInputProps> = (
-    {img, value, onSubmit,
-        handleChange, placeholder, classes, ...otherProps}) => {
+const CustomInput: React.FC<customInputProps> = (props) => {
+    const {img, value, onSubmit, handleChange, placeholder, className, ...otherProps} = props
 
     return (
-        <div className= {`custom-input ${classes?.join(' ')}`}>
+        <div className= {`custom-input ${className}`}>
             <input
                 {...otherProps}
                 className={`custom-input__input`}

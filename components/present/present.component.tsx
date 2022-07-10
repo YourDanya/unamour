@@ -5,22 +5,23 @@ import CustomButton from "../custom-button/custom-button.component";
 
 type presentProps = {
     price: number,
-    modalActive: object & {present: boolean},
+    modalActive: object & { present: boolean },
     name: string,
     images: string[],
     setModalActive: (param: any) => void,
     activeSize: string,
-    color: object & {code: string}
+    color: object & { code: string }
 }
 
-const Present: React.FC<presentProps> = (
-    {price, name, modalActive, setModalActive, images, activeSize, color}) => {
+const Present: React.FC<presentProps> = (props) => {
 
-    const [deliveryType, setDeliveryType] = useState('novaPoshta')
+        const {price, name, modalActive, setModalActive, images, activeSize, color} = props
 
-    const handleDeliveryChange = (event: any) => {
-        setDeliveryType(event.target.value)
-    }
+        const [deliveryType, setDeliveryType] = useState('novaPoshta')
+
+        const handleDeliveryChange = (event: any) => {
+            setDeliveryType(event.target.value)
+        }
 
     return (
         <div className={`present modal-content ${modalActive.present ? 'modal-content--active' : ''}`}>
@@ -50,53 +51,118 @@ const Present: React.FC<presentProps> = (
                 <div className={'present__question'}>
                     КОМУ ВИ ХОЧЕТЕ ЗРОБИТИ ПОДАРУНОК?
                 </div>
-                <CustomInput classes={['custom-input--present']} placeholder={'Ім\'я отримувача'}
-                             name={'recName'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'Фамилия получателя'}
-                             name={'recSurname'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'E-mail отримувача'}
-                             name={'recEmail'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'Номер отримувача'}
-                             name={'recPhone'}/>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Ім\'я отримувача'}
+                        name={'recName'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Фамилия получателя'}
+                        name={'recSurname'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'E-mail отримувача'}
+                        name={'recEmail'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Номер отримувача'}
+                        name={'recPhone'}
+                    />
+                </div>
                 <div className={'present__question'}>ВІД КОГО</div>
-                <CustomInput classes={['custom-input--present']} placeholder={'Ім\'я відправника'}
-                             name={'sendName'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'E-mail відправника'}
-                             name={'sendEmail'}/>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Ім\'я відправника'}
+                        name={'sendName'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'E-mail відправника'}
+                        name={'sendEmail'}
+                    />
+                </div>
                 <div className={'present__question'}>КУДИ ВІДПРАВИТИ?</div>
-                <CustomInput classes={['custom-input--present']} placeholder={'Країна'} name={'country'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'Місто'} name={'city'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'Індекс'} name={'index'}/>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Країна'}
+                        name={'country'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Місто'}
+                        name={'city'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Індекс'}
+                        name={'index'}
+                    />
+                </div>
                 <div className={'present__index'}>Введіть 00000, якщо у вашої країни немає індексу</div>
-                <CustomInput classes={['custom-input--present']} placeholder={'Вулиця'} name={'street'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'Дім'} name={'house'}/>
-                <CustomInput classes={['custom-input--present']} placeholder={'Квартира, офіс'}
-                             name={'apartment'}/>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Вулиця'}
+                        name={'street'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Дім'}
+                        name={'house'}
+                    />
+                </div>
+                <div className='present__input'>
+                    <CustomInput
+                        className='custom-input--present'
+                        placeholder={'Квартира, офіс'}
+                        name={'apartment'}
+                    />
+                </div>
                 <div className={'present__question'}>ОБЕРІТЬ ДОСТАВКУ</div>
                 <div className={'present__delivery'}>
-                    <input className='radio-button'
-                           type="radio"
-                           value='novaPoshta'
-                           name="deliveryType"
-                           onChange={handleDeliveryChange}
-                           checked={deliveryType === 'novaPoshta'}
+                    <input
+                        className='radio-button'
+                        type="radio"
+                        value='novaPoshta'
+                        name="deliveryType"
+                        onChange={handleDeliveryChange}
+                        checked={deliveryType === 'novaPoshta'}
                     />
-                    <input className='radio-button'
-                           type="radio"
-                           value='ukrPoshta'
-                           name="deliveryType"
-                           onChange={handleDeliveryChange}
-                           checked={deliveryType === 'ukrPoshta'}
-                           style={{transform: 'translateY(26px)'}}
+                    <input
+                        className='radio-button'
+                        type="radio"
+                        value='ukrPoshta'
+                        name="deliveryType"
+                        onChange={handleDeliveryChange}
+                        checked={deliveryType === 'ukrPoshta'}
+                        style={{transform: 'translateY(26px)'}}
                     />
                     <div className='present__delivery-type'>
-                        <div className={`present__delivery-check 
-                                        ${deliveryType === 'novaPoshta' ? 'present__delivery-check--active' : ''}`}/>
+                        <div className={`present__delivery-check ${deliveryType === 'novaPoshta' ? 'present__delivery-check--active' : ''}`}/>
                         <div className="present__delivery-label">Кур'єр "Нової Пошти"</div>
                     </div>
                     <div className='present__delivery-type'>
-                        <div className={`present__delivery-check 
-                                        ${deliveryType === 'ukrPoshta' ? 'present__delivery-check--active' : ''}`}/>
+                        <div className={`present__delivery-check ${deliveryType === 'ukrPoshta' ? 'present__delivery-check--active' : ''}`}/>
                         <div className="present__delivery-label">Кур'єр "Укр Пошти"</div>
                     </div>
                 </div>
@@ -105,10 +171,10 @@ const Present: React.FC<presentProps> = (
                     <div className="present__total-label">Доставка: 0 ₴</div>
                 </div>
                 <div className={'present__checkboxes'}>
-                    <CustomCheckbox name={'Подарувати анонімно?'} classes={['checkbox--present']}/>
-                    <CustomCheckbox name={'Зробити сюрприз?'} classes={['checkbox--present']}/>
+                    <CustomCheckbox name={'Подарувати анонімно?'} className={'checkbox--present'}/>
+                    <CustomCheckbox name={'Зробити сюрприз?'} className={'checkbox--present'}/>
                 </div>
-                <CustomButton text={`СПЛАТИТИ ${price} ₴`} classes={['custom-button--present']}/>
+                <CustomButton text={`СПЛАТИТИ ${price} ₴`} className={'custom-button--present'}/>
             </div>
         </div>
     )

@@ -8,16 +8,16 @@ const Footer: React.FC = () => {
         <footer className={'footer'}>
             <div className="footer__social-section">
                 <div className="footer__social-items">
-                    <div className="footer__social-item">КОНТАКТЫ</div>
+                    <div className="footer__social-item">КОНТАКТИ</div>
                     <div className="footer__social-item">INSTAGRAM</div>
                     <div className="footer__social-item">WHATSAPP</div>
                     <div className="footer__social-item">TELEGRAM</div>
                 </div>
                 <div className="footer__social-subscription">
-                    <div className="footer__social-subscription-text">НОВОСТИ UNAMOUR</div>
+                    <div className="footer__social-subscription-text">НОВИНИ UNAMOUR</div>
                     <CustomInput
                         placeholder={'Email'}
-                        src={telegram.src}
+                        img={<img src={telegram.src}></img>}
                         onSubmit={() => {}}
                         name={'email'}
                     />
