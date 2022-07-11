@@ -3,10 +3,15 @@
   max-width: 1160px
   margin: 0 auto
   display: flex
+  position: relative
+  &__items
+    margin-bottom: 30px
   &__content
     width: 57%
     margin-right: 150px
   &__order
+    top: 50px
+    position: sticky
     width: calc(43% - 100px)
     &-title
       text-align: center
@@ -44,7 +49,7 @@
   &__title
     width: 100%
     font-size: 12px
-    margin-bottom: 30px
+    margin-bottom: 35px
   &__form
     display: flex
     flex-wrap: wrap
@@ -57,19 +62,21 @@
     margin-right: 30px
     margin-bottom: 40px
   &__index
+    margin-bottom: 40px
     position: relative
     width: 35%
     &:after
-      z-index: 100
+      z-index: 10
       font-size: 10px
       position: absolute
-      bottom: -30px
+      transform: translateY(5px)
       color: #828282
       line-height: 12px
       content: 'Введіть 00000, якщо у вашої країни немає індексу'
   &__street
     width: calc(60% - 40px)
     margin-right: 20px
+    margin-bottom: 40px
   &__house
     margin-right: 20px
     width: 20%
@@ -84,4 +91,14 @@
   &__comment
     width: 100%
 
+@media (max-width: 1200px)
+  .cart
 
+@media (max-width: 992px)
+  .cart
+
+@media (max-width: 768px)
+  .cart
+
+@media (max-width: 576px)
+  .cart

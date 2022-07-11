@@ -1,4 +1,4 @@
-import React, {MouseEventHandler, useState} from "react"
+import React, {useState} from "react"
 import {useSelector} from "react-redux"
 import {selectCartItems, selectTotalPrice} from "../../redux/cart/cart.slice"
 import CartItem from "../../components/cart-item/cart-item.component"
@@ -180,7 +180,7 @@ const Cart: React.FC<cartProps> = () => {
                             handleChange={handleInputChange}
                         />
                     </div>
-                    <CustomCheckbox name={'Зберегти інформацію для наступних покупок?'} className={'checkbox--check--cart'}/>
+                    <CustomCheckbox name={'Зберегти інформацію для наступних покупок?'} className={'checkbox--cart'}/>
                 </form>
             </div>
             <div className='cart__order'>

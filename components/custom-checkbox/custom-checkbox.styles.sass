@@ -2,25 +2,9 @@
   display: flex
   align-items: center
   cursor: pointer
-  &--cart
-    .checkbox
-      &__check
-        border-radius: 10px
-  &--present
-    margin-bottom: 12px
-    .checkbox
-      &__check
-        width: 16px
-        height: 16px
-        border: 1px solid #bdbdbd
-        &:before
-          width: 10px
-          height: 10px
-          background-color: transparent
-          background-image: url('../../public/icons/check-mark.svg')
-      &__label
-        font-size: 11px
+  position: relative
   &__check
+    cursor: pointer
     width: 18px
     height: 18px
     border: 1px solid #e0e0e0
@@ -40,39 +24,60 @@
       transform: translateY(-50%) translateX(-50%)
       opacity: 0
       transition: 0.4s opacity
+    &--focused
+      border: 2px solid black!important
+    &--checked
+      &:before
+        opacity: 1
   &__input
+    width: 16px
+    height: 16px
+    top: 50%
+    left: 50%
+    transform: translateY(-50%) translateX(-50%)
     opacity: 0
     margin: 0
     position: absolute
-    &:focus + .checkbox__check
-      border: 2px solid black
-    &:focus + .checkbox__color-check
-      border: 2px solid black
-    &:checked + .checkbox__check:before
-      opacity: 1
-    &:checked + .checkbox__color-check:before
-      opacity: 1
   &__label
     cursor: pointer
     margin-left: 10px
     font-size: 9px
-  &__color-check
-    position: relative
-    cursor: pointer
-    border: 1px solid #a6a5a5
-    width: 16px
-    height: 16px
-    border-radius: 100%
-    &:before
-      content: ''
-      display: block
-      width: 20.25px
-      height: 20.25px
-      border-radius: 50%
-      border: 1.5px solid #a2a2a0
-      position: absolute
-      top: 50%
-      left: 50%
-      transform: translateY(-50%) translateX(-50%)
-      opacity: 0
-      transition: 0.4s all
+  &--present, &--cart
+    margin-bottom: 12px
+    .checkbox
+      &__check
+        width: 16px
+        height: 16px
+        border: 1px solid #bdbdbd
+        &:before
+          width: 10px
+          height: 10px
+          background-color: transparent
+          background-image: url('../../public/icons/check-mark.svg')
+      &__label
+        font-size: 11px
+  &--cart
+    .checkbox
+      &__check
+        border: 1px solid #909090
+        border-radius: 5px
+  //&__color-check
+  //  position: relative
+  //  cursor: pointer
+  //  border: 1px solid #a6a5a5
+  //  width: 16px
+  //  height: 16px
+  //  border-radius: 100%
+  //  &:before
+  //    content: ''
+  //    display: block
+  //    width: 20.25px
+  //    height: 20.25px
+  //    border-radius: 50%
+  //    border: 1.5px solid #a2a2a0
+  //    position: absolute
+  //    top: 50%
+  //    left: 50%
+  //    transform: translateY(-50%) translateX(-50%)
+  //    opacity: 0
+  //    transition: 0.4s all

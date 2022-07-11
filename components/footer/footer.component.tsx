@@ -16,8 +16,9 @@ const Footer: React.FC = () => {
                 <div className="footer__social-subscription">
                     <div className="footer__social-subscription-text">НОВИНИ UNAMOUR</div>
                     <CustomInput
+                        className={'custom-input--footer'}
                         placeholder={'Email'}
-                        img={<img src={telegram.src}></img>}
+                        img={<img src={telegram.src}/>}
                         onSubmit={() => {}}
                         name={'email'}
                     />
