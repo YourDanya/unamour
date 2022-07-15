@@ -26,8 +26,6 @@ export type ElementContent =  Record<string, string | string[] | Object | Object
 
 export type InternContent = {ua: ElementContent, eng: ElementContent, ru: ElementContent}
 
-
 export type ComponentContent = {content: ElementContent}
 
-
-
+export type DeliveryType = {value: string, label: {title: string, price: string, duration: string}}

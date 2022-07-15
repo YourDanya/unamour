@@ -4,9 +4,9 @@ import Link from "next/link"
 import bookmark from '/public/icons/bookmark.svg'
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice"
 import presentImg from '/public/icons/present.svg'
-import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
+import CustomDropdown from "../common/custom-dropdown/custom-dropdown.component";
 import Modal from "../modal/modal.component";
-import CustomSlider from "../custom-slider/custom-slider.component";
+import CustomSlider from "../common/custom-slider/custom-slider.component";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {LocaleType} from "../../pages/shop-items/[[...slug]]";

@@ -1,16 +1,20 @@
-import '/components/custom-radio-button/custom-radio-button.styles.sass'
-import '/components/custom-form/custom-form.styles.sass'
-import '/components/present/present.styles.sass'
 import '../styles/home.sass'
 import '../styles/global.sass'
+import '/components/common/custom-range-slider/custom-range-slider.styles.sass'
+import '/components/common/custom-checkbox/custom-checkbox.styles.sass'
+import '/components/common/custom-dropdown/custom-dropdown.styles.sass'
+import '/components/common/custom-slider/custom-slider.styles.sass'
+import '/components/common/custom-radio-buttons/custom-radio-buttons.styles.sass'
+import '/components/common/custom-form/custom-form.styles.sass'
+import '/components/common/custom-button/custom-button.styles.sass'
+import '/components/common/custom-textarea/custom-textarea.styles.sass'
+import '/components/common/custom-input/custom-input.styles.sass'
 import '/components/cart-item/cart-item.styles.sass'
 import '/pages/search/search.styles.sass'
-import '/components/custom-slider/custom-slider.styles.sass'
 import '/pages/cart/cart.styles.sass'
+import '/components/discount/discount.styles.sass'
 import '/pages/admin/admin.styles.sass'
-import '/components/custom-range-slider/custom-range-slider.styles.sass'
-import '/components/custom-checkbox/custom-checkbox.styles.sass'
-import '/components/custom-dropdown/custom-dropdown.styles.sass'
+import '/components/present/present.styles.sass'
 import '/pages/client-service/ordering/ordering.styles.sass'
 import '/pages/client-service/order-tracking/order-tracking.styles.sass'
 import '/pages/client-service/privacy/privacy.styles.sass'
@@ -24,10 +28,7 @@ import '/pages/vacancies/vacancies.styles.sass'
 import '/pages/favorites/favorites.styles.sass'
 import '/components/client-service/client-service.styles.sass'
 import '/components/nav-menu/nav-menu.styles.sass'
-import '/components/custom-button/custom-button.styles.sass'
-import '/components/custom-textarea/custom-textarea.styles.sass'
 import '/components/modal/modal.styles.sass'
-import '/components/custom-input/custom-input.styles.sass'
 import '/components/sidebar/sidebar.styles.sass'
 import '/components/nav/nav.styles.sass'
 import '/components/shop-items/shop-items.styles.sass'
@@ -41,17 +42,19 @@ import '/components/map/map.styles.sass'
 import '/components/sign-in-up/sign-in-up.styles.sass'
 import '/components/sign-in-up/sign-in/sign-in.styles.sass'
 import '/components/sign-in-up/sign-up/sign-up.styles.sass'
+import '/components/cookie/cookies.styles.sass'
 
-import Nav from "../components/nav/nav.component";
-import Footer from "../components/footer/footer.component";
-import {AppPropsWithLayout} from "../types/types";
-import { wrapper} from "../redux/store";
-import {useRouter} from "next/router";
-import {useDispatch, useSelector} from "react-redux";
-import {selectShopItems} from "../redux/shop-items/shop-items.slice";
-import {fetchItems} from "../redux/shop-items/shop-items.thunk";
-import {LocaleType} from "./shop-items/[[...slug]]";
-import {useEffect} from "react";
+import Nav from "../components/nav/nav.component"
+import Footer from "../components/footer/footer.component"
+import {AppPropsWithLayout} from "../types/types"
+import { wrapper} from "../redux/store"
+import {useRouter} from "next/router"
+import {useDispatch, useSelector} from "react-redux"
+import {selectShopItems} from "../redux/shop-items/shop-items.slice"
+import {fetchItems} from "../redux/shop-items/shop-items.thunk"
+import {LocaleType} from "./shop-items/[[...slug]]"
+import {useEffect} from "react"
+import Cookie from "../components/cookie/cookie.component";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
     let getLayout = Component.getLayout ?? ((page) => page)
@@ -75,6 +78,7 @@ function MyApp({Component, pageProps}: AppPropsWithLayout) {
                 {getLayout(<Component {...pageProps}/>)}
             </div>
             <Footer/>
+            <Cookie/>
         </>
     )
 }

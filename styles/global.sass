@@ -83,10 +83,21 @@ p
   &--mr-5
     margin-right: 5px
 
+.close-btn
+  background-color: transparent
+  border: none
+  position: absolute
+  cursor: pointer
+  padding: 0
+  margin: 0
+  height: 20px
+
 .close
   height: 16px
   width: 16px
-  position: relative
+  background-color: transparent
+  border: none
+  position: absolute
   cursor: pointer
   z-index: 0
   &:after
@@ -94,16 +105,16 @@ p
     top: 50%
     width: 100%
     height: 1.4px
-    background-color: #555555
-    transform: translateY(-50%) rotate(45deg)
+    background-color: #838383
+    transform: translateY(-50%) translateX(-50%) rotate(45deg)
     content: ''
   &:before
     position: absolute
     top: 50%
     width: 100%
     height: 1.4px
-    background-color: #555555
-    transform: translateY(-50%) rotate(-45deg)
+    background-color: #838383
+    transform: translateY(-50%) translateX(-50%) rotate(-45deg)
     content: ''
   &--top-10
     top: 10px
@@ -167,3 +178,13 @@ p
     transform: translateX(-50%) translateY(-50%)
     content: ''
     background-color: black
+
+.delivery-type
+  margin-top: 10px
+  &__price
+    color: #828282
+    font-size: 12px
+  &__duration
+    margin-top: 5px
+    color: #828282
+    font-size: 12px

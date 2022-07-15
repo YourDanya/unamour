@@ -1,10 +1,8 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {ReactNode} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
-type clientServiceProps = {
-
-}
+type clientServiceProps = {}
 
 const urls = [
     {name: 'УХОД ЗА ОДЕЖДОЙ', url: 'clothing-care', className: 'service__link--first'},
@@ -21,25 +19,19 @@ const ClientService: React.FC<clientServiceProps> = ({children}) => {
 
     const router = useRouter()
 
-    const [counter, setCounter] = useState(0)
-
     return (
         <div className={'service'}>
             <div className="service__links">
-                {
-                    urls.map(({name, url, className}) =>
-                        <Link href={`/client-service/${url}`} key={name}>
-                            <a className={`service__link ${url === router.pathname ? 'service__link--active' : ''} ${className ?? ''}`}>
-                                {name}
-                            </a>
-                        </Link>
-                    )
-                }
+                {urls.map(({name, url, className}) =>
+                    <Link href={`/client-service/${url}`} key={name}>
+                        <a className={`service__link ${url === router.pathname ? 'service__link--active' : ''} ${className ?? ''}`}>
+                            {name}
+                        </a>
+                    </Link>
+                )}
             </div>
             <div className="service__page">
-                {
-                    children
-                }
+                {children}
             </div>
         </div>
     )

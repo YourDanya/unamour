@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import CustomInput from "../custom-input/custom-input.component";
-import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
-import CustomButton from "../custom-button/custom-button.component";
+import CustomInput from "../common/custom-input/custom-input.component";
+import CustomCheckbox from "../common/custom-checkbox/custom-checkbox.component";
+import CustomButton from "../common/custom-button/custom-button.component";
 
 type presentProps = {
     price: number,
@@ -15,13 +15,13 @@ type presentProps = {
 
 const Present: React.FC<presentProps> = (props) => {
 
-        const {price, name, modalActive, setModalActive, images, activeSize, color} = props
+    const {price, name, modalActive, setModalActive, images, activeSize, color} = props
 
-        const [deliveryType, setDeliveryType] = useState('novaPoshta')
+    const [deliveryType, setDeliveryType] = useState('novaPoshta')
 
-        const handleDeliveryChange = (event: any) => {
-            setDeliveryType(event.target.value)
-        }
+    const handleDeliveryChange = (event: any) => {
+        setDeliveryType(event.target.value)
+    }
 
     return (
         <div className={`present modal-content ${modalActive.present ? 'modal-content--active' : ''}`}>
@@ -53,28 +53,28 @@ const Present: React.FC<presentProps> = (props) => {
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Ім\'я отримувача'}
                         name={'recName'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Фамилия получателя'}
                         name={'recSurname'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'E-mail отримувача'}
                         name={'recEmail'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Номер отримувача'}
                         name={'recPhone'}
                     />
@@ -82,14 +82,14 @@ const Present: React.FC<presentProps> = (props) => {
                 <div className={'present__question'}>ВІД КОГО</div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Ім\'я відправника'}
                         name={'sendName'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'E-mail відправника'}
                         name={'sendEmail'}
                     />
@@ -97,21 +97,21 @@ const Present: React.FC<presentProps> = (props) => {
                 <div className={'present__question'}>КУДИ ВІДПРАВИТИ?</div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Країна'}
                         name={'country'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Місто'}
                         name={'city'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Індекс'}
                         name={'index'}
                     />
@@ -119,21 +119,21 @@ const Present: React.FC<presentProps> = (props) => {
                 <div className={'present__index'}>Введіть 00000, якщо у вашої країни немає індексу</div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Вулиця'}
                         name={'street'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Дім'}
                         name={'house'}
                     />
                 </div>
                 <div className='present__input'>
                     <CustomInput
-                        className='custom-input--present'
+                        className='input--present'
                         placeholder={'Квартира, офіс'}
                         name={'apartment'}
                     />
@@ -158,11 +158,13 @@ const Present: React.FC<presentProps> = (props) => {
                         style={{transform: 'translateY(26px)'}}
                     />
                     <div className='present__delivery-type'>
-                        <div className={`present__delivery-check ${deliveryType === 'novaPoshta' ? 'present__delivery-check--active' : ''}`}/>
+                        <div className={`present__delivery-check 
+                            ${deliveryType === 'novaPoshta' ? 'present__delivery-check--active' : ''}`}/>
                         <div className="present__delivery-label">Кур'єр "Нової Пошти"</div>
                     </div>
                     <div className='present__delivery-type'>
-                        <div className={`present__delivery-check ${deliveryType === 'ukrPoshta' ? 'present__delivery-check--active' : ''}`}/>
+                        <div className={`present__delivery-check 
+                            ${deliveryType === 'ukrPoshta' ? 'present__delivery-check--active' : ''}`}/>
                         <div className="present__delivery-label">Кур'єр "Укр Пошти"</div>
                     </div>
                 </div>

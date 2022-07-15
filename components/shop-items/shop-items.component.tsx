@@ -4,9 +4,9 @@ import WithIntern from "../hoc/with-intern/with-intern";
 import {ShopItemsContent} from "./shop-items.content";
 import {useRouter} from "next/router";
 import {mapList, removeFromArr} from "../../utils/component-utils";
-import CustomDropdown from "../custom-dropdown/custom-dropdown.component";
-import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
-import CustomRangeSlider from "../custom-range-slider/custom-range-slider.component";
+import CustomDropdown from "../common/custom-dropdown/custom-dropdown.component";
+import CustomCheckbox from "../common/custom-checkbox/custom-checkbox.component";
+import CustomRangeSlider from "../common/custom-range-slider/custom-range-slider.component";
 import {Property} from "csstype";
 import Position = Property.Position;
 

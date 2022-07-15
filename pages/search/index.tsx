@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {NextPage} from "next";
 import search from '/public/icons/search.svg';
-import CustomInput from "../../components/custom-input/custom-input.component";
+import CustomInput from "../../components/input/input.component";
 import {LocaleType} from "../shop-items/[[...slug]]";
 import {useSelector} from "react-redux";
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";

@@ -1,6 +1,7 @@
 import React, {MouseEventHandler, useState} from 'react'
 import Link from "next/link";
-import CustomInput from "../../custom-input/custom-input.component";
+import CustomInput from "../../common/custom-input/custom-input.component";
+import {useInput} from "../../../hooks/hooks";
 
 type setType = {
     email: string,
@@ -13,14 +14,7 @@ type propsType= {
 
 const SignIn: React.FC<propsType> = ({setSign}) => {
 
-    const [values, setValues] = useState<setType>({
-        email: '',
-        password: ''
-    })
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({...values, [event.target.name]: event.target.value})
-    }
+    const [values, handleChange] = useInput(['email', 'password'])
 
     return (
         <div className={'sign__content'}>
@@ -31,14 +25,18 @@ const SignIn: React.FC<propsType> = ({setSign}) => {
             <form className={'sign__form'}>
                 <CustomInput
                     placeholder={'Ваш e-mail'}
-                    classes={['custom-input--sign']}
+                    className={'input--sign'}
                     name={'email'}
-                    onTopChange={handleChange}/>
+                    value={values.email}
+                    handleChange={handleChange}
+                />
                 <CustomInput
                     placeholder={'Ваш пароль'}
-                    classes={['custom-input--sign']}
+                    className={'input--sign'}
                     name={'password'}
-                    onTopChange={handleChange}/>
+                    value={values.password}
+                    handleChange={handleChange}
+                />
                 <div className="sign__form-footer">
                     <button className="sign__form-button">ВОЙТИ</button>
                     <Link href={'/'}>

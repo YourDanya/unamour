@@ -54,8 +54,13 @@
     display: flex
     flex-wrap: wrap
   &__input
+    align-self: flex-start
     width: 100%
     margin-bottom: 25px
+    padding-bottom: 20px
+    .input__error
+    .input__placeholder
+      font-size: 12px
   &__country
   &__city
     width: calc(65% - 30px)
@@ -66,17 +71,21 @@
     position: relative
     width: 35%
     &:after
-      z-index: 10
       font-size: 10px
       position: absolute
-      transform: translateY(5px)
+      height: 40px
+      bottom: -40px
+      display: flex
+      align-items: center
       color: #828282
       line-height: 12px
       content: 'Введіть 00000, якщо у вашої країни немає індексу'
+  &__delivery
+    width: 100%
   &__street
     width: calc(60% - 40px)
     margin-right: 20px
-    margin-bottom: 40px
+    margin-bottom: 50px
   &__house
     margin-right: 20px
     width: 20%

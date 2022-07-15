@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 import {fetchItems} from "../../redux/shop-items/shop-items.thunk";
-import CustomInput from "../../components/custom-input/custom-input.component";
+import CustomInput from "../../components/input/input.component";
 
 type adminProps = {}
 

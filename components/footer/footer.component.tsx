@@ -1,6 +1,6 @@
 import React from 'react'
 import telegram from '/public/icons/telegram.svg'
-import CustomInput from "../custom-input/custom-input.component";
+import CustomInput from "../common/custom-input/custom-input.component"
 
 const Footer: React.FC = () => {
 
@@ -15,13 +15,9 @@ const Footer: React.FC = () => {
                 </div>
                 <div className="footer__social-subscription">
                     <div className="footer__social-subscription-text">НОВИНИ UNAMOUR</div>
-                    <CustomInput
-                        className={'custom-input--footer'}
-                        placeholder={'Email'}
-                        img={<img src={telegram.src}/>}
-                        onSubmit={() => {}}
-                        name={'email'}
-                    />
+                    <CustomInput className={'input--footer'} placeholder={'Email'} name={'email'}>
+                        <img src={telegram.src}/>
+                    </CustomInput>
                 </div>
             </div>
             <div className="footer__copyright-section">

@@ -1,0 +1,37 @@
+.discount
+  display: flex
+  justify-content: space-between
+  margin-bottom: 35px
+  &__certificate
+    width: 48%
+  &__input
+    .input__input
+      padding-right: 100px
+  &__apply
+    border: none
+    background: transparent
+    cursor: pointer
+    padding: 0
+  &__button
+    border-radius: 3px
+    cursor: pointer
+    background-color: #f5f4f4
+    border: none
+    width: 100%
+    height: 40px
+    font-size: 9px
+    position: relative
+    &:after
+      content: ''
+      position: absolute
+      height: 100%
+      width: 100%
+      top: 0
+      left: 0
+      border-radius: inherit
+      opacity: 0
+      background: linear-gradient(transparent 96%, #828282 96%)
+      transition: 0.4s opacity
+    &:hover
+      &:after
+        opacity: 1

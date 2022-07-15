@@ -1,20 +1,24 @@
-import React, {useState} from 'react'
+import React from 'react'
+import useCookie from "./cookie.hook"
+import close from './../../public/icons/close.svg'
 
-const CookieComponent: React.FC = () => {
-
-    const [hidden, setHidden] = useState(false)
-
+const Cookie: React.FC = () => {
+    
+    const {hidden, handleClick} = useCookie()
+    
     return (
-        <div className={`cookies-warning cookies-waring__mane`}>
-            <div className={`cookies-warning__elements ${hidden? 'cookies-warning__elements': ''}`}>
-                <div className="cookies-warning__title">COOKIE</div>
-                <div className="cookies-warning__text">
-                    Продолжая пользование сайтом, вы соглашаетесь с использованием файлов cookie.
+        <div className={`cookie ${hidden ? 'cookie__hidden' : ''}`}>
+            <div className='cookie__content'>
+                <div className="cookie__title">COOKIE</div>
+                <div className="cookie__text">
+                    {'Продовжуючи користування сайтом, ви погоджуєтесь із використанням\nфайлів cookie.'}
                 </div>
-                <div className='close' onClick={() => setHidden(true)}/>
+                <button className='close-btn cookie__close' onClick={handleClick}>
+                    <img src={close.src}/>
+                </button>
             </div>
         </div>
     )
 }
 
-export default CookieComponent
+export default Cookie

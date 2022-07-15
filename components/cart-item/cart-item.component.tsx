@@ -1,20 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import {CartItemObject, decreaseQuantity, increaseQuantity, removeItem} from "../../redux/cart/cart.slice";
-import {useDispatch} from "react-redux";
+import {CartItemObject} from "../../redux/cart/cart.slice";
+import useCartItem from "./cart-item.hook";
 
-const CartItem: React.FC<CartItemObject> = ({data: {name, category, slug, slugCategory, price, images, size, color}, quantity}) => {
-    const dispatch = useDispatch()
+const CartItem: React.FC<CartItemObject> = (props) => {
 
-    const increase = () => {
-        dispatch(increaseQuantity({slug, size}))
-    }
-    const decrease = () => {
-        dispatch(decreaseQuantity({slug, size}))
-    }
-    const remove= () => {
-        dispatch(removeItem({slug, size}))
-    }
+    const {data: {name, category, slug, slugCategory, price, images, size, color}, quantity,
+        increase, decrease, remove} = useCartItem(props)
 
     return (
         <div className={'cart-item'} key={name}>
@@ -32,7 +24,7 @@ const CartItem: React.FC<CartItemObject> = ({data: {name, category, slug, slugCa
                     <div className='cart-item__property'>
                         <div className='cart-item__property-label'>Колір</div>
                         <div className='cart-item__property-value'>
-                            <div className='cart-item__color' style={{backgroundColor: 'black'}}/>
+                            <div className='cart-item__color' style={{backgroundColor: color.code}}/>
                         </div>
                     </div>
                     <div className='cart-item__property'>

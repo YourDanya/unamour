@@ -1,18 +1,10 @@
 import React, {useState} from "react";
 import Link from "next/link";
-import {ClickList, LinkList} from "../types/types";
+import {ClickList, DeliveryType, LinkList} from "../types/types";
 
 export const getClasses = (arr: string[] | undefined) => arr?.join(' ') || ''
 
-export const removeFromArr = (arr: any[], value: any) => {
-    const index = arr.indexOf(value)
-    if (index > -1) {
-        arr.splice(index, 1)
-    }
-    return arr
-}
-
-export const shouldClass = (className: string, condition: boolean) : string => condition ? className : ''
+export const toggleClass = (className: string, condition: boolean): string => condition ? className : ''
 
 export const mapList = (
     arr: any [],
@@ -45,7 +37,7 @@ export const mapList = (
             // map list of div with onclick
             mapArr =
                 arr.map(({text, id, param}) => (
-                    <div className={`${elemClass} ${active===param? activeClass: ''}`}
+                    <div className={`${elemClass} ${active === param ? activeClass : ''}`}
                          key={id ?? text}
                          onClick={() => handleClick(param)}>
                         {text}
@@ -83,3 +75,16 @@ export const mapList = (
     return render()
 }
 
+export const createDelivery = (deliveryTypes: DeliveryType[]) => deliveryTypes.map(elem => {
+    const {value, label: {title, price, duration}} = elem
+    return {
+        value: value,
+        label: title,
+        node: (
+            <div className='delivery-type'>
+                <div className='delivery-type__price'>{price}</div>
+                <div className='delivery-type__duration'>{duration}</div>
+            </div>
+        )
+    }
+})

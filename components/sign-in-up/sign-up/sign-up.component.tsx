@@ -1,7 +1,8 @@
 import React, {MouseEventHandler, useState} from 'react'
-import Link from "next/link";
-import {AiOutlineGoogle, FaFacebookF} from "react-icons/all";
-import CustomInput from "../../custom-input/custom-input.component";
+import Link from "next/link"
+import {AiOutlineGoogle, FaFacebookF} from "react-icons/all"
+import CustomInput from "../../common/custom-input/custom-input.component"
+import {useInput} from "../../../hooks/hooks"
 
 type setType = {
     email: string,
@@ -16,13 +17,6 @@ type propsType = {
 
 const SignUp: React.FC<propsType> = ({setSign}) => {
 
-    const [values, setValues] = useState<setType>({
-        email: '',
-        name: '',
-        password: '',
-        passwordConfirm: ''
-    })
-
     const [errors, setErrors] = useState<setType>({
         email: '',
         name: '',
@@ -30,10 +24,8 @@ const SignUp: React.FC<propsType> = ({setSign}) => {
         passwordConfirm: ''
     })
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({...values, [event.target.name]: event.target.value})
-    }
-
+    const [values, handleChange] = useInput(['email', 'name', 'password', 'passwordConfirm'] as const )
+    
     return (
         <div className={'sign__content'}>
             <div className="sign__content-top">
@@ -42,25 +34,25 @@ const SignUp: React.FC<propsType> = ({setSign}) => {
             </div>
             <form className={'sign__form'}>
                 <CustomInput
-                    className={'custom-input--sign'}
+                    className={'input--sign'}
                     placeholder={'Имя'}
                     name={'name'}
                     error={errors.name}
                 />
                 <CustomInput
-                    className={'custom-input--sign'}
+                    className={'input--sign'}
                     placeholder={'Ваш e-mail'}
                     name={'email'}
                     error={errors.email}
                 />
                 <CustomInput
-                    className={'custom-input--sign'}
+                    className={'input--sign'}
                     placeholder={'Пароль'}
                     name={'password'}
                     error={errors.password}
                 />
                 <CustomInput
-                    className={'custom-input--sign'}
+                    className={'input--sign'}
                     placeholder={'Подтверждение пароля'}
                     name={'passwordConfirm'}
                     error={errors.password}

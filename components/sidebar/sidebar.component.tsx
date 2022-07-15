@@ -9,9 +9,8 @@ type sidebarProps = {
     children: React.ReactNode
 }
 
-const Sidebar: React.FC<sidebarProps> = (
-    {left, children, active, hideModal, top, hideTopNav}) => {
-
+const Sidebar: React.FC<sidebarProps> = (props) => {
+    const {left, children, active, hideModal, top, hideTopNav} = props
     return (
         <>
             {/*<div className={`sidebar ${active ? 'sidebar--active' : ''}`} onClick={() => setActive(false)}/>*/}

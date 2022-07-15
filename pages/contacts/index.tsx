@@ -1,10 +1,13 @@
 import React from 'react'
-import MapComponent from "../../components/map/map.component";
-import CustomInput from "../../components/custom-input/custom-input.component";
-import CustomTextarea from "../../components/custom-textarea/custom-textarea.component";
-import CustomButton from "../../components/custom-button/custom-button.component";
+import MapComponent from "../../components/map/map.component"
+import CustomInput from "../../components/common/custom-input/custom-input.component"
+import CustomTextarea from "../../components/common/custom-textarea/custom-textarea.component"
+import CustomButton from "../../components/common/custom-button/custom-button.component"
+import {useInput} from "../../hooks/hooks"
 
 const ContactComponent: React.FC = () => {
+
+    const [values, handleChange] = useInput(['name', 'number', 'email'] as const)
 
     return (
         <div className={'contacts'}>
@@ -22,18 +25,24 @@ const ContactComponent: React.FC = () => {
                         <div className="contacts__form-title">ОБРАТНАЯ СВЯЗЬ</div>
                         <CustomInput
                             name={'name'}
+                            value={values.name}
                             placeholder={'Имя'}
-                            classes={['custom-input--contact']}/>
+                            className={'input--contact'}
+                        />
                         <CustomInput
-                            name={'phone'}
+                            name={'number'}
+                            value={values.number}
                             placeholder={'Телефон'}
-                            classes={['custom-input--contact']}/>
+                            className={'input--contact'}
+                        />
                         <CustomInput
                             name={'email'}
+                            value={values.email}
                             placeholder={'Эл. почта'}
-                            classes={['custom-input--contact']}/>
+                            className={'input--contact'}
+                        />
                         <CustomTextarea name={'name'} placeholder={'Сообщение'}/>
-                        <CustomButton text={'ОТПРАВИТЬ'} classes={['contacts__form-button']}/>
+                        <CustomButton text={'ОТПРАВИТЬ'} className={'contacts__form-button'}/>
                         <div className="contacts__footnote">
                             Нажимая кнопку Отправить, я даю согласие на обработку и передачу моих персональных данных
                         </div>

@@ -1,0 +1,43 @@
+.radio-group
+  &__elem
+    margin-bottom: 30px
+    display: grid
+    grid-template-columns: auto auto
+    column-gap: 8px
+    align-items: center
+    justify-content: start
+  &__button
+    align-self: center
+    justify-self: center
+    width: 16px
+    height: 16px
+    border-radius: 50px
+    outline: 1px solid #d2d2d2
+    position: relative
+    &:after
+      content: ''
+      position: absolute
+      border-radius: 100px
+      left: 50%
+      top: 50%
+      width: 0
+      height: 0
+      transform: translateY(-50%) translateX(-50%)
+      background-color: #4f4f4f
+      transition: 0.4s all
+    &--active
+      &:after
+        width: 9px
+        height: 9px
+  &__node
+    grid-column: 2
+  &__input
+    cursor: pointer
+    margin: 0
+    position: absolute
+    width: 16px
+    height: 16px
+    top: 0
+    left: 0
+    opacity: 0
+  &__label
