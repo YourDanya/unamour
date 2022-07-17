@@ -1,19 +1,19 @@
 import React from "react"
 
-
-type customRadioButtonProps = {
+type RadioButtonProps = {
     inputs: { value: string, label: string, node?: React.ReactNode }[]
     handleChange: (event: React.ChangeEvent) => void,
     active: string,
-    name: string
+    name: string,
+    className?: string
 }
 
-const CustomRadioButtons: React.FC<customRadioButtonProps> = (props) => {
+const RadioButtons: React.FC<RadioButtonProps> = (props) => {
 
-    const {inputs, handleChange, active, name} = props
+    const {inputs, handleChange, active, name, className} = props
 
     return (
-        <div className='radio-group'>
+        <div className={`radio-group ${className ?? ''}`}>
             {inputs.map(({value, label, node}) => (
                     <div className='radio-group__elem' key={value}>
                         <div className={`radio-group__button ${active === value ? 'radio-group__button--active' : ''}`}>
@@ -37,4 +37,4 @@ const CustomRadioButtons: React.FC<customRadioButtonProps> = (props) => {
     )
 }
 
-export default CustomRadioButtons
+export default RadioButtons

@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 
-type customDropdownProps = {
+type DropdownProps = {
     name: string,
     content: React.ReactNode,
     plus?: boolean
 }
 
-const CustomDropdown: React.FC<customDropdownProps> = ({name, content, plus}) => {
+const Dropdown: React.FC<DropdownProps> = ({name, content, plus}) => {
     const [show, setShow] = useState(false)
 
     return (
@@ -36,4 +36,4 @@ const CustomDropdown: React.FC<customDropdownProps> = ({name, content, plus}) =>
     )
 }
 
-export default CustomDropdown
+export default Dropdown

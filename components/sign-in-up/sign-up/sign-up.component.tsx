@@ -1,7 +1,7 @@
 import React, {MouseEventHandler, useState} from 'react'
 import Link from "next/link"
 import {AiOutlineGoogle, FaFacebookF} from "react-icons/all"
-import CustomInput from "../../common/custom-input/custom-input.component"
+import Input from "../../common/input/input.component"
 import {useInput} from "../../../hooks/hooks"
 
 type setType = {
@@ -33,25 +33,25 @@ const SignUp: React.FC<propsType> = ({setSign}) => {
                 <div className="sign__content-link" onClick={setSign}>ВХОД</div>
             </div>
             <form className={'sign__form'}>
-                <CustomInput
+                <Input
                     className={'input--sign'}
                     placeholder={'Имя'}
                     name={'name'}
                     error={errors.name}
                 />
-                <CustomInput
+                <Input
                     className={'input--sign'}
                     placeholder={'Ваш e-mail'}
                     name={'email'}
                     error={errors.email}
                 />
-                <CustomInput
+                <Input
                     className={'input--sign'}
                     placeholder={'Пароль'}
                     name={'password'}
                     error={errors.password}
                 />
-                <CustomInput
+                <Input
                     className={'input--sign'}
                     placeholder={'Подтверждение пароля'}
                     name={'passwordConfirm'}

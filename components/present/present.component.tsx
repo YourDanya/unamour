@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import CustomInput from "../common/custom-input/custom-input.component";
-import CustomCheckbox from "../common/custom-checkbox/custom-checkbox.component";
-import CustomButton from "../common/custom-button/custom-button.component";
+import React, {useState} from "react"
+import Input from "../common/input/input.component"
+import Checkbox from "../common/checkbox/checkbox.component"
+import Button from "../common/button/button.component"
 
 type presentProps = {
     price: number,
@@ -52,28 +52,28 @@ const Present: React.FC<presentProps> = (props) => {
                     КОМУ ВИ ХОЧЕТЕ ЗРОБИТИ ПОДАРУНОК?
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Ім\'я отримувача'}
                         name={'recName'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Фамилия получателя'}
                         name={'recSurname'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'E-mail отримувача'}
                         name={'recEmail'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Номер отримувача'}
                         name={'recPhone'}
@@ -81,14 +81,14 @@ const Present: React.FC<presentProps> = (props) => {
                 </div>
                 <div className={'present__question'}>ВІД КОГО</div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Ім\'я відправника'}
                         name={'sendName'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'E-mail відправника'}
                         name={'sendEmail'}
@@ -96,21 +96,21 @@ const Present: React.FC<presentProps> = (props) => {
                 </div>
                 <div className={'present__question'}>КУДИ ВІДПРАВИТИ?</div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Країна'}
                         name={'country'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Місто'}
                         name={'city'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Індекс'}
                         name={'index'}
@@ -118,21 +118,21 @@ const Present: React.FC<presentProps> = (props) => {
                 </div>
                 <div className={'present__index'}>Введіть 00000, якщо у вашої країни немає індексу</div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Вулиця'}
                         name={'street'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Дім'}
                         name={'house'}
                     />
                 </div>
                 <div className='present__input'>
-                    <CustomInput
+                    <Input
                         className='input--present'
                         placeholder={'Квартира, офіс'}
                         name={'apartment'}
@@ -173,10 +173,12 @@ const Present: React.FC<presentProps> = (props) => {
                     <div className="present__total-label">Доставка: 0 ₴</div>
                 </div>
                 <div className={'present__checkboxes'}>
-                    <CustomCheckbox name={'Подарувати анонімно?'} className={'checkbox--present'}/>
-                    <CustomCheckbox name={'Зробити сюрприз?'} className={'checkbox--present'}/>
+                    {/*<Checkbox label={'Подарувати анонімно?'} className={'checkbox--present'}/>*/}
+                    {/*<Checkbox label={'Зробити сюрприз?'} className={'checkbox--present'}/>*/}
                 </div>
-                <CustomButton text={`СПЛАТИТИ ${price} ₴`} className={'custom-button--present'}/>
+                <Button className={'button--present'}>
+                    {`СПЛАТИТИ ${price} ₴`}
+                </Button>
             </div>
         </div>
     )

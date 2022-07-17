@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import search from '/public/icons/search.svg';
-import CustomInput from "../common/custom-input/custom-input.component";
+import Input from "../common/input/input.component";
 import {useSelector} from "react-redux";
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 import {useRouter} from "next/router";
@@ -42,13 +42,13 @@ const NavSearch: React.FC = () => {
                 ПОШУК
             </div>
             <div className='search__input'>
-                <CustomInput placeholder={'Знайти'}
+                <Input placeholder={'Знайти'}
                              value={input}
                              name={'search'}
                              handleChange={onChange}
                 >
                     <img className={'search__icon'} src={search.src} alt={'search icon'}/>
-                </CustomInput>
+                </Input>
             </div>
             {searchItems.length > 0 ? (
                 <div className="search__results">

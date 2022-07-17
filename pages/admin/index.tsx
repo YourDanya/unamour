@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 import {fetchItems} from "../../redux/shop-items/shop-items.thunk";
-import CustomInput from "../../components/input/input.component";
 
 type adminProps = {}
 
@@ -111,7 +110,6 @@ const AdminItem: React.FC<adminItem> = ({item}) => {
 
     return (
         <div className={'admin__item'}>
-
             /////////////////name///////////////////////////
             <div className="admin__item-prop">
                 <div className={'admin__input-block'}>
@@ -211,13 +209,13 @@ const AdminItem: React.FC<adminItem> = ({item}) => {
             /////////////////////images//////////
             <div className="admin__item-prop">
                 {/*<div className={'admin__input-block'}>*/}
-                {/*    ua <CustomInput name={'categoryUa'} placeholder={'Категорія укр'}/>*/}
+                {/*    ua <Input name={'categoryUa'} placeholder={'Категорія укр'}/>*/}
                 {/*</div>*/}
                 {/*<div className={'admin__input-block'}>*/}
-                {/*    eng <CustomInput name={'categoryEng'} placeholder={'Категорія анг'}/>*/}
+                {/*    eng <Input name={'categoryEng'} placeholder={'Категорія анг'}/>*/}
                 {/*</div>*/}
                 {/*<div className={'admin__input-block'}>*/}
-                {/*    ru <CustomInput name={'categoryUa'} placeholder={'Категорія рос'}/>*/}
+                {/*    ru <Input name={'categoryUa'} placeholder={'Категорія рос'}/>*/}
                 {/*</div>*/}
                 <button className={''}>
                     Додати поля для введення
@@ -316,15 +314,15 @@ const AdminItem: React.FC<adminItem> = ({item}) => {
 }
 
 const Admin: React.FC<adminProps> = () => {
-    const fetchedItems: ShopItemObject[] = useSelector(selectShopItems)
+    // const fetchedItems: ShopItemObject[] = useSelector(selectShopItems)
     const [items, setItems] = useState<ShopItemObject[] | null>(null)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (fetchedItems.length > 0) setItems(fetchedItems)
-    }, [fetchedItems])
-
-    dispatch(fetchItems)
+    // useEffect(() => {
+    //     if (fetchedItems.length > 0) setItems(fetchedItems)
+    // }, [fetchedItems])
+    //
+    // dispatch(fetchItems)
 
     return (<>
         {

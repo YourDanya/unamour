@@ -4,7 +4,7 @@ import {useToggle} from "../../../hooks/hooks";
 type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
 
-type customInputProps = {
+type InputProps = {
     placeholder: string
     name: string,
     value?: string,
@@ -14,15 +14,13 @@ type customInputProps = {
     onSubmit?: (param: string) => void,
 }
 
-const CustomInput: React.FC<customInputProps> = (props) => {
+const Input: React.FC<InputProps> = (props) => {
     const {value, onSubmit, handleChange, placeholder, className, children, error, ...otherProps} = props
 
     const [focused, handleFocus] = useToggle()
 
-    console.log(value)
-
     return (
-        <div className={`input ${className}`}>
+        <div className={`input ${className ?? ''}`}>
             <div className='input__main'>
                 <input
                     onBlur={handleFocus}
@@ -50,4 +48,4 @@ const CustomInput: React.FC<customInputProps> = (props) => {
     )
 }
 
-export default CustomInput
+export default Input

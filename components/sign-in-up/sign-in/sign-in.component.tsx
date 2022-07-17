@@ -1,6 +1,6 @@
 import React, {MouseEventHandler, useState} from 'react'
 import Link from "next/link";
-import CustomInput from "../../common/custom-input/custom-input.component";
+import Input from "../../common/input/input.component";
 import {useInput} from "../../../hooks/hooks";
 
 type setType = {
@@ -23,14 +23,14 @@ const SignIn: React.FC<propsType> = ({setSign}) => {
                 <div className="sign__content-link" onClick={setSign}>РЕГИСТРАЦИЯ</div>
             </div>
             <form className={'sign__form'}>
-                <CustomInput
+                <Input
                     placeholder={'Ваш e-mail'}
                     className={'input--sign'}
                     name={'email'}
                     value={values.email}
                     handleChange={handleChange}
                 />
-                <CustomInput
+                <Input
                     placeholder={'Ваш пароль'}
                     className={'input--sign'}
                     name={'password'}

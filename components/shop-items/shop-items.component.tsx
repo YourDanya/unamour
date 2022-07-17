@@ -3,12 +3,13 @@ import React, {useEffect, useRef, useState} from "react";
 import WithIntern from "../hoc/with-intern/with-intern";
 import {ShopItemsContent} from "./shop-items.content";
 import {useRouter} from "next/router";
-import {mapList, removeFromArr} from "../../utils/component-utils";
-import CustomDropdown from "../common/custom-dropdown/custom-dropdown.component";
-import CustomCheckbox from "../common/custom-checkbox/custom-checkbox.component";
-import CustomRangeSlider from "../common/custom-range-slider/custom-range-slider.component";
+import {mapList} from "../../utils/component-utils";
+import Dropdown from "../common/dropdown/dropdown.component";
+import Checkbox from "../common/checkbox/checkbox.component";
+import RangeSlider from "../common/range-slider/range-slider.component";
 import {Property} from "csstype";
 import Position = Property.Position;
+import {removeFromArr} from "../../utils/main-utils";
 
 type shopItemsProps = {}
 
@@ -79,7 +80,7 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
 
         // console.log('difference', scrollY + viewPort - menuHeight - positionRef.current.top2)
 
-        const rect= divRef.current?.getBoundingClientRect()
+        const rect= divRef.current?.getBoundingClientRect() as DOMRect
 
         console.log('\n')
         for (let prop in rect) {
@@ -156,7 +157,7 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                         'shop-items__menu-item'
                     )}
                     <div className='shop-items__filters'>
-                        <CustomDropdown
+                        <Dropdown
                             name={content.filter1}
                             content={
                                 mapList(
@@ -170,7 +171,7 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                                 )
                             }
                         />
-                        <CustomDropdown
+                        <Dropdown
                             name={content.filter2}
                             content={
                                 <div className={'shop-items__price'}>
@@ -198,11 +199,11 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                                         />
                                         <div className={'shop-items__price-currency'}>₴</div>
                                     </div>
-                                    <CustomRangeSlider/>
+                                    <RangeSlider/>
                                 </div>
                             }
                         />
-                        <CustomDropdown
+                        <Dropdown
                             name={content.filter3}
                             content={
                                 mapList(
@@ -210,11 +211,11 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                                     'shop-items__filter shop-items__sizes',
                                     'shop-items__size',
                                     handleColorClick,
-                                    CustomCheckbox
+                                    Checkbox
                                 )
                             }
                         />
-                        <CustomDropdown
+                        <Dropdown
                             name={content.filter4}
                             content={
                                 mapList(
@@ -222,7 +223,7 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                                     'shop-items__colors',
                                     'shop-items__color',
                                     handleSizeClick,
-                                    CustomCheckbox
+                                    Checkbox
                                 )
                             }
                         />

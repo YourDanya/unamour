@@ -2,7 +2,7 @@ import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import {increment, selectCounterValue} from "../../redux/counter/counter.slice";
 import {wrapper} from "../../redux/store";
-import CustomSlider from "../../components/common/custom-slider/custom-slider.component";
+import Slider from "../../components/common/slider/slider.component";
 
 export const getServerSideProps = wrapper.getServerSideProps(
     (store) =>
@@ -37,7 +37,7 @@ const Page = ({data}: any) => {
         // </div>
         <div className={'slider-page'}>
             <div className='slider-div'>
-                <CustomSlider elements={images}/>
+                <Slider elements={images}/>
             </div>
         </div>
     )

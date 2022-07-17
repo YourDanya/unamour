@@ -2,15 +2,13 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {NextPage} from "next";
 import search from '/public/icons/search.svg';
-import CustomInput from "../../components/input/input.component";
+import Input from "../../components/common/input/input.component"
 import {LocaleType} from "../shop-items/[[...slug]]";
 import {useSelector} from "react-redux";
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 import ShopItemPreview from "../../components/shop-item-preview/shop-item-preview.component";
 
-type SearchProps = {
-
-}
+type SearchProps = {}
 
 const SearchPage: NextPage<SearchProps> = () => {
 
@@ -38,17 +36,19 @@ const SearchPage: NextPage<SearchProps> = () => {
             <div className="search-page__top">
                 <div className='search-page__title'>РЕЗУЛЬТАТИ ПОШУКУ</div>
                 <div className='search-page__input'>
-                    <CustomInput placeholder={'Знайти'}
-                                 value={input}
-                                 name={'search'}
-                                 handleChange={onChange}
-                                 img={<img className={'search__icon'} src={search.src} alt={'search icon'}/>}
-                    />
+                    <Input
+                        placeholder={'Знайти'}
+                        value={input}
+                        name={'search'}
+                        handleChange={onChange}
+                    >
+                        <img className={'search__icon'} src={search.src} alt={'search icon'}/>
+                    </Input>
                 </div>
             </div>
             <div className='search-page__results'>
                 {searchItems.map((item, index) =>
-                    <div className="search-page__item" key={item.slug+1}>
+                    <div className="search-page__item" key={item.slug + 1}>
                         <ShopItemPreview {...item}/>
                     </div>
                 )}

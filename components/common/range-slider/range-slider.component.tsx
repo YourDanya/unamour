@@ -1,10 +1,10 @@
 import React, {RefObject, useRef, useState} from "react";
 
-interface customRangeSliderProps {
+interface RangeSliderProps {
     setState?: () => {}
 }
 
-const CustomRangeSlider: React.FC<customRangeSliderProps> = ({}) => {
+const RangeSlider: React.FC<RangeSliderProps> = ({}) => {
 
     // const [sliderValue, setSliderValue] = useState(
     //     {
@@ -198,4 +198,4 @@ const CustomRangeSlider: React.FC<customRangeSliderProps> = ({}) => {
     )
 }
 
-export default CustomRangeSlider
+export default RangeSlider

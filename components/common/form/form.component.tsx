@@ -1,5 +1,5 @@
 import React from "react"
-import CustomInput from "../custom-input/custom-input.component"
+import Input from "../input/input.component"
 
 type FormElement = {
     type: 'input' | 'check' | 'radio' | string,
@@ -9,18 +9,18 @@ type FormElement = {
     value: string
 }
 
-type customFormProps = {
+type FormProps = {
     elements: FormElement[],
     handleChange : () => void,
     values: any
 }
 
-const CustomForm: React.FC<customFormProps> = ({elements, handleChange, values}) => {
+const Form: React.FC<FormProps> = ({elements, handleChange, values}) => {
     const layout = elements.map(({type, className, name, placeholder}, index) => {
         if (type === 'input') {
             return (
                 <div className={className} key={index}>
-                        <CustomInput
+                        <Input
                             placeholder={placeholder}
                             name={name}
                             handleChange={handleChange}
@@ -53,4 +53,4 @@ const CustomForm: React.FC<customFormProps> = ({elements, handleChange, values})
     )
 }
 
-export default CustomForm
+export default Form

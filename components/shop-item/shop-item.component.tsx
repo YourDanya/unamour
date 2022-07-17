@@ -4,9 +4,9 @@ import Link from "next/link"
 import bookmark from '/public/icons/bookmark.svg'
 import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice"
 import presentImg from '/public/icons/present.svg'
-import CustomDropdown from "../common/custom-dropdown/custom-dropdown.component";
+import Dropdown from "../common/dropdown/dropdown.component";
 import Modal from "../modal/modal.component";
-import CustomSlider from "../common/custom-slider/custom-slider.component";
+import Slider from "../common/slider/slider.component";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {LocaleType} from "../../pages/shop-items/[[...slug]]";
@@ -113,7 +113,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                         )}
                     </div>
                     <div className="shop-item__slider">
-                        <CustomSlider elements={slideImages} current={sliderCount}/>
+                        <Slider elements={slideImages} current={sliderCount}/>
                     </div>
 
                     {/*<div className='shop-item__test-div'>*/}
@@ -244,7 +244,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                         <Present price={price} name={name} images={images} color={color}
                                  activeSize={activeSize as string} modalActive={modalActive} setModalActive={setModalActive}/>
                     <div className='shop-item__dropdowns'>
-                        <CustomDropdown
+                        <Dropdown
                             content={
                                 <div className={'shop-item__dropdown-element'}>
                                     {description}
@@ -253,7 +253,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                             name={'ОПИС'}
                             plus
                         />
-                        <CustomDropdown
+                        <Dropdown
                             content={
                                 <div className={'shop-item__dropdown-element'}>
                                     {composition}
@@ -261,7 +261,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                             name={'СКЛАД І ДОГЛЯД'}
                             plus
                         />
-                        <CustomDropdown
+                        <Dropdown
                             content={
                                 <div className={'shop-item__dropdown-element'}>
                                     {parameters}
@@ -269,7 +269,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                             name={'ПАРАМЕТРИ ВИРОБУ'}
                             plus
                         />
-                        <CustomDropdown
+                        <Dropdown
                             content={
                                 <div className={'shop-item__dropdown-element'}>
                                     {delivery}

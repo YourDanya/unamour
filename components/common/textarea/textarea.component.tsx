@@ -1,13 +1,13 @@
 import React from "react";
 
-type customTextareaProps = {
+type TextareaProps = {
     placeholder: string
     onTopChange?: (event: React.ChangeEvent<HTMLElement>) => void
     name: string
     error?: string
 }
 
-const CustomTextarea: React.FC<customTextareaProps> = ({name, placeholder, onTopChange, error}) => {
+const Textarea: React.FC<TextareaProps> = ({name, placeholder, onTopChange, error}) => {
     return (
         <textarea
             className={'custom-textarea'}
@@ -18,4 +18,4 @@ const CustomTextarea: React.FC<customTextareaProps> = ({name, placeholder, onTop
     )
 }
 
-export default CustomTextarea
+export default Textarea

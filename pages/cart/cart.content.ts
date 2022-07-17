@@ -20,6 +20,16 @@ const DeliveryContent = {
             className: 'cart__input cart__index'
         },
         {
+            type: 'radio',
+            name: 'delivery',
+            inputs: [
+                {
+                    value: 'novaPoshta',
+                    className: 'cart__input'
+                }
+            ]
+        },
+        {
             type: 'input',
             name: 'street',
             className: 'cart__input cart__street'
@@ -33,6 +43,10 @@ const DeliveryContent = {
             type: 'input',
             name: 'apartment',
             className: 'cart__input cart__apartment'
+        },
+        {
+            type: 'title',
+            className: 'cart__title'
         },
         {
             type: 'input',
@@ -60,7 +74,8 @@ const DeliveryContent = {
             className: 'cart__input cart__comment'
         },
         {
-            type: 'check'
+            type: 'check',
+            name: 'remember'
         }
     ],
     formPlaceholders: [

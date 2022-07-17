@@ -14,6 +14,7 @@ export const useInput = <T extends readonly string[], >(arr: T): [values: Record
 export const useToggle = (): [active: boolean, handleEvent: (event: any) => void] => {
     const [active, setActive] = useState(false)
     const handleEvent = (event: any) => {
+        console.log(event.target.value)
         setActive(!active)
     }
     return [active, handleEvent]

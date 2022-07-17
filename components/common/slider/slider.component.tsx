@@ -1,11 +1,11 @@
 import React, {ReactNode, useEffect, useRef, useState} from "react";
 
-type customSliderProps = {
+type SliderProps = {
     elements: ReactNode[],
     current?: number
 }
 
-const CustomSlider: React.FC<customSliderProps> = ({elements, current}) => {
+const Slider: React.FC<SliderProps> = ({elements, current}) => {
 
     let [count, setCount] = useState(current ?? 0)
 
@@ -97,4 +97,4 @@ const CustomSlider: React.FC<customSliderProps> = ({elements, current}) => {
     )
 }
 
-export default CustomSlider
+export default Slider

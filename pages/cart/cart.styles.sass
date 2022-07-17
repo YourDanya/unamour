@@ -1,18 +1,18 @@
 .cart
   padding: 50px 0
-  max-width: 1160px
+  max-width: 1150px
   margin: 0 auto
   display: flex
   position: relative
   &__items
     margin-bottom: 30px
   &__content
-    width: 57%
+    width: calc(70% - 150px)
     margin-right: 150px
   &__order
+    width: 30%
     top: 50px
     position: sticky
-    width: calc(43% - 100px)
     &-title
       text-align: center
       margin-bottom: 35px
@@ -102,9 +102,38 @@
 
 @media (max-width: 1200px)
   .cart
+    max-width: 950px
+    &__content
+      margin-right: 50px
+      width: calc(65% - 40px)
+    &__order
+      width: 35%
 
 @media (max-width: 992px)
   .cart
+    padding: 0 15px
+    &__content
+      margin-right: 40px
+      width: calc(65% - 40px)
+    &__order
+      width: 35%
+    &__city
+      margin-right: 15px
+      width: calc(65% - 15px)
+    &__street
+      margin-right: 10px
+      width: calc(54% - 20px)
+    &__house
+      width: 23%
+      margin-right: 10px
+    &__apartment
+      width: 23%
+    &__name, &__email
+      margin-right: 5px
+      width: calc(50% - 5px)
+    &__surname, &__number
+      margin-left: 5px
+      width: calc(50% - 5px)
 
 @media (max-width: 768px)
   .cart

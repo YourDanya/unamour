@@ -1,8 +1,8 @@
 import React from 'react'
 import MapComponent from "../../components/map/map.component"
-import CustomInput from "../../components/common/custom-input/custom-input.component"
-import CustomTextarea from "../../components/common/custom-textarea/custom-textarea.component"
-import CustomButton from "../../components/common/custom-button/custom-button.component"
+import Input from "../../components/common/input/input.component"
+import Textarea from "../../components/common/textarea/textarea.component"
+import Button from "../../components/common/button/button.component"
 import {useInput} from "../../hooks/hooks"
 
 const ContactComponent: React.FC = () => {
@@ -23,26 +23,28 @@ const ContactComponent: React.FC = () => {
                 <div className="contacts__feedback">
                     <form className={'contacts__form'}>
                         <div className="contacts__form-title">ОБРАТНАЯ СВЯЗЬ</div>
-                        <CustomInput
+                        <Input
                             name={'name'}
                             value={values.name}
                             placeholder={'Имя'}
                             className={'input--contact'}
                         />
-                        <CustomInput
+                        <Input
                             name={'number'}
                             value={values.number}
                             placeholder={'Телефон'}
                             className={'input--contact'}
                         />
-                        <CustomInput
+                        <Input
                             name={'email'}
                             value={values.email}
                             placeholder={'Эл. почта'}
                             className={'input--contact'}
                         />
-                        <CustomTextarea name={'name'} placeholder={'Сообщение'}/>
-                        <CustomButton text={'ОТПРАВИТЬ'} className={'contacts__form-button'}/>
+                        <Textarea name={'name'} placeholder={'Сообщение'}/>
+                        <Button className={'contacts__form-button'}>
+                            ОТПРАВИТЬ
+                        </Button>
                         <div className="contacts__footnote">
                             Нажимая кнопку Отправить, я даю согласие на обработку и передачу моих персональных данных
                         </div>
