@@ -2,10 +2,6 @@ import React, {useState} from "react";
 import Link from "next/link";
 import {ClickList, DeliveryType, LinkList} from "../types/types";
 
-export const getClasses = (arr: string[] | undefined) => arr?.join(' ') || ''
-
-export const toggleClass = (className: string, condition: boolean): string => condition ? className : ''
-
 export const mapList = (
     arr: any [],
     listClass: string,

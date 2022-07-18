@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react'
 import search from '/public/icons/search.svg';
 import Input from "../common/input/input.component";
 import {useSelector} from "react-redux";
-import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
+import {selectClientItems} from "../../redux/shop-items/shop-items.slice";
 import {useRouter} from "next/router";
-import {LocaleType} from "../../pages/shop-items/[[...slug]]";
 import Link from 'next/link';
+import {LocaleType} from "../../types/types";
+import {ClientItem} from "../../redux/shop-items/shop-items.types";
 
 interface SearchResultInterface {
     name: string,
@@ -18,9 +19,9 @@ const NavSearch: React.FC = () => {
 
     const locale = useRouter().locale as LocaleType
 
-    const items = useSelector(selectShopItems(locale))
+    const items = useSelector(selectClientItems)
 
-    const [searchItems, setSearchItems] = useState<ShopItemObject[LocaleType][]>([])
+    const [searchItems, setSearchItems] = useState<ClientItem[]>([])
 
     const [input, setInput] = useState('')
 

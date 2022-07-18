@@ -1,9 +1,9 @@
-import React from "react";
-import {ShopItemObject} from "../../redux/shop-items/shop-items.slice";
-import ShopItemPreview from "../shop-item-preview/shop-item-preview.component";
+import React from "react"
+import ShopItemPreview from "../shop-item-preview/shop-item-preview.component"
+import {ClientItem} from "../../redux/shop-items/shop-items.types"
 
 interface itemsCollectionProps {
-    items: ShopItemObject['ua' | 'eng' | 'ru'][],
+    items: ClientItem[],
     title: string,
 }
 

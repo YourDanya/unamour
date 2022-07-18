@@ -16,7 +16,7 @@ const Order: React.FC<orderProps> = ({total, className}) => {
             <div className='order__properties'>
                 <div className='order__property'>
                     <div className='order__label'>Віртість товарів</div>
-                    <div className="order__value">{total}₴</div>
+                    <div className="order__value">{total} ₴</div>
                 </div>
                 <div className='order__property'>
                     <div className='order__label'>Знижка</div>
@@ -41,7 +41,7 @@ const Order: React.FC<orderProps> = ({total, className}) => {
                 </>
             </Button>
             <div className='cart__policy'>
-                {'Завершуючи оформлення замовлення, я даю згоду\n на обробку та передачу моїх'}
+                {'Завершуючи оформлення замовлення, я даю згоду\n на обробку та передачу моїх '}
                 <Link href={'/'}>
                     <a className='order__policy-link'>персональных данных</a>
                 </Link>

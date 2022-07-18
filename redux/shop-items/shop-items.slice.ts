@@ -1,94 +1,121 @@
-import {
-    createSelector,
-    createSlice,
-    PayloadAction
-} from '@reduxjs/toolkit'
+import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {HYDRATE} from "next-redux-wrapper"
 import {AppState} from "../store"
-import {LocaleType} from "../../pages/shop-items/[[...slug]]";
+import {FetchedItem, ShopItemsState} from "./shop-items.types"
 
-export type ShopItemObject = {
-    ua: {
-        name: string,
-        category: string,
-        slug: string,
-        slugCategory: string,
-        price: number,
-        oldPrice: number,
-        images: string[],
-        sizes: string[],
-        color: { code: string, name: string },
-        otherColors: { code: string, ref: string, name: string }[],
-        isAvailable: boolean,
-        description: string,
-        composition: string,
-        parameters: string,
-        delivery: string
-    },
-    eng: {
-        name: string,
-        category: string,
-        slug: string,
-        slugCategory: string,
-        price: number,
-        oldPrice: number,
-        images: string[],
-        sizes: string[],
-        color: string,
-        otherColors: { code: string, ref: string, name: string }[],
-        isAvailable: boolean,
-        description: string,
-        composition: string,
-        parameters: string,
-        delivery: string
-    },
-    ru: {
-        name: string,
-        category: string,
-        slug: string,
-        slugCategory: string,
-        price: number,
-        oldPrice: number,
-        images: string [],
-        sizes: string [],
-        color: string,
-        otherColors: { code: string, ref: string, name: string } [],
-        isAvailable: boolean,
-        description: string,
-        composition: string,
-        parameters: string,
-        delivery: string
-    }
-}
-
-export type shopItemsState = {
-    items: ShopItemObject[],
-    error: object | null,
-    categories: string[]
-}
-
-const initialState: shopItemsState = {
-    items: [],
+const initialState: ShopItemsState = {
+    fetchedItems: [],
+    clientItems: [],
     error: null,
     categories: [
-        'all',
-        'best',
-        'new',
-        'coming',
-        'special-price',
-        'eco-leather',
-        'dresses',
-        'skirts',
-        'shirts-and-blouses',
-        'tops-and-bodies',
-        'jackets-and-vets',
-        'pants-and-shorts',
-        'overalls',
-        'jersey',
-        'swimwear',
-        'top-cloth',
-        'sets',
-        'accessories'
+        {
+            slug: 'all',
+            ua: 'подивитись усе',
+            eng: 'view all',
+            ru: 'посмотреть все'
+        },
+        {
+            slug: 'best',
+            ua: 'найкраще',
+            eng: 'the best',
+            ru: 'лучшее'
+        },
+        {
+            slug: 'new',
+            ua: 'Подивитись нове',
+            eng: 'view new',
+            ru: 'Посмотреть новое'
+        },
+        {
+            slug: 'coming',
+            ua: 'скоро буде',
+            eng: 'coming soon',
+            ru: 'скоро будет'
+        },
+        {
+            slug: 'special-price',
+            ua: 'спеціальна ціна',
+            eng: 'special price',
+            ru: 'специальная цена'
+        },
+        {
+            slug: 'eco-leather',
+            ua: 'екошкіра',
+            eng: 'eco leather',
+            ru: 'экокожа'
+        },
+        {
+            slug: 'dresses',
+            ua: 'сукні',
+            eng: 'dresses',
+            ru: 'платья'
+        },
+        {
+            slug: 'skirts',
+            ua: 'спідниці',
+            eng: 'skirts',
+            ru: 'юбки'
+        },
+        {
+            slug: 'shirts-and-blouses',
+            ua: 'сорочки та блузки',
+            eng: 'shirts and blouses',
+            ru: 'рубашки и блузки'
+        },
+        {
+            slug: 'tops-and-bodies',
+            ua: 'топи та боді',
+            eng: 'tops and bodies',
+            ru: 'топы и боди'
+        },
+        {
+            slug: 'jackets-and-vests',
+            ua: 'куртки та жилети',
+            eng: 'jackets and vests',
+            ru: 'куртки и жилеты'
+        },
+        {
+            slug: 'pants-and-shorts',
+            ua: 'брюки та шорти',
+            eng: 'pants and shorts',
+            ru: 'брюки и шорты'
+        },
+        {
+            slug: 'overalls',
+            ua: 'комбінезони',
+            eng: 'overalls',
+            ru: 'комбинезоны'
+        },
+        {
+            slug: 'jersey',
+            ua: 'трикотаж',
+            eng: 'jersey',
+            ru: 'трикотаж'
+        },
+        {
+            slug: 'swimwear',
+            ua: 'купальники',
+            eng: 'swimwear',
+            ru: 'купальники'
+        },
+        {
+            slug: 'top-cloth',
+            ua: 'верхняя оежда',
+            eng: 'top cloth',
+            ru: 'верхній одяг'
+        },
+        {
+            slug: 'sets',
+            ua: 'комплекти',
+            eng: 'sets',
+            ru: 'комплекты'
+        },
+        {
+            slug: 'accessories',
+            ua: 'аксесуари',
+            eng: 'accessories',
+            ru: 'аксессуары'
+        }
     ]
 }
 
@@ -96,8 +123,8 @@ export const shopItemsSlice = createSlice({
     name: 'shopItems',
     initialState,
     reducers: {
-        fetchItemsSuccess: (state, action: PayloadAction<ShopItemObject[]>) => {
-            state.items = action.payload
+        fetchItemsSuccess: (state, action: PayloadAction<FetchedItem[]>) => {
+            state.fetchedItems = action.payload
         },
         fetchItemsError: (state, action: PayloadAction<any>) => {
             state.error = action.payload.message
@@ -105,24 +132,22 @@ export const shopItemsSlice = createSlice({
         setCategories: (state, action: PayloadAction<string[]>) => {
 
         },
-        resetItems: (state) => {
-            state.items = []
-        },
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            state.items = [...action.payload.shopItems.items]
+            state.fetchedItems = [...action.payload.shopItems.fetchedItems]
         },
     }
 })
 
-export const {fetchItemsSuccess, fetchItemsError, resetItems, setCategories} = shopItemsSlice.actions
+export const {fetchItemsSuccess, fetchItemsError,  setCategories} = shopItemsSlice.actions
 
-export const selectShopItemsStore = (state: AppState) => state.shopItems
+export const selectClientItemsStore = (state: AppState) => state.shopItems
 
-export const selectShopItems = (locale: LocaleType) =>
-    createSelector([selectShopItemsStore],
-        shopItems => shopItems.items.map(item => item[locale])
-    )
+export const selectFetchedItems = createSelector([selectClientItemsStore],
+    shopItems => shopItems.fetchedItems
+)
+
+export const selectClientItems = createSelector([selectClientItemsStore], items => items.clientItems)
 
 export default shopItemsSlice.reducer

@@ -1,3 +1,4 @@
+import '/components/cart-form/cart-form.styles.sass'
 import '../styles/home.sass'
 import '../styles/global.sass'
 import '/components/common/range-slider/range-slider.styles.sass'
@@ -47,13 +48,12 @@ import '/components/cookie/cookies.styles.sass'
 
 import Nav from "../components/nav/nav.component"
 import Footer from "../components/footer/footer.component"
-import {AppPropsWithLayout} from "../types/types"
+import {AppPropsWithLayout, LocaleType} from "../types/types"
 import { wrapper} from "../redux/store"
 import {useRouter} from "next/router"
 import {useDispatch, useSelector} from "react-redux"
-import {selectShopItems} from "../redux/shop-items/shop-items.slice"
+import {selectClientItems} from "../redux/shop-items/shop-items.slice"
 import {fetchItems} from "../redux/shop-items/shop-items.thunk"
-import {LocaleType} from "./shop-items/[[...slug]]"
 import {useEffect} from "react"
 import Cookie from "../components/cookie/cookie.component";
 
@@ -63,8 +63,7 @@ function MyApp({Component, pageProps}: AppPropsWithLayout) {
     if (slug && slug.length!==1) getLayout = ((page) => page)
 
     const dispatch = useDispatch()
-    const locale = useRouter().locale as LocaleType
-    const items = useSelector(selectShopItems(locale))
+    const items = useSelector(selectClientItems)
 
     useEffect(() => {
         if (items.length==0) {

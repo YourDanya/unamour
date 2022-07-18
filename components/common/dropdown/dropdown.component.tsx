@@ -2,11 +2,11 @@ import React, {useState} from "react";
 
 type DropdownProps = {
     name: string,
-    content: React.ReactNode,
-    plus?: boolean
+    content?: React.ReactNode,
+    plus?: boolean,
 }
 
-const Dropdown: React.FC<DropdownProps> = ({name, content, plus}) => {
+const Dropdown: React.FC<DropdownProps> = ({name, content, plus, children}) => {
     const [show, setShow] = useState(false)
 
     return (
@@ -31,6 +31,7 @@ const Dropdown: React.FC<DropdownProps> = ({name, content, plus}) => {
             </div>
             <div className={`dropdown__content  ${show ? 'dropdown__content--show' : ''}`}>
                 {content}
+                {children}
             </div>
         </div>
     )

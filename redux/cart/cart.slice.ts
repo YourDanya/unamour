@@ -1,8 +1,6 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {HYDRATE} from "next-redux-wrapper";
 import {AppState} from "../store";
-import {ShopItemObject} from "../shop-items/shop-items.slice";
-import {LocaleType} from "../../pages/shop-items/[[...slug]]";
 
 export type CartData = {
     name: string,

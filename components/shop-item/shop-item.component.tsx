@@ -1,23 +1,21 @@
 import React, {useState} from "react"
-
 import Link from "next/link"
 import bookmark from '/public/icons/bookmark.svg'
-import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice"
+import {selectClientItems,} from "../../redux/shop-items/shop-items.slice"
 import presentImg from '/public/icons/present.svg'
-import Dropdown from "../common/dropdown/dropdown.component";
-import Modal from "../modal/modal.component";
-import Slider from "../common/slider/slider.component";
-import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "next/router";
-import {LocaleType} from "../../pages/shop-items/[[...slug]]";
-import ShopItemPreview from "../shop-item-preview/shop-item-preview.component";
-import {addItem} from "../../redux/cart/cart.slice";
-import Present from "../present/present.component";
+import Dropdown from "../common/dropdown/dropdown.component"
+import Modal from "../modal/modal.component"
+import Slider from "../common/slider/slider.component"
+import {useDispatch, useSelector} from "react-redux"
+import ShopItemPreview from "../shop-item-preview/shop-item-preview.component"
+import {addItem} from "../../redux/cart/cart.slice"
+import Present from "../present/present.component"
+import {ClientItem} from "../../redux/shop-items/shop-items.types"
 
-const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
+const ShopItem: React.FC<ClientItem> = (props) => {
 
-    const {name, color, otherColors, sizes, images, price, delivery, description, composition, parameters,
-        isAvailable, category, slugCategory, oldPrice, slug} = props
+    const {name, color, sizes, images, price, delivery, description, composition, parameters,
+        category, slugCategory, oldPrice, slug, currency, variants} = props
 
     const dispatch = useDispatch()
 
@@ -71,12 +69,10 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
 
     const slideImages = images.map((url, index) => <img src={url} alt={`image ${index} ${name}`} key={url + index}/>)
 
-    const locale = useRouter().locale as LocaleType
+    let items: ClientItem[] = useSelector(selectClientItems)
 
-    let items: ShopItemObject[] | ShopItemObject[LocaleType][] = useSelector(selectShopItems(locale))
-
-    const similarItems: ShopItemObject[LocaleType][] = []
-    const watchedItems: ShopItemObject[LocaleType][] = []
+    const similarItems: ClientItem[] = []
+    const watchedItems: ClientItem[] = []
 
     for (let i = 0; i < items.length; i++) {
         if (i < 4) similarItems.push(items[i])
@@ -115,10 +111,6 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                     <div className="shop-item__slider">
                         <Slider elements={slideImages} current={sliderCount}/>
                     </div>
-
-                    {/*<div className='shop-item__test-div'>*/}
-                    {/*    <img className={'shop-item__test-img'} src={images[0]} alt={'bl'}/>*/}
-                    {/*</div>*/}
                 </div>
                 <div className={'shop-item__about'}>
                     <div className="shop-item__links">
@@ -139,7 +131,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                     </div>
                     <div className="shop-item__prices">
                         <div className={'shop-item__price shop-item__price--old'}>
-                            <div className={'shop-item__price-crossed'}></div>
+                            <div className={'shop-item__price-crossed'}/>
                             {oldPrice} ₴
                         </div>
                         <div className={'shop-item__price'}>{price} ₴</div>
@@ -198,14 +190,14 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                             {<div className='shop-item__color shop-item__color--current'
                                   style={{backgroundColor: color.code}}/>
                             }
-                            {otherColors.map(({name, code, ref}) =>
-                                <Link href={`/shop-items/${slugCategory}/${ref}`} key={code}>
-                                    <div className={`shop-item__color`}
-                                         style={{backgroundColor: code}}
-                                         onClick={(event) => console.log(event.target)}
-                                    />
-                                </Link>
-                            )}
+                            {variants.map(({color: { code}}) => code === color.code ? null : (
+                                <button
+                                    className={`shop-item__color`}
+                                    key={code}
+                                    style={{backgroundColor: code}}
+                                    onClick={(event) => console.log(event.target)}
+                                />
+                            ))}
                         </div>
                     </div>
                     <div className={'shop-item__buttons'}>
@@ -241,42 +233,30 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                         </div>
                         <img className='shop-item__present-img' src={presentImg.src}/>
                     </div>
-                        <Present price={price} name={name} images={images} color={color}
-                                 activeSize={activeSize as string} modalActive={modalActive} setModalActive={setModalActive}/>
+                    <Present price={price} name={name} images={images} color={color}
+                             activeSize={activeSize as string} modalActive={modalActive}
+                             setModalActive={setModalActive}/>
                     <div className='shop-item__dropdowns'>
-                        <Dropdown
-                            content={
-                                <div className={'shop-item__dropdown-element'}>
-                                    {description}
-                                </div>
-                            }
-                            name={'ОПИС'}
-                            plus
-                        />
-                        <Dropdown
-                            content={
-                                <div className={'shop-item__dropdown-element'}>
-                                    {composition}
-                                </div>}
-                            name={'СКЛАД І ДОГЛЯД'}
-                            plus
-                        />
-                        <Dropdown
-                            content={
-                                <div className={'shop-item__dropdown-element'}>
-                                    {parameters}
-                                </div>}
-                            name={'ПАРАМЕТРИ ВИРОБУ'}
-                            plus
-                        />
-                        <Dropdown
-                            content={
-                                <div className={'shop-item__dropdown-element'}>
-                                    {delivery}
-                                </div>}
-                            name={'ДОСТАВКА І ОПЛАТА'}
-                            plus
-                        />
+                        <Dropdown name={'ОПИС'} plus>
+                            <div className={'shop-item__dropdown-element'}>
+                                {description}
+                            </div>
+                        </Dropdown>
+                        <Dropdown name={'СКЛАД І ДОГЛЯД'} plus>
+                            <div className={'shop-item__dropdown-element'}>
+                                {composition}
+                            </div>
+                        </Dropdown>
+                        <Dropdown name={'ПАРАМЕТРИ ВИРОБУ'} plus>
+                            <div className={'shop-item__dropdown-element'}>
+                                {parameters}
+                            </div>
+                        </Dropdown>
+                        <Dropdown name={'ДОСТАВКА І ОПЛАТА'} plus>
+                            <div className={'shop-item__dropdown-element'}>
+                                {delivery}
+                            </div>
+                        </Dropdown>
                     </div>
                 </div>
             </div>
@@ -298,8 +278,7 @@ const ShopItem: React.FC<ShopItemObject['ua']> = (props) => {
                     ))}
                 </div>
             </div>
-            <Modal active={modalActive.modal}
-                   hideModal={() => setModalActive({modal: false, size: false, present: false})}/>
+            <Modal active={modalActive.modal} hideModal={() => setModalActive({modal: false, size: false, present: false})}/>
         </div>
     )
 }

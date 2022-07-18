@@ -3,13 +3,13 @@ import React, {useEffect, useRef, useState} from "react";
 import WithIntern from "../hoc/with-intern/with-intern";
 import {ShopItemsContent} from "./shop-items.content";
 import {useRouter} from "next/router";
-import {mapList} from "../../utils/component-utils";
+import {mapList} from "../../utils/component.utils";
 import Dropdown from "../common/dropdown/dropdown.component";
 import Checkbox from "../common/checkbox/checkbox.component";
 import RangeSlider from "../common/range-slider/range-slider.component";
 import {Property} from "csstype";
 import Position = Property.Position;
-import {removeFromArr} from "../../utils/main-utils";
+import {removeFromArr} from "../../utils/main.utils";
 
 type shopItemsProps = {}
 

@@ -1,5 +1,6 @@
 import {CartItemObject, decreaseQuantity, increaseQuantity, removeItem} from "../../redux/cart/cart.slice";
 import {useDispatch} from "react-redux";
+import {useMatchUrl} from "../../hooks/hooks";
 
 const useCartItem = (props: CartItemObject) => {
     const {data: {slug, size}} = props
@@ -16,7 +17,9 @@ const useCartItem = (props: CartItemObject) => {
         dispatch(removeItem({slug, size}))
     }
 
-    return {...props, increase, decrease, remove}
+    const cartPage = useMatchUrl('/cart')
+
+    return {...props, increase, decrease, remove, cartPage}
 }
 
 export default useCartItem

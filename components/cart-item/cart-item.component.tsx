@@ -6,13 +6,15 @@ import useCartItem from "./cart-item.hook";
 const CartItem: React.FC<CartItemObject> = (props) => {
 
     const {data: {name, category, slug, slugCategory, price, images, size, color}, quantity,
-        increase, decrease, remove} = useCartItem(props)
+        increase, decrease, remove, cartPage} = useCartItem(props)
 
     return (
         <div className={'cart-item'} key={name}>
             <div className='close cart-item__close' onClick={remove}/>
             <Link href={`shop-items/${slugCategory}/${slug}`}>
-                <img className='cart-item__img' src={images[0]}/>
+                <a className='cart-item__link'>
+                    <img className='cart-item__img' src={images[0]}/>
+                </a>
             </Link>
             {/*<div className='cart-item__about'>*/}
             <div className='cart-item__name'>{name}</div>

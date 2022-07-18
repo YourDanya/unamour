@@ -1,7 +1,7 @@
 import {AxiosPromise} from "axios";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import {AppThunk} from "../store";
-import {Api} from "../../utils/api-utils";
+import {Api} from "../../utils/api.utils";
 import {fetchItemsError, fetchItemsSuccess} from "./shop-items.slice";
 
 export const ApiCall = (

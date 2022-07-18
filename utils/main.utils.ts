@@ -9,3 +9,4 @@ export const removeFromArr = (arr: any[], value: any) => {
     }
     return arr
 }
+

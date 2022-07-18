@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux"
 import {selectCartItems, selectTotalPrice} from "../../redux/cart/cart.slice"
-import {createDelivery} from "../../utils/component-utils"
+import {createDelivery} from "../../utils/component.utils"
 import CartContent from "./cart.content"
 import {useInput, useSetActive, useToggle} from "../../hooks/hooks"
 

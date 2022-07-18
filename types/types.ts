@@ -29,3 +29,5 @@ export type InternContent = {ua: ElementContent, eng: ElementContent, ru: Elemen
 export type ComponentContent = {content: ElementContent}
 
 export type DeliveryType = {value: string, label: {title: string, price: string, duration: string}}
+
+export type LocaleType = 'ua' | 'eng' | 'ru'

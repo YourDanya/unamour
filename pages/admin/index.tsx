@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectShopItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
+import {selectClientItems, ShopItemObject} from "../../redux/shop-items/shop-items.slice";
 import {fetchItems} from "../../redux/shop-items/shop-items.thunk";
 
 type adminProps = {}
@@ -314,7 +314,7 @@ const AdminItem: React.FC<adminItem> = ({item}) => {
 }
 
 const Admin: React.FC<adminProps> = () => {
-    // const fetchedItems: ShopItemObject[] = useSelector(selectShopItems)
+    // const fetchedItems: ShopItemObject[] = useSelector(selectClientItems)
     const [items, setItems] = useState<ShopItemObject[] | null>(null)
     const dispatch = useDispatch()
 

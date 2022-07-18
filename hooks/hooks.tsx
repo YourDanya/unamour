@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import {useRouter} from "next/router";
 
 export const useInput = <T extends readonly string[], >(arr: T): [values: Record<typeof arr[number], string>, handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void] => {
     const initialState: any = {}
@@ -61,4 +62,8 @@ export const useSetTrue = (): [active: boolean, handleEvent: (event: any) => voi
         setActive(true)
     }
     return [active, handleEvent]
+}
+
+export const useMatchUrl = (url: string): [match: boolean] => {
+    return [useRouter().pathname === url]
 }
