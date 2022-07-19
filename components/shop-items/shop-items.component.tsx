@@ -78,16 +78,16 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
         const viewPort = window.innerHeight
         const menuHeight = divRef.current?.clientHeight as number
 
-        // console.log('difference', scrollY + viewPort - menuHeight - positionRef.current.top2)
+        // // console.log('difference', scrollY + viewPort - menuHeight - positionRef.current.top2)
 
         const rect= divRef.current?.getBoundingClientRect() as DOMRect
 
-        console.log('\n')
+        // console.log('\n')
         for (let prop in rect) {
-            console.log(prop, rect[prop as keyof typeof rect])
+            // console.log(prop, rect[prop as keyof typeof rect])
         }
 
-        console.log('view port', viewPort)
+        // console.log('view port', viewPort)
 
         if (scrollY>positionRef.current.scrollY) {
             //scrolling down

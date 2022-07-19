@@ -1,199 +1,147 @@
-import React, {RefObject, useRef, useState} from "react";
+import React, {useRef, useState} from "react"
 
-interface RangeSliderProps {
+type RangeSliderProps = {
     setState?: () => {}
+}
+
+type SliderState = {
+    left: {
+        x: number,
+        translate: number,
+        limit: boolean,
+        diff: number
+    },
+    right: {
+        x: number,
+        translate: number,
+        limit: boolean,
+        diff: number
+    },
+    active: 'left' | 'right' | 'none'
 }
 
 const RangeSlider: React.FC<RangeSliderProps> = ({}) => {
 
-    // const [sliderValue, setSliderValue] = useState(
-    //     {
-    //         value1: 0,
-    //         value2: 100,
-    //         z1: 10,
-    //         z2: 1,
-    //         center: 50,
-    //         thumb1: '0',
-    //         thumb2: '0',
-    //         track2: '50%',
-    //         track1: '50%',
-    //     }
-    // )
-    //
-    // const ref1 = useRef(null)
-    // const ref2 = useRef(null)
-    //
-    //
-    // const gradient1 = `linear-gradient(to right,
-    //     #e0e0e0 ${Math.round((sliderValue.value1 / sliderValue.center) * 100)}%,
-    //     black ${Math.round((sliderValue.value1 / sliderValue.center) * 100)}%)`
-    //
-    // const gradient2 = `linear-gradient(to right,
-    //     red ${Math.round((sliderValue.value2 - sliderValue.center) / (100 - sliderValue.center) * 100)}%,
-    //     #e0e0e0 ${Math.round((sliderValue.value2 - sliderValue.center) / (100 - sliderValue.center) * 100)}%)`
-    //
-    // const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     // setSliderValue({...sliderValue, [event.target.name]: event.target.value})
-    //
-    //     const value=  +event.target.value
-    //
-    //     const center =Math.round(+sliderValue.value1 + (sliderValue.value2 - sliderValue.value1) / 2)
-    //
-    //     if (event.target.name==='value1') {
-    //         const center =Math.round(value + (sliderValue.value2 - value) / 2)
-    //         const thumb1 = `calc(${value/center*100}%
-    //                      - ${value/center*16}px)`
-    //         const track1 = `${center}%`
-    //         setSliderValue({...sliderValue, value1: value, center, thumb1, track1})
-    //     }
-    //     else {
-    //         const center =Math.round(+sliderValue.value1 + (value - sliderValue.value1) / 2)
-    //         const thumb2 = `calc(${(100-value)/(100-center) * 100}%
-    //                     - ${(100-value)/(100-center) * 16}px)`
-    //         const track2 = `${100 - center}%`
-    //
-    //         setSliderValue({...sliderValue, value2: value, center, thumb2, track2})
-    //     }
-    //
-    // }
+    const [state, setState] = useState<SliderState>({
+        left: {x: 0, translate: 0, limit: false, diff: 0},
+        right: {x: 0, translate: 184, limit: false, diff: 0},
+        active: 'none'
+    })
 
-
-    const [state, setState] = useState({x: 0, left: 0, percent: 0})
     const stateRef = useRef(state)
 
+    const elemsRef = useRef<{ left: HTMLButtonElement | null, right: HTMLButtonElement | null, track: HTMLDivElement | null }>({
+        left: null,
+        right: null,
+        track: null
+    })
+
     const handleMouseUp = () => {
-        // console.log('mouse up')
+        console.log('mouse up')
+        stateRef.current.active = 'none'
         document.removeEventListener('mousemove', handleMouseMove)
         document.removeEventListener('mouseup', handleMouseUp)
     }
 
-    const handleMouseMove= (event: any) => {
-        // console.log('mouse move')
-        console.log('\n')
-        const getRect = (ref.current?.parentNode as Element).getBoundingClientRect()
+    const handleMouseMove = (event: MouseEvent) => {
+        console.log('\nmouse move')
+
+        const active = stateRef.current.active as 'left' | 'right'
+        const getRect = (elemsRef.current.track as Element).getBoundingClientRect()
         // start coordinate
         const start = getRect.x
+        //current mouse x coordinate
+        const x = event.clientX
+        //width from start to current
+        const translate = (stateRef.current[active].translate + (x - stateRef.current[active].x))
         //width of track
         const trackWidth = getRect.width
-        //current mouse x coordinate
-        let x = event.clientX
-        //width from start to current
-        let left = (stateRef.current.left + (x - stateRef.current.x))
 
-        console.log('left', stateRef.current.left)
-        console.log('x prev', stateRef.current.x)
-        console.log('x coming', event.clientX)
-
-        // if mouse position less than 0
-        if (left < 0) {
-            if (x<start) x=start
-            const stateObj = {x, left: 0, percent: 0}
-            stateRef.current = stateObj
-            setState(stateObj)
-            return
+        //if moving first thumb
+        if (active === 'left') {
+            const {left} = stateRef.current
+            // if mouse position less than 0
+            if (translate <= 0) {
+                if (!stateRef.current.left.limit) {
+                    stateRef.current.left = {...left, translate: 0, limit: true, x: start + left.diff}
+                    setState({...stateRef.current})
+                }
+                return
+            }
+            // if mouse position more than second thumb
+            const rightTranslate = stateRef.current.right.translate
+            if (translate >= rightTranslate) {
+                if (!stateRef.current.left.limit) {
+                    stateRef.current.left = {
+                        ...left,
+                        translate: rightTranslate,
+                        limit: true,
+                        x: rightTranslate + start + left.diff
+                    }
+                    setState({...stateRef.current})
+                }
+                return
+            }
+            stateRef.current.left = {...left, x, translate, limit: false}
+            setState({...stateRef.current})
         }
-        // if mouse position more than trackWidth
-        if (left > trackWidth - 16) {
-            if (x> start + trackWidth) x = start + trackWidth
-            const stateObj = {x, left: trackWidth - 16, percent: 100}
-            stateRef.current = stateObj
-            setState(stateObj)
-            return
-        }
+        // if moving second thumb
+        else {
+            const {right} = stateRef.current
+            //if mouse position more than 
+            if (translate >= trackWidth - 16) {
+                if (!stateRef.current.right.limit) {
+                    stateRef.current.right = {...right, translate: trackWidth - 16, limit: true, x: start+trackWidth - 16 + right.diff}
+                    setState({...stateRef.current})
+                }
+                return
+            }
 
-        const percent = left / trackWidth * 100
-        stateRef.current = {x, left, percent}
-        setState({x, left, percent})
+            stateRef.current.right = {...right, x, translate, limit: false}
+            setState({...stateRef.current})
+        }
     }
 
-    const handleMouseDown= (event: any) =>  {
-        // console.log('mouse down')
+    const handleMouseDown = (event: React.MouseEvent) => {
+        console.log('mouse down')
+
         event.preventDefault()
+        const {name} = event.target as HTMLButtonElement
+        const active = name as 'left' | 'right'
 
-        setState({...state, x: event.clientX})
-        stateRef.current = {...stateRef.current, x: event.clientX}
+        stateRef.current.active = active
+        const thumbX = elemsRef.current[active]?.getBoundingClientRect().x as number
+        stateRef.current[active].diff = event.clientX - thumbX
+        stateRef.current[active].x = event.clientX
 
+        setState({...stateRef.current})
         document.addEventListener('mousemove', handleMouseMove)
         document.addEventListener('mouseup', handleMouseUp)
     }
 
-    const ref = useRef<HTMLDivElement>(null)
-
     return (
         <div className='range-slider'>
-            <div className="range-slider__track"/>
-            <div className="range-slider__thumb"
-                 onMouseDown={handleMouseDown}
-                 ref={ref}
-                 style={{
-                     // left: `calc(${state.percent}% -
-                     // ${16*state.percent/100}px
-                     // `,
-                     transform: `translateY(-50%) translateX(${state.left}px)`
-                 }}/>
-            <div className="range-slider__thumb"
-                 onMouseDown={handleMouseDown}
-                 ref={ref}
-                 style={{
-                     // left: `calc(${state.percent}% -
-                     // ${16*state.percent/100}px
-                     // `,
-                     transform: `translateY(-50%) translateX(${184}px)`
-                 }}/>
-
-            {/*<input type="range"*/}
-            {/*       min="0"*/}
-            {/*       ref={ref1}*/}
-            {/*       max={sliderValue.center}*/}
-            {/*       value={sliderValue.value1}*/}
-            {/*       className="range-slider__input"*/}
-            {/*       onChange={handleSliderChange}*/}
-            {/*       name={'value1'}*/}
-            {/*       style={{*/}
-            {/*           background: gradient1,*/}
-            {/*           zIndex: sliderValue.z1,*/}
-            {/*           borderRadius: '5px 0 0 5px',*/}
-            {/*           width: `${sliderValue.center}%`*/}
-            {/*       }}*/}
-            {/*/>*/}
-            {/*<div className={'range-slider__thumb-wrapper'}*/}
-            {/*    style={{*/}
-            {/*    width: sliderValue.track1,*/}
-            {/*}}>*/}
-            {/*    <div className='range-slider__thumb'*/}
-            {/*        style={{*/}
-            {/*            left: sliderValue.thumb1*/}
-            {/*        }}*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<input type="range"*/}
-            {/*       min={sliderValue.center}*/}
-            {/*       max={"100"}*/}
-            {/*       ref={ref2}*/}
-            {/*       value={sliderValue.value2}*/}
-            {/*       className="range-slider__input"*/}
-            {/*       onChange={handleSliderChange}*/}
-            {/*       name={'value2'}*/}
-            {/*       style={{*/}
-            {/*           background: gradient2,*/}
-            {/*           right: 0,*/}
-            {/*           zIndex: sliderValue.z2,*/}
-            {/*           borderRadius: `0 5px 5px 0`,*/}
-            {/*           width: `${100 - sliderValue.center}%`*/}
-            {/*       }}*/}
-            {/*/>*/}
-            {/*<div className={'range-slider__thumb-wrapper'}*/}
-            {/*     style={{*/}
-            {/*         right: 0,*/}
-            {/*         width: sliderValue.track2,*/}
-            {/*     }}>*/}
-            {/*    <div className='range-slider__thumb'*/}
-            {/*        style={{*/}
-            {/*            right: sliderValue.thumb2*/}
-            {/*        }}*/}
-            {/*    />*/}
-            {/*</div>*/}
-
+            <div className="range-slider__track" ref={elem => elemsRef.current.track = elem}/>
+            <button
+                className="range-slider__thumb"
+                name={'left'}
+                onMouseDown={handleMouseDown}
+                ref={elem => elemsRef.current.left = elem}
+                style={{
+                    zIndex: 10,
+                    transform: `translateY(-50%) translateX(${state.left.translate}px)`
+                }}
+            />
+            <button
+                className="range-slider__thumb"
+                name={'right'}
+                onMouseDown={handleMouseDown}
+                ref={elem => elemsRef.current.right = elem}
+                style={{
+                    zIndex: 1,
+                    transform: `translateY(-50%) translateX(${state.right.translate}px)`
+                }}
+            />
         </div>
     )
 }
