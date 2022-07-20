@@ -1,144 +1,20 @@
-import React, {useEffect, useRef, useState} from "react";
+import React from "react"
+import {mapList} from "../../utils/component.utils"
+import Dropdown from "../common/dropdown/dropdown.component"
+import Checkbox from "../common/checkbox/checkbox.component"
+import RangeSlider from "../common/range-slider/range-slider.component"
+import useShopItems from "./shop-items.hook"
+import Link from "next/link";
 
-import WithIntern from "../hoc/with-intern/with-intern";
-import {ShopItemsContent} from "./shop-items.content";
-import {useRouter} from "next/router";
-import {mapList} from "../../utils/component.utils";
-import Dropdown from "../common/dropdown/dropdown.component";
-import Checkbox from "../common/checkbox/checkbox.component";
-import RangeSlider from "../common/range-slider/range-slider.component";
-import {Property} from "csstype";
-import Position = Property.Position;
-import {removeFromArr} from "../../utils/main.utils";
-
-type shopItemsProps = {}
-
-type ShopItemsPropsWithIntern = {
-    content: typeof ShopItemsContent.ua
+export type ShopItemsProps = {
+    children: string
 }
 
-const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, content}) => {
-
-    const router = useRouter()
-
-    const [sort, setSort] = useState<string | undefined>()
-    const [price, setPrice] = useState<{ num1: string, num2: string }>({
-        num1: content.price.num1,
-        num2: content.price.num2,
-    })
-    const [sizes, setSizes] = useState<string[]>([])
-    const [colors, setColors] = useState<string[]>([])
-
-    const handleSortClick = (param: string) => {
-        if (param === sort) {
-            setSort(undefined)
-        } else {
-            setSort(param)
-        }
-    }
-
-    const handlePriceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value.length > 5) return
-        setPrice({...price, [event.target.name]: event.target.value})
-    }
-
-    const handleSizeClick = (size: string) => {
-        if (sizes?.includes(size)) {
-            sizes.push(size)
-        } else {
-            setSizes(removeFromArr(sizes, size))
-        }
-    }
-
-    const handleColorClick = (color: string) => {
-        if (colors?.includes(color)) {
-            colors.push(color)
-        } else {
-            setColors(removeFromArr(colors, color))
-        }
-    }
-
-    const [menuState, setMenuState] = useState<{
-        position: Position,
-        translateY?: number | string,
-        top?: number | string,
-        bottom?: number | string
-    }>({
-        position: 'fixed',
-        top: 100,
-        bottom: 'unset'
-    })
-
-    const positionRef = useRef({position: 'fixed', top1: 100, scrollY: 0, top2:0})
-    const divRef = useRef<HTMLDivElement | null>(null)
-    const pageRef = useRef<HTMLDivElement | null>(null)
-
-    const handleScroll = (event: Event) => {
-        const scrollY = window.scrollY
-        const viewPort = window.innerHeight
-        const menuHeight = divRef.current?.clientHeight as number
-
-        // // console.log('difference', scrollY + viewPort - menuHeight - positionRef.current.top2)
-
-        const rect= divRef.current?.getBoundingClientRect() as DOMRect
-
-        // console.log('\n')
-        for (let prop in rect) {
-            // console.log(prop, rect[prop as keyof typeof rect])
-        }
-
-        // console.log('view port', viewPort)
-
-        if (scrollY>positionRef.current.scrollY) {
-            //scrolling down
-            if (rect.bottom< viewPort) {
-                //reaching menu end
-                positionRef.current.top2 = scrollY + viewPort - menuHeight
-                if(positionRef.current.position!=='fixed') {
-                    //checking if we already set position
-                    positionRef.current.position='fixed'
-                    setMenuState({position: 'fixed', bottom: 10, top: 'unset'})
-                }
-            } else {
-                if(positionRef.current.position!=='absolute') {
-                    //checking if we already set position
-                    positionRef.current.position='absolute'
-                    setMenuState({position: 'absolute', top: positionRef.current.top1})
-                }
-            }
-        } else {
-            //scrolling up
-            if (positionRef.current.top2>=scrollY+100) {
-                //reaching menu top
-                if(positionRef.current.position!=='fixed') {
-                    //checking if we already set position
-                    positionRef.current.position='fixed'
-                    setMenuState({position: 'fixed', top: 100, bottom: 'unset'})
-                }
-                positionRef.current.top1 = scrollY + 100
-            } else {
-                if(positionRef.current.position!=='absolute') {
-                    //checking if we already set position
-                    positionRef.current.position='absolute'
-                    setMenuState({position: 'absolute', top: positionRef.current.top2})
-                }
-            }
-        }
-
-        positionRef.current.scrollY= scrollY
-    }
-
-    useEffect(() => {
-        if (typeof window !== undefined) {
-            window.addEventListener('scroll', handleScroll)
-            return () => {
-                window.removeEventListener('scroll', handleScroll)
-            }
-        }
-    }, [])
-
-    useEffect(() => {
-    }, [divRef.current?.clientHeight])
+const ShopItems: React.FC<ShopItemsProps> = (props) => {
+    const {
+        menuState, divRef, handlePriceInputChange, price, handleSortClick, handleSizeClick, sort,
+        handleColorClick, pageRef, content, children
+    } = useShopItems(props)
 
     return (
         <div className='shop-items'>
@@ -152,81 +28,68 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
                      }}
                      ref={divRef}
                 >
-                    {mapList(content.list1,
-                        'shop-items__menu-list',
-                        'shop-items__menu-item'
-                    )}
+                    <div className='shop-items__menu-list'>
+                        {content.list1.map(({ref, text}) => (
+                            <Link href={ref} key={ref}>
+                                <a className={'shop-items__menu-item'}>
+                                    {text}
+                                </a>
+                            </Link>
+                        ))}
+                    </div>
                     <div className='shop-items__filters'>
-                        <Dropdown
-                            name={content.filter1}
-                            content={
-                                mapList(
-                                    content.sort,
-                                    'shop-items__filter',
-                                    'shop-items__sort-item',
-                                    handleSortClick,
-                                    null,
-                                    sort,
-                                    'shop-items__sort-item--active'
-                                )
-                            }
-                        />
-                        <Dropdown
-                            name={content.filter2}
-                            content={
-                                <div className={'shop-items__price'}>
-                                    <div className='shop-items__price-input-block'>
-                                        <label className={'shop-items__price-label'}>
-                                            {content.price.from}
-                                        </label>
-                                        <input className={'shop-items__price-input'}
-                                               name='num1'
-                                               onChange={handlePriceInputChange}
-                                               value={price.num1}
-                                               type={'number'}
-                                        />
-                                        <div className={'shop-items__price-currency'}>₴</div>
-                                    </div>
-                                    <div className='shop-items__price-input-block'>
-                                        <label className={'shop-items__price-label'}>
-                                            {content.price.to}
-                                        </label>
-                                        <input className='shop-items__price-input'
-                                               name='num2'
-                                               onChange={handlePriceInputChange}
-                                               value={price.num2}
-                                               type={'number'}
-                                        />
-                                        <div className={'shop-items__price-currency'}>₴</div>
-                                    </div>
-                                    <RangeSlider/>
+                        <Dropdown name={content.filter1}>
+                            <div className='shop-items__filter'>
+                                {content.sort.map(({text, param}) => (
+                                    <button className={`shop-items__menu-item`} key={param} onClick={handleSortClick}>
+                                        {text}
+                                    </button>
+                                ))}
+                            </div>
+                        </Dropdown>
+                        <Dropdown name={content.filter2}>
+                            <div className={'shop-items__price'}>
+                                <div className='shop-items__price-input-block'>
+                                    <label className={'shop-items__price-label'}>
+                                        {content.price.from}
+                                    </label>
+                                    <input className={'shop-items__price-input'}
+                                           name='num1'
+                                           onChange={handlePriceInputChange}
+                                           value={price.num1}
+                                           type={'number'}
+                                    />
+                                    <div className={'shop-items__price-currency'}>₴</div>
                                 </div>
-                            }
-                        />
-                        <Dropdown
-                            name={content.filter3}
-                            content={
-                                mapList(
-                                    content.sizes,
-                                    'shop-items__filter shop-items__sizes',
-                                    'shop-items__size',
-                                    handleColorClick,
-                                    Checkbox
-                                )
-                            }
-                        />
-                        <Dropdown
-                            name={content.filter4}
-                            content={
-                                mapList(
-                                    content.colors,
-                                    'shop-items__colors',
-                                    'shop-items__color',
-                                    handleSizeClick,
-                                    Checkbox
-                                )
-                            }
-                        />
+                                <div className='shop-items__price-input-block'>
+                                    <label className={'shop-items__price-label'}>
+                                        {content.price.to}
+                                    </label>
+                                    <input className='shop-items__price-input'
+                                           name='num2'
+                                           onChange={handlePriceInputChange}
+                                           value={price.num2}
+                                           type={'number'}
+                                    />
+                                    <div className={'shop-items__price-currency'}>₴</div>
+                                </div>
+                                <RangeSlider/>
+                            </div>
+                        </Dropdown>
+                        <Dropdown name={content.filter3}>
+                            <div className='shop-items__filter shop-items__sizes'>
+                                {content.sizes.map((elem) => (
+                                    <Checkbox key={elem} label={elem} value={} handleChange={}/>
+                                ))}
+                            </div>
+                        </Dropdown>
+                        <Dropdown name={content.filter4}>
+                            <div className='shop-items__colors'>
+                                {content.colors.map(({name, code}) => (
+                                    <Checkbox key={code} label={name} value={} handleChange={}/>
+                                ))}
+                            </div>
+                        </Dropdown>
                         <div className={'shop-items__reset'}/>
                     </div>
                 </div>
@@ -240,7 +103,6 @@ const ShopItemsWithIntern: React.FC<ShopItemsPropsWithIntern> = ({children, cont
     )
 }
 
-const ShopItems: React.FC<shopItemsProps> = WithIntern(ShopItemsWithIntern, ShopItemsContent)
 
 export const getShopItemsLayout = (page: React.ReactNode) => {
     return (

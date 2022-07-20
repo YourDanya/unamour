@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router";
+import {LocaleType} from "../types/types";
 
 export const useInput = <T extends readonly string[], >(arr: T): [values: Record<typeof arr[number], string>, handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void] => {
     const initialState: any = {}
@@ -66,4 +67,9 @@ export const useSetTrue = (): [active: boolean, handleEvent: (event: any) => voi
 
 export const useMatchUrl = (url: string): [match: boolean] => {
     return [useRouter().pathname === url]
+}
+
+export const useLocale = <T extends object,> (content: {ua: T, eng: T, ru: T}) => {
+    const locale = useRouter().locale as LocaleType
+    return [content[locale]]
 }
