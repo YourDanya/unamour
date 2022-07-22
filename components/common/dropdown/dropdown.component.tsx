@@ -1,36 +1,22 @@
-import React, {useState} from "react";
+import React from "react"
+import {useToggle} from "../../../hooks/hooks";
 
 type DropdownProps = {
     name: string,
-    content?: React.ReactNode,
     plus?: boolean,
+    className?: string
 }
 
-const Dropdown: React.FC<DropdownProps> = ({name, content, plus, children}) => {
-    const [show, setShow] = useState(false)
+const Dropdown: React.FC<DropdownProps> = ({name, plus, children, className}) => {
+    const [show, handleClick] = useToggle()
 
     return (
-        <div className={`dropdown`}>
-            <div className={`dropdown__top ${plus? 'dropdown__top--plus' : '' }`} onClick={() => setShow(!show)}>
-                {plus ? (
-                    <></>
-                ) : (
-                    <div className={`dropdown__sign ${show ? 'dropdown__sign--show' : ''}`}>
-                        <div className={'dropdown__sign-line dropdown__sign-line--first'}/>
-                        <div className={'dropdown__sign-line dropdown__sign-line--last'}/>
-                    </div>
-                )}
-                <div className={`dropdown__name`}>
-                    {name}
-                </div>
-                {plus ? (
-                    <div className={'dropdown__plus'}/>
-                ) : (
-                    <></>
-                )}
-            </div>
+        <div className={`dropdown ${plus? 'dropdown--plus' : '' } ${show ? 'dropdown--show' : ''} ${className}`}>
+            <button className={`dropdown__top ${plus? 'dropdown__top--plus' : '' }`} onClick={handleClick}>
+                <div className={'dropdown__sign'}/>
+                <div className={`dropdown__name`}>{name}</div>
+            </button>
             <div className={`dropdown__content  ${show ? 'dropdown__content--show' : ''}`}>
-                {content}
                 {children}
             </div>
         </div>

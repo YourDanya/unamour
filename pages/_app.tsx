@@ -1,3 +1,5 @@
+import '/components/scroll-fixed/scroll-fixed.styles.sass'
+import '/components/price-filter/price-filter.styles.sass'
 import '/components/cart-form/cart-form.styles.sass'
 import '../styles/home.sass'
 import '../styles/global.sass'

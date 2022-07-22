@@ -10,21 +10,29 @@
     &-list
       margin-bottom: 50px
     &-item
+      display: block
       cursor: pointer
       margin-bottom: 25px
     &-fixed
       width: 200px
   &__filters
-  &__filter
-    font-size: 10px
-    padding-left: 28px
+  &__sort
+    .dropdown__content
+      padding-left: 28px
   &__sizes
-    font-size: 10px
-    padding: 20px 0 20px 28px
+    .dropdown__content
+      padding: 20px 0 20px 28px
   &__sort-item
+    width: 100%
+    display: flex
+    justify-content: start
+    background-color: white
+    border: none
+    font-size: 10px
     cursor: pointer
     padding: 15px 0
     border-bottom: 1px solid rgba(224,224,224,.4)
+    margin-bottom: 1px
     position: relative
     &:before
       position: absolute

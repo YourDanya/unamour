@@ -14,7 +14,10 @@ type propsType= {
 
 const SignIn: React.FC<propsType> = ({setSign}) => {
 
-    const [values, handleChange] = useInput(['email', 'password'])
+    const [values, handleChange] = useInput(['email', 'password'] as const)
+
+    const [test, test_] = useInput({email: '', password: ''})
+
 
     return (
         <div className={'sign__content'}>
