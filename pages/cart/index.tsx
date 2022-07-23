@@ -4,7 +4,7 @@ import Discount from "../../components/discount/discount.component"
 import {NextPage} from "next"
 import Order from "../../components/order/order.component"
 import useCart from "./cart.hook"
-import CartForm from "../../components/cart-form/cart-form.component";
+import CartForm from "../../components/cart-form/cart-form.component"
 
 const Cart: NextPage = () => {
 

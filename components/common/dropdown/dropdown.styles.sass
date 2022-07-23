@@ -1,7 +1,9 @@
 .dropdown
   width: 100%
   overflow: clip
+  position: relative
   &__top
+    position: relative
     width: 100%
     background-color: white
     border: none
@@ -9,8 +11,10 @@
     display: flex
     align-items: center
     padding: 20px 0
-    border-bottom: 1px solid #e0e0e0
-    position: relative
+    border-bottom: 1.5px solid #e0e0e0
+    margin: 1px 0
+  &__name
+    text-transform: uppercase
   &__sign
     width: 14px
     height: 10px

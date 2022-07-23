@@ -4,16 +4,16 @@ import RangeSlider from "../common/range-slider/range-slider.component";
 type priceFilterProps = {
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     values: { num1: string, num2: string }
-    contentFrom: string,
-    contentTo: string
+    translateFrom: string,
+    translateTo: string
 }
 
-const PriceFilter: React.FC<priceFilterProps> = ({handleChange, values, contentFrom, contentTo}) => {
+const PriceFilter: React.FC<priceFilterProps> = ({handleChange, values, translateFrom, translateTo}) => {
     return (
         <div className={'shop-items__price'}>
             <div className='shop-items__price-input-block'>
                 <label className={'shop-items__price-label'}>
-                    {contentFrom}
+                    {translateFrom}
                 </label>
                 <input
                     className={'shop-items__price-input'}
@@ -26,7 +26,7 @@ const PriceFilter: React.FC<priceFilterProps> = ({handleChange, values, contentF
             </div>
             <div className='shop-items__price-input-block'>
                 <label className={'shop-items__price-label'}>
-                    {contentTo}
+                    {translateTo}
                 </label>
                 <input
                     className='shop-items__price-input'

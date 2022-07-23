@@ -48,7 +48,7 @@ export const usePreventDefault = (): (event: any) => void => {
     }
 }
 
-export const useSetActive = (initActive: string, attribute: string = 'name') => {
+export const useSetActive = (initActive: string, attribute: string = 'name'): [active: string, handleEvent: (event: any) => void] => {
     const [active, setActive] = useState(initActive)
     const handleEvent = (event: any) => {
         setActive(event.target[attribute])
@@ -92,8 +92,8 @@ export const useMatchUrl = (url: string): [match: boolean] => {
     return [useRouter().pathname === url]
 }
 
-export const useLocale = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K) => {
+export const useLocale = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translation: {ua: T, eng: T, ru: T}} & K, "translation">, translation: T] => {
     const locale = useRouter().locale as LocaleType
     const {translation, ...other} = content
-    return {...other, translation: translation[locale]}
+    return [{...other}, translation[locale]]
 }

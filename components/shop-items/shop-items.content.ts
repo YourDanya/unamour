@@ -68,10 +68,6 @@ export const ShopItemsContent = {
             slug: 'brown'
         },
         {
-            code: '#87ceb',
-            slug: 'sky'
-        },
-        {
             code: '#87776b',
             slug: 'cocoa'
         },
@@ -170,7 +166,6 @@ export const ShopItemsContent = {
                 'біжовий',
                 'кав\'яний',
                 'коричневий',
-                'небесний',
                 'какао',
                 'металік',
                 'пильна троянда',
@@ -237,7 +232,6 @@ export const ShopItemsContent = {
                 'beige',
                 'coffee',
                 'brown',
-                'sky',
                 'cocoa',
                 'metallic',
                 'dusty trojan',
@@ -304,7 +298,6 @@ export const ShopItemsContent = {
                 'бежовый',
                 'кофейный',
                 'коричневый',
-                'небесный',
                 'какао',
                 'металлик',
                 'пыльная троянда',

@@ -11,50 +11,71 @@ export type ShopItemsProps = {
 }
 
 const ShopItems: React.FC<ShopItemsProps> = (props) => {
-    const {handlePriceInputChange, price, content, children, handleSortClick} = useShopItems(props)
+
+    const {
+        content, translation, children, sort, handleSortClick, sizes, handleSizeChange, price, handlePriceChange,
+        colors, handleColorChange
+    } = useShopItems(props)
+
+    console.log(colors)
 
     return (
         <div className='shop-items'>
             <div className='shop-items__menu'>
                 <ScrollFixed>
                     <div className='shop-items__menu-list'>
-                        {content.list1.map(({ref, text}) => (
+                        {content.categories.map((ref, index) => (
                             <Link href={ref} key={ref}>
                                 <a className={'shop-items__menu-item'}>
-                                    {text}
+                                    {translation.categories[index]}
                                 </a>
                             </Link>
                         ))}
                     </div>
                     <div className='shop-items__filters'>
-                        <Dropdown name={content.filter1} className={'shop-items__sort'}>
-                            {content.sort.map(({text, param}) => (
-                                <button className={`shop-items__sort-item`} key={param} onClick={handleSortClick}>
-                                    {text}
+                        <Dropdown name={translation.filter1} className={'shop-items__filter shop-items__sort'}>
+                            {content.sort.map((param, index) => (
+                                <button
+                                    className={`shop-items__sort-item ${sort===param ? 'shop-items__sort-item--active' : ''}`}
+                                    key={param}
+                                    name={param}
+                                    onClick={handleSortClick}
+                                >
+                                    {translation.sort[index]}
                                 </button>
                             ))}
                         </Dropdown>
-                        <Dropdown name={content.filter2}>
+                        <Dropdown name={translation.filter2}>
                             <PriceFilter
-                                handleChange={handlePriceInputChange}
+                                handleChange={handlePriceChange}
                                 values={price}
-                                contentFrom={content.price.from}
-                                contentTo={content.price.to}
+                                translateFrom={translation.price.from}
+                                translateTo={translation.price.to}
                             />
                         </Dropdown>
-                        <Dropdown name={content.filter3}>
-                            <div className='shop-items__filter shop-items__sizes'>
-                                {content.sizes.map((elem) => (
-                                    <Checkbox key={elem} label={elem} value={false} handleChange={() => null}/>
-                                ))}
-                            </div>
+                        <Dropdown name={translation.filter3} className='shop-items__filter shop-items__sizes'>
+                            {content.sizes.map((size, index) => (
+                                <Checkbox
+                                    className={'shop-items__size'}
+                                    key={size}
+                                    label={translation.sizes[index]}
+                                    value={sizes[size]}
+                                    handleChange={handleSizeChange}
+                                />
+                            ))}
                         </Dropdown>
-                        <Dropdown name={content.filter4}>
-                            <div className='shop-items__colors'>
-                                {content.colors.map(({name, code}) => (
-                                    <Checkbox key={code} label={name} value={false} handleChange={() => null}/>
-                                ))}
-                            </div>
+                        <Dropdown name={translation.filter4} className={'shop-items__colors'}>
+                            {content.colors.map(({slug, code}, index) => (
+                                <Checkbox
+                                    className={'shop-items__color'}
+                                    styles={{backgroundColor: code}}
+                                    key={code}
+                                    name={slug}
+                                    label={translation.colors[index]}
+                                    value={colors[slug]}
+                                    handleChange={handleColorChange}
+                                />
+                            ))}
                         </Dropdown>
                         <div className={'shop-items__reset'}/>
                     </div>

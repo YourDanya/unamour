@@ -10,22 +10,22 @@
     &-list
       margin-bottom: 50px
     &-item
+      text-transform: uppercase
       display: block
       cursor: pointer
       margin-bottom: 25px
     &-fixed
       width: 200px
-  &__filters
   &__sort
-    .dropdown__content
+    .dropdown__children
       padding-left: 28px
   &__sizes
-    .dropdown__content
+    .dropdown__children
       padding: 20px 0 20px 28px
   &__sort-item
     width: 100%
     display: flex
-    justify-content: start
+    justify-content: flex-start
     background-color: white
     border: none
     font-size: 10px
@@ -50,44 +50,27 @@
         opacity: 1
   &__size
     margin-bottom: 9px
+    .checkbox__label
+      text-transform: uppercase
   &__colors
-    padding: 20px 0 20px 28px
+    .dropdown__children
+      padding: 20px 0 20px 28px
   &__color
     margin-bottom: 15px
-  &__price
-    font-size: 10px
-    padding: 20px 0
-    display: flex
-    justify-content: space-between
-    flex-wrap: wrap
-    &-input-block
-      padding: 0 5px
-      width: 95px
-      height: 36px
-      display: flex
-      align-items: center
-      border: 1px solid #efefef
-      justify-content: space-between
-    &-label
-      color: #c7c7c7
-    &-currency
-      position: relative
-      right: 0
-      top: 0
-      font-size: 12px
-    &-input
-      font-size: 11px
-      border: none
-      outline: none
-      height: auto
-      width: 40%
-      text-align: center
-      padding: 0
-      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
-        -webkit-appearance: none
-        margin: 0
-      &[type=number]
-        -moz-appearance: textfield
+    .checkbox__check
+      border: 1px solid #a6a5a5
+      width: 16px
+      height: 16px
+      border-radius: 100%
+      &:before
+        background-color: transparent
+        width: 20.25px
+        height: 20.25px
+        border-radius: 50%
+        border: 1.5px solid #a2a2a0
+        transition: 0.4s all
+    .checkbox__label
+      text-transform: uppercase
 
 @media (max-width: 576px)
   .shop-items

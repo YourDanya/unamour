@@ -134,7 +134,6 @@ const useRangeSlider = (props: RangeSliderProps) => {
         }
         stateRef.current[active] = {...stateRef.current[active], x, translate, limit}
         const gradient = calcGradient()
-        console.log('gradient', gradient)
         setState({...state, [active]: {translate}, gradient})
     }
 

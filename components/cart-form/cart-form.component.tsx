@@ -1,7 +1,7 @@
-import React from "react";
-import Input from "../common/input/input.component";
-import RadioButtons from "../common/radio-buttons/radio-buttons.component";
-import Checkbox from "../common/checkbox/checkbox.component";
+import React from "react"
+import Input from "../common/input/input.component"
+import RadioButtons from "../common/radio-buttons/radio-buttons.component"
+import Checkbox from "../common/checkbox/checkbox.component"
 
 type cartFormProps = {
     formValues: Record<"number" | "name" | "surname" | "street" | "county" | "index" | "city" | "house" | "apartment" | "email", string>,
