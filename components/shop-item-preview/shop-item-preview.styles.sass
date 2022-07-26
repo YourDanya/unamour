@@ -1,6 +1,5 @@
 .shop-item-preview
   width: 100%
-  margin-bottom: 50px
   display: flex
   flex-direction: column
   &__img
@@ -21,3 +20,10 @@
     font-size: 13px
     margin-top: 10px
     color: #828282
+
+@media (max-width: 768px)
+  .shop-item-preview
+    &__bottom
+      padding: 10px 20px
+    &__price
+      margin-top: 7px

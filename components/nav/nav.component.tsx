@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Link from "next/link"
 import search from '/public/icons/search.svg'
 import searchWhite from '/public/icons/search-white.svg'
@@ -12,90 +12,23 @@ import NavShoppingCart from "../nav-shopping-cart/nav-shopping-cart.component"
 import SignInUp from "../sign-in-up/sign-in-up.component"
 import Modal from "../modal/modal.component"
 import NavMenu from "../nav-menu/nav-menu.component"
-import {useRouter} from "next/router"
+import useNav from "./nav.hook";
 
 const Nav: React.FC = () => {
 
-    const initialModalState = {hamburger: false, search: false, shopping: false, sign: false, modal: false}
-
-    const [active, setActive] = useState(initialModalState)
-
-    const hideModal = () => {
-        setActive(initialModalState)
-    }
-
-    const toggleModal = (event: React.MouseEvent<HTMLElement>) => {
-        const param = event.currentTarget.id
-        setActive(prevState => ({
-                ...prevState,
-                modal: !prevState.modal,
-                [param]: !prevState[param as keyof typeof active]
-            })
-        )
-    }
-
-    const hideTopNav = (param: keyof typeof active) => {
-        setActive(prevState => ({
-                ...prevState,
-                [param]: false
-            })
-        )
-    }
-
-    const showTopNav = (event: React.MouseEvent<HTMLElement>) => {
-        const param = event.currentTarget.id
-        setActive(prevState => ({
-                ...prevState,
-                [param]: !prevState[param as keyof typeof active]
-            })
-        )
-    }
-
-    const router= useRouter()
-
-    const [home, setHome] = useState(false)
-
-    const handleRouteChange = () => {
-        console.log('route change')
-        if(router.pathname==='/'){
-            if (!home) {
-                setHome(true)
-            }
-        }
-        else {
-            if(home){
-                setHome(false)
-            }
-        }
-        hideModal()
-    }
-
-    useEffect(() => {
-        router.events.on('routeChangeComplete', handleRouteChange)
-        return () => {
-        }
-    }, [])
-
-    useEffect(() => {
-        if(router.pathname==='/'){
-            if (!home) {
-                setHome(true)
-            }
-        }
-        else {
-            if(home){
-                setHome(false)
-            }
-        }
-    }, [router.pathname])
+    const {
+        initialModalState, active, setActive, hideModal, toggleModal, hideTopNav, showTopNav, home, setHome
+    } = useNav()
 
     return (
         <>
-            <nav className={`nav ${home? 'nav--home' : ''}`}>
+            <nav className={`nav ${home ? 'nav--home' : ''}`}>
                 <div className="hamburger-wrapper">
-                    <div id={'hamburger'}
-                         className={`hamburger ${active.hamburger ? 'hamburger--active' : ''}`}
-                         onClick={toggleModal}>
+                    <div
+                        id={'hamburger'}
+                        className={`hamburger ${active.hamburger ? 'hamburger--active' : ''}`}
+                        onClick={toggleModal}
+                    >
                         <span className="hamburger__line"/>
                         <span className="hamburger__line"/>
                         <span className="hamburger__line"/>
@@ -108,22 +41,25 @@ const Nav: React.FC = () => {
                     </Link>
                     <div className="nav__shop-items">
                         <a id='search' onClick={toggleModal}>
-                            <img src={home? searchWhite.src : search.src  } className={'nav__shop-item'} alt={'shop-item'}/>
+                            <img src={home ? searchWhite.src : search.src} className={'nav__shop-item'}
+                                 alt={'shop-item'}/>
                         </a>
                         <Link href={'/favorites'}>
                             <a>
-                                <img src={home? bookmarkWhite.src : bookmark.src } className={'nav__shop-item'} alt={'shop-item'}/>
+                                <img src={home ? bookmarkWhite.src : bookmark.src} className={'nav__shop-item'}
+                                     alt={'shop-item'}/>
                             </a>
                         </Link>
                         <a id='shopping' onClick={toggleModal}>
-                            <img src={home? shoppingCartWhite.src: shoppingCart.src} className={'nav__shop-item'} alt={'shop-item'}/>
+                            <img src={home ? shoppingCartWhite.src : shoppingCart.src} className={'nav__shop-item'}
+                                 alt={'shop-item'}/>
                         </a>
                     </div>
                 </div>
                 <Sidebar left={true} active={active.hamburger} hideModal={hideModal}>
                     <NavMenu active={active.hamburger} hideModal={hideModal} showTopNav={showTopNav}/>
                 </Sidebar>
-                <Sidebar left={true} active={active.sign} top={true} hideTopNav={() =>hideTopNav('sign')}>
+                <Sidebar left={true} active={active.sign} top={true} hideTopNav={() => hideTopNav('sign')}>
                     <SignInUp/>
                 </Sidebar>
                 <Sidebar left={false} active={active.search} hideModal={hideModal}>

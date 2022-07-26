@@ -17,8 +17,6 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
         colors, handleColorChange
     } = useShopItems(props)
 
-    console.log(colors)
-
     return (
         <div className='shop-items'>
             <div className='shop-items__menu'>

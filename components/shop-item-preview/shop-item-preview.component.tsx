@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import Link from "next/link";
-import {ShopItemObject} from "../../redux/shop-items/shop-items.slice";
+import {ClientItem} from "../../redux/shop-items/shop-items.types";
 
-const ShopItemPreview: React.FC<ShopItemObject['ua' | 'eng' | 'ru']> = (
+const ShopItemPreview: React.FC<ClientItem> = (
     {images, name, price,slug, slugCategory, ...otherProps}) => {
 
     const [hovered, setHovered] = useState(false)

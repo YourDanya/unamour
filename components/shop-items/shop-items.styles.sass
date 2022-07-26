@@ -1,5 +1,5 @@
 .shop-items
-  padding: 40px
+  padding: 60px 40px
   font-size: 11px
   display: flex
   &__page
@@ -8,7 +8,6 @@
     width: 200px
     margin-right: 30px
     &-list
-      //height: 100%
       margin-bottom: 50px
     &-item
       text-transform: uppercase
@@ -73,8 +72,15 @@
     .checkbox__label
       text-transform: uppercase
 
+@media (max-width: 768px)
+  .shop-items
+    padding: 60px 20px
+    &__menu
+      display: none
+    &__page
+      width: 100%
+
 @media (max-width: 576px)
   .shop-items
-    padding: 20px 5px
-    &__menu
-      width: auto
+    padding: 60px 10px
+    &__item

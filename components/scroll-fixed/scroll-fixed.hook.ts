@@ -1,8 +1,7 @@
 import {scrollFixedProps} from "./scroll-fixed.component"
-import React, {useEffect, useRef, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {Property} from "csstype"
 import Position = Property.Position
-import {debounce, throttle} from 'lodash'
 
 export type State = {
     position: Position,
@@ -15,13 +14,13 @@ const useScrollHook = (props: scrollFixedProps) => {
 
     const [menuState, setMenuState] = useState<State>({
         position: 'fixed',
-        top: 100,
+        top: 120,
         bottom: 'unset'
     })
 
     const stateRef = useRef({
         position: 'fixed',
-        top: 100,
+        top: 120,
         scrollY: 0,
         height: 0,
         toTop: true,
@@ -53,17 +52,29 @@ const useScrollHook = (props: scrollFixedProps) => {
             //scrolling down
             if (scrollY > stateRef.current.scrollY) {
                 //reaching menu end
-                console.log('rect bottom', rect.bottom)
+                // console.log('rect bottom', rect.bottom)
                 if (rect.bottom <= viewPort + 10) {
-                    stateRef.current.top = scrollY + viewPort - menuHeight
-                    //checking if we already set position
-                    if (stateRef.current.position !== 'fixed') {
-                        position = 'fixed'
-                        bottom = 10
-                        top = 'unset'
-                        stateRef.current.toBottom = true
+                    // reaching parent end
+                    if (parentRect.bottom <= viewPort + 40) {
+                        if (stateRef.current.position !== 'absolute') {
+                            position = 'absolute'
+                            bottom = 'unset'
+                            top = stateRef.current.top
+                            toUpdate = true
+                        } else {
+                            toUpdate = false
+                        }
                     } else {
-                        toUpdate = false
+                        stateRef.current.top = scrollY + viewPort - menuHeight
+                        //checking if we already set position
+                        if (stateRef.current.position !== 'fixed') {
+                            position = 'fixed'
+                            bottom = 10
+                            top = 'unset'
+                            stateRef.current.toBottom = true
+                        } else {
+                            toUpdate = false
+                        }
                     }
                 } else {
                     //checking if we already set position
@@ -79,13 +90,13 @@ const useScrollHook = (props: scrollFixedProps) => {
             //scrolling up
             else {
                 //reaching menu top
-                if (rect.top >= 100 ) {
-                    stateRef.current.top = scrollY + 100
+                if (rect.top >= 120 ) {
+                    stateRef.current.top = scrollY + 120
                     //checking if we already set position
                     if (stateRef.current.position !== 'fixed') {
                         bottom = 'unset'
                         position = 'fixed'
-                        top = 100
+                        top = 120
                     } else {
                         toUpdate = false
                     }
@@ -110,18 +121,20 @@ const useScrollHook = (props: scrollFixedProps) => {
             }
         }
 
-    const handleResize = throttle(() => {
+    const handleResize = () => {
         const newHeight = elemRef.current?.clientHeight as number
         const heightDiff = newHeight - stateRef.current.height
-        // console.log('new height', newHeight)
-        // console.log('previous height', stateRef.current.height)
-        // console.log('heightDif',heightDiff)
-        // stateRef.current.top +=heightDiff
+
         if (stateRef.current.toBottom) {
+            console.log('top', stateRef.current.top)
             stateRef.current.top -= heightDiff
+            console.log('top', stateRef.current.top)
+            if (stateRef.current.position === 'absolute' && heightDiff > 0) {
+                setMenuState({...menuState, bottom: 'unset', top: stateRef.current.top, position: 'absolute'})
+            }
         }
         stateRef.current.height = newHeight
-    }, 100)
+    }
 
 
     useEffect(() => {
