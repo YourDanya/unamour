@@ -6,7 +6,7 @@ export type scrollFixedProps = {
 }
 
 const ScrollFixed: React.FC<scrollFixedProps> = (props) => {
-    const {menuState, divRef, children} = useScrollHook(props)
+    const {menuState, elemRef, children} = useScrollHook(props)
 
     return (
         <div
@@ -17,7 +17,7 @@ const ScrollFixed: React.FC<scrollFixedProps> = (props) => {
                 bottom: menuState.bottom,
                 transform: `translateY(${menuState.translateY}px)`
             }}
-            ref={divRef}>
+            ref={elemRef}>
             {children}
         </div>
     )
