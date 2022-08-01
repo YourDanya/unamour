@@ -57,7 +57,7 @@ const useSlider = (props: SliderProps) => {
         }
     }, [])
     
-    return {...props, slideRef, count, transition,  handleForwardClick, handleBackClick}
+    return {...props, length, slideRef, count, transition,  handleForwardClick, handleBackClick}
 }
 
 export default useSlider

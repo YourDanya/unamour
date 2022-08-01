@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import useScrollHook from "./scroll-fixed.hook"
 
 export type scrollFixedProps = {

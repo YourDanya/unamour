@@ -13,163 +13,77 @@
 //     return {name, colors: nameMap[name]}
 // })
 
-colors= [
-    {
-        code: '#fffcf5',
-        slug: 'milk'
+
+let inputs = {
+    email:{
+        value: 'email',
+        validate: 'required',
+        error: ''
     },
-    {
-        code: '#212121',
-        slug: 'black'
+    number:{
+        value: 'number',
+        validate: 'required',
+        error: ''
     },
-    {
-        code: '#910951',
-        slug: 'purple'
-    },
-    {
-        code: '#cfc0b6',
-        slug: 'grey'
-    },
-    {
-        code: '#ffffff',
-        slug: 'white'
-    },
-    {
-        code: '#a86540',
-        slug: 'light brown'
-    },
-    {
-        code: '#a77752',
-        slug: 'beige'
-    },
-    {
-        code: '#442d25',
-        slug: 'coffee'
-    },
-    {
-        code: '#735435',
-        slug: 'brown'
-    },
-    {
-        code: '#87ceb',
-        slug: 'sky'
-    },
-    {
-        code: '#87776b',
-        slug: 'cocoa'
-    },
-    {
-        code: '#4d4d59',
-        slug: 'metallic'
-    },
-    {
-        code: '#d4b2a7',
-        slug: 'dusty-rose'
-    },
-    {
-        code: '#ffeede',
-        slug: 'cream'
-    },
-    {
-        code: '#1800cc',
-        slug: 'blue'
-    },
-    {
-        code: '#ff0000',
-        slug: 'red'
-    },
-    {
-        code: '#87cefa',
-        slug: 'blue'
-    },
-    {
-        code: '#dadeaf',
-        slug: 'pearl-gray'
-    },
-    {
-        code: '#313126',
-        slug: 'graphite'
-    },
-    {
-        code: '#ededed',
-        slug: 'light-gray'
-    },
-    {
-        code: '#f2e8c9',
-        slug: 'creamy'
+    name:{
+        value: 'name',
+        validate: 'required',
+        error: ''
     }
-]
+}
 
-const uaColors = [
-    'молочний',
-    'чорний',
-    'пурпурний',
-    'сірий',
-    'білий',
-    'світло-коричневий',
-    'біжовий',
-    'кав\'яний',
-    'коричневий',
-    'небесний',
-    'какао',
-    'металік',
-    'пильна троянда',
-    'кремовий',
-    'синій',
-    'червоний',
-    'блакитий',
-    'перливо-сірий',
-    'графітовий',
-    'світло-сірий',
-    'верховий'
-]
+const mergeObjects = (obj1, obj2) => {
+    const newObj = {}
+    for (let prop in obj1) {
+        if (prop in obj2) {
+            if (Array.isArray(obj1[prop]) && Array.isArray(obj2[prop])) {
+                newObj[prop] = []
+                obj1[prop].forEach((elem, index) => {
+                    newObj[prop].push({...elem, ...obj2[prop][index]})
+                })
+            }
+            else {
+                newObj[prop] = {...obj1[prop], ...obj2[prop]}
+            }
+        } else {
+            newObj[prop] = {...obj1[prop]}
+        }
+    }
+    for (let prop in obj2) {
+        if (!(prop in obj1)) {
+            newObj[prop] = {...obj2[prop]}
+        }
+    }
+    return newObj
+}
 
-const enColors= [
-    'milk',
-    'black',
-    'purple',
-    'grey',
-    'white',
-    'light brown',
-    'beige',
-    'coffee',
-    'brown',
-    'sky',
-    'cocoa',
-    'metallic',
-    'dusty trojan',
-    'cream',
-    'blue',
-    'red',
-    'blue',
-    'pearl grey',
-    'graphite',
-    'light grey',
-    'creamy'
-]
 
-const ruColors = [
-    'молочный',
-    'черный',
-    'пурпурный',
-    'серый',
-    'белый',
-    'светло-коричневий',
-    'бежовый',
-    'кофейный',
-    'коричневый',
-    'небесный',
-    'какао',
-    'металлик',
-    'пыльная троянда',
-    'кремовый',
-    'синий',
-    'красный',
-    'голубой',
-    'жечужно-серый',
-    'графитовый',
-    'светло-серый',
-    'сливочный'
-]
+const first = {
+    a: {
+        dhjd: '',
+        fjkje: '',
+    },
+    c: {
+        ddd: ''
+    },
+    arr: [
+        {a: 1},
+        {b: 2},
+    ]
+}
 
-console.log(colors.length, uaColors.length)
+const second = {
+    a: {
+        duir: '',
+        jisf: ''
+    },
+    b: {
+        ffff: ''
+    },
+    arr: [
+        {aa: 23},
+        {ccf: 44}
+    ]
+}
+
+console.log(mergeObjects(first, second))

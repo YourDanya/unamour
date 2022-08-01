@@ -1,7 +1,7 @@
 import React, {MouseEventHandler, useState} from 'react'
-import Link from "next/link";
-import Input from "../../common/input/input.component";
-import {useInput} from "../../../hooks/hooks";
+import Link from "next/link"
+import Input from "../../common/input/input.component"
+import {usePlainInput} from "../../../hooks/input.hooks"
 
 type setType = {
     email: string,
@@ -14,10 +14,7 @@ type propsType= {
 
 const SignIn: React.FC<propsType> = ({setSign}) => {
 
-    const [values, handleChange] = useInput(['email', 'password'] as const)
-
-    const [test, test_] = useInput({email: '', password: ''})
-
+    const [values, handleChange] = usePlainInput({email: '', password: ''})
 
     return (
         <div className={'sign__content'}>

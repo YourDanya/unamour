@@ -1,0 +1,54 @@
+.shop-item
+  &__buttons
+    margin-bottom: 40px
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+  &__checkout-button
+    width: 85%
+    height: 45px
+    border-radius: 2px
+    background-color: black
+    cursor: pointer
+    position: relative
+    &-text
+      top: 50%
+      left: 50%
+      transform: translateY(-50%) translateX(-50%)
+      position: absolute
+      color: white
+  &__favorite
+    &-button
+      height: 45px
+      width: 45px
+      border-radius: 2px
+      border: 1px solid black
+      cursor: pointer
+      background-color: white
+    &-img
+      height: 26px
+  &__present
+    background-color: transparent
+    border: none
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    position: relative
+    cursor: pointer
+    margin-bottom: 15px
+    &:hover
+      .shop-item__present-img
+        animation: shake 0.5s
+    &-label
+      margin-right: 20px
+      font-size: 10px
+    &-img
+      bottom: -1px
+      right: 0
+      position: absolute
+      cursor: pointer
+    &-cover
+      margin-top: 20px
+      width: 100%
+      display: flex
+      justify-content: flex-end

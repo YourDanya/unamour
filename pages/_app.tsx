@@ -1,6 +1,4 @@
-import '/components/scroll-fixed/scroll-fixed.styles.sass'
-import '/components/price-filter/price-filter.styles.sass'
-import '/components/cart-form/cart-form.styles.sass'
+import '/components/dropdowns/dropdowns.styles.sass'
 import '../styles/home.sass'
 import '../styles/global.sass'
 import '/components/common/range-slider/range-slider.styles.sass'
@@ -12,6 +10,17 @@ import '/components/common/form/form.styles.sass'
 import '/components/common/button/button.styles.sass'
 import '/components/common/textarea/textarea.styles.sass'
 import '/components/common/input/input.styles.sass'
+import '/components/shop-item/links/links.styles.sass'
+import '/components/shop-item/images/images.styles.sass'
+import '/components/shop-item/parameters/parameters.styles.sass'
+import '/components/shop-item/buttons/buttons.styles.sass'
+import '/components/present-form/present-form.styles.sass'
+import '/components/modal-content/modal-content.styles.sass'
+import '/components/sizes/sizes.styles.sass'
+import '/components/shop-item/additional/additional.styles.sass'
+import '/components/scroll-fixed/scroll-fixed.styles.sass'
+import '/components/price-filter/price-filter.styles.sass'
+import '/components/cart-form/cart-form.styles.sass'
 import '/components/order/order.styles.sass'
 import '/components/cart-item/cart-item.styles.sass'
 import '/pages/search/search.styles.sass'
@@ -60,6 +69,7 @@ import {useEffect} from "react"
 import Cookie from "../components/cookie/cookie.component";
 
 function MyApp({Component, pageProps}: AppPropsWithLayout) {
+
     let getLayout = Component.getLayout ?? ((page) => page)
     const slug = useRouter().query.slug
     if (slug && slug.length!==1) getLayout = ((page) => page)
@@ -80,7 +90,7 @@ function MyApp({Component, pageProps}: AppPropsWithLayout) {
                 {getLayout(<Component {...pageProps}/>)}
             </div>
             <Footer/>
-            <Cookie/>
+            {/*<Cookie/>*/}
         </>
     )
 }

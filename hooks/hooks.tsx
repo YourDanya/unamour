@@ -2,27 +2,6 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {LocaleType} from "../types/types"
 
-export const useInput = <T extends readonly string[] | { [prop: string]: string }, >(inputs: T): T extends readonly string[] ?
-    [values: Record<typeof inputs[number], string>, handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void] :
-    [values: T, handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void] => {
-
-    let initialState: any = {}
-    if (Array.isArray(inputs)) {
-        inputs.forEach((elem) => initialState[elem] = '')
-    } else {
-        initialState = inputs
-    }
-    const [values, setValues] = useState(initialState)
-    const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target
-        setValues({...values, [name]: value})
-    }
-
-    return [values, handleInput] as T extends readonly string[] ?
-        [values: Record<typeof inputs[number], string>, handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void] :
-        [values: T, handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void]
-}
-
 export const useToggle = (): [active: boolean, handleEvent: (event: any) => void] => {
     const [active, setActive] = useState(false)
     const handleEvent = (event: any) => {
@@ -92,8 +71,72 @@ export const useMatchUrl = (url: string): [match: boolean] => {
     return [useRouter().pathname === url]
 }
 
+export const useImages = (urls: string[], className?: string) => {
+    return urls.map((url, index) => <img className={className} src={url} alt={`image ${index}`} key={url + index}/>)
+}
+
 export const useLocale = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translation: {ua: T, eng: T, ru: T}} & K, "translation">, translation: T] => {
     const locale = useRouter().locale as LocaleType
     const {translation, ...other} = content
     return [{...other}, translation[locale]]
 }
+
+export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translation: {ua: T, eng: T, ru: T}} & K, "translation">, translation: T] => {
+    const locale = useRouter().locale as LocaleType
+    const {translation, ...other} = content
+    const translateContent = translation[locale]
+
+    return [{...other}, translation[locale]]
+}
+
+// export const mergeObjects  = <T, K> (obj1: T, obj2: K) => {
+//     const newObj: Partial<T> & Partial<K>  = {} as Partial<T> & Partial<K>
+//     for (let prop in obj1) {
+//         if (prop in obj2) {
+//             // prop = prop as keyof typeof obj2
+//             const prop1 = obj1[prop]
+//             if (Array.isArray(prop1) && Array.isArray(obj2[prop])) {
+//                 newObj[prop] = [] as T[typeof prop]
+//                 let arr = obj1[prop] as []
+//                 prop1.forEach((elem, index) => {
+//                     (newObj[prop] as []).push({...elem, ...obj2[prop][index]})
+//                 })
+//             }
+//             else {
+//                 newObj[prop] = {...obj1[prop], ...obj2[prop]}
+//             }
+//         } else {
+//             newObj[prop] = {...obj1[prop]}
+//         }
+//     }
+//     for (let prop in obj2) {
+//         if (!(prop in obj1)) {
+//             newObj[prop] = {...obj2[prop]}
+//         }
+//     }
+//     return newObj
+// }
+//
+// type T = {
+//     a: {
+//         ddd: number
+//     },
+//     b: string
+//     arr: [{a: string, b:number}, {a: string, b : number}]
+// }
+//
+// type K = {
+//     a: {
+//         dd: string,
+//         fff: string
+//     },
+//     c : number,
+// }
+//
+// type MergeObjects <T, K> =  Pick<T, keyof T> & Pick<K, keyof K>
+//
+// type MergeTK = MergeObjects<T, K>
+//
+// let mergeTK : MergeTK ={} as MergeTK
+
+

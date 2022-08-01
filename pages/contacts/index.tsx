@@ -3,11 +3,13 @@ import MapComponent from "../../components/map/map.component"
 import Input from "../../components/common/input/input.component"
 import Textarea from "../../components/common/textarea/textarea.component"
 import Button from "../../components/common/button/button.component"
-import {useInput} from "../../hooks/hooks"
+import {usePlainInput} from "../../hooks/input.hooks";
 
 const ContactComponent: React.FC = () => {
 
-    const [values, handleChange] = useInput(['name', 'number', 'email'] as const)
+    const [values, handleChange] = usePlainInput(
+        {name: '', number: '', email: ''}
+    )
 
     return (
         <div className={'contacts'}>
@@ -28,18 +30,21 @@ const ContactComponent: React.FC = () => {
                             value={values.name}
                             placeholder={'Имя'}
                             className={'input--contact'}
+                            handleChange={handleChange}
                         />
                         <Input
                             name={'number'}
                             value={values.number}
                             placeholder={'Телефон'}
                             className={'input--contact'}
+                            handleChange={handleChange}
                         />
                         <Input
                             name={'email'}
                             value={values.email}
                             placeholder={'Эл. почта'}
                             className={'input--contact'}
+                            handleChange={handleChange}
                         />
                         <Textarea name={'name'} placeholder={'Сообщение'}/>
                         <Button className={'contacts__form-button'}>

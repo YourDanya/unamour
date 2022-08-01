@@ -1,8 +1,8 @@
 import React from "react"
 
 type RadioButtonProps = {
-    inputs: { value: string, label: string, node?: React.ReactNode }[]
-    handleChange: (event: React.ChangeEvent) => void,
+    inputs: {value: string, label: string, node?: React.ReactNode }[]
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     active: string,
     name: string,
     className?: string

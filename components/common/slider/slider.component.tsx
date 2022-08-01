@@ -9,7 +9,7 @@ export type SliderProps = {
 
 const Slider: React.FC<SliderProps> = (props) => {
 
-    const {elements, slideRef, count, transition,  handleForwardClick, handleBackClick} = useSlider(props)
+    const {elements, slideRef, length, count, transition,  handleForwardClick, handleBackClick} = useSlider(props)
 
     return (
         <div className={'slider'}>

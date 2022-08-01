@@ -5,173 +5,22 @@
     padding: 0 200px
     display: flex
     margin-bottom: 60px
-  &__additional
-    padding: 0 40px
-    &-title
-      font-size: 12px
-      margin-bottom: 30px
-  &__similar, &__viewed
-    display: flex
-    div
-      &:first-child
-        margin-left: 0
-  &__add
-    width: 100%
-    margin-left: 5px
-  &__tab
-    cursor: pointer
-    height: 90px
-    margin-bottom: 5px
-  &__tabs
-    display: flex
-    flex-direction: column
-  &__images
-    width: 57%
-    display: flex
-    align-self: flex-start
-  &__slider
-    margin-left: 25px
-    width: 100%
   &__about
     padding-left: 50px
     width: 43%
-  &__links
-    color: #a1a1a1
-    font-size: 11px
-    margin-bottom: 25px
-    &-slash
-      color: #a1a1a1
-      padding: 0 4px
-  &__link
-    text-transform: capitalize
-  &__name
-    font-size: 13px
-    text-transform: uppercase
-    margin-bottom: 25px
-  &__prices
-    display: flex
-    margin-bottom: 30px
-  &__price
-    font-weight: 300
-    font-size: 14px
-    &--old
-      position: relative
-      color: #828282
-      margin-right: 12px
-    &-crossed
-      position: absolute
-      top: 40%
-      left: 0
-      width: 100%
-      height: 0.5px
-      background-color: #828282
   &__sizes
     margin-bottom: 40px
-    &-top
-      width: 100%
-      justify-content: space-between
-      display: flex
-      margin-bottom: 10px
-    &-choose
-      cursor: pointer
-      line-height: 14px
-      border-bottom: 1px solid #e0e0e0
-      transition: 0.4s border-color
-      &:hover
-        border-color: #cdcdcd
-    &-list
-      display: flex
     &-modal
       background-color: white
       padding: 35px 24px
       width: 800px
       height: auto
       &--active
-  &__size
-    cursor: pointer
-    display: flex
-    align-items: center
-    justify-content: center
-    width: 65px
-    height: 31px
-    border: 1px solid #828282
-    margin-right: 10px
-    &--active
-      border-color: #bd944d
-      color: #bd944d
-  &__colors
-    margin-bottom: 27px
-    &-label
-      font-size: 10px
-      margin-bottom: 10px
-    &-list
-      display: flex
-  &__color
-    border: 1px solid #e8e4e4
-    cursor: pointer
-    width: 28px
-    height: 28px
-    margin-right: 5px
-    &--current
-      position: relative
-      &:before
-        content: ''
-        position: absolute
-        bottom: -4px
-        left: 50%
-        transform: translateX(-50%)
-        width: 32px
-        z-index: 10
-        height: 0.5px
-        background-color: black
-  &__buttons
-    margin-bottom: 40px
-    display: flex
-    justify-content: space-between
-  &__checkout-button
-    width: 85%
-    height: 45px
-    border-radius: 2px
-    background-color: black
-    cursor: pointer
-    position: relative
-    &-text
-      top: 50%
-      left: 50%
-      transform: translateY(-50%) translateX(-50%)
-      position: absolute
-      color: white
-  &__favorite
-    &-button
-      height: 45px
-      width: 45px
-      border-radius: 2px
-      border: 1px solid black
-      cursor: pointer
-      background-color: white
-    &-img
-      height: 26px
-  &__present
-    display: flex
-    align-items: center
-    justify-content: flex-end
-    position: relative
-    cursor: pointer
-    margin-bottom: 15px
-    &:hover
-      .shop-item__present-img
-        animation: shake 0.5s
-    &-label
-      margin-right: 20px
-      font-size: 10px
-    &-img
-      bottom: -1px
-      position: absolute
-      cursor: pointer
-  &__dropdown-element
-    white-space: pre-wrap
-    padding: 10px
-    line-height: 13px
+  &__dropdown
+    .dropdown__children
+      white-space: pre-wrap
+      padding: 10px
+      line-height: 13px
 
 @keyframes shake
   60%

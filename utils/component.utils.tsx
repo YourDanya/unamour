@@ -14,3 +14,17 @@ export const createDelivery = (deliveryTypes: DeliveryType[]) => deliveryTypes.m
         )
     }
 })
+
+export const mapDelivery = (values: string[], labels: {title: string, price: string, duration: string} []) => values.map((value, index) => {
+    const {title, price, duration} = labels[index]
+    return {
+        value,
+        label: title,
+        node: (
+            <div className='delivery-type'>
+                <div className='delivery-type__price'>{price}</div>
+                <div className='delivery-type__duration'>{duration}</div>
+            </div>
+        )
+    }
+})

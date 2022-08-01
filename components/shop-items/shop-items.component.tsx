@@ -31,7 +31,7 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                         ))}
                     </div>
                     <div className='shop-items__filters'>
-                        <Dropdown name={translation.filter1} className={'shop-items__filter shop-items__sort'}>
+                        <Dropdown name={translation.filter1} className={'shop-items__sort'}>
                             {content.sort.map((param, index) => (
                                 <button
                                     className={`shop-items__sort-item ${sort===param ? 'shop-items__sort-item--active' : ''}`}
@@ -51,7 +51,7 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                                 translateTo={translation.price.to}
                             />
                         </Dropdown>
-                        <Dropdown name={translation.filter3} className='shop-items__filter shop-items__sizes'>
+                        <Dropdown name={translation.filter3} className='shop-items__sizes'>
                             {content.sizes.map((size, index) => (
                                 <Checkbox
                                     className={'shop-items__size'}
