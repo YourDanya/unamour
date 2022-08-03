@@ -1,52 +1,24 @@
 import React, {useEffect, useState} from 'react'
-import search from '/public/icons/search.svg';
-import Input from "../common/input/input.component";
-import {useSelector} from "react-redux";
-import {selectClientItems} from "../../redux/shop-items/shop-items.slice";
-import {useRouter} from "next/router";
-import Link from 'next/link';
-import {LocaleType} from "../../types/types";
-import {ClientItem} from "../../redux/shop-items/shop-items.types";
-
-interface SearchResultInterface {
-    name: string,
-    imgUrl: string
-}
+import search from '/public/icons/search.svg'
+import Link from 'next/link'
+import Input from "../../common/input/input.component"
+import useNavSearch from "./nav-search.hook"
 
 const NavSearch: React.FC = () => {
 
-    const [hidden, setHidden] = useState(true)
-
-    const locale = useRouter().locale as LocaleType
-
-    const items = useSelector(selectClientItems)
-
-    const [searchItems, setSearchItems] = useState<ClientItem[]>([])
-
-    const [input, setInput] = useState('')
-
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const input = event.target.value
-        if (input) {
-            const searchItems = items.filter(item => item.name.toLowerCase().includes(input.toLowerCase()))
-            setSearchItems(searchItems)
-        } else {
-            setSearchItems([])
-        }
-        setInput(input)
-    }
+    const {hidden, setHidden, locale, searchItems, setSearchItems, input, setInput,onChange} = useNavSearch()
 
     return (
         <div className={`search ${hidden ? 'search--hidden' : ''}`}>
-            {/*<div className='close' onClick={() => setHidden(true)}/>*/}
             <div className="search__title">
                 ПОШУК
             </div>
             <div className='search__input'>
-                <Input placeholder={'Знайти'}
-                             value={input}
-                             name={'search'}
-                             handleChange={onChange}
+                <Input
+                    placeholder={'Знайти'}
+                    value={input}
+                    name={'search'}
+                    handleChange={onChange}
                 >
                     <img className={'search__icon'} src={search.src} alt={'search icon'}/>
                 </Input>
@@ -54,7 +26,7 @@ const NavSearch: React.FC = () => {
             {searchItems.length > 0 ? (
                 <div className="search__results">
                     {searchItems.filter((item, index) => index < 4).map((item, index) =>
-                        <Link href={`/shop-items/${item.slugCategory}/${item.slug}`} key={item.name+index}>
+                        <Link href={`/shop-items/${item.slugCategory}/${item.slug}`} key={item.name + index}>
                             <a className='search__item'>
                                 <img className='search__item-img' src={item.images[0]} alt={'search item image'}/>
                                 <div className='search__item-name'>{item.name}</div>

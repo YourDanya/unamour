@@ -1,4 +1,4 @@
-import {useSetFalseMany, useToggleMany} from "../../hooks/hooks"
+import {useSetFalseMany, useToggleMany} from "../../../hooks/event-handler.hooks"
 import {DiscountProps} from "./discount.component"
 
 const useDiscount = (props: DiscountProps) => {

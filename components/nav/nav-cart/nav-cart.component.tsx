@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import shoppingCart from '/public/icons/big-shopping-cart.svg'
-import {useSelector} from "react-redux";
-import {selectCartItems, selectTotalPrice} from "../../redux/cart/cart.slice";
-import Link from 'next/link';
-import CartItem from "../cart-item/cart-item.component";
+import {useSelector} from "react-redux"
+import Link from 'next/link'
+import {selectCartItems, selectTotalPrice} from "../../../redux/cart/cart.slice"
+import CartItem from "../../cart-item/cart-item.component"
 
 const NavShoppingCart: React.FC = () => {
 

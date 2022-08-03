@@ -6,16 +6,19 @@ type parametersProps = {
     oldPrice: number,
     price: number,
     sizes: string[],
-    handleModalSize: (event: React.MouseEvent) => void,
     activeSize: string | null,
-    handleSizeChange: (size: string) => void,
+    showModal: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    handleSizeClick: (event: React.MouseEvent<HTMLButtonElement>) => void,
     color: {code: string, name: string},
-    variants: ItemVariant[]
+    variants: ItemVariant[],
+    modalState:  Record<"size" | "present", boolean> & {modal: boolean}
 }
 
 const Parameters: React.FC<parametersProps> = (props) => {
 
-    const {name, oldPrice, price, sizes, handleModalSize, activeSize, handleSizeChange, color, variants} = props
+    const {name, oldPrice, price, sizes, showModal, activeSize, handleSizeClick, color, variants, modalState} = props
+
+    console.log(modalState)
 
     return (
         <>
@@ -32,17 +35,20 @@ const Parameters: React.FC<parametersProps> = (props) => {
             <div className="shop-item__sizes">
                 <div className="shop-item__sizes-top">
                     <div className="shop-item__sizes-label">Розміри</div>
-                    <div className="shop-item__sizes-choose" onClick={handleModalSize}>Підібрати розмір</div>
+                    <button className="shop-item__sizes-choose" name={'size'} onClick={showModal}>
+                        Підібрати розмір
+                    </button>
                 </div>
                 <div className={'shop-item__sizes-list'}>
                     {sizes.map(size =>
-                        <div
+                        <button
                             className={`shop-item__size ${activeSize === size ? 'shop-item__size--active' : ''}`}
                             key={size}
-                            onClick={() => handleSizeChange(size)}
+                            name={size}
+                            onClick={handleSizeClick}
                         >
                             {size}
-                        </div>
+                        </button>
                     )}
                 </div>
             </div>

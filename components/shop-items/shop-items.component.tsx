@@ -3,8 +3,8 @@ import Dropdown from "../common/dropdown/dropdown.component"
 import Checkbox from "../common/checkbox/checkbox.component"
 import useShopItems from "./shop-items.hook"
 import Link from "next/link"
-import PriceFilter from "../price-filter/price-filter.component"
-import ScrollFixed from "../scroll-fixed/scroll-fixed.component"
+import PriceFilter from "./price-filter/price-filter.component"
+import ScrollFixed from "./scroll-fixed/scroll-fixed.component"
 
 export type ShopItemsProps = {
     children?: React.ReactNode

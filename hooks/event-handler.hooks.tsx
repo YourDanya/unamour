@@ -2,6 +2,15 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {LocaleType} from "../types/types"
 
+export const useCombineHandlers = (...eventHandlers: ((event: React.MouseEvent<HTMLElement>) => void)[]):  (event: React.MouseEvent<HTMLElement>) => void => {
+
+    const handleEvent = (event: React.MouseEvent<HTMLElement>) => {
+        eventHandlers.forEach(eventHandler => eventHandler(event))
+    }
+
+    return handleEvent
+}
+
 export const useToggle = (): [active: boolean, handleEvent: (event: any) => void] => {
     const [active, setActive] = useState(false)
     const handleEvent = (event: any) => {
@@ -10,12 +19,34 @@ export const useToggle = (): [active: boolean, handleEvent: (event: any) => void
     return [active, handleEvent]
 }
 
-export const useToggleMany = <T extends readonly string[], >(arr: T, attribute: string = 'name'): [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void] => {
+export const useDoubleToggle = (initState? : boolean, params? : {firstCond?: boolean, secondCond?: boolean}):
+    [active: boolean, handleFirst: (event: React.MouseEvent<HTMLElement>) => void, handleSecond: (event: React.MouseEvent<HTMLElement>) => void] => {
+
+    const [active, setActive] = useState(initState ?? false)
+
+    const handleFirst = (event: React.MouseEvent<HTMLElement>) => {
+        if (active && (params?.firstCond ?? true)) {
+            setActive(false)
+        }
+    }
+
+    const handleSecond = (event: React.MouseEvent<HTMLElement>) => {
+        if (!active && (params?.secondCond ?? true)) {
+            setActive(true)
+        }
+    }
+
+    return [active, handleFirst, handleSecond]
+}
+
+export const useToggleMany = <T extends readonly string[], >(arr: T, attribute: string = 'name'):
+    [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void] => {
+
     const initialState: any = {}
     arr.forEach((elem) => initialState[elem] = false)
     const [active, setActive] = useState(initialState)
     const handleEvent = (event: any) => {
-        const property = event.target[attribute]
+        const property = event.currentTarget.getAttribute(attribute)
         setActive({...active, [property]: !active[property]})
     }
     return [active, handleEvent]
@@ -27,34 +58,49 @@ export const usePreventDefault = (): (event: any) => void => {
     }
 }
 
-export const useSetActive = (initActive: string, attribute: string = 'name'): [active: string, handleEvent: (event: any) => void] => {
+export const useSetActive = (initActive:string, attribute: string = 'name'):
+    [active: string , handleEvent: (event: any) => void, setActive: (active: string) => void]  => {
+
+    const [active, setActive] = useState(initActive)
+
+    const handleEvent = (event: any) => {
+        setActive(event.currentTarget.getAttribute(attribute))
+    }
+
+    return [active, handleEvent, setActive]
+}
+
+export const useSetNumber = (initActive: number, attribute: string):
+    [active: number , handleEvent: (event: any) => void, setActive: (active: number) => void] => {
+
     const [active, setActive] = useState(initActive)
     const handleEvent = (event: any) => {
-        setActive(event.target[attribute])
+        setActive(+event.currentTarget.getAttribute(attribute))
     }
-    return [active, handleEvent]
+
+    return [active, handleEvent, setActive]
 }
 
 export const useToggleActive = (attribute: string = 'name'): [active: string | null, handleEvent: (event: React.MouseEvent<HTMLElement>) => void] => {
+    
     const [active, setActive] = useState<string | null>(null)
-    const handleEvent = (event: React.MouseEvent<HTMLElement> & { target: { [attribute: string]: string } }) => {
-        const value = event.target[attribute]
+    const handleEvent = (event: React.MouseEvent<HTMLElement>) => {
+        const value = event.currentTarget.getAttribute(attribute)
         if (active === value) {
             setActive(null)
         } else {
-            setActive(event.target[attribute])
+            setActive(event.currentTarget.getAttribute(attribute))
         }
     }
     return [active, handleEvent as (event: React.MouseEvent<HTMLElement>) => void]
 }
-
 
 export const useSetFalseMany = <T extends readonly string[], >(arr: T, attribute: string): [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void] => {
     const initialState: any = {}
     arr.forEach((elem) => initialState[elem] = true)
     const [active, setActive] = useState(initialState)
     const handleEvent = (event: any) => {
-        setActive({...active, [event.target[attribute]]: false})
+        setActive({...active, [event.currentTarget.getAttribute(attribute)]: false})
     }
     return [active, handleEvent]
 }
@@ -71,7 +117,7 @@ export const useMatchUrl = (url: string): [match: boolean] => {
     return [useRouter().pathname === url]
 }
 
-export const useImages = (urls: string[], className?: string) => {
+export const useMapImages = (urls: string[], className?: string) => {
     return urls.map((url, index) => <img className={className} src={url} alt={`image ${index}`} key={url + index}/>)
 }
 
@@ -88,6 +134,7 @@ export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru
 
     return [{...other}, translation[locale]]
 }
+
 
 // export const mergeObjects  = <T, K> (obj1: T, obj2: K) => {
 //     const newObj: Partial<T> & Partial<K>  = {} as Partial<T> & Partial<K>

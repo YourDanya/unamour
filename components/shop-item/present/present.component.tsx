@@ -1,6 +1,6 @@
 import React from "react"
-import PresentForm from "../present-form/present-form.component";
-import usePresent from "./present.hook";
+import PresentForm from "./present-form/present-form.component"
+import usePresent from "./present.hook"
 
 export type presentProps = {
     price: number,

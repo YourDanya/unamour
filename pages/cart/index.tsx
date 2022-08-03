@@ -1,10 +1,10 @@
 import React from "react"
 import CartItem from "../../components/cart-item/cart-item.component"
-import Discount from "../../components/discount/discount.component"
+import Discount from "../../components/cart/discount/discount.component"
 import {NextPage} from "next"
-import Order from "../../components/order/order.component"
+import Order from "../../components/cart/order/order.component"
 import useCart from "./cart.hook"
-import CartForm from "../../components/cart-form/cart-form.component"
+import CartForm from "../../components/cart/cart-form/cart-form.component"
 
 const Cart: NextPage = () => {
 

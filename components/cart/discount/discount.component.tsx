@@ -1,5 +1,5 @@
 import React from "react"
-import Input from "../common/input/input.component"
+import Input from "../../common/input/input.component"
 import useDiscount from "./discount.hook";
 
 export type DiscountProps = {

@@ -1,5 +1,5 @@
 import React from "react"
-import {usePreventDefault, useToggle} from "../../../hooks/hooks"
+import {usePreventDefault, useToggle} from "../../../hooks/event-handler.hooks"
 
 type CheckboxProps = {
     label: string,

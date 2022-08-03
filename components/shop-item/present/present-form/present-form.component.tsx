@@ -1,11 +1,11 @@
 import React from "react"
-import Input from "../common/input/input.component"
-import Button from "../common/button/button.component"
-import RadioButtons from "../common/radio-buttons/radio-buttons.component"
-import Checkbox from "../common/checkbox/checkbox.component"
-import {InputTypes, LocaleType} from "../../types/types"
-import {presentContent} from "../present/present.content"
-import {mapDelivery} from "../../utils/component.utils";
+import {presentContent} from "../present.content"
+import {mapDelivery} from "../../../../utils/component.utils"
+import Button from "../../../common/button/button.component"
+import Checkbox from "../../../common/checkbox/checkbox.component"
+import RadioButtons from "../../../common/radio-buttons/radio-buttons.component"
+import {LocaleType} from "../../../../types/types"
+import Input from "../../../common/input/input.component"
 
 export type presentFormProps = {
     localeInputs: typeof presentContent.translation[LocaleType]['inputs'],

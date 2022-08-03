@@ -1,5 +1,5 @@
 import React from "react";
-import RangeSlider from "../common/range-slider/range-slider.component";
+import RangeSlider from "../../common/range-slider/range-slider.component"
 
 type priceFilterProps = {
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,

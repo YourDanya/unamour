@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useRouter} from "next/router";
 import {InputType, InputTypes, LocaleType} from "../types/types";
-import {useLocale} from "./hooks";
+import {useLocale} from "./event-handler.hooks";
 
 export const usePlainInput = <T extends { [prop: string]: string | boolean | number }, >(inputs: T):
     [values: T, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void] => {

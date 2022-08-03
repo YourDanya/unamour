@@ -1,57 +1,43 @@
 import React from "react"
-import Modal from "../modal/modal.component"
-import Present from "../present/present.component"
 import {ClientItem} from "../../redux/shop-items/shop-items.types"
 import {useShopItem} from "./shop-item.hook"
 import Additional from "./additional/additional.component"
-import ModalContent from "../modal-content/modal-content.component"
-import Buttons from "./buttons/buttons.component";
-import Parameters from "./parameters/parameters.component";
-import Sizes from "../sizes/sizes.component";
-import Images from "./images/images.component";
-import Links from "./links/links.component";
-import Dropdowns from "./dropdowns/dropdowns.component";
+import Buttons from "./buttons/buttons.component"
+import Parameters from "./parameters/parameters.component"
+import Images from "./images/images.component"
+import Links from "./links/links.component"
+import Dropdowns from "./dropdowns/dropdowns.component"
+import ModalContent from "../common/modal-content/modal-content.component"
+import Modal from "../common/modal/modal.component"
+import Sizes from "./sizes/sizes.component"
+import Present from "./present/present.component"
 
 const ShopItem: React.FC<ClientItem> = (props) => {
 
     const {
         name, color, sizes, images, price, delivery, description, composition, parameters, category, slugCategory,
-        oldPrice, slug, currency, variants, activeSize, handleSizeChange, checkout, setCheckout, handleCheckoutButtonMouseEnter,
-        handleCheckoutButtonMouseLeave, modalActive, setModalActive, handleModalSize, presentLabel, handlePresentClick, handlePresentMouseLeave,
-        sliderCount, setSliderCount, slideImages, similarItems, viewedItems, handleCartClick
+        oldPrice, variants, activeSize, handleSizeClick, modalState, showModal, hideModal,
     } = useShopItem(props)
 
     return (
         <div className='shop-item'>
             <div className="shop-item__content">
-                <Images
-                    images={images}
-                    slideImages={slideImages}
-                    setSliderCount={setSliderCount}
-                    sliderCount={sliderCount}
-                />
+                <Images images={images}/>
                 <div className={'shop-item__about'}>
                     <Links category={category} slugCategory={slugCategory}/>
                     <Parameters
+                        modalState={modalState}
                         name={name}
                         oldPrice={oldPrice}
                         price={price}
                         sizes={sizes}
-                        handleModalSize={handleModalSize}
                         activeSize={activeSize}
-                        handleSizeChange={handleSizeChange}
+                        handleSizeClick={handleSizeClick}
                         color={color}
                         variants={variants}
+                        showModal={showModal}
                     />
-                    <Buttons
-                        handleCheckoutButtonMouseEnter={handleCheckoutButtonMouseEnter}
-                        handleCheckoutButtonMouseLeave={handleCheckoutButtonMouseLeave}
-                        handleCartClick={handleCartClick}
-                        checkout={checkout}
-                        handlePresentClick={handlePresentClick}
-                        handlePresentMouseLeave={handlePresentMouseLeave}
-                        presentLabel={presentLabel}
-                    />
+                    <Buttons activeSize={activeSize} showModal={showModal}/>
                     <Dropdowns
                         delivery={delivery}
                         composition={composition}
@@ -60,8 +46,8 @@ const ShopItem: React.FC<ClientItem> = (props) => {
                     />
                 </div>
             </div>
-            <Additional similarItems={similarItems} viewedItems={viewedItems}/>
-            <ModalContent active={modalActive.present} hideModal={() => {}}>
+            <Additional/>
+            <ModalContent active={modalState.present} hideModal={hideModal}>
                 <Present
                     price={price}
                     name={name}
@@ -70,10 +56,10 @@ const ShopItem: React.FC<ClientItem> = (props) => {
                     activeSize={activeSize as string}
                 />
             </ModalContent>
-            <ModalContent active={modalActive.size} hideModal={() => setModalActive({modal: false, size: false, present: false})}>
+            <ModalContent active={modalState.size} hideModal={hideModal}>
                 <Sizes/>
             </ModalContent>
-            <Modal active={modalActive.modal} hideModal={() => setModalActive({modal: false, size: false, present: false})}/>
+            <Modal active={modalState.modal} hideModal={hideModal}/>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import {CartItemObject, decreaseQuantity, increaseQuantity, removeItem} from "../../redux/cart/cart.slice";
 import {useDispatch} from "react-redux";
-import {useMatchUrl} from "../../hooks/hooks";
+import {useMatchUrl} from "../../hooks/event-handler.hooks";
 
 const useCartItem = (props: CartItemObject) => {
     const {data: {slug, size}} = props

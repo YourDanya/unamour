@@ -1,35 +1,32 @@
 import React from "react"
 import bookmark from '/public/icons/bookmark.svg'
 import presentImg from '/public/icons/present.svg'
+import useButtons from "./buttons.hook"
 
-type buttonsProps = {
-    handleCheckoutButtonMouseEnter: (event: React.MouseEvent) => void,
-    handleCheckoutButtonMouseLeave: (event: React.MouseEvent) => void,
-    handleCartClick: (event: React.MouseEvent) => void,
-    checkout: boolean,
-    handlePresentClick: (event: React.MouseEvent) => void,
-    handlePresentMouseLeave: (event: React.MouseEvent) => void,
-    presentLabel: boolean
+export type buttonsProps = {
+    activeSize: string | null,
+    showModal: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 const Buttons: React.FC<buttonsProps> = (props) => {
-    const {handleCheckoutButtonMouseEnter, handleCartClick, handlePresentClick, handlePresentMouseLeave,
-        handleCheckoutButtonMouseLeave, checkout, presentLabel} = props
+
+    const {
+        handleCartMouseEnter, handleCartClick, handlePresentClick, handlePresentMouseLeave, handleCartMouseLeave,
+        cart, present
+    } = useButtons(props)
 
     return (
         <div className={'shop-item__buttons'}>
             <button
                 className="shop-item__checkout-button"
-                onMouseEnter={handleCheckoutButtonMouseEnter}
-                onMouseLeave={handleCheckoutButtonMouseLeave}
+                onMouseEnter={handleCartMouseEnter}
+                onMouseLeave={handleCartMouseLeave}
                 onClick={handleCartClick}
             >
-                <div className={`shop-item__checkout-button-text fade
-                                ${checkout ? 'fade--show' : ''}`}>
+                <div className={`shop-item__checkout-button-text fade ${cart ? 'fade--show' : ''}`}>
                     ДОДАТИ ДО КОРЗИНИ
                 </div>
-                <div className={`shop-item__checkout-button-text fade
-                                ${checkout ? '' : 'fade--show'}`}>
+                <div className={`shop-item__checkout-button-text fade ${cart ? '' : 'fade--show'}`}>
                     ОБЕРІТЬ РОЗМІР
                 </div>
             </button>
@@ -42,10 +39,10 @@ const Buttons: React.FC<buttonsProps> = (props) => {
                     onClick={handlePresentClick}
                     onMouseLeave={handlePresentMouseLeave}
                 >
-                    <div className={`shop-item__present-label fade ${presentLabel ? 'fade--show' : ''}`}>
+                    <div className={`shop-item__present-label fade ${present ? 'fade--show' : ''}`}>
                         ПОДАРУВАТИ
                     </div>
-                    <div className={`shop-item__present-label fade ${presentLabel ? '' : 'fade--show'}`}>
+                    <div className={`shop-item__present-label fade ${present ? '' : 'fade--show'}`}>
                         ОБЕРІТЬ РОЗМІР
                     </div>
                     <img className='shop-item__present-img' src={presentImg.src} alt={'present img'}/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import MapComponent from "../../components/map/map.component"
+import MapComponent from "../../components/common/map/map.component"
 import Input from "../../components/common/input/input.component"
 import Textarea from "../../components/common/textarea/textarea.component"
 import Button from "../../components/common/button/button.component"

@@ -1,30 +1,32 @@
-import React from "react";
-import Slider from "../../common/slider/slider.component";
+import React from "react"
+import Slider from "../../common/slider/slider.component"
+import useImages from "./images.hook"
 
-type imagesProps = {
-    images: string[]
-    setSliderCount: React.Dispatch<React.SetStateAction<number>>,
-    slideImages: JSX.Element[],
-    sliderCount: number,
+export type imagesProps = {
+    images: string[],
 }
 
 const Images: React.FC<imagesProps> = (props) => {
-    const {images, slideImages, sliderCount, setSliderCount} = props
+    const {images, current, handleTabClick, setCurrent} = useImages(props)
+
     return (
         <div className="shop-item__images">
             <div className="shop-item__tabs">
                 {images.map((url, index) =>
-                    <img
-                        className='shop-item__tab'
-                        src={url}
-                        alt={`image ${index} ${name}`}
+                    <button
+                        className={`shop-item__tab ${current===index? 'shop-item__tab--current' : ''}`}
                         key={url + index}
-                        onChange={() => setSliderCount(index)}
-                    />
+                        data-index={index}
+                        onClick={handleTabClick}
+                    >
+                        <img className='shop-item__tab-img' src={url} alt={`tab image ${index}`}/>
+                    </button>
                 )}
             </div>
             <div className="shop-item__slider">
-                <Slider elements={slideImages} current={sliderCount}/>
+                <Slider current={current} setCurrent={setCurrent}>
+                    {images.map((url, index) => <img src={url} alt={`slide image ${index}`} key={url + index}/>)}
+                </Slider>
             </div>
         </div>
     )

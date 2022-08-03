@@ -1,28 +1,32 @@
-import {useEffect, useRef, useState} from "react"
+import {Children, useEffect, useRef, useState} from "react"
 import {SliderProps} from "./slider.component"
 
 const useSlider = (props: SliderProps) => {
 
-    const {elements, current} = props
+    const {current, setCurrent, children} = props
     
-    let [count, setCount] = useState(current ?? 0)
+    // let [count, setCount] = useState(current ?? 0)
+
+    const elements = Children.toArray(children)
     const length = elements.length
+
     const slideRef = useRef<HTMLDivElement>(null)
     const transitionRef = useRef<{ now: boolean, add: null | number }>({now: false, add: null})
-    const [transition, setTransition] = useState(400) 
-    
+    const [transition, setTransition] = useState(400)
+
     const handleForwardClick = () => {
         if (transitionRef.current.now) return
-        setCount(count + 1)
-        if (count === length - 1) {
+        console.log(typeof current)
+        setCurrent(current + 1)
+        if (current === length - 1) {
             transitionRef.current.add = 0
         }
     }
     
     const handleBackClick = () => {
         if (transitionRef.current.now) return
-        setCount(count - 1)
-        if (count === 0) {
+        setCurrent(current - 1)
+        if (current === 0) {
             transitionRef.current.add = length - 1
         }
     }
@@ -35,7 +39,7 @@ const useSlider = (props: SliderProps) => {
     const handleTransitionEnd = () => {
         console.log('transition end')
         if (transitionRef.current.add!==null) {
-            setCount(transitionRef.current.add)
+            setCurrent(transitionRef.current.add)
             setTransition(0)
             transitionRef.current.add = null
         }
@@ -47,7 +51,9 @@ const useSlider = (props: SliderProps) => {
             setTransition(400)
         }
     }, [transition])
-    
+
+    console.log('here')
+
     useEffect(() => {
         slideRef.current?.addEventListener('transitionstart', handleTransitionStart)
         slideRef.current?.addEventListener('transitionend', handleTransitionEnd)
@@ -56,8 +62,8 @@ const useSlider = (props: SliderProps) => {
             slideRef.current?.removeEventListener('transitionend', handleTransitionEnd)
         }
     }, [])
-    
-    return {...props, length, slideRef, count, transition,  handleForwardClick, handleBackClick}
+
+    return {...props, elements, length, slideRef, transition,  handleForwardClick, handleBackClick}
 }
 
 export default useSlider

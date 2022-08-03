@@ -1,4 +1,4 @@
-import {useSetTrue} from "../../hooks/hooks";
+import {useSetTrue} from "../../hooks/event-handler.hooks";
 
 const useCookie = () => {
     const [hidden, handleClick] = useSetTrue()

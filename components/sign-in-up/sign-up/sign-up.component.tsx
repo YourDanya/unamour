@@ -2,7 +2,7 @@ import React, {MouseEventHandler, useState} from 'react'
 import Link from "next/link"
 import {AiOutlineGoogle, FaFacebookF} from "react-icons/all"
 import Input from "../../common/input/input.component"
-import {usePlainInput} from "../../../hooks/hooks"
+import {usePlainInput} from "../../../hooks/event-handler.hooks"
 
 type setType = {
     email: string,

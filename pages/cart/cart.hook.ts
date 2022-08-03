@@ -2,7 +2,7 @@ import {useSelector} from "react-redux"
 import {selectCartItems, selectTotalPrice} from "../../redux/cart/cart.slice"
 import {createDelivery} from "../../utils/component.utils"
 import CartContent from "./cart.content"
-import { useSetActive, useToggle} from "../../hooks/hooks"
+import { useSetActive, useToggle} from "../../hooks/event-handler.hooks"
 import {usePlainInput} from "../../hooks/input.hooks";
 
 const useCart = () => {

@@ -1,13 +1,12 @@
-import React from "react";
+import React from "react"
 
 type sizesProps = {
-    modalActive?: {active: boolean, size: boolean}
 }
 
-const Sizes: React.FC<sizesProps> = ({modalActive}) => {
+const Sizes: React.FC<sizesProps> = () => {
 
     return (
-        <div className={`sizes modal-content ${modalActive?.size ? 'modal-content--active' : ''}`}>
+        <div className={`sizes`}>
             <div className={'text text--mb-10 text--lh-15'}>
                 НЕОБХІДНИЙ ВАМ РОЗМІР ВИ МОЖЕТЕ ПІДІБРАТИ ВИХОДЯЧИ З ІНФОРМАЦІЇ У ВКЛАДЦІ ОБМІРИ НА
                 СТОРІНЦІ ТОВАРУ

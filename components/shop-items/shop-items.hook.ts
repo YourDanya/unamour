@@ -1,5 +1,5 @@
 import {ShopItemsProps} from "./shop-items.component"
-import { useLocale, useToggleActive, useToggleMany} from "../../hooks/hooks"
+import { useLocale, useToggleActive, useToggleMany} from "../../hooks/event-handler.hooks"
 import {ShopItemsContent} from "./shop-items.content"
 import {usePlainInput} from "../../hooks/input.hooks";
 

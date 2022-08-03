@@ -1,7 +1,7 @@
-import {useInput} from "../../hooks/input.hooks";
-import {presentContent} from "./present.content";
-import {presentProps} from "./present.component";
-import {useLocale} from "../../hooks/hooks";
+import {presentContent} from "./present.content"
+import {presentProps} from "./present.component"
+import {useInput} from "../../../hooks/input.hooks"
+import {useLocale} from "../../../hooks/event-handler.hooks"
 
 const usePresent = (props: presentProps) => {
     const [content, translation] = useLocale(presentContent)

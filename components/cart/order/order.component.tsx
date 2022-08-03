@@ -1,5 +1,5 @@
 import React from "react"
-import Button from "../common/button/button.component"
+import Button from "../../common/button/button.component"
 import presentImg from '/public/icons/present.svg'
 import Link from "next/link"
 
