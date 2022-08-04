@@ -1,8 +1,8 @@
-import React from "react";
-import ShopItemPreview from "../../shop-item-preview/shop-item-preview.component";
-import {ClientItem} from "../../../redux/shop-items/shop-items.types";
-import {useSelector} from "react-redux";
-import {selectClientItems} from "../../../redux/shop-items/shop-items.slice";
+import React from "react"
+import ShopItemPreview from "../../shop-item-preview/shop-item-preview.component"
+import {ClientItem} from "../../../redux/shop-items/shop-items.types"
+import {useSelector} from "react-redux"
+import {selectClientItems} from "../../../redux/shop-items/shop-items.slice"
 
 type additionalProps = {
     similarItems?: ClientItem[],
@@ -20,6 +20,9 @@ const Additional: React.FC<additionalProps> = () => {
         if (i < 4) similarItems.push(items[i])
         if (i > items.length - 5) viewedItems.push(items[i])
     }
+
+    console.log(similarItems)
+    console.log(viewedItems)
 
     return (
         <div className='additional'>

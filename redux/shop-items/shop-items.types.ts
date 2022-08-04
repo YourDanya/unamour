@@ -1,42 +1,53 @@
-export type ItemCommon = {
+export type Common = {
     slug: string,
     slugCategory: string,
     best: boolean,
     special: boolean,
     coming: boolean,
+    oldPrice: number,
+    variants: CommonVariant[]
 }
 
-export type ItemVariant = {
+export type CommonVariant = {
     color: {
         code: string,
-        name: string
+        slug: string,
     },
     sizes: string[],
     images: string[],
     price: number,
 }
 
-export type ItemLocaleCommon = {
+export type Translation = {
     name: string,
     category: string,
-    oldPrice: number,
     currency: string,
-    variants: ItemVariant [],
     description: string,
     composition: string,
     parameters: string,
     delivery: string,
+    variants: TranslationVariant [],
 }
 
-export type ClientItem = ItemCommon & ItemVariant & ItemLocaleCommon
-
-export type FetchedItem = {
-    common: ItemCommon
-} & {
-    ua: ItemLocaleCommon,
-    ru: ItemLocaleCommon,
-    eng: ItemLocaleCommon
+export type TranslationVariant = {
+    color: {
+        name: string
+    }
 }
+
+export type Translations = {
+    translation: {
+        ua: Translation,
+        ru: Translation,
+        eng: Translation
+    }
+}
+
+export type FetchedItem = { common: Common } & Translations
+
+export type ClientItem = Omit<Common, 'variants'> & CommonVariant & TranslationVariant & Omit<Translation, 'variants'> & Translations
+
+export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
 
 export type ItemCategory = {
     slug: string,

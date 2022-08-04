@@ -135,15 +135,17 @@ export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru
     return [{...other}, translation[locale]]
 }
 
+export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
 
 // export const mergeObjects  = <T, K> (obj1: T, obj2: K) => {
-//     const newObj: Partial<T> & Partial<K>  = {} as Partial<T> & Partial<K>
+//     const newObj: Merged<T, K> = {} as Merged<T, K>
+//
 //     for (let prop in obj1) {
 //         if (prop in obj2) {
 //             // prop = prop as keyof typeof obj2
 //             const prop1 = obj1[prop]
 //             if (Array.isArray(prop1) && Array.isArray(obj2[prop])) {
-//                 newObj[prop] = [] as T[typeof prop]
+//                 newObj[prop] = []
 //                 let arr = obj1[prop] as []
 //                 prop1.forEach((elem, index) => {
 //                     (newObj[prop] as []).push({...elem, ...obj2[prop][index]})
@@ -163,7 +165,7 @@ export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru
 //     }
 //     return newObj
 // }
-//
+
 // type T = {
 //     a: {
 //         ddd: number
