@@ -1,7 +1,7 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {HYDRATE} from "next-redux-wrapper"
 import {AppState} from "../store"
-import {FetchedItem, ShopItemsState} from "./shop-items.types"
+import {ClientItem, FetchedItem, ShopItemsState} from "./shop-items.types"
 
 const initialState: ShopItemsState = {
     fetchedItems: [],
@@ -129,18 +129,18 @@ export const shopItemsSlice = createSlice({
         fetchItemsError: (state, action: PayloadAction<any>) => {
             state.error = action.payload.message
         },
-        setCategories: (state, action: PayloadAction<string[]>) => {
-
+        setClientItems: (state, action: PayloadAction<ClientItem[]>) => {
+            state.clientItems = action.payload
         },
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            state.fetchedItems = [...action.payload.shopItems.fetchedItems]
+            state.clientItems = [...action.payload.shopItems.clientItems]
         },
     }
 })
 
-export const {fetchItemsSuccess, fetchItemsError,  setCategories} = shopItemsSlice.actions
+export const {fetchItemsSuccess, fetchItemsError,  setClientItems} = shopItemsSlice.actions
 
 export const selectClientItemsStore = (state: AppState) => state.shopItems
 

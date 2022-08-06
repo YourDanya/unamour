@@ -5,7 +5,8 @@ import {fetchItems} from "../../redux/shop-items/shop-items.thunk"
 import ShopItem from "../../components/shop-item/shop-item.component"
 import ShopItemsCollection from "../../components/shop-items-collection/shop-items-collection.component"
 import {ClientItem} from "../../redux/shop-items/shop-items.types"
-import {createClientItems} from "../../utils/data.utils";
+import {createClientItems} from "../../utils/data.utils"
+import {setClientItems} from "../../redux/shop-items/shop-items.slice"
 
 type shopItemsProps = {
     items?: ClientItem[],
@@ -28,9 +29,12 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 
         //creating client items
         const items = createClientItems(fetchedItems, locale)
+        dispatch(setClientItems(items))
 
         let query = context.query
         const slug = query.slug
+
+        console.log('context params', context.query)
 
         if (!slug || slug.length > 2) {
             //wrong path
@@ -43,7 +47,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         }
         if (slug[1]) {
             //one item
-            const item = items.find(item => item.slug === slug[1])
+            const item = items.find(item => item.slug === slug[1] && item.color.slug===query.color)
             if (item) {
                 return {props: {item}}
             } else {

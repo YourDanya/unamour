@@ -1,28 +1,34 @@
 import {ClientItem, FetchedItem} from "../redux/shop-items/shop-items.types";
 import {LocaleType} from "../types/types";
 
-export const createClientItems = (fetchedItems: FetchedItem[], locale: LocaleType) : ClientItem[] => {
+export const createClientItems = (fetchedItems: FetchedItem[], locale: LocaleType): ClientItem[] => {
     const clientItems: ClientItem [] = []
+
     fetchedItems.forEach(item => {
-        const {variants, ...otherCommon} = item.common
-        const {translation} = item
+        const {variants: commonVariants, ...common} = item.common
+        const {translations} = item
 
-        variants.forEach((variant, index )=> {
-            const {variants: translateVariants} = translation[locale]
-            const {color: translateColor, ...translateVariant} = translateVariants[index]
-            const {color, ...otherVariant} = variant
+        const {variants: translateVariants, ...translation} = translations[locale]
 
-            const clientItem = {
-                ...otherCommon,
-                ...otherVariant,
-                ...translation[locale],
-                ...translateVariant,
-                color: {...color, ...translateColor},
-                translation
+        const mergedVariants = commonVariants.map((variant, index) => {
+            const translateVariant = translateVariants[index]
+            return {
+                ...variant, ...translateVariant, color: {...variant.color, ...translateVariant.color}
             }
+        })
 
+        mergedVariants.forEach((variant, index) => {
+            const clientItem = {
+                ...common,
+                ...variant,
+                ...translation,
+                variants: mergedVariants,
+                translations
+            }
             clientItems.push(clientItem)
         })
+
+        // const clientItem : ClientItem = {} as ClientItem
     })
     return clientItems
 }

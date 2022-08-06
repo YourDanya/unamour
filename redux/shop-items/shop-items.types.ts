@@ -36,7 +36,7 @@ export type TranslationVariant = {
 }
 
 export type Translations = {
-    translation: {
+    translations: {
         ua: Translation,
         ru: Translation,
         eng: Translation
@@ -45,7 +45,12 @@ export type Translations = {
 
 export type FetchedItem = { common: Common } & Translations
 
-export type ClientItem = Omit<Common, 'variants'> & CommonVariant & TranslationVariant & Omit<Translation, 'variants'> & Translations
+export type ClientItem = Merged<Common, Translation> & CommonVariant  & TranslationVariant & Translations
+
+export type MergedVariant = Pick<Common & Translation, 'variants'>
+
+// const test : MergedVariant = {} as MergedVariant
+// const a = test.variants[0].color.
 
 export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
 
