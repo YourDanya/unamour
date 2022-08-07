@@ -87,3 +87,7 @@
 // }
 //
 // console.log(mergeObjects(first, second))
+
+const test = 1.7 % 0.6
+
+console.log(test)

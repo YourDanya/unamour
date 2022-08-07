@@ -36,14 +36,14 @@ const useSlider = (props: SliderProps) => {
     }
 
     const handleTransitionStart = (event: TransitionEvent) => {
-        if (event.target!==event.currentTarget) return
+        if (event.target !== event.currentTarget) return
 
         console.log('transition start')
         transitionRef.current.now = true
     }
 
     const handleTransitionEnd = (event: TransitionEvent) => {
-        if (event.target!==event.currentTarget) return
+        if (event.target !== event.currentTarget) return
 
         console.log('transition end')
         if (transitionRef.current.add !== null) {
@@ -54,23 +54,43 @@ const useSlider = (props: SliderProps) => {
         transitionRef.current.now = false
     }
 
-    const moveRef = useRef<{ startX: number, moving: false }>({startX: 0, moving: false})
+    const elemWidth = useMemo(() => `(${100 / perSlide}% - ${(perSlide - 1) * 5 / perSlide}px)`, [perSlide])
+    const indent = useMemo(() => perSlide === 1 ? '0px' : '5px', [perSlide])
 
+    const moveRef = useRef<{ startX: number, moving: false, current: number, fast: boolean }>(
+        {startX: 0, moving: false, current: current, fast: false}
+    )
     const [moveState, setMoveState] = useState({translate: 0, moving: false})
-
     const {moving} = moveState
 
-    const handleMouseUp = useCallback( (event: MouseEvent) => {
+    const handleMouseUp = useCallback((event: MouseEvent) => {
 
-        const translate = event.clientX - moveRef.current.startX
+        const translate = moveRef.current.startX - event.clientX
+        const width = slideRef.current?.children[0].getBoundingClientRect().width as number
 
-        if (translate) {
-
+        let toMove: number
+        // if (moveRef.current.fast) {
+        if (translate > 0) {
+            toMove = Math.ceil(translate / width)
         } else {
+            toMove = Math.floor(translate / width)
+        }
+        // } else {
+        //     toMove = Math.round(translate / width)
+        // }
 
+        const current = moveRef.current.current + toMove
+
+        if (current < 0) {
+            transitionRef.current.add = length - 1
+        }
+        if (current > length - 1) {
+            transitionRef.current.add = 0
         }
 
+        if (toMove !== 0 && !transitionRef.current.now) setCurrent(current)
         setMoveState({translate: 0, moving: false})
+
         document.removeEventListener('mousemove', handleMouseMove)
         document.removeEventListener('mouseup', handleMouseUp)
     }, [])
@@ -82,9 +102,19 @@ const useSlider = (props: SliderProps) => {
 
     const handleMouseDown = useCallback((event: React.MouseEvent) => {
         event.preventDefault()
+
+        if(transitionRef.current.now) return
+
         moveRef.current.startX = event.clientX
+        moveRef.current.fast = true
+
+        setTimeout(() => {
+            moveRef.current.fast = false
+        }, 200)
+
         setMoveState({translate: 0, moving: true})
-        setTransition(100)
+        setTransition(0)
+
         document.addEventListener('mousemove', handleMouseMove)
         document.addEventListener('mouseup', handleMouseUp)
     }, [])
@@ -97,6 +127,10 @@ const useSlider = (props: SliderProps) => {
     }, [transition, moving])
 
     useEffect(() => {
+        moveRef.current.current = current
+    }, [current])
+
+    useEffect(() => {
         slideRef.current?.addEventListener('transitionstart', handleTransitionStart)
         slideRef.current?.addEventListener('transitionend', handleTransitionEnd)
         return () => {
@@ -104,10 +138,6 @@ const useSlider = (props: SliderProps) => {
             slideRef.current?.removeEventListener('transitionend', handleTransitionEnd)
         }
     }, [])
-
-    const elemWidth = useMemo(() => `(${100 / perSlide}% - ${(perSlide - 1) * 5 / perSlide}px)`, [perSlide])
-
-    const indent = useMemo(() => perSlide === 1 ? '0px' : '5px', [perSlide])
 
     return {
         ...props, indent, elements, length, slideRef, transition, handleForwardClick, handleBackClick, current,
