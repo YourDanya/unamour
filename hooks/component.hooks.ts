@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 
 export const useModal = <K extends string> (initState: Record<K, boolean>, attribute: string = 'name') :
     [modalState: Record<K, boolean> & {modal: boolean}, showModal: (event: React.MouseEvent<HTMLElement>) => void, closeModal: (event: React.MouseEvent<HTMLElement>) => void]  => {
@@ -40,4 +40,19 @@ export const useExternalState = <T,> (state: T | undefined, setState: ((state: T
     const [state_, setState_] = useState(state ?? defaultState)
 
     return setState!==undefined && state!==undefined ? [state, setState] : [state_, setState_]
+}
+
+export const useResizeObserve =  (callback: (() => void), ...elements: HTMLElement []) => {
+
+    useEffect(() => {
+
+        const resizeObserver = new ResizeObserver(callback)
+        elements.length===0 && elements.push(document.body)
+        elements.forEach(elem => resizeObserver.observe(elem))
+
+        return () => {
+            elements.forEach(elem => resizeObserver.unobserve(elem))
+        }
+    }, [])
+
 }

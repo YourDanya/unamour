@@ -1,4 +1,10 @@
 .shop-item
+  &__images
+    width: 57%
+    display: flex
+    align-self: flex-start
+    position: sticky
+    top: 80px
   &__tab
     cursor: pointer
     height: 90px
@@ -26,12 +32,34 @@
   &__tabs
     display: flex
     flex-direction: column
-  &__images
-    width: 57%
-    display: flex
-    align-self: flex-start
-    position: sticky
-    top: 80px
   &__slider
     margin-left: 25px
     width: 100%
+    &-img
+
+@media (max-width: 1200px)
+  .shop-item
+    &__images
+      width: 58%
+
+@media (max-width: 992px)
+  .shop-item
+    &__images
+      width: 100%
+      position: static
+    &__tabs
+      display: none
+    &__slider
+      margin: 0
+      &-img
+        object-fit: cover
+        object-position: 50% 40%
+        height: 700px
+
+@media (max-width: 576px)
+  .shop-item
+    &__images
+    &__tabs
+    &__slider
+      &-img
+        height: 500px

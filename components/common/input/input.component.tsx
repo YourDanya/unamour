@@ -1,5 +1,5 @@
-import React, {useRef, useState} from "react";
-import {useToggle} from "../../../hooks/event-handler.hooks";
+import React, {useRef, useState} from "react"
+import {useToggle} from "../../../hooks/event-handler.hooks"
 
 type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)

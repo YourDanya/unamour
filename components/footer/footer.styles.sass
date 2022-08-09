@@ -3,44 +3,48 @@
   flex-wrap: wrap
   font-size: 11px
   &__social
-    &-section
-      padding: 20px 30px
-      width: 100%
-      display: flex
-      justify-content: space-between
-      border-bottom: 1px solid #e8e4e4
-      border-top: 1px solid #e8e4e4
-    &-items
-      display: flex
-    &-item
-      display: flex
-      align-items: center
-      margin-right: 11px
-      &:last-child
-        margin-right: 0
-    &-subscription
-      width: 420px
-      display: flex
-      align-items: center
-      &-text
-        margin-right: 20px
+    padding: 20px 30px
+    width: 100%
+    display: flex
+    justify-content: space-between
+    border-bottom: 1px solid #e8e4e4
+    border-top: 1px solid #e8e4e4
+  &__links
+    display: flex
+  &__link
+    display: flex
+    align-items: center
+    margin-right: 11px
+    &:last-child
+      margin-right: 0
+  &__subscription
+    width: 420px
+    display: flex
+    align-items: center
+  &__news
+    margin-right: 20px
   &__copyright
-    &-section
-      width: 100%
-      padding: 20px 40px
-      display: flex
-    &-text
-      font-size: 12px
-    &-name
-      margin-left: 10px
-      font-size: 14px
-      font-family: SeasonsLight, sans-serif
-      font-weight: 600
-    &-made-by
-      margin-left: 40px
-      color: #828282
-      display: flex
-      align-items: center
+    width: 100%
+    padding: 20px 40px
+    display: flex
+    align-items: center
+  &__years
+    font-size: 12px
+  &__name
+    margin-left: 10px
+    font-size: 14px
+    font-family: SeasonsLight, sans-serif
+    font-weight: 600
+  &__logo
+    margin-left: 40px
+    color: #828282
+    display: flex
+    align-items: center
+    font-size: 12px
+    &-img
+      margin-left: 4px
+      height: 25px
+  &__input
 
 @media(max-width: 1200px)
   .footer
@@ -50,5 +54,5 @@
   .footer
     &__social
       &-section
-        display: flex
+        flex-direction: column
       &-subscription

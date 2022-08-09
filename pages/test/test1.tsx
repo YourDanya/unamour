@@ -7,8 +7,8 @@ import Slider from "../../components/common/slider/slider.component";
 export const getServerSideProps = wrapper.getServerSideProps(
     (store) =>
         async () => {
-        const value = store.getState().counter.value
-        console.log(value)
+            const value = store.getState().counter.value
+            console.log(value)
             store.dispatch(increment())
             return {
                 props: {
@@ -26,20 +26,23 @@ const Page = ({data}: any) => {
     // const dispatch= useDispatch()
     // const counter = useSelector(selectCounterValue)
     return (
-        // <div>
-        //     {data}
-        //     <button style={{width: '100px', height: '100px', display: 'block', fontSize: '50px'}} onClick={() => dispatch(increment())}>
-        //         {counter}
-        //     </button>
-        //     <Link href={`/test/test2`}>
-        //         <a style={{width: '100px', height: '100px', display: 'block', fontSize: '25px'}}>Switch</a>
-        //     </Link>
-        // </div>
-        <div className={'slider-page'}>
-            <div className='slider-div'>
-                <Slider elements={images}/>
-            </div>
-        </div>
+        <>
+            {/*<div>*/}
+            {/*    {data}*/}
+            {/*    <button style={{width: '100px', height: '100px', display: 'block', fontSize: '50px'}}*/}
+            {/*            onClick={() => dispatch(increment())}>*/}
+            {/*        {counter}*/}
+            {/*    </button>*/}
+            {/*    <Link href={`/test/test2`}>*/}
+            {/*        <a style={{width: '100px', height: '100px', display: 'block', fontSize: '25px'}}>Switch</a>*/}
+            {/*    </Link>*/}
+            {/*</div>*/}
+            {/*<div className={'slider-page'}>*/}
+            {/*    <div className='slider-div'>*/}
+            {/*        <Slider/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+        </>
     )
 }
 

@@ -4,27 +4,29 @@
     display: flex
     justify-content: space-between
     flex-wrap: wrap
-  &__checkout-button
-    width: 85%
+  &__cart
+    padding: 0
+    width: calc(100% - 50px)
     height: 45px
     border-radius: 2px
     background-color: black
     cursor: pointer
     position: relative
     &-text
+      width: 100%
       top: 50%
       left: 50%
       transform: translateY(-50%) translateX(-50%)
       position: absolute
       color: white
   &__favorite
-    &-button
-      height: 45px
-      width: 45px
-      border-radius: 2px
-      border: 1px solid black
-      cursor: pointer
-      background-color: white
+    padding: 0
+    height: 45px
+    width: 45px
+    border-radius: 2px
+    border: 1px solid black
+    cursor: pointer
+    background-color: white
     &-img
       height: 26px
   &__present
@@ -52,3 +54,14 @@
       width: 100%
       display: flex
       justify-content: flex-end
+
+@media (max-width: 576px)
+  .shop-item
+    &__buttons
+      margin-bottom: 20px
+    &__cart
+      width: calc(100% - 45px)
+      height: 40px
+    &__favorite
+      height: 40px
+      width: 40px

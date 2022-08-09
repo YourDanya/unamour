@@ -2,21 +2,22 @@ import React, {ReactNode} from "react";
 import useSlider from "./slider.hook";
 
 export type SliderProps = {
-    current?: number,
     children: ReactNode,
+    current?: number,
     setCurrent?: (index: number) => void,
     perSlide?: number,
+    className?: string
 }
 
 const Slider: React.FC<SliderProps> = (props) => {
 
     const {
         perSlide, elements, slideRef, length, current, transition, handleForwardClick, handleBackClick, elemWidth,
-        indent, handleMouseDown, moveState
+        indent, handleMouseDown, moveState, className
     } = useSlider(props)
 
     return (
-        <div className={`slider ${perSlide !== 1 ? 'slider--multiple' : ''}`}>
+        <div className={`slider ${className?? ''} ${perSlide !== 1 ? 'slider--multiple' : ''}`}>
             <button
                 className={`slider__arrow slider__back 
                 ${current === 0 ? 'slider__arrow--inactive' : ''}`}

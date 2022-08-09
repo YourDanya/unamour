@@ -16,22 +16,22 @@ const Buttons: React.FC<buttonsProps> = (props) => {
     } = useButtons(props)
 
     return (
-        <div className={'shop-item__buttons'}>
+        <div className='shop-item__buttons'>
             <button
-                className="shop-item__checkout-button"
+                className="shop-item__cart"
                 onMouseEnter={handleCartMouseEnter}
                 onMouseLeave={handleCartMouseLeave}
                 onClick={handleCartClick}
             >
-                <div className={`shop-item__checkout-button-text fade ${cart ? 'fade--show' : ''}`}>
+                <div className={`shop-item__cart-text fade ${cart ? 'fade--show' : ''}`}>
                     ДОДАТИ ДО КОРЗИНИ
                 </div>
-                <div className={`shop-item__checkout-button-text fade ${cart ? '' : 'fade--show'}`}>
+                <div className={`shop-item__cart-text fade ${cart ? '' : 'fade--show'}`}>
                     ОБЕРІТЬ РОЗМІР
                 </div>
             </button>
-            <button className="shop-item__favorite-button">
-                <img src={bookmark.src} className={'shop-item__favorite-img'} alt={'shop-item'}/>
+            <button className="shop-item__favorite">
+                <img src={bookmark.src} className='shop-item__favorite-img' alt={'shop-item'}/>
             </button>
             <div className="shop-item__present-cover">
                 <button

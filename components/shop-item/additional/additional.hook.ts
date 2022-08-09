@@ -1,23 +1,47 @@
-import {ClientItem} from "../../../redux/shop-items/shop-items.types";
-import {useSelector} from "react-redux";
-import {selectClientItems} from "../../../redux/shop-items/shop-items.slice";
-import {useState} from "react";
+import {ClientItem} from "../../../redux/shop-items/shop-items.types"
+import {useSelector} from "react-redux"
+import {selectClientItems} from "../../../redux/shop-items/shop-items.slice"
+import {useResizeObserve} from "../../../hooks/component.hooks"
+import {useEffect, useMemo, useRef, useState} from "react";
 
 const useAdditional = () => {
-    // const [currentSimilar, setCurrentSimilar] = useState()
-    // const [currentViewed, setCurrentViewed] = useState()
 
     let items: ClientItem[] = useSelector(selectClientItems)
 
-    const similarItems: ClientItem[] = []
-    const viewedItems: ClientItem[] = []
+    const similarItems: ClientItem[] = useMemo(() => {
+        const arr = []
+        for (let i = 0; i < items.length; i++) {
+            if (i < 10) arr.push(items[i])
+        }
+        return arr
+    }, [items])
 
-    for (let i = 0; i < items.length; i++) {
-        if (i < 10) similarItems.push(items[i])
-        if (i > items.length - 10) viewedItems.push(items[i])
+    const viewedItems: ClientItem[] = useMemo(() => {
+        const arr = []
+        for (let i=items.length-1; i>=0; i--) {
+            if (i > items.length - 10) arr.push(items[i])
+        }
+        return arr
+    }, [items])
+
+    const [perSlide, setPerSlide] = useState(4)
+    const stateRef = useRef({perSlide: 4})
+
+    const handleResize = () => {
+        console.log(window.innerWidth)
+        if (stateRef.current.perSlide!==2 && window.innerWidth<=991) {
+            stateRef.current.perSlide=2
+            setPerSlide(2)
+        }
+        if (stateRef.current.perSlide!==4 && window.innerWidth>991) {
+            stateRef.current.perSlide=4
+            setPerSlide(4)
+        }
     }
-    
-    return {similarItems, viewedItems}
+
+    useResizeObserve(handleResize)
+
+    return {similarItems, viewedItems, perSlide}
 }
 
 export default useAdditional

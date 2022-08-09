@@ -7,6 +7,7 @@ export type imagesProps = {
 }
 
 const Images: React.FC<imagesProps> = (props) => {
+
     const {images, current, handleTabClick, setCurrent} = useImages(props)
 
     return (
@@ -25,9 +26,12 @@ const Images: React.FC<imagesProps> = (props) => {
             </div>
             <div className="shop-item__slider">
                 <Slider current={current} setCurrent={setCurrent}>
-                    {images.map((url, index) => <img src={url} alt={`slide image ${index}`} key={url + index}/>)}
+                    {images.map((url, index) =>
+                        <img className={'shop-item__slider-img'} src={url} alt={`slide image ${index}`} key={url + index}/>
+                    )}
                 </Slider>
             </div>
+            {/*<img className={'shop-item__slider-img'} src={images[0]}/>*/}
         </div>
     )
 }

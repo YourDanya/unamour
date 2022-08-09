@@ -60,7 +60,7 @@
   &--multiple
     .slider
       &__arrow
-        top: -45px
+        top: -46px
         transform: translateY(0)
         &--inactive
           &:before, &:after
@@ -69,5 +69,9 @@
         left: unset
         right: 100px
 
-
-
+@media (max-width: 576px)
+  .slider
+    &--multiple
+      .slider
+        &__back
+          right: 60px

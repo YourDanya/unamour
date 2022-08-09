@@ -1,5 +1,5 @@
 import {scrollFixedProps} from "./scroll-fixed.component"
-import {useEffect, useRef, useState} from "react"
+import {useEffect, useLayoutEffect, useRef, useState} from "react"
 import {Property} from "csstype"
 import Position = Property.Position
 
@@ -13,7 +13,7 @@ export type State = {
 const useScrollHook = (props: scrollFixedProps) => {
 
     const [menuState, setMenuState] = useState<State>({
-        position: 'fixed',
+        position: 'static',
         top: 120,
         bottom: 'unset',
         translateY: 0
@@ -114,6 +114,7 @@ const useScrollHook = (props: scrollFixedProps) => {
                 if (stateRef.current.position !== 'fixed') {
                     bottom = 'unset'
                     position = 'fixed'
+                    if (stateRef.current.top<=120) position = 'static'
                     top = 120
                 } else {
                     toUpdate = false
