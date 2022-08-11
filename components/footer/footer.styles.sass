@@ -21,8 +21,45 @@
     width: 420px
     display: flex
     align-items: center
+    flex-wrap: wrap
   &__news
+    color: black
+    align-self: start
+    padding-top: 10px
     margin-right: 20px
+  &__form
+    flex-grow: 1
+    position: relative
+    .input
+      padding: 10px 0 15px 0
+      border-color: black
+    .input__children
+      opacity: 0
+    .input__state--focused
+      .input__placeholder
+        opacity: 1
+      .input__children
+        opacity: 1
+    .input__state--full
+      .input__placeholder
+        opacity: 0
+  &__submit
+    padding: 0
+    border: none
+    position: absolute
+    right: 0
+    bottom: 10px
+    background-color: transparent
+    cursor: pointer
+  &__policy
+    width: 100%
+    color: #a1a1a1
+    bottom: -12px
+    position: absolute
+    margin-top: 1px
+    font-size: 9px
+    &-link
+      font-size: 9px
   &__copyright
     width: 100%
     padding: 20px 40px
@@ -33,9 +70,21 @@
   &__name
     margin-left: 10px
     font-size: 14px
-    font-family: SeasonsLight, sans-serif
+    font-family: SeasonsRegular, sans-serif
     font-weight: 600
+  &__contact
+    font-weight: 400
+    font-family: Helvetica, sans-serif
+    font-size: 10px
+    color: #828282
+    display: none
+    background-color: transparent
+    border: none
+    padding: 0
+    margin-left: 20px
+    cursor: pointer
   &__logo
+    height: 20px
     margin-left: 40px
     color: #828282
     display: flex
@@ -44,15 +93,43 @@
     &-img
       margin-left: 4px
       height: 25px
-  &__input
 
-@media(max-width: 1200px)
-  .footer
-    font-size: 10px
-
-@media(max-width: 992px)
+@media(max-width: 991px)
   .footer
     &__social
-      &-section
-        flex-direction: column
-      &-subscription
+      flex-direction: column
+    &__subscription
+      flex-direction: column
+    &__copyright
+      padding: 20px
+    &__form
+      width: 100%
+    &__subscription
+      width: 300px
+    &__news
+      margin-bottom: 20px
+      margin-right: 0
+    &__contact
+      display: block
+    &__name
+      flex-grow: 1
+      display: flex
+      align-items: center
+    &__modal
+      width: 100%
+      height: 100%
+      .modal-content__close
+        top: 20px
+        right: 20px
+    &__links
+      flex-direction: column
+      &--desc
+        display: none
+    &__link
+      margin-bottom: 20px
+    &__title
+      margin-bottom: 50px
+      font-size: 20px
+      color: black
+      font-family: SeasonsRegular, sans-serif
+

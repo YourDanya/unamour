@@ -1,0 +1,51 @@
+.nav
+  &__header
+    z-index: 10
+    height: 60px
+    padding: 0 40px
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    align-items: center
+    background-color: white
+    position: fixed
+  &__title
+    grid-column: 2
+    color: #9b3030
+    display: flex
+    justify-content: center
+    font-family: SeasonsRegular, sans-serif
+    font-size: 25px
+  &__icons
+    justify-self: end
+    display: flex
+    justify-content: flex-end
+  &__icon
+    cursor: pointer
+    display: flex
+    align-items: center
+    margin: 0 5px
+    height: 20px
+    &--first
+      margin-left: 0
+    &--last
+      margin-right: 0
+  &__button
+    background-color: transparent
+    border: none
+    padding: 0
+
+@media (max-width: 768px)
+  .nav
+    &__header
+      height: 40px
+      padding: 0 20px
+    &__title
+      font-size: 22px
+
+@media (max-width: 576px)
+  .nav
+    &__header
+      padding: 0 10px
+    &__title
+      font-size: 20px

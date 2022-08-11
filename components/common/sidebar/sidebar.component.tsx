@@ -1,7 +1,8 @@
 import React, {useMemo} from "react";
+import Button from "../button/button.component";
 
 type sidebarProps = {
-    left: boolean,
+    left?: boolean,
     top?: true,
     hideTopNav?: () => void,
     active: boolean,
@@ -10,34 +11,24 @@ type sidebarProps = {
 }
 
 const Sidebar: React.FC<sidebarProps> = (props) => {
+
     const {left, children, active, hideModal, top, hideTopNav} = props
+
     return (
-        <>
-            {/*<div className={`sidebar ${active ? 'sidebar--active' : ''}`} onClick={() => setActive(false)}/>*/}
-            <div className={`sidebar ${left ? 'sidebar--left' : 'sidebar--right'} ${left && active ? 'sidebar--left--active' : active ? 'sidebar--right--active' : ''} ${top? 'sidebar--top' : ''}`
-            }>
-                {
-                    top && (
-                        <div className={'sidebar__back'} onClick={hideTopNav}>
-                            <div className="sidebar__back-line sidebar__back-line--first"/>
-                            <div className="sidebar__back-line sidebar__back-line--last"/>
-                        </div>
-                    )
-                }
-                {
-                    !left && hideModal && (
-                        <div className={'sidebar__cross'} onClick={hideModal}>
-                            <div className="sidebar__cross-line sidebar__cross-line--first"/>
-                            <div className="sidebar__cross-line sidebar__cross-line--last"/>
-                        </div>
-                    )
-                }
-                {children}
-            </div>
-        </>
+        <div className={`sidebar ${left ? 'sidebar--left' : 'sidebar--right'} ${top ? 'sidebar--top' : ''}
+            ${left && active ? 'sidebar--left--active' : active ? 'sidebar--right--active' : ''} `}
+        >
+            {hideTopNav && (
+                <Button className={'sidebar__back'} onClick={hideTopNav}/>
+            )}
+            {hideModal && (
+                <Button className={'close sidebar__button'} onClick={hideModal}/>
+            )}
+            {children}
+        </div>
     )
 }
 
-const shouldUpdate = (prevProps: sidebarProps, currentProps: sidebarProps) => prevProps.active===currentProps.active
+const shouldUpdate = (prevProps: sidebarProps, currentProps: sidebarProps) => prevProps.active === currentProps.active
 
 export default React.memo(Sidebar, shouldUpdate)

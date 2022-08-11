@@ -27,7 +27,7 @@ p
   color: #4f4f4f
   line-height: 1
   box-sizing: border-box
-  font-family: 'Helvetica', serif
+  font-family: 'Helvetica', sans-serif
   font-size: 11px
 
 
@@ -93,6 +93,7 @@ p
   height: 20px
 
 .close
+  padding: 2px
   height: 16px
   width: 16px
   background-color: transparent
@@ -104,24 +105,18 @@ p
     position: absolute
     top: 50%
     width: 100%
-    height: 1.4px
-    background-color: #555555
+    height: 1px
+    background-color: black
     transform: translateY(-50%) translateX(-50%) rotate(45deg)
     content: ''
   &:before
     position: absolute
     top: 50%
     width: 100%
-    height: 1.4px
-    background-color: #555555
+    height: 1px
+    background-color: black
     transform: translateY(-50%) translateX(-50%) rotate(-45deg)
     content: ''
-  &--top-10
-    top: 10px
-    position: absolute
-  &--right-10
-    right: 10px
-    position: absolute
 
 
 .radio-button

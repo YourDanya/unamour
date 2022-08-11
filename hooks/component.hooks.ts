@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 
 export const useModal = <K extends string> (initState: Record<K, boolean>, attribute: string = 'name') :
-    [modalState: Record<K, boolean> & {modal: boolean}, showModal: (event: React.MouseEvent<HTMLElement>) => void, closeModal: (event: React.MouseEvent<HTMLElement>) => void]  => {
+    [modalState: Record<K, boolean> & {modal: boolean}, showModal: (event: React.MouseEvent<HTMLElement>) => void, closeModal: () => void]  => {
 
     if (!('modal' in initState)) {
         initState['modal' as K ] = false
@@ -9,7 +9,7 @@ export const useModal = <K extends string> (initState: Record<K, boolean>, attri
 
     const [modalState, setModalState] = useState(initState)
 
-    const closeModal = (event: React.MouseEvent<HTMLElement>) => {
+    const closeModal = () => {
         const newState: typeof modalState= {} as typeof modalState
         for (let prop in modalState) {
             newState[prop] = false

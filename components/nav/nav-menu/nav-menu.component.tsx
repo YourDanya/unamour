@@ -2,19 +2,17 @@ import React, {useEffect, useState} from "react"
 import Link from "next/link"
 
 type navMenuProps = {
-    active: boolean,
-    hideModal: (event: React.MouseEvent<HTMLElement>) => void,
-    showTopNav: (event: React.MouseEvent<HTMLElement>) => void,
+    showTopNav?: (event: React.MouseEvent<HTMLElement>) => void,
 }
 
-const NavMenu: React.FC<navMenuProps> = ({active, hideModal, showTopNav}) => {
+const NavMenu: React.FC<navMenuProps> = ({showTopNav}) => {
     const [clientService, setClientService] = useState(false)
 
     const handleClientClick = () => setClientService(!clientService)
 
-    useEffect(() => {
-        if (active && clientService) handleClientClick()
-    }, [active])
+    // useEffect(() => {
+    //     if (active && clientService) handleClientClick()
+    // }, [active])
 
     return (
         <>

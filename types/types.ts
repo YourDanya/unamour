@@ -36,3 +36,6 @@ export type InputType = {
     error?: string,
     label?: string
 }
+
+type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
+    (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)

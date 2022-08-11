@@ -1,9 +1,6 @@
 import React, {useRef, useState} from "react"
 import {useToggle} from "../../../hooks/event-handler.hooks"
 
-type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
-    (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
-
 type InputProps = {
     placeholder: string
     name: string,
@@ -11,39 +8,30 @@ type InputProps = {
     className?: string
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string,
-    onSubmit?: (param: string) => void,
 }
 
 const Input: React.FC<InputProps> = (props) => {
-    const {value, onSubmit, handleChange, placeholder, className, children, error, ...otherProps} = props
+    const {value, name, handleChange, placeholder, className, children, error} = props
 
     const [focused, handleFocus] = useToggle()
 
     return (
         <div className={`input ${className ?? ''}`}>
-            <div className='input__main'>
-                <input
-                    onBlur={handleFocus}
-                    onFocus={handleFocus}
-                    {...otherProps}
-                    className={`input__input`}
-                    value={value}
-                    onChange={handleChange}
-                />
-                <div className={`input__placeholder ${value !== '' ? 'input__placeholder--hidden' : ''}`}>
-                    {placeholder}
+            <div className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
+                <div className='input__main'>
+                    <input
+                        onBlur={handleFocus}
+                        onFocus={handleFocus}
+                        onChange={handleChange}
+                        name={name}
+                        className={`input__input`}
+                        value={value}
+                    />
+                    <div className='input__placeholder'>{placeholder}</div>
                 </div>
-                {children && (
-                    <div className={`input__node ${focused ? 'input__node--shown' : ''}`}>
-                        {children}
-                    </div>
-                )}
+                {error && (<div className='input__error'>{error}</div>)}
+                {children && (<div className='input__children'>{children}</div>)}
             </div>
-            {error && (
-                <div className='input__error'>
-                    {error}
-                </div>
-            )}
         </div>
     )
 }
