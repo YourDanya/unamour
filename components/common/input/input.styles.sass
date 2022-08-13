@@ -4,7 +4,7 @@
   border-bottom: 1px solid #e0e0e0
   padding: 10px 0
   &__input
-    padding: 0
+    padding-right: 20px
     box-sizing: border-box
     font-size: 11px
     width: 100%
@@ -12,9 +12,12 @@
     border: none
     position: relative
     background-color: transparent
+    &:-webkit-autofill::first-line
+      font-size: 2px
   &__placeholder
     position: absolute
     top: 50%
+    left: 2px
     transform: translateY(-50%)
     pointer-events: none
     transition: font-size 0.3s, transform 0.3s

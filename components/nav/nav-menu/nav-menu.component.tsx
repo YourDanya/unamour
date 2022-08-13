@@ -1,18 +1,15 @@
 import React, {useEffect, useState} from "react"
 import Link from "next/link"
+import Button from "../../common/button/button.component";
+import useNavMenu from "./nav-menu.hook";
 
 type navMenuProps = {
     showTopNav?: (event: React.MouseEvent<HTMLElement>) => void,
 }
 
-const NavMenu: React.FC<navMenuProps> = ({showTopNav}) => {
-    const [clientService, setClientService] = useState(false)
+const NavMenu: React.FC<navMenuProps> = () => {
 
-    const handleClientClick = () => setClientService(!clientService)
-
-    // useEffect(() => {
-    //     if (active && clientService) handleClientClick()
-    // }, [active])
+    const {clientService, handleClientClick} = useNavMenu()
 
     return (
         <>
@@ -38,32 +35,29 @@ const NavMenu: React.FC<navMenuProps> = ({showTopNav}) => {
                     <Link href={'/'}>
                         <a className={'menu__link'}>ОБРАНЕ</a>
                     </Link>
-                    <a className={'menu__link'}
-                       onClick={handleClientClick}>
+                    <Button className={'menu__link'} onClick={handleClientClick}>
                         КЛІЄНТСЬКИЙ СЕРВІС
-                    </a>
+                    </Button>
                     <Link href={'/vacancies'}>
                         <a className={'menu__link'}>ВАКАНСІЇ</a>
                     </Link>
                     <Link href={'/contacts'}>
                         <a className={'menu__link'}>КОНТАКТИ</a>
                     </Link>
-                    <a id='sign' className={'menu__link'} onClick={
-                        showTopNav}>
+                    <Button className={'menu__link'} onClick={() => {}}>
                         УВІЙТИ
-                    </a>
+                    </Button>
                 </div>
             </div>
-            <div className={`menu service-menu ${clientService && 'service-menu--active'}`}>
-                <div className="service-menu__back" onClick={handleClientClick}>
-                    <div className="service-menu__back-title">
-                        НАЗАД
-                    </div>
-                </div>
+            <div className={`menu service-menu ${clientService ? 'service-menu--active' : ''}`}>
+                <Button className="service-menu__back" onClick={handleClientClick}>
+                   <div className={'arrow-back service-menu__arrow'}/>
+                    НАЗАД
+                </Button>
                 <div className="menu__links">
-                    <a className="menu__link menu__link--bold">
+                    <div className="menu__link menu__link--bold">
                         КЛІЄНТСЬКИЙ СЕРВІС
-                    </a>
+                    </div>
                     <Link href={'/client-service/delivery'}>
                         <a className="menu__link">
                             ОПЛАТА І ДОСТАВКА

@@ -18,24 +18,14 @@
     transform: translateX(500px)
     &--active
       transform: translateX(0)
-  &__cross
-    cursor: pointer
-    height: 20px
-    position: absolute
-    top: 30px
-    right: 20px
-    &-line
-      background-color: rgb(79, 79, 79)
-      width: 20px
-      height: 1.1px
-      &:first-child
-        transform: translateY(0.55px) rotate(45deg)
-      &:last-child
-        transform: translateY(-0.55px) rotate(-45deg)
   &--active
     opacity: .6
     visibility: visible
-
+  &__button
+    right: 10px
+    top: 20px
+    height: 20px
+    width: 20px
   &__back
     position: absolute
     top: 40px

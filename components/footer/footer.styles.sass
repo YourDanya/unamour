@@ -65,6 +65,7 @@
     padding: 20px 40px
     display: flex
     align-items: center
+    flex-wrap: wrap
   &__years
     font-size: 12px
   &__name
@@ -84,15 +85,15 @@
     margin-left: 20px
     cursor: pointer
   &__logo
-    height: 20px
-    margin-left: 40px
+    margin-left: 20px
     color: #828282
     display: flex
     align-items: center
     font-size: 12px
     &-img
+      transform: translateY(2px)
       margin-left: 4px
-      height: 25px
+      height: 22px
 
 @media(max-width: 991px)
   .footer
@@ -111,9 +112,14 @@
       margin-right: 0
     &__contact
       display: block
+    &__years
+      width: 80px
     &__name
+      margin-left: 0
+      width: calc(100% - 80px)
       flex-grow: 1
       display: flex
+      justify-content: space-between
       align-items: center
     &__modal
       width: 100%
@@ -132,4 +138,17 @@
       font-size: 20px
       color: black
       font-family: SeasonsRegular, sans-serif
+    &__logo
+      margin-top: 10px
+      margin-left: 0
 
+@media (max-width: 576px)
+  .footer
+    &__social
+      padding: 30px 10px
+    &__copyright
+      padding: 10px
+    &__subscription
+      width: 250px
+    &__policy
+      bottom: -20px

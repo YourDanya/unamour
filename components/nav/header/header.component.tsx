@@ -6,6 +6,7 @@ import shoppingCart from '/public/icons/shopping-cart.svg'
 import shoppingCartWhite from '/public/icons/shopping-cart-white.svg'
 import bookmark from '/public/icons/bookmark.svg'
 import bookmarkWhite from '/public/icons/bookmark-white.svg'
+import Button from "../../common/button/button.component";
 
 type navHeaderProps = {
     home: boolean,
@@ -20,13 +21,13 @@ const NavHeader: React.FC<navHeaderProps> = ({showModal, home}) => {
                 <a className="nav__title">UNAMOUR</a>
             </Link>
             <div className="nav__icons">
-                <a id='search' onClick={showModal}>
+                <Button name='search' onClick={showModal}>
                     <img
                         className={'nav__icon nav__icon--first'}
                         src={home ? searchWhite.src : search.src}
                         alt={'shop item'}
                     />
-                </a>
+                </Button>
                 <Link href={'/favorites'}>
                     <a>
                         <img
@@ -36,13 +37,13 @@ const NavHeader: React.FC<navHeaderProps> = ({showModal, home}) => {
                         />
                     </a>
                 </Link>
-                <button className='nav__button' name='shopping' onClick={showModal}>
+                <Button name='shopping' onClick={showModal}>
                     <img
                         className='nav__icon nav__icon--last'
                         src={home ? shoppingCartWhite.src : shoppingCart.src}
                         alt={'shop item'}
                     />
-                </button>
+                </Button>
             </div>
         </div>
     )

@@ -4,8 +4,8 @@ export default function Document() {
     return (
         <Html>
             <Head>
-                <title>unamour</title>
-                <meta name="description" content={'Магазин unamour'}/>
+                <title>UNAMOUR</title>
+                <meta name="description" content={'Магазин UNAMOUR'}/>
             </Head>
             <body>
             <Main/>

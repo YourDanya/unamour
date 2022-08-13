@@ -72,22 +72,10 @@ import {useDispatch, useSelector} from "react-redux"
 import {selectClientItems} from "../redux/shop-items/shop-items.slice"
 import {fetchItems} from "../redux/shop-items/shop-items.thunk"
 import {useEffect} from "react"
-import Cookie from "../components/cookie/cookie.component"
+import useApp from "./app.hook";
 
-function MyApp({Component, pageProps}: AppPropsWithLayout) {
-
-    let getLayout = Component.getLayout ?? ((page) => page)
-    const slug = useRouter().query.slug
-    if (slug && slug.length!==1) getLayout = ((page) => page)
-
-    const dispatch = useDispatch()
-    const items = useSelector(selectClientItems)
-
-    useEffect(() => {
-        if (items.length==0) {
-            dispatch(fetchItems())
-        }
-    }, [])
+function App(props: AppPropsWithLayout) {
+    const {getLayout, Component, pageProps} = useApp(props)
 
     return (
         <>
@@ -101,4 +89,4 @@ function MyApp({Component, pageProps}: AppPropsWithLayout) {
     )
 }
 
-export default wrapper.withRedux(MyApp)
+export default wrapper.withRedux(App)

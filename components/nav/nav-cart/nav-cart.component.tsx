@@ -4,14 +4,11 @@ import {useSelector} from "react-redux"
 import Link from 'next/link'
 import {selectCartItems, selectTotalPrice} from "../../../redux/cart/cart.slice"
 import CartItem from "../../cart-item/cart-item.component"
+import useNavCart from "./nav-cart.hook";
 
-const NavShoppingCart: React.FC = () => {
+const NavCart: React.FC = () => {
 
-    const cartItems = useSelector(selectCartItems)
-
-    const total = useSelector(selectTotalPrice)
-
-    const length = cartItems.length
+    const {cartItems, total, length} = useNavCart()
 
     return (
         <div className={`nav-cart`}>
@@ -46,4 +43,4 @@ const NavShoppingCart: React.FC = () => {
     )
 }
 
-export default NavShoppingCart
+export default NavCart

@@ -1,5 +1,5 @@
-import React, {useMemo} from "react";
-import Button from "../button/button.component";
+import React from "react"
+import Button from "../button/button.component"
 
 type sidebarProps = {
     left?: boolean,
