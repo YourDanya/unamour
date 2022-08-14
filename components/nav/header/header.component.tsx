@@ -6,7 +6,7 @@ import shoppingCart from '/public/icons/shopping-cart.svg'
 import shoppingCartWhite from '/public/icons/shopping-cart-white.svg'
 import bookmark from '/public/icons/bookmark.svg'
 import bookmarkWhite from '/public/icons/bookmark-white.svg'
-import Button from "../../common/button/button.component";
+import Button from "../../common/button/button.component"
 
 type navHeaderProps = {
     home: boolean,
@@ -16,7 +16,7 @@ type navHeaderProps = {
 const NavHeader: React.FC<navHeaderProps> = ({showModal, home}) => {
 
     return (
-        <div className="nav__header">
+        <div className="container nav__header">
             <Link href={'/'}>
                 <a className="nav__title">UNAMOUR</a>
             </Link>

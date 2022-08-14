@@ -4,16 +4,16 @@ import {useEffect, useState} from "react"
 const useNavRoute = (hideModal: () => void) => {
     const router= useRouter()
 
-    const [home, setHome] = useState(false)
+    const [home, setHome] = useState(router.pathname === '/')
 
     const handleRouteChange = () => {
         console.log('route change')
-        if(router.pathname==='/'){
-            if (!home) setHome(true)
-        }
-        else {
-            if(home)setHome(false)
-        }
+        // if(router.pathname==='/'){
+        //     if (!home) setHome(true)
+        // }
+        // else {
+        //     if(home)setHome(false)
+        // }
         hideModal()
     }
 
@@ -28,7 +28,7 @@ const useNavRoute = (hideModal: () => void) => {
             if (!home) setHome(true)
         }
         else {
-            if(home)setHome(false)
+            if(home) setHome(false)
         }
     }, [router.pathname])
 

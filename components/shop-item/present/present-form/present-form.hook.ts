@@ -1,7 +1,5 @@
-import {presentFormProps} from "./present-form.component";
-import {useInput} from "../../../hooks/input.hooks";
-import {presentContent} from "../present.content";
-import { useLocale} from "../../../hooks/event-handler.hooks";
+import {presentFormProps} from "./present-form.component"
+import {presentContent} from "../present.content"
 
 const usePresentForm= (props: presentFormProps) => {
 

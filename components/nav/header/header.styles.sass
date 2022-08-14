@@ -1,6 +1,6 @@
 .nav
   &__header
-    z-index: 10
+    z-index: 20
     height: 60px
     padding: 0 40px
     width: 100%
@@ -35,17 +35,25 @@
     border: none
     padding: 0
 
-@media (max-width: 768px)
+
+@media (max-width: 991px)
   .nav
     &__header
       height: 40px
-      padding: 0 20px
     &__title
-      font-size: 22px
+      font-size: 20px
+    &__icon
+      margin: 0 3px
+      height: 18px
+      &--first
+        margin-left: 0
+      &--last
+        margin-right: 0
 
 @media (max-width: 576px)
   .nav
     &__header
-      padding: 0 10px
     &__title
-      font-size: 20px
+      font-size: 18px
+    &__icon
+      height: 17px

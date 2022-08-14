@@ -33,7 +33,8 @@ import '/components/cart/cart-form/cart-form.styles.sass'
 import '/components/cart/order/order.styles.sass'
 import '/components/cart-item/cart-item.styles.sass'
 import '/components/cart/discount/discount.styles.sass'
-import '/components/client-service/client-service.styles.sass'
+import '/components/client-service/service.styles.sass'
+import '/components/client-service/menu/menu.styles.sass'
 import '/components/nav/nav.styles.sass'
 import '/components/nav/nav-menu/nav-menu.styles.sass'
 import '/components/nav/nav-search/nav-search.styles.sass'
@@ -67,14 +68,10 @@ import Nav from "../components/nav/nav.component"
 import Footer from "../components/footer/footer.component"
 import {AppPropsWithLayout} from "../types/types"
 import { wrapper} from "../redux/store"
-import {useRouter} from "next/router"
-import {useDispatch, useSelector} from "react-redux"
-import {selectClientItems} from "../redux/shop-items/shop-items.slice"
-import {fetchItems} from "../redux/shop-items/shop-items.thunk"
-import {useEffect} from "react"
-import useApp from "./app.hook";
+import useApp from "./app.hook"
 
 function App(props: AppPropsWithLayout) {
+
     const {getLayout, Component, pageProps} = useApp(props)
 
     return (

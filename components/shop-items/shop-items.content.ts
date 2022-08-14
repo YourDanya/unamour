@@ -1,4 +1,4 @@
-export const ShopItemsContent = {
+const shopItemsContent = {
     categories: [
         '/shop-items/all',
         '/shop-items/eco-leather',
@@ -112,7 +112,7 @@ export const ShopItemsContent = {
             slug: 'creamy'
         }
     ],
-    translation: {
+    translations: {
         //////////////////////////////////////////////////////////////////
         ua: {
             categories: [
@@ -313,3 +313,5 @@ export const ShopItemsContent = {
         }
     }
 }
+
+export default  shopItemsContent

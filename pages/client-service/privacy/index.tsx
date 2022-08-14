@@ -1,11 +1,11 @@
-import React from "react";
-import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
-import WithIntern from "../../../components/hoc/with-intern/with-intern";
-import {PrivacyContent} from "./privacy.content";
-import { NextPageWithLayout} from "../../../types/types";
-import WithService from "../../../components/hoc/with-service/with-service";
+import React from "react"
+import {getClientServiceLayout} from "../../../components/client-service/service.component"
+import { NextPageWithLayout} from "../../../types/types"
+import usePrivacy from "./privacy.hook";
 
-const Privacy: NextPageWithLayout = ({children }) => {
+const Privacy: NextPageWithLayout = () => {
+
+    const {children} = usePrivacy()
 
     return (
         <div className={'privacy'}>
@@ -16,4 +16,4 @@ const Privacy: NextPageWithLayout = ({children }) => {
 
 Privacy.getLayout = getClientServiceLayout
 
-export default WithIntern(WithService(Privacy), PrivacyContent)
+export default Privacy

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import Link from "next/link"
-import Button from "../../common/button/button.component";
-import useNavMenu from "./nav-menu.hook";
+import Button from "../../common/button/button.component"
+import useNavMenu from "./nav-menu.hook"
 
 type navMenuProps = {
     showTopNav?: (event: React.MouseEvent<HTMLElement>) => void,
@@ -13,7 +13,7 @@ const NavMenu: React.FC<navMenuProps> = () => {
 
     return (
         <>
-            <div className="menu">
+            <div className="container menu">
                 <div className="menu__links menu__links--first">
                     <Link href={'/shop-items/all'}>
                         <a className={'menu__link'}>ОДЯГ ТА АКСЕСУАРИ</a>

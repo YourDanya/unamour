@@ -23,7 +23,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
                     className={`checkbox__input`}
                     type={'checkbox'}
                     checked={value}
-                    name={name ?? label}
+                    name={name}
                     onChange={handleChange}
                     onFocus={setFocused}
                     onBlur={setFocused}
@@ -32,7 +32,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
             </div>
             <label
                 className={'checkbox__label'}
-                htmlFor={label}
+                htmlFor={name}
                 onClick={handlePreventDefault}
             >
                 {label}

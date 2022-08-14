@@ -1,0 +1,95 @@
+.service
+  padding: 80px 40px
+  font-size: 11px
+  display: flex
+  position: relative
+  &__menu
+    color: #333
+    margin-right: 45px
+    display: flex
+    flex-direction: column
+  &__button
+    display: none
+  &__menu-link
+    text-transform: uppercase
+    white-space: nowrap
+    font-size: 10px
+    margin-top: 24px
+    &--first
+      margin-top: 0
+    &--active
+      color: #bdbdbd
+  &__page
+    width: 70%
+  &__link
+    &--text
+      transition: 0.4s all
+      border-bottom: 1px solid #eee
+      &:hover
+        border-bottom: 1px solid #7b7b7b
+  &__label
+    margin-bottom: 7px
+    font-weight: 700
+  &__title
+    top: 20px
+    position: absolute
+    z-index: 10
+  &__item
+    margin-bottom: 5px
+  &__subtitle
+    width: 100%
+    text-align: center
+    margin-bottom: 20px
+    margin-top: 20px
+    font-weight: 700
+    &--start
+      text-align: start
+      font-weight: 500
+      margin-bottom: 10px
+    &--first
+      margin-top: 0
+  &__text
+    margin-bottom: 3px
+    line-height: 15px
+    white-space: pre-line
+    &--list
+      margin-bottom: 3px
+  &__list
+    padding-left: 18px
+    margin-bottom: 5px
+
+
+@media (max-width: 1200px)
+  .service
+    &__links
+      margin-right: 40px
+    &__page
+      width: 80%
+
+@media (max-width: 991px)
+  .service
+    &__title
+      top: 40px
+    &__menu
+      margin-right: 40px
+      &--desc
+        display: none
+    &__page
+      width: 100%
+    &__button
+      height: 11px
+      font-size: 10px
+      color: #828282
+      display: flex
+      justify-content: center
+      align-items: center
+      position: absolute
+      top: 40px
+      right: 40px
+
+@media(max-width: 768px)
+  .service
+    &__menu
+      margin-right: 0
+    &__link
+      font-size: 10px

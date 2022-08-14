@@ -121,10 +121,10 @@ export const useMapImages = (urls: string[], className?: string) => {
     return urls.map((url, index) => <img className={className} src={url} alt={`image ${index}`} key={url + index}/>)
 }
 
-export const useLocale = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translation: {ua: T, eng: T, ru: T}} & K, "translation">, translation: T] => {
+export const useLocale = <T, K>(content: { translations: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translations: {ua: T, eng: T, ru: T}} & K, "translations">, translations: T] => {
     const locale = useRouter().locale as LocaleType
-    const {translation, ...other} = content
-    return [{...other}, translation[locale]]
+    const {translations, ...other} = content
+    return [{...other}, translations[locale]]
 }
 
 export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translation: {ua: T, eng: T, ru: T}} & K, "translation">, translation: T] => {

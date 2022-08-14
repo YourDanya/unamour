@@ -1,5 +1,5 @@
 import React from "react";
-import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
+import {getClientServiceLayout} from "../../../components/client-service/service.component";
 import WithIntern from "../../../components/hoc/with-intern/with-intern";
 import {WarrantyPeriodContent} from "./warranty-period.content";
 import {NextPageWithLayout} from "../../../types/types";

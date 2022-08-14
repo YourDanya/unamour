@@ -1,14 +1,11 @@
-import React, {ReactNode} from "react";
-import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
-import {ComponentContent, NextPageWithLayout} from "../../../types/types";
-import {PolicyContent} from "./policy.content";
-import WithIntern from "../../../components/hoc/with-intern/with-intern";
-import WithService from "../../../components/hoc/with-service/with-service";
+import React, {} from "react"
+import {getClientServiceLayout} from "../../../components/client-service/service.component"
+import {NextPageWithLayout} from "../../../types/types"
+import usePolicy from "./policy.hook";
 
-type PolicyProps = {
-}
+const Policy: NextPageWithLayout = () => {
 
-const Policy: NextPageWithLayout = ({children}) => {
+    const {children} = usePolicy()
 
     return (
         <div className={'policy'}>
@@ -19,4 +16,4 @@ const Policy: NextPageWithLayout = ({children}) => {
 
 Policy.getLayout = getClientServiceLayout
 
-export default WithIntern(WithService(Policy), PolicyContent)
+export default Policy

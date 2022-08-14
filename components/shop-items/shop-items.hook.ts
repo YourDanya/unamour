@@ -1,10 +1,10 @@
 import {ShopItemsProps} from "./shop-items.component"
 import { useLocale, useToggleActive, useToggleMany} from "../../hooks/event-handler.hooks"
-import {ShopItemsContent} from "./shop-items.content"
-import {usePlainInput} from "../../hooks/input.hooks";
+import {usePlainInput} from "../../hooks/input.hooks"
+import shopItemsContent from "./shop-items.content"
 
 const useShopItems = (props: ShopItemsProps) => {
-    const [content, translation] = useLocale(ShopItemsContent)
+    const [content, translation] = useLocale(shopItemsContent)
     const [sizes, handleSizeChange] = useToggleMany(content.sizes)
     const [colors, handleColorChange] = useToggleMany(content.colors.map(({slug, code}) => slug))
     const [sort, handleSortClick] = useToggleActive()

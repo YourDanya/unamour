@@ -16,7 +16,7 @@ export const presentContent = {
         anonymously: {value: false, error: ''},
         surprise: {value: false, error: ''}
     },
-    translation: {
+    translations: {
         ua: {
             inputs: {
                 recName: {placeholder: 'Ім\'я отримувача'},

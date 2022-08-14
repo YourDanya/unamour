@@ -1,5 +1,5 @@
 import React from "react";
-import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
+import {getClientServiceLayout} from "../../../components/client-service/service.component";
 import axios from "axios";
 import {NextPage} from "next";
 import {NextPageWithLayout} from "../../../types/types";

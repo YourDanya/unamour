@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
 
     return (
         <footer className='footer'>
-            <div className="footer__social">
+            <div className="container footer__social">
                 <Links className='footer__links--desc'/>
                 <div className="footer__subscription">
                     <div className="footer__news">НОВИНИ UNAMOUR</div>
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="footer__copyright">
+            <div className="container footer__copyright">
                 <div className="footer__years">© 2020-2022</div>
                 <div className='footer__name'>
                     UNAMOUR

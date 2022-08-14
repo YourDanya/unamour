@@ -9,7 +9,7 @@ type hamburgerProps = {
 const Hamburger: React.FC<hamburgerProps> = ({hamburger, showModal, hideModal}) => {
 
     return (
-        <div className={`hamburger ${hamburger ? 'hamburger--active' : ''}`}>
+        <div className={`container hamburger ${hamburger ? 'hamburger--active' : ''}`}>
             <button name={'hamburger'} className={`hamburger__button`} onClick={hamburger? hideModal : showModal}>
                 <div className="hamburger__line"/>
                 <div className="hamburger__line"/>

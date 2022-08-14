@@ -1,5 +1,5 @@
 import React from "react";
-import {getClientServiceLayout} from "../../../components/client-service/client-service.component";
+import {getClientServiceLayout} from "../../../components/client-service/service.component";
 
 const ClothingCare = () => {
     return (
