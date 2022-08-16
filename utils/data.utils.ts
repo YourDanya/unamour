@@ -1,5 +1,5 @@
-import {ClientItem, FetchedItem} from "../redux/shop-items/shop-items.types";
-import {LocaleType} from "../types/types";
+import {ClientItem, FetchedItem} from "../redux/shop-items/shop-items.types"
+import {LocaleType} from "../types/types"
 
 export const createClientItems = (fetchedItems: FetchedItem[], locale: LocaleType): ClientItem[] => {
     const clientItems: ClientItem [] = []

@@ -1,6 +1,7 @@
 import Link from "next/link"
-import React from "react"
+import React, {useEffect} from "react"
 import {ElementContent} from "../types/types"
+import {useRouter} from "next/router"
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -8,6 +9,8 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
     let count1 = -1
     let count2 = 0
     let tempElem: JSX.Element
+
+    const ending = useRouter().pathname.split('/').pop()
 
     return arr.map(([prop, value], index) => {
         let returnElem
@@ -45,16 +48,20 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
                     ))}
                 </ul>
             )
-
         } else {
-            if (prop.startsWith('title')) className = 'service__title'
-            if (prop.startsWith('numSubtitle' || 'subtitle')) {
-                className = 'service__subtitle service__subtitle--start'
-                if (prop === 'subtitle1' || prop === 'numSubtitle1') className += ' service__subtitle--first'
-            }
+
+            let baseClassName: string = ''
+
+            if (prop.startsWith('title')) baseClassName = 'service__title'
+            if (prop.startsWith('numSubtitle' || 'subtitle')) baseClassName = 'service__subtitle'
             if (prop.startsWith('label')) className = 'service__label'
-            if (prop.startsWith('text') || prop.startsWith('numText') || prop.startsWith('numText')) className = 'service__text'
-            if (index < arr.length - 1 && arr[index + 1][0].startsWith('list')) className += ` ${className}--list`
+            if (prop.startsWith('text') || prop.startsWith('numText') || prop.startsWith('numText')) baseClassName = 'service__text'
+
+            className=baseClassName
+            if (index===1) className +=` ${baseClassName}--first`
+            if (index < arr.length - 1 && arr[index + 1][0].startsWith('list')) className += ` ${baseClassName}--list`
+            if (index===arr.length - 1 || index===arr.length - 2 && arr[index+1][0].startsWith('textLink')) className += ` ${baseClassName}--last`
+            className +=` ${baseClassName}--${ending}`
 
             returnElem = (
                 <div className={className} key={prop}>
@@ -79,4 +86,12 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
 
         return returnElem
     })
+}
+
+export const useRouteChange = (callback: () => void) => {
+    const pathname = useRouter().pathname
+
+    useEffect(() => {
+        callback()
+    }, [pathname])
 }

@@ -1,17 +1,16 @@
-import React, {useState} from "react";
-import {useRouter} from "next/router";
-import {InputType, InputTypes, LocaleType} from "../types/types";
-import {useLocale} from "./event-handler.hooks";
+import React, {useState} from "react"
+import {useRouter} from "next/router"
+import {InputType, InputTypes, LocaleType} from "../types/types"
 
 export const usePlainInput = <T extends { [prop: string]: string | boolean | number }, >(inputs: T):
-    [values: T, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void] => {
+    [values: T, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void, setValues: (values: T) => void] => {
 
     const [values, setValues] = useState(inputs)
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target
         setValues({...values, [name]: value})
     }
-    return [values, handleChange]
+    return [values, handleChange, setValues]
 }
 
 export const useInput = <T extends InputTypes, >(initInputs: T):

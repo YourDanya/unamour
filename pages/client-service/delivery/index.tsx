@@ -14,7 +14,7 @@ const Delivery: NextPageWithLayout<DeliveryContentProps> = ({content}) => {
             <div className="service__title">
                 {content.title1}
             </div>
-            <div className="service__subtitle">
+            <div className="service__subtitle service__subtitle--first">
                 {content.subtitle1}
             </div>
             <div className="service__text">

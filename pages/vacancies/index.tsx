@@ -87,7 +87,7 @@ const Vacancies: React.FC = () => {
                     </ul>
                 </div>
                 <div className="vacancies__resume">
-                    Резюме отправлять на почту UNAMOUR@gmail.com, указав тему письма "Отклик на вакансию копирайтер".
+                    Резюме отправлять на почту unamour@gmail.com, указав тему письма "Отклик на вакансию копирайтер".
                 </div>
             </div>
             <div className="vacancies__content">
@@ -153,7 +153,7 @@ const Vacancies: React.FC = () => {
                     </ul>
                 </div>
                 <div className="vacancies__resume">
-                    Резюме отправлять на почту UNAMOUR@gmail.com, указав тему письма "Отклик на вакансию фотограф".
+                    Резюме отправлять на почту unamour@gmail.com, указав тему письма "Отклик на вакансию фотограф".
                 </div>
             </div>
             <div className="vacancies__content">

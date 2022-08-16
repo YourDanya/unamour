@@ -14,7 +14,7 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
 
     const {
         content, translation, children, sort, handleSortClick, sizes, handleSizeChange, price, handlePriceChange,
-        colors, handleColorChange
+        colors, handleColorChange, setPriceValues
     } = useShopItems(props)
 
     return (
@@ -49,6 +49,7 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                                 values={price}
                                 translateFrom={translation.price.from}
                                 translateTo={translation.price.to}
+                                setValues={setPriceValues}
                             />
                         </Dropdown>
                         <Dropdown name={translation.filter3} className='shop-items__sizes'>

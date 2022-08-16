@@ -1,11 +1,13 @@
-import React, {useRef, useState} from "react"
+import React from "react"
 import useRangeSlider from "./range-slider.hook";
 
 export type RangeSliderProps = {
-    setValues?: () => {}
+    setValues: (values: {num1: string, num2: string}) => void,
+    values: {num1: string, num2: string}
 }
 
 const RangeSlider: React.FC<RangeSliderProps> = (props) => {
+
     const {elemsRef, handleTrackDown, handleThumbDown, state} = useRangeSlider(props)
 
     return (
@@ -14,12 +16,14 @@ const RangeSlider: React.FC<RangeSliderProps> = (props) => {
                 className="range-slider__track"
                 ref={elem => elemsRef.current.track = elem}
                 onMouseDown={handleTrackDown}
+                onTouchStart={handleTrackDown}
                 style={{background: `linear-gradient(${state.gradient})`}}
             />
             <button
                 className="range-slider__thumb"
                 name={'left'}
                 onMouseDown={handleThumbDown}
+                onTouchStart={handleThumbDown}
                 ref={elem => elemsRef.current.left = elem}
                 style={{
                     transform: `translateY(-50%) translateX(${state.left.translate}px)`
@@ -29,6 +33,7 @@ const RangeSlider: React.FC<RangeSliderProps> = (props) => {
                 className="range-slider__thumb"
                 name={'right'}
                 onMouseDown={handleThumbDown}
+                onTouchStart={handleThumbDown}
                 ref={elem => elemsRef.current.right = elem}
                 style={{
                     transform: `translateY(-50%) translateX(${state.right.translate}px)`

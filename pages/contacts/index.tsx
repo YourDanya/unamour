@@ -19,7 +19,7 @@ const ContactComponent: React.FC = () => {
                     <div className="contacts__label--main">ИНТЕРНЕТ-МАГАЗИН</div>
                     <div className="contacts__label">+38 (066) 384-78-22 по всей Украине</div>
                     <div className="contacts__label">Режим работы: ПН-ПТ с 9:00 до 18:00</div>
-                    <div className="contacts__label">Наша почта - UNAMOUR@gmail.com</div>
+                    <div className="contacts__label">Наша почта - unamour@gmail.com</div>
                     <div className="contacts__label">Мы в Instagram - @UNAMOUR</div>
                 </div>
                 <div className="contacts__feedback">
@@ -47,12 +47,12 @@ const ContactComponent: React.FC = () => {
                             handleChange={handleChange}
                         />
                         <Textarea name={'name'} placeholder={'Сообщение'}/>
-                        <Button className={'contacts__form-button'}>
+                        <Button className={'contacts__form-button'} onClick={() => {}}>
                             ОТПРАВИТЬ
                         </Button>
-                        <div className="contacts__footnote">
+                        <Button className="contacts__footnote" onClick={() => {}}>
                             Нажимая кнопку Отправить, я даю согласие на обработку и передачу моих персональных данных
-                        </div>
+                        </Button>
                     </form>
                 </div>
             </div>

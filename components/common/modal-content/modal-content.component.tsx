@@ -1,13 +1,17 @@
-import React from "react";
+import React from "react"
+import useModalContent from "./modal-content.hook";
 
 type modalContentProps = {
     active : boolean,
-    hideModal: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    hideModal: () => void,
     className?: string,
+    hideOnRouteChange?: boolean
 }
 
 const ModalContent: React.FC<modalContentProps> = (props) => {
     const {children, className, hideModal, active} = props
+
+    useModalContent(hideModal)
 
     return (
         <div className={`modal-content ${active? 'modal-content--active' : ''} ${className?? ''}`}>

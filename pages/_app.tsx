@@ -1,3 +1,4 @@
+import '/components/sticky-sidebar/sticky-sidebar.styles.sass'
 import '../styles/home.sass'
 import '../styles/global.sass'
 

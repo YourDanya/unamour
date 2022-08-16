@@ -20,7 +20,7 @@ const useScrollHook = (props: scrollFixedProps) => {
     })
 
     const stateRef = useRef({
-        position: 'fixed',
+        position: 'static',
         top: 0,
         scrollY: 0,
         height: 0,
@@ -55,8 +55,19 @@ const useScrollHook = (props: scrollFixedProps) => {
 
         //scrolling down
         down: if (scrollY > stateRef.current.scrollY) {
+
             //reaching menu end
             if (rect.bottom <= viewPort + 10) {
+
+                console.log('here')
+                // if(rect.bottom===0) {
+                //     position = 'fixed'
+                //     top = 120
+                //     bottom= 'unset'
+                //     stateRef.current.position = 'fixed'
+                //     break down
+                // }
+
                 //reaching parent end
                 if (parentRect.bottom <= viewPort + 100) {
                     if (stateRef.current.position !== 'static') {
@@ -165,7 +176,6 @@ const useScrollHook = (props: scrollFixedProps) => {
         const resizeObserver = new ResizeObserver(handleResize)
 
         const elem = elemRef.current as Element
-        stateRef.current.height = elem.clientHeight
 
         resizeObserver.observe(elem)
         window.addEventListener('scroll', handleScroll)
@@ -173,6 +183,10 @@ const useScrollHook = (props: scrollFixedProps) => {
             resizeObserver.unobserve(elem)
             window.removeEventListener('scroll', handleScroll)
         }
+    }, [])
+
+    useLayoutEffect(() => {
+
     }, [])
 
     return {...props, menuState, elemRef}

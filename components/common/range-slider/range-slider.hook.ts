@@ -1,5 +1,5 @@
 import {RangeSliderProps} from "./range-slider.component"
-import React, {useRef, useState} from "react";
+import React, {useCallback, useMemo, useRef, useState} from "react"
 
 type SliderStateRef = {
     left: {
@@ -29,22 +29,17 @@ type SliderState = {
 
 const useRangeSlider = (props: RangeSliderProps) => {
 
+    const {setValues, values} = props
+
+    const min = useMemo(() => +values.num1, [])
+
+    const max = useMemo(() => +values.num2, [])
+
     const stateRef = useRef<SliderStateRef>({
         left: {x: 0, translate: 0, limit: false, diff: 0},
         right: {x: 0, translate: 184, limit: false, diff: 0},
         active: 'none'
     })
-
-    const calcGradient = () => {
-        const left = stateRef.current.left.translate
-        const right = stateRef.current.right.translate
-        const trackWidth = elemsRef.current.track?.getBoundingClientRect().width as number
-        const thumbWidth = elemsRef.current.left?.getBoundingClientRect().width as number
-        const leftPercent = left/trackWidth * 100
-        const rightPercent = (right+thumbWidth)/trackWidth * 100
-
-        return `to right, #e2e2e2 ${leftPercent}%, black ${leftPercent}% ${rightPercent}%, #e2e2e2 ${rightPercent}%`
-    }
 
     const [state, setState] = useState<SliderState>({
         left: {translate: 0},
@@ -58,15 +53,35 @@ const useRangeSlider = (props: RangeSliderProps) => {
         track: null
     })
 
+    const calcGradient = useCallback (() => {
+        const left = stateRef.current.left.translate
+        const right = stateRef.current.right.translate
+        const trackWidth = elemsRef.current.track?.getBoundingClientRect().width as number
+        const thumbWidth = elemsRef.current.left?.getBoundingClientRect().width as number
+        const leftPercent = left / trackWidth * 100
+        const rightPercent = (right + thumbWidth) / trackWidth * 100
+
+        const num1 = (min + Math.round(left / (trackWidth - thumbWidth) * (max - min))).toString()
+        const num2 = (min + Math.round(right / (trackWidth - thumbWidth) * (max - min))).toString()
+
+        setValues({num1, num2: num2})
+        return `to right, #e2e2e2 ${leftPercent}%, black ${leftPercent}% ${rightPercent}%, #e2e2e2 ${rightPercent}%`
+    }, [])
+
     const handleMouseUp = () => {
         stateRef.current.active = 'none'
+
         document.removeEventListener('mousemove', handleMouseMove)
         document.removeEventListener('mouseup', handleMouseUp)
+        document.removeEventListener('touchmove', handleMouseMove)
+        document.removeEventListener('touchend',  handleMouseUp)
     }
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const handleMouseMove = useCallback( (event: MouseEvent | TouchEvent) => {
+
         // active thumb
         const active = stateRef.current.active as 'left' | 'right'
+        console.log(active)
         //track rect
         const trackRect = (elemsRef.current.track as Element).getBoundingClientRect()
         // start coordinate
@@ -77,7 +92,12 @@ const useRangeSlider = (props: RangeSliderProps) => {
         const thumbWidth = (elemsRef.current.left as Element).getBoundingClientRect().width
 
         //current mouse x coordinate
-        let x = event.clientX
+        let x
+        const mobileEvent = event as TouchEvent
+        const descEvent = event as MouseEvent
+        if (mobileEvent.touches) x = mobileEvent.touches[0].clientX
+        else x = descEvent.clientX
+
         //width from start to current
         let translate = (stateRef.current[active].translate + (x - stateRef.current[active].x))
         //limit
@@ -126,33 +146,52 @@ const useRangeSlider = (props: RangeSliderProps) => {
                     x = leftTranslate + start + right.diff
                     translate = leftTranslate
                     limit = true
-                }
-                else {
+                } else {
                     return
                 }
             }
         }
         stateRef.current[active] = {...stateRef.current[active], x, translate, limit}
         const gradient = calcGradient()
-        setState({...state, [active]: {translate}, gradient})
-    }
 
-    const handleThumbDown = (event: React.MouseEvent) => {
-        event.preventDefault()
+        setState({
+            left: {translate: stateRef.current.left.translate},
+            right: {translate: stateRef.current.right.translate},
+            [active]: {translate},
+            gradient
+        })
+    }, [])
+
+    const handleThumbDown = useCallback((event: React.MouseEvent|React.TouchEvent) => {
 
         const {name} = event.target as HTMLButtonElement
         const active = name as 'left' | 'right'
 
+        let clientX
+        const mobileEvent = event as React.TouchEvent
+        const descEvent = event as React.MouseEvent
+
+        if (mobileEvent.touches) {
+            clientX = mobileEvent.touches[0].clientX
+        }
+        else {
+            clientX = descEvent.clientX
+            event.preventDefault()
+        }
+
         stateRef.current.active = active
         const thumbX = elemsRef.current[active]?.getBoundingClientRect().x as number
-        stateRef.current[active].diff = event.clientX - thumbX
-        stateRef.current[active].x = event.clientX
+
+        stateRef.current[active].diff = clientX - thumbX
+        stateRef.current[active].x = clientX
 
         document.addEventListener('mousemove', handleMouseMove)
         document.addEventListener('mouseup', handleMouseUp)
-    }
+        document.addEventListener('touchmove', handleMouseMove)
+        document.addEventListener('touchend',  handleMouseUp)
+    }, [])
 
-    const handleTrackDown = (event: React.MouseEvent) => {
+    const handleTrackDown = useCallback((event: React.MouseEvent | React.TouchEvent) => {
         event.preventDefault()
 
         const trackRect = elemsRef.current.track?.getBoundingClientRect()
@@ -166,7 +205,12 @@ const useRangeSlider = (props: RangeSliderProps) => {
         const leftX = leftRect?.x as number
         const rightX = elemsRef.current.right?.getBoundingClientRect().x as number
 
-        let x = event.clientX
+        let x
+        const mobileEvent = event as React.TouchEvent
+        const descEvent = event as React.MouseEvent
+        if (mobileEvent.touches) x = mobileEvent.touches[0].clientX
+        else x = descEvent.clientX
+
         let translate = x - start - thumbHalfWidth
         let active: 'left' | 'right'
 
@@ -188,11 +232,19 @@ const useRangeSlider = (props: RangeSliderProps) => {
         stateRef.current[active] = {...stateRef.current[active], x, translate, limit: false, diff: 8}
         stateRef.current.active = active
         const gradient = calcGradient()
-        setState({...state, [active]: {translate}, gradient})
+
+        setState({
+            left: {translate: stateRef.current.left.translate},
+            right: {translate: stateRef.current.right.translate},
+            [active]: {translate},
+            gradient
+        })
 
         document.addEventListener('mousemove', handleMouseMove)
         document.addEventListener('mouseup', handleMouseUp)
-    }
+        document.addEventListener('touchmove', handleMouseMove)
+        document.addEventListener('touchend',  handleMouseUp)
+    }, [])
 
     return {...props, elemsRef, handleTrackDown, handleThumbDown, state}
 }
