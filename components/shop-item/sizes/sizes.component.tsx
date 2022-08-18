@@ -1,37 +1,37 @@
 import React from "react"
 
 type sizesProps = {
+
 }
 
 const Sizes: React.FC<sizesProps> = () => {
 
     return (
-        <div className={`sizes`}>
-            <div className={'text text--mb-10 text--lh-15'}>
+        <div className='sizes'>
+            <div className='sizes__title'>
                 НЕОБХІДНИЙ ВАМ РОЗМІР ВИ МОЖЕТЕ ПІДІБРАТИ ВИХОДЯЧИ З ІНФОРМАЦІЇ У ВКЛАДЦІ ОБМІРИ НА
                 СТОРІНЦІ ТОВАРУ
             </div>
-            <div className={'text text--mb-10'}>
+            <div className='sizes__how'>
                 Як визначити відповідний розмір
             </div>
-            <div className={'list list--pl-20 list--mb-10'}>
-                <div className={'list__item list__item--mb-2'}>
+            <ul className='list'>
+                <li className='list__item'>
                     Виміряйте обхват грудей по самій опуклій точці бюста.
-                </div>
-                <div className={'list__item list__item--mb-2'}>
+                </li>
+                <li className='list__item'>
                     Виміряйте обхват талії по найвужчій частині талії.
-                </div>
-                <div className={'list__item list__item--mb-2'}>
+                </li>
+                <li className='list__item'>
                     Виміряйте обхват стегон по лінії максимальної ширини стегон.
-                </div>
+                </li>
+            </ul>
+            <div className='sizes__ind'>
+                Розмір IND передбачає універсальну посадку, розраховану параметри розмірів XS, S, M.
             </div>
-            <div className={'text text--mb-10'}>
-                Розмір Onesize передбачає універсальну посадку, розраховану параметри розмірів XS, S, M.
-            </div>
-            <div className={'text text--lh-15'}>
+            <div className='sizes__help'>
                 Якщо виникнуть труднощі, ми з радістю допоможемо Вам із вибором розміру. Зв`яжіться з
-                нами в онлайн-чаті, Instagram або зателефонуйте за безкоштовним номером 8 (800)
-                707-71-04
+                нами в онлайн-чаті, Instagram або зателефонуйте за номером +380 (66) 384 78 22.
             </div>
         </div>
     )

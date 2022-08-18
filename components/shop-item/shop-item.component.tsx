@@ -56,7 +56,7 @@ const ShopItem: React.FC<ClientItem> = (props) => {
                     activeSize={activeSize as string}
                 />
             </ModalContent>
-            <ModalContent active={modalState.size} hideModal={hideModal}>
+            <ModalContent active={modalState.size} hideModal={hideModal} className={'sizes-modal'}>
                 <Sizes/>
             </ModalContent>
             <Modal active={modalState.modal} hideModal={hideModal}/>

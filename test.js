@@ -88,6 +88,60 @@
 //
 // console.log(mergeObjects(first, second))
 
-const test = 1.7 % 0.6
+// function map (callback) {
+//     const arr = []
+//     for (let i=0; i<this.length; i++) {
+//         arr[i]= callback(this[i], i)
+//     }
+//     return arr
+// }
+//
+// function filter (callback) {
+//     const arr = []
+//
+//     for (let i=0; i<this.length; i++) {
+//         const elem = this[i]
+//         if (callback(elem)) arr.push(elem)
+//     }
+//     return arr
+// }
+//
+// function reduce (callback, initValue) {
+//     let accum = initValue?? this[0]
+//     const start = initValue === undefined? 1 : 0
+//     for (let i = start; i<this.length; i++) {
+//         accum = callback(accum, this[i])
+//     }
+//     return accum
+// }
 
-console.log(test)
+// Array.prototype.myFilter = filter
+//
+// const res = [1, 2, 3, 4, 5].myFilter((elem) => elem>2)
+//
+// Array.prototype.myReduce = reduce
+// //
+// //
+// // no init value
+// console.log([1, 2, 3].myReduce((sum, curr) => sum + curr))
+//
+// // init value:
+// console.log([1, 2, 3].myReduce((sum, curr) => sum + curr, 1000))
+
+// const obj = {a: 1}
+//
+// console.log(obj.__proto__)
+
+setTimeout(() => {
+    console.log('set timeout')
+}, 0)
+
+const promise1 = new Promise((resolve, reject) => {
+    resolve('foo')
+})
+
+promise1.then((value) => {
+    console.log(value)
+})
+
+console.log('end')

@@ -29,11 +29,11 @@ const useAdditional = () => {
 
     const handleResize = () => {
         console.log(window.innerWidth)
-        if (stateRef.current.perSlide!==2 && window.innerWidth<=991) {
+        if (stateRef.current.perSlide!==2 && window.innerWidth<=992) {
             stateRef.current.perSlide=2
             setPerSlide(2)
         }
-        if (stateRef.current.perSlide!==4 && window.innerWidth>991) {
+        if (stateRef.current.perSlide!==4 && window.innerWidth>992) {
             stateRef.current.perSlide=4
             setPerSlide(4)
         }
