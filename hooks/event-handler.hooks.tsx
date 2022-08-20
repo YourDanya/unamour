@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {LocaleType} from "../types/types"
 
-export const useCombineHandlers = (...eventHandlers: ((event: React.MouseEvent<HTMLElement>) => void)[]):  (event: React.MouseEvent<HTMLElement>) => void => {
+export const useCombineHandlers = (...eventHandlers: ((event: React.MouseEvent<HTMLElement>) => void)[]): (event: React.MouseEvent<HTMLElement>) => void => {
 
     const handleEvent = (event: React.MouseEvent<HTMLElement>) => {
         eventHandlers.forEach(eventHandler => eventHandler(event))
@@ -11,15 +11,15 @@ export const useCombineHandlers = (...eventHandlers: ((event: React.MouseEvent<H
     return handleEvent
 }
 
-export const useToggle = (): [active: boolean, handleEvent: (event: any) => void] => {
+export const useToggle = (): [active: boolean, handleEvent: (event: any) => void, setActive: (active: boolean) => void] => {
     const [active, setActive] = useState(false)
     const handleEvent = (event: any) => {
         setActive(!active)
     }
-    return [active, handleEvent]
+    return [active, handleEvent, setActive]
 }
 
-export const useDoubleToggle = (initState? : boolean, params? : {firstCond?: boolean, secondCond?: boolean}):
+export const useDoubleToggle = (initState?: boolean, params?: { firstCond?: boolean, secondCond?: boolean }):
     [active: boolean, handleFirst: (event: React.MouseEvent<HTMLElement>) => void, handleSecond: (event: React.MouseEvent<HTMLElement>) => void] => {
 
     const [active, setActive] = useState(initState ?? false)
@@ -40,16 +40,18 @@ export const useDoubleToggle = (initState? : boolean, params? : {firstCond?: boo
 }
 
 export const useToggleMany = <T extends readonly string[], >(arr: T, attribute: string = 'name'):
-    [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void] => {
+    [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void,
+        setActive: (active: Record<typeof arr[number], boolean>) => void] => {
 
     const initialState: any = {}
     arr.forEach((elem) => initialState[elem] = false)
     const [active, setActive] = useState(initialState)
     const handleEvent = (event: any) => {
-        const property = event.currentTarget.getAttribute(attribute)
+        console.log('event current target', event?.currentTarget?.getAttribute(attribute))
+        const property = event?.currentTarget?.getAttribute(attribute)
         setActive({...active, [property]: !active[property]})
     }
-    return [active, handleEvent]
+    return [active, handleEvent, setActive]
 }
 
 export const usePreventDefault = (): (event: any) => void => {
@@ -58,8 +60,8 @@ export const usePreventDefault = (): (event: any) => void => {
     }
 }
 
-export const useSetActive = (initActive:string, attribute: string = 'name'):
-    [active: string , handleEvent: (event: any) => void, setActive: (active: string) => void]  => {
+export const useSetActive = (initActive: string, attribute: string = 'name'):
+    [active: string, handleEvent: (event: any) => void, setActive: (active: string) => void] => {
 
     const [active, setActive] = useState(initActive)
 
@@ -71,7 +73,7 @@ export const useSetActive = (initActive:string, attribute: string = 'name'):
 }
 
 export const useSetNumber = (initActive: number, attribute: string):
-    [active: number , handleEvent: (event: any) => void, setActive: (active: number) => void] => {
+    [active: number, handleEvent: (event: any) => void, setActive: (active: number) => void] => {
 
     const [active, setActive] = useState(initActive)
     const handleEvent = (event: any) => {
@@ -82,7 +84,7 @@ export const useSetNumber = (initActive: number, attribute: string):
 }
 
 export const useToggleActive = (attribute: string = 'name'): [active: string | null, handleEvent: (event: React.MouseEvent<HTMLElement>) => void] => {
-    
+
     const [active, setActive] = useState<string | null>(null)
     const handleEvent = (event: React.MouseEvent<HTMLElement>) => {
         const value = event.currentTarget.getAttribute(attribute)
@@ -121,13 +123,13 @@ export const useMapImages = (urls: string[], className?: string) => {
     return urls.map((url, index) => <img className={className} src={url} alt={`image ${index}`} key={url + index}/>)
 }
 
-export const useLocale = <T, K>(content: { translations: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translations: {ua: T, eng: T, ru: T}} & K, "translations">, translations: T] => {
+export const useLocale = <T, K>(content: { translations: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translations: { ua: T, eng: T, ru: T } } & K, "translations">, translations: T] => {
     const locale = useRouter().locale as LocaleType
     const {translations, ...other} = content
     return [{...other}, translations[locale]]
 }
 
-export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K) : [content:  Omit<{translation: {ua: T, eng: T, ru: T}} & K, "translation">, translation: T] => {
+export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translation: { ua: T, eng: T, ru: T } } & K, "translation">, translation: T] => {
     const locale = useRouter().locale as LocaleType
     const {translation, ...other} = content
     const translateContent = translation[locale]

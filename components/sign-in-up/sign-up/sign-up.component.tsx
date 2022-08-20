@@ -2,7 +2,7 @@ import React, {MouseEventHandler, useState} from 'react'
 import Link from "next/link"
 import {AiOutlineGoogle, FaFacebookF} from "react-icons/all"
 import Input from "../../common/input/input.component"
-import {usePlainInput} from "../../../hooks/event-handler.hooks"
+import {usePlainInput} from "../../../hooks/input.hooks";
 
 type setType = {
     email: string,
@@ -24,7 +24,7 @@ const SignUp: React.FC<propsType> = ({setSign}) => {
         passwordConfirm: ''
     })
 
-    const [values, handleChange] = usePlainInput(['email', 'name', 'password', 'passwordConfirm'] as const )
+    const [values, handleChange] = usePlainInput({email: '', password: ''})
     
     return (
         <div className={'sign__content'}>

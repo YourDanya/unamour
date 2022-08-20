@@ -2,12 +2,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
-  name: string
+  name: string,
+  date: number
 }
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=100'
+  )
+  res.status(200).json({name: 'John Doe', date: new Date().getMilliseconds() })
 }

@@ -31,10 +31,10 @@ const Order: React.FC<orderProps> = ({total, className}) => {
                     <div className="order__value">{total} ₴</div>
                 </div>
             </div>
-            <Button className={'order__button'}>
+            <Button className={'order__button'} onClick={() => {}}>
                 ЗРОБИТИ ЗАМОВЛЕННЯ
             </Button>
-            <Button className={'button--white order__button order__button--present'}>
+            <Button className={'button--white order__button order__button--present'} onClick={() => {}}>
                 <>
                     НАТЯКНУТИ
                     <img className='order__present-img' src={presentImg.src} alt={'present'}/>

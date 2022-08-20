@@ -13,7 +13,7 @@ const Slider: React.FC<SliderProps> = (props) => {
 
     const {
         perSlide, elements, slideRef, length, current, transition, handleForwardClick, handleBackClick, elemWidth,
-        indent, handleDown, moveState, className, moveRef, handleClickCapture
+        indent, handleDown, moveState, className, handleClickCapture
     } = useSlider(props)
 
     return (

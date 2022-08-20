@@ -35,17 +35,16 @@ export const useModal = <K extends string> (initState: Record<K, boolean>, attri
 }
 
 export const useExternalState = <T,> (state: T | undefined, setState: ((state: T) => void) | undefined, defaultState: T):
-    [state: T, setState: ((state: T) => void)]=> {
+[state: T, setState: ((state: T) => void)] => {
 
     const [state_, setState_] = useState(state ?? defaultState)
-
-    return setState!==undefined && state!==undefined ? [state, setState] : [state_, setState_]
+    if (state!==undefined) return [state, setState as (state: T) => void]
+    else return [state_, setState_]
 }
 
 export const useResizeObserve =  (callback: (() => void), ...elements: HTMLElement []) => {
 
     useEffect(() => {
-
         const resizeObserver = new ResizeObserver(callback)
         elements.length===0 && elements.push(document.body)
         elements.forEach(elem => resizeObserver.observe(elem))

@@ -16,7 +16,7 @@ const ShopItem: React.FC<ClientItem> = (props) => {
 
     const {
         name, color, sizes, images, price, delivery, description, composition, parameters, category, slugCategory,
-        oldPrice, variants, activeSize, handleSizeClick, modalState, showModal, hideModal,
+        oldPrice, variants, activeSize, handleSizeClick, modalState, showModal, hideModal
     } = useShopItem(props)
 
     return (

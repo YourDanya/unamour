@@ -8,7 +8,7 @@ import {LocaleType} from "../../../../types/types"
 import Input from "../../../common/input/input.component"
 
 export type presentFormProps = {
-    localeInputs: typeof presentContent.translation[LocaleType]['inputs'],
+    localeInputs: typeof presentContent.translations[LocaleType]['inputs']
     price: number,
     inputs: typeof presentContent['inputs'],
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -147,7 +147,7 @@ const PresentForm: React.FC<presentFormProps> = (props) => {
                 value={inputs.surprise.value as boolean}
                 handleChange={handleChange}
             />
-            <Button className={'button--present'}>
+            <Button className={'button--present'} onClick={() => {}}>
                 {`СПЛАТИТИ ${price} ₴`}
             </Button>
         </div>

@@ -6,10 +6,12 @@ const nextConfig = {
     concurrentFeatures: true,
   },
   i18n: {
-    locales: ['ua', 'en', 'ru'],
+    locales: ['ua', 'eng', 'ru'],
     defaultLocale: 'ua',
     localeDetection: false
-  }
+  },
+  pageExtensions: ['tsx', 'jsx']
+
   // webpack: (config, { dev }) => {
   //   if (dev) config.plugins.push(
   //       new ESLintPlugin({

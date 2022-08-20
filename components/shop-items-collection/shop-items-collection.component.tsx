@@ -14,11 +14,11 @@ const ShopItemsCollection: React.FC<itemsCollectionProps> = ({items, title}) => 
                 {title}
             </div>
             <div className={'shop-items-collection__items'}>
-                {items && items.map((props, index) => (
-                    <div className='shop-items-collection__item' key={props.slug + index}>
-                        <ShopItemPreview {...props}/>
+                {/*{items && items.map((props, index) => (*/}
+                    <div className='shop-items-collection__item' key={items[0].slug + 0}>
+                        <ShopItemPreview {...items[0]}/>
                     </div>
-                ))}
+                {/*))}*/}
             </div>
         </div>
     )

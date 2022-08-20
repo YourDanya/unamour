@@ -1,33 +1,30 @@
-import Link from "next/link";
-import {useDispatch, useSelector} from "react-redux";
-import {decrement, increment, selectCounterValue} from "../../redux/counter/counter.slice";
-import {wrapper} from "../../redux/store";
+import Link from "next/link"
+import {wrapper} from "../../redux/store"
+import global from "../../utils/global.utils"
 
 export const getServerSideProps = wrapper.getServerSideProps(
     (store) =>
-        async () => {
-            const value = store.getState().counter.value
-            console.log(value)
-            store.dispatch(increment())
+
+        async (context) => {
+            let date = global.get('date')
+            console.log(global)
+            console.log(global.date)
+            if (!date) date = global.set('date', new Date().getMilliseconds())
             return {
                 props: {
-                    data: 'data'
+                    date
                 }
             }
         }
 )
 
-const Page = ({data}: any) => {
-    const dispatch= useDispatch()
-    const counter = useSelector(selectCounterValue)
+const Page = ({date}: any) => {
     return (
         <div>
-            {data}
-            <button style={{width: '100px', height: '100px', display: 'block', fontSize: '50px'}} onClick={() => dispatch(increment())}>
-                {counter}
-            </button>
-            <Link href={`/test/test1`}>
-                <a style={{width: '100px', height: '100px', display: 'block', fontSize: '25px'}}>Switch</a>
+            <div>test2</div>
+            <div>date: {date}</div>
+            <Link href={'/test/test1'}>
+                <a>switch to test1</a>
             </Link>
         </div>
     )
