@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useLayoutEffect, useRef, useState} from "react"
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react"
 import {loadImageProps} from "./load-image.component"
 import {useExternalState, useResizeObserve} from "../../../hooks/component.hooks"
 
@@ -19,18 +19,20 @@ const useLoadImage = (props: loadImageProps) => {
         setHeight(height)
     }
 
+
+
     useLayoutEffect(calcHeight,[])
     useResizeObserve(calcHeight)
-
     const imgRef = useRef<HTMLImageElement>(null)
 
     useEffect(() => {
-        console.log('imgRef current complete', imgRef?.current?.complete)
         const complete = imgRef?.current?.complete
-        if (complete) {
-
+        const naturalWidth = imgRef?.current?.naturalWidth
+        const loadEvent = new Event('load')
+        if (!loaded && complete && naturalWidth) {
+            imgRef.current.dispatchEvent(loadEvent)
         }
-    }, [])
+    }, [loaded])
 
     return {loaded, ref, height, handleLoaded, imgRef}
 }

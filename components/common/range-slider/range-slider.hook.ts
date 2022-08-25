@@ -30,10 +30,8 @@ type SliderState = {
 const useRangeSlider = (props: RangeSliderProps) => {
 
     const {setValues, values} = props
-
-    const min = useMemo(() => +values.num1, [])
-
-    const max = useMemo(() => +values.num2, [])
+    const defMin = useMemo(() => +values.min, [])
+    const defMax = useMemo(() => +values.min, [])
 
     const stateRef = useRef<SliderStateRef>({
         left: {x: 0, translate: 0, limit: false, diff: 0},
@@ -61,10 +59,10 @@ const useRangeSlider = (props: RangeSliderProps) => {
         const leftPercent = left / trackWidth * 100
         const rightPercent = (right + thumbWidth) / trackWidth * 100
 
-        const num1 = (min + Math.round(left / (trackWidth - thumbWidth) * (max - min))).toString()
-        const num2 = (min + Math.round(right / (trackWidth - thumbWidth) * (max - min))).toString()
+        const min = (defMin + Math.round(left / (trackWidth - thumbWidth) * (defMax - defMin))).toString()
+        const max = (defMin + Math.round(right / (trackWidth - thumbWidth) * (defMax - defMin))).toString()
 
-        setValues({num1, num2: num2})
+        setValues({min, max})
         return `to right, #e2e2e2 ${leftPercent}%, black ${leftPercent}% ${rightPercent}%, #e2e2e2 ${rightPercent}%`
     }, [])
 

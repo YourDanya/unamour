@@ -1,5 +1,6 @@
-import React, {useEffect, useRef} from "react"
+import React from "react"
 import useLoadImage from "./load-image.hook"
+import Spinner from "../spinner/spinner.component"
 
 export type loadImageProps = {
     src: string,
@@ -17,17 +18,17 @@ const LoadImage: React.FC<loadImageProps> = (props) => {
 
     return (
         <div
-            className={`load-image ${loaded? 'load-image--loaded' : ''} 
-            ${className} `} ref={ref} style={{height: `${height}px`}}
-            onClick={(event) => {}}
+            className={`load-image ${loaded? 'load-image--loaded' : ''} ${className}`}
+            ref={ref}
+            style={{height: `${height}px`}}
         >
-            <div className='load-image__background'/>
             <img
                 ref={imgRef}
                 className={`load-image__image`}
                 src={src}
                 alt={alt}
                 onLoad={handleLoaded}
+                onError={() => console.log('error')}
                 data-attr={dataAttr?? ''}
             />
         </div>

@@ -8,17 +8,18 @@ interface itemsCollectionProps {
 }
 
 const ShopItemsCollection: React.FC<itemsCollectionProps> = ({items, title}) => {
+
     return (
         <div className={'shop-items-collection'}>
             <div className="shop-items-collection__title">
                 {title}
             </div>
             <div className={'shop-items-collection__items'}>
-                {/*{items && items.map((props, index) => (*/}
-                    <div className='shop-items-collection__item' key={items[0].slug + 0}>
-                        <ShopItemPreview {...items[0]}/>
+                {items && items.map((props, index) => (
+                    <div className='shop-items-collection__item' key={props.slug + index}>
+                        <ShopItemPreview {...props}/>
                     </div>
-                {/*))}*/}
+                ))}
             </div>
         </div>
     )

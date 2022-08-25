@@ -10,17 +10,16 @@ const nextConfig = {
     defaultLocale: 'ua',
     localeDetection: false
   },
-  pageExtensions: ['tsx', 'jsx']
-
-  // webpack: (config, { dev }) => {
-  //   if (dev) config.plugins.push(
-  //       new ESLintPlugin({
-  //         extensions: ['ts', 'tsx'],
-  //         failOnError: false
-  //       })
-  //   )
-  //   return config
-  // }
+  pageExtensions: ['tsx', 'jsx'],
+  webpack: (config, { dev }) => {
+    // if (dev) config.plugins.push(
+    //     new ESLintPlugin({
+    //       extensions: ['ts', 'tsx'],
+    //       failOnError: false
+    //     })
+    // )
+    return config
+  }
 }
 
 module.exports = nextConfig

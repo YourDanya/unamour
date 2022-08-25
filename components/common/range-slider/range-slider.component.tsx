@@ -2,8 +2,8 @@ import React from "react"
 import useRangeSlider from "./range-slider.hook";
 
 export type RangeSliderProps = {
-    setValues: (values: {num1: string, num2: string}) => void,
-    values: {num1: string, num2: string}
+    setValues: (values: {min: string, max: string}) => void,
+    values: {min: string, max: string}
 }
 
 const RangeSlider: React.FC<RangeSliderProps> = (props) => {

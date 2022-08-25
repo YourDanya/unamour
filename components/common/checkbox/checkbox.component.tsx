@@ -11,7 +11,7 @@ type CheckboxProps = {
 }
 
 const Checkbox: React.FC<CheckboxProps> = (props) => {
-    const {label, className, value, handleChange, name, styles} = props
+    const {label, className, value, handleChange, name, styles, ...otherProps} = props
     const handlePreventDefault = usePreventDefault()
     const [focused, setFocused] = useToggle()
     
@@ -28,6 +28,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
                     onFocus={setFocused}
                     onBlur={setFocused}
                     onMouseDown={handlePreventDefault}
+                    {...otherProps}
                 />
             </div>
             <label

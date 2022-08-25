@@ -15,103 +15,105 @@ const shopItemsContent = {
         '/shop-items/sets',
         '/shop-items/accessories',
     ],
-    sort: [
-        '-price',
-        'price',
-        'date'
-    ],
-    sizes: [
-        'XXS',
-        'XS',
-        'XS-S',
-        'S',
-        'S-M',
-        'M',
-        'L',
-        'IND'
-    ],
-    colors: [
-        {
-            code: '#fffcf5',
-            slug: 'milk'
-        },
-        {
-            code: '#212121',
-            slug: 'black'
-        },
-        {
-            code: '#910951',
-            slug: 'purple'
-        },
-        {
-            code: '#cfc0b6',
-            slug: 'grey'
-        },
-        {
-            code: '#ffffff',
-            slug: 'white'
-        },
-        {
-            code: '#a86540',
-            slug: 'light brown'
-        },
-        {
-            code: '#a77752',
-            slug: 'beige'
-        },
-        {
-            code: '#442d25',
-            slug: 'coffee'
-        },
-        {
-            code: '#735435',
-            slug: 'brown'
-        },
-        {
-            code: '#87776b',
-            slug: 'cocoa'
-        },
-        {
-            code: '#4d4d59',
-            slug: 'metallic'
-        },
-        {
-            code: '#d4b2a7',
-            slug: 'dusty-rose'
-        },
-        {
-            code: '#ffeede',
-            slug: 'cream'
-        },
-        {
-            code: '#1800cc',
-            slug: 'blue'
-        },
-        {
-            code: '#ff0000',
-            slug: 'red'
-        },
-        {
-            code: '#87cefa',
-            slug: 'blue'
-        },
-        {
-            code: '#dadeaf',
-            slug: 'pearl-gray'
-        },
-        {
-            code: '#313126',
-            slug: 'graphite'
-        },
-        {
-            code: '#ededed',
-            slug: 'light-gray'
-        },
-        {
-            code: '#f2e8c9',
-            slug: 'creamy'
-        }
-    ],
+    filters: {
+        sorting: [
+            '-price',
+            'price',
+            'date'
+        ],
+        sizes: [
+            'XXS',
+            'XS',
+            'XS-S',
+            'S',
+            'S-M',
+            'M',
+            'L',
+            'IND'
+        ],
+        colors: [
+            {
+                code: '#fffcf5',
+                param: 'milk'
+            },
+            {
+                code: '#212121',
+                param: 'black'
+            },
+            {
+                code: '#910951',
+                param: 'purple'
+            },
+            {
+                code: '#cfc0b6',
+                param: 'grey'
+            },
+            {
+                code: '#ffffff',
+                param: 'white'
+            },
+            {
+                code: '#a86540',
+                param: 'light brown'
+            },
+            {
+                code: '#a77752',
+                param: 'beige'
+            },
+            {
+                code: '#442d25',
+                param: 'coffee'
+            },
+            {
+                code: '#735435',
+                param: 'brown'
+            },
+            {
+                code: '#87776b',
+                param: 'cocoa'
+            },
+            {
+                code: '#4d4d59',
+                param: 'metallic'
+            },
+            {
+                code: '#d4b2a7',
+                param: 'dusty-rose'
+            },
+            {
+                code: '#ffeede',
+                param: 'cream'
+            },
+            {
+                code: '#1800cc',
+                param: 'blue'
+            },
+            {
+                code: '#ff0000',
+                param: 'red'
+            },
+            {
+                code: '#87cefa',
+                param: 'blue'
+            },
+            {
+                code: '#dadeaf',
+                param: 'pearl-gray'
+            },
+            {
+                code: '#313126',
+                param: 'graphite'
+            },
+            {
+                code: '#ededed',
+                param: 'light-gray'
+            },
+            {
+                code: '#f2e8c9',
+                param: 'creamy'
+            }
+        ]
+    },
     translations: {
         //////////////////////////////////////////////////////////////////
         ua: {
@@ -140,9 +142,9 @@ const shopItemsContent = {
             filter2: 'ціна',
             price: {
                 from: 'від',
-                num1: '1000',
+                min: '1000',
                 to: 'до',
-                num2: '16000',
+                max: '16000',
             },
             filter3: 'розмір',
             sizes: [
@@ -206,9 +208,9 @@ const shopItemsContent = {
             filter2: 'price',
             price: {
                 from: 'from',
-                num1: '1000',
+                min: '1000',
                 to: 'to',
-                num2: '16000',
+                max: '16000',
             },
             filter3: 'size',
             sizes: [
@@ -272,9 +274,9 @@ const shopItemsContent = {
             filter2: 'цена',
             price: {
                 from: 'от',
-                num1: '1000',
+                min: '1000',
                 to: 'до',
-                num2: '16000',
+                max: '16000',
             },
             filter3: 'размер',
             sizes: [

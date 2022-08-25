@@ -34,7 +34,7 @@ export const useModal = <K extends string> (initState: Record<K, boolean>, attri
     return [modalState as Record<K, boolean> & { modal: boolean}, showModal, closeModal]
 }
 
-export const useExternalState = <T,> (state: T | undefined, setState: ((state: T) => void) | undefined, defaultState: T):
+export const useExternalState = <T, K> (state: T | undefined, setState: ((state: T) => void) | undefined, defaultState: T):
 [state: T, setState: ((state: T) => void)] => {
 
     const [state_, setState_] = useState(state ?? defaultState)

@@ -32,3 +32,27 @@ export const createClientItems = (fetchedItems: FetchedItem[], locale: LocaleTyp
     })
     return clientItems
 }
+
+export const mapFilters =<T>(object: T) => {
+    type R1 = Record<keyof Omit<T, 'sorting'>, Record<string, boolean>>
+    type R2 = Record<'sorting', null | string>
+
+    return Object.entries(object).reduce((accum, [key, value]) => {
+        main: if (Array.isArray(value)){
+            if (key==='sorting') {
+                accum['sorting'] = null
+                break main
+            }
+            const tKey = key as keyof Omit<T, 'sorting'>
+            (accum as R1 )[tKey]  = {}
+
+            value.forEach(elem => {
+                let prop: string = ''
+                if (typeof elem==='string') prop=elem
+                if (typeof elem==='object' && elem.param) prop = elem.param;
+                (accum[tKey] as Record<string, boolean>)[prop] = false
+            })
+        }
+        return accum
+    }, {} as R1 & R2)
+}

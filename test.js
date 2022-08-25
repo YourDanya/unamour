@@ -131,17 +131,3 @@
 // const obj = {a: 1}
 //
 // console.log(obj.__proto__)
-
-setTimeout(() => {
-    console.log('set timeout')
-}, 0)
-
-const promise1 = new Promise((resolve, reject) => {
-    resolve('foo')
-})
-
-promise1.then((value) => {
-    console.log(value)
-})
-
-console.log('end')

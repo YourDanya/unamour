@@ -44,10 +44,11 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         let query = context.query
         const slug = query.slug
 
-        console.log('context params', context.query)
+        console.log('query', {...context})
 
         if (!slug || slug.length > 2) {
             //wrong path
+            console.log('wrong slug')
             return {notFound: true}
         }
         const category = categories.find(category => category.slug.includes(slug[0]))
