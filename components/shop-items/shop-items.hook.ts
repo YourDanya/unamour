@@ -11,15 +11,18 @@ const useShopItems = (props: ShopItemsProps) => {
     const router = useRouter()
     const query = router.query
     const url = router.basePath
-    console.log(url)
 
     const handleFilter = (filter: string, state: string | Record<string, boolean>) => {
+
+        const path = router.asPath.split('?')[0]
+
         const url = filters
             .map(elem => {
                 let param = ''
                 if (elem === filter) {
                     if (filter==='sorting') {
-                        param = `${filter}=${state}`
+                        if (state===null) param = ''
+                        else param = `${filter}=${state}`
                     }
                     else {
                         const objState = state as Record<string, boolean>
@@ -27,14 +30,14 @@ const useShopItems = (props: ShopItemsProps) => {
                         param = value? `${filter}=${value}` : ''
                     }
                 }
-                else if (elem in query) param = `${filter}=${query[elem]}`
+                else if (elem in query) param = `${elem}=${query[elem]}`
                 return param
             })
             .filter(elem => elem!=='')
             .join('&')
-            .replace(/^/, `?`)
+            .replace(/^/, (...args) => args[2]==='' ? `${path}` : `${path}?`)
 
-        console.log(url)
+        if (url) router.push(url)
     }
 
     return {content, translation, handleFilter}

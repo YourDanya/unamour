@@ -6,16 +6,17 @@ export type scrollFixedProps = {
 }
 
 const ScrollFixed: React.FC<scrollFixedProps> = (props) => {
-    const {menuState, elemRef, children} = useScrollHook(props)
+
+    const {state, elemRef, children, transition} = useScrollHook(props)
 
     return (
         <div
             className={'scroll-fixed'}
             style={{
-                position: menuState.position,
-                top: menuState.top,
-                bottom: menuState.bottom,
-                transform: `translateY(${menuState.translateY}px)`
+                position: state.position,
+                top: state.top,
+                bottom: state.bottom,
+                transform: `translateY(${state.translateY}px)`
             }}
             ref={elemRef}>
             {children}

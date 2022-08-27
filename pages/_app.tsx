@@ -81,6 +81,8 @@ function App(props: AppPropsWithLayout) {
 
     const {getLayout, Component, pageProps} = useApp(props)
 
+    console.log('render app')
+
     return (
         <>
             <Nav/>

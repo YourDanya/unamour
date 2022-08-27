@@ -17,6 +17,7 @@ const useApp = (props: AppPropsWithLayout) => {
 
     useEffect(() => {
         if (items.length==0) {
+            console.log('no items')
             dispatch(fetchItems())
         }
     }, [])

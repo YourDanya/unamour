@@ -86,7 +86,7 @@ const shopItemsContent = {
             },
             {
                 code: '#1800cc',
-                param: 'blue'
+                param: 'dark-blue'
             },
             {
                 code: '#ff0000',

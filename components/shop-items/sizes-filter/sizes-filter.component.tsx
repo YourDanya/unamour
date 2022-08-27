@@ -17,7 +17,7 @@ const SizesFilter: React.FC<sizesFilterProps> = (props) => {
         <>
             {sizes.map((size, index) => (
                 <Checkbox
-                    className={'shop-items__size'}
+                    className={`shop-items__size ${index=== sizes.length-1? 'shop-items__size--last' : ''}`}
                     key={size}
                     name={size}
                     label={sizes[index]}
