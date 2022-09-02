@@ -89,9 +89,9 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
 }
 
 export const useRouteChange = (callback: () => void) => {
-    const pathname = useRouter().pathname
+    const path = useRouter().asPath
 
     useEffect(() => {
         callback()
-    }, [pathname])
+    }, [path])
 }

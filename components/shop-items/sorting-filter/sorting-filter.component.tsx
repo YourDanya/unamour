@@ -1,11 +1,13 @@
 import React from "react"
 import useSortingFilter from "./sorting-filter.hook"
+import {GetStateR1, ResetFilter1} from "../shop-items.types";
 
 export type sortingFilterProps = {
     sorting: string[],
     sortingTranslation: string[],
-    filter: string
-    handleFilter: (filter: string, state: any) => void
+    filter: string,
+    handleFilter: (filter: string, state: any) => void,
+    getState: GetStateR1,
 }
 
 const SortingFilter: React.FC<sortingFilterProps> = (props) => {

@@ -7,7 +7,7 @@ const useNavRoute = (hideModal: () => void) => {
     const [home, setHome] = useState(router.pathname === '/')
 
     const handleRouteChange = () => {
-        console.log('route change')
+        // console.log('route change')
         // if(router.pathname==='/'){
         //     if (!home) setHome(true)
         // }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {DependencyList, EffectCallback, useEffect, useLayoutEffect, useRef, useState} from "react"
 
 export const useModal = <K extends string> (initState: Record<K, boolean>, attribute: string = 'name') :
     [modalState: Record<K, boolean> & {modal: boolean}, showModal: (event: React.MouseEvent<HTMLElement>) => void, closeModal: () => void]  => {
@@ -56,3 +56,27 @@ export const useResizeObserve =  (callback: (() => void), ...elements: HTMLEleme
 
 }
 
+export const useLayoutResizeObserve = (callback: (() => void), ...elements: HTMLElement []) => {
+
+    useLayoutEffect(() => {
+        const resizeObserver = new ResizeObserver(callback)
+        elements.length===0 && elements.push(document.body)
+        elements.forEach(elem => resizeObserver.observe(elem))
+
+        return () => {
+            elements.forEach(elem => resizeObserver.unobserve(elem))
+        }
+    }, [])
+}
+
+export const useOmitFirstEffect = <T extends any[], > (effect: EffectCallback, deps?: DependencyList) => {
+    const first = useRef(true)
+    
+    useEffect(() => {
+        if (first.current) {
+            first.current = false
+            return
+        }
+        effect()
+    }, deps)
+}

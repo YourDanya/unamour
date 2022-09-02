@@ -1,12 +1,14 @@
 import React from "react"
 import Checkbox from "../../common/checkbox/checkbox.component"
 import useColorsFilter from "./colors-filter.hook"
+import {GetStateR2, ResetFilter2} from "../shop-items.types"
 
 export type colorsFilterProps = {
     colors: { param: string, code: string }[],
     colorTranslations: string [],
     filter: string,
-    handleFilter: (filter: any, state: any) => void
+    handleFilter: (filter: any, state: any) => void,
+    getState: GetStateR2,
 }
 
 const ColorsFilter: React.FC<colorsFilterProps> = (props) => {

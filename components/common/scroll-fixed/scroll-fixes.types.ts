@@ -14,5 +14,6 @@ export type StateRef = {
     scrollY: number,
     height: number,
     toBottom: boolean,
-    first: boolean
+    first: boolean,
+    parentToPageTop: number
 }

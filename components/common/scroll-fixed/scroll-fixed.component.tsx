@@ -2,7 +2,9 @@ import React from "react"
 import useScrollHook from "./scroll-fixed.hook"
 
 export type scrollFixedProps = {
-    children: React.ReactNode
+    children: React.ReactNode,
+    topOffset: number,
+    bottomOffset: number
 }
 
 const ScrollFixed: React.FC<scrollFixedProps> = (props) => {
@@ -16,7 +18,8 @@ const ScrollFixed: React.FC<scrollFixedProps> = (props) => {
                 position: state.position,
                 top: state.top,
                 bottom: state.bottom,
-                transform: `translateY(${state.translateY}px)`
+                transform: `translateY(${state.translateY}px)`,
+                transition: transition
             }}
             ref={elemRef}>
             {children}

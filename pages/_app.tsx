@@ -1,6 +1,7 @@
 import '../styles/global.sass'
 import '../styles/home.sass'
 
+import '/components/common/scroll-fixed/scroll-fixed.styles.sass'
 import '/components/common/spinner/spinner.styles.sass'
 import '/components/common/load-image/load-image.styles.sass'
 import '/components/common/range-slider/range-slider.styles.sass'
@@ -17,6 +18,7 @@ import '/components/common/sidebar/sidebar.styles.sass'
 import '/components/common/modal-content/modal-content.styles.sass'
 import '/components/common/map/map.styles.sass'
 
+import '/pages/test/test1.styles.sass'
 import '/components/sticky-sidebar/sticky-sidebar.styles.sass'
 import '/components/footer/links/links.styles.sass'
 import '/components/shop-item/dropdowns/dropdowns.styles.sass'
@@ -30,7 +32,6 @@ import '/components/shop-item/shop-item.styles.sass'
 import '/components/shop-item/present/present.styles.sass'
 import '/components/shop-item/present/present-form/present-form.styles.sass'
 import '/components/shop-item/present/present-item/present-item.styles.sass'
-import '/components/shop-items/scroll-fixed/scroll-fixed.styles.sass'
 import '/components/shop-items/price-filter/price-filter.styles.sass'
 import '/components/shop-items/sizes-filter/sizes-filter.styles.sass'
 import '/components/shop-items/colors-filter/colors-filter.styles.sass'
@@ -74,14 +75,12 @@ import '/pages/admin/catalog/catalog.styles.sass'
 import Nav from "../components/nav/nav.component"
 import Footer from "../components/footer/footer.component"
 import {AppPropsWithLayout} from "../types/types"
-import { wrapper} from "../redux/store"
+import {wrapper} from "../redux/store"
 import useApp from "./app.hook"
 
 function App(props: AppPropsWithLayout) {
 
     const {getLayout, Component, pageProps} = useApp(props)
-
-    console.log('render app')
 
     return (
         <>

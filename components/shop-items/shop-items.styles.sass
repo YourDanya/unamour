@@ -17,6 +17,7 @@
       margin-bottom: 25px
     &-fixed
       width: 200px
+  &__filters
   &__sort
     .dropdown__children
       padding-left: 28px
@@ -74,6 +75,21 @@
         transition: 0.4s all
     .checkbox__label
       text-transform: uppercase
+  &__reset
+    position: relative
+    padding: 20px 0
+    text-transform: uppercase
+    width: 100%
+    display: flex
+    align-items: center
+    .close
+      margin-right: 14px
+      width: 14px
+      height: 14px
+      position: relative
+      &:after, &:before
+        background-color: #828282
+
 
 @media (max-width: 768px)
   .shop-items

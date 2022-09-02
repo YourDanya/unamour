@@ -27,7 +27,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         let items = global.get('items') as ClientItem[]
 
         if(!items) {
-
             console.log('no items')
             //fetching items
             await dispatch(fetchItems())
@@ -35,7 +34,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
             //creating client items
             items = createClientItems(fetchedItems, locale)
             //set items to global
-            global.set('items', items)
         }
 
         //dispatching for client

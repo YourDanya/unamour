@@ -20,7 +20,7 @@ const Nav: React.FC = () => {
             <Sidebar left active={modalState.hamburger}>
                 <NavMenu/>
             </Sidebar>
-            <Sidebar left active={modalState.sign}top>
+            <Sidebar left active={modalState.sign} top>
                 <SignInUp/>
             </Sidebar>
             <Sidebar active={modalState.search} hideModal={hideModal}>
