@@ -1,19 +1,18 @@
 import React from "react"
 import Checkbox from "../../common/checkbox/checkbox.component"
 import useColorsFilter from "./colors-filter.hook"
-import {GetStateR2, ResetFilter2} from "../shop-items.types"
+import {ColorContent, FilterProps} from "../shop-items.types"
 
-export type colorsFilterProps = {
-    colors: { param: string, code: string }[],
-    colorTranslations: string [],
+export type ColorsFilterProps = {
+    content: ColorContent,
+    translation: string [],
     filter: string,
-    handleFilter: (filter: any, state: any) => void,
-    getState: GetStateR2,
+    filters: string[]
 }
 
-const ColorsFilter: React.FC<colorsFilterProps> = (props) => {
+const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
 
-    const {colors, colorTranslations} = props
+    const {content: colors, translation} = props
     const {colorValues, handleChange} = useColorsFilter(props)
 
     return (
@@ -24,7 +23,7 @@ const ColorsFilter: React.FC<colorsFilterProps> = (props) => {
                     styles={{backgroundColor: code}}
                     key={code}
                     name={param}
-                    label={colorTranslations[index]}
+                    label={translation[index]}
                     value={colorValues[param]}
                     handleChange={handleChange}
                 />

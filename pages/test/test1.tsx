@@ -1,5 +1,4 @@
 import React from "react"
-import ScrollFixed from "../../components/shop-items/scroll-fixed/scroll-fixed.component"
 
 const Page = ({date}: any) => {
     return (

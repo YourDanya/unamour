@@ -1,25 +1,18 @@
-import {sizesFilterProps} from "./sizes-filter.component"
-import {_useToggleMany} from "../../../hooks/event-handler.hooks"
-import {useEffect, useMemo, useRef} from "react"
-import {useResetFilter} from "../filters.hooks"
-import {SetState} from "../shop-items.types"
+import {SizesFilterProps} from "./sizes-filter.component"
+import {ChangeEvent} from "react"
+import {useFilter} from "../filters.hooks"
+import {State2} from "../shop-items.types"
 
-const useSizesFilter = (props: sizesFilterProps) => {
-    
-    const {sizes, handleFilter, filter, getState} = props
-    const retrievedState = useMemo(() => getState('sizes'), [])
-    const [sizeValues, handleChange, setSizeValues] = _useToggleMany(retrievedState)
-    const toUpdate = useRef(false)
+const useSizesFilter = (props: SizesFilterProps) => {
 
-    useEffect(() => {
-        if (!toUpdate.current) {
-            toUpdate.current = true
-            return
-        }
-        handleFilter(filter, sizeValues)
-    }, [sizeValues])
+    const [state, setState] = useFilter(props)
 
-    useResetFilter(filter, setSizeValues as SetState, toUpdate, sizeValues)
+    const sizeValues = state as State2
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const name = event.currentTarget.name
+        setState({...sizeValues, [name]: !sizeValues[name]})
+    }
 
     return {sizeValues, handleChange}
 }

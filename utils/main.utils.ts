@@ -10,7 +10,7 @@ export const removeFromArr = (arr: any[], value: any) => {
     return arr
 }
 
-const debounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
+export const debounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
     let timeout: NodeJS.Timeout
 
     return (...args: T) => {

@@ -1,28 +1,20 @@
 import {sortingFilterProps} from "./sorting-filter.component"
-import {useSetActive} from "../../../hooks/event-handler.hooks"
-import {useEffect, useMemo, useRef} from "react"
-import {useResetFilter} from "../filters.hooks"
-import {SetState} from "../shop-items.types"
+import {MouseEvent} from "react"
+import {useFilter} from "../filters.hooks"
+import {State1} from "../shop-items.types"
 
 const useSortingFilter = (props: sortingFilterProps) => {
 
-    const {filter, handleFilter, getState} = props
-    const retrievedState = useMemo(() => getState('sorting'), [])
-    const [sortingValue, handleClick, setSortingValue] = useSetActive(retrievedState)
+    const [state, setState] = useFilter(props)
+    const sortValue = state as State1
 
-    const toUpdate = useRef(false)
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        const name = event.currentTarget.name
+        if (sortValue !== name) setState(name)
+        else setState('')
+    }
 
-    useEffect(() => {
-        if (!toUpdate.current) {
-            toUpdate.current = true
-            return
-        }
-        handleFilter(filter, sortingValue)
-    }, [sortingValue])
-
-    useResetFilter(filter, setSortingValue as SetState, toUpdate);
-
-    return {sortingValue, handleClick}
+    return {sortValue, handleClick}
 }
 
 export default useSortingFilter

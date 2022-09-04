@@ -1,18 +1,16 @@
 import React from "react"
 import Checkbox from "../../common/checkbox/checkbox.component"
 import useSizesFilter from "./sizes-filter.hook"
-import {GetStateR2, ResetFilter2} from "../shop-items.types"
 
-export type sizesFilterProps = {
-    sizes: string[],
+export type SizesFilterProps = {
+    content: string[],
     filter: string,
-    handleFilter: (string: any, state: any) => void,
-    getState: GetStateR2,
+    filters: string[]
 }
 
-const SizesFilter: React.FC<sizesFilterProps> = (props) => {
+const SizesFilter: React.FC<SizesFilterProps> = (props) => {
 
-    const {sizes} = props
+    const {content: sizes} = props
     const {sizeValues, handleChange} = useSizesFilter(props)
 
     return (

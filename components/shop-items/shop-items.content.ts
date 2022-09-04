@@ -22,14 +22,14 @@ const shopItemsContent = {
             'date'
         ],
         sizes: [
-            'XXS',
-            'XS',
-            'XS-S',
-            'S',
-            'S-M',
-            'M',
-            'L',
-            'IND'
+            'xxs',
+            'xs',
+            'xs-s',
+            's',
+            's-m',
+            'm',
+            'l',
+            'ind'
         ],
         colors: [
             {

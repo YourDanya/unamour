@@ -7,7 +7,7 @@ import ShopItemsCollection from "../../components/shop-items-collection/shop-ite
 import {ClientItem} from "../../redux/shop-items/shop-items.types"
 import {createClientItems} from "../../utils/data.utils"
 import {setClientItems} from "../../redux/shop-items/shop-items.slice"
-import global from "../../utils/global.utils";
+import global from "../../utils/global.utils"
 
 type shopItemsProps = {
     items?: ClientItem[],

@@ -1,26 +1,18 @@
-import {colorsFilterProps} from "./colors-filter.component"
-import {_useToggleMany} from "../../../hooks/event-handler.hooks"
-import {useOmitFirstEffect} from "../../../hooks/component.hooks"
-import {useEffect, useMemo, useRef} from "react"
-import {useResetFilter} from "../filters.hooks"
-import {SetState} from "../shop-items.types"
+import {ColorsFilterProps} from "./colors-filter.component"
+import {useFilter} from "../filters.hooks"
+import {State2} from "../shop-items.types"
+import {ChangeEvent} from "react"
 
-const useColorsFilter = (props: colorsFilterProps) => {
+const useColorsFilter = (props: ColorsFilterProps) => {
 
-    const {handleFilter, filter, getState} = props
-    const retrievedState = useMemo(() => getState(filter), [])
-    const [colorValues, handleChange, setColorValues] = _useToggleMany(retrievedState)
-    const toUpdate = useRef(false)
+    const [state, setState] = useFilter(props)
 
-    useEffect(() => {
-        if (!toUpdate.current) {
-            toUpdate.current = true
-            return
-        }
-        handleFilter(filter, colorValues)
-    }, [colorValues])
+    const colorValues = state as State2
 
-    useResetFilter(filter, setColorValues as SetState, toUpdate, colorValues)
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const name = event.currentTarget.name
+        setState({...colorValues, [name]: !colorValues[name]})
+    }
 
     return {colorValues, handleChange}
 }

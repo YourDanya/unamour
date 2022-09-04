@@ -80,3 +80,13 @@ export const useOmitFirstEffect = <T extends any[], > (effect: EffectCallback, d
         effect()
     }, deps)
 }
+
+export const useDebounceEffect = <T extends any[], > (effect: EffectCallback, deps: DependencyList, delay = 1000) => {
+    let timeout = useRef<NodeJS.Timeout>()
+    useEffect(() => {
+        if (timeout.current) clearTimeout(timeout.current)
+        timeout.current = setTimeout(() => {
+            effect()
+        }, delay)
+    }, deps)
+}

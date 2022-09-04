@@ -7,7 +7,6 @@ import SizesFilter from "./sizes-filter/sizes-filter.component"
 import ColorsFilter from "./colors-filter/colors-filter.component"
 import SortingFilter from "./sorting-filter/sorting-filter.component"
 import Button from "../common/button/button.component"
-import {GetStateR1, GetStateR2} from "./shop-items.types"
 import ScrollFixed from "../common/scroll-fixed/scroll-fixed.component"
 
 export type ShopItemsProps = {
@@ -17,7 +16,7 @@ export type ShopItemsProps = {
 const ShopItems: React.FC<ShopItemsProps> = (props) => {
 
     const {children} = props
-    const {content, translation, handleFilter, getState, handleLinkClick, params, reset} = useShopItems(props)
+    const {content, translation, handleLinkClick, params, handleResetClick, filters} = useShopItems(props)
 
     return (
         <div className='shop-items'>
@@ -35,11 +34,10 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                     <div className='shop-items__filters'>
                         <Dropdown name={translation.filter1} className={'shop-items__sort'}>
                             <SortingFilter
-                                sorting={content.filters.sorting}
-                                sortingTranslation={translation.sort}
+                                content={content.filters.sorting}
+                                translation={translation.sort}
                                 filter={'sorting'}
-                                handleFilter={handleFilter}
-                                getState={getState as GetStateR1}
+                                filters={filters}
                             />
                         </Dropdown>
                         <Dropdown name={translation.filter2}>
@@ -47,22 +45,20 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                         </Dropdown>
                         <Dropdown name={translation.filter3} className='shop-items__sizes'>
                             <SizesFilter
-                                sizes={content.filters.sizes}
+                                content={content.filters.sizes}
                                 filter={'sizes'}
-                                handleFilter={handleFilter}
-                                getState={getState as GetStateR2}
+                                filters={filters}
                             />
                         </Dropdown>
                         <Dropdown name={translation.filter4} className={'shop-items__colors'}>
                             <ColorsFilter
-                                colors={content.filters.colors}
-                                colorTranslations={translation.colors}
+                                content={content.filters.colors}
+                                translation={translation.colors}
                                 filter={'colors'}
-                                handleFilter={handleFilter}
-                                getState={getState as GetStateR2}
+                                filters={filters}
                             />
                         </Dropdown>
-                        <Button className={'shop-items__reset'} onClick={reset}>
+                        <Button className={'shop-items__reset'} onClick={handleResetClick}>
                             <div className={'close'}/>
                             {translation.reset}
                         </Button>
