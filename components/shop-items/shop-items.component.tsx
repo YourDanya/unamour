@@ -41,7 +41,12 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                             />
                         </Dropdown>
                         <Dropdown name={translation.filter2}>
-                            <PriceFilter {...translation.price}/>
+                            <PriceFilter
+                                content={content.filters.price}
+                                translation={translation.price}
+                                filter={'price'}
+                                filters={filters}
+                            />
                         </Dropdown>
                         <Dropdown name={translation.filter3} className='shop-items__sizes'>
                             <SizesFilter

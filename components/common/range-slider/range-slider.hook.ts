@@ -1,37 +1,10 @@
 import {RangeSliderProps} from "./range-slider.component"
-import React, {useCallback, useMemo, useRef, useState} from "react"
-
-type SliderStateRef = {
-    left: {
-        x: number,
-        translate: number,
-        limit: boolean,
-        diff: number
-    },
-    right: {
-        x: number,
-        translate: number,
-        limit: boolean,
-        diff: number
-    },
-    active: 'left' | 'right' | 'none'
-}
-
-type SliderState = {
-    left: {
-        translate: number
-    },
-    right: {
-        translate: number
-    },
-    gradient: string
-}
+import React, {useCallback, useRef, useState} from "react"
+import {SliderState, SliderStateRef} from "./range-slider.types"
 
 const useRangeSlider = (props: RangeSliderProps) => {
 
-    const {setValues, values} = props
-    const defMin = useMemo(() => +values.min, [])
-    const defMax = useMemo(() => +values.min, [])
+    const {setValues, defMin, defMax} = props
 
     const stateRef = useRef<SliderStateRef>({
         left: {x: 0, translate: 0, limit: false, diff: 0},
@@ -40,8 +13,8 @@ const useRangeSlider = (props: RangeSliderProps) => {
     })
 
     const [state, setState] = useState<SliderState>({
-        left: {translate: 0},
-        right: {translate: 184},
+        left: {translate: 0, zIndex: 10},
+        right: {translate: 184, zIndex: 100},
         gradient: 'to right, black 0 100%'
     })
 
@@ -51,7 +24,7 @@ const useRangeSlider = (props: RangeSliderProps) => {
         track: null
     })
 
-    const calcGradient = useCallback (() => {
+    const calc = () => {
         const left = stateRef.current.left.translate
         const right = stateRef.current.right.translate
         const trackWidth = elemsRef.current.track?.getBoundingClientRect().width as number
@@ -62,9 +35,10 @@ const useRangeSlider = (props: RangeSliderProps) => {
         const min = (defMin + Math.round(left / (trackWidth - thumbWidth) * (defMax - defMin))).toString()
         const max = (defMin + Math.round(right / (trackWidth - thumbWidth) * (defMax - defMin))).toString()
 
+
         setValues({min, max})
         return `to right, #e2e2e2 ${leftPercent}%, black ${leftPercent}% ${rightPercent}%, #e2e2e2 ${rightPercent}%`
-    }, [])
+    }
 
     const handleMouseUp = () => {
         stateRef.current.active = 'none'
@@ -79,7 +53,6 @@ const useRangeSlider = (props: RangeSliderProps) => {
 
         // active thumb
         const active = stateRef.current.active as 'left' | 'right'
-        console.log(active)
         //track rect
         const trackRect = (elemsRef.current.track as Element).getBoundingClientRect()
         // start coordinate
@@ -150,12 +123,12 @@ const useRangeSlider = (props: RangeSliderProps) => {
             }
         }
         stateRef.current[active] = {...stateRef.current[active], x, translate, limit}
-        const gradient = calcGradient()
+        const gradient = calc()
 
         setState({
-            left: {translate: stateRef.current.left.translate},
-            right: {translate: stateRef.current.right.translate},
-            [active]: {translate},
+            left: {translate: stateRef.current.left.translate, zIndex: 10},
+            right: {translate: stateRef.current.right.translate, zIndex: 10},
+            [active]: {translate, zIndex: 100},
             gradient
         })
     }, [])
@@ -229,12 +202,12 @@ const useRangeSlider = (props: RangeSliderProps) => {
 
         stateRef.current[active] = {...stateRef.current[active], x, translate, limit: false, diff: 8}
         stateRef.current.active = active
-        const gradient = calcGradient()
+        const gradient = calc()
 
         setState({
-            left: {translate: stateRef.current.left.translate},
-            right: {translate: stateRef.current.right.translate},
-            [active]: {translate},
+            left: {translate: stateRef.current.left.translate, zIndex: 10},
+            right: {translate: stateRef.current.right.translate, zIndex: 10},
+            [active]: {translate, zIndex: 100},
             gradient
         })
 

@@ -2,11 +2,11 @@ import {
     ColorContent,
     FilterContent,
     FilterProps,
-    GeneralContent,
+    GeneralContent, PriceContent,
     ResetFilter,
     SetState,
     State,
-    State2, UseFilter
+    GenState, PriceState, UseFilter
 } from "./shop-items.types"
 import {useDebounceEffect, useOmitFirstEffect} from "../../hooks/component.hooks"
 import {useRouter} from "next/router"
@@ -26,8 +26,12 @@ export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) =
             toUpdate.current = false
             if (filter === 'sorting') {
                 setState('')
-            } else {
-                const newState = state as State2
+            }
+            else if (filter === 'price') {
+                setState({min: '1000', max: '16000'})
+            }
+            else {
+                const newState = state as GenState
                 Object.keys(newState).forEach(key => newState[key] = false)
                 setState({...newState})
             }
@@ -54,11 +58,15 @@ export const useHandleFilter = (toUpdate: MutableRefObject<boolean>, filters: st
                 let param = ''
                 if (elem === filter) {
                     if (filter === 'sorting') {
-                        console.log(filter)
                         if (state === '') param = ''
                         else param = `${filter}=${state}`
-                    } else {
-                        const objState = state as State2
+                    }
+                    else if(filter === 'price') {
+                        const priceState = state as PriceState
+                        param = `price=${priceState.min}-${priceState.max}`
+                    }
+                    else {
+                        const objState = state as GenState
                         const value = Object.keys(objState).filter(prop => objState[prop]).join(';')
                         param = value ? `${filter}=${value}` : ''
                     }
@@ -69,8 +77,7 @@ export const useHandleFilter = (toUpdate: MutableRefObject<boolean>, filters: st
             .join('&')
             .replace(/^/, (...args) => args[2] === '' ? `${mainPath}` : `${mainPath}?`)
 
-        console.log(url)
-        router.push(url)
+        if (url!==path) router.push(url)
     }, [state])
 }
 
@@ -84,13 +91,24 @@ export const useGetFilterState = (filter: string, filterContent: FilterContent) 
 
         if (filter === 'sorting') {
             return pathParam
-        } else {
+        }
+        else if (filter === 'price') {
+            const priceContent = filterContent as PriceContent
+            if (pathParam) {
+                const minMax = pathParam.split('-')
+                return {min: minMax[0], max: minMax[1]}
+            } else {
+                return {min: priceContent.min, max: priceContent.max}
+            }
+        }
+        else {
             const pathParamValues = pathParam.split(';').reduce((accum, paramValue) => {
                 accum[paramValue] = true
                 return accum
-            }, {} as State2) ?? {}
-            const state = {} as State2
-            if (typeof filterContent[0] === 'string') {
+            }, {} as GenState) ?? {}
+            const state = {} as GenState
+            const genContent = filterContent as GeneralContent
+            if (typeof genContent[0] === 'string') {
                 const generalContent = filterContent as GeneralContent
                 generalContent.forEach(elem => state[elem] = pathParamValues[elem] ?? false)
             } else {

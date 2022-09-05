@@ -16,6 +16,10 @@ const shopItemsContent = {
         '/shop-items/accessories',
     ],
     filters: {
+        price: {
+            min: '1000',
+            max: '16000'
+        },
         sorting: [
             '-price',
             'price',
@@ -141,10 +145,9 @@ const shopItemsContent = {
             ],
             filter2: 'ціна',
             price: {
+                coefficient: 1,
                 from: 'від',
-                min: '1000',
                 to: 'до',
-                max: '16000',
             },
             filter3: 'розмір',
             sizes: [
@@ -208,10 +211,9 @@ const shopItemsContent = {
             ],
             filter2: 'price',
             price: {
+                coefficient: 40,
                 from: 'from',
-                min: '1000',
                 to: 'to',
-                max: '16000',
             },
             filter3: 'size',
             sizes: [
@@ -275,10 +277,9 @@ const shopItemsContent = {
             ],
             filter2: 'цена',
             price: {
+                coefficient: 1,
                 from: 'от',
-                min: '1000',
                 to: 'до',
-                max: '16000',
             },
             filter3: 'размер',
             sizes: [
@@ -319,4 +320,4 @@ const shopItemsContent = {
     }
 }
 
-export default  shopItemsContent
+export default shopItemsContent

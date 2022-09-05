@@ -3,7 +3,9 @@ import useRangeSlider from "./range-slider.hook";
 
 export type RangeSliderProps = {
     setValues: (values: {min: string, max: string}) => void,
-    values: {min: string, max: string}
+    values: {min: string, max: string},
+    defMin: number,
+    defMax: number
 }
 
 const RangeSlider: React.FC<RangeSliderProps> = (props) => {
@@ -26,6 +28,7 @@ const RangeSlider: React.FC<RangeSliderProps> = (props) => {
                 onTouchStart={handleThumbDown}
                 ref={elem => elemsRef.current.left = elem}
                 style={{
+                    zIndex: state.left.zIndex,
                     transform: `translateY(-50%) translateX(${state.left.translate}px)`
                 }}
             />
@@ -36,6 +39,7 @@ const RangeSlider: React.FC<RangeSliderProps> = (props) => {
                 onTouchStart={handleThumbDown}
                 ref={elem => elemsRef.current.right = elem}
                 style={{
+                    zIndex: state.right.zIndex,
                     transform: `translateY(-50%) translateX(${state.right.translate}px)`
                 }}
             />
