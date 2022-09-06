@@ -25,7 +25,7 @@ const shopItemsContent = {
             'price',
             'date'
         ],
-        sizes: [
+        size: [
             'xxs',
             'xs',
             'xs-s',
@@ -35,7 +35,7 @@ const shopItemsContent = {
             'l',
             'ind'
         ],
-        colors: [
+        color: [
             {
                 code: '#fffcf5',
                 param: 'milk'
@@ -150,7 +150,7 @@ const shopItemsContent = {
                 to: 'до',
             },
             filter3: 'розмір',
-            sizes: [
+            size: [
                 'XXS',
                 'XS',
                 'XS-S',
@@ -161,7 +161,7 @@ const shopItemsContent = {
                 'ІНД'
             ],
             filter4: 'колір',
-            colors: [
+            color: [
                 'молочний',
                 'чорний',
                 'пурпурний',
@@ -216,7 +216,7 @@ const shopItemsContent = {
                 to: 'to',
             },
             filter3: 'size',
-            sizes: [
+            size: [
                 'XXS',
                 'XS',
                 'XS-S',
@@ -227,7 +227,7 @@ const shopItemsContent = {
                 'IND'
             ],
             filter4: 'color',
-            colors: [
+            color: [
                 'milk',
                 'black',
                 'purple',
@@ -282,7 +282,7 @@ const shopItemsContent = {
                 to: 'до',
             },
             filter3: 'размер',
-            sizes: [
+            size: [
                 'XXS',
                 'XS',
                 'XS-S',
@@ -293,7 +293,7 @@ const shopItemsContent = {
                 'ИНД'
             ],
             filter4: 'цвет',
-            colors: [
+            color: [
                 'молочный',
                 'черный',
                 'пурпурный',

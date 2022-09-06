@@ -3,8 +3,8 @@ import Dropdown from "../common/dropdown/dropdown.component"
 import useShopItems from "./shop-items.hook"
 import Link from "next/link"
 import PriceFilter from "./price-filter/price-filter.component"
-import SizesFilter from "./sizes-filter/sizes-filter.component"
-import ColorsFilter from "./colors-filter/colors-filter.component"
+import SizesFilter from "./size-filter/size-filter.component"
+import ColorsFilter from "./color-filter/color-filter.component"
 import SortingFilter from "./sorting-filter/sorting-filter.component"
 import Button from "../common/button/button.component"
 import ScrollFixed from "../common/scroll-fixed/scroll-fixed.component"
@@ -50,16 +50,16 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                         </Dropdown>
                         <Dropdown name={translation.filter3} className='shop-items__sizes'>
                             <SizesFilter
-                                content={content.filters.sizes}
-                                filter={'sizes'}
+                                content={content.filters.size}
+                                filter={'size'}
                                 filters={filters}
                             />
                         </Dropdown>
                         <Dropdown name={translation.filter4} className={'shop-items__colors'}>
                             <ColorsFilter
-                                content={content.filters.colors}
-                                translation={translation.colors}
-                                filter={'colors'}
+                                content={content.filters.color}
+                                translation={translation.color}
+                                filter={'color'}
                                 filters={filters}
                             />
                         </Dropdown>

@@ -1,11 +1,11 @@
 import React from "react"
 import Checkbox from "../../common/checkbox/checkbox.component"
-import useSizesFilter from "./sizes-filter.hook"
+import useSizesFilter from "./size-filter.hook"
 
 export type SizesFilterProps = {
     content: string[],
     filter: string,
-    filters: string[]
+    filters: string[],
 }
 
 const SizesFilter: React.FC<SizesFilterProps> = (props) => {

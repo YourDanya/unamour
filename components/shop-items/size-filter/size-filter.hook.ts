@@ -1,4 +1,4 @@
-import {SizesFilterProps} from "./sizes-filter.component"
+import {SizesFilterProps} from "./size-filter.component"
 import {ChangeEvent} from "react"
 import {useFilter} from "../filters.hooks"
 import {GenState} from "../shop-items.types"

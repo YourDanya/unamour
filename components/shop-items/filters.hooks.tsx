@@ -20,9 +20,9 @@ export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) =
     const pathArr = path.split('?')
     const mainPath = pathArr[0]
 
-    useOmitFirstEffect(() => {
-
-        if (mainPath === path) {
+    useEffect(() => {
+        if ('reset' in router.query) {
+            console.log('reseting')
             toUpdate.current = false
             if (filter === 'sorting') {
                 setState('')
@@ -35,24 +35,36 @@ export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) =
                 Object.keys(newState).forEach(key => newState[key] = false)
                 setState({...newState})
             }
+            // router.push(mainPath)
         }
     }, [path])
 }
 
-export const useHandleFilter = (toUpdate: MutableRefObject<boolean>, filters: string[], filter: string, state: State) => {
+
+export const useHandleFilter = (toUpdate: MutableRefObject<boolean>, filters: string[], filter: string, state: State)=> {
 
     const router = useRouter()
-    const query = router.query
     const path = router.asPath
-    const pathArr = path.split('?')
-    const mainPath = pathArr[0]
+    const query = router.query
+    const mainPath = path.split('?')[0]
+
+    const pathRef = useRef({query, mainPath})
+
+    useEffect(() => {
+        if (filter === 'size') {
+            console.log('path update')
+        }
+        const query = router.query
+        const mainPath = path.split('?')[0]
+        pathRef.current = {query, mainPath}
+    },[path])
 
     useDebounceEffect(() => {
+
         if (!toUpdate.current) {
             toUpdate.current = true
             return
         }
-
         const url = filters
             .map(elem => {
                 let param = ''
@@ -70,15 +82,23 @@ export const useHandleFilter = (toUpdate: MutableRefObject<boolean>, filters: st
                         const value = Object.keys(objState).filter(prop => objState[prop]).join(';')
                         param = value ? `${filter}=${value}` : ''
                     }
-                } else if (elem in query) param = `${elem}=${query[elem]}`
+                } else if (elem in pathRef.current.query) param = `${elem}=${pathRef.current.query[elem]}`
                 return param
             })
             .filter(elem => elem !== '')
             .join('&')
-            .replace(/^/, (...args) => args[2] === '' ? `${mainPath}` : `${mainPath}?`)
+            .replace(/^/, (...args) => args[2] === '' ? `${pathRef.current.mainPath}` :
+                `${pathRef.current.mainPath}?`)
 
-        if (url!==path) router.push(url)
+        if (url!==path) {
+            router.push(url)
+        } else {
+            console.log('not pushing')
+            console.log('url', url)
+            console.log('path', path)
+        }
     }, [state])
+
 }
 
 export const useGetFilterState = (filter: string, filterContent: FilterContent) => {
@@ -122,7 +142,7 @@ export const useGetFilterState = (filter: string, filterContent: FilterContent) 
 
 export const useFilter: UseFilter = (props) => {
 
-    const {filters, filter, content} = props
+    const {filters, filter, content, reset} = props
 
     const toUpdate = useRef(false)
 

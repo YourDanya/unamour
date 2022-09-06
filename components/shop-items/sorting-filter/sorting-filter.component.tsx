@@ -5,7 +5,7 @@ export type sortingFilterProps = {
     content: string[],
     translation: string[],
     filter: string,
-    filters: string[]
+    filters: string[],
 }
 
 const SortingFilter: React.FC<sortingFilterProps> = (props) => {

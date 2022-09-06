@@ -2,7 +2,7 @@ import {ShopItemsProps} from "./shop-items.component"
 import {useLocale} from "../../hooks/event-handler.hooks"
 import shopItemsContent from "./shop-items.content"
 import {useRouter} from "next/router"
-import React from "react"
+import React, {useState} from "react"
 
 const useShopItems = (props: ShopItemsProps) => {
 
@@ -20,13 +20,15 @@ const useShopItems = (props: ShopItemsProps) => {
         if (mainPath === href) event.preventDefault()
     }
 
+    const [reset, setReset] = useState(false)
+
     const handleResetClick = (event: React.MouseEvent<HTMLElement>) => {
         if (path!==mainPath) {
-            router.push(`${mainPath}`)
+            router.push(`${mainPath}?reset`, mainPath)
         }
     }
 
-    return {content, translation, handleLinkClick, params, handleResetClick, filters}
+    return {content, translation, handleLinkClick, params, handleResetClick, filters, reset, setReset}
 }
 
 export default useShopItems

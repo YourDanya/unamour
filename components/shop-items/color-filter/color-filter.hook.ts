@@ -1,4 +1,4 @@
-import {ColorsFilterProps} from "./colors-filter.component"
+import {ColorsFilterProps} from "./color-filter.component"
 import {useFilter} from "../filters.hooks"
 import {GenState} from "../shop-items.types"
 import {ChangeEvent} from "react"
