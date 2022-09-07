@@ -8,11 +8,13 @@ export type Common = {
     variants: CommonVariant[]
 }
 
+export type Color = {
+    code: string,
+    slug: string,
+}
+
 export type CommonVariant = {
-    color: {
-        code: string,
-        slug: string,
-    },
+    color: Color,
     sizes: string[],
     images: string[],
     price: number,

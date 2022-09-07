@@ -12,8 +12,7 @@ export type SetState = (state: State) => void
 
 export type ResetFilter1 = (filter: string, setState: SetSortState, toUpdate: MutableRefObject<boolean>) => void
 export type ResetFilter2 = (filter: string, setState: SetGenState, toUpdate: MutableRefObject<boolean>, state?: State) => void
-export type ResetFilter = (filter: string, setState: SetState, toUpdate: MutableRefObject<boolean>, state?: State,
-                           reset?: boolean, setReset?: (reset: true) => void ) => void
+export type ResetFilter = (filter: string, setState: SetState, toUpdate: MutableRefObject<boolean>, state?: State) => void
 
 export type GetStateR1 = (filter: string) => string
 export type GetStateR2 = (filter: string) => Record<string, boolean>
@@ -32,8 +31,8 @@ export type FilterProps =  {
     content: ColorContent | GeneralContent | PriceContent,
     filter: string,
     filters: string[],
-    reset: boolean,
-    setReset: (reset: boolean) => void
 }
 
 export type UseFilter = (filterProps: FilterProps) => [state: State, setState: SetState]
+
+export type HandleFilter = (toUpdate: MutableRefObject<boolean>, filters: string[], filter: string, state: State) => void

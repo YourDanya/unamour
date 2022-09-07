@@ -6,7 +6,7 @@ import {
     ResetFilter,
     SetState,
     State,
-    GenState, PriceState, UseFilter
+    GenState, PriceState, UseFilter, HandleFilter
 } from "./shop-items.types"
 import {useDebounceEffect, useOmitFirstEffect} from "../../hooks/component.hooks"
 import {useRouter} from "next/router"
@@ -22,7 +22,6 @@ export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) =
 
     useEffect(() => {
         if ('reset' in router.query) {
-            console.log('reseting')
             toUpdate.current = false
             if (filter === 'sorting') {
                 setState('')
@@ -35,36 +34,35 @@ export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) =
                 Object.keys(newState).forEach(key => newState[key] = false)
                 setState({...newState})
             }
-            // router.push(mainPath)
         }
     }, [path])
 }
 
 
-export const useHandleFilter = (toUpdate: MutableRefObject<boolean>, filters: string[], filter: string, state: State)=> {
+export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=> {
 
     const router = useRouter()
     const path = router.asPath
     const query = router.query
     const mainPath = path.split('?')[0]
-
-    const pathRef = useRef({query, mainPath})
+    const reset = !('reset' in query)
+    const pathRef = useRef({query, mainPath, reset})
 
     useEffect(() => {
-        if (filter === 'size') {
-            console.log('path update')
-        }
         const query = router.query
         const mainPath = path.split('?')[0]
-        pathRef.current = {query, mainPath}
+        const reset = !('reset' in query)
+        pathRef.current = {query, mainPath, reset}
     },[path])
 
     useDebounceEffect(() => {
+        console.log('filter', state)
 
         if (!toUpdate.current) {
             toUpdate.current = true
             return
         }
+
         const url = filters
             .map(elem => {
                 let param = ''
@@ -92,12 +90,9 @@ export const useHandleFilter = (toUpdate: MutableRefObject<boolean>, filters: st
 
         if (url!==path) {
             router.push(url)
-        } else {
-            console.log('not pushing')
-            console.log('url', url)
-            console.log('path', path)
         }
-    }, [state])
+
+    }, [state], 1000, pathRef.current.reset)
 
 }
 
@@ -142,7 +137,7 @@ export const useGetFilterState = (filter: string, filterContent: FilterContent) 
 
 export const useFilter: UseFilter = (props) => {
 
-    const {filters, filter, content, reset} = props
+    const {filters, filter, content} = props
 
     const toUpdate = useRef(false)
 
