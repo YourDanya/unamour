@@ -1,10 +1,15 @@
 import React, {DependencyList, EffectCallback, useEffect, useLayoutEffect, useRef, useState} from "react"
 
-export const useModal = <K extends string> (initState: Record<K, boolean>, attribute: string = 'name') :
-    [modalState: Record<K, boolean> & {modal: boolean}, showModal: (event: React.MouseEvent<HTMLElement>) => void, closeModal: () => void]  => {
+export type UseModal = <K extends string> (initState: Record<K, boolean> & Record<'modal', boolean>, attribute?: string) =>
+[modalState: Record<K, boolean> & Record<'modal', boolean>, showModal: (event: React.MouseEvent<HTMLElement>) => void, closeModal: () => void,
+    showTopModal: (event: React.MouseEvent<HTMLElement>) => void, hideTopModal: (event: React.MouseEvent<HTMLElement>) => void,]
 
-    if (!('modal' in initState)) {
-        initState['modal' as K ] = false
+export const useModal : UseModal = (initState, attribute = 'name')  => {
+
+    type ModalProp = keyof typeof modalState & 'modal'
+
+    if (('modal' in initState)) {
+        initState.modal = false
     }
 
     const [modalState, setModalState] = useState(initState)
@@ -12,7 +17,8 @@ export const useModal = <K extends string> (initState: Record<K, boolean>, attri
     const closeModal = () => {
         const newState: typeof modalState= {} as typeof modalState
         for (let prop in modalState) {
-            newState[prop] = false
+            const modalProp = prop as ModalProp
+            newState[modalProp] = false
         }
         setModalState(newState)
     }
@@ -21,17 +27,29 @@ export const useModal = <K extends string> (initState: Record<K, boolean>, attri
         const newState: typeof modalState= {} as typeof modalState
 
         for (let prop in modalState) {
-            newState[prop] = false
+            const modalProp = prop as ModalProp
+            newState[modalProp] = false
         }
 
-        const name = event.currentTarget.getAttribute(attribute) as keyof typeof modalState
+        const name = event.currentTarget.getAttribute(attribute) as ModalProp
         newState[name] = true
-        newState['modal' as K] = true
+        newState['modal'] = true
 
         setModalState(newState)
     }
 
-    return [modalState as Record<K, boolean> & { modal: boolean}, showModal, closeModal]
+    const showTopModal = (event: React.MouseEvent<HTMLElement>) => {
+        const name = event.currentTarget.getAttribute(attribute) as ModalProp
+        setModalState({...modalState, [name] : true})
+    }
+
+    const hideTopModal = (event: React.MouseEvent<HTMLElement>) => {
+        const name = event.currentTarget.getAttribute(attribute) as ModalProp
+        console.log('name', name)
+        setModalState({...modalState, [name] : false})
+    }
+
+    return [modalState, showModal, closeModal, showTopModal, hideTopModal]
 }
 
 export const useExternalState = <T, K> (state: T | undefined, setState: ((state: T) => void) | undefined, defaultState: T):

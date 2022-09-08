@@ -169,25 +169,24 @@ p
 .arrow-back
   position: relative
   background-color: transparent
-  width: 20px
-  height: 20px
+  width: 11px
+  height: 14px
   &:before, &:after
     content: ''
     position: absolute
     top: 50%
-    transform: translateY(-50%) translateX(-50%)
+    transform: translateY(-50%)
     width: 0
     height: 0
+    border-top: 7px solid transparent
+    border-bottom: 7px solid transparent
+    border-right: 10px solid black
   &:before
     left: 0
-    border-top: 7px solid transparent
-    border-right: 10px solid black
-    border-bottom: 7px solid transparent
   &:after
     left: 1px
-    border-top: 7px solid transparent
-    border-right: 10px solid white
-    border-bottom: 7px solid transparent
+    border-right-color: white
+
 
 .container
   padding-left: 40px!important

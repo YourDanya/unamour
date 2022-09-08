@@ -2,27 +2,30 @@ import React from "react"
 import Button from "../button/button.component"
 
 type sidebarProps = {
+    active: boolean,
+    children: React.ReactNode,
     left?: boolean,
     top?: true,
-    hideTopNav?: () => void,
-    active: boolean,
     hideModal?: (event: React.MouseEvent<HTMLElement>) => void,
-    children: React.ReactNode
+    hideTopModal?: (event: React.MouseEvent<HTMLElement>) => void,
+    name?: string
 }
 
 const Sidebar: React.FC<sidebarProps> = (props) => {
 
-    const {left, children, active, hideModal, top, hideTopNav} = props
+    const {left, children, active, hideModal, hideTopModal, name} = props
 
     return (
-        <div className={`sidebar ${left ? 'sidebar--left' : 'sidebar--right'} ${top ? 'sidebar--top' : ''}
+        <div className={`sidebar ${left ? 'sidebar--left' : 'sidebar--right'} ${hideTopModal ? 'sidebar--top' : ''}
             ${left && active ? 'sidebar--left--active' : active ? 'sidebar--right--active' : ''} `}
         >
-            {hideTopNav && (
-                <Button className={'sidebar__back'} onClick={hideTopNav}/>
+            {hideTopModal && (
+                <Button className='sidebar__back' onClick={hideTopModal} name={name}>
+                    <div className={'arrow-back'}/>
+                </Button>
             )}
             {hideModal && (
-                <Button className={'close sidebar__button'} onClick={hideModal}/>
+                <Button className='close sidebar__button' onClick={hideModal}/>
             )}
             {children}
         </div>

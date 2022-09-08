@@ -4,11 +4,12 @@ import Button from "../../common/button/button.component"
 import useNavMenu from "./nav-menu.hook"
 
 type navMenuProps = {
-    showTopNav?: (event: React.MouseEvent<HTMLElement>) => void,
+    showTopModal: (event: React.MouseEvent<HTMLElement>) => void
 }
 
-const NavMenu: React.FC<navMenuProps> = () => {
+const NavMenu: React.FC<navMenuProps> = (props) => {
 
+    const {showTopModal} = props
     const {clientService, handleClientClick} = useNavMenu()
 
     return (
@@ -44,7 +45,7 @@ const NavMenu: React.FC<navMenuProps> = () => {
                     <Link href={'/contacts'}>
                         <a className={'menu__link'}>КОНТАКТИ</a>
                     </Link>
-                    <Button className={'menu__link'} onClick={() => {}}>
+                    <Button className={'menu__link'} onClick={showTopModal} name={'sign'}>
                         УВІЙТИ
                     </Button>
                 </div>

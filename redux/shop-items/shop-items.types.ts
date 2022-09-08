@@ -51,9 +51,6 @@ export type ClientItem = Merged<Common, Translation> & CommonVariant  & Translat
 
 export type MergedVariant = Pick<Common & Translation, 'variants'>
 
-// const test : MergedVariant = {} as MergedVariant
-// const a = test.variants[0].color.
-
 export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
 
 export type ItemCategory = {

@@ -12,15 +12,15 @@
     border: none
     position: relative
     background-color: transparent
-    &:-webkit-autofill::first-line
-      font-size: 2px
+    //&:-webkit-autofill::first-line
+    //  font-size: 11px
   &__placeholder
     position: absolute
     top: 50%
     left: 2px
     transform: translateY(-50%)
     pointer-events: none
-    transition: font-size 0.3s, transform 0.3s
+    transition: font-size 0.4s, transform 0.4s
     color: #a1a1a1
     font-size: 11px
   &__main
@@ -56,13 +56,13 @@
   //      visibility: visible
   //    &:focus + .input__input
   //      border-color: black
-  //&--sign
-  //  margin-top: 25px
-  //  .input__input
-  //    &:focus + .input__placeholder
-  //      visibility: visible
-  //      font-size: 10px
-  //      transform: translateY(-20px)
+  &--sign
+    margin-top: 25px
+    .input__input
+      &:focus + .input__placeholder
+        visibility: visible
+        font-size: 10px
+        transform: translateY(-20px)
   //&--contact
   //  margin-top: 15px
   //&--contact, &--sign

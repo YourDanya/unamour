@@ -7,7 +7,7 @@
   background-color: white
   transition: 0.5s transform
   &--top
-    z-index: 100
+    z-index: 300
   &--left
     left: 0
     transform: translateX(-600px)
@@ -28,24 +28,21 @@
     width: 20px
   &__back
     position: absolute
-    top: 40px
-    left: 40px
+    top: 20px
+    left: 30px
+    width: 19px
+    height: 19px
     display: flex
-    flex-direction: column
-    justify-content: center
     align-items: center
-    cursor: pointer
-    width: 15px
-    height: 30px
-    transform: translateY(-10px)
-    &-line
-      background-color: black
-      width: 12px
-      height: 1px
-      &--first
-        transform: translateY(-3.8px) rotate(-45deg)
-      &--last
-        transform: translateY(3.8px) rotate(45deg)
+    justify-content: center
+    .arrow-back
+      width: 9px
+      height: 16px
+      &:after, &:before
+        border-right-width: 8px
+        border-top-width: 8px
+        border-bottom-width: 8px
+
 
 @media (max-width: 576px)
   .sidebar

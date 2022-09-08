@@ -11,16 +11,16 @@ import Hamburger from "./hamburger/hamburger.component"
 
 const Nav: React.FC = () => {
 
-    const {modalState, showModal, hideModal, home} = useNav()
+    const {modalState, showModal, hideModal, home, showTopModal, hideTopModal} = useNav()
 
     return (
         <nav className={`nav ${home ? 'nav--home' : ''}`}>
             <Hamburger hamburger={modalState.hamburger} showModal={showModal} hideModal={hideModal}/>
             <NavHeader home={home} showModal={showModal}/>
             <Sidebar left active={modalState.hamburger}>
-                <NavMenu/>
+                <NavMenu showTopModal={showTopModal}/>
             </Sidebar>
-            <Sidebar left active={modalState.sign} top>
+            <Sidebar left active={modalState.sign} hideTopModal={hideTopModal} name={'sign'}>
                 <SignInUp/>
             </Sidebar>
             <Sidebar active={modalState.search} hideModal={hideModal}>
