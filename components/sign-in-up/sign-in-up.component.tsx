@@ -9,6 +9,7 @@ export type SignInUpProps = {
 }
 
 const SignInUp: React.FC<SignInUpProps> = () => {
+
     const [sign, setSign] = useState<'in' | 'up'>('in')
 
     return (

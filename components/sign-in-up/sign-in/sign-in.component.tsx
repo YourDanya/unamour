@@ -1,20 +1,18 @@
-import React, {MouseEventHandler, useState} from 'react'
+import React from 'react'
 import Link from "next/link"
 import Input from "../../common/input/input.component"
-import {usePlainInput} from "../../../hooks/input.hooks"
+import Button from "../../common/button/button.component"
+import useSignIn from "./sign-in.hook"
+import Form from "../../common/form/form.component"
 
-type setType = {
-    email: string,
-    password: string,
-}
-
-type propsType= {
+type SignInProps= {
     setSign: () => void
 }
 
-const SignIn: React.FC<propsType> = ({setSign}) => {
+const SignIn: React.FC<SignInProps> = (props) => {
 
-    const [values, handleChange] = usePlainInput({email: '', password: ''})
+    const {setSign} = props
+    const {values, handleChange, handleClick, signInError} = useSignIn()
 
     return (
         <div className={'sign__content'}>
@@ -22,7 +20,7 @@ const SignIn: React.FC<propsType> = ({setSign}) => {
                 <div className="sign__content-title">ВХІД</div>
                 <div className="sign__content-link" onClick={setSign}>РЕЄСТРАЦІЯ</div>
             </div>
-            <form className={'sign__form'}>
+            <Form className={'sign__form'} error={signInError}>
                 <Input
                     placeholder={'Ваш e-mail'}
                     className={'sign__input'}
@@ -31,6 +29,7 @@ const SignIn: React.FC<propsType> = ({setSign}) => {
                     handleChange={handleChange}
                 />
                 <Input
+                    type={'password'}
                     placeholder={'Ваш пароль'}
                     className={'sign__input'}
                     name={'password'}
@@ -38,7 +37,9 @@ const SignIn: React.FC<propsType> = ({setSign}) => {
                     handleChange={handleChange}
                 />
                 <div className="sign__form-footer">
-                    <button className="sign__form-button">УВІЙТИ</button>
+                    <Button className="sign__form-button" onClick={handleClick}>
+                        УВІЙТИ
+                    </Button>
                     <Link href={'/'}>
                         <a className="sign__form-forget">Забули пароль?</a>
                     </Link>
@@ -46,7 +47,7 @@ const SignIn: React.FC<propsType> = ({setSign}) => {
                         Натискаючи кнопку Увійти, я даю згоду на обробку та <br/> передачу моїх персональних даних.
                     </p>
                 </div>
-            </form>
+            </Form>
         </div>
     )
 }

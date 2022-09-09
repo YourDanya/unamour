@@ -1,29 +1,26 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {HYDRATE} from "next-redux-wrapper"
-import {actionsReducer} from "@reduxjs/toolkit/src/query/tests/helpers";
+import {AppThunk} from "../store"
+import {Api, apiCall} from "../../utils/api.utils"
+import {setError, setUser} from "./user.slice"
+import {SignInData, SignUpData} from "./user.types"
 
-export type UserState = {
-    user : null | object
-}
-
-const initialState: UserState = {
-    user : null
-}
-
-export const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-        setUser: (state, action: PayloadAction<>) => {
-            state.user = action.payload
-        },
-        setError: (state) => {
-            state.user = action.payload
-        }
-    },
-    extraReducers: {
-        [HYDRATE]: (state, action) => {
-
-        }
+export const signIn = (signInData: SignInData): AppThunk => {
+    return async (dispatch) => {
+        const signIn = () => Api.post('/auth/login', signInData)
+        dispatch(apiCall(signIn, setUser, setError))
     }
-})
+}
+
+export const signUp = (signUpData: SignUpData): AppThunk => {
+    return async (dispatch) => {
+        const signUp = () => Api.post('/auth/create-inactive-user', signUpData)
+        dispatch(apiCall(signUp, setUser, setError))
+    }
+}
+
+export const updateUser = (): AppThunk => {
+    return async () => {
+        const updateUser = () => Api.post('/shop-item/all', {})
+        apiCall(updateUser, setUser, setError)
+    }
+}
+

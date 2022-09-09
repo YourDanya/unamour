@@ -1,21 +1,16 @@
-import React, {MouseEventHandler, useState} from 'react'
+import React from 'react'
 import Input from "../../common/input/input.component"
-import {usePlainInput} from "../../../hooks/input.hooks"
+import useSignUp from "./sign-up.hook"
 
-type setType = {
-    email: string,
-    name: string,
-    password: string,
-    passwordConfirm: string,
+export type SignUpProps = {
+    setSign: () => void
 }
 
-type propsType = {
-    setSign : () => void
-}
 
-const SignUp: React.FC<propsType> = ({setSign}) => {
+const SignUp: React.FC<SignUpProps> = (props) => {
 
-    const [values, handleChange] = usePlainInput({name: '', email: '', password: '', passwordConfirm: ''})
+    const {setSign} = props
+    const {values, handleChange} = useSignUp()
     
     return (
         <div className={'sign__content'}>

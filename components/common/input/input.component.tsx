@@ -8,10 +8,11 @@ type InputProps = {
     className?: string
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string,
+    type?: string
 }
 
 const Input: React.FC<InputProps> = (props) => {
-    const {value, name, handleChange, placeholder, className, children, error} = props
+    const {value, name, handleChange, placeholder, className, children, error, type} = props
 
     const [focused, handleFocus] = useToggle()
 
@@ -26,6 +27,7 @@ const Input: React.FC<InputProps> = (props) => {
                         name={name}
                         className={`input__input`}
                         value={value}
+                        type={type?? 'text'}
                     />
                     <div className='input__placeholder'>{placeholder}</div>
                 </div>
