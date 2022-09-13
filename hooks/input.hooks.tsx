@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
-import {InputType, InputTypes, LocaleType} from "../types/types"
+import {Input, Inputs, LocaleType} from "../types/types"
+import {Locale} from "../redux/main/main.types";
 
 export const usePlainInput = <T extends { [prop: string]: string | boolean | number }, >(inputs: T):
     [values: T, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void, setValues: (values: T) => void] => {
@@ -13,8 +14,8 @@ export const usePlainInput = <T extends { [prop: string]: string | boolean | num
     return [values, handleChange, setValues]
 }
 
-export const useInput = <T extends InputTypes, >(initInputs: T):
-    [inputs: T, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+export const useInput = <T extends Inputs, > (initInputs: T):
+    [inputs: T & Record <keyof T, {error: string}>, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void, setInputs: (inputs: T) => void,
     handleValidate: (event: any) => void, handleValidateAll: (event: React.MouseEvent) => void] => {
 
     const [inputs, setInputs] = useState(initInputs)
@@ -24,7 +25,7 @@ export const useInput = <T extends InputTypes, >(initInputs: T):
         setInputs({...inputs, [name]: {...inputs[name],value}})
     }
 
-    const locale = useRouter().locale as LocaleType
+    const locale = useRouter().locale as Locale
 
     const handleValidate = (event: any) => {
         const {name} = event.target as HTMLButtonElement
@@ -42,10 +43,10 @@ export const useInput = <T extends InputTypes, >(initInputs: T):
         setInputs(newInputs)
     }
 
-    return [inputs, handleChange, handleValidate, handleValidateAll]
+    return [inputs as T & Record <keyof T, {error: string}>, handleChange, setInputs, handleValidate, handleValidateAll]
 }
 
-export const validate = <T extends InputType, >(input: T, locale: LocaleType) => {
+export const validate = <T extends Input, >(input: T, locale: LocaleType) => {
     const validations = input.validations
     const value = input.value as string
     const length = value.length

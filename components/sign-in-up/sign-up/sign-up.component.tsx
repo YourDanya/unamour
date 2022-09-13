@@ -6,12 +6,11 @@ export type SignUpProps = {
     setSign: () => void
 }
 
-
 const SignUp: React.FC<SignUpProps> = (props) => {
 
     const {setSign} = props
-    const {values, handleChange} = useSignUp()
-    
+    const {values, handleChange, signUpError} = useSignUp()
+
     return (
         <div className={'sign__content'}>
             <div className="sign__content-top">
@@ -47,9 +46,9 @@ const SignUp: React.FC<SignUpProps> = (props) => {
                     value={values.passwordConfirm}
                     handleChange={handleChange}
                 />
-                <div className="sign__form-footer">
-                    <button className="sign__form-button sign__form-button--up">СТВОРИТИ АКАУНТ</button>
-                    <div className={'sign__form-text'}>
+                <div className="sign__bottom">
+                    <button className="sign__button sign__button--up">СТВОРИТИ АКАУНТ</button>
+                    <div className={'sign__text'}>
                         Натискаючи кнопку Створити акаунт, я даю згоду на обробку та <br/> передачу моїх персональних даних.
                     </div>
                 </div>

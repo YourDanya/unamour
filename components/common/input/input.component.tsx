@@ -1,20 +1,21 @@
 import React from "react"
-import {useToggle} from "../../../hooks/event-handler.hooks"
+import useInput from "./input.hook"
 
-type InputProps = {
+export type InputProps = {
     placeholder: string
     name: string,
     value?: string,
     className?: string
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string,
-    type?: string
+    type?: string,
+    handleValidate?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
 const Input: React.FC<InputProps> = (props) => {
     const {value, name, handleChange, placeholder, className, children, error, type} = props
 
-    const [focused, handleFocus] = useToggle()
+    const {focused, handleFocus} = useInput(props)
 
     return (
         <div className={`input ${className ?? ''}`}>

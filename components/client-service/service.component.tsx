@@ -11,8 +11,6 @@ const ClientService: React.FC<clientServiceProps> = ({children}) => {
 
     const {modalState, hideModal, showModal} = useClientService()
 
-    console.log(modalState.menu)
-
     return (
         <div className={'container service'}>
             <ServiceMenu className={'service__menu--desc'}/>

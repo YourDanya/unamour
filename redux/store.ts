@@ -1,9 +1,9 @@
 import {configureStore, ThunkAction, ThunkDispatch} from '@reduxjs/toolkit'
 import {createWrapper} from "next-redux-wrapper"
-import counter from './counter/counter.slice'
 import shopItems from './shop-items/shop-items.slice'
 import cart from './cart/cart.slice'
 import user from './user/user.slice'
+import main from './main/main.slice'
 import thunk from "redux-thunk"
 import {AnyAction} from "redux"
 
@@ -15,10 +15,10 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unkn
 export const makeStore = () =>
     configureStore({
         reducer: {
-            counter,
             shopItems,
             cart,
-            user
+            user,
+            main
         },
         middleware: [thunk],
         devTools: true

@@ -26,16 +26,19 @@ export type DeliveryType = {value: string, label: {title: string, price: string,
 
 export type LocaleType = 'ua' | 'eng' | 'ru'
 
-export type InputTypes = {
-    [prop: string]: InputType
-}
+export type Inputs = Record<string, Input>
 
-export type InputType = {
+export type Input = {
     value: string | boolean | number | string[],
-    validations?: { [validation: string]: string | boolean | number },
+    validations?: Record<string, string | boolean | number>,
     error?: string,
     label?: string
 }
 
-type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
+export type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
+
+export type StateError = {
+    status: string,
+    name?: string
+}

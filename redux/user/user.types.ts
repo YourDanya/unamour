@@ -1,5 +1,7 @@
+import {StateError} from "../../types/types";
+
 export type UserState = {
-    user: null | object,
+    user: null | User,
     error: UserError,
     current: 'signIn' | 'signUp' | ''
 }
@@ -17,11 +19,14 @@ export type SignUpData = {
 }
 
 export type UserError = {
-    signIn: string,
-    signUp: string
+    signIn: StateError | null,
+    signUp: StateError | null
 }
 
-export type SetErrorPayload = {
-    error: Response,
-    field: string
+export type User = {
+    name: string,
+    email: string,
+    surname: string,
+    phone: string,
+    birthDate: string
 }
