@@ -1,32 +1,38 @@
 import React, {ReactNode} from "react"
 import useProfile from "./profile.hook"
-import Button from "../common/button/button.component";
+import Button from "../common/button/button.component"
+import NavLink from "../common/nav-link/nav-link.component"
 
 type profileProps = {}
 
 const Profile: React.FC<profileProps> = (props) => {
 
     const {children} = props
-    const {user, translation: {greeting, menu, signOut}} = useProfile()
+    const {user, translation, content} = useProfile()
 
     return user &&
         (<div className={'profile'}>
             <div className={'profile__top'}>
                 <div className={'profile__sign-out'}>
                     <Button className={'profile__sign-out-btn'} onClick={() => {}}>
-                        {signOut}
+                        {translation.signOut}
                     </Button>
                 </div>
                 <div className={'profile__name'}>
-                    {greeting} {user.name}!
+                    {translation.greeting} {user.name}!
                 </div>
-                <ul className={'profile__menu'}>
-                    {menu.map((item, index) => (
-                        <div className={'profile__menu-link'} key={index}>
-                            {item}
-                        </div>
+                <div className={'profile__menu'}>
+                    {content.menu.map((item, index) => (
+                        <NavLink
+                            href={item}
+                            key={index}
+                            className={'profile__menu-link'}
+                            activeClassName={'profile__menu-link--active'}
+                        >
+                            {translation.menu[index]}
+                        </NavLink>
                     ))}
-                </ul>
+                </div>
             </div>
             <div className={'profile__page'}>
                 {children}

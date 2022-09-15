@@ -1,36 +1,28 @@
 import {useRouter} from "next/router"
-import {useEffect, useState} from "react"
+import {useEffect, useLayoutEffect, useState} from "react"
+import {useDebounceEffect, useOmitFirstEffect} from "../../hooks/component.hooks";
+import {useSelector} from "react-redux";
+import {selectPath} from "../../redux/main/main.slice";
 
 const useNavRoute = (hideModal: () => void) => {
     const router= useRouter()
 
-    const [home, setHome] = useState(router.pathname === '/')
-
-    const handleRouteChange = () => {
-        // console.log('route change')
-        // if(router.pathname==='/'){
-        //     if (!home) setHome(true)
-        // }
-        // else {
-        //     if(home)setHome(false)
-        // }
-        hideModal()
-    }
+    const [home, setHome] = useState(router.asPath === '/')
 
     useEffect(() => {
-        router.events.on('routeChangeComplete', handleRouteChange)
-        return () => {
-        }
-    }, [])
-
-    useEffect(() => {
-        if(router.pathname==='/'){
+        if(router.asPath==='/'){
             if (!home) setHome(true)
         }
         else {
             if(home) setHome(false)
         }
-    }, [router.pathname])
+    }, [router.asPath])
+
+    const path = useSelector(selectPath)
+
+    useDebounceEffect(() => {
+        hideModal()
+    }, [path], 300)
 
     return {home}
 }

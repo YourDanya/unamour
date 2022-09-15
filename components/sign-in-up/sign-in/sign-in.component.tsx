@@ -11,9 +11,8 @@ type SignInProps= {
 const SignIn: React.FC<SignInProps> = (props) => {
 
     const {setSign} = props
-    const {values, handleChange, handleClick, signInError, user} = useSignIn()
+    const {values, handleChange, handleClick, signInError, justSign} = useSignIn()
 
-    console.log(user)
     return (
         <div className={'sign__content'}>
             <div className="sign__content-top">
@@ -36,9 +35,9 @@ const SignIn: React.FC<SignInProps> = (props) => {
                     value={values.password}
                     handleChange={handleChange}
                 />
-                <div className={`form-message ${signInError? 'form-message--error' : ''} ${user ? 'form-message--success' : ''}`}>
+                <div className={`form-message ${signInError? 'form-message--error' : ''} ${justSign ? 'form-message--success' : ''}`}>
                     {signInError}
-                    {user && 'Ви успішно увійшли. Через секунду вас буде пернаправлено.'}
+                    {justSign && 'Ви успішно увійшли. Через секунду вас буде пернаправлено.'}
                 </div>
                 <div className="sign__bottom">
                     <Button className="sign__button" onClick={handleClick}>

@@ -1,3 +1,4 @@
+import '/components/nav-link/nav-link.styles.sass'
 import '../styles/global.sass'
 import '../styles/home.sass'
 

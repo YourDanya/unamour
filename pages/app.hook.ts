@@ -4,23 +4,39 @@ import {selectClientItems} from "../redux/shop-items/shop-items.slice"
 import {useEffect} from "react"
 import {fetchItems} from "../redux/shop-items/shop-items.thunk"
 import {AppPropsWithLayout} from "../types/types"
+import {setLocale, setPath} from "../redux/main/main.slice";
+import {Locale} from "../redux/main/main.types";
+import {getUser} from "../redux/user/user.thunk";
 
 const useApp = (props: AppPropsWithLayout) => {
     const {Component} = props
 
     let getLayout = Component.getLayout ?? ((page) => page)
     const slug = useRouter().query.slug
-    if (slug && slug.length!==1) getLayout = ((page) => page)
+    if (slug && slug.length !== 1) getLayout = ((page) => page)
 
     const dispatch = useDispatch()
     const items = useSelector(selectClientItems)
 
     useEffect(() => {
-        if (items.length==0) {
+        if (items.length == 0) {
             console.log('no items')
             dispatch(fetchItems())
         }
+        dispatch(getUser())
     }, [])
+
+    const router = useRouter()
+    const path = router.asPath
+    const locale = router.locale as Locale
+
+    useEffect(() => {
+        dispatch(setPath(path))
+    }, [path])
+
+    useEffect(() => {
+        dispatch(setLocale(locale))
+    }, [locale])
 
     return {...props, getLayout}
 }

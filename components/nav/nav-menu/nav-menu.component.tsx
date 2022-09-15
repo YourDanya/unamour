@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import Link from "next/link"
 import Button from "../../common/button/button.component"
 import useNavMenu from "./nav-menu.hook"
@@ -10,8 +10,8 @@ type navMenuProps = {
 const NavMenu: React.FC<navMenuProps> = (props) => {
 
     const {showTopModal} = props
-    const {clientService, handleClientClick} = useNavMenu()
-
+    const {clientService, handleClientClick, user} = useNavMenu()
+    
     return (
         <>
             <div className="container menu">
@@ -45,14 +45,20 @@ const NavMenu: React.FC<navMenuProps> = (props) => {
                     <Link href={'/contacts'}>
                         <a className={'menu__link'}>КОНТАКТИ</a>
                     </Link>
-                    <Button className={'menu__link'} onClick={showTopModal} name={'sign'}>
-                        УВІЙТИ
-                    </Button>
+                    {user ? (
+                        <Link href={'/profile/update-user'}>
+                            <a className={'menu__link'}>ПРОФІЛЬ</a>
+                        </Link>
+                        ) : (
+                        <Button className={'menu__link'} onClick={showTopModal} name={'sign'}>
+                            УВІЙТИ
+                        </Button>
+                    )}
                 </div>
             </div>
             <div className={`menu service-menu ${clientService ? 'service-menu--active' : ''}`}>
                 <Button className="service-menu__back" onClick={handleClientClick}>
-                   <div className={'arrow-back service-menu__arrow'}/>
+                    <div className={'arrow-back service-menu__arrow'}/>
                     НАЗАД
                 </Button>
                 <div className="menu__links">
@@ -81,7 +87,7 @@ const NavMenu: React.FC<navMenuProps> = (props) => {
                     </Link>
                     <Link href={'/client-service/warranty-period'}>
                         <a className="menu__link">
-                             УГОДА КОРИСТУВАЧА
+                            УГОДА КОРИСТУВАЧА
                         </a>
                     </Link>
                 </div>

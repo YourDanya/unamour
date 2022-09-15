@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, memo} from 'react'
 import SignIn from "./sign-in/sign-in.component"
 import googleIcon from '/public/icons/google.svg'
 import facebookIcon from '/public/icons/facebook.svg'
@@ -34,4 +34,4 @@ const SignInUp: React.FC<SignInUpProps> = () => {
     )
 }
 
-export default SignInUp
+export default memo(SignInUp)

@@ -13,7 +13,7 @@ type sidebarProps = {
 
 const Sidebar: React.FC<sidebarProps> = (props) => {
 
-    const {left, children, active, hideModal, hideTopModal, name} = props
+    const {left, active, hideModal, hideTopModal, name, children} = props
 
     return (
         <div className={`sidebar ${left ? 'sidebar--left' : 'sidebar--right'} ${hideTopModal ? 'sidebar--top' : ''}

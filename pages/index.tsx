@@ -1,7 +1,6 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import {wrapper} from "../redux/store";
-import {increment} from "../redux/counter/counter.slice";
 
 const Home: NextPage = () => {
     return (

@@ -3,7 +3,9 @@ import {StateError} from "../../types/types";
 export type UserState = {
     user: null | User,
     error: UserError,
-    current: 'signIn' | 'signUp' | ''
+    current: 'signIn' | 'signUp' | '',
+    activation: boolean,
+    justSign: boolean
 }
 
 export type SignInData = {

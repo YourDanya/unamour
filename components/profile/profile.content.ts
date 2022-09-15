@@ -1,4 +1,10 @@
 const profileContent = {
+    menu: [
+        '/profile/update-user',
+        '/profile/purchase-history',
+        '/profile/wishlist',
+        '/profile/admin'
+    ],
     translations: {
         ua: {
             greeting: 'ПРИВІТ,',
