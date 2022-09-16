@@ -1,14 +1,16 @@
 import React, {ReactNode} from "react"
 import useProfile from "./profile.hook"
 import Button from "../common/button/button.component"
-import NavLink from "../common/nav-link/nav-link.component"
+import ModalContent from "../common/modal-content/modal-content.component"
+import Modal from "../common/modal/modal.component"
+import ProfileMenu from "./profile-menu/profile-menu.component"
 
 type profileProps = {}
 
 const Profile: React.FC<profileProps> = (props) => {
 
     const {children} = props
-    const {user, translation, content} = useProfile()
+    const {user, translation, content, modalState, hideModal, showModal} = useProfile()
 
     return user &&
         (<div className={'profile'}>
@@ -21,19 +23,15 @@ const Profile: React.FC<profileProps> = (props) => {
                 <div className={'profile__name'}>
                     {translation.greeting} {user.name}!
                 </div>
-                <div className={'profile__menu'}>
-                    {content.menu.map((item, index) => (
-                        <NavLink
-                            href={item}
-                            key={index}
-                            className={'profile__menu-link'}
-                            activeClassName={'profile__menu-link--active'}
-                        >
-                            {translation.menu[index]}
-                        </NavLink>
-                    ))}
-                </div>
+                <ProfileMenu className={'profile__menu--hide'} menu={content.menu} translMenu={translation.menu}/>
+                <Button className={'profile__menu-btn'} onClick={showModal} name={'menu'}>
+                    {translation.profileMenu}
+                </Button>
             </div>
+            <ModalContent active={modalState.menu} hideModal={hideModal} className={'profile__menu-modal'}>
+                <ProfileMenu className={'profile__menu--modal'} menu={content.menu} translMenu={translation.menu}/>
+            </ModalContent>
+            <Modal active={modalState.modal} hideModal={hideModal}/>
             <div className={'profile__page'}>
                 {children}
             </div>

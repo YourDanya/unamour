@@ -6,13 +6,15 @@ import Button from "../../../components/common/button/button.component"
 import {getProfileLayout} from "../../../components/profile/profile.component"
 import lock from '/public/icons/lock.svg'
 
-type updateUserProps = {
+type UpdateUserProps = {}
 
-}
+const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
 
-const UpdateUser: NextPageWithLayout<updateUserProps> = () => {
+    const {
+        inputs, translation: {inputs: translInputs, save, changePassword, title, password },
+        handleChange, handleSubmit, handleValidate
+    } = useUpdateUser()
 
-    const {inputs, translation: {inputs: translInputs, save, changePassword, title}, handleChange, handleSubmit, handleValidate} = useUpdateUser()
 
     return (
         <div className={'update-user'}>
@@ -63,11 +65,14 @@ const UpdateUser: NextPageWithLayout<updateUserProps> = () => {
                     error={inputs.birthDate.error}
                     handleValidate={handleValidate}
                 />
-                <Button className={'update-user__button update-user__surname'} onClick={handleSubmit}>
+                <Button className={'update-user__button'} onClick={handleSubmit}>
                     {save}
                 </Button>
             </form>
             <div className={'update-user__change-pass'}>
+                <div className={'update-user__change-pass-title'}>
+                    {password}
+                </div>
                 <Button className={'update-user__change-pass-btn'} onClick={() => {}}>
                     <img className={'update-user__change-pass-img'} src={lock.src}/>
                     <div className={'update-user__change-pass-text'}>{changePassword}</div>

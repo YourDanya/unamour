@@ -19,7 +19,8 @@ export const updateUserContent = {
                 newPassword: {placeholder: 'Придумайте новий пароль'},
                 passwordConfirm: {placeholder: 'Повторіть пароль'}
             },
-            changePassword: 'зміна пароля',
+            password: 'пароль',
+            changePassword: 'Зміна пароля',
             save: 'зберегти'
         },
         eng: {
@@ -34,7 +35,8 @@ export const updateUserContent = {
                 newPassword: {placeholder: 'New password'},
                 passwordConfirm: {placeholder: 'Confirm password'},
             },
-            changePassword: 'change password',
+            password: 'password',
+            changePassword: 'Change password',
             save: 'save'
         },
         ru: {
@@ -49,7 +51,8 @@ export const updateUserContent = {
                 newPassword: {placeholder: 'Придумайте новый пароль'},
                 passwordConfirm: {placeholder: 'Повторите пароль'}
             },
-            changePassword: 'изменение пароля',
+            password: 'пароль',
+            changePassword: 'Изменение пароля',
             save: 'сохранить'
         }
     }

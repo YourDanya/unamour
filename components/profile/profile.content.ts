@@ -14,7 +14,8 @@ const profileContent = {
                 'ІСТОРІЯ ЗАМОВЛЕНЬ',
                 'WISHLIST',
                 'АДМІН ПАНЕЛЬ'
-            ]
+            ],
+            profileMenu: 'меню профіля'
         },
         eng: {
             greeting: 'HELLO,',
@@ -24,7 +25,8 @@ const profileContent = {
                 'PURCHASE HISTORY',
                 'WISHLIST',
                 'ADMIN PANEL'
-            ]
+            ],
+            profileMenu: 'profile menu'
         },
         ru: {
             greeting: 'ПРИВЕТ,',
@@ -34,7 +36,8 @@ const profileContent = {
                 'ИСТОРИЯ ЗАКАЗОВ',
                 'WISHLIST',
                 'АДМИН ПАНЕЛЬ'
-            ]
+            ],
+            profileMenu: 'меню профиля'
         }
     }
 }

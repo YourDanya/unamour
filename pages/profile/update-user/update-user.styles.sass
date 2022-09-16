@@ -1,13 +1,20 @@
 .update-user
+  display: grid
+  grid-template-columns: 400px auto
   &__title
     color: #828282
     font-size: 12px
     text-transform: uppercase
     margin-bottom: 30px
   &__form
-    width: 500px
+    width: 100%
   &__input
     margin-bottom: 20px
+    .input__state--focused, .input__state--full
+      .input__placeholder
+        opacity: 1
+        transform: translateY(-20px)
+        font-size: 10px
   &__button
     text-transform: uppercase
     width: 100%
@@ -15,17 +22,47 @@
     color: white
     background-color: black
     border-radius: 2px
-  &__password
-  &__change-password
+    margin-top: 20px
+  &__change-pass
+    margin-left: 250px
+    align-self: start
+    &-title
+      font-size: 12px
+      text-transform: uppercase
+      color: #828282
+      margin-bottom: 30px
+    &-btn
+      display: flex
+      align-items: center
+      transform: translateX(-3px)
+    &-text
+      color: #bd944d
+      text-decoration: underline
+      margin-left: 5px
 
 @media (max-width: 1200px)
   .update-user
+    &__change-pass
+      margin-left: 200px
 
 @media (max-width: 992px)
   .update-user
+    &__change-pass
+      margin-left: 150px
 
 @media (max-width: 768px)
   .update-user
+    grid-template-columns: auto
+    &__form
+      width: 400px
+      margin-bottom: 50px
+    &__change-pass
+      width: auto
+      justify-self: start
+      align-self: start
+      margin-left: 0
 
 @media (max-width: 576px)
   .update-user
+    &__form
+      width: 90%

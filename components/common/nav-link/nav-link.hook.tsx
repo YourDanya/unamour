@@ -7,7 +7,7 @@ const useNavLink = (props: NavLinkProps) => {
     const {href} = props
 
     const router = useRouter()
-    const path = router.basePath
+    const path = router.asPath
 
     const handleClick = (event: MouseEvent) => {
         if (href === path) event.preventDefault()
