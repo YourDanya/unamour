@@ -3,31 +3,32 @@ import {useDispatch, useSelector} from "react-redux"
 import {signIn} from "../../../redux/user/user.thunk"
 import {MouseEvent, useEffect} from "react"
 import {useRouter} from "next/router"
-import {selectJustSign, selectSignInError} from "../../../redux/user/user.selectors"
-import {resetJustSign} from "../../../redux/user/user.slice";
+import {selectField} from "../../../redux/user/user.selectors";
+import {resetSuccess} from "../../../redux/user/user.slice";
 
 const useSignIn = () => {
 
     const [values, handleChange] = usePlainInput({email: '', password: ''})
     const dispatch = useDispatch()
-    const signInError = useSelector(selectSignInError)
-    const justSign = useSelector(selectJustSign)
+    const [loading, error, success] = useSelector(selectField('signIn'))
 
     const handleClick = (event: MouseEvent<HTMLElement>) => {
         event.preventDefault()
-        dispatch(signIn(values))
+        if (!loading) dispatch(signIn(values))
     }
 
     const router = useRouter()
 
     useEffect(() => {
-        if (justSign) setTimeout(() => {
-            router.push('/profile/update-user')
-        }, 1000)
-        dispatch(resetJustSign)
-    }, [justSign])
+        if (success) {
+            setTimeout(() => {
+                router.push('/profile/update-user')
+                dispatch(resetSuccess('signIn'))
+            }, 1000)
+        }
+    }, [success])
 
-    return {values, handleChange, handleClick, signInError, justSign}
+    return {values, handleChange, handleClick, loading, error, success}
 }
 
 export default useSignIn

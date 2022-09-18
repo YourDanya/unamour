@@ -2,10 +2,9 @@ import {StateError} from "../../types/types";
 
 export type UserState = {
     user: null | User,
-    error: UserError,
-    current: 'signIn' | 'signUp' | '',
+    fields: Record<UserField, UserFieldState>,
+    current: UserField | '',
     activation: boolean,
-    justSign: boolean
 }
 
 export type SignInData = {
@@ -20,10 +19,13 @@ export type SignUpData = {
     password: string
 }
 
-export type UserError = {
-    signIn: StateError | null,
-    signUp: StateError | null
-}
+export type UserError = Record<UserField, StateError | null>
+
+export type UserLoading = Record<UserField, boolean>
+
+export type UserField = 'signIn' | 'signUp' | 'signOut' | 'getUser'
+
+export type UserFieldState = {loading: boolean, error: StateError | null, success: boolean}
 
 export type User = {
     name: string,
@@ -32,3 +34,5 @@ export type User = {
     phone: string,
     birthDate: string
 }
+
+export type SelectFieldReturn = [loading:boolean, error:string|null, success : boolean]

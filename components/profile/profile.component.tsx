@@ -4,20 +4,21 @@ import Button from "../common/button/button.component"
 import ModalContent from "../common/modal-content/modal-content.component"
 import Modal from "../common/modal/modal.component"
 import ProfileMenu from "./profile-menu/profile-menu.component"
+import Spinner from "../common/spinner/spinner.component"
 
-type profileProps = {}
+type ProfileProps = {}
 
-const Profile: React.FC<profileProps> = (props) => {
+const Profile: React.FC<ProfileProps> = (props) => {
 
     const {children} = props
-    const {user, translation, content, modalState, hideModal, showModal} = useProfile()
+    const {user, translation, content, modalState, hideModal, showModal, handleSignOut, loading} = useProfile()
 
     return user &&
         (<div className={'profile'}>
             <div className={'profile__top'}>
                 <div className={'profile__sign-out'}>
-                    <Button className={'profile__sign-out-btn'} onClick={() => {}}>
-                        {translation.signOut}
+                    <Button className={'profile__sign-out-btn'} onClick={handleSignOut}>
+                        {loading? <Spinner/> : translation.signOut}
                     </Button>
                 </div>
                 <div className={'profile__name'}>
@@ -36,7 +37,6 @@ const Profile: React.FC<profileProps> = (props) => {
                 {children}
             </div>
         </div>)
-
 }
 
 export const getProfileLayout = (page: ReactNode) => {

@@ -3,6 +3,7 @@ import Link from "next/link"
 import Input from "../../common/input/input.component"
 import Button from "../../common/button/button.component"
 import useSignIn from "./sign-in.hook"
+import Spinner from "../../common/spinner/spinner.component"
 
 type SignInProps= {
     setSign: () => void
@@ -11,7 +12,7 @@ type SignInProps= {
 const SignIn: React.FC<SignInProps> = (props) => {
 
     const {setSign} = props
-    const {values, handleChange, handleClick, signInError, justSign} = useSignIn()
+    const {values, handleChange, handleClick, error, loading, success} = useSignIn()
 
     return (
         <div className={'sign__content'}>
@@ -35,13 +36,13 @@ const SignIn: React.FC<SignInProps> = (props) => {
                     value={values.password}
                     handleChange={handleChange}
                 />
-                <div className={`form-message ${signInError? 'form-message--error' : ''} ${justSign ? 'form-message--success' : ''}`}>
-                    {signInError}
-                    {justSign && 'Ви успішно увійшли. Через секунду вас буде пернаправлено.'}
+                <div className={`form-message ${error? 'form-message--error' : ''} ${success ? 'form-message--success' : ''}`}>
+                    {error}
+                    {success && 'Ви успішно увійшли. Через секунду вас буде пернаправлено.'}
                 </div>
                 <div className="sign__bottom">
                     <Button className="sign__button" onClick={handleClick}>
-                        УВІЙТИ
+                        {loading? <Spinner/> : 'УВІЙТИ'}
                     </Button>
                     <Link href={'/'}>
                         <a className="sign__forget">Забули пароль?</a>

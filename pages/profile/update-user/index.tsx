@@ -11,10 +11,9 @@ type UpdateUserProps = {}
 const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
 
     const {
-        inputs, translation: {inputs: translInputs, save, changePassword, title, password },
+        inputs, translation: {inputs: translInputs, save, changePassword, title, password},
         handleChange, handleSubmit, handleValidate
     } = useUpdateUser()
-
 
     return (
         <div className={'update-user'}>

@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosPromise, AxiosResponse} from "axios"
-import {ActionCreatorWithPayload} from "@reduxjs/toolkit"
+import {ActionCreatorWithPayload, PayloadAction} from "@reduxjs/toolkit"
 import {AppState, AppThunk} from "../redux/store"
+import {StateError} from "../types/types";
 
 let baseURL = 'http://localhost:5000'
 
@@ -15,7 +16,7 @@ export const Api = {
             return await instance.get(url)
         },
     post:
-        async (url: string, options: object) => {
+        async (url: string, options: object = {}) => {
             return await instance.post(url, options)
         },
     put:
@@ -32,8 +33,9 @@ export const Api = {
         }
 }
 
-export const apiCallThunk = (
-    apiCall: () => AxiosPromise, successAction: ActionCreatorWithPayload<any>, errorAction: ActionCreatorWithPayload<any>,): AppThunk => {
+export const apiCallAsync = (
+    apiCall: () => AxiosPromise, successAction: ActionCreatorWithPayload<any>, errorAction: ActionCreatorWithPayload<any> |
+        ((err: StateError) => PayloadAction<any>),): AppThunk => {
     return async (dispatch, getState) => {
         try {
             const res = await apiCall()

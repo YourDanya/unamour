@@ -24,7 +24,15 @@ export const Errors = {
             eng: 'Something went wrong. Try again later.',
             ru: 'Что-то пошло не так. Попройбуйте снова позже.'
         }
+    },
+    signOut: {
+        '5' : {
+            ua: 'Щось пійшло не так. Спробоуйте пізніше',
+            eng: 'Something went wrong. Try again later.',
+            ru: 'Что-то пошло не так. Попройбуйте снова позже.'
+        }
     }
+
 }
 
 export type ErrorField = keyof typeof Errors

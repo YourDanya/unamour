@@ -131,3 +131,7 @@
 // const obj = {a: 1}
 //
 // console.log(obj.__proto__)
+
+let test = ''
+
+console.log(test[0])
