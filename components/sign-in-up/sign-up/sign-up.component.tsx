@@ -9,7 +9,7 @@ export type SignUpProps = {
 const SignUp: React.FC<SignUpProps> = (props) => {
 
     const {setSign} = props
-    const {values, handleChange, signUpError} = useSignUp()
+    const {values, handleChange} = useSignUp()
 
     return (
         <div className={'sign__content'}>

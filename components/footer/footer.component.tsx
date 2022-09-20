@@ -6,31 +6,32 @@ import Link from "next/link"
 import useFooter from "./footer.hook"
 import Links from "./links/links.component"
 import ModalContent from "../common/modal-content/modal-content.component"
+import Button from "../common/button/button.component"
 
 const Footer: React.FC = () => {
 
-    const {footer, handleChange, modal, showModal, hideModal} = useFooter()
+    const {handleChange, modal, showModal, hideModal, content, inputs, transl} = useFooter()
 
     return (
         <footer className='footer'>
             <div className="container footer__social">
                 <Links className='footer__links--desc'/>
                 <div className="footer__subscription">
-                    <div className="footer__news">НОВИНИ UNAMOUR</div>
+                    <div className="footer__news">{transl.news}</div>
                     <div className='footer__form'>
                         <Input
-                            placeholder={'Email'}
+                            placeholder={transl.input.email}
                             name={'email'}
-                            value={footer.email.value}
+                            value={inputs.values.email}
                             handleChange={handleChange}
                         >
                             <button className='footer__submit'>
                                 <img src={telegram.src} alt={'footer icon'}/>
                             </button>
                             <div className='footer__policy'>
-                                Натискаючи на іконку, ви походжуєтесь з
+                                {transl.policy}
                                 <Link href={'/client-service/policy'}>
-                                    <a className='footer__policy-link'>політикою конфіденційність</a>
+                                    <a className='footer__policy-link'>{transl.policyLink}</a>
                                 </Link>
                             </div>
                         </Input>
@@ -38,12 +39,12 @@ const Footer: React.FC = () => {
                 </div>
             </div>
             <div className="container footer__copyright">
-                <div className="footer__years">© 2020-2022</div>
+                <div className="footer__years">{content.years}</div>
                 <div className='footer__name'>
-                    UNAMOUR
-                    <button onClick={showModal} className='footer__contact' name={'links'}>
-                        Звя'затися з нами
-                    </button>
+                    {content.name}
+                    <Button onClick={showModal} className='footer__contact' name={'links'}>
+                        {transl.contact}
+                    </Button>
                 </div>
                 <div className="footer__logo">
                     Зроблено на
@@ -53,7 +54,7 @@ const Footer: React.FC = () => {
                 </div>
             </div>
             <ModalContent active={modal.links} hideModal={hideModal} className={'footer__modal'}>
-                <div className={'footer__title'}>UNAMOUR</div>
+                <div className={'footer__title'}>{content.name}</div>
                 <Links/>
             </ModalContent>
         </footer>

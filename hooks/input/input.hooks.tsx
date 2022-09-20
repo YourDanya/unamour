@@ -1,7 +1,8 @@
-import React, {useState} from "react"
+import React, {useMemo, useRef, useState} from "react"
 import {useRouter} from "next/router"
-import {Input, Inputs, LocaleType} from "../types/types"
-import {Locale} from "../redux/main/main.types";
+import {Inputs, InputObj, InputsObj, UseInput, ValidationInput, ValidationInputs} from "./input.types"
+import {Locale} from "../../redux/main/main.types"
+import {values} from "lodash";
 
 export const usePlainInput = <T extends { [prop: string]: string | boolean | number }, >(inputs: T):
     [values: T, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void, setValues: (values: T) => void] => {
@@ -14,43 +15,71 @@ export const usePlainInput = <T extends { [prop: string]: string | boolean | num
     return [values, handleChange, setValues]
 }
 
-export const useInput = <T extends Inputs, > (initInputs: T):
-    [inputs: T & Record <keyof T, {error: string}>, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void, setInputs: (inputs: T) => void,
-    handleValidate: (event: any) => void, handleValidateAll: (event: React.MouseEvent) => void] => {
+export const useInput : UseInput = (inputsObj)=> {
 
-    const [inputs, setInputs] = useState(initInputs)
+    type T = typeof inputsObj
+
+    const initInputs = useMemo(() => {
+       return Object.entries(inputsObj).reduce((accum, [key, obj]) => {
+           const tkey = key as keyof typeof accum.values & keyof typeof accum.errors
+           accum.values[tkey] = obj.value
+           accum.errors[tkey] = obj.error ?? null
+           if (obj.validations) accum.validations[tkey] = obj.validations
+           return accum
+       }, {validations: {}, values: {}, errors: {}} as ValidationInputs<keyof T>)
+    }, [])
+
+    const [values, setValues] = useState(initInputs.values)
+    const [errors, setErrors] = useState(initInputs.errors)
+    const {validations} = initInputs
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target
-        setInputs({...inputs, [name]: {...inputs[name],value}})
+        setValues({...values, [name] : value})
+    }
+
+    const resetValues = () => {
+        setValues(initInputs.values)
     }
 
     const locale = useRouter().locale as Locale
+    const errCountRef = useRef(0)
 
     const handleValidate = (event: any) => {
+
         const {name} = event.target as HTMLButtonElement
-        const error = validate(inputs[name], locale)
-        setInputs({...inputs, [name]: {...inputs[name], error}})
+        const error = validate({value: values[name], validations: validations[name]}, locale)
+        console.log(error)
+        if (errors[name] && !error) errCountRef.current--
+        if (!errors[name] && error) errCountRef.current++
+
+        setErrors({...errors, [name]: error})
     }
 
-    const handleValidateAll = (event: React.MouseEvent) => {
-        const {name} = event.target as HTMLButtonElement
-        let newInputs: T = {} as T
-        for (let input in inputs) {
-            const error = validate(inputs[name], locale)
-            newInputs[input] = {...inputs[input], error}
-        }
-        setInputs(newInputs)
+    // const handleValidateAll = (event: React.MouseEvent) => {
+    //     const {name} = event.target as HTMLButtonElement
+    //     let newInputs: T = {} as T
+    //     for (let input in inputs) {
+    //         const error = validate(inputs[name], locale)
+    //         newInputs[input] = {...inputs[input], error}
+    //     }
+    //     setInputs(newInputs)
+    // }
+
+    const setInputs = () => {
+
     }
 
-    return [inputs as T & Record <keyof T, {error: string}>, handleChange, setInputs, handleValidate, handleValidateAll]
+    return [{values, errors}, handleChange, handleValidate, resetValues, setInputs]
 }
 
-export const validate = <T extends Input, >(input: T, locale: LocaleType) => {
+export const validate = <T extends ValidationInput, >(input: T, locale: Locale) => {
     const validations = input.validations
     const value = input.value as string
     const length = value.length
     const errors: string[] = []
+
+    console.log(validations)
 
     for (let validation in validations) {
         let validationValue = validations[validation]
@@ -80,6 +109,8 @@ export const validate = <T extends Input, >(input: T, locale: LocaleType) => {
                 break
             }
             case ('minLength') : {
+                console.log(validationValue)
+                console.log(length)
                 validationValue = validationValue as number
                 const end = symbol(validationValue, locale)
                 if (length<validationValue) errors.push({
@@ -87,8 +118,10 @@ export const validate = <T extends Input, >(input: T, locale: LocaleType) => {
                     eng: `The field length must be greater than ${validationValue} symbol${end}`,
                     ru: `Длина поля должна быть больше чем ${validationValue} символ${end}`
                 }[locale])
+                break
             }
             case ('maxLength') : {
+                console.log('here')
                 validationValue = validationValue as number
                 const end = symbol(validationValue, locale)
                 if (length>validationValue) errors.push({
@@ -99,10 +132,10 @@ export const validate = <T extends Input, >(input: T, locale: LocaleType) => {
             }
         }
     }
-    return errors.join('\n')
+    return errors.join('\n') ?? null
 }
 
-const symbol = (number: number, locale: LocaleType) =>{
+const symbol = (number: number, locale: Locale) =>{
     const lastChar = number % 10
 
     if (locale==='eng') {

@@ -24,8 +24,8 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     name={'name'}
                     handleChange={handleChange}
                     placeholder={translInputs.name.placeholder}
-                    value={inputs.name.value}
-                    error={inputs.name.error}
+                    value={inputs.values.name}
+                    error={inputs.errors.name}
                     handleValidate={handleValidate}
                 />
                 <Input
@@ -33,8 +33,8 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     name={'surname'}
                     handleChange={handleChange}
                     placeholder={translInputs.surname.placeholder}
-                    value={inputs.surname.value}
-                    error={inputs.surname.error}
+                    value={inputs.values.surname}
+                    error={inputs.errors.surname}
                     handleValidate={handleValidate}
                 />
                 <Input
@@ -42,8 +42,8 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     name={'email'}
                     handleChange={handleChange}
                     placeholder={translInputs.email.placeholder}
-                    value={inputs.email.value}
-                    error={inputs.email.error}
+                    value={inputs.values.email}
+                    error={inputs.errors.email}
                     handleValidate={handleValidate}
                 />
                 <Input
@@ -51,8 +51,8 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     name={'phone'}
                     handleChange={handleChange}
                     placeholder={translInputs.phone.placeholder}
-                    value={inputs.phone.value}
-                    error={inputs.phone.error}
+                    value={inputs.values.phone}
+                    error={inputs.errors.phone}
                     handleValidate={handleValidate}
                 />
                 <Input
@@ -60,8 +60,8 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     name={'birthDate'}
                     handleChange={handleChange}
                     placeholder={translInputs.birthDate.placeholder}
-                    value={inputs.birthDate.value}
-                    error={inputs.birthDate.error}
+                    value={inputs.values.birthDate}
+                    error={inputs.errors.birthDate}
                     handleValidate={handleValidate}
                 />
                 <Button className={'update-user__button'} onClick={handleSubmit}>

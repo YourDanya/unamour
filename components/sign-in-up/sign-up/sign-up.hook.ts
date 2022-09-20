@@ -1,11 +1,9 @@
-import {usePlainInput} from "../../../hooks/input.hooks"
 import {useSelector} from "react-redux"
-import {selectSignUpError} from "../../../redux/user/user.slice"
+import {usePlainInput} from "../../../hooks/input/input.hooks"
 
 const useSignUp = () => {
     const [values, handleChange] = usePlainInput({name: '', email: '', password: '', passwordConfirm: ''})
-    const signUpError = useSelector(selectSignUpError)
-    return {values, handleChange, signUpError}
+    return {values, handleChange}
 }
 
 export default useSignUp

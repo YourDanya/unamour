@@ -12,44 +12,48 @@ type SignInProps= {
 const SignIn: React.FC<SignInProps> = (props) => {
 
     const {setSign} = props
-    const {values, handleChange, handleClick, error, loading, success} = useSignIn()
+    const {inputs, handleChange, handleClick, error, loading, success, handleValidate, transl} = useSignIn()
 
     return (
         <div className={'sign__content'}>
             <div className="sign__content-top">
-                <div className="sign__content-title">ВХІД</div>
-                <div className="sign__content-link" onClick={setSign}>РЕЄСТРАЦІЯ</div>
+                <div className="sign__content-title">{transl.signIn}</div>
+                <div className="sign__content-link" onClick={setSign}>{transl.switch}</div>
             </div>
             <form className={'sign__form'}>
                 <Input
-                    placeholder={'Ваш e-mail'}
+                    placeholder={transl.inputs.email}
                     className={'sign__input'}
                     name={'email'}
-                    value={values.email}
+                    value={inputs.values.email}
+                    error={inputs.errors.email}
                     handleChange={handleChange}
+                    handleValidate={handleValidate}
                 />
                 <Input
                     type={'password'}
-                    placeholder={'Ваш пароль'}
+                    placeholder={transl.inputs.password}
                     className={'sign__input'}
                     name={'password'}
-                    value={values.password}
+                    value={inputs.values.password}
+                    error={inputs.errors.password}
                     handleChange={handleChange}
+                    handleValidate={handleValidate}
                 />
                 <div className={`form-message ${error? 'form-message--error' : ''} ${success ? 'form-message--success' : ''}`}>
                     {error}
-                    {success && 'Ви успішно увійшли. Через секунду вас буде пернаправлено.'}
+                    {success && transl.success}
                 </div>
                 <div className="sign__bottom">
                     <Button className="sign__button" onClick={handleClick}>
-                        {loading? <Spinner/> : 'УВІЙТИ'}
+                        {loading? <Spinner/> : transl.signIn}
                     </Button>
                     <Link href={'/'}>
-                        <a className="sign__forget">Забули пароль?</a>
+                        <a className="sign__forget">{transl.forget}</a>
                     </Link>
-                    <p className='sign__text'>
-                        Натискаючи кнопку Увійти, я даю згоду на обробку та <br/> передачу моїх персональних даних.
-                    </p>
+                    <div className='sign__consent'>
+                        {transl.consent}
+                    </div>
                 </div>
             </form>
         </div>

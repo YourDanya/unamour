@@ -1,13 +1,16 @@
-import {useInput} from "../../hooks/input.hooks"
 import React from "react"
 import {useModal} from "../../hooks/component.hooks"
+import footerContent from "./footer.content"
+import {useLocale} from "../../hooks/event-handler.hooks"
+import {useInput} from "../../hooks/input/input.hooks"
 
 const useFooter = () => {
-    const [footer, handleChange] = useInput({email: {value: '', validations: {isEmail: true}}})
 
+    const [content, transl] = useLocale(footerContent)
+    const [inputs, setInputs, handleChange] = useInput(content.input)
     const [modal, showModal, hideModal] = useModal({links: false})
 
-    return {footer, handleChange, modal, showModal, hideModal}
+    return {handleChange, modal, showModal, hideModal, content, transl, inputs}
 }
 
 export default useFooter
