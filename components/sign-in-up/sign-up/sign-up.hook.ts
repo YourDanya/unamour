@@ -1,9 +1,14 @@
-import {useSelector} from "react-redux"
-import {usePlainInput} from "../../../hooks/input/input.hooks"
+import {useInput, usePlainInput} from "../../../hooks/input/input.hooks"
+import {useLocale} from "../../../hooks/event-handler.hooks"
+import signUpContent from "./sign-up.content"
 
 const useSignUp = () => {
-    const [values, handleChange] = usePlainInput({name: '', email: '', password: '', passwordConfirm: ''})
-    return {values, handleChange}
+
+    const [content, transl] = useLocale(signUpContent)
+
+    const [inputs, handleChange] = useInput(content.inputs)
+
+    return {inputs, handleChange, content, transl}
 }
 
 export default useSignUp

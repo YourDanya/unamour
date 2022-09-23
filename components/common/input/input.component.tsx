@@ -9,7 +9,7 @@ export type InputProps = {
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string | null,
     type?: string,
-    handleValidate?: (event: React.FocusEvent<HTMLInputElement>) => void
+    handleValidate?: (name: string) => void
 }
 
 const Input: React.FC<InputProps> = (props) => {
@@ -33,8 +33,10 @@ const Input: React.FC<InputProps> = (props) => {
                     />
                     <div className='input__placeholder'>{placeholder}</div>
                 </div>
-                {error && (<div className='input__error'>{error}</div>)}
                 {children && (<div className='input__children'>{children}</div>)}
+                <div className='input__error'>
+                    {error}
+                </div>
             </div>
         </div>
     )

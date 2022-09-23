@@ -1,53 +1,19 @@
 const signInContent = {
-    inputs: {
-        email: {value: '', validations: {isEmail: true, minLength: 7}} ,
-        password: {value: '', validations: {minLength: 6, maxLength: 20}}
-    },
     translations: {
         ua: {
             signIn: 'вхід',
             switch: 'реєстрація',
-            success: 'Ви успішно увійшли. Через секунду вас буде пернаправлено.',
-            error: {
-                4: 'Невірний логін або пароль.',
-                5: 'Щось пійшло не так. Спробоуйте пізніше'
-            },
-            inputs: {
-               email: 'Ваш e-mail',
-               password: 'Ваш пароль',
-            },
-            forget: 'Забули пароль?',
-            consent: 'Натискаючи кнопку Увійти, я даю згоду на обробку та \nпередачу моїх персональних даних.'
+            reset: 'відновити'
         },
         eng: {
-            signIn: 'sign in',
-            switch: 'sign in',
-            success: 'You have successfully logged in. You will be redirected in a second.',
-            error: {
-                4: 'Wrong email or password.',
-                5: 'Something went wrong. Try again later.'
-            },
-            inputs: {
-                email: 'Your email',
-                password: 'Your password'
-            },
-            forget: 'Forgot your password?',
-            consent: 'By clicking the Submit button, I give permission for the processing and \ntransfer of my personal data.'
+            signIn: 'login in',
+            switch: 'login in',
+            reset: 'reset'
         },
         ru: {
             signIn: 'вход',
             switch: 'регистрация',
-            success: 'Вы успешно вошли. Через секунду вас будет пернаправлено.',
-            error: {
-                4: 'Неверниый логин или пароль.',
-                5: 'Что-то пошло не так. Попройбуйте снова позже.'
-            },
-            inputs: {
-                email: 'Ваш e-mail',
-                password: 'Ваш пароль'
-            },
-            forget: 'Забыли пароль?',
-            consent: 'Нажимая кнопку Войти, я согласен на обработку и \nпередачу моих персональных данных.'
+            reset: 'восстановить'
         }
     }
 }

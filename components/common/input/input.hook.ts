@@ -4,7 +4,7 @@ import React from "react";
 import {useDebounceEffect} from "../../../hooks/component.hooks";
 
 const useInput = (props: InputProps) => {
-    const {handleValidate, error} = props
+    const {handleValidate, error, name, value} = props
 
     const [focused, _handleFocus] = useToggle()
 
@@ -14,14 +14,14 @@ const useInput = (props: InputProps) => {
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         _handleFocus(event)
-        handleValidate && handleValidate(event)
+        handleValidate && handleValidate(name)
     }
 
-    // useDebounceEffect(() => {
-    //     if (error) {
-    //         handleValidate()
-    //     }
-    // }, [error])
+    useDebounceEffect(() => {
+        if (handleValidate && error) {
+            handleValidate(name)
+        }
+    }, [value])
 
     return {focused, handleFocus, handleBlur}
 }

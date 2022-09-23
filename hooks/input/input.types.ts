@@ -1,4 +1,4 @@
-import {ChangeEvent, MouseEvent} from "react"
+import {ChangeEvent, MutableRefObject} from "react"
 
 export type Value = string | boolean | number | string[]
 
@@ -41,7 +41,7 @@ export type UseInput = <T extends InputsObj,> (inputsObj: T) => [
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void,
     handleValidate: (event: any) => void,
     resetValues: () => void,
+    errRef: MutableRefObject<{errors: Record<keyof T, string | null>, count: number}>,
     setInputs: (inputs: Inputs<keyof T, Pick<T[keyof T], 'value'>>) => void,
     // handleValidateAll: (event: MouseEvent<HTMLInputElement>) => void,
-    // isError: boolean
 ]

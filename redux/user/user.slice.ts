@@ -9,7 +9,9 @@ const initialState: UserState = {
         signIn: {loading: false, error: null, success: false},
         signUp: {loading: false, error: null, success: false},
         signOut: {loading: false, error: null, success: false},
-        getUser: {loading: false, error: null, success: false}
+        getUser: {loading: false, error: null, success: false},
+        forgetPass: {loading: false, error: null, success: false},
+        resetPass: {loading: false, error: null, success: false}
     },
     current : '',
     activation: false,
@@ -34,7 +36,6 @@ export const userSlice = createSlice({
         resetSuccess: (state, action: PayloadAction<UserField>) => {
             state.fields[action.payload].success = false
         },
-
         signInSuccess: (state, action: PayloadAction<{user: User}>) => {
             state.user = action.payload.user
             state.fields.signIn = {loading: false, error: null, success: true}
@@ -52,20 +53,11 @@ export const userSlice = createSlice({
         activateSuccess: (state, action: PayloadAction<any>) => {
 
         },
-        activateError: (state, action: PayloadAction<StateError>) => {
-
-        },
-        forgetPassSuccess: (state, action: PayloadAction<any>) => {
-
-        },
-        forgetPassError: (state, action: PayloadAction<StateError>) => {
-
+        forgetPassSuccess: (state) => {
+            state.fields.forgetPass = {loading: false, error: null, success: true}
         },
         resetPassSuccess: (state, action: PayloadAction<any>) => {
-
-        },
-        resetPassError: (state, action: PayloadAction<StateError>) => {
-
+            state.fields.resetPass = {loading: false, error: null, success: true}
         }
     },
     extraReducers: {
@@ -75,8 +67,8 @@ export const userSlice = createSlice({
     }
 })
 
-export const {signInSuccess, getUserSuccess, resetSuccess, startAsync, failAsync, signOutSuccess
+export const {signInSuccess, getUserSuccess, resetSuccess, startAsync, failAsync, signOutSuccess,
 
-} = userSlice.actions
+forgetPassSuccess} = userSlice.actions
 
 export default userSlice.reducer

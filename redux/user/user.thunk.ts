@@ -1,7 +1,7 @@
 import {AppThunk} from "../store"
 import {Api, apiCallAsync} from "../../utils/api.utils"
-import {SignInData} from "./user.types"
-import { getUserSuccess, signInSuccess, signOutSuccess, startAsync, failAsync} from "./user.slice"
+import {ForgetPassData, SignInData} from "./user.types"
+import {getUserSuccess, signInSuccess, signOutSuccess, startAsync, failAsync, forgetPassSuccess} from "./user.slice"
 import {StateError} from "../../types/types"
 
 export const signIn = (signInData: SignInData): AppThunk => {
@@ -30,6 +30,24 @@ export const signOut = (): AppThunk => {
         dispatch(apiCallAsync(signOut, signOutSuccess, signOutFailure))
     }
 }
+
+export const forgetPass = (forgetPassData: ForgetPassData): AppThunk => {
+    return async (dispatch) => {
+        dispatch(startAsync('forgetPass'))
+        const forgetPass = () => Api.post('/auth/send-recovery-link', forgetPassData)
+        const forgetPassFailure = (error: StateError) => failAsync({error, field: 'forgetPass'})
+        dispatch(apiCallAsync(forgetPass, forgetPassSuccess, forgetPassFailure))
+    }
+}
+
+// export const resetPass = (): AppThunk => {
+//     return async (dispatch) => {
+//         dispatch(startAsync('resetPass'))
+//         const signOut = () => Api.post('/auth/forget-pass')
+//         const signOutFailure = (error: StateError) => failAsync({error, field: 'forgetPass'})
+//         dispatch(apiCallAsync(signOut, signOutSuccess, signOutFailure))
+//     }
+// }
 
 // export const signUp = (signUpData: SignUpData): AppThunk => {
 //     return async (dispatch) => {

@@ -43,34 +43,26 @@ export const useInput : UseInput = (inputsObj)=> {
     }
 
     const locale = useRouter().locale as Locale
-    const errCountRef = useRef(0)
+    // const initErrRef = Object.entries(errors).reduce((accum ,[key, value]) => {
+    //     const tkey = key as keyof typeof errors
+    //     accum[tkey] = !!value
+    //     return accum
+    // }, {} as Record<keyof typeof errors, boolean>)
+    const errRef = useRef({errors, count: 0})
 
-    const handleValidate = (event: any) => {
-
-        const {name} = event.target as HTMLButtonElement
+    const handleValidate = (name: string | keyof typeof errors) => {
         const error = validate({value: values[name], validations: validations[name]}, locale)
-        console.log(error)
-        if (errors[name] && !error) errCountRef.current--
-        if (!errors[name] && error) errCountRef.current++
 
-        setErrors({...errors, [name]: error})
+        if (errRef.current.errors[name] && !error) errRef.current.count -= 1
+        if (!errRef.current.errors[name] && error) errRef.current.count += 1
+
+        errRef.current.errors[name] = error
+        setErrors({...errRef.current.errors, [name]: error})
     }
 
-    // const handleValidateAll = (event: React.MouseEvent) => {
-    //     const {name} = event.target as HTMLButtonElement
-    //     let newInputs: T = {} as T
-    //     for (let input in inputs) {
-    //         const error = validate(inputs[name], locale)
-    //         newInputs[input] = {...inputs[input], error}
-    //     }
-    //     setInputs(newInputs)
-    // }
+    const setInputs = () => {}
 
-    const setInputs = () => {
-
-    }
-
-    return [{values, errors}, handleChange, handleValidate, resetValues, setInputs]
+    return [{values, errors}, handleChange, handleValidate, resetValues, errRef, setInputs]
 }
 
 export const validate = <T extends ValidationInput, >(input: T, locale: Locale) => {
@@ -78,8 +70,6 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
     const value = input.value as string
     const length = value.length
     const errors: string[] = []
-
-    console.log(validations)
 
     for (let validation in validations) {
         let validationValue = validations[validation]
@@ -93,7 +83,7 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 break
             }
             case ('isEmail') : {
-                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) errors.push({
+                if (! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) errors.push({
                     ua: 'Введіть вірний email',
                     eng: 'Enter a valid email',
                     ru: 'Введите правильный email'
@@ -109,8 +99,6 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 break
             }
             case ('minLength') : {
-                console.log(validationValue)
-                console.log(length)
                 validationValue = validationValue as number
                 const end = symbol(validationValue, locale)
                 if (length<validationValue) errors.push({
@@ -121,7 +109,6 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 break
             }
             case ('maxLength') : {
-                console.log('here')
                 validationValue = validationValue as number
                 const end = symbol(validationValue, locale)
                 if (length>validationValue) errors.push({

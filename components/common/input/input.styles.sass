@@ -1,8 +1,6 @@
 .input
   flex-grow: 1
   position: relative
-  border-bottom: 1px solid #e0e0e0
-  padding: 10px 0
   &__input
     padding-right: 20px
     box-sizing: border-box
@@ -26,6 +24,8 @@
   &__main
     position: relative
     z-index: 10
+    border-bottom: 1px solid #e0e0e0
+    padding: 10px 0
   &__children
     z-index: 1
     top: 0
@@ -35,12 +35,10 @@
     opacity: 1
     transition: 0.4s opacity
   &__error
-    position: absolute
-    bottom: -20px
-    height: 15px
+    height: 20px
     display: flex
+    font-size: 10px
     align-items: center
-    justify-content: center
     color: red
   &__state
     &--focused
@@ -50,22 +48,23 @@
       .input__placeholder
         opacity: 0
 
+
+  //&--login
+  //  margin-top: 25px
+  //  .input__input
+  //    &:focus + .input__placeholder
+  //      visibility: visible
+  //      font-size: 10px
+  //      transform: translateY(-20px)
   //&--present, &--cart
   //  .input__input
   //    &:focus + .input__placeholder
   //      visibility: visible
   //    &:focus + .input__input
   //      border-color: black
-  &--sign
-    margin-top: 25px
-    .input__input
-      &:focus + .input__placeholder
-        visibility: visible
-        font-size: 10px
-        transform: translateY(-20px)
   //&--contact
   //  margin-top: 15px
-  //&--contact, &--sign
+  //&--contact, &--login
   //  padding-bottom: 15px
   //  .input__input
   //    &:focus + .input

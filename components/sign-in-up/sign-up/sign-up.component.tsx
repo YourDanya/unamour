@@ -9,47 +9,51 @@ export type SignUpProps = {
 const SignUp: React.FC<SignUpProps> = (props) => {
 
     const {setSign} = props
-    const {values, handleChange} = useSignUp()
+    const {inputs, handleChange, transl, content} = useSignUp()
 
     return (
         <div className={'sign__content'}>
             <div className="sign__content-top">
-                <div className="sign__content-title">РЕЄСТРАЦІЯ</div>
-                <div className="sign__content-link" onClick={setSign}>ВХІД</div>
+                <div className="sign__content-title">{transl.signUp}</div>
+                <div className="sign__content-link" onClick={setSign}>{transl.switch}</div>
             </div>
             <form className={'sign__form'}>
                 <Input
                     className={'sign__input'}
-                    placeholder={'Ім\'я'}
+                    placeholder={transl.inputs.name}
                     name={'name'}
-                    value={values.name}
+                    value={inputs.values.name}
+                    error={inputs.errors.name}
                     handleChange={handleChange}
                 />
                 <Input
                     className={'sign__input'}
-                    placeholder={'Ваш e-mail'}
+                    placeholder={transl.inputs.email}
                     name={'email'}
-                    value={values.email}
+                    value={inputs.values.email}
+                    error={inputs.errors.email}
                     handleChange={handleChange}
                 />
                 <Input
                     className={'sign__input'}
-                    placeholder={'Пароль'}
+                    placeholder={transl.inputs.password}
                     name={'password'}
-                    value={values.password}
+                    value={inputs.values.password}
+                    error={inputs.errors.password}
                     handleChange={handleChange}
                 />
                 <Input
                     className={'sign__input'}
-                    placeholder={'Підтвердження пароля'}
+                    placeholder={transl.inputs.passwordConfirm}
                     name={'passwordConfirm'}
-                    value={values.passwordConfirm}
+                    value={inputs.values.passwordConfirm}
+                    error={inputs.errors.passwordConfirm}
                     handleChange={handleChange}
                 />
                 <div className="sign__bottom">
-                    <button className="sign__button sign__button--up">СТВОРИТИ АКАУНТ</button>
-                    <div className={'sign__text'}>
-                        Натискаючи кнопку Створити акаунт, я даю згоду на обробку та <br/> передачу моїх персональних даних.
+                    <button className="sign__button sign__button--up">{transl.signUp}</button>
+                    <div className={'sign__consent'}>
+                        {transl.consent}
                     </div>
                 </div>
             </form>
