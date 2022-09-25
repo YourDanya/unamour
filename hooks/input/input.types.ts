@@ -36,12 +36,14 @@ export type ValidationInput = {
     validations: Validations
 }
 
-export type UseInput = <T extends InputsObj,> (inputsObj: T) => [
-    inputs: Inputs<keyof T,  T[keyof T]['value']>,
+// Inputs<keyof T, T[keyof T]['value']>
+
+export type UseInput = <T extends InputsObj,> (inputsObj: T) => {
+    inputs: {values: {[K in keyof T]: T[K]['value']}, errors: Record<keyof T, string | null>} ,
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void,
     handleValidate: (event: any) => void,
     resetValues: () => void,
-    errRef: MutableRefObject<{errors: Record<keyof T, string | null>, count: number}>,
+    errRef: MutableRefObject<{ errors: Record<keyof T, string | null>, count: number }>,
     setInputs: (inputs: Inputs<keyof T, Pick<T[keyof T], 'value'>>) => void,
-    // handleValidateAll: (event: MouseEvent<HTMLInputElement>) => void,
-]
+}
+

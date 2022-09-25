@@ -9,21 +9,27 @@ const resetPassContent = {
             inputs: {
                 pass: 'Новий пароль',
                 passConfirm: 'Підтверждення пароля'
-            }
+            },
+            save: 'зберегти',
+            success: 'Ваш пароль успішно змінено.'
         },
         eng: {
             title: 'password confirm',
             inputs: {
                 pass: 'New password',
                 passConfirm: 'Password confirm'
-            }
+            },
+            save: 'save',
+            success: 'Your password was successfully updated.'
         },
         ru: {
             title: 'восстановление пароля',
             inputs: {
                 pass: 'Новый пароль',
                 passConfirm: 'Подтверждение пароля'
-            }
+            },
+            save: 'сохранить',
+            success: 'Ваш пароль успешно изменен.'
         }
     }
 }

@@ -6,7 +6,7 @@ import {useInput} from "../../../hooks/input/input.hooks"
 
 const useUpdateUser = () => {
     const [content, translation] = useLocale(updateUserContent)
-    const [inputs, handleChange, setInputs, handleValidate] = useInput(content.inputs)
+    const {inputs, handleChange, setInputs, handleValidate} = useInput(content.inputs)
 
     const dispatch = useDispatch()
 

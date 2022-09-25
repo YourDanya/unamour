@@ -62,7 +62,7 @@ export const useInput : UseInput = (inputsObj)=> {
 
     const setInputs = () => {}
 
-    return [{values, errors}, handleChange, handleValidate, resetValues, errRef, setInputs]
+    return {inputs:{values, errors}, handleChange, handleValidate, resetValues, errRef, setInputs}
 }
 
 export const validate = <T extends ValidationInput, >(input: T, locale: Locale) => {

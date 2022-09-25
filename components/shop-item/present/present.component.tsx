@@ -1,6 +1,5 @@
 import React from "react"
 import PresentForm from "./present-form/present-form.component"
-import usePresent from "./present.hook"
 import PresentItem from "./present-item/present-item.component"
 
 export type presentProps = {
@@ -14,12 +13,12 @@ export type presentProps = {
 
 const Present: React.FC<presentProps> = (props) => {
 
-    const {price, name, images, activeSize, translation, color, inputs, handleChange, handleBlur} = usePresent(props)
+    const {name, images, activeSize, price, color} = props
 
     return (
         <div className={`present`}>
             <PresentItem images={images} name={name} color={color} activeSize={activeSize} price={price}/>
-            <PresentForm inputs={inputs} handleChange={handleChange} localeInputs={translation.inputs} price={price}/>
+            <PresentForm  price={price}/>
         </div>
     )
 }

@@ -14,10 +14,10 @@ import Present from "./present/present.component"
 
 const ShopItem: React.FC<ClientItem> = (props) => {
 
-    const {
-        name, color, sizes, images, price, delivery, description, composition, parameters, category, slugCategory,
-        oldPrice, variants, activeSize, handleSizeClick, modalState, showModal, hideModal
-    } = useShopItem(props)
+    const {name, color, sizes, images, variants, price, delivery, description, composition, parameters,
+        category, slugCategory, oldPrice} = props
+
+    const {activeSize, handleSizeClick, modalState, showModal, hideModal} = useShopItem()
 
     return (
         <div className='shop-item'>

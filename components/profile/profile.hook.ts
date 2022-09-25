@@ -16,7 +16,7 @@ const useProfile = () => {
     const [content, translation] = useLocale(profileContent)
     const [modalState, showModal, hideModal] = useModal({menu: false})
 
-    const [loading, _, success] = useSelector(selectField('signOut'))
+    const {loading, success} = useSelector(selectField('signOut'))
 
     const dispatch = useDispatch()
 

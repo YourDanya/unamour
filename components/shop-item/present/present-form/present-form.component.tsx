@@ -6,149 +6,167 @@ import Checkbox from "../../../common/checkbox/checkbox.component"
 import RadioButtons from "../../../common/radio-buttons/radio-buttons.component"
 import {LocaleType} from "../../../../types/types"
 import Input from "../../../common/input/input.component"
+import usePresentForm from "./present-form.hook";
 
-export type presentFormProps = {
-    localeInputs: typeof presentContent.translations[LocaleType]['inputs']
+export type PresentFormProps = {
     price: number,
-    inputs: typeof presentContent['inputs'],
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const PresentForm: React.FC<presentFormProps> = (props) => {
-    const {price, handleChange, inputs, localeInputs} = {...props}
+const PresentForm: React.FC<PresentFormProps> = (props) => {
+    const {price} = props
+
+    const {inputs, handleValidate, handleChange, transl, handleSubmit} = usePresentForm()
 
     return (
         <div className={'present__data'}>
             <div className={'present__question'}>
-                КОМУ ВИ ХОЧЕТЕ ЗРОБИТИ ПОДАРУНОК?
+                {transl.toWhom}
             </div>
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.recName.placeholder}
+                className='present__input'
                 name={'recName'}
-                value={inputs.recName.value as string}
+                placeholder={transl.inputs.recName}
+                value={inputs.values.recName}
                 handleChange={handleChange}
-                error={inputs.recName.error}
+                error={inputs.errors.recName}
+                handleValidate={handleValidate}
             />
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.recSurname.placeholder}
+                className='present__input'
                 name={'recSurname'}
-                value={inputs.recSurname.value as string}
+                placeholder={transl.inputs.recSurname}
+                value={inputs.values.recSurname}
                 handleChange={handleChange}
-                error={inputs.recSurname.error}
+                error={inputs.errors.recSurname}
+                handleValidate={handleValidate}
             />
             <Input
-                className='input--present'
-                placeholder={localeInputs.recEmail.placeholder}
+                className='present__input'
                 name={'recEmail'}
-                value={inputs.recEmail.value as string}
+                placeholder={transl.inputs.recEmail}
+                value={inputs.values.recEmail}
                 handleChange={handleChange}
-                error={inputs.recEmail.error}
+                error={inputs.errors.recEmail}
+                handleValidate={handleValidate}
             />
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.recPhone.placeholder}
+                className='present__input'
                 name={'recPhone'}
-                value={inputs.recPhone.value as string}
+                placeholder={transl.inputs.recPhone}
+                value={inputs.values.recPhone}
                 handleChange={handleChange}
-                error={inputs.recPhone.error}
+                error={inputs.errors.recPhone}
+                handleValidate={handleValidate}
             />
-            <div className={'present__question'}>ВІД КОГО</div>
+            <div className={'present__question'}>
+                {transl.fromWhom}
+            </div>
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.recPhone.placeholder}
+                className='present__input'
                 name={'sendName'}
-                value={inputs.sendName.value as string}
+                placeholder={transl.inputs.sendName}
+                value={inputs.values.sendName}
                 handleChange={handleChange}
-                error={inputs.sendName.error}
+                error={inputs.errors.sendName}
+                handleValidate={handleValidate}
             />
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.sendEmail.placeholder}
+                className='present__input'
                 name={'sendEmail'}
-                value={inputs.sendEmail.value as string}
+                placeholder={transl.inputs.sendEmail}
+                value={inputs.values.sendName}
                 handleChange={handleChange}
-                error={inputs.sendEmail.error}
+                error={inputs.errors.sendEmail}
+                handleValidate={handleValidate}
             />
-            <div className={'present__question'}>КУДИ ВІДПРАВИТИ?</div>
+            <div className={'present__question'}>
+                {transl.where}
+            </div>
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.country.placeholder}
+                className='present__input'
                 name={'country'}
-                value={inputs.country.value as string}
+                placeholder={transl.inputs.country}
+                value={inputs.values.country}
                 handleChange={handleChange}
-                error={inputs.country.error}
+                error={inputs.errors.country}
+                handleValidate={handleValidate}
             />
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.city.placeholder}
+                className='present__input'
                 name={'city'}
-                value={inputs.city.value as string}
+                placeholder={transl.inputs.city}
+                value={inputs.values.city}
                 handleChange={handleChange}
-                error={inputs.city.error}
+                error={inputs.errors.city}
+                handleValidate={handleValidate}
             />
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.index.placeholder}
+                className='present__input'
                 name={'index'}
-                value={inputs.index.value as string}
+                placeholder={transl.inputs.index}
+                value={inputs.values.index}
                 handleChange={handleChange}
-                error={inputs.index.error}
+                error={inputs.errors.index}
+                handleValidate={handleValidate}
             />
-            <div className={'present__index'}>Введіть 00000, якщо у вашої країни немає індексу</div>
+            <div className={'present__index'}>
+                {transl.index}
+            </div>
             <Input
-                className='input--present present__input'
-                placeholder={localeInputs.street.placeholder}
+                className='present__input'
                 name={'street'}
-                value={inputs.street.value as string}
+                placeholder={transl.inputs.street}
+                value={inputs.values.street}
                 handleChange={handleChange}
-                error={inputs.street.error}
+                error={inputs.errors.street}
+                handleValidate={handleValidate}
             />
             <Input
                 className='input--present present__input'
-                placeholder={localeInputs.house.placeholder}
                 name={'house'}
-                value={inputs.house.value as string}
+                placeholder={transl.inputs.house}
+                value={inputs.values.house}
                 handleChange={handleChange}
-                error={inputs.house.error}
+                error={inputs.errors.house}
+                handleValidate={handleValidate}
             />
             <Input
                 className='input--present present__input'
-                placeholder={localeInputs.apartment.placeholder}
                 name={'apartment'}
-                value={inputs.apartment.value as string}
+                placeholder={transl.inputs.apartment}
+                value={inputs.values.apartment}
                 handleChange={handleChange}
-                error={inputs.apartment.error}
+                error={inputs.errors.apartment}
+                handleValidate={handleValidate}
             />
-            <div className={'present__question'}>ОБЕРІТЬ ДОСТАВКУ</div>
-            <RadioButtons
-                className={'present__delivery'}
-                name={'delivery'}
-                inputs={mapDelivery(inputs.delivery.value, localeInputs.delivery.labels)}
-                handleChange={handleChange}
-                active={inputs.delivery.value[0] as string}
-            />
+            <div className={'present__question'}>{transl.delivery}</div>
+            {/*<RadioButtons*/}
+            {/*    className={'present__delivery'}*/}
+            {/*    name={'delivery'}*/}
+            {/*    inputs={mapDelivery(inputs.delivery.value, localeInputs.delivery.labels)}*/}
+            {/*    handleChange={handleChange}*/}
+            {/*    active={inputs.delivery.value[0] as string}*/}
+            {/*/>*/}
             <div className='present__total'>
-                <div className="present__total-label">Вартість: {price} ₴</div>
-                <div className="present__total-label">Доставка: 0 ₴</div>
+                <div className="present__total-label">{transl.totalPrice}: {price} ₴</div>
+                <div className="present__total-label">{transl.delivery}: 0 ₴</div>
             </div>
             <Checkbox
                 className={'checkbox--present'}
-                label={localeInputs.anonymously.placeholder}
                 name={'anonymously'}
-                value={inputs.anonymously.value as boolean}
+                label={transl.inputs.surprise}
+                value={inputs.values.anonymously}
                 handleChange={handleChange}
             />
             <Checkbox
                 className={'checkbox--present'}
-                label={localeInputs.surprise.placeholder}
                 name={'surprise'}
-                value={inputs.surprise.value as boolean}
+                label={transl.inputs.surprise}
+                value={inputs.values.surprise}
                 handleChange={handleChange}
             />
-            <Button className={'button--present'} onClick={() => {}}>
-                {`СПЛАТИТИ ${price} ₴`}
+            <Button className={'button--present'} onClick={handleSubmit}>
+                {`${transl.pay} ${price} ₴`}
             </Button>
         </div>
     )

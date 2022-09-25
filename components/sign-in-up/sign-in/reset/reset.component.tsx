@@ -1,8 +1,8 @@
 import {FC, MouseEvent} from "react"
 import Input from "../../../common/input/input.component"
 import Button from "../../../common/button/button.component"
-import Spinner from "../../../common/spinner/spinner.component"
 import useReset from "./reset.hook"
+import FormMessage from "../../../common/form-message/form-message.component"
 
 type ResetProps = {
     handleResetPass: (event: MouseEvent<HTMLElement>) => void
@@ -11,7 +11,7 @@ type ResetProps = {
 const Reset: FC<ResetProps> = (props) => {
 
     const {handleResetPass} = props
-    const {transl, inputs, handleChange, handleValidate, forgetSubmit, forget, reset} = useReset()
+    const {transl, inputs, handleChange, handleValidate, forgetSubmit, loading, success, error} = useReset()
 
     return (
         <form className={'sign__reset'}>
@@ -28,17 +28,13 @@ const Reset: FC<ResetProps> = (props) => {
                 handleValidate={handleValidate}
             />
             <div className="sign__bottom">
-                <Button className="sign__button sign__button--reset" onClick={forgetSubmit}>
-                    {forget.loading ? <Spinner/> : transl.title}
+                <Button className="sign__button sign__button--reset" onClick={forgetSubmit} loading={loading}>
+                    {transl.title}
                 </Button>
                 <Button className="sign__forget" onClick={handleResetPass}>
                     {transl.switch}
                 </Button>
-                <div
-                    className={`form-message ${forget.error ? 'form-message--error' : ''} ${forget.success ? 'form-message--success' : ''}`}>
-                    {forget.error}
-                    {forget.success && transl.forget.success}
-                </div>
+                <FormMessage success={success} error={error}/>
             </div>
         </form>
     )

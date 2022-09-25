@@ -3,6 +3,7 @@ import Input from "../../../common/input/input.component"
 import Button from "../../../common/button/button.component"
 import Spinner from "../../../common/spinner/spinner.component"
 import useLogin from "./login.hook"
+import FormMessage from "../../../common/form-message/form-message.component";
 
 type LoginProps = {
     handleResetPass: (event: MouseEvent<HTMLElement>) => void
@@ -35,17 +36,13 @@ const Login: FC<LoginProps> = (props) => {
                 handleValidate={handleValidate}
             />
             <div className="sign__bottom">
-                <Button className="sign__button" onClick={handleClick}>
-                    {loading ? <Spinner/> : transl.signIn}
+                <Button className="sign__button" onClick={handleClick} loading={loading}>
+                    {transl.signIn}
                 </Button>
                 <Button className="sign__forget" onClick={handleResetPass}>
                     {transl.forget}
                 </Button>
-                <div
-                    className={`form-message ${error ? 'form-message--error' : ''} ${success ? 'form-message--success' : ''}`}>
-                    {error}
-                    {success && transl.success}
-                </div>
+                <FormMessage success={success} error={error}/>
                 <div className='sign__consent'>
                     {transl.consent}
                 </div>

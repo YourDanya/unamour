@@ -26,7 +26,6 @@ export type DeliveryType = {value: string, label: {title: string, price: string,
 
 export type LocaleType = 'ua' | 'eng' | 'ru'
 
-
 export type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
 

@@ -34,9 +34,9 @@ const Input: React.FC<InputProps> = (props) => {
                     <div className='input__placeholder'>{placeholder}</div>
                 </div>
                 {children && (<div className='input__children'>{children}</div>)}
-                <div className='input__error'>
-                    {error}
-                </div>
+            </div>
+            <div className='input__error'>
+                {error}
             </div>
         </div>
     )

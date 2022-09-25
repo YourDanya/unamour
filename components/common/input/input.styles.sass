@@ -10,8 +10,6 @@
     border: none
     position: relative
     background-color: transparent
-    //&:-webkit-autofill::first-line
-    //  font-size: 11px
   &__placeholder
     position: absolute
     top: 50%
@@ -24,8 +22,6 @@
   &__main
     position: relative
     z-index: 10
-    border-bottom: 1px solid #e0e0e0
-    padding: 10px 0
   &__children
     z-index: 1
     top: 0
@@ -41,6 +37,8 @@
     align-items: center
     color: red
   &__state
+    border-bottom: 1px solid #e0e0e0
+    padding: 10px 0
     &--focused
       .input__placeholder
         opacity: 0

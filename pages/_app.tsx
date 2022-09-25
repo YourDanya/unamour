@@ -1,6 +1,7 @@
 import '../styles/global.sass'
 import '../styles/home.sass'
 
+import '/components/common/form-message/form-message.styles.sass'
 import '/components/common/nav-link/nav-link.styles.sass'
 import '/components/common/scroll-fixed/scroll-fixed.styles.sass'
 import '/components/common/spinner/spinner.styles.sass'

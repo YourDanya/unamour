@@ -4,15 +4,15 @@ import {useInput} from "../../../../hooks/input/input.hooks"
 import {useDispatch, useSelector} from "react-redux"
 import {selectField} from "../../../../redux/user/user.selectors"
 import {forgetPass} from "../../../../redux/user/user.thunk"
-import {MouseEvent} from "react"
+import {MouseEvent, useEffect} from "react"
 
 const useReset = () => {
 
-    const [content, transl]= useLocale(resetContent)
-    const [inputs, handleChange, handleValidate, _, errRef, setInputs] = useInput(content.inputs)
+    const [content, transl] = useLocale(resetContent)
+    const {inputs, handleChange, handleValidate, errRef} = useInput(content.inputs)
 
-    const forget = useSelector(selectField('forgetPass'))
-    const reset = useSelector(selectField('resetPass'))
+    const {loading, success, error} = useSelector(selectField('forgetPass'))
+
     const dispatch = useDispatch()
 
     const forgetSubmit = (event: MouseEvent<HTMLElement>) => {
@@ -24,14 +24,11 @@ const useReset = () => {
         if (errRef.current.errors.pass || errRef.current.errors.passConfirm) return
     }
 
-    // useEffect(() => {
-    //     setInputs({})
-    // }, []])
-    // useEffect(() => {
-    //
-    // }, [])
+    useEffect(() => {
 
-    return {content, transl, inputs, handleChange, handleValidate, forgetSubmit, resetSubmit, forget, reset}
+    }, [])
+
+    return {content, transl, inputs, handleChange, handleValidate, forgetSubmit, resetSubmit, loading, success, error}
 }
 
 export default useReset

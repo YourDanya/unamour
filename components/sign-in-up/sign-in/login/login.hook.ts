@@ -11,23 +11,24 @@ import {resetSuccess} from "../../../../redux/user/user.slice";
 const useLogin = () => {
 
     const [content, transl] = useLocale(loginContent)
-    const [inputs, handleChange, handleValidate, resetInputs, errCountRef] = useInput(content.inputs)
+    const {inputs, handleChange, handleValidate, resetValues, errRef} = useInput(content.inputs)
 
     const dispatch = useDispatch()
     const {loading, error, success} = useSelector(selectField('signIn'))
 
     const handleClick = (event: MouseEvent<HTMLElement>) => {
         event.preventDefault()
-        console.log('error count', errCountRef.current)
-        if (!loading && errCountRef.current.count === 0) dispatch(signIn(inputs.values))
+        console.log('error count', errRef.current)
+        if (!loading && errRef.current.count === 0) dispatch(signIn(inputs.values))
     }
 
     const router = useRouter()
 
     useEffect(() => {
+        console.log(success)
         if (success) {
             setTimeout(() => {
-                resetInputs()
+                resetValues()
                 router.push('/profile/update-user')
                 dispatch(resetSuccess('signIn'))
             }, 1000)
