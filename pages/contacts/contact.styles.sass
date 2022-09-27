@@ -3,20 +3,24 @@
   font-size: 12px
   margin-top: 20px
   color: #4f4f4f
-  &__first-section
+  &__top
     display: flex
+    margin-bottom: 20px
   &__text
     width: 50%
-  &__feedback
-    width: 50%
   &__form
+    width: 50%
+  &__feedback
+    text-transform: uppercase
+    margin-bottom: 10px
+  &__button
     width: 100%
-    &-button
-      width: 100%
-      margin-top: 15px
-      &-wrapper
-        margin-top: 10px
-  &__footnote
+    height: 45px
+    background-color: black
+    color: white
+    text-transform: uppercase
+    margin-top: 15px
+  &__consent
     margin-top: 10px
     font-size: 10px
     color: #828282
@@ -24,19 +28,22 @@
     margin-bottom: 35px
     font-size: 12px
     font-weight: 500
+    text-transform: uppercase
   &__label
     margin-bottom: 8px
     &--main
+      text-transform: uppercase
       margin-bottom: 20px
   &__address
     margin-bottom: 20px
-    &-elem
-      margin-bottom: 6px
-      &--number
-        width: fit-content
-        border-bottom: 1px solid #eee
-      &--city
-        margin-bottom: 20px
+  &__work-hours
+    margin-bottom: 6px
+  &__number
+    margin-bottom: 6px
+    width: fit-content
+    border-bottom: 1px solid #eee
+  &__city
+    margin-bottom: 20px
   &__test
     width: 100%
     display: flex
@@ -53,15 +60,15 @@
 @media(max-width: 768px)
   .contacts
     padding: 80px 15%
-    &__first-section
+    &__top
       display: flex
       flex-direction: column
     &__text
       width: 100%
-    &__feedback
-      width: 100%
     &__form
       margin-top: 50px
+      text-transform: uppercase
+      width: 100%
     &__address
       margin-top: 50px
 

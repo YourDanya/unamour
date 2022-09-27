@@ -1,5 +1,5 @@
-import React from "react"
-import NavLink from "../../common/nav-link/nav-link.component"
+import React from 'react'
+import NavLink from 'components/common/nav-link/nav-link.component'
 
 type ProfileMenuProps = {
     className?: string,

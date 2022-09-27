@@ -40,7 +40,7 @@ export type ValidationInput = {
 
 export type UseInput = <T extends InputsObj,> (inputsObj: T) => {
     inputs: {values: {[K in keyof T]: T[K]['value']}, errors: Record<keyof T, string | null>} ,
-    handleChange: (event: ChangeEvent<HTMLInputElement>) => void,
+    handleChange: (event: ChangeEvent<HTMLElement>) => void,
     handleValidate: (event: any) => void,
     resetValues: () => void,
     errRef: MutableRefObject<{ errors: Record<keyof T, string | null>, count: number }>,

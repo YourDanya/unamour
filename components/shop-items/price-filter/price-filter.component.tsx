@@ -1,6 +1,6 @@
-import React from "react"
-import RangeSlider from "../../common/range-slider/range-slider.component"
-import usePriceFilter from "./price-filter.hook"
+import React from 'react'
+import usePriceFilter from 'components/shop-items/price-filter/price-filter.hook'
+import RangeSlider from 'components/common/range-slider/range-slider.component'
 
 export type PriceFilterProps = {
     content: {

@@ -1,8 +1,8 @@
-import {useRouter} from "next/router"
-import {useEffect, useLayoutEffect, useState} from "react"
-import {useDebounceEffect, useOmitFirstEffect} from "../../hooks/component.hooks";
-import {useSelector} from "react-redux";
-import {selectPath} from "../../redux/main/main.slice";
+import {useRouter} from 'next/router'
+import {useSelector} from 'react-redux'
+import {useEffect, useState} from 'react'
+import {selectPath} from 'redux/main/main.slice'
+import {useDebounceEffect} from 'hooks/component/component.hooks'
 
 const useNavRoute = (hideModal: () => void) => {
     const router= useRouter()

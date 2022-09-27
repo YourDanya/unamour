@@ -1,7 +1,7 @@
-import React from "react"
-import Checkbox from "../../common/checkbox/checkbox.component"
-import useColorsFilter from "./color-filter.hook"
-import {ColorContent} from "../shop-items.types"
+import React from 'react'
+import {ColorContent} from 'components/shop-items/shop-items.types'
+import useColorsFilter from 'components/shop-items/color-filter/color-filter.hook'
+import Checkbox from 'components/common/checkbox/checkbox.component'
 
 export type ColorsFilterProps = {
     content: ColorContent,

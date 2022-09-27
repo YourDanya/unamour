@@ -1,6 +1,6 @@
-import React from "react"
-import ShopItemPreview from "../shop-item-preview/shop-item-preview.component"
-import {ClientItem} from "../../redux/shop-items/shop-items.types"
+import React from 'react'
+import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
 
 interface itemsCollectionProps {
     items: ClientItem[],

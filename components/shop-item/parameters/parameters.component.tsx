@@ -1,7 +1,7 @@
-import React from "react"
-import {CommonVariant} from "../../../redux/shop-items/shop-items.types"
+import React from 'react'
+import {CommonVariant} from 'redux/shop-items/shop-items.types'
 
-type parametersProps = {
+type ParametersProps = {
     name: string,
     oldPrice: number,
     price: number,
@@ -14,7 +14,7 @@ type parametersProps = {
     modalState:  Record<"size" | "present", boolean> & {modal: boolean}
 }
 
-const Parameters: React.FC<parametersProps> = (props) => {
+const Parameters: React.FC<ParametersProps> = (props) => {
 
     const {name, oldPrice, price, sizes, showModal, activeSize, handleSizeClick, color, variants, modalState} = props
 

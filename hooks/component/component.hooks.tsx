@@ -1,10 +1,5 @@
 import React, {DependencyList, EffectCallback, useEffect, useLayoutEffect, useRef, useState} from "react"
-import {values} from "lodash";
-import Input from "../components/common/input/input.component";
-
-export type UseModal = <K extends string> (initState: Record<K, boolean>, attribute?: string) =>
-    [modalState: Record<K, boolean> & Record<'modal', boolean>, showModal: (event: React.MouseEvent<HTMLElement>) => void, closeModal: () => void,
-        showTopModal: (event: React.MouseEvent<HTMLElement>) => void, hideTopModal: (event: React.MouseEvent<HTMLElement>) => void,]
+import {UseModal} from "./component.types";
 
 export const useModal: UseModal = (_initState, attribute = 'name') => {
 

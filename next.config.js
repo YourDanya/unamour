@@ -11,6 +11,7 @@ const nextConfig = {
     localeDetection: false
   },
   pageExtensions: ['tsx', 'jsx'],
+
   webpack: (config, { dev }) => {
     // if (dev) config.plugins.push(
     //     new ESLintPlugin({

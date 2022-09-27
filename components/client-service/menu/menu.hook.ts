@@ -1,6 +1,6 @@
-import {useLocale} from "../../../hooks/event-handler.hooks"
-import menuContent from "./menu.content"
-import {useRouter} from "next/router"
+import menuContent from 'components/client-service/menu/menu.content'
+import {useRouter} from 'next/router'
+import {useLocale} from 'hooks/event-handler.hooks'
 
 const useMenu = () => {
     const [content, translation] = useLocale(menuContent)

@@ -1,20 +1,30 @@
-import React from "react";
+import React from 'react'
 
 type TextareaProps = {
-    placeholder: string
-    onTopChange?: (event: React.ChangeEvent<HTMLElement>) => void
-    name: string
-    error?: string
+    className?: string,
+    name: string,
+    placeholder: string,
+    handleChange: (event: React.ChangeEvent<HTMLElement>) => void,
+    handleValidate?: (event: React.ChangeEvent<HTMLElement>) => void
+    error?: string | null
 }
 
-const Textarea: React.FC<TextareaProps> = ({name, placeholder, onTopChange, error}) => {
+const Textarea: React.FC<TextareaProps> = (props) => {
+
+    const {name, placeholder, handleChange, error, className} = props
+
     return (
-        <textarea
-            className={'custom-textarea'}
-            name={name}
-            onChange={onTopChange}
-            placeholder={placeholder}>
-        </textarea>
+        <div className={`textarea ${className ?? ''}`}>
+            <textarea
+                className={'textarea__input'}
+                name={name}
+                onChange={handleChange}
+                placeholder={placeholder}
+            />
+            <div className={'textarea__error'}>
+                {error}
+            </div>
+        </div>
     )
 }
 

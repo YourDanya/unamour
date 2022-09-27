@@ -1,14 +1,14 @@
-import React from "react"
-import bookmark from '/public/icons/bookmark.svg'
-import presentImg from '/public/icons/present.svg'
-import useButtons from "./buttons.hook"
+import React from 'react'
+import bookmark from 'public/icons/bookmark.svg'
+import presentImg from 'public/icons/present.svg'
+import useButtons from 'components/shop-item/buttons/buttons.hook'
 
-export type buttonsProps = {
+export type ButtonsProps = {
     activeSize: string | null,
     showModal: (event: React.MouseEvent<HTMLElement>) => void
 }
 
-const Buttons: React.FC<buttonsProps> = (props) => {
+const Buttons: React.FC<ButtonsProps> = (props) => {
 
     const {
         handleCartMouseEnter, handleCartClick, handlePresentClick, handlePresentMouseLeave, handleCartMouseLeave,

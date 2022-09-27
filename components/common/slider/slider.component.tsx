@@ -1,5 +1,5 @@
-import React, {ReactNode} from "react"
-import useSlider from "./slider.hook"
+import useSlider from 'components/common/slider/slider.hook'
+import React, {ReactNode} from 'react'
 
 export type SliderProps = {
     children: ReactNode,

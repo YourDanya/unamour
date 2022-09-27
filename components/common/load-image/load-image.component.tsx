@@ -1,8 +1,7 @@
-import React from "react"
-import useLoadImage from "./load-image.hook"
-import Spinner from "../spinner/spinner.component"
+import React from 'react'
+import useLoadImage from 'components/common/load-image/load-image.hook'
 
-export type loadImageProps = {
+export type LoadImageProps = {
     src: string,
     alt: string,
     className?: string,
@@ -11,7 +10,7 @@ export type loadImageProps = {
     handleLoaded?: (event: any) => void
 }
 
-const LoadImage: React.FC<loadImageProps> = (props) => {
+const LoadImage: React.FC<LoadImageProps> = (props) => {
 
     const {src, alt, className, dataAttr} = props
     const {loaded, ref, height, handleLoaded, imgRef} = useLoadImage(props)

@@ -1,8 +1,8 @@
-import {ClientItem} from "../../../redux/shop-items/shop-items.types"
-import {useSelector} from "react-redux"
-import {selectClientItems} from "../../../redux/shop-items/shop-items.slice"
-import {useResizeObserve} from "../../../hooks/component.hooks"
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useMemo, useRef, useState} from 'react'
+import {useSelector} from 'react-redux'
+import {useResizeObserve} from 'hooks/component/component.hooks'
+import {selectClientItems} from 'redux/shop-items/shop-items.slice'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
 
 const useAdditional = () => {
 

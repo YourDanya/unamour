@@ -1,8 +1,8 @@
 import React from 'react'
-import Link from "next/link"
-import {ClientItem} from "../../redux/shop-items/shop-items.types"
-import useShopItemPreview from "./shop-item-preview.hook"
-import LoadImage from "../common/load-image/load-image.component"
+import useShopItemPreview from 'components/shop-item-preview/shop-item-preview.hook'
+import LoadImage from 'components/common/load-image/load-image.component'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
+import Link from 'next/link'
 
 const ShopItemPreview: React.FC<ClientItem> = (props) => {
 

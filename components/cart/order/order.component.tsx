@@ -1,49 +1,53 @@
-import React from "react"
-import Button from "../../common/button/button.component"
+import React from 'react'
+import useOrder from 'components/cart/order/order.hook'
+import Button from 'components/common/button/button.component'
+import Link from 'next/link'
 import presentImg from '/public/icons/present.svg'
-import Link from "next/link"
 
 type orderProps = {
     total: number,
     className: string
 }
 
-const Order: React.FC<orderProps> = ({total, className}) => {
-    
+const Order: React.FC<orderProps> = (props) => {
+
+    const {total, className} = props
+    const {transl} = useOrder()
+
     return (
         <div className={`order ${className ?? ''}`}>
-            <div className='order__title'>ІНФОРМАЦІЯ ПРО ЗАМОВЛЕННЯ</div>
+            <div className='order__title'>{transl.title}</div>
             <div className='order__properties'>
                 <div className='order__property'>
-                    <div className='order__label'>Віртість товарів</div>
-                    <div className="order__value">{total} ₴</div>
+                    <div className='order__label'>{transl.cost}</div>
+                    <div className="order__value">{total} {transl.currency}</div>
                 </div>
                 <div className='order__property'>
-                    <div className='order__label'>Знижка</div>
-                    <div className="order__value">0 ₴</div>
+                    <div className='order__label'>{transl.discount}</div>
+                    <div className="order__value">0 {transl.currency}</div>
                 </div>
                 <div className='order__property'>
-                    <div className='order__label'>Доставка</div>
-                    <div className="order__value">0 ₴</div>
+                    <div className='order__label'>{transl.delivery}</div>
+                    <div className="order__value">0 {transl.currency}</div>
                 </div>
                 <div className='order__property'>
-                    <div className='order__label'>разом до оплати</div>
-                    <div className="order__value">{total} ₴</div>
+                    <div className='order__label'>{transl.total}</div>
+                    <div className="order__value">{total} {transl.currency}</div>
                 </div>
             </div>
             <Button className={'order__button'} onClick={() => {}}>
-                ЗРОБИТИ ЗАМОВЛЕННЯ
+                {transl.makeOrder}
             </Button>
             <Button className={'button--white order__button order__button--present'} onClick={() => {}}>
                 <>
-                    НАТЯКНУТИ
+                    {transl.hint}
                     <img className='order__present-img' src={presentImg.src} alt={'present'}/>
                 </>
             </Button>
             <div className='cart__policy'>
-                {'Завершуючи оформлення замовлення, я даю згоду\n на обробку та передачу моїх '}
+                {transl.policy}
                 <Link href={'/'}>
-                    <a className='order__policy-link'>персональных данных</a>
+                    <a className='order__policy-link'>{transl.policyLink}</a>
                 </Link>
             </div>
         </div>

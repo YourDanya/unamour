@@ -1,9 +1,8 @@
-import {FC, MouseEvent} from "react"
-import Input from "../../../common/input/input.component"
-import Button from "../../../common/button/button.component"
-import Spinner from "../../../common/spinner/spinner.component"
-import useLogin from "./login.hook"
-import FormMessage from "../../../common/form-message/form-message.component";
+import {FC, MouseEvent} from 'react'
+import useLogin from 'components/sign-in-up/sign-in/login/login.hook'
+import Button from 'components/common/button/button.component'
+import FormMessage from 'components/common/form-message/form-message.component'
+import Input from 'components/common/input/input.component'
 
 type LoginProps = {
     handleResetPass: (event: MouseEvent<HTMLElement>) => void

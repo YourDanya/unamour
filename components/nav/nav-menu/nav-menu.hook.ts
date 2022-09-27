@@ -1,6 +1,6 @@
-import {useToggle} from "../../../hooks/event-handler.hooks"
+import {useToggle} from 'hooks/event-handler.hooks'
 import {useSelector} from "react-redux"
-import {selectUser} from "../../../redux/user/user.selectors"
+import {selectUser} from 'redux/user/user.selectors'
 
 const useNavMenu = () => {
 

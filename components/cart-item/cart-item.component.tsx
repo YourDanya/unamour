@@ -1,12 +1,14 @@
-import React from "react";
-import Link from "next/link";
-import {CartItemObject} from "../../redux/cart/cart.slice";
-import useCartItem from "./cart-item.hook";
+import React from 'react'
+import {CartItemObject} from 'redux/cart/cart.slice'
+import useCartItem from 'components/cart-item/cart-item.hook'
+import Link from 'next/link'
+
 
 const CartItem: React.FC<CartItemObject> = (props) => {
 
-    const {data: {name, category, slug, slugCategory, price, images, size, color}, quantity,
-        increase, decrease, remove, cartPage} = useCartItem(props)
+    const {data: {name, category, slug, slugCategory, price, images, size, color}, quantity} = props
+
+    const {increase, decrease, remove, cartPage, transl} = useCartItem(props)
 
     return (
         <div className={'cart-item'} key={name}>
@@ -16,27 +18,26 @@ const CartItem: React.FC<CartItemObject> = (props) => {
                     <img className='cart-item__img' src={images[0]}/>
                 </a>
             </Link>
-            {/*<div className='cart-item__about'>*/}
             <div className='cart-item__name'>{name}</div>
             <div className='cart-item__price-block'>
-                <div className='cart-item__price-label'>Ціна</div>
+                <div className='cart-item__price-label'>{transl.price}</div>
                 <div className='cart-item__price'>{price} ₴</div>
             </div>
             <div className='cart-item__properties'>
                 <div className='cart-item__property'>
-                    <div className='cart-item__property-label'>Колір</div>
+                    <div className='cart-item__property-label'>{transl.color}</div>
                     <div className='cart-item__property-value'>
                         <div className='cart-item__color' style={{backgroundColor: color.code}}/>
                     </div>
                 </div>
                 <div className='cart-item__property'>
-                    <div className='cart-item__property-label'>Розмір</div>
+                    <div className='cart-item__property-label'>{transl.size}</div>
                     <div className='cart-item__property-value'>
                         <div className='cart-item__size'>{size}</div>
                     </div>
                 </div>
                 <div className='cart-item__property'>
-                    <div className='cart-item__property-label'>Кількість</div>
+                    <div className='cart-item__property-label'>{transl.quantity}</div>
                     <div className='cart-item__property-value'>
                         <div className='cart-item__quantity-block'>
                             <div className="minus cart-item__minus" onClick={decrease}/>
@@ -46,7 +47,6 @@ const CartItem: React.FC<CartItemObject> = (props) => {
                     </div>
                 </div>
             </div>
-            {/*</div>*/}
         </div>
     )
 }

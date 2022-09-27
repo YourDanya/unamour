@@ -1,8 +1,8 @@
-import {NextPage} from "next"
-import Input from "../../../components/common/input/input.component"
-import useResetPass from "./reset-pass.hook"
-import Button from "../../../components/common/button/button.component";
-import FormMessage from "../../../components/common/form-message/form-message.component";
+import Button from 'components/common/button/button.component'
+import {NextPage} from 'next'
+import FormMessage from 'components/common/form-message/form-message.component'
+import useResetPass from 'pages/auth/reset-pass/reset-pass.hook'
+import Input from 'components/common/input/input.component'
 
 const ResetPass: NextPage = () => {
 

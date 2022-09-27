@@ -1,10 +1,10 @@
-import React from "react"
-import useUpdateUser from "./update-user.hook"
-import {NextPageWithLayout} from "../../../types/types"
-import Input from "../../../components/common/input/input.component"
-import Button from "../../../components/common/button/button.component"
-import {getProfileLayout} from "../../../components/profile/profile.component"
-import lock from '/public/icons/lock.svg'
+import React from 'react'
+import lock from 'public/icons/lock.svg'
+import {NextPageWithLayout} from 'types/types'
+import useUpdateUser from 'pages/profile/update-user/update-user.hook'
+import Button from 'components/common/button/button.component'
+import {getProfileLayout} from 'components/profile/profile.component'
+import Input from 'components/common/input/input.component'
 
 type UpdateUserProps = {}
 

@@ -1,8 +1,9 @@
-import React from "react"
-import ShopItemPreview from "../../shop-item-preview/shop-item-preview.component"
-import {ClientItem} from "../../../redux/shop-items/shop-items.types"
-import useAdditional from "./additional.hook"
-import Slider from "../../common/slider/slider.component"
+import React from 'react'
+import useAdditional from 'components/shop-item/additional/additional.hook'
+import Slider from 'components/common/slider/slider.component'
+import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
+
 
 type additionalProps = {
     similarItems?: ClientItem[],

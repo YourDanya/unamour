@@ -1,13 +1,13 @@
 import React from 'react'
-import SignInUp from "../sign-in-up/sign-in-up.component"
-import useNav from "./nav.hook"
-import Modal from "../common/modal/modal.component"
-import NavSearch from "./nav-search/nav-search.component"
-import NavMenu from "./nav-menu/nav-menu.component"
-import Sidebar from "../common/sidebar/sidebar.component"
-import NavCart from "./nav-cart/nav-cart.component"
-import NavHeader from "./header/header.component"
-import Hamburger from "./hamburger/hamburger.component"
+import Hamburger from 'components/nav/hamburger/hamburger.component'
+import NavSearch from 'components/nav/nav-search/nav-search.component'
+import NavHeader from 'components/nav/header/header.component'
+import useNav from 'components/nav/nav.hook'
+import NavCart from 'components/nav/nav-cart/nav-cart.component'
+import Modal from 'components/common/modal/modal.component'
+import NavMenu from 'components/nav/nav-menu/nav-menu.component'
+import Sidebar from 'components/common/sidebar/sidebar.component'
+import SignInUp from 'components/sign-in-up/sign-in-up.component'
 
 const Nav: React.FC = () => {
 

@@ -1,17 +1,15 @@
 import {
     ColorContent,
     FilterContent,
-    FilterProps,
-    GeneralContent, PriceContent,
-    ResetFilter,
-    SetState,
-    State,
-    GenState, PriceState, UseFilter, HandleFilter
-} from "./shop-items.types"
-import {useDebounceEffect, useOmitFirstEffect} from "../../hooks/component.hooks"
-import {useRouter} from "next/router"
-import {MutableRefObject, useEffect, useMemo, useRef, useState} from "react"
-import {debounce} from "../../utils/main.utils";
+    GeneralContent,
+    GenState,
+    HandleFilter,
+    PriceContent, PriceState, ResetFilter, UseFilter
+} from 'components/shop-items/shop-items.types'
+import {useEffect, useMemo, useRef, useState} from 'react'
+import {useDebounceEffect} from 'hooks/component/component.hooks'
+import {useRouter} from 'next/router'
+
 
 export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) => {
 

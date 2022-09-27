@@ -1,5 +1,5 @@
-import React from "react"
-import useInput from "./input.hook"
+import React from 'react'
+import useInput from 'components/common/input/input.hook'
 
 export type InputProps = {
     placeholder: string

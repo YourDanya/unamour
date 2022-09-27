@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import {useRouter} from "next/router";
-import {LocaleType} from "../../../types/types";
-import {useSelector} from "react-redux";
-import {selectClientItems} from "../../../redux/shop-items/shop-items.slice";
-import {ClientItem} from "../../../redux/shop-items/shop-items.types";
+import React, {useState} from 'react'
+import {useRouter} from 'next/router'
+import {useSelector} from 'react-redux'
+import {LocaleType} from 'types/types'
+import {selectClientItems} from 'redux/shop-items/shop-items.slice'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
+
 
 const useNavSearch = () => {
     const [hidden, setHidden] = useState(true)

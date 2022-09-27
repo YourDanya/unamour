@@ -1,4 +1,4 @@
-import {FC} from "react"
+import React from 'react'
 
 type FormMessageProps = {
     success: string | null,
@@ -6,7 +6,7 @@ type FormMessageProps = {
     className?: string
 }
 
-const FormMessage: FC<FormMessageProps> = (props) => {
+const FormMessage: React.FC<FormMessageProps> = (props) => {
     const {success, error, className} = props
 
     return (

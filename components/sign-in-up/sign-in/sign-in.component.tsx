@@ -1,7 +1,7 @@
 import React from 'react'
-import useSignIn from "./sign-in.hook"
-import Login from "./login/login.component"
-import Reset from "./reset/reset.component"
+import useSignIn from 'components/sign-in-up/sign-in/sign-in.hook'
+import Login from 'components/sign-in-up/sign-in/login/login.component'
+import Reset from 'components/sign-in-up/sign-in/reset/reset.component'
 
 type SignInProps = {
     setSign: () => void

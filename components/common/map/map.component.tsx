@@ -1,6 +1,6 @@
-import Map, {Layer, LayerProps, Source, ViewState} from "react-map-gl"
-import React, {Suspense, useEffect, useState} from "react"
-import {Feature, FeatureCollection, GeoJsonProperties, Geometry} from "geojson"
+import Map, {Layer, LayerProps, Source, ViewState} from 'react-map-gl'
+import React, {Suspense, useEffect, useState} from 'react'
+import {Feature, FeatureCollection, GeoJsonProperties, Geometry} from 'geojson'
 
 type mapProps = {
     classes?: string[]

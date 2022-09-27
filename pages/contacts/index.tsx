@@ -1,69 +1,77 @@
 import React from 'react'
-import MapComponent from "../../components/common/map/map.component"
-import Input from "../../components/common/input/input.component"
-import Textarea from "../../components/common/textarea/textarea.component"
-import Button from "../../components/common/button/button.component"
-import {usePlainInput} from "../../hooks/input/input.hooks"
+import useContact from 'pages/contacts/contact.hook'
+import Textarea from 'components/common/textarea/textarea.component'
+import Button from 'components/common/button/button.component'
+import MapComponent from 'components/common/map/map.component'
+import Input from 'components/common/input/input.component'
 
 const ContactComponent: React.FC = () => {
 
-    const [values, handleChange] = usePlainInput(
-        {name: '', number: '', email: ''}
-    )
+    const {handleChange, handleSubmit, handleValidate, transl, inputs} = useContact()
 
     return (
         <div className={'contacts'}>
-            <h2 className="contacts__title">КОНТАКТЫ</h2>
-            <div className="contacts__first-section">
+            <h2 className="contacts__title">{transl.contacts}</h2>
+            <div className="contacts__top">
                 <div className="contacts__text">
-                    <div className="contacts__label--main">ИНТЕРНЕТ-МАГАЗИН</div>
-                    <div className="contacts__label">+38 (066) 384-78-22 по всей Украине</div>
-                    <div className="contacts__label">Режим работы: ПН-ПТ с 9:00 до 18:00</div>
-                    <div className="contacts__label">Наша почта - unamour@gmail.com</div>
-                    <div className="contacts__label">Мы в Instagram - @UNAMOUR</div>
+                    {transl.info.map((elem, index) =>
+                        <div key={elem} className={`contacts__label ${index === 0 ? 'contacts__label--main' : ''}`}>
+                            {elem}
+                        </div>
+                    )}
                 </div>
-                <div className="contacts__feedback">
-                    <form className={'contacts__form'}>
-                        <div className="contacts__form-title">ОБРАТНАЯ СВЯЗЬ</div>
-                        <Input
-                            name={'name'}
-                            value={values.name}
-                            placeholder={'Имя'}
-                            className={'input--contact'}
-                            handleChange={handleChange}
-                        />
-                        <Input
-                            name={'number'}
-                            value={values.number}
-                            placeholder={'Телефон'}
-                            className={'input--contact'}
-                            handleChange={handleChange}
-                        />
-                        <Input
-                            name={'email'}
-                            value={values.email}
-                            placeholder={'Эл. почта'}
-                            className={'input--contact'}
-                            handleChange={handleChange}
-                        />
-                        <Textarea name={'name'} placeholder={'Сообщение'}/>
-                        <Button className={'contacts__form-button'} onClick={() => {}}>
-                            ОТПРАВИТЬ
-                        </Button>
-                        <Button className="contacts__footnote" onClick={() => {}}>
-                            Нажимая кнопку Отправить, я даю согласие на обработку и передачу моих персональных данных
-                        </Button>
-                    </form>
-                </div>
+                <form className={'contacts__form'}>
+                    <div className="contacts__feedback">{transl.feedback}</div>
+                    <Input
+                        className={'contact__input'}
+                        name={'name'}
+                        placeholder={transl.inputs.name}
+                        value={inputs.values.name}
+                        handleChange={handleChange}
+                        error={inputs.errors.name}
+                        handleValidate={handleValidate}
+                    />
+                    <Input
+                        className={'contact__input'}
+                        name={'number'}
+                        placeholder={transl.inputs.number}
+                        value={inputs.values.number}
+                        handleChange={handleChange}
+                        error={inputs.errors.number}
+                        handleValidate={handleValidate}
+                    />
+                    <Input
+                        className={'contact__input'}
+                        name={'email'}
+                        placeholder={transl.inputs.email}
+                        value={inputs.values.email}
+                        handleChange={handleChange}
+                        error={inputs.errors.email}
+                        handleValidate={handleValidate}
+                    />
+                    <Textarea
+                        className={'contact__textarea'}
+                        name={'message'}
+                        placeholder={inputs.values.message}
+                        handleChange={handleChange}
+                        error={inputs.errors.message}
+                        handleValidate={handleValidate}
+                    />
+                    <Button className={'contacts__button'} onClick={handleSubmit}>
+                        {transl.submit}
+                    </Button>
+                    <div className="contacts__consent">
+                        {transl.consent}
+                    </div>
+                    {/*<FormMessage success={} error={}/>*/}
+                </form>
             </div>
-            <div className="contacts__second-section">
-                <div className="contacts__address">
-                    <div className="contacts__address-elem contacts__address-elem--city">КИЕВ</div>
-                    <div className="contacts__address-elem">Режим работы: с 11:00 до 22:00</div>
-                    <div className="contacts__address-elem contacts__address-elem--number">+380 (66) 384-78-22</div>
-                </div>
+            <div className="contacts__address">
+                <div className="contacts__city">{transl.city}</div>
+                <div className="contacts__work-hours">{transl.workHours}</div>
+                <div className="contacts__number">{transl.number}</div>
             </div>
-            <MapComponent classes={['map--contact']}/>
+            <MapComponent/>
         </div>
     )
 

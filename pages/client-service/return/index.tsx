@@ -1,9 +1,9 @@
-import React from "react"
-import {getClientServiceLayout} from "../../../components/client-service/service.component"
-import {NextPageWithLayout} from "../../../types/types"
-import {ReturnContent} from "./return.content"
-import WithIntern from "../../../components/hoc/with-intern/with-intern"
-import Link from "next/link"
+import React from 'react'
+import {NextPageWithLayout} from 'types/types'
+import {getClientServiceLayout} from 'components/client-service/service.component'
+import {ReturnContent} from 'pages/client-service/return/return.content'
+import WithIntern from 'components/hoc/with-intern/with-intern'
+import Link from 'next/link'
 
 type ReturnProps = {
     content: typeof ReturnContent.ua

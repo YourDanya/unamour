@@ -33,8 +33,8 @@ export const useInput : UseInput = (inputsObj)=> {
     const [errors, setErrors] = useState(initInputs.errors)
     const {validations} = initInputs
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target
+    const handleChange = (event: React.ChangeEvent<HTMLElement>) => {
+        const {name, value} = event.target as HTMLInputElement
         setValues({...values, [name] : value})
     }
 
@@ -91,7 +91,7 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 break
             }
             case ('isPhone') : {
-                if (/^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/.test(value)) errors.push({
+                if (!/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(value)) errors.push({
                     ua: 'Введіть вірний номер.',
                     eng: 'Enter a valid number.',
                     ru: 'Введите правильный номер.'
@@ -102,9 +102,9 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 validationValue = validationValue as number
                 const end = symbol(validationValue, locale)
                 if (length<validationValue) errors.push({
-                    ua: `Довжина поля мусить бути більшой за ${validationValue} символ${end}`,
-                    eng: `The field length must be greater than ${validationValue} symbol${end}`,
-                    ru: `Длина поля должна быть больше чем ${validationValue} символ${end}`
+                    ua: `Довжина поля мусить бути більшой за ${validationValue} символ${end}.`,
+                    eng: `The field length must be greater than ${validationValue} symbol${end}.`,
+                    ru: `Длина поля должна быть больше чем ${validationValue} символ${end}.`
                 }[locale])
                 break
             }
@@ -112,9 +112,9 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 validationValue = validationValue as number
                 const end = symbol(validationValue, locale)
                 if (length>validationValue) errors.push({
-                    ua: `Довжина поля мусить бути меншою за ${validationValue} символ${end}`,
-                    eng: `The field length must be less than ${validationValue} symbol${end}`,
-                    ru: `Длина поля должна быть більшою чем ${validationValue} символ${end}`
+                    ua: `Довжина поля мусить бути меншою за ${validationValue} символ${end}.`,
+                    eng: `The field length must be less than ${validationValue} symbol${end}.`,
+                    ru: `Длина поля должна быть більшою чем ${validationValue} символ${end}.`
                 }[locale])
             }
         }

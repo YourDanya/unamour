@@ -1,12 +1,13 @@
-import {useLocale} from "../../../../hooks/event-handler.hooks"
-import {loginContent} from "./login.content";
-import {useInput} from "../../../../hooks/input/input.hooks";
-import {useDispatch, useSelector} from "react-redux";
-import {selectField} from "../../../../redux/user/user.selectors";
-import {MouseEvent, useEffect} from "react";
-import {signIn} from "../../../../redux/user/user.thunk";
-import {useRouter} from "next/router";
-import {resetSuccess} from "../../../../redux/user/user.slice";
+import React, {useEffect} from 'react'
+import {useLocale} from 'hooks/event-handler.hooks'
+import {useRouter} from 'next/router'
+import {useDispatch, useSelector} from 'react-redux'
+import {signIn} from 'redux/user/user.thunk'
+import {loginContent} from 'components/sign-in-up/sign-in/login/login.content'
+import {selectField} from 'redux/user/user.selectors'
+import {resetSuccess} from 'redux/user/user.slice'
+import {useInput} from 'hooks/input/input.hooks'
+
 
 const useLogin = () => {
 
@@ -16,7 +17,7 @@ const useLogin = () => {
     const dispatch = useDispatch()
     const {loading, error, success} = useSelector(selectField('signIn'))
 
-    const handleClick = (event: MouseEvent<HTMLElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault()
         console.log('error count', errRef.current)
         if (!loading && errRef.current.count === 0) dispatch(signIn(inputs.values))

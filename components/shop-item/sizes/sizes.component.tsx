@@ -1,37 +1,34 @@
 import React from "react"
+import useSizes from 'components/shop-item/sizes/sizes.hook'
 
-type sizesProps = {
+type SizesProps = {
 
 }
 
-const Sizes: React.FC<sizesProps> = () => {
+const Sizes: React.FC<SizesProps> = () => {
+
+    const {transl} = useSizes()
 
     return (
         <div className='sizes'>
             <div className='sizes__title'>
-                НЕОБХІДНИЙ ВАМ РОЗМІР ВИ МОЖЕТЕ ПІДІБРАТИ ВИХОДЯЧИ З ІНФОРМАЦІЇ У ВКЛАДЦІ ОБМІРИ НА
-                СТОРІНЦІ ТОВАРУ
+                {transl.title}
             </div>
             <div className='sizes__how'>
-                Як визначити відповідний розмір
+                {transl.how}
             </div>
             <ul className='list'>
-                <li className='list__item'>
-                    Виміряйте обхват грудей по самій опуклій точці бюста.
-                </li>
-                <li className='list__item'>
-                    Виміряйте обхват талії по найвужчій частині талії.
-                </li>
-                <li className='list__item'>
-                    Виміряйте обхват стегон по лінії максимальної ширини стегон.
-                </li>
+                {transl.list.map(elem => (
+                    <li key={elem} className={'list__item'}>
+                        {elem}
+                    </li>
+                ))}
             </ul>
             <div className='sizes__ind'>
-                Розмір IND передбачає універсальну посадку, розраховану параметри розмірів XS, S, M.
+                {transl.ind}
             </div>
             <div className='sizes__help'>
-                Якщо виникнуть труднощі, ми з радістю допоможемо Вам із вибором розміру. Зв`яжіться з
-                нами в онлайн-чаті, Instagram або зателефонуйте за номером +380 (66) 384 78 22.
+                {transl.help}
             </div>
         </div>
     )

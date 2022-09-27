@@ -1,14 +1,14 @@
-import {sortingFilterProps} from "./sorting-filter.component"
-import {MouseEvent} from "react"
-import {useFilter} from "../filters.hooks"
-import {SortState} from "../shop-items.types"
+import {SortState} from 'components/shop-items/shop-items.types'
+import {SortingFilterProps} from 'components/shop-items/sorting-filter/sorting-filter.component'
+import {useFilter} from 'components/shop-items/filters.hooks'
+import React from 'react'
 
-const useSortingFilter = (props: sortingFilterProps) => {
+const useSortingFilter = (props: SortingFilterProps) => {
 
     const [state, setState] = useFilter(props)
     const sortValue = state as SortState
 
-    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         const name = event.currentTarget.name
         if (sortValue !== name) setState(name)
         else setState('')

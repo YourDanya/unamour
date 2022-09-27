@@ -1,9 +1,8 @@
-import {imagesProps} from "./images.component"
-import {useSetNumber} from "../../../hooks/event-handler.hooks"
+import {useSetNumber} from 'hooks/event-handler.hooks'
+import {ImagesProps} from 'components/shop-item/images/images.component'
 
-const useImages = (props: imagesProps) => {
+const useImages = (props: ImagesProps) => {
     const [current, handleTabClick, setCurrent] = useSetNumber(0, 'data-index')
-    console.log('current', current)
     return {...props, current, handleTabClick, setCurrent}
 }
 

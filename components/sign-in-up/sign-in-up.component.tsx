@@ -1,12 +1,11 @@
 import React, {useState, memo} from 'react'
-import SignIn from "./sign-in/sign-in.component"
-import googleIcon from '/public/icons/google.svg'
-import facebookIcon from '/public/icons/facebook.svg'
-import SignUp from "./sign-up/sign-up.component"
+import googleIcon from 'public/icons/google.svg'
+import facebookIcon from 'public/icons/facebook.svg'
+import SignUp from 'components/sign-in-up/sign-up/sign-up.component'
+import SignIn from 'components/sign-in-up/sign-in/sign-in.component'
 
-export type SignInUpProps = {
 
-}
+export type SignInUpProps = {}
 
 const SignInUp: React.FC<SignInUpProps> = () => {
 

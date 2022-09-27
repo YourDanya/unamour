@@ -1,6 +1,6 @@
 import React from 'react'
-import useCookie from "./cookie.hook"
-import close from './../../public/icons/close.svg'
+import close from 'public/icons/close.svg'
+import useCookie from 'components/cookie/cookie.hook'
 
 const Cookie: React.FC = () => {
     

@@ -1,12 +1,7 @@
-import React from "react"
-import {NextPageWithLayout} from "../../../types/types"
-import {getProfileLayout} from "../../../components/profile/profile.component"
+import {NextPageWithLayout} from 'types/types'
+import {getProfileLayout} from 'components/profile/profile.component'
 
-type PurchaseHistoryProps = {
-
-}
-
-const PurchaseHistory: NextPageWithLayout<PurchaseHistoryProps> = () => {
+const PurchaseHistory: NextPageWithLayout = () => {
     return (
         <div className={'purchase-history'}>
         </div>

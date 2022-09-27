@@ -1,16 +1,16 @@
-import React from "react"
-import {ClientItem} from "../../redux/shop-items/shop-items.types"
-import {useShopItem} from "./shop-item.hook"
-import Additional from "./additional/additional.component"
-import Buttons from "./buttons/buttons.component"
-import Parameters from "./parameters/parameters.component"
-import Images from "./images/images.component"
-import Links from "./links/links.component"
-import Dropdowns from "./dropdowns/dropdowns.component"
-import ModalContent from "../common/modal-content/modal-content.component"
-import Modal from "../common/modal/modal.component"
-import Sizes from "./sizes/sizes.component"
-import Present from "./present/present.component"
+import React from 'react'
+import Parameters from 'components/shop-item/parameters/parameters.component'
+import Sizes from 'components/shop-item/sizes/sizes.component'
+import {useShopItem} from 'components/shop-item/shop-item.hook'
+import Additional from 'components/shop-item/additional/additional.component'
+import Images from 'components/shop-item/images/images.component'
+import Dropdowns from 'components/shop-item/dropdowns/dropdowns.component'
+import ModalContent from 'components/common/modal-content/modal-content.component'
+import Buttons from 'components/shop-item/buttons/buttons.component'
+import Present from 'components/shop-item/present/present.component'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
+import Modal from 'components/common/modal/modal.component'
+import Links from 'components/shop-item/links/links.component'
 
 const ShopItem: React.FC<ClientItem> = (props) => {
 

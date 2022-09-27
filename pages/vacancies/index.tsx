@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const Vacancies: React.FC = () => {
     console.log('inside vacancies')
     return (

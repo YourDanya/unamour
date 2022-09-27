@@ -1,5 +1,6 @@
-import React from "react"
-import useModalContent from "./modal-content.hook"
+import React from 'react'
+import useModalContent from 'components/common/modal-content/modal-content.hook'
+
 
 type modalContentProps = {
     active : boolean,

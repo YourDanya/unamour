@@ -1,8 +1,8 @@
-import {ShopItemsProps} from "./shop-items.component"
-import {useLocale} from "../../hooks/event-handler.hooks"
-import shopItemsContent from "./shop-items.content"
-import {useRouter} from "next/router"
-import React, {useState} from "react"
+import React, {useState} from 'react'
+import {ShopItemsProps} from 'components/shop-items/shop-items.component'
+import {useLocale} from 'hooks/event-handler.hooks'
+import {useRouter} from 'next/router'
+import shopItemsContent from 'components/shop-items/shop-items.content'
 
 const useShopItems = (props: ShopItemsProps) => {
 

@@ -1,5 +1,5 @@
-import React from "react"
-import Button from "../button/button.component"
+import React from 'react'
+import Button from 'components/common/button/button.component'
 
 type sidebarProps = {
     active: boolean,

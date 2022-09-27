@@ -1,8 +1,8 @@
 import React from "react"
-import {useModal} from "../../hooks/component.hooks"
 import footerContent from "./footer.content"
-import {useLocale} from "../../hooks/event-handler.hooks"
-import {useInput} from "../../hooks/input/input.hooks"
+import {useModal} from 'hooks/component/component.hooks'
+import {useLocale} from 'hooks/event-handler.hooks'
+import {useInput} from 'hooks/input/input.hooks'
 
 const useFooter = () => {
 

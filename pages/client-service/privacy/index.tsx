@@ -1,7 +1,7 @@
-import React from "react"
-import {getClientServiceLayout} from "../../../components/client-service/service.component"
-import { NextPageWithLayout} from "../../../types/types"
-import usePrivacy from "./privacy.hook";
+import React from 'react'
+import {NextPageWithLayout} from 'types/types'
+import {getClientServiceLayout} from 'components/client-service/service.component'
+import usePrivacy from 'pages/client-service/privacy/privacy.hook'
 
 const Privacy: NextPageWithLayout = () => {
 

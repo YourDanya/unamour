@@ -1,7 +1,7 @@
-import {PriceFilterProps} from "./price-filter.component"
-import {useFilter} from "../filters.hooks"
-import {ChangeEvent} from "react"
-import {PriceState} from "../shop-items.types"
+import {PriceFilterProps} from 'components/shop-items/price-filter/price-filter.component'
+import {ChangeEvent} from 'react'
+import {PriceState} from 'components/shop-items/shop-items.types'
+import {useFilter} from 'components/shop-items/filters.hooks'
 
 const usePriceFilter = (props: PriceFilterProps) => {
 

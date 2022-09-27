@@ -1,15 +1,15 @@
-import {AppThunkDispatch, wrapper} from "../../redux/store"
-import {LocaleType, NextPageWithLayout} from "../../types/types"
-import {getShopItemsLayout} from "../../components/shop-items/shop-items.component"
-import {fetchItems} from "../../redux/shop-items/shop-items.thunk"
-import ShopItem from "../../components/shop-item/shop-item.component"
-import ShopItemsCollection from "../../components/shop-items-collection/shop-items-collection.component"
-import {ClientItem} from "../../redux/shop-items/shop-items.types"
-import {createClientItems} from "../../utils/data.utils"
-import {setClientItems} from "../../redux/shop-items/shop-items.slice"
-import global from "../../utils/global.utils"
+import global from "utils/global.utils"
+import {fetchItems} from 'redux/shop-items/shop-items.thunk'
+import {LocaleType, NextPageWithLayout} from 'types/types'
+import {getShopItemsLayout} from 'components/shop-items/shop-items.component'
+import {createClientItems} from 'utils/data.utils'
+import {setClientItems} from 'redux/shop-items/shop-items.slice'
+import ShopItem from 'components/shop-item/shop-item.component'
+import {AppThunkDispatch, wrapper} from 'redux/store'
+import ShopItemsCollection from 'components/shop-items-collection/shop-items-collection.component'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
 
-type shopItemsProps = {
+type ShopItemsProps = {
     items?: ClientItem[],
     item?: ClientItem,
     title?: string
@@ -121,7 +121,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
     }
 )
 
-const ShopItemsPage: NextPageWithLayout<shopItemsProps> = ({items, item, title}) => {
+const ShopItemsPage: NextPageWithLayout<ShopItemsProps> = ({items, item, title}) => {
     return (
         <div>
             {items && <ShopItemsCollection items={items} title={title as string}/>}

@@ -1,5 +1,5 @@
-import React from "react"
-import {useToggle} from "../../../hooks/event-handler.hooks"
+import React from 'react'
+import {useToggle} from 'hooks/event-handler.hooks'
 
 type DropdownProps = {
     name: string,

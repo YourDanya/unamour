@@ -1,6 +1,6 @@
-import React from "react"
-import Link from "next/link";
-import useNavLink from "./nav-link.hook";
+import React from 'react'
+import useNavLink from 'components/common/nav-link/nav-link.hook'
+import Link from 'next/link'
 
 export type NavLinkProps = {
     href: string,

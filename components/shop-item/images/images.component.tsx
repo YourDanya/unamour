@@ -1,12 +1,12 @@
-import React from "react"
-import Slider from "../../common/slider/slider.component"
-import useImages from "./images.hook"
+import React from 'react'
+import useImages from 'components/shop-item/images/images.hook'
+import Slider from 'components/common/slider/slider.component'
 
-export type imagesProps = {
-    images: string[],
+export type ImagesProps = {
+    images: string[]
 }
 
-const Images: React.FC<imagesProps> = (props) => {
+const Images: React.FC<ImagesProps> = (props) => {
 
     const {images, current, handleTabClick, setCurrent} = useImages(props)
 

@@ -1,7 +1,7 @@
-import React, {} from "react"
-import {getClientServiceLayout} from "../../../components/client-service/service.component"
-import {NextPageWithLayout} from "../../../types/types"
-import usePolicy from "./policy.hook";
+import React from 'react'
+import {NextPageWithLayout} from 'types/types'
+import {getClientServiceLayout} from 'components/client-service/service.component'
+import usePolicy from 'pages/client-service/policy/policy.hook'
 
 const Policy: NextPageWithLayout = () => {
 

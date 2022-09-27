@@ -1,12 +1,12 @@
 import React from 'react'
-import telegram from '/public/icons/telegram.svg'
-import react from '/public/logo/next.svg'
-import Input from "../common/input/input.component"
-import Link from "next/link"
-import useFooter from "./footer.hook"
-import Links from "./links/links.component"
-import ModalContent from "../common/modal-content/modal-content.component"
-import Button from "../common/button/button.component"
+import telegram from 'public/icons/telegram.svg'
+import react from 'public/logo/next.svg'
+import useFooter from 'components/footer/footer.hook'
+import Button from 'components/common/button/button.component'
+import ModalContent from 'components/common/modal-content/modal-content.component'
+import Link from 'next/link'
+import Links from 'components/footer/links/links.component'
+import Input from 'components/common/input/input.component'
 
 const Footer: React.FC = () => {
 
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
                     </Button>
                 </div>
                 <div className="footer__logo">
-                    Зроблено на
+                    {transl.logo}
                     <Link href={'https://nextjs.org/'}>
                         <a><img src={react.src} className={'footer__logo-img'} alt={'footer icon'}/></a>
                     </Link>

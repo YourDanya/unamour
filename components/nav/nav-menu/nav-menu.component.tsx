@@ -1,7 +1,7 @@
-import React from "react"
-import Link from "next/link"
-import Button from "../../common/button/button.component"
-import useNavMenu from "./nav-menu.hook"
+import React from 'react'
+import Button from 'components/common/button/button.component'
+import Link from 'next/link'
+import useNavMenu from 'components/nav/nav-menu/nav-menu.hook'
 
 type navMenuProps = {
     showTopModal: (event: React.MouseEvent<HTMLElement>) => void

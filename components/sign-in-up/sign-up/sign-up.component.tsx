@@ -9,7 +9,7 @@ export type SignUpProps = {
 const SignUp: React.FC<SignUpProps> = (props) => {
 
     const {setSign} = props
-    const {inputs, handleChange, transl, content} = useSignUp()
+    const {inputs, handleChange, transl, handleValidate, content} = useSignUp()
 
     return (
         <div className={'sign__content'}>
@@ -20,35 +20,39 @@ const SignUp: React.FC<SignUpProps> = (props) => {
             <form className={'sign__form'}>
                 <Input
                     className={'sign__input'}
-                    placeholder={transl.inputs.name}
                     name={'name'}
+                    placeholder={transl.inputs.name}
                     value={inputs.values.name}
+                    handleChange={handleChange}
                     error={inputs.errors.name}
-                    handleChange={handleChange}
+                    handleValidate={handleValidate}
                 />
                 <Input
                     className={'sign__input'}
-                    placeholder={transl.inputs.email}
                     name={'email'}
+                    placeholder={transl.inputs.email}
                     value={inputs.values.email}
+                    handleChange={handleChange}
                     error={inputs.errors.email}
-                    handleChange={handleChange}
+                    handleValidate={handleValidate}
                 />
                 <Input
                     className={'sign__input'}
-                    placeholder={transl.inputs.password}
                     name={'password'}
+                    placeholder={transl.inputs.password}
                     value={inputs.values.password}
-                    error={inputs.errors.password}
                     handleChange={handleChange}
+                    error={inputs.errors.password}
+                    handleValidate={handleValidate}
                 />
                 <Input
                     className={'sign__input'}
-                    placeholder={transl.inputs.passwordConfirm}
                     name={'passwordConfirm'}
+                    placeholder={transl.inputs.passwordConfirm}
                     value={inputs.values.passwordConfirm}
-                    error={inputs.errors.passwordConfirm}
                     handleChange={handleChange}
+                    error={inputs.errors.passwordConfirm}
+                    handleValidate={handleValidate}
                 />
                 <div className="sign__bottom">
                     <button className="sign__button sign__button--up">{transl.signUp}</button>

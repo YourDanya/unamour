@@ -1,5 +1,5 @@
-import React from "react"
-import useRangeSlider from "./range-slider.hook";
+import React from 'react'
+import useRangeSlider from './range-slider.hook'
 
 export type RangeSliderProps = {
     setValues: (values: {min: string, max: string}) => void,

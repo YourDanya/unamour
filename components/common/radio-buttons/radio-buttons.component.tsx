@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 type RadioButtonProps = {
     inputs: {value: string, label: string, node?: React.ReactNode }[]

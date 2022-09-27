@@ -1,6 +1,6 @@
-import React from "react"
-import Link from "next/link"
-import useMenu from "./menu.hook"
+import React from 'react'
+import useMenu from 'components/client-service/menu/menu.hook'
+import Link from 'next/link'
 
 type menuProps = {
     className?: string

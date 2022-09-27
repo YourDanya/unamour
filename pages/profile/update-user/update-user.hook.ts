@@ -1,8 +1,8 @@
-import {updateUserContent} from "./update-user.content"
-import {useLocale} from "../../../hooks/event-handler.hooks"
-import {MouseEvent} from "react"
-import {useDispatch} from "react-redux"
-import {useInput} from "../../../hooks/input/input.hooks"
+import {useDispatch} from 'react-redux'
+import {useLocale} from 'hooks/event-handler.hooks'
+import {updateUserContent} from 'pages/profile/update-user/update-user.content'
+import {useInput} from 'hooks/input/input.hooks'
+import React from 'react'
 
 const useUpdateUser = () => {
     const [content, translation] = useLocale(updateUserContent)
@@ -10,7 +10,7 @@ const useUpdateUser = () => {
 
     const dispatch = useDispatch()
 
-    const handleSubmit = (event: MouseEvent<HTMLElement>) => {
+    const handleSubmit = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault()
     }
 

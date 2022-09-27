@@ -1,5 +1,5 @@
-import {useToggleActive} from "../../hooks/event-handler.hooks"
-import {useModal} from "../../hooks/component.hooks"
+import {useToggleActive} from 'hooks/event-handler.hooks'
+import {useModal} from 'hooks/component/component.hooks'
 
 export const useShopItem = () => {
 

@@ -1,8 +1,8 @@
-import {buttonsProps} from "./buttons.component"
-import React, {useState} from "react";
-import {useCombineHandlers, useDoubleToggle} from "../../../hooks/event-handler.hooks";
+import React from 'react'
+import {useCombineHandlers, useDoubleToggle} from 'hooks/event-handler.hooks'
+import {ButtonsProps} from 'components/shop-item/buttons/buttons.component'
 
-const useButtons = (props: buttonsProps) => {
+const useButtons = (props: ButtonsProps) => {
 
     const {activeSize, showModal} = props
 

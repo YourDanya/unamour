@@ -1,12 +1,13 @@
-import {useRouter} from "next/router"
-import {useDispatch, useSelector} from "react-redux"
-import {selectClientItems} from "../redux/shop-items/shop-items.slice"
-import {useEffect} from "react"
-import {fetchItems} from "../redux/shop-items/shop-items.thunk"
-import {AppPropsWithLayout} from "../types/types"
-import {setLocale, setPath} from "../redux/main/main.slice";
-import {Locale} from "../redux/main/main.types";
-import {getUser} from "../redux/user/user.thunk";
+import {Locale} from 'redux/main/main.types'
+import {fetchItems} from 'redux/shop-items/shop-items.thunk'
+import {AppPropsWithLayout} from 'types/types'
+import {useRouter} from 'next/router'
+import {useDispatch, useSelector} from 'react-redux'
+import {useEffect} from 'react'
+import {getUser} from 'redux/user/user.thunk'
+import {selectClientItems} from 'redux/shop-items/shop-items.slice'
+import {setLocale, setPath} from 'redux/main/main.slice'
+
 
 const useApp = (props: AppPropsWithLayout) => {
     const {Component} = props

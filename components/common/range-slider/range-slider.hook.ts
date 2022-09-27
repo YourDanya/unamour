@@ -1,6 +1,6 @@
-import {RangeSliderProps} from "./range-slider.component"
-import React, {useCallback, useRef, useState} from "react"
-import {SliderState, SliderStateRef} from "./range-slider.types"
+import React, {useCallback, useRef, useState} from 'react'
+import {SliderState, SliderStateRef} from 'components/common/range-slider/range-slider.types'
+import {RangeSliderProps} from 'components/common/range-slider/range-slider.component'
 
 const useRangeSlider = (props: RangeSliderProps) => {
 

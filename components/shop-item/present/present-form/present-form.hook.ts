@@ -1,6 +1,6 @@
-import {useLocale} from "../../../../hooks/event-handler.hooks"
-import presentFormContent from "./present-form.content"
-import {useInput} from "../../../../hooks/input/input.hooks";
+import {useLocale} from 'hooks/event-handler.hooks'
+import presentFormContent from 'components/shop-item/present/present-form/present-form.content'
+import {useInput} from 'hooks/input/input.hooks'
 
 const usePresentForm= () => {
     const [content, transl] = useLocale(presentFormContent)

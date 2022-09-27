@@ -1,14 +1,14 @@
-import React from "react";
-import Dropdown from "../../common/dropdown/dropdown.component";
+import React from 'react'
+import Dropdown from 'components/common/dropdown/dropdown.component'
 
-type dropdownsProps = {
+type DropdownsProps = {
     description: string,
     composition: string,
     parameters: string,
     delivery: string
 }
 
-const Dropdowns: React.FC<dropdownsProps> = (props) => {
+const Dropdowns: React.FC<DropdownsProps> = (props) => {
     const {description, composition, parameters, delivery} = props
 
     return (

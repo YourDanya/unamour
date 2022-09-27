@@ -1,12 +1,12 @@
-import {scrollFixedProps} from "./scroll-fixed.component"
-import {useCallback, useEffect, useRef, useState} from "react"
-import {Property} from "csstype"
+import {ScrollFixedProps} from 'components/common/scroll-fixed/scroll-fixed.component'
+import {useCallback, useEffect, useRef, useState} from 'react'
+import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
+import {State, StateRef} from 'components/common/scroll-fixed/scroll-fixes.types'
+import useScrollFixedRoute from 'components/common/scroll-fixed/scroll-fixed-route.hook'
+import {Property} from 'csstype'
 import Position = Property.Position
-import {State, StateRef} from "./scroll-fixes.types"
-import useScrollFixedRoute from "./scroll-fixed-route.hook"
-import {useLayoutResizeObserve} from "../../../hooks/component.hooks"
 
-const useScrollHook = (props: scrollFixedProps) => {
+const useScrollHook = (props: ScrollFixedProps) => {
 
     const {topOffset, bottomOffset} = props
 

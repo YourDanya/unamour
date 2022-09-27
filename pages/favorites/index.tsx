@@ -1,11 +1,8 @@
-import React, {useState} from 'react'
-import Link from "next/link";
+import {NextPage} from 'next'
+import {useState} from 'react'
+import Link from 'next/link'
 
-interface favoritesProps {
-
-}
-
-const Index: React.FC<favoritesProps> = () => {
+const Index: NextPage = () => {
     const [favoriteItems, setFavoriteItems] = useState(null)
     return (
         <div className={'favorites'}>

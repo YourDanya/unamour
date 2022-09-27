@@ -1,6 +1,6 @@
-import {useLocale} from "../../../hooks/event-handler.hooks"
-import {useServiceMap} from "../../../hooks/other.hook"
-import privacyContent from "./privacy.content";
+import privacyContent from 'pages/client-service/privacy/privacy.content'
+import {useServiceMap} from 'hooks/other.hook'
+import {useLocale} from 'hooks/event-handler.hooks'
 
 const usePrivacy = () => {
     const [_, translation] = useLocale(privacyContent)

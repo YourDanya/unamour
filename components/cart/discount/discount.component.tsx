@@ -1,15 +1,13 @@
-import React from "react"
-import Input from "../../common/input/input.component"
-import useDiscount from "./discount.hook";
+import React from 'react'
+import Button from 'components/common/button/button.component'
+import useDiscount from 'components/cart/discount/discount.hook'
+import Input from 'components/common/input/input.component'
 
-export type DiscountProps = {
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    values: { certificate: string, promo: string }
-}
+export type DiscountProps = {}
 
 const Discount: React.FC<DiscountProps> = (props) => {
 
-    const {values, handleChange, active, toggleActive, found, setFound} = useDiscount(props)
+    const {active, toggleActive, found, setFound, inputs, handleChange, handleValidate, transl} = useDiscount(props)
 
     return (
         <div className={'discount'}>
@@ -17,21 +15,22 @@ const Discount: React.FC<DiscountProps> = (props) => {
                 {active.certificate ? (
                     <>
                         <Input
-                            placeholder={'Сертифікат'}
-                            name={'certificate'}
-                            value={values.certificate}
                             className={'cart__input discount__input'}
+                            name={'cert'}
+                            placeholder={transl.inputs.cert}
+                            value={inputs.values.cert}
                             handleChange={handleChange}
-                            error={found.certificate ? '' : 'Не знайдено'}
+                            error={inputs.errors.cert}
+                            handleValidate={handleValidate}
                         >
-                            <button className='discount__apply' name='certificate' onClick={setFound}>
-                                ЗАСТОСУВАТИ
-                            </button>
+                            <Button className='discount__apply' name='certificate' onClick={setFound}>
+                                {transl.apply}
+                            </Button>
                         </Input>
                     </>
                 ) : (
                     <button className="discount__button" name={'certificate'} onClick={toggleActive}>
-                        ВИКОРИСТАТИ СЕРТИФІКАТ
+                        {transl.applyCert}
                     </button>
                 )}
             </div>
@@ -39,21 +38,21 @@ const Discount: React.FC<DiscountProps> = (props) => {
                 {active.promo ? (
                     <>
                         <Input
-                            placeholder={'Промокод'}
-                            name={'promo'}
-                            value={values.promo}
                             className={'cart__input discount__input'}
+                            name={'promo'}
+                            placeholder={transl.inputs.promo}
+                            value={inputs.values.promo}
                             handleChange={handleChange}
-                            error={found.promo ? '' : 'Не знайдено'}
+                            error={inputs.errors.promo}
                         >
-                            <button className='discount__apply' name='promo' onClick={setFound}>
-                                ЗАСТОСУВАТИ
-                            </button>
+                            <Button className='discount__apply' name='promo' onClick={setFound}>
+                                {transl.apply}
+                            </Button>
                         </Input>
                     </>
                 ) : (
                     <button className="discount__button" name={'promo'} onClick={toggleActive}>
-                        ВИКОРИСТАТИ ПРОМОКОД
+                        {transl.applyPromo}
                     </button>
                 )}
             </div>

@@ -1,8 +1,8 @@
-import React from "react";
-import {getClientServiceLayout} from "../../../components/client-service/service.component";
-import WithIntern from "../../../components/hoc/with-intern/with-intern";
-import {WarrantyPeriodContent} from "./warranty-period.content";
-import {NextPageWithLayout} from "../../../types/types";
+import React from 'react'
+import {NextPageWithLayout} from 'types/types'
+import {getClientServiceLayout} from 'components/client-service/service.component'
+import {WarrantyPeriodContent} from 'pages/client-service/warranty-period/warranty-period.content'
+import WithIntern from 'components/hoc/with-intern/with-intern'
 
 type WarrantyPeriodProps ={
     content: typeof WarrantyPeriodContent.ua

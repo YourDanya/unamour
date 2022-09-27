@@ -1,6 +1,5 @@
-
-import {useLocale, useToggle} from "../../../hooks/event-handler.hooks"
-import signInContent from "./sign-in.content"
+import signInContent from 'components/sign-in-up/sign-in/sign-in.content'
+import {useLocale, useToggle} from 'hooks/event-handler.hooks'
 
 const useSignIn = () => {
 

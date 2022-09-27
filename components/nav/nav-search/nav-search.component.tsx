@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import search from '/public/icons/search.svg'
+import search from 'public/icons/search.svg'
+import useNavSearch from 'components/nav/nav-search/nav-search.hook'
 import Link from 'next/link'
-import Input from "../../common/input/input.component"
-import useNavSearch from "./nav-search.hook"
+import Input from 'components/common/input/input.component'
 
 const NavSearch: React.FC = () => {
 

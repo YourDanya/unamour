@@ -1,10 +1,11 @@
-import React, {ReactNode} from "react"
-import useProfile from "./profile.hook"
-import Button from "../common/button/button.component"
-import ModalContent from "../common/modal-content/modal-content.component"
-import Modal from "../common/modal/modal.component"
-import ProfileMenu from "./profile-menu/profile-menu.component"
-import Spinner from "../common/spinner/spinner.component"
+import React, {ReactNode} from 'react'
+import Button from 'components/common/button/button.component'
+import ProfileMenu from 'components/profile/profile-menu/profile-menu.component'
+import Spinner from 'components/common/spinner/spinner.component'
+import ModalContent from 'components/common/modal-content/modal-content.component'
+import Modal from 'components/common/modal/modal.component'
+import useProfile from 'components/profile/profile.hook'
+
 
 type ProfileProps = {}
 

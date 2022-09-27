@@ -1,13 +1,13 @@
-import {useDispatch, useSelector} from "react-redux"
-import {useRouter} from "next/router"
-import {User} from "../../redux/user/user.types"
-import {useLocale} from "../../hooks/event-handler.hooks"
-import profileContent from "./profile.content"
-import {selectField, selectUser} from "../../redux/user/user.selectors"
-import {useModal} from "../../hooks/component.hooks"
-import {signOut} from "../../redux/user/user.thunk"
-import {useEffect} from "react"
-import {resetSuccess} from "../../redux/user/user.slice"
+import {User} from 'redux/user/user.types'
+import {useRouter} from 'next/router'
+import {useDispatch, useSelector} from 'react-redux'
+import {useModal} from 'hooks/component/component.hooks'
+import {useEffect} from 'react'
+import {signOut} from 'redux/user/user.thunk'
+import {selectField, selectUser} from 'redux/user/user.selectors'
+import profileContent from 'components/profile/profile.content'
+import {resetSuccess} from 'redux/user/user.slice'
+import {useLocale} from 'hooks/event-handler.hooks'
 
 const useProfile = () => {
     const user = useSelector(selectUser) as User

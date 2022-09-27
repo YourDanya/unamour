@@ -1,6 +1,6 @@
-import {useLocale} from "../../../hooks/event-handler.hooks"
-import policyContent from "./policy.content"
-import {useServiceMap} from "../../../hooks/other.hook"
+import {useServiceMap} from 'hooks/other.hook'
+import policyContent from 'pages/client-service/policy/policy.content'
+import {useLocale} from 'hooks/event-handler.hooks'
 
 const usePolicy = () => {
     const [_, translation] = useLocale(policyContent)

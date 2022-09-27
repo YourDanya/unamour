@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react"
 import {useRouter} from "next/router"
 import {LocaleType} from "../types/types"
-import {useOmitFirstEffect} from "./component.hooks";
+import {useOmitFirstEffect} from "./component/component.hooks"
 
 export const useCombineHandlers = (...eventHandlers: ((event: any) => void)[]):
     (event: React.MouseEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>) => void => {
@@ -156,9 +156,6 @@ export const useMatchUrl = (url: string): [match: boolean] => {
     return [useRouter().pathname === url]
 }
 
-export const useMapImages = (urls: string[], className?: string) => {
-    return urls.map((url, index) => <img className={className} src={url} alt={`image ${index}`} key={url + index}/>)
-}
 
 export const useLocale = <T, K>(content: { translations: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translations: { ua: T, eng: T, ru: T } } & K, "translations">, translations: T] => {
     const locale = useRouter().locale as LocaleType
@@ -166,15 +163,15 @@ export const useLocale = <T, K>(content: { translations: { ua: T, eng: T, ru: T 
     return [{...other}, translations[locale]]
 }
 
-export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translation: { ua: T, eng: T, ru: T } } & K, "translation">, translation: T] => {
-    const locale = useRouter().locale as LocaleType
-    const {translation, ...other} = content
-    const translateContent = translation[locale]
-
-    return [{...other}, translation[locale]]
-}
-
-export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
+// export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translation: { ua: T, eng: T, ru: T } } & K, "translation">, translation: T] => {
+//     const locale = useRouter().locale as LocaleType
+//     const {translation, ...other} = content
+//     const translateContent = translation[locale]
+//
+//     return [{...other}, translation[locale]]
+// }
+//
+// export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
 
 // export const mergeObjects  = <T, K> (obj1: T, obj2: K) => {
 //     const newObj: Merged<T, K> = {} as Merged<T, K>

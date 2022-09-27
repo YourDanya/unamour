@@ -1,8 +1,8 @@
-import React from "react";
-import {getClientServiceLayout} from "../../../components/client-service/service.component"
-import {NextPageWithLayout} from "../../../types/types"
-import {OrderingContent} from "./ordering.content"
-import WithIntern from "../../../components/hoc/with-intern/with-intern"
+import React from 'react'
+import {OrderingContent} from 'pages/client-service/ordering/ordering.content'
+import {NextPageWithLayout} from 'types/types'
+import {getClientServiceLayout} from 'components/client-service/service.component'
+import WithIntern from 'components/hoc/with-intern/with-intern'
 
 type OrderingPageProps = {
     content: typeof OrderingContent.ua

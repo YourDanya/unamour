@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux"
-import {selectCartItems, selectTotalPrice} from "../../../redux/cart/cart.slice"
+import {selectCartItems, selectTotalPrice} from 'redux/cart/cart.slice'
 
 const useNavCart = () => {
     const cartItems = useSelector(selectCartItems)

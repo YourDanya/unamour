@@ -1,8 +1,8 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from "react"
-import {loadImageProps} from "./load-image.component"
-import {useExternalState, useResizeObserve} from "../../../hooks/component.hooks"
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {LoadImageProps} from 'components/common/load-image/load-image.component'
+import {useExternalState, useResizeObserve} from 'hooks/component/component.hooks'
 
-const useLoadImage = (props: loadImageProps) => {
+const useLoadImage = (props: LoadImageProps) => {
 
     const [height, setHeight] = useState(0)
     const ref = useRef<HTMLDivElement>(null)
@@ -18,7 +18,6 @@ const useLoadImage = (props: loadImageProps) => {
         const height = width * 4 / 3
         setHeight(height)
     }
-
 
 
     useLayoutEffect(calcHeight,[])

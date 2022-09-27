@@ -1,12 +1,12 @@
-import React from "react"
-import Link from "next/link"
-import search from '/public/icons/search.svg'
-import searchWhite from '/public/icons/search-white.svg'
-import shoppingCart from '/public/icons/shopping-cart.svg'
-import shoppingCartWhite from '/public/icons/shopping-cart-white.svg'
-import bookmark from '/public/icons/bookmark.svg'
-import bookmarkWhite from '/public/icons/bookmark-white.svg'
-import Button from "../../common/button/button.component"
+import React from 'react'
+import Link from 'next/link'
+import search from 'public/icons/search.svg'
+import searchWhite from 'public/icons/search-white.svg'
+import shoppingCart from 'public/icons/shopping-cart.svg'
+import shoppingCartWhite from 'public/icons/shopping-cart-white.svg'
+import bookmark from 'public/icons/bookmark.svg'
+import bookmarkWhite from 'public/icons/bookmark-white.svg'
+import Button from 'components/common/button/button.component'
 
 type navHeaderProps = {
     home: boolean,

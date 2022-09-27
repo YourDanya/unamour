@@ -1,14 +1,14 @@
-import React from "react"
-import useSortingFilter from "./sorting-filter.hook"
+import React from 'react'
+import useSortingFilter from 'components/shop-items/sorting-filter/sorting-filter.hook'
 
-export type sortingFilterProps = {
+export type SortingFilterProps = {
     content: string[],
     translation: string[],
     filter: string,
     filters: string[],
 }
 
-const SortingFilter: React.FC<sortingFilterProps> = (props) => {
+const SortingFilter: React.FC<SortingFilterProps> = (props) => {
 
     const {content, translation} = props
     const {sortValue, handleClick} = useSortingFilter(props)

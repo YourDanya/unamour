@@ -1,7 +1,6 @@
-import {useToggle} from "../../../hooks/event-handler.hooks"
-import {InputProps} from "./input.component";
-import React from "react";
-import {useDebounceEffect} from "../../../hooks/component.hooks";
+import {InputProps} from 'components/common/input/input.component'
+import {useDebounceEffect} from 'hooks/component/component.hooks'
+import {useToggle} from 'hooks/event-handler.hooks'
 
 const useInput = (props: InputProps) => {
     const {handleValidate, error, name, value} = props

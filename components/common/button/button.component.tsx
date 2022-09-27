@@ -1,5 +1,5 @@
-import React from "react"
-import Spinner from "../spinner/spinner.component";
+import React from 'react'
+import Spinner from 'components/common/spinner/spinner.component'
 
 type ButtonProps = {
     onClick: (event: React.MouseEvent<HTMLElement>) => void,

@@ -1,12 +1,8 @@
-import React from "react"
-import {presentContent} from "../present.content"
-import {mapDelivery} from "../../../../utils/component.utils"
-import Button from "../../../common/button/button.component"
-import Checkbox from "../../../common/checkbox/checkbox.component"
-import RadioButtons from "../../../common/radio-buttons/radio-buttons.component"
-import {LocaleType} from "../../../../types/types"
-import Input from "../../../common/input/input.component"
-import usePresentForm from "./present-form.hook";
+import React from 'react'
+import usePresentForm from 'components/shop-item/present/present-form/present-form.hook'
+import Input from 'components/common/input/input.component'
+import Button from 'components/common/button/button.component'
+import Checkbox from 'components/common/checkbox/checkbox.component'
 
 export type PresentFormProps = {
     price: number,

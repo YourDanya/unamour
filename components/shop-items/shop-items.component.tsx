@@ -1,13 +1,14 @@
-import React from "react"
-import Dropdown from "../common/dropdown/dropdown.component"
-import useShopItems from "./shop-items.hook"
-import Link from "next/link"
-import PriceFilter from "./price-filter/price-filter.component"
-import SizesFilter from "./size-filter/size-filter.component"
-import ColorsFilter from "./color-filter/color-filter.component"
-import SortingFilter from "./sorting-filter/sorting-filter.component"
-import Button from "../common/button/button.component"
-import ScrollFixed from "../common/scroll-fixed/scroll-fixed.component"
+import React from 'react'
+import PriceFilter from 'components/shop-items/price-filter/price-filter.component'
+import Button from 'components/common/button/button.component'
+import ScrollFixed from 'components/common/scroll-fixed/scroll-fixed.component'
+import ColorsFilter from 'components/shop-items/color-filter/color-filter.component'
+import Dropdown from 'components/common/dropdown/dropdown.component'
+import SizesFilter from 'components/shop-items/size-filter/size-filter.component'
+import useShopItems from 'components/shop-items/shop-items.hook'
+import Link from 'next/link'
+import SortingFilter from 'components/shop-items/sorting-filter/sorting-filter.component'
+
 
 export type ShopItemsProps = {
     children?: React.ReactNode

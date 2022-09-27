@@ -1,13 +1,13 @@
-import React from "react"
-import useScrollHook from "./scroll-fixed.hook"
+import React from 'react'
+import useScrollHook from 'components/common/scroll-fixed/scroll-fixed.hook'
 
-export type scrollFixedProps = {
+export type ScrollFixedProps = {
     children: React.ReactNode,
     topOffset: number,
     bottomOffset: number
 }
 
-const ScrollFixed: React.FC<scrollFixedProps> = (props) => {
+const ScrollFixed: React.FC<ScrollFixedProps> = (props) => {
 
     const {state, elemRef, children, transition} = useScrollHook(props)
 
