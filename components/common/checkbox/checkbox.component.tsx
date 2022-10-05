@@ -1,5 +1,5 @@
 import React from 'react'
-import {usePreventDefault, useToggle} from 'hooks/event-handler.hooks'
+import useCheckBox from 'components/common/checkbox/checkbox.hook'
 
 type CheckboxProps = {
     label: string,
@@ -11,10 +11,10 @@ type CheckboxProps = {
 }
 
 const Checkbox: React.FC<CheckboxProps> = (props) => {
+
     const {label, className, value, handleChange, name, styles, ...otherProps} = props
-    const handlePreventDefault = usePreventDefault()
-    const [focused, setFocused] = useToggle()
-    
+    const {focused, setFocused, handleClick} = useCheckBox()
+
     return (
         <div className={`checkbox ${className?? ''}`}>
             <div className={`checkbox__check ${focused ? 'checkbox__check--focused' : ''}
@@ -27,19 +27,18 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
                     onChange={handleChange}
                     onFocus={setFocused}
                     onBlur={setFocused}
-                    onMouseDown={handlePreventDefault}
+                    onMouseDown={handleClick}
                     {...otherProps}
                 />
             </div>
-            <label
-                className={'checkbox__label'}
-                htmlFor={name}
-                onClick={handlePreventDefault}
-            >
+            <label className={'checkbox__label'} htmlFor={name} onClick={handleClick}>
                 {label}
             </label>
         </div>
     )
 }
 
-export default Checkbox
+const areEqual = (prevProps: CheckboxProps, currentProps: CheckboxProps) =>
+    prevProps.value === currentProps.value
+
+export default React.memo(Checkbox, areEqual)

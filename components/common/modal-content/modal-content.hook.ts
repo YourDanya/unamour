@@ -1,4 +1,4 @@
-import {useRouteChange} from 'hooks/other.hook'
+import {useRouteChange} from 'hooks/other/other.hooks'
 
 const useModalContent = (hideModal: () => void) => {
     useRouteChange(hideModal)

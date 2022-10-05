@@ -1,7 +1,8 @@
 import React from 'react'
 
 type RadioButtonProps = {
-    inputs: {value: string, label: string, node?: React.ReactNode }[]
+    labels: {label: string, node?: React.ReactNode }[],
+    values: string[],
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     active: string,
     name: string,
@@ -10,28 +11,30 @@ type RadioButtonProps = {
 
 const RadioButtons: React.FC<RadioButtonProps> = (props) => {
 
-    const {inputs, handleChange, active, name, className} = props
+    const {values, handleChange, active, name, className, labels} = props
 
     return (
         <div className={`radio-group ${className ?? ''}`}>
-            {inputs.map(({value, label, node}) => (
-                    <div className='radio-group__elem' key={value}>
-                        <div className={`radio-group__button ${active === value ? 'radio-group__button--active' : ''}`}>
-                            <input
-                                type='radio'
-                                className='radio-group__input'
-                                value={value}
-                                name={name}
-                                id={value}
-                                onChange={handleChange}
-                                checked={active === value}
-                            />
-                        </div>
-                        <label className='radio-group__label' htmlFor={value}>
-                            <div className='radio-group__about'>{label}</div>
-                        </label>
-                        <div className='radio-group__node'>{node}</div>
+            {values.map((value, index) => (
+                <div className="radio-group__elem" key={value}>
+                    <div className={`radio-group__button ${active === value ? 'radio-group__button--active' : ''}`}>
+                        <input
+                            type="radio"
+                            className="radio-group__input"
+                            value={value}
+                            name={name}
+                            id={value}
+                            onChange={handleChange}
+                            checked={active === value}
+                        />
                     </div>
+                    <label className="radio-group__label" htmlFor={value}>
+                        {labels[index].label}
+                    </label>
+                    <div className="radio-group__node">
+                        {labels[index].node}
+                    </div>
+                </div>
             ))}
         </div>
     )

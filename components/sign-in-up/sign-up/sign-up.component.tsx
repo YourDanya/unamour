@@ -1,6 +1,7 @@
 import React from 'react'
-import Input from "../../common/input/input.component"
-import useSignUp from "./sign-up.hook"
+import useSignUp from 'components/sign-in-up/sign-up/sign-up.hook'
+import Input from 'components/common/input/input.component'
+import Button from 'components/common/button/button.component'
 
 export type SignUpProps = {
     setSign: () => void
@@ -44,6 +45,7 @@ const SignUp: React.FC<SignUpProps> = (props) => {
                     handleChange={handleChange}
                     error={inputs.errors.password}
                     handleValidate={handleValidate}
+                    type={'password'}
                 />
                 <Input
                     className={'sign__input'}
@@ -53,9 +55,12 @@ const SignUp: React.FC<SignUpProps> = (props) => {
                     handleChange={handleChange}
                     error={inputs.errors.passwordConfirm}
                     handleValidate={handleValidate}
+                    type={'password'}
                 />
                 <div className="sign__bottom">
-                    <button className="sign__button sign__button--up">{transl.signUp}</button>
+                    <Button className="sign__button sign__button--up" onClick={() => {}}>
+                        {transl.signUp}
+                    </Button>
                     <div className={'sign__consent'}>
                         {transl.consent}
                     </div>

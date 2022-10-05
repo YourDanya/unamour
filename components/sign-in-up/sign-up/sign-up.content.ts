@@ -3,7 +3,7 @@ const signUpContent = {
         email: {value: '', validations: {isEmail: true, minLength: 7}},
         name: {value: '', validations: { minLength: 3}},
         password: {value: '', validations: {minLength: 6, maxLength: 20}},
-        passwordConfirm: {value: '', validations: {minLength: 6, maxLength: 20}}
+        passwordConfirm: {value: '', validations: {minLength: 6, maxLength: 20, equalToField: 'password'}}
     },
     translations: {
         ua: {
@@ -24,8 +24,8 @@ const signUpContent = {
             consent: 'Натискаючи кнопку Зареєструватися, я даю згоду на обробку та \nпередачу моїх персональних даних.'
         },
         eng: {
-            signUp: 'login up',
-            switch: 'login in',
+            signUp: 'sign-in up',
+            switch: 'sign-in in',
             success: 'You have successfully created an account. An activation code has been sent to you by mail.\'',
             error: {
                 4: 'Wrong email or password.',

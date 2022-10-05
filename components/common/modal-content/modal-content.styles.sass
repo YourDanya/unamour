@@ -15,5 +15,12 @@
     visibility: visible
     opacity: 1
   &__close
+    z-index: 1
     top: 20px
     right: 20px
+
+@media(max-width: 576px)
+  .modal-content
+    &__close
+      top: 10px
+      right: 10px

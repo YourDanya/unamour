@@ -7,13 +7,13 @@ import {signOut} from 'redux/user/user.thunk'
 import {selectField, selectUser} from 'redux/user/user.selectors'
 import profileContent from 'components/profile/profile.content'
 import {resetSuccess} from 'redux/user/user.slice'
-import {useLocale} from 'hooks/event-handler.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 
 const useProfile = () => {
     const user = useSelector(selectUser) as User
     const router = useRouter()
 
-    const [content, translation] = useLocale(profileContent)
+    const [transl, content] = useLocale(profileContent)
     const [modalState, showModal, hideModal] = useModal({menu: false})
 
     const {loading, success} = useSelector(selectField('signOut'))
@@ -31,7 +31,7 @@ const useProfile = () => {
         }
     }, [success])
 
-    return {user, translation, content, modalState, showModal, hideModal, handleSignOut, loading}
+    return {user, transl, content, modalState, showModal, hideModal, handleSignOut, loading}
 }
 
 export default useProfile

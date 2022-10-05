@@ -6,25 +6,43 @@
   &__img
     background-color: black
   &__info
-    padding: 0 40px
+    padding: 40px
     flex-grow: 1
-    display: flex
-    flex-direction: column
-    justify-content: center
-  &__properties
-    display: flex
-    justify-content: space-between
+    display: grid
+    grid-template-columns: auto auto auto
+    grid-template-rows: auto auto
   &__property
     font-size: 11px
     margin-right: 6px
     &-block
+      align-self: end
+      grid-row: 2
       align-items: center
       display: flex
+  &__name
+    width: 100%
+    text-transform: uppercase
+    font-size: 11px
   &__price
     font-size: 13px
   &__size
+    text-transform: uppercase
     font-size: 11px
   &__color
-    height: 14px
-    width: 14px
+    height: 12px
+    width: 12px
     border: 1px solid #828282
+
+@media(max-width: 992px)
+  .present
+    &__item
+      width: 100%
+    &__info
+      padding: 40px 30px
+    &__name
+      margin-bottom: 24px
+
+@media(max-width: 576px)
+  .present
+    &__info
+      padding: 40px 15px

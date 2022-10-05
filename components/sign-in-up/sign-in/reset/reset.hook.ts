@@ -1,34 +1,29 @@
-import {useLocale} from "../../../../hooks/event-handler.hooks"
-import {resetContent} from "./reset.content"
-import {useInput} from "../../../../hooks/input/input.hooks"
-import {useDispatch, useSelector} from "react-redux"
-import {selectField} from "../../../../redux/user/user.selectors"
-import {forgetPass} from "../../../../redux/user/user.thunk"
-import {MouseEvent, useEffect} from "react"
+import {useEffect} from 'react'
+import {resetContent} from 'components/sign-in-up/sign-in/reset/reset.content'
+import {useDispatch, useSelector} from 'react-redux'
+import {forgetPassword} from 'redux/user/user.thunk'
+import {selectField} from 'redux/user/user.selectors'
+import {useLocale} from 'hooks/other/other.hooks'
+import {useInput} from 'hooks/input/input.hooks'
 
 const useReset = () => {
-
-    const [content, transl] = useLocale(resetContent)
-    const {inputs, handleChange, handleValidate, errRef} = useInput(content.inputs)
-
+    const [transl, content] = useLocale(resetContent)
+    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
     const {loading, success, error} = useSelector(selectField('forgetPass'))
 
     const dispatch = useDispatch()
 
-    const forgetSubmit = (event: MouseEvent<HTMLElement>) => {
-        event.preventDefault()
-        if (!errRef.current.errors.email) dispatch(forgetPass({email: inputs.values.email}))
-    }
-
-    const resetSubmit = () => {
-        if (errRef.current.errors.pass || errRef.current.errors.passConfirm) return
-    }
+    const forgetSubmit = withSubmit(() => {
+        dispatch(forgetPassword({email: inputs.values.email}))
+    })
 
     useEffect(() => {
+        if (success) setTimeout(() => {
+            resetValues()
+        }, 1000)
+    }, [success])
 
-    }, [])
-
-    return {content, transl, inputs, handleChange, handleValidate, forgetSubmit, resetSubmit, loading, success, error}
+    return {content, transl, inputs, handleChange, handleValidate, forgetSubmit, loading, success, error}
 }
 
 export default useReset

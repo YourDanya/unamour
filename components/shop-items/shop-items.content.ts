@@ -58,7 +58,7 @@ const shopItemsContent = {
             },
             {
                 code: '#a86540',
-                param: 'light brown'
+                param: 'light-brown'
             },
             {
                 code: '#a77752',
@@ -233,7 +233,7 @@ const shopItemsContent = {
                 'purple',
                 'grey',
                 'white',
-                'light brown',
+                'light-brown',
                 'beige',
                 'coffee',
                 'brown',

@@ -1,8 +1,6 @@
 export const resetContent = {
     inputs: {
-        email: {value: '', validations: {isEmail: true, minLength: 7}} ,
-        pass: {value: '', validations: {minLength: 6, maxLength: 15}} ,
-        passConfirm: {value: '', validations: {minLength: 6, maxLength: 15}} ,
+        email: {value: '', validations: {required: true, isEmail: true, minLength: 7}},
     },
     translations: {
         ua: {
@@ -10,9 +8,7 @@ export const resetContent = {
             switch: 'увійти',
             explanation: 'Вкажіть e-mail, і ми надішлемо вам посилання на\nвідновлення пароля',
             inputs: {
-                email: 'Ваш e-mail',
-                pass: 'Пароль',
-                passConfirm: 'Підтверждення пароля'
+                email: 'Ваш e-mail'
             }
         },
         eng: {
@@ -20,9 +16,7 @@ export const resetContent = {
             switch: 'sign in',
             explanation: 'Enter your e-mail and we will send you a link to reset your password',
             inputs: {
-                email: 'Your e-mail',
-                pass: 'Password',
-                passConfirm: 'Password confirmation'
+                email: 'Your e-mail'
             }
         },
         ru: {
@@ -30,9 +24,7 @@ export const resetContent = {
             switch: 'войти',
             explanation: 'Укажите e-mail, и мы отправим вам ссылку на восстановление пароля',
             inputs: {
-                email: 'Ваш e-mail',
-                pass: 'Пароль',
-                passConfirm: 'Підтверждення пароля'
+                email: 'Ваш e-mail'
             }
         }
     }

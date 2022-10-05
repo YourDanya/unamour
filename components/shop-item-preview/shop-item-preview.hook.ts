@@ -1,6 +1,6 @@
-import {ClientItem} from "../../redux/shop-items/shop-items.types"
-import {useToggle, useToggleMany} from "../../hooks/event-handler.hooks"
-import React, {useState} from "react"
+import React, {useState} from 'react'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
+import {useToggleMany} from 'hooks/event-handler/event-handler.hooks'
 
 const useShopItemPreview = (props: ClientItem) => {
 

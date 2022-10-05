@@ -17,6 +17,12 @@ export type ForgetPassData = {
     email: string
 }
 
+export type ResetPassData = {
+    password: string,
+    passwordConfirm: string,
+    token: string
+}
+
 export type SignUpData = {
     name: string,
     passwordConfirm: string,

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {ShopItemsProps} from 'components/shop-items/shop-items.component'
-import {useLocale} from 'hooks/event-handler.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 import {useRouter} from 'next/router'
 import shopItemsContent from 'components/shop-items/shop-items.content'
 
 const useShopItems = (props: ShopItemsProps) => {
 
-    const [content, translation] = useLocale(shopItemsContent)
+    const [transl, content] = useLocale(shopItemsContent)
     const filters = Object.keys(content.filters)
 
     const router = useRouter()
@@ -28,7 +28,7 @@ const useShopItems = (props: ShopItemsProps) => {
         }
     }
 
-    return {content, translation, handleLinkClick, params, handleResetClick, filters, reset, setReset}
+    return {content, transl, handleLinkClick, params, handleResetClick, filters, reset, setReset}
 }
 
 export default useShopItems

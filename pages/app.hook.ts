@@ -1,13 +1,10 @@
-import {Locale} from 'redux/main/main.types'
-import {fetchItems} from 'redux/shop-items/shop-items.thunk'
 import {AppPropsWithLayout} from 'types/types'
 import {useRouter} from 'next/router'
-import {useDispatch, useSelector} from 'react-redux'
+import {Locale} from 'redux/main/main.types'
 import {useEffect} from 'react'
-import {getUser} from 'redux/user/user.thunk'
-import {selectClientItems} from 'redux/shop-items/shop-items.slice'
-import {setLocale, setPath} from 'redux/main/main.slice'
-
+import {setPath} from 'redux/main/main.slice'
+import {setLocale} from 'redux/main/main.slice'
+import {useDispatch} from 'react-redux'
 
 const useApp = (props: AppPropsWithLayout) => {
     const {Component} = props
@@ -16,20 +13,10 @@ const useApp = (props: AppPropsWithLayout) => {
     const slug = useRouter().query.slug
     if (slug && slug.length !== 1) getLayout = ((page) => page)
 
-    const dispatch = useDispatch()
-    const items = useSelector(selectClientItems)
-
-    useEffect(() => {
-        if (items.length == 0) {
-            console.log('no items')
-            dispatch(fetchItems())
-        }
-        dispatch(getUser())
-    }, [])
-
     const router = useRouter()
     const path = router.asPath
     const locale = router.locale as Locale
+    const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(setPath(path))
@@ -39,7 +26,7 @@ const useApp = (props: AppPropsWithLayout) => {
         dispatch(setLocale(locale))
     }, [locale])
 
-    return {...props, getLayout}
+    return {getLayout}
 }
 
 export default useApp

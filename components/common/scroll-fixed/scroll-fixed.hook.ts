@@ -11,15 +11,18 @@ const useScrollHook = (props: ScrollFixedProps) => {
     const {topOffset, bottomOffset} = props
 
     const [state, setState] = useState<State>({position: 'static', top: 0, bottom: 'unset', translateY: 0})
-
     const stateRef = useRef<StateRef>({position: 'static', toParentTop: 0, scrollY: 0, height: 0,
-        toBottom: false, first: true, parentToPageTop: topOffset})
-
+        toBottom: false, first: true, parentToPageTop: topOffset, self: false})
     const elemRef = useRef<HTMLDivElement | null>(null)
-
     const [transition, setTransition] = useState('unset')
 
     const handleScroll = useCallback ((event: Event) => {
+
+        if (stateRef.current.self) {
+            stateRef.current.self = false
+            return
+        }
+        console.log('scrollY prev', stateRef.current.scrollY)
 
         const scrollY = window.scrollY
         const viewPort = window.innerHeight
@@ -29,7 +32,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
         const parentRect = parentElement?.getBoundingClientRect() as DOMRect
 
         // console.log('\nscrolling', scrollY)
-        // console.log('scrollY', scrollY)
+        console.log('scrollY', scrollY)
         // console.log('viewport', viewPort)
         // console.log('rect bottom', rect.bottom)
         // console.log('rect top', rect.top)
@@ -50,6 +53,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
         //scrolling down
         down: if (scrollY > stateRef.current.scrollY) {
             //reaching menu end
+            console.log('scrolling down')
             if (rect.bottom - viewPort <= - bottomOffset + 5) {
                 //reaching parent end
                 if (parentRect.bottom <= viewPort + 100) {
@@ -80,7 +84,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
             }
             //not reaching end
             else {
-                // console.log('not reaching end')
+                console.log('not reaching end')
                 //switched to static
                 if (stateRef.current.position !== 'static') {
                     position = 'static'
@@ -96,6 +100,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
         }
         //scrolling up
         else {
+            console.log('scrolling up')
             //reaching menu top
             if (rect.top >= topOffset - 5) {
                 stateRef.current.toParentTop = scrollY + rect.top - stateRef.current.parentToPageTop
@@ -127,6 +132,8 @@ const useScrollHook = (props: ScrollFixedProps) => {
 
         stateRef.current.scrollY = scrollY
 
+        console.log(stateRef.current.scrollY)
+
         if (toUpdate) {
             stateRef.current.position = position
             setState({position, top, bottom, translateY})
@@ -139,7 +146,6 @@ const useScrollHook = (props: ScrollFixedProps) => {
         const heightDiff = newHeight - stateRef.current.height
 
         if (stateRef.current.toBottom) {
-
             if(stateRef.current.toParentTop-heightDiff>topOffset) {
                 stateRef.current.toParentTop -= heightDiff
             } else {
@@ -172,7 +178,6 @@ const useScrollHook = (props: ScrollFixedProps) => {
         resizeObserver.observe(elem)
 
         window.addEventListener('scroll', handleScroll)
-
         elem.addEventListener('transitionend', handleTransitionEnd)
 
         return () => {

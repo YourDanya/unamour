@@ -4,7 +4,6 @@ import {getClientServiceLayout} from 'components/client-service/service.componen
 import usePolicy from 'pages/client-service/policy/policy.hook'
 
 const Policy: NextPageWithLayout = () => {
-
     const {children} = usePolicy()
 
     return (

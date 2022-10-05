@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react"
-import {useRouter} from "next/router"
-import {NextPage} from "next"
-import search from '/public/icons/search.svg'
-import Input from "../../components/common/input/input.component"
-import {useSelector} from "react-redux"
-import {selectClientItems} from "../../redux/shop-items/shop-items.slice"
-import ShopItemPreview from "../../components/shop-item-preview/shop-item-preview.component"
-import {LocaleType} from "../../types/types"
-import {ClientItem} from "../../redux/shop-items/shop-items.types"
+import React, {useEffect, useState} from 'react'
+import search from 'public/icons/search.svg'
+import {useRouter} from 'next/router'
+import {useSelector} from 'react-redux'
+import {LocaleType} from 'types/types'
+import {selectClientItems} from 'redux/shop-items/shop-items.slice'
+import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
+import {ClientItem} from 'redux/shop-items/shop-items.types'
+import {NextPage} from 'next'
+import Input from 'components/common/input/input.component'
 
 type SearchProps = {}
 

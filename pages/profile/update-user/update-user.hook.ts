@@ -1,12 +1,12 @@
 import {useDispatch} from 'react-redux'
-import {useLocale} from 'hooks/event-handler.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 import {updateUserContent} from 'pages/profile/update-user/update-user.content'
 import {useInput} from 'hooks/input/input.hooks'
 import React from 'react'
 
 const useUpdateUser = () => {
-    const [content, translation] = useLocale(updateUserContent)
-    const {inputs, handleChange, setInputs, handleValidate} = useInput(content.inputs)
+    const [transl, content] = useLocale(updateUserContent)
+    const {inputs, handleChange, handleValidate} = useInput(content.inputs)
 
     const dispatch = useDispatch()
 
@@ -14,7 +14,7 @@ const useUpdateUser = () => {
         event.preventDefault()
     }
 
-    return {content, translation, inputs, handleChange, handleSubmit, setInputs, handleValidate}
+    return {content, transl, inputs, handleChange, handleSubmit,  handleValidate}
 }
 
 export default useUpdateUser

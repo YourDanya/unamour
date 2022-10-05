@@ -1,7 +1,7 @@
-import React, {useEffect, useRef, useState} from "react"
-import {useRouter} from "next/router"
-import {LocaleType} from "../types/types"
-import {useOmitFirstEffect} from "./component/component.hooks"
+import React, {useRef, useState} from 'react'
+import {useOmitFirstEffect} from 'hooks/component/component.hooks'
+import {useRouter} from 'next/router'
+import {LocaleType} from 'types/types'
 
 export const useCombineHandlers = (...eventHandlers: ((event: any) => void)[]):
     (event: React.MouseEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>) => void => {
@@ -132,8 +132,6 @@ export const useToggleActive = (attribute: string = 'name'):
     return [active, handleEvent, ref]
 }
 
-
-
 export const useSetFalseMany = <T extends readonly string[], >(arr: T, attribute: string): [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void] => {
     const initialState: any = {}
     arr.forEach((elem) => initialState[elem] = true)
@@ -152,16 +150,6 @@ export const useSetTrue = (): [active: boolean, handleEvent: (event: any) => voi
     return [active, handleEvent]
 }
 
-export const useMatchUrl = (url: string): [match: boolean] => {
-    return [useRouter().pathname === url]
-}
-
-
-export const useLocale = <T, K>(content: { translations: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translations: { ua: T, eng: T, ru: T } } & K, "translations">, translations: T] => {
-    const locale = useRouter().locale as LocaleType
-    const {translations, ...other} = content
-    return [{...other}, translations[locale]]
-}
 
 // export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translation: { ua: T, eng: T, ru: T } } & K, "translation">, translation: T] => {
 //     const locale = useRouter().locale as LocaleType

@@ -12,26 +12,26 @@ type ProfileProps = {}
 const Profile: React.FC<ProfileProps> = (props) => {
 
     const {children} = props
-    const {user, translation, content, modalState, hideModal, showModal, handleSignOut, loading} = useProfile()
+    const {user, transl, content, modalState, hideModal, showModal, handleSignOut, loading} = useProfile()
 
     return user &&
         (<div className={'profile'}>
             <div className={'profile__top'}>
                 <div className={'profile__sign-out'}>
                     <Button className={'profile__sign-out-btn'} onClick={handleSignOut}>
-                        {loading? <Spinner/> : translation.signOut}
+                        {loading? <Spinner/> : transl.signOut}
                     </Button>
                 </div>
                 <div className={'profile__name'}>
-                    {translation.greeting} {user.name}!
+                    {transl.greeting} {user.name}!
                 </div>
-                <ProfileMenu className={'profile__menu--hide'} menu={content.menu} translMenu={translation.menu}/>
+                <ProfileMenu className={'profile__menu--hide'} menu={content.menu} translMenu={transl.menu}/>
                 <Button className={'profile__menu-btn'} onClick={showModal} name={'menu'}>
-                    {translation.profileMenu}
+                    {transl.profileMenu}
                 </Button>
             </div>
             <ModalContent active={modalState.menu} hideModal={hideModal} className={'profile__menu-modal'}>
-                <ProfileMenu className={'profile__menu--modal'} menu={content.menu} translMenu={translation.menu}/>
+                <ProfileMenu className={'profile__menu--modal'} menu={content.menu} translMenu={transl.menu}/>
             </ModalContent>
             <Modal active={modalState.modal} hideModal={hideModal}/>
             <div className={'profile__page'}>

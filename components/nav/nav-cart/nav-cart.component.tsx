@@ -2,40 +2,38 @@ import React from 'react'
 import shoppingCart from '/public/icons/big-shopping-cart.svg'
 import CartItem from 'components/cart-item/cart-item.component'
 import useNavCart from 'components/nav/nav-cart/nav-cart.hook'
-import Link from 'next/link'
+import NavLink from 'components/common/nav-link/nav-link.component'
 
 const NavCart: React.FC = () => {
 
-    const {cartItems, total, length} = useNavCart()
+    const {cartItems, total, length, transl} = useNavCart()
 
     return (
         <div className={`nav-cart`}>
-            {length>0 ? (
+            {length > 0 ? (
                 <>
-                    <div className="nav-cart__title">КОРЗИНА</div>
+                    <div className="nav-cart__title">{transl.cart}</div>
                     <div className={'nav-cart__items'}>
                         {cartItems.map((props, index) => <CartItem key={props.data.slug + index}  {...props}/>)}
                     </div>
                     <div className="nav-cart__total">
-                        <div className="nav-cart__total-label">РАЗОМ:</div>
-                        <div className="nav-cart__total-price">{total} ₴</div>
+                        <div className="nav-cart__total-label">{transl.total}</div>
+                        <div className="nav-cart__total-price">{total} {transl.currency}</div>
                     </div>
                 </>
             ) : (
                 <>
                     <img className="nav-cart__icon" src={shoppingCart.src} alt={'nav-cart-icon'}/>
                     <div className={'nav-cart__empty'}>
-                        ВАША КОРЗИНА ПУСТА
+                        {transl.empty}
                     </div>
                 </>
             )}
-            <Link href={length>0? '/cart' : '/favorite'}>
-                <a className="nav-cart__button nav-cart__link">
-                    {length>0? 'ОФРМИТИ ЗАМОВЛЕННЯ' : 'ДИВИТИСЯ ОБРАНЕ'}
-                </a>
-            </Link>
+            <NavLink className="nav-cart__button nav-cart__link" href={length > 0 ? '/cart' : '/favorite'}>
+                {length > 0 ? transl.order : transl.favorite}
+            </NavLink>
             <button className={'nav-cart__button nav-cart__button--white'}>
-                ПРОДОВЖИТИ ПОКУПКИ
+                {transl.continue}
             </button>
         </div>
     )

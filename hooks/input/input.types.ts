@@ -1,4 +1,4 @@
-import {ChangeEvent, MutableRefObject} from "react"
+import React from 'react'
 
 export type Value = string | boolean | number | string[]
 
@@ -23,27 +23,26 @@ export type ValidationInputs <T extends string | number | symbol, > = {
     validations: Record<T, Validations>
 }
 
-export type Errors <T extends string > = {
-    errors: Record<T, string>
-}
+export type Values = Record<string, Value>
 
-export type Values  <T extends string > = {
-    values: Record<T, string>
-}
+export type TranslInputs = Record<string, string>
 
 export type ValidationInput = {
     value: Value,
-    validations: Validations
+    validations: Validations,
+    values? : Values,
+    translInputs?: TranslInputs,
+    name: string
 }
 
-// Inputs<keyof T, T[keyof T]['value']>
-
-export type UseInput = <T extends InputsObj,> (inputsObj: T) => {
+export type UseInput = <T extends InputsObj,> (inputsObj: T, translInputs?: Record<keyof T, string>) => {
     inputs: {values: {[K in keyof T]: T[K]['value']}, errors: Record<keyof T, string | null>} ,
-    handleChange: (event: ChangeEvent<HTMLElement>) => void,
+    handleChange: (event: React.ChangeEvent<HTMLElement>) => void,
     handleValidate: (event: any) => void,
     resetValues: () => void,
-    errRef: MutableRefObject<{ errors: Record<keyof T, string | null>, count: number }>,
-    setInputs: (inputs: Inputs<keyof T, Pick<T[keyof T], 'value'>>) => void,
+    errRef: React.MutableRefObject<{ errors: Record<keyof T, string | null>, count: number }>,
+    setReqErrors: () => void,
+    withSubmit: (callback: () => void) => (event: React.MouseEvent<HTMLElement>) => void
 }
 
+export type ErrRef <T,> = {errors : T, count: number}

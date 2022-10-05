@@ -1,15 +1,12 @@
-import React, {useState, memo} from 'react'
-import googleIcon from 'public/icons/google.svg'
-import facebookIcon from 'public/icons/facebook.svg'
+import React, {memo} from 'react'
 import SignUp from 'components/sign-in-up/sign-up/sign-up.component'
 import SignIn from 'components/sign-in-up/sign-in/sign-in.component'
-
-
+import useSignInUp from 'components/sign-in-up/sign-in-up.hook'
 export type SignInUpProps = {}
 
 const SignInUp: React.FC<SignInUpProps> = () => {
 
-    const [sign, setSign] = useState<'in' | 'up'>('in')
+    const {sign, setSign} = useSignInUp()
 
     return (
         <div className={'sign'}>
@@ -18,17 +15,6 @@ const SignInUp: React.FC<SignInUpProps> = () => {
             ) : (
                 <SignUp setSign={() => setSign('in')}/>
             )}
-            <div className="sign__socials">
-                <div className="sign__socials-text">ВХІД ЧЕРЕЗ СОЦМЕРЕЖІ</div>
-                <div className="sign__socials-items">
-                    <div className="sign__socials-item">
-                        <img src={googleIcon.src} alt="social image" className={'sign__social-item-img'}/>
-                    </div>
-                    <div className="sign__socials-item sign__socials-item--last">
-                        <img src={facebookIcon.src} alt="social image" className={'sign__social-item-img'}/>
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }

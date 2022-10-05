@@ -17,7 +17,7 @@ export type ShopItemsProps = {
 const ShopItems: React.FC<ShopItemsProps> = (props) => {
 
     const {children} = props
-    const {content, translation, handleLinkClick, params, handleResetClick, filters} = useShopItems(props)
+    const {content, transl, handleLinkClick, params, handleResetClick, filters} = useShopItems(props)
 
     return (
         <div className='shop-items'>
@@ -27,46 +27,46 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                         {content.categories.map((ref, index) => (
                             <Link href={`${ref}${params ? `?${params}` : ''}`} key={ref}>
                                 <a className={'shop-items__menu-item'} onClick={handleLinkClick}>
-                                    {translation.categories[index]}
+                                    {transl.categories[index]}
                                 </a>
                             </Link>
                         ))}
                     </div>
                     <div className='shop-items__filters'>
-                        <Dropdown name={translation.filter1} className={'shop-items__sort'}>
+                        <Dropdown name={transl.filter1} className={'shop-items__sort'}>
                             <SortingFilter
                                 content={content.filters.sorting}
-                                translation={translation.sort}
+                                transl={transl.sort}
                                 filter={'sorting'}
                                 filters={filters}
                             />
                         </Dropdown>
-                        <Dropdown name={translation.filter2}>
+                        <Dropdown name={transl.filter2}>
                             <PriceFilter
                                 content={content.filters.price}
-                                translation={translation.price}
+                                transl={transl.price}
                                 filter={'price'}
                                 filters={filters}
                             />
                         </Dropdown>
-                        <Dropdown name={translation.filter3} className='shop-items__sizes'>
+                        <Dropdown name={transl.filter3} className='shop-items__sizes'>
                             <SizesFilter
                                 content={content.filters.size}
                                 filter={'size'}
                                 filters={filters}
                             />
                         </Dropdown>
-                        <Dropdown name={translation.filter4} className={'shop-items__colors'}>
+                        <Dropdown name={transl.filter4} className={'shop-items__colors'}>
                             <ColorsFilter
                                 content={content.filters.color}
-                                translation={translation.color}
+                                transl={transl.color}
                                 filter={'color'}
                                 filters={filters}
                             />
                         </Dropdown>
                         <Button className={'shop-items__reset'} onClick={handleResetClick}>
                             <div className={'close'}/>
-                            {translation.reset}
+                            {transl.reset}
                         </Button>
                     </div>
                 </ScrollFixed>

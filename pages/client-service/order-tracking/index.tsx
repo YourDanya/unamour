@@ -1,26 +1,23 @@
 import React from 'react'
 import {NextPageWithLayout} from 'types/types'
 import {getClientServiceLayout} from 'components/client-service/service.component'
-import WithIntern from 'components/hoc/with-intern/with-intern'
-import {OrderTrackingContent} from 'pages/client-service/order-tracking/order-tracking.content'
+import useOrderTracking from 'pages/client-service/order-tracking/order-tracking.hook'
 
-type OrderTrackingProps = {
-    content: typeof OrderTrackingContent.ua
-}
+type OrderTrackingProps = {}
 
-const OrderTracking: NextPageWithLayout<OrderTrackingProps> = ({content}) => {
+const OrderTracking: NextPageWithLayout<OrderTrackingProps> = () => {
+    const {transl} = useOrderTracking()
+
     return (
         <div className={'order-tracking'}>
             <div className="service__title">
-                {content.title}
+                {transl.title}
             </div>
             <div className="service__text">
-                {content.text}
+                {transl.text}
             </div>
         </div>
     )
 }
 
 OrderTracking.getLayout = getClientServiceLayout
-
-export default WithIntern(OrderTracking, OrderTrackingContent)

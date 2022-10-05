@@ -10,14 +10,14 @@ export const updateUserContent = {
         ua: {
             title: 'особисті дані',
             inputs: {
-                name: {placeholder: 'Ім\'я'},
-                surname: {placeholder: 'Прізвище'},
-                email: {placeholder: 'Ваш e-mail'},
-                phone: {placeholder: 'Номер'},
-                birthDate: {placeholder: 'Дата нарождення'},
-                oldPassword: {placeholder: 'Старий пароль'},
-                newPassword: {placeholder: 'Придумайте новий пароль'},
-                passwordConfirm: {placeholder: 'Повторіть пароль'}
+                name: 'Ім\'я',
+                surname: 'Прізвище',
+                email: 'Ваш e-mail',
+                phone: 'Номер',
+                birthDate: 'Дата нарождення',
+                oldPassword: 'Старий пароль',
+                newPassword: 'Придумайте новий пароль',
+                passwordConfirm: 'Повторіть пароль'
             },
             password: 'пароль',
             changePassword: 'Зміна пароля',
@@ -26,14 +26,14 @@ export const updateUserContent = {
         eng: {
             title: 'personal data',
             inputs: {
-                name: {placeholder: 'Name'},
-                surname: {placeholder: 'Surname'},
-                email: {placeholder: 'Your e-mail'},
-                phone: {placeholder: 'Phone'},
-                birthDate: {placeholder: 'Birth date'},
-                oldPassword: {placeholder: 'Old password'},
-                newPassword: {placeholder: 'New password'},
-                passwordConfirm: {placeholder: 'Confirm password'},
+                name: 'Name',
+                surname: 'Surname',
+                email: 'Your e-mail',
+                phone: 'Phone',
+                birthDate: 'Birth date',
+                oldPassword: 'Old password',
+                newPassword: 'New password',
+                passwordConfirm: 'Confirm password',
             },
             password: 'password',
             changePassword: 'Change password',
@@ -42,14 +42,14 @@ export const updateUserContent = {
         ru: {
             title: 'личные данные',
             inputs: {
-                name: {placeholder: 'Имя'},
-                surname: {placeholder: 'Фамилия'},
-                email: {placeholder: 'Ваш e-mail'},
-                phone: {placeholder: 'Номер'},
-                birthDate: {placeholder: 'Дата рождения'},
-                oldPassword: {placeholder: 'Старый пароль'},
-                newPassword: {placeholder: 'Придумайте новый пароль'},
-                passwordConfirm: {placeholder: 'Повторите пароль'}
+                name: 'Имя',
+                surname: 'Фамилия',
+                email: 'Ваш e-mail',
+                phone: 'Номер',
+                birthDate: 'Дата рождения',
+                oldPassword: 'Старый пароль',
+                newPassword: 'Придумайте новый пароль',
+                passwordConfirm: 'Повторите пароль'
             },
             password: 'пароль',
             changePassword: 'Изменение пароля',

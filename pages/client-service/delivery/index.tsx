@@ -1,38 +1,38 @@
 import React from 'react'
 import {NextPageWithLayout} from 'types/types'
 import {getClientServiceLayout} from 'components/client-service/service.component'
-import WithIntern from 'components/hoc/with-intern/with-intern'
-import {DeliveryContent} from 'pages/client-service/delivery/delivery.content'
+import useDelivery from 'pages/client-service/delivery/delivary.hook'
 
-type DeliveryContentProps = {
-    content: typeof DeliveryContent.ua
-}
+type DeliveryContentProps = {}
 
-const Delivery: NextPageWithLayout<DeliveryContentProps> = ({content}) => {
+const Delivery: NextPageWithLayout<DeliveryContentProps> = () => {
+
+    const {transl} = useDelivery()
+
     return (
         <div className={'delivery'}>
             <div className="service__title">
-                {content.title1}
+                {transl.title1}
             </div>
             <div className="service__subtitle service__subtitle--first">
-                {content.subtitle1}
+                {transl.subtitle1}
             </div>
             <div className="service__text">
-                {content.text1}
+                {transl.text1}
                 <br/><br/>
-                {content.text2}
+                {transl.text2}
             </div>
             <div className="service__subtitle">
-                {content.subtitle2}
+                {transl.subtitle2}
             </div>
             <div className="service__text">
-                {content.text3}
+                {transl.text3}
             </div>
             <div className="service__subtitle">
-                {content.subtitle3}
+                {transl.subtitle3}
             </div>
             <div className="service__text">
-                {content.text4}
+                {transl.text4}
             </div>
         </div>
     )
@@ -40,4 +40,4 @@ const Delivery: NextPageWithLayout<DeliveryContentProps> = ({content}) => {
 
 Delivery.getLayout = getClientServiceLayout
 
-export default WithIntern(Delivery, DeliveryContent)
+export default Delivery

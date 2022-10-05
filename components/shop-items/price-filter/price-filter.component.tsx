@@ -7,7 +7,7 @@ export type PriceFilterProps = {
         min: string,
         max: string,
     },
-    translation: {
+    transl: {
         coefficient: number
         from: string,
         to: string
@@ -18,7 +18,7 @@ export type PriceFilterProps = {
 
 const PriceFilter: React.FC<PriceFilterProps> = (props) => {
 
-    const {content: {max, min}, translation: {from, to}} = props
+    const {content: {max, min}, transl: {from, to}} = props
     const {price, setPrice, handlePriceChange} = usePriceFilter(props)
     
     return (

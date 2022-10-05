@@ -5,14 +5,14 @@ import Checkbox from 'components/common/checkbox/checkbox.component'
 
 export type ColorsFilterProps = {
     content: ColorContent,
-    translation: string [],
+    transl: string [],
     filter: string,
     filters: string[],
 }
 
 const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
 
-    const {content: colors, translation} = props
+    const {content: colors, transl} = props
     const {colorValues, handleChange} = useColorsFilter(props)
 
     return (
@@ -23,7 +23,7 @@ const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
                     styles={{backgroundColor: code}}
                     key={code}
                     name={param}
-                    label={translation[index]}
+                    label={transl[index]}
                     value={colorValues[param]}
                     handleChange={handleChange}
                 />

@@ -1,9 +1,9 @@
 import contactsContent from 'pages/contacts/contacts.content'
-import {useLocale} from 'hooks/event-handler.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 import {useInput} from 'hooks/input/input.hooks'
 
 const useContact = () => {
-    const [content, transl] = useLocale(contactsContent)
+    const [transl, content] = useLocale(contactsContent)
     const {inputs, handleChange, handleValidate, errRef, resetValues} = useInput(content.inputs)
     const handleSubmit = () => {
 

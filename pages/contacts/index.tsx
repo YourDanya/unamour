@@ -6,7 +6,6 @@ import MapComponent from 'components/common/map/map.component'
 import Input from 'components/common/input/input.component'
 
 const ContactComponent: React.FC = () => {
-
     const {handleChange, handleSubmit, handleValidate, transl, inputs} = useContact()
 
     return (

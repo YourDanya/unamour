@@ -3,14 +3,14 @@ import useSortingFilter from 'components/shop-items/sorting-filter/sorting-filte
 
 export type SortingFilterProps = {
     content: string[],
-    translation: string[],
+    transl: string[],
     filter: string,
     filters: string[],
 }
 
 const SortingFilter: React.FC<SortingFilterProps> = (props) => {
 
-    const {content, translation} = props
+    const {content, transl} = props
     const {sortValue, handleClick} = useSortingFilter(props)
 
     return (
@@ -23,7 +23,7 @@ const SortingFilter: React.FC<SortingFilterProps> = (props) => {
                     onClick={handleClick}
                     data-filter={'sorting'}
                 >
-                    {translation[index]}
+                    {transl[index]}
                 </button>
             ))}
         </>

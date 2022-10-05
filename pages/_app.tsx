@@ -59,6 +59,7 @@ import 'components/sign-in-up/sign-in/sign-in.styles.sass'
 import 'components/sign-in-up/sign-up/sign-up.styles.sass'
 import 'components/cookie/cookies.styles.sass'
 
+import 'pages/auth/auth.styles.sass'
 import 'pages/profile/wishlist/wishlist.styles.sass'
 import 'pages/profile/purchase-history/purchase-history.styles.sass'
 import 'pages/profile/update-user/update-user.styles.sass'
@@ -82,13 +83,18 @@ import {AppPropsWithLayout} from 'types/types'
 import Nav from 'components/nav/nav.component'
 import Footer from 'components/footer/footer.component'
 import {wrapper} from 'redux/store'
+import PreWork from 'components/pre-work/pre-work.component'
 
 function App(props: AppPropsWithLayout) {
 
-    const {getLayout, Component, pageProps} = useApp(props)
+    const {Component, pageProps} = props
+    const {getLayout} = useApp(props)
+
+    console.log('render app')
 
     return (
         <>
+            <PreWork/>
             <Nav/>
             <div className={'page'}>
                 {getLayout(<Component {...pageProps}/>)}

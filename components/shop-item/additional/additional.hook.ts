@@ -28,7 +28,6 @@ const useAdditional = () => {
     const stateRef = useRef({perSlide: 4})
 
     const handleResize = () => {
-        console.log(window.innerWidth)
         if (stateRef.current.perSlide!==2 && window.innerWidth<=992) {
             stateRef.current.perSlide=2
             setPerSlide(2)

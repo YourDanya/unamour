@@ -15,5 +15,6 @@ export type StateRef = {
     height: number,
     toBottom: boolean,
     first: boolean,
-    parentToPageTop: number
+    parentToPageTop: number,
+    self: boolean
 }

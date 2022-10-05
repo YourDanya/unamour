@@ -1,9 +1,9 @@
 import cartFormContent from 'components/cart/cart-form/cart-form.content'
-import {useLocale} from 'hooks/event-handler.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 import {useInput} from 'hooks/input/input.hooks'
 
 const useCartForm = () => {
-    const [content, transl] = useLocale(cartFormContent)
+    const [transl, content] = useLocale(cartFormContent)
 
     const {inputs, handleChange, handleValidate, errRef, resetValues} = useInput(content.inputs)
 

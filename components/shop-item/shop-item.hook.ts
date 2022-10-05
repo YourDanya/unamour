@@ -1,4 +1,4 @@
-import {useToggleActive} from 'hooks/event-handler.hooks'
+import {useToggleActive} from 'hooks/event-handler/event-handler.hooks'
 import {useModal} from 'hooks/component/component.hooks'
 
 export const useShopItem = () => {
@@ -6,6 +6,8 @@ export const useShopItem = () => {
     const [activeSize, handleSizeClick] = useToggleActive()
     
     const [modalState, showModal, hideModal] = useModal({ size: false, present: false})
+
+    console.log('present', modalState.present)
 
     return {activeSize, handleSizeClick,  modalState, showModal, hideModal}
 }

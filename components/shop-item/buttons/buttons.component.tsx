@@ -38,6 +38,7 @@ const Buttons: React.FC<ButtonsProps> = (props) => {
                     className="shop-item__present"
                     onClick={handlePresentClick}
                     onMouseLeave={handlePresentMouseLeave}
+                    name={'present'}
                 >
                     <div className={`shop-item__present-label fade ${present ? 'fade--show' : ''}`}>
                         ПОДАРУВАТИ

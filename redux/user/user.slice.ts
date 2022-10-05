@@ -1,7 +1,10 @@
-import {createSelector, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {HYDRATE} from "next-redux-wrapper"
-import {User, UserField, UserState} from "./user.types"
-import {StateError} from "../../types/types"
+import {createSlice} from '@reduxjs/toolkit'
+import {UserState} from 'redux/user/user.types'
+import {PayloadAction} from '@reduxjs/toolkit'
+import {User} from 'redux/user/user.types'
+import {StateError} from 'types/types'
+import {UserField} from 'redux/user/user.types'
+import {HYDRATE} from 'next-redux-wrapper'
 
 const initialState: UserState = {
     user : null,
@@ -22,16 +25,20 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         startAsync: (state, action: PayloadAction<UserField>) => {
-            const current = action.payload
-            state.fields[current].loading = true
-            state.current = current
+            const field = action.payload
+            state.fields[field].loading = true
+            state.current = field
         },
         failAsync: (state, action: PayloadAction<{error:StateError, field: UserField}>) => {
             const {field, error} = action.payload
             state.fields[field].loading = false
-
+            console.log('field', field)
             const {status} = error
             state.fields[field].error = {status}
+        },
+        successAsync: (state, action: PayloadAction<{field: UserField}>) => {
+            const {field} = action.payload
+            state.fields[field] = {success: true, loading: false, error: null}
         },
         resetSuccess: (state, action: PayloadAction<UserField>) => {
             state.fields[action.payload].success = false
@@ -52,12 +59,6 @@ export const userSlice = createSlice({
         },
         activateSuccess: (state, action: PayloadAction<any>) => {
 
-        },
-        forgetPassSuccess: (state) => {
-            state.fields.forgetPass = {loading: false, error: null, success: true}
-        },
-        resetPassSuccess: (state, action: PayloadAction<any>) => {
-            state.fields.resetPass = {loading: false, error: null, success: true}
         }
     },
     extraReducers: {
@@ -67,8 +68,6 @@ export const userSlice = createSlice({
     }
 })
 
-export const {signInSuccess, getUserSuccess, resetSuccess, startAsync, failAsync, signOutSuccess,
-
-forgetPassSuccess} = userSlice.actions
+export const {signInSuccess, getUserSuccess, resetSuccess, startAsync, failAsync, signOutSuccess, successAsync} = userSlice.actions
 
 export default userSlice.reducer

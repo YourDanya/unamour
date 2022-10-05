@@ -10,20 +10,17 @@ type UpdateUserProps = {}
 
 const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
 
-    const {
-        inputs, translation: {inputs: translInputs, save, changePassword, title, password},
-        handleChange, handleSubmit, handleValidate
-    } = useUpdateUser()
+    const {inputs, transl, handleChange, handleSubmit, handleValidate} = useUpdateUser()
 
     return (
         <div className={'update-user'}>
             <form className={'update-user__form'}>
-                <div className={'update-user__title'}>{title}</div>
+                <div className={'update-user__title'}>{transl.title}</div>
                 <Input
                     className={'update-user__input update-user__name'}
                     name={'name'}
                     handleChange={handleChange}
-                    placeholder={translInputs.name.placeholder}
+                    placeholder={transl.inputs.name}
                     value={inputs.values.name}
                     error={inputs.errors.name}
                     handleValidate={handleValidate}
@@ -32,7 +29,7 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     className={'update-user__input update-user__surname'}
                     name={'surname'}
                     handleChange={handleChange}
-                    placeholder={translInputs.surname.placeholder}
+                    placeholder={transl.inputs.surname}
                     value={inputs.values.surname}
                     error={inputs.errors.surname}
                     handleValidate={handleValidate}
@@ -41,7 +38,7 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     className={'update-user__input update-user__email'}
                     name={'email'}
                     handleChange={handleChange}
-                    placeholder={translInputs.email.placeholder}
+                    placeholder={transl.inputs.email}
                     value={inputs.values.email}
                     error={inputs.errors.email}
                     handleValidate={handleValidate}
@@ -50,7 +47,7 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                     className={'update-user__input update-user__phone'}
                     name={'phone'}
                     handleChange={handleChange}
-                    placeholder={translInputs.phone.placeholder}
+                    placeholder={transl.inputs.phone}
                     value={inputs.values.phone}
                     error={inputs.errors.phone}
                     handleValidate={handleValidate}
@@ -58,23 +55,23 @@ const UpdateUser: NextPageWithLayout<UpdateUserProps> = () => {
                 <Input
                     className={'update-user__input update-user__birthDate'}
                     name={'birthDate'}
+                    placeholder={transl.inputs.birthDate}
                     handleChange={handleChange}
-                    placeholder={translInputs.birthDate.placeholder}
                     value={inputs.values.birthDate}
                     error={inputs.errors.birthDate}
                     handleValidate={handleValidate}
                 />
                 <Button className={'update-user__button'} onClick={handleSubmit}>
-                    {save}
+                    {transl.save}
                 </Button>
             </form>
             <div className={'update-user__change-pass'}>
                 <div className={'update-user__change-pass-title'}>
-                    {password}
+                    {transl.password}
                 </div>
                 <Button className={'update-user__change-pass-btn'} onClick={() => {}}>
                     <img className={'update-user__change-pass-img'} src={lock.src}/>
-                    <div className={'update-user__change-pass-text'}>{changePassword}</div>
+                    <div className={'update-user__change-pass-text'}>{transl.changePassword}</div>
                 </Button>
             </div>
         </div>

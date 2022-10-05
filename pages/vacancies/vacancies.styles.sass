@@ -19,27 +19,36 @@
   &__city
     width: fit-content
     border-bottom: 1px solid #eee
-    margin-bottom: 20px
+    margin-bottom: 40px
   &__position
+    text-transform: uppercase
     margin-bottom: 20px
   &__category
-    margin-bottom: 40px
+    margin-bottom: 30px
     &-title
-      margin-bottom: 20px
+      margin-bottom: 10px
       font-weight: 700
     &-elements
       list-style-type: none
-    //&-element
-    //  padding-left: 12px
-    //  line-height: 20px
-    //  position: relative
-    //  &:before
-    //    position: absolute
-    //    left: 0
-    //    display: block
-    //    content: ""
-    //    top: 10px
-    //    width: 6px
-    //    height: 0.1px
-    //    background-color: #333333
+    &-element
+      margin-bottom: 3px
   &__resume
+    margin-top: -15px
+
+
+@media (max-width: 1200px)
+  .vacancies
+    padding: 50px 100px
+
+@media (max-width: 992px)
+  .vacancies
+    padding: 50px 30px
+
+@media (max-width: 576px)
+  .vacancies
+    padding: 50px 10px
+    &__category
+      &-element
+        font-size: 10px
+    &__resume
+      font-size: 10px

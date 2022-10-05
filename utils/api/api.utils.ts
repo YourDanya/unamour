@@ -1,7 +1,6 @@
-import axios, {AxiosError, AxiosPromise, AxiosResponse} from "axios"
-import {ActionCreatorWithPayload, PayloadAction} from "@reduxjs/toolkit"
-import {AppState, AppThunk} from "../redux/store"
-import {StateError} from "../types/types";
+import axios from 'axios'
+import {AxiosResponse} from 'axios'
+import {ApiCallAsync} from 'utils/api/api.types'
 
 let baseURL = 'http://localhost:5000'
 
@@ -33,14 +32,13 @@ export const Api = {
         }
 }
 
-export const apiCallAsync = (
-    apiCall: () => AxiosPromise, successAction: ActionCreatorWithPayload<any>, errorAction: ActionCreatorWithPayload<any> |
-        ((err: StateError) => PayloadAction<any>),): AppThunk => {
+export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) => {
     return async (dispatch, getState) => {
         try {
             const res = await apiCall()
             dispatch(successAction(res.data))
         } catch (err: any) {
+            console.log('error')
             const res = err.response as AxiosResponse
             const status = res.status.toString()
             dispatch(errorAction({status}))

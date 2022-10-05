@@ -1,32 +1,30 @@
 import React from 'react'
-import {OrderingContent} from 'pages/client-service/ordering/ordering.content'
 import {NextPageWithLayout} from 'types/types'
 import {getClientServiceLayout} from 'components/client-service/service.component'
-import WithIntern from 'components/hoc/with-intern/with-intern'
+import useOrdering from 'pages/client-service/ordering/ordering.hook'
 
-type OrderingPageProps = {
-    content: typeof OrderingContent.ua
-}
+type OrderingPageProps = {}
 
-const Ordering: NextPageWithLayout<OrderingPageProps> = ({content}) => {
+const Ordering: NextPageWithLayout<OrderingPageProps> = () => {
+    const {transl} = useOrdering()
 
     return (
         <div className={'ordering'}>
             <div className="service__title">
-                {content.title1}
+                {transl.title1}
             </div>
             <div className="list service__list">
-                {content.list1.map(item =>
+                {transl.list1.map(item =>
                     <div className={'list__item'} key={item}>
                         {item}
                     </div>
                 )}
             </div>
             <div className="service__text">
-                {content.text1}
+                {transl.text1}
             </div>
             <div className="service__text">
-                {content.text2}
+                {transl.text2}
             </div>
         </div>
     )
@@ -34,4 +32,4 @@ const Ordering: NextPageWithLayout<OrderingPageProps> = ({content}) => {
 
 Ordering.getLayout = getClientServiceLayout
 
-export default WithIntern(Ordering, OrderingContent)
+export default Ordering

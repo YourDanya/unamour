@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const ESLintPlugin = require('eslint-webpack-plugin')
 const nextConfig = {
-  // reactStrictMode: true,
+  reactStrictMode: false,
   experimental: {
     concurrentFeatures: true,
   },

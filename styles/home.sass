@@ -4,6 +4,7 @@
   background-image: url('../public/images/home/bg2.jpg')
   background-repeat: no-repeat
   background-size: cover
+  background-position: center
   &:before
     opacity: 0.4
     content: ''
@@ -13,3 +14,7 @@
     width: 100%
     height: 100%
     position: absolute
+
+@media (max-width: 992px)
+  .home
+    background-position: 40% 50%

@@ -1,6 +1,8 @@
-import {AppThunk} from "../store"
-import {Api, apiCallAsync} from "../../utils/api.utils"
-import {fetchItemsError, fetchItemsSuccess} from "./shop-items.slice"
+import {AppThunk} from 'redux/store'
+import {apiCallAsync} from 'utils/api/api.utils'
+import {fetchItemsError} from 'redux/shop-items/shop-items.slice'
+import {Api} from 'utils/api/api.utils'
+import {fetchItemsSuccess} from 'redux/shop-items/shop-items.slice'
 
 export const fetchItems = (): AppThunk => {
     return async (dispatch) => {

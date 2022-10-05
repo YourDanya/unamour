@@ -1,6 +1,6 @@
 import {useModal} from 'hooks/component/component.hooks'
 import clientServiceContent from 'components/client-service/service.content'
-import {useLocale} from 'hooks/event-handler.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 
 const useClientService = () => {
 

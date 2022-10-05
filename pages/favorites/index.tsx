@@ -1,33 +1,31 @@
 import {NextPage} from 'next'
-import {useState} from 'react'
 import Link from 'next/link'
+import useFavorites from 'pages/favorites/favorites.hook'
 
 const Index: NextPage = () => {
-    const [favoriteItems, setFavoriteItems] = useState(null)
+
+    const {favorites, transl} = useFavorites()
+
     return (
         <div className={'favorites'}>
             <div className={'favorites__title'}>
-                ОБРАНЕ
+                {transl.favorite}
             </div>
-            {
-                favoriteItems ? (
-                    <div className={'favorites__items'}>
-
+            {favorites ? (
+                <div className={'favorites__items'}>
+                </div>
+            ) : (
+                <div className={'favorites__empty'}>
+                    <div className="favorites__empty-title">
+                        {transl.emptyTitle}
                     </div>
-                ) : (
-                    <div className={'favorites__empty'}>
-                        <div className="favorites__empty-title">
-                            ТУТ БУДУТЬ ЗІБРАНІ ТОВАРИ, <br/>
-                            ЯКІ ВИ ДОДАТЕ У ВІШЛИСТ
-                        </div>
-                        <Link href={'/shop-items/all'}>
-                            <a className={'favorites__empty-button'}>
-                                ПЕРЕЙТИ В КАТАЛОГ
-                            </a>
-                        </Link>
-                    </div>
-                )
-            }
+                    <Link href={'/shop-items/all'}>
+                        <a className={'favorites__empty-button'}>
+                            {transl.emptyButton}
+                        </a>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }

@@ -10,9 +10,7 @@ import {useEffect, useMemo, useRef, useState} from 'react'
 import {useDebounceEffect} from 'hooks/component/component.hooks'
 import {useRouter} from 'next/router'
 
-
 export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) => {
-
     const router = useRouter()
     const path = router.asPath
     const pathArr = path.split('?')
@@ -38,7 +36,6 @@ export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) =
 
 
 export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=> {
-
     const router = useRouter()
     const path = router.asPath
     const query = router.query
@@ -54,8 +51,6 @@ export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=
     },[path])
 
     useDebounceEffect(() => {
-        console.log('filter', state)
-
         if (!toUpdate.current) {
             toUpdate.current = true
             return
@@ -95,13 +90,11 @@ export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=
 }
 
 export const useGetFilterState = (filter: string, filterContent: FilterContent) => {
-
     const router = useRouter()
     const query = router.query
     const pathParam = query[filter] as string ?? ''
 
     return useMemo(() => {
-
         if (filter === 'sorting') {
             return pathParam
         }

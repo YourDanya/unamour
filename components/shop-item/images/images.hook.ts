@@ -1,4 +1,4 @@
-import {useSetNumber} from 'hooks/event-handler.hooks'
+import {useSetNumber} from 'hooks/event-handler/event-handler.hooks'
 import {ImagesProps} from 'components/shop-item/images/images.component'
 
 const useImages = (props: ImagesProps) => {

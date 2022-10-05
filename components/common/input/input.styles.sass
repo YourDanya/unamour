@@ -2,7 +2,7 @@
   flex-grow: 1
   position: relative
   &__input
-    padding-right: 20px
+    padding: 0 20px 0 0
     box-sizing: border-box
     font-size: 11px
     width: 100%
@@ -10,10 +10,14 @@
     border: none
     position: relative
     background-color: transparent
+    &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus
+      -webkit-box-shadow: 0 0 0 1000px white inset
+      -webkit-text-fill-color: #333
+      font-size: 11px
   &__placeholder
     position: absolute
     top: 50%
-    left: 2px
+    left: 0
     transform: translateY(-50%)
     pointer-events: none
     transition: font-size 0.4s, transform 0.4s
@@ -31,10 +35,8 @@
     opacity: 1
     transition: 0.4s opacity
   &__error
-    height: 20px
-    display: flex
+    margin-top: 5px
     font-size: 10px
-    align-items: center
     color: red
   &__state
     border-bottom: 1px solid #e0e0e0
@@ -46,8 +48,7 @@
       .input__placeholder
         opacity: 0
 
-
-  //&--login
+  //&--sign-in
   //  margin-top: 25px
   //  .input__input
   //    &:focus + .input__placeholder
@@ -62,7 +63,7 @@
   //      border-color: black
   //&--contact
   //  margin-top: 15px
-  //&--contact, &--login
+  //&--contact, &--sign-in
   //  padding-bottom: 15px
   //  .input__input
   //    &:focus + .input

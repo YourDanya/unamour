@@ -1,17 +1,21 @@
-import {useLocale} from 'hooks/event-handler.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 import presentFormContent from 'components/shop-item/present/present-form/present-form.content'
 import {useInput} from 'hooks/input/input.hooks'
+import {mapDelivery} from 'utils/component/component.utils'
 
 const usePresentForm= () => {
-    const [content, transl] = useLocale(presentFormContent)
 
-    const {inputs, handleChange, handleValidate, setInputs, resetValues, errRef} = useInput(content.inputs)
+    const [transl, content] = useLocale(presentFormContent)
 
-    const handleSubmit = () => {
+    const {inputs, handleChange, handleValidate, withSubmit} = useInput(content.inputs)
 
-    }
+    const handleSubmit = withSubmit( () => {
+        console.log('submitting')
+    })
 
-    return {inputs, handleChange, handleValidate, transl, handleSubmit}
+    const labels = mapDelivery(transl.inputs.delivery.labels)
+
+    return {inputs, handleChange, handleValidate, transl, handleSubmit, content, labels}
 }
 
 export default usePresentForm

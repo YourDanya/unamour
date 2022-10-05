@@ -1,12 +1,13 @@
 import {CartItemObject, decreaseQuantity, increaseQuantity, removeItem} from 'redux/cart/cart.slice'
-import {useLocale, useMatchUrl} from 'hooks/event-handler.hooks'
 import {useDispatch} from 'react-redux'
 import cartItemContent from 'components/cart-item/cart-item.content'
+import {useMatchUrl} from 'hooks/other/other.hooks'
+import {useLocale} from 'hooks/other/other.hooks'
 
 const useCartItem = (props: CartItemObject) => {
     const {data: {slug, size}} = props
 
-    const [_, transl] = useLocale(cartItemContent)
+    const [transl] = useLocale(cartItemContent)
 
     const dispatch = useDispatch()
 

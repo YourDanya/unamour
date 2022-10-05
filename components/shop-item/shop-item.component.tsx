@@ -47,7 +47,7 @@ const ShopItem: React.FC<ClientItem> = (props) => {
                 </div>
             </div>
             <Additional/>
-            <ModalContent active={modalState.present} hideModal={hideModal}>
+            <ModalContent className={'shop-item__present-modal'} active={modalState.present} hideModal={hideModal}>
                 <Present
                     price={price}
                     name={name}

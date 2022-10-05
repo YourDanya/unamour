@@ -1,8 +1,8 @@
-import {useLocale} from "../../../hooks/event-handler.hooks"
-import sizesContent from "./sizes.content"
+import sizesContent from 'components/shop-item/sizes/sizes.content'
+import {useLocale} from 'hooks/other/other.hooks'
 
 const useSizes = () => {
-    const [_, transl] = useLocale(sizesContent)
+    const [transl] = useLocale(sizesContent)
     return {transl}
 }
 

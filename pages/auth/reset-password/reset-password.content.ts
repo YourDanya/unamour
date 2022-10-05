@@ -1,14 +1,14 @@
-const resetPassContent = {
+const resetPasswordContent = {
     inputs: {
-        pass: {value: '', validations: {minLength: 6, maxLength: 15}},
-        passConfirm: {value: '', validations: {minLength: 6, maxLength: 15}}
+        password: {value: '', validations: {required: true, minLength: 6, maxLength: 15}},
+        passwordConfirm: {value: '', validations: {required: true, minLength: 6, maxLength: 15, equalToField: 'password'}}
     },
     translations: {
         ua: {
             title: 'відновлення пароля',
             inputs: {
-                pass: 'Новий пароль',
-                passConfirm: 'Підтверждення пароля'
+                password: 'Новий пароль',
+                passwordConfirm: 'Підтверждення пароля'
             },
             save: 'зберегти',
             success: 'Ваш пароль успішно змінено.'
@@ -16,8 +16,8 @@ const resetPassContent = {
         eng: {
             title: 'password confirm',
             inputs: {
-                pass: 'New password',
-                passConfirm: 'Password confirm'
+                password: 'New password',
+                passwordConfirm: 'Password confirm'
             },
             save: 'save',
             success: 'Your password was successfully updated.'
@@ -25,8 +25,8 @@ const resetPassContent = {
         ru: {
             title: 'восстановление пароля',
             inputs: {
-                pass: 'Новый пароль',
-                passConfirm: 'Подтверждение пароля'
+                password: 'Новый пароль',
+                passwordConfirm: 'Подтверждение пароля'
             },
             save: 'сохранить',
             success: 'Ваш пароль успешно изменен.'
@@ -34,4 +34,4 @@ const resetPassContent = {
     }
 }
 
-export default resetPassContent
+export default resetPasswordContent

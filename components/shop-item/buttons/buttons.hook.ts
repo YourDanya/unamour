@@ -1,5 +1,5 @@
 import React from 'react'
-import {useCombineHandlers, useDoubleToggle} from 'hooks/event-handler.hooks'
+import {useCombineHandlers, useDoubleToggle} from 'hooks/event-handler/event-handler.hooks'
 import {ButtonsProps} from 'components/shop-item/buttons/buttons.component'
 
 const useButtons = (props: ButtonsProps) => {

@@ -1,18 +1,18 @@
 const presentFormContent = {
     inputs: {
-        recName: {value: '',},
-        recSurname: {value: '',},
-        recEmail: {value: '', validations: {isEmail: true},},
-        recPhone: {value: '', validations: {isPhone: true},},
-        sendName: {value: '',},
-        sendEmail: {value: '', validations: {isEmail: true},},
-        country: {value: '',},
-        city: {value: '',},
-        index: {value: '', validations: {minLength: 5, maxLength: 5}},
-        street: {value: '',},
-        house: {value: '',},
-        apartment: {value: '',},
-        delivery: {value: ['ukrPoshta', 'novaPoshta'],},
+        recName: {value: '', validations: {required: true}},
+        recSurname: {value: '', validations: {required: true}},
+        recEmail: {value: '', validations: {required: true, isEmail: true}},
+        recPhone: {value: '', validations: {required: true, isPhone: true}},
+        sendName: {value: '', validations: {required: true}},
+        sendEmail: {value: '', validations: {required: true, isEmail: true},},
+        country: {value: '', validations: {required: true}},
+        city: {value: '', validations: {required: true}},
+        index: {value: '', validations: {required: true, minLength: 5, maxLength: 5}},
+        street: {value: '', validations: {required: true}},
+        house: {value: '', validations: {required: true}},
+        apartment: {value: '', validations: {required: true}},
+        delivery: {value: 'ukrPoshta', values: ['ukrPoshta', 'novaPoshta']},
         anonymously: {value: false,},
         surprise: {value: false,}
     },
@@ -48,14 +48,15 @@ const presentFormContent = {
                 anonymously: 'Подарувати анонімно?',
                 surprise: 'Зробити сюрприз?'
             },
-            toWhom: 'кому вы хотите сделать подарок?',
+            toWhom: 'кому вы хочете зробити подарунок?',
             fromWhom: 'від кого?',
             where: 'куди відправити?',
             index: 'Введіть 00000, якщо у вашої країни немає індексу',
             select: 'оберіть доставку',
             totalPrice: 'Вартість:',
             delivery: 'Доставка:',
-            pay: 'сплатити'
+            pay: 'сплатити',
+            currency: '₴'
         },
         eng: {
             inputs: {
@@ -95,7 +96,8 @@ const presentFormContent = {
             select: 'select shipping',
             totalPrice: 'Cost:',
             delivery: 'Delivery:',
-            pay: 'pay'
+            pay: 'pay',
+            currency: '$'
         },
         ru: {
             inputs: {
@@ -135,7 +137,8 @@ const presentFormContent = {
             select: 'выберите доставку',
             totalPrice: 'Стоимость:',
             delivery: 'Доставка:',
-            pay: 'заплатить'
+            pay: 'заплатить',
+            currency: '₴'
         }
     }
 }

@@ -1,8 +1,16 @@
-import {AppThunk} from "../store"
-import {Api, apiCallAsync} from "../../utils/api.utils"
-import {ForgetPassData, SignInData} from "./user.types"
-import {getUserSuccess, signInSuccess, signOutSuccess, startAsync, failAsync, forgetPassSuccess} from "./user.slice"
-import {StateError} from "../../types/types"
+import { SignInData } from "./user.types"
+import {AppThunk} from 'redux/store'
+import {startAsync} from 'redux/user/user.slice'
+import {Api} from 'utils/api/api.utils'
+import {StateError} from 'types/types'
+import {failAsync} from 'redux/user/user.slice'
+import {signInSuccess} from 'redux/user/user.slice'
+import {apiCallAsync} from 'utils/api/api.utils'
+import {getUserSuccess} from 'redux/user/user.slice'
+import {signOutSuccess} from 'redux/user/user.slice'
+import {ForgetPassData} from './user.types'
+import {successAsync} from 'redux/user/user.slice'
+import {ResetPassData} from './user.types'
 
 export const signIn = (signInData: SignInData): AppThunk => {
     return async (dispatch) => {
@@ -31,23 +39,25 @@ export const signOut = (): AppThunk => {
     }
 }
 
-export const forgetPass = (forgetPassData: ForgetPassData): AppThunk => {
+export const forgetPassword = (forgetPassData: ForgetPassData): AppThunk => {
     return async (dispatch) => {
         dispatch(startAsync('forgetPass'))
         const forgetPass = () => Api.post('/auth/send-recovery-link', forgetPassData)
         const forgetPassFailure = (error: StateError) => failAsync({error, field: 'forgetPass'})
+        const forgetPassSuccess = () => successAsync({field: 'forgetPass'})
         dispatch(apiCallAsync(forgetPass, forgetPassSuccess, forgetPassFailure))
     }
 }
 
-// export const resetPass = (): AppThunk => {
-//     return async (dispatch) => {
-//         dispatch(startAsync('resetPass'))
-//         const signOut = () => Api.post('/auth/forget-pass')
-//         const signOutFailure = (error: StateError) => failAsync({error, field: 'forgetPass'})
-//         dispatch(apiCallAsync(signOut, signOutSuccess, signOutFailure))
-//     }
-// }
+export const resetPassword = (resetData: ResetPassData): AppThunk => {
+    return async (dispatch) => {
+        dispatch(startAsync('resetPass'))
+        const resetPass = () => Api.post('/auth/recover-account', resetData)
+        const resetPassFailure = (error: StateError) => failAsync({error, field: 'resetPass'})
+        const resetPassSuccess = () => successAsync({field: 'resetPass'})
+        dispatch(apiCallAsync(resetPass, resetPassSuccess, resetPassFailure))
+    }
+}
 
 // export const signUp = (signUpData: SignUpData): AppThunk => {
 //     return async (dispatch) => {

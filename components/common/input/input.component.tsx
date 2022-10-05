@@ -4,24 +4,25 @@ import useInput from 'components/common/input/input.hook'
 export type InputProps = {
     placeholder: string
     name: string,
-    value?: string,
+    value: string,
     className?: string
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string | null,
     type?: string,
-    handleValidate?: (name: string) => void
+    handleValidate?: (name: string) => void,
+    children?: React.ReactNode
 }
 
 const Input: React.FC<InputProps> = (props) => {
 
     const {value, name, handleChange, placeholder, className, children, error, type} = props
-
-    const {focused, handleFocus, handleBlur} = useInput(props)
+    const {focused, handleFocus, handleBlur, autoComplete} = useInput(props)
 
     return (
         <div className={`input ${className ?? ''}`}>
-            <div className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
-                <div className='input__main'>
+            <div
+                className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
+                <div className="input__main">
                     <input
                         onBlur={handleBlur}
                         onFocus={handleFocus}
@@ -29,17 +30,25 @@ const Input: React.FC<InputProps> = (props) => {
                         name={name}
                         className={`input__input`}
                         value={value}
-                        type={type?? 'text'}
+                        type={type ?? 'text'}
+                        autoComplete={autoComplete}
                     />
-                    <div className='input__placeholder'>{placeholder}</div>
+                    <label className="input__placeholder" htmlFor={name}>
+                        {placeholder}
+                    </label>
                 </div>
-                {children && (<div className='input__children'>{children}</div>)}
+                {children && (<div className="input__children">{children}</div>)}
             </div>
-            <div className='input__error'>
-                {error}
-            </div>
+            {error && (
+                <div className="input__error">
+                    {error}
+                </div>
+            )}
         </div>
     )
 }
 
-export default Input
+const areEqual = (prevProps: InputProps, currentProps: InputProps) =>
+    prevProps.value === currentProps.value && prevProps.error === currentProps.error
+
+export default React.memo(Input, areEqual)

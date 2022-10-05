@@ -1,6 +1,6 @@
-import React, {Children, useCallback, useEffect, useMemo, useRef, useState} from "react"
-import {SliderProps} from "./slider.component"
-import {useExternalState} from "../../../hooks/component.hooks"
+import React, {Children, useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {useExternalState} from 'hooks/component/component.hooks'
+import {SliderProps} from 'components/common/slider/slider.component'
 
 const useSlider = (props: SliderProps) => {
 

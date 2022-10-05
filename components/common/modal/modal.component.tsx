@@ -1,17 +1,17 @@
 import React from 'react'
 
-export type modalProps = {
+export type ModalProps = {
     active: boolean,
     hideModal: (event: React.MouseEvent<HTMLElement>) => void
 }
 
-const Modal: React.FC<modalProps> = ({active, hideModal}) => {
+const Modal: React.FC<ModalProps> = ({active, hideModal}) => {
 
     return (
         <div className={`modal ${active? 'modal--active' : ''}`} onClick={hideModal}/>
     )
 }
 
-const shouldUpdate = (prevProps: modalProps, currentProps: modalProps) => prevProps.active===currentProps.active
+const areEqual = (prevProps: ModalProps, currentProps: ModalProps) => prevProps.active===currentProps.active
 
-export default React.memo(Modal, shouldUpdate)
+export default React.memo(Modal, areEqual)

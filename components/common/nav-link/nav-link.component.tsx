@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export type NavLinkProps = {
     href: string,
-    className: string,
+    className?: string,
     activeClassName?: string,
     children: React.ReactNode
 }
@@ -16,7 +16,7 @@ const NavLink: React.FC<NavLinkProps> = (props) => {
 
     return (
         <Link href={href}>
-            <a className={`${className} ${path===href ? activeClassName : ''}`} onClick={handleClick}>
+            <a className={`nav-link ${className} ${path===href ? `nav-link--active ${activeClassName}` : ''}`} onClick={handleClick}>
                 {children}
             </a>
         </Link>

@@ -1,7 +1,8 @@
-import Link from "next/link"
-import React, {useEffect} from "react"
-import {ElementContent} from "../types/types"
-import {useRouter} from "next/router"
+import {ElementContent, LocaleType} from 'types/types'
+import {useRouter} from 'next/router'
+import {useEffect} from 'react'
+import Link from 'next/link'
+import {UseLocale} from 'hooks/other/other.types'
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -94,4 +95,14 @@ export const useRouteChange = (callback: () => void) => {
     useEffect(() => {
         callback()
     }, [path])
+}
+
+export const useMatchUrl = (url: string): [match: boolean] => {
+    return [useRouter().pathname === url]
+}
+
+export const useLocale: UseLocale = (content) => {
+    const locale = useRouter().locale as LocaleType
+    const {translations, ...other} = content
+    return [translations[locale], {...other}]
 }

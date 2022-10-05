@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from 'components/common/button/button.component'
-import Link from 'next/link'
 import useNavMenu from 'components/nav/nav-menu/nav-menu.hook'
+import NavLink from 'components/common/nav-link/nav-link.component'
+import {Fragment} from 'react'
 
 type navMenuProps = {
     showTopModal: (event: React.MouseEvent<HTMLElement>) => void
@@ -10,48 +11,40 @@ type navMenuProps = {
 const NavMenu: React.FC<navMenuProps> = (props) => {
 
     const {showTopModal} = props
-    const {clientService, handleClientClick, user} = useNavMenu()
-    
+    const {clientService, handleClientClick, user, transl, content} = useNavMenu()
+
+    console.log('render nav menu')
+
     return (
         <>
             <div className="container menu">
-                <div className="menu__links menu__links--first">
-                    <Link href={'/shop-items/all'}>
-                        <a className={'menu__link'}>ОДЯГ ТА АКСЕСУАРИ</a>
-                    </Link>
-                    <Link href={'/shop-items/new'}>
-                        <a className={'menu__link'}>НОВІ НАДХОДЖЕННЯ</a>
-                    </Link>
-                    <Link href={'/shop-items/best'}>
-                        <a className={'menu__link'}>БЕСТСЕЛЕРИ</a>
-                    </Link>
-                    <Link href={'/shop-items/coming'}>
-                        <a className={'menu__link'}>СКОРО У ПРОДАЖІ</a>
-                    </Link>
-                    <Link href={'/shop-items/special-price'}>
-                        <a className={'menu__link'}>СПЕЦІАЛЬНА ЦІНА</a>
-                    </Link>
+                <div className="menu__items menu__items--first">
+                    {content.firstLinks.map((elem, idx) => (
+                        <NavLink className={'menu__item'} href={elem} key={elem}>
+                            {transl.firstLinks[idx]}
+                        </NavLink>
+                    ))}
                 </div>
-                <div className={`menu__links menu__links--second`}>
-                    <Link href={'/'}>
-                        <a className={'menu__link'}>ОБРАНЕ</a>
-                    </Link>
-                    <Button className={'menu__link'} onClick={handleClientClick}>
-                        КЛІЄНТСЬКИЙ СЕРВІС
-                    </Button>
-                    <Link href={'/vacancies'}>
-                        <a className={'menu__link'}>ВАКАНСІЇ</a>
-                    </Link>
-                    <Link href={'/contacts'}>
-                        <a className={'menu__link'}>КОНТАКТИ</a>
-                    </Link>
+                <div className={`menu__items menu__items--second`}>
+                    {content.secondLinks.map((elem, idx) => (
+                        <Fragment key={elem}>
+                            <NavLink className={'menu__item'} href={elem}>
+                                {transl.secondLinks[idx]}
+                            </NavLink>
+                            {idx === 0 && (
+                                <Button className={'menu__item'} onClick={handleClientClick}>
+                                    {transl.service}
+                                </Button>
+                            )}
+                        </Fragment>
+                    ))}
                     {user ? (
-                        <Link href={'/profile/update-user'}>
-                            <a className={'menu__link'}>ПРОФІЛЬ</a>
-                        </Link>
-                        ) : (
-                        <Button className={'menu__link'} onClick={showTopModal} name={'sign'}>
-                            УВІЙТИ
+                        <NavLink className={'menu__item'} href={'/profile/update-user'}>
+                            {transl.profile}
+                        </NavLink>
+                    ) : (
+                        <Button className={'menu__item'} onClick={showTopModal} name={'sign'}>
+                            {transl.login}
                         </Button>
                     )}
                 </div>
@@ -59,37 +52,17 @@ const NavMenu: React.FC<navMenuProps> = (props) => {
             <div className={`menu service-menu ${clientService ? 'service-menu--active' : ''}`}>
                 <Button className="service-menu__back" onClick={handleClientClick}>
                     <div className={'arrow-back service-menu__arrow'}/>
-                    НАЗАД
+                    {transl.back}
                 </Button>
-                <div className="menu__links">
-                    <div className="menu__link menu__link--bold">
-                        КЛІЄНТСЬКИЙ СЕРВІС
+                <div className="menu__items">
+                    <div className="menu__item menu__item--bold">
+                        {transl.service}
                     </div>
-                    <Link href={'/client-service/delivery'}>
-                        <a className="menu__link">
-                            ОПЛАТА І ДОСТАВКА
-                        </a>
-                    </Link>
-                    <Link href={'/client-service/return'}>
-                        <a className="menu__link">
-                            ПОВЕРНЕННЯ
-                        </a>
-                    </Link>
-                    <Link href={'/client-service/clothing-care'}>
-                        <a className="menu__link">
-                            СКЛАД І ДОГЛЯД
-                        </a>
-                    </Link>
-                    <Link href={'/client-service/policy'}>
-                        <a className="menu__link">
-                            ПОЛІТИКА І КОНФІДЕЦІЙНІСТЬ
-                        </a>
-                    </Link>
-                    <Link href={'/client-service/warranty-period'}>
-                        <a className="menu__link">
-                            УГОДА КОРИСТУВАЧА
-                        </a>
-                    </Link>
+                    {content.serviceLinks.map((elem, idx) => (
+                        <NavLink className={'menu__item'} href={elem} key={elem}>
+                            {transl.serviceLinks[idx]}
+                        </NavLink>
+                    ))}
                 </div>
             </div>
         </>

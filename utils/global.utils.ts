@@ -1,7 +1,3 @@
-const globalObject: Record<string, any> = {
-
-}
-
 const global: Record<string, any> = {
     set: function (key: string, value: any, timer?: number) {
         this[key] = value
