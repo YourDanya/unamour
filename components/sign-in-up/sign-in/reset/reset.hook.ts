@@ -1,29 +1,31 @@
 import {useEffect} from 'react'
 import {resetContent} from 'components/sign-in-up/sign-in/reset/reset.content'
-import {useDispatch, useSelector} from 'react-redux'
-import {forgetPassword} from 'redux/user/user.thunk'
-import {selectField} from 'redux/user/user.selectors'
+import {useDispatch} from 'react-redux'
+import {forgetPassAsync} from 'redux/user/user.thunk'
+import {selectUserField} from 'redux/user/user.selectors'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useInput} from 'hooks/input/input.hooks'
+import {useShallSelector} from 'hooks/enhanced/enhanced.hooks'
+import {AppState} from 'redux/store'
 
 const useReset = () => {
     const [transl, content] = useLocale(resetContent)
     const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
-    const {loading, success, error} = useSelector(selectField('forgetPass'))
+    const forgetPass = useShallSelector((state: AppState) => selectUserField(state, 'forgetPass'))
 
     const dispatch = useDispatch()
 
     const forgetSubmit = withSubmit(() => {
-        dispatch(forgetPassword({email: inputs.values.email}))
+        dispatch(forgetPassAsync({email: inputs.values.email}))
     })
 
     useEffect(() => {
-        if (success) setTimeout(() => {
+        if (forgetPass.success) setTimeout(() => {
             resetValues()
         }, 1000)
-    }, [success])
+    }, [forgetPass.success])
 
-    return {content, transl, inputs, handleChange, handleValidate, forgetSubmit, loading, success, error}
+    return {content, transl, inputs, handleChange, handleValidate, forgetSubmit, forgetPass}
 }
 
 export default useReset

@@ -1,11 +1,14 @@
-import {configureStore, ThunkAction, ThunkDispatch} from '@reduxjs/toolkit'
-import {createWrapper} from "next-redux-wrapper"
-import shopItems from './shop-items/shop-items.slice'
-import cart from './cart/cart.slice'
-import user from './user/user.slice'
-import main from './main/main.slice'
-import thunk from "redux-thunk"
-import {AnyAction} from "redux"
+import {ThunkDispatch} from 'redux-thunk'
+import {ThunkAction} from 'redux-thunk'
+import {AnyAction} from 'redux'
+import {createWrapper} from 'next-redux-wrapper'
+import {configureStore} from '@reduxjs/toolkit'
+import thunk from 'redux-thunk'
+import shopItems from 'redux/shop-items/shop-items.slice'
+import cart from 'redux/cart/cart.slice'
+import user from 'redux/user/user.slice'
+import main from 'redux/main/main.slice'
+import test from 'redux/test/test.slice'
 
 export type AppStore = ReturnType<typeof makeStore>
 export type AppState = ReturnType<AppStore['getState']>
@@ -18,7 +21,8 @@ export const makeStore = () =>
             shopItems,
             cart,
             user,
-            main
+            main,
+            test
         },
         middleware: [thunk],
         devTools: true

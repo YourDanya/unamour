@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 import {useRouter} from 'next/router'
-import {LocaleType} from 'types/types'
+import {Locale} from 'types/types'
 
 export const useCombineHandlers = (...eventHandlers: ((event: any) => void)[]):
     (event: React.MouseEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>) => void => {
@@ -152,7 +152,7 @@ export const useSetTrue = (): [active: boolean, handleEvent: (event: any) => voi
 
 
 // export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translation: { ua: T, eng: T, ru: T } } & K, "translation">, translation: T] => {
-//     const locale = useRouter().locale as LocaleType
+//     const locale = useRouter().locale as Locale
 //     const {translation, ...other} = content
 //     const translateContent = translation[locale]
 //

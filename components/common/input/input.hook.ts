@@ -5,7 +5,7 @@ import React from 'react'
 import {useMemo} from 'react'
 
 const useInput = (props: InputProps) => {
-    const {handleValidate, error, name, value} = props
+    const {handleValidate, error, name, value, validateDeps} = props
 
     const [focused, _handleFocus] = useToggle()
 
@@ -22,7 +22,7 @@ const useInput = (props: InputProps) => {
         if (handleValidate && error) {
             handleValidate(name)
         }
-    }, [value])
+    }, [value, validateDeps])
 
     const autoComplete = useMemo(() => {
         const value = name.toLowerCase()

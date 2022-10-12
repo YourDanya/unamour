@@ -1,14 +1,16 @@
-import {StateError} from "../../types/types"
-import {Locale} from "../main/main.types"
+import {StateField} from 'redux/store.types'
+import {AppState} from 'redux/store'
+import {Locale} from 'types/types'
+import {CheckTimerField} from 'redux/store.types'
 
 export type UserState = {
     user: null | User,
-    fields: Record<UserField, UserFieldState>,
+    fields: Record<UserField, StateField>,
     current: UserField | '',
     activation: boolean,
 }
 
-export type SignInData = {
+export type LoginData = {
     email: string,
     password: string
 }
@@ -23,20 +25,19 @@ export type ResetPassData = {
     token: string
 }
 
-export type SignUpData = {
+export type RegisterData = {
     name: string,
     passwordConfirm: string,
     email: string,
     password: string
 }
 
-// export type UserError = Record<UserField, StateError | null>
+export type ActivateData = {
+    code: string
+}
 
-export type UserLoading = Record<UserField, boolean>
-
-export type UserField = 'signIn' | 'signUp' | 'signOut' | 'getUser' | 'forgetPass' | 'resetPass'
-
-export type UserFieldState = {loading: boolean, error: StateError | null, success: boolean}
+export type UserField = 'login' | 'register' | 'signOut' | 'getUser' | 'forgetPass' | 'resetPass' | 'activate' |
+    'sendCode'
 
 export type User = {
     name: string,
@@ -46,10 +47,9 @@ export type User = {
     birthDate: string
 }
 
-export type SelectFieldReturn = {loading : boolean, error : string | null, success : string | null}
+export type GetUserField = <TField extends UserField> (state: AppState, field: TField) => TField
 
-export type UserSuccess = Record<UserField, Record<Locale, string>>
+export type SelectUserFieldCallback = <TField extends UserField> (userStore: UserState, locale: Locale, field: TField)
+    => CheckTimerField<TField>
 
-export type ErrorKey = '4' | '5'
-
-export type UserErrors = {'4': Record<UserField, Record<Locale, string>>, '5': Record<Locale, string>}
+export type SelectUserField = <TField extends UserField> (state: AppState, field: TField) => CheckTimerField<TField>

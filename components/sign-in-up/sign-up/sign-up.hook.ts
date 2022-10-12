@@ -1,13 +1,13 @@
 import signUpContent from 'components/sign-in-up/sign-up/sign-up.content'
 import {useLocale} from 'hooks/other/other.hooks'
-import {useInput} from 'hooks/input/input.hooks'
+import {selectUserField} from 'redux/user/user.selectors'
+import {AppState} from 'redux/store'
+import {useShallSelector} from 'hooks/enhanced/enhanced.hooks'
 
 const useSignUp = () => {
-
-    const [transl, content] = useLocale(signUpContent)
-    const {inputs, handleChange, handleValidate} = useInput(content.inputs)
-
-    return {inputs, handleChange, handleValidate, content, transl}
+    const [transl] = useLocale(signUpContent)
+    const register = useShallSelector((state: AppState) => selectUserField(state, 'register'))
+    return {transl, register}
 }
 
 export default useSignUp

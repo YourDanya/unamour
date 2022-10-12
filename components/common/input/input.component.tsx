@@ -1,5 +1,6 @@
 import React from 'react'
 import useInput from 'components/common/input/input.hook'
+import {DependencyList} from 'react'
 
 export type InputProps = {
     placeholder: string
@@ -10,11 +11,11 @@ export type InputProps = {
     error?: string | null,
     type?: string,
     handleValidate?: (name: string) => void,
+    validateDeps?: DependencyList,
     children?: React.ReactNode
 }
 
 const Input: React.FC<InputProps> = (props) => {
-
     const {value, name, handleChange, placeholder, className, children, error, type} = props
     const {focused, handleFocus, handleBlur, autoComplete} = useInput(props)
 
@@ -49,6 +50,7 @@ const Input: React.FC<InputProps> = (props) => {
 }
 
 const areEqual = (prevProps: InputProps, currentProps: InputProps) =>
-    prevProps.value === currentProps.value && prevProps.error === currentProps.error
+    prevProps.value === currentProps.value && prevProps.error === currentProps.error &&
+    prevProps.validateDeps === currentProps.validateDeps
 
 export default React.memo(Input, areEqual)

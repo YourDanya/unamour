@@ -142,12 +142,5 @@ export const shopItemsSlice = createSlice({
 
 export const {fetchItemsSuccess, fetchItemsError,  setClientItems} = shopItemsSlice.actions
 
-export const selectClientItemsStore = (state: AppState) => state.shopItems
-
-export const selectFetchedItems = createSelector([selectClientItemsStore],
-    shopItems => shopItems.fetchedItems
-)
-
-export const selectClientItems = createSelector([selectClientItemsStore], items => items.clientItems)
 
 export default shopItemsSlice.reducer

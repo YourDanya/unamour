@@ -11,7 +11,7 @@ type LoginProps = {
 const Login: FC<LoginProps> = (props) => {
 
     const {handleResetPass} = props
-    const {transl, inputs, handleChange, handleClick, handleValidate, loading, error, success} = useLogin()
+    const {transl, inputs, handleChange, handleClick, handleValidate, signIn} = useLogin()
 
     return (
         <form className={'sign__reset'}>
@@ -35,13 +35,13 @@ const Login: FC<LoginProps> = (props) => {
                 handleValidate={handleValidate}
             />
             <div className="sign__bottom">
-                <Button className="sign__button" onClick={handleClick} loading={loading}>
+                <Button className="sign__button" onClick={handleClick} loading={signIn.loading}>
                     {transl.signIn}
                 </Button>
                 <Button className="sign__forget" onClick={handleResetPass}>
                     {transl.forget}
                 </Button>
-                <FormMessage success={success} error={error}/>
+                <FormMessage success={signIn.success} error={signIn.error}/>
                 <div className='sign__consent'>
                     {transl.consent}
                 </div>

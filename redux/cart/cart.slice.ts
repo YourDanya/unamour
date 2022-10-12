@@ -1,25 +1,8 @@
-import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {HYDRATE} from "next-redux-wrapper";
-import {AppState} from "../store";
-
-export type CartData = {
-    name: string,
-    category: string,
-    slug: string,
-    slugCategory: string,
-    price: number,
-    images: string[],
-    size: string,
-    color: { code: string, name: string }
-}
-
-export type CartItemObject = {
-    data: CartData, quantity: number
-}
-
-export type CartState = {
-    items: CartItemObject []
-}
+import {createSlice} from '@reduxjs/toolkit'
+import {PayloadAction} from '@reduxjs/toolkit'
+import {HYDRATE} from 'next-redux-wrapper'
+import {CartState} from 'redux/cart/cart.types'
+import {CartData} from 'redux/cart/cart.types'
 
 const initialState: CartState = {
     items: []
@@ -70,23 +53,5 @@ export const cartSlice = createSlice({
 })
 
 export const {addItem, removeItem, increaseQuantity, decreaseQuantity} = cartSlice.actions
-
-export const selectCart = (state: AppState) => state.cart
-
-export const selectCartItems =
-    createSelector(
-        [selectCart],
-        cart => cart.items
-    )
-
-export const selectTotalPrice =
-    createSelector(
-        [selectCartItems],
-        cartItems => {
-            let totalPrice = 0
-            cartItems.forEach(({quantity, data: {price}}) => totalPrice+=quantity*price)
-            return totalPrice
-        }
-    )
 
 export default cartSlice.reducer

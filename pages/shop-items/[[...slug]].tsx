@@ -1,13 +1,13 @@
-import global from "utils/global.utils"
+import global from 'utils/global/global.utils'
 import {fetchItems} from 'redux/shop-items/shop-items.thunk'
-import {LocaleType, NextPageWithLayout} from 'types/types'
+import {Locale, NextPageWithLayout} from 'types/types'
 import {getShopItemsLayout} from 'components/shop-items/shop-items.component'
-import {createClientItems} from 'utils/data.utils'
 import {setClientItems} from 'redux/shop-items/shop-items.slice'
 import ShopItem from 'components/shop-item/shop-item.component'
 import {AppThunkDispatch, wrapper} from 'redux/store'
 import ShopItemsCollection from 'components/shop-items-collection/shop-items-collection.component'
 import {ClientItem} from 'redux/shop-items/shop-items.types'
+import {createClientItems} from 'utils/component/component.utils'
 
 type ShopItemsProps = {
     items?: ClientItem[],
@@ -22,7 +22,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 
         //retrieving categories and locale
         let categories = store.getState().shopItems.categories
-        const locale = context.locale as LocaleType
+        const locale = context.locale as Locale
 
         // checking if items are in global
         let items = global.get('items') as ClientItem[]

@@ -1,24 +1,26 @@
 import resetPasswordContent from 'pages/auth/reset-password/reset-password.content'
-import {useDispatch, useSelector} from 'react-redux'
-import {selectField} from 'redux/user/user.selectors'
+import {useDispatch} from 'react-redux'
+import {selectUserField} from 'redux/user/user.selectors'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useInput} from 'hooks/input/input.hooks'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
-import {resetPassword} from 'redux/user/user.thunk'
+import {resetPassAsync} from 'redux/user/user.thunk'
+import {useShallSelector} from 'hooks/enhanced/enhanced.hooks'
+import {AppState} from 'redux/store'
 
 const useResetPass = () => {
     const [transl, content] = useLocale(resetPasswordContent)
     const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs, transl.inputs)
-    const dispatch = useDispatch()
 
-    const resetPass = useSelector(selectField('resetPass'))
-    const {loading, error} = resetPass
+    const dispatch = useDispatch()
+    const resetPass = useShallSelector((state: AppState) => selectUserField(state, 'resetPass'))
+
     const router = useRouter()
     const token = router.query.token as string
 
     const handleSubmit = withSubmit(() => {
-        dispatch(resetPassword({...inputs.values, token}))
+        dispatch(resetPassAsync({...inputs.values, token}))
     })
 
     useEffect(() => {

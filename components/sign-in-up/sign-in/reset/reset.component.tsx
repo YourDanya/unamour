@@ -11,11 +11,11 @@ type ResetProps = {
 const Reset: FC<ResetProps> = (props) => {
 
     const {handleResetPass} = props
-    const {transl, inputs, handleChange, handleValidate, forgetSubmit, loading, success, error} = useReset()
+    const {transl, inputs, handleChange, handleValidate, forgetSubmit, forgetPass} = useReset()
 
     return (
         <>
-            {!success? (
+            {!forgetPass.success? (
                 <form className={'sign__reset'}>
                     <div className={'sign__explanation'}>
                         {transl.explanation}
@@ -30,17 +30,16 @@ const Reset: FC<ResetProps> = (props) => {
                         handleValidate={handleValidate}
                     />
                     <div className="sign__bottom">
-                        <Button className="sign__button sign__button--reset" onClick={forgetSubmit} loading={loading}>
+                        <Button className="sign__button sign__button--reset" onClick={forgetSubmit} loading={forgetPass.loading}>
                             {transl.title}
                         </Button>
                         <Button className="sign__forget" onClick={handleResetPass}>
                             {transl.switch}
                         </Button>
-
                     </div>
                 </form>
             ) : (
-                <FormMessage success={success} error={error}/>
+                <FormMessage success={forgetPass.success} error={forgetPass.error}/>
             )}
         </>
     )

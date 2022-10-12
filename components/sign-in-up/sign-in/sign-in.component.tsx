@@ -8,7 +8,6 @@ type SignInProps = {
 }
 
 const SignIn: React.FC<SignInProps> = (props) => {
-
     const {setSign} = props
     const {transl, resetPass, handleResetPass} = useSignIn()
 

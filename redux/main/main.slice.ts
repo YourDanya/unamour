@@ -1,7 +1,6 @@
 import {Locale, MainState} from "./main.types"
-import {createSelector, createSlice, PayloadAction} from "@reduxjs/toolkit"
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {HYDRATE} from "next-redux-wrapper"
-import {AppState} from "../store"
 
 const initialState: MainState = {
     locale: 'ua',
@@ -27,15 +26,5 @@ const mainSlice = createSlice({
 })
 
 export const {setLocale, setPath} = mainSlice.actions
-
-export const selectMainStore = (state: AppState) => state.main
-
-export const selectLocale = createSelector(
-    [selectMainStore], mainStore => mainStore.locale
-)
-
-export const selectPath = createSelector(
-    [selectMainStore], mainStore => mainStore.path
-)
 
 export default mainSlice.reducer

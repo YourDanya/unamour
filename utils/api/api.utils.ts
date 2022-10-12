@@ -36,12 +36,17 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
     return async (dispatch, getState) => {
         try {
             const res = await apiCall()
-            dispatch(successAction(res.data))
+            if (Array.isArray(successAction)) {
+                successAction.forEach(elem => {dispatch(elem(res.data))})
+            } else {
+                dispatch(successAction(res.data))
+            }
         } catch (err: any) {
-            console.log('error')
             const res = err.response as AxiosResponse
-            const status = res.status.toString()
-            dispatch(errorAction({status}))
+            const code = res.status.toString()[0]
+            const {message} = res?.data
+            const timer = +res?.data?.timer
+            dispatch(errorAction({code, message, timer}))
         }
     }
 }

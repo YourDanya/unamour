@@ -63,7 +63,7 @@ import 'pages/auth/auth.styles.sass'
 import 'pages/profile/wishlist/wishlist.styles.sass'
 import 'pages/profile/purchase-history/purchase-history.styles.sass'
 import 'pages/profile/update-user/update-user.styles.sass'
-import 'pages/test/test1.styles.sass'
+import 'pages/test/test-first.styles.sass'
 import 'pages/client-service/ordering/ordering.styles.sass'
 import 'pages/client-service/order-tracking/order-tracking.styles.sass'
 import 'pages/client-service/privacy/privacy.styles.sass'
@@ -91,7 +91,6 @@ function App(props: AppPropsWithLayout) {
     const {getLayout} = useApp(props)
 
     console.log('render app')
-
     return (
         <>
             <PreWork/>

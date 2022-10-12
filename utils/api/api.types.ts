@@ -4,8 +4,11 @@ import {StateError} from 'types/types'
 import {PayloadAction} from '@reduxjs/toolkit'
 import {AppThunk} from 'redux/store'
 
+export type SuccessAction = ActionCreatorWithPayload<any> | (() => PayloadAction<any>)
+export type ErrorAction = ActionCreatorWithPayload<any> | ((err: StateError) => PayloadAction<any>)
+
 export type ApiCallAsync = (
     apiCall: () => AxiosPromise,
-    successAction: ActionCreatorWithPayload<any> | (() => PayloadAction<any>),
-    errorAction: ActionCreatorWithPayload<any> | ((err: StateError) => PayloadAction<any>)) => AppThunk
+    successAction: SuccessAction | SuccessAction[],
+    errorAction: ErrorAction) => AppThunk
 

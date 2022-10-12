@@ -1,5 +1,6 @@
-import {selectCartItems, selectTotalPrice} from 'redux/cart/cart.slice'
 import {useSelector} from 'react-redux'
+import {selectCartItems} from 'redux/cart/cart.selector'
+import {selectTotalPrice} from 'redux/cart/cart.selector'
 
 const useCart = () => {
     const cartItems = useSelector(selectCartItems)

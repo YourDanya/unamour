@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import {useRouter} from 'next/router'
 import {useSelector} from 'react-redux'
-import {selectClientItems} from 'redux/shop-items/shop-items.slice'
 import {ClientItem} from 'redux/shop-items/shop-items.types'
 import {Locale} from 'redux/main/main.types'
 import {useLocale} from 'hooks/other/other.hooks'
 import navSearchContent from 'components/nav/nav-search/nav-search.content'
+import {selectClientItems} from 'redux/shop-items/shop-items.selector'
 
 const useNavSearch = () => {
 

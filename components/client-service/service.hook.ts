@@ -4,8 +4,7 @@ import {useLocale} from 'hooks/other/other.hooks'
 
 const useClientService = () => {
 
-    const [_, transl] = useLocale(clientServiceContent)
-
+    const [transl] = useLocale(clientServiceContent)
     const [modalState, showModal, hideModal] = useModal({menu: false})
 
     return {modalState, showModal, hideModal, transl}

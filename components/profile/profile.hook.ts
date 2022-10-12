@@ -3,11 +3,13 @@ import {useRouter} from 'next/router'
 import {useDispatch, useSelector} from 'react-redux'
 import {useModal} from 'hooks/component/component.hooks'
 import {useEffect} from 'react'
-import {signOut} from 'redux/user/user.thunk'
-import {selectField, selectUser} from 'redux/user/user.selectors'
+import {signOutAsync} from 'redux/user/user.thunk'
+import {selectUserField, selectUser} from 'redux/user/user.selectors'
 import profileContent from 'components/profile/profile.content'
 import {resetSuccess} from 'redux/user/user.slice'
 import {useLocale} from 'hooks/other/other.hooks'
+import {useShallSelector} from 'hooks/enhanced/enhanced.hooks'
+import {AppState} from 'redux/store'
 
 const useProfile = () => {
     const user = useSelector(selectUser) as User
@@ -16,22 +18,22 @@ const useProfile = () => {
     const [transl, content] = useLocale(profileContent)
     const [modalState, showModal, hideModal] = useModal({menu: false})
 
-    const {loading, success} = useSelector(selectField('signOut'))
+    const signOut = useShallSelector((state: AppState) => selectUserField(state, 'signOut'))
 
     const dispatch = useDispatch()
 
     const handleSignOut = () => {
-        if (!loading) dispatch(signOut())
+        if (!signOut.loading) dispatch(signOutAsync())
     }
 
     useEffect(() => {
-        if (success) {
+        if (signOut.success) {
             router.push('/')
             dispatch(resetSuccess('signOut'))
         }
-    }, [success])
+    }, [signOut.success])
 
-    return {user, transl, content, modalState, showModal, hideModal, handleSignOut, loading}
+    return {user, transl, content, modalState, showModal, hideModal, handleSignOut, signOut}
 }
 
 export default useProfile

@@ -11,7 +11,6 @@ export type PresentProps = {
 }
 
 const Present: React.FC<PresentProps> = (props) => {
-
     const {name, images, activeSize, price, color} = props
 
     return (

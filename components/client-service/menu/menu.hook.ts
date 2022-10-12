@@ -7,7 +7,7 @@ const useMenu = () => {
     const router = useRouter()
     const pathname = router.pathname
 
-    return {content, translation, pathname}
+    return {content, transl, pathname}
 }
 
 export default useMenu

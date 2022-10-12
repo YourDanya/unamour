@@ -1,4 +1,4 @@
-import {ElementContent, LocaleType} from 'types/types'
+import {ElementContent, Locale} from 'types/types'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import Link from 'next/link'
@@ -102,7 +102,7 @@ export const useMatchUrl = (url: string): [match: boolean] => {
 }
 
 export const useLocale: UseLocale = (content) => {
-    const locale = useRouter().locale as LocaleType
+    const locale = useRouter().locale as Locale
     const {translations, ...other} = content
     return [translations[locale], {...other}]
 }

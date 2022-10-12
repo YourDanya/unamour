@@ -1,0 +1,8 @@
+import {DefaultRootState} from 'react-redux'
+
+export type UseDebounce = {}
+
+export type UseShallSelector = <TState = DefaultRootState, TSelected = unknown>(
+    selector: (state: TState) => TSelected
+) => TSelected
+

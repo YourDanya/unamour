@@ -2,19 +2,19 @@ import React, {useEffect, useState} from 'react'
 import search from 'public/icons/search.svg'
 import {useRouter} from 'next/router'
 import {useSelector} from 'react-redux'
-import {LocaleType} from 'types/types'
-import {selectClientItems} from 'redux/shop-items/shop-items.slice'
+import {Locale} from 'types/types'
 import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
 import {ClientItem} from 'redux/shop-items/shop-items.types'
 import {NextPage} from 'next'
 import Input from 'components/common/input/input.component'
+import {selectClientItems} from 'redux/shop-items/shop-items.selector'
 
 type SearchProps = {}
 
 const SearchPage: NextPage<SearchProps> = () => {
 
     const query = useRouter().query.query as string
-    const locale = useRouter().locale as LocaleType
+    const locale = useRouter().locale as Locale
     const items = useSelector(selectClientItems)
     const [searchItems, setSearchItems] = useState<ClientItem[]>([])
     const [input, setInput] = useState(query)
