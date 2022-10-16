@@ -2,19 +2,18 @@ import React, {memo} from 'react'
 import SignUp from 'components/sign-in-up/sign-up/sign-up.component'
 import SignIn from 'components/sign-in-up/sign-in/sign-in.component'
 import useSignInUp from 'components/sign-in-up/sign-in-up.hook'
-export type SignInUpProps = {}
+import {useState} from 'react'
+import Button from 'components/common/button/button.component'
 
-const SignInUp: React.FC<SignInUpProps> = () => {
+const SignInUp: React.FC = () => {
+    const {sign, handleSign} = useSignInUp()
 
-    const {sign, setSign} = useSignInUp()
+    console.log('render sign-in-up')
 
     return (
         <div className={'sign'}>
-            {sign === 'in' ? (
-                <SignIn setSign={() => setSign('up')}/>
-            ) : (
-                <SignUp setSign={() => setSign('in')}/>
-            )}
+            <SignIn sign={sign} handleSign={handleSign}/>
+            <SignUp sign={sign} handleSign={handleSign}/>
         </div>
     )
 }

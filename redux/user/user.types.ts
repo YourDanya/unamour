@@ -49,7 +49,4 @@ export type User = {
 
 export type GetUserField = <TField extends UserField> (state: AppState, field: TField) => TField
 
-export type SelectUserFieldCallback = <TField extends UserField> (userStore: UserState, locale: Locale, field: TField)
-    => CheckTimerField<TField>
-
 export type SelectUserField = <TField extends UserField> (state: AppState, field: TField) => CheckTimerField<TField>

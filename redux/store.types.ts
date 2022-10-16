@@ -4,7 +4,7 @@ export type StateError = { code: string, message: string, timer?: number }
 
 export type StateField = {loading: boolean, error: StateError | null, success: boolean, timer?: number}
 
-export type SelectField = {loading : boolean, error : string | null, success : string | null, timer?: number}
+export type SelectField = {loading : boolean, error : string | null, success : string | null}
 
 export type SelectTimerField = SelectField & {timer: number}
 
@@ -16,4 +16,4 @@ export type LocaleError = Record<Locale, string>
 
 export type MessLocaleError =  Record<string, LocaleError>
 
-export type CheckTimerField<Field> = Field extends 'activate' ? SelectTimerField : SelectField
+export type CheckTimerField<Field> = Field extends 'sendCode' ? SelectTimerField : SelectField

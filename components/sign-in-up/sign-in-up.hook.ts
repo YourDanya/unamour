@@ -1,8 +1,8 @@
-import {useState} from 'react'
+import {useSetActive} from 'hooks/event-handler/event-handler.hooks'
 
 const useSignInUp = () => {
-    const [sign, setSign] = useState<'in' | 'up'>('in')
-    return {sign, setSign}
+    const [sign, handleSign] = useSetActive('sign-in')
+    return {sign, handleSign}
 }
 
 export default useSignInUp

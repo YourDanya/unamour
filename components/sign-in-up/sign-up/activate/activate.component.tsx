@@ -5,15 +5,11 @@ import Button from 'components/common/button/button.component'
 import FormMessage from 'components/common/form-message/form-message.component'
 import React from 'react'
 import Timer from 'components/common/timer/timer.component'
-
-export type ActivateProps = {}
+import {ActivateProps} from 'components/sign-in-up/sign-up/activate/activate.types'
 
 const Activate: FC<ActivateProps> = (props) => {
-
-    const {
-        inputs, handleChange, handleValidate, transl, activateSubmit, sendCodeSubmit, activate,
-        sendCode, initTimer
-    } = useActivate()
+    const {sendCode} = props
+    const {inputs, handleChange, handleValidate, transl, activateSubmit, sendCodeSubmit, activate} = useActivate(props)
 
     return (
         <form className={'sign__form'}>
@@ -33,13 +29,15 @@ const Activate: FC<ActivateProps> = (props) => {
                 <Button className="sign__button" onClick={activateSubmit} loading={activate.loading}>
                     {transl.activate}
                 </Button>
-                <Timer initTimer={initTimer}>
-                    {(timer: string) => (
-                        <Button className={'sign__resend'} onClick={sendCodeSubmit}>
-                            {transl.resend} {transl.in} {timer}
-                        </Button>
-                    )}
-                </Timer>
+                {sendCode.timer && (
+                    <Timer initTimer={sendCode.timer}>
+                        {(timer: string) => (
+                            <Button className={'sign__resend'} onClick={sendCodeSubmit}>
+                                {transl.resend} {transl.in} {timer}
+                            </Button>
+                        )}
+                    </Timer>
+                )}
                 <FormMessage success={activate.success} error={activate.error}/>
             </div>
         </form>

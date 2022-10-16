@@ -1,15 +1,10 @@
-import {FC, ReactNode} from 'react'
+import {FC} from 'react'
 import useTimer from 'components/common/timer/timer.hook'
-
-export type TimerProps = {
-    initTimer: number
-    children: (timer: string) => ReactNode
-}
+import {TimerProps} from 'components/common/timer/timer.types'
 
 const Timer: FC<TimerProps> = (props) => {
     const {children} = props
     const {strTimer} = useTimer(props)
-
     return (
         <>
             {children(strTimer)}

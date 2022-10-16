@@ -55,8 +55,6 @@ import 'components/shop-items-collection/shop-items-collection.styles.sass'
 import 'components/shop-item-preview/shop-item-preview.styles.sass'
 import 'components/footer/footer.styles.sass'
 import 'components/sign-in-up/sign-in-up.styles.sass'
-import 'components/sign-in-up/sign-in/sign-in.styles.sass'
-import 'components/sign-in-up/sign-up/sign-up.styles.sass'
 import 'components/cookie/cookies.styles.sass'
 
 import 'pages/auth/auth.styles.sass'
@@ -90,7 +88,6 @@ function App(props: AppPropsWithLayout) {
     const {Component, pageProps} = props
     const {getLayout} = useApp(props)
 
-    console.log('render app')
     return (
         <>
             <PreWork/>

@@ -2,26 +2,32 @@ import React from 'react'
 import useSignUp from 'components/sign-in-up/sign-up/sign-up.hook'
 import Register from 'components/sign-in-up/sign-up/register/register.component'
 import Activate from 'components/sign-in-up/sign-up/activate/activate.component'
-
-export type SignUpProps = {
-    setSign: () => void
-}
+import {SignUpProps} from 'components/sign-in-up/sign-up/sign-up.types'
+import Button from 'components/common/button/button.component'
+import {useState} from 'react'
 
 const SignUp: React.FC<SignUpProps> = (props) => {
-    const {setSign} = props
-    const {transl, register} = useSignUp()
+    const {sign, handleSign} = props
+    const {transl, register, sendCode, counter, setCounter} = useSignUp()
+
+    console.log('render sign-up')
 
     return (
-        <div className={'sign__content'}>
+        <div className={`sign__content ${sign==='sign-up'? '' : 'sign__content--hidden'}`}>
             <div className="sign__content-top">
                 <div className="sign__content-title">{transl.signUp}</div>
-                <div className="sign__content-link" onClick={setSign}>{transl.switch}</div>
+                <Button className="sign__content-link" name={'sign-in'} onClick={handleSign}>
+                    {transl.switch}
+                </Button>
             </div>
-            {register.success ? (
-                <Activate/>
+            {sendCode.success || sendCode.error ? (
+                <Activate sendCode={sendCode}/>
             ) : (
                 <Register register={register}/>
             )}
+            <Button className={'sign__test-btn'} onClick={() => setCounter(counter+1)}>
+                {counter}
+            </Button>
         </div>
     )
 }

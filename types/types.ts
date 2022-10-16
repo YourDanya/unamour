@@ -23,3 +23,4 @@ export type Locale = 'ua' | 'eng' | 'ru'
 
 export type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
+

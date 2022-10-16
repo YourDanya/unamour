@@ -1,15 +1,30 @@
-import {TimerProps} from 'components/common/timer/timer.component'
+
 import {useState} from 'react'
 import {parseTimer} from 'utils/main/main.utils'
+import {useEffect} from 'react'
+import {useRef} from 'react'
+import {TimerProps} from 'components/common/timer/timer.types'
 
 const useTimer = (props: TimerProps) => {
     const {initTimer} = props
     const [timer, setTimer] = useState(initTimer)
+    const timerRef = useRef(initTimer)
 
-    const interval = setInterval(() => {
-        setTimer(timer - 1000)
-        if (timer===0) clearInterval(interval)
-    }, 1000)
+    let intervalRef = useRef<number>()
+
+    useEffect(() => {
+        window.clearInterval(intervalRef.current)
+        intervalRef.current = window.setInterval(() => {
+            if (timerRef.current<1000) {
+                clearInterval(intervalRef.current)
+                timerRef.current = 0
+                setTimer(0)
+            } else {
+                timerRef.current-=1000
+                setTimer(timerRef.current)
+            }
+        }, 1000)
+    }, [initTimer])
 
     const strTimer = parseTimer(timer)
 

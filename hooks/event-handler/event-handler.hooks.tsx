@@ -1,16 +1,12 @@
 import React, {useRef, useState} from 'react'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
-import {useRouter} from 'next/router'
-import {Locale} from 'types/types'
 
 export const useCombineHandlers = (...eventHandlers: ((event: any) => void)[]):
     (event: React.MouseEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>) => void => {
 
-    const handleEvent = (event: React.MouseEvent<HTMLElement>| React.ChangeEvent<HTMLInputElement>) => {
+    return (event: React.MouseEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>) => {
         eventHandlers.forEach(eventHandler => eventHandler(event))
     }
-
-    return handleEvent
 }
 
 export const useToggle = (): [active: boolean, handleEvent: (event: any) => void, setActive: (active: boolean) => void] => {
@@ -85,12 +81,6 @@ export const _useToggleMany = <T,>(initialState: Record<keyof T, boolean>, attri
 }
 
 
-export const usePreventDefault = (): (event: any) => void => {
-    return (event: any) => {
-        event.preventDefault()
-    }
-}
-
 export const useSetActive = (initActive: string, attribute: string = 'name'):
     [active: string, handleEvent: (event: any) => void, setActive: (active: string) => void] => {
 
@@ -150,66 +140,5 @@ export const useSetTrue = (): [active: boolean, handleEvent: (event: any) => voi
     return [active, handleEvent]
 }
 
-
-// export const useLocaleMerge = <T, K>(content: { translation: { ua: T, eng: T, ru: T } } & K): [content: Omit<{ translation: { ua: T, eng: T, ru: T } } & K, "translation">, translation: T] => {
-//     const locale = useRouter().locale as Locale
-//     const {translation, ...other} = content
-//     const translateContent = translation[locale]
-//
-//     return [{...other}, translation[locale]]
-// }
-//
-// export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
-
-// export const mergeObjects  = <T, K> (obj1: T, obj2: K) => {
-//     const newObj: Merged<T, K> = {} as Merged<T, K>
-//
-//     for (let prop in obj1) {
-//         if (prop in obj2) {
-//             // prop = prop as keyof typeof obj2
-//             const prop1 = obj1[prop]
-//             if (Array.isArray(prop1) && Array.isArray(obj2[prop])) {
-//                 newObj[prop] = []
-//                 let arr = obj1[prop] as []
-//                 prop1.forEach((elem, index) => {
-//                     (newObj[prop] as []).push({...elem, ...obj2[prop][index]})
-//                 })
-//             }
-//             else {
-//                 newObj[prop] = {...obj1[prop], ...obj2[prop]}
-//             }
-//         } else {
-//             newObj[prop] = {...obj1[prop]}
-//         }
-//     }
-//     for (let prop in obj2) {
-//         if (!(prop in obj1)) {
-//             newObj[prop] = {...obj2[prop]}
-//         }
-//     }
-//     return newObj
-// }
-
-// type T = {
-//     a: {
-//         ddd: number
-//     },
-//     b: string
-//     arr: [{a: string, b:number}, {a: string, b : number}]
-// }
-//
-// type K = {
-//     a: {
-//         dd: string,
-//         fff: string
-//     },
-//     c : number,
-// }
-//
-// type MergeObjects <T, K> =  Pick<T, keyof T> & Pick<K, keyof K>
-//
-// type MergeTK = MergeObjects<T, K>
-//
-// let mergeTK : MergeTK ={} as MergeTK
 
 

@@ -16,7 +16,6 @@ const useLogin = () => {
 
     const dispatch = useDispatch()
     const signIn = useShallSelector((state: AppState) => selectUserField(state, 'login'))
-
     const handleClick = withSubmit(() => {
         dispatch(loginAsync(inputs.values))
     })
