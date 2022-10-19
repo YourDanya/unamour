@@ -14,6 +14,10 @@ const useUpdateUser = () => {
         event.preventDefault()
     }
 
+    const deleteAccount = (event: React.MouseEvent<HTMLElement>) => {
+
+    }
+
     return {content, transl, inputs, handleChange, handleSubmit,  handleValidate}
 }
 

@@ -6,8 +6,8 @@ const signInContent = {
             reset: 'відновити'
         },
         eng: {
-            signIn: 'sign-in in',
-            switch: 'sign-in in',
+            signIn: 'login in',
+            switch: 'login in',
             reset: 'reset'
         },
         ru: {

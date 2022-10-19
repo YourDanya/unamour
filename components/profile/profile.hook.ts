@@ -10,6 +10,8 @@ import {resetSuccess} from 'redux/user/user.slice'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useShallSelector} from 'hooks/enhanced/enhanced.hooks'
 import {AppState} from 'redux/store'
+import {useArgSelector} from 'hooks/enhanced/enhanced.hooks'
+import {_selectUserField} from 'redux/user/user.selectors'
 
 const useProfile = () => {
     const user = useSelector(selectUser) as User
@@ -18,7 +20,8 @@ const useProfile = () => {
     const [transl, content] = useLocale(profileContent)
     const [modalState, showModal, hideModal] = useModal({menu: false})
 
-    const signOut = useShallSelector((state: AppState) => selectUserField(state, 'signOut'))
+    const signOut = useArgSelector(_selectUserField, 'signOut')
+    // const signOut = useShallSelector((state: AppState) => selectUserField(state, 'signOut'))
 
     const dispatch = useDispatch()
 

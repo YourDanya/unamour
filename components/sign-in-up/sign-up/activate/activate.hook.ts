@@ -7,8 +7,8 @@ import {sendCodeAsync} from 'redux/user/user.thunk'
 import {useShallSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 import {AppState} from 'redux/store'
-import React from 'react'
 import {ActivateProps} from 'components/sign-in-up/sign-up/activate/activate.types'
+import {clearTimer} from 'redux/user/user.slice'
 
 const useActivate = (props: ActivateProps) => {
     const {sendCode} = props
@@ -20,13 +20,15 @@ const useActivate = (props: ActivateProps) => {
     const activateSubmit = withSubmit(() => {
         dispatch(activateAsync(inputs.values))
     })
-
-    const sendCodeSubmit = (event: React.MouseEvent<HTMLElement>) => {
-        event.preventDefault()
-        if (true) dispatch(sendCodeAsync())
+    const sendCodeSubmit = () => {
+        dispatch(sendCodeAsync())
+    }
+    const clearInitTimer = () => {
+        dispatch(clearTimer('sendCode'))
     }
 
-    return {inputs, handleChange, handleValidate, transl, activateSubmit, sendCodeSubmit, sendCode, activate}
+
+    return {inputs, handleChange, handleValidate, transl, activateSubmit, sendCodeSubmit, sendCode, activate, clearInitTimer}
 }
 
 export default useActivate

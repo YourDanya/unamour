@@ -11,7 +11,7 @@ const SignIn: React.FC<SignInProps> = (props) => {
     const {transl, resetPass, handleResetPass} = useSignIn()
 
     return (
-        <div className={`sign__content ${sign === 'sign-in' ? '' : 'sign__content--hidden'}`}>
+        <div className={`sign__content ${sign === 'login' ? '' : 'sign__content--hidden'}`}>
             <div className="sign__content-top">
                 <div className="sign__content-title">{transl.signIn}</div>
                 <Button className="sign__content-link" name={'sign-up'} onClick={handleSign}>

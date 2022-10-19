@@ -2,6 +2,7 @@ import {ReactNode} from 'react'
 import {NextPage} from 'next'
 import {ReactElement} from 'react'
 import {AppProps} from 'next/app'
+import {MouseEvent} from 'react'
 
 export type NextPageWithLayout<P ={}
     // extends ComponentContent = {} & ComponentContent
@@ -24,3 +25,4 @@ export type Locale = 'ua' | 'eng' | 'ru'
 export type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
 
+export type MouseAction = (event: MouseEvent<HTMLElement>) => void

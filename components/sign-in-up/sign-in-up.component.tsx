@@ -8,7 +8,7 @@ import Button from 'components/common/button/button.component'
 const SignInUp: React.FC = () => {
     const {sign, handleSign} = useSignInUp()
 
-    console.log('render sign-in-up')
+    console.log('render sign-up')
 
     return (
         <div className={'sign'}>

@@ -4,7 +4,7 @@ const socialsContent = {
             title: 'вхід через соціальні мережі'
         },
         eng: {
-            title: 'sign-in through social networks'
+            title: 'login through social networks'
         },
         ru: {
             title: 'вход через социальные сети'

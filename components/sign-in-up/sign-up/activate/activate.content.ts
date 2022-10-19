@@ -8,7 +8,7 @@ const activateContent = {
             inputs: {
                 code: 'Код'
             },
-            resend: 'відправити повторно код',
+            resend: 'відправити код повторно',
             activate: 'активувати',
             in: 'через'
         },
@@ -26,7 +26,7 @@ const activateContent = {
             inputs: {
                 code: 'Код'
             },
-            resend: 'отправить повторно код',
+            resend: 'отправить код повторно',
             activate: 'активировать',
             in: 'через'
         }

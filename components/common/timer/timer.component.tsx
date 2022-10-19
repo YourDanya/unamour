@@ -4,10 +4,11 @@ import {TimerProps} from 'components/common/timer/timer.types'
 
 const Timer: FC<TimerProps> = (props) => {
     const {children} = props
-    const {strTimer} = useTimer(props)
+    const {strTimer, onSubmit} = useTimer(props)
+
     return (
         <>
-            {children(strTimer)}
+            {children(strTimer, onSubmit)}
         </>
     )
 }

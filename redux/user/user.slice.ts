@@ -2,9 +2,9 @@ import {createSlice} from '@reduxjs/toolkit'
 import {UserState} from 'redux/user/user.types'
 import {PayloadAction} from '@reduxjs/toolkit'
 import {User} from 'redux/user/user.types'
-import {StateError} from 'types/types'
 import {UserField} from 'redux/user/user.types'
 import {HYDRATE} from 'next-redux-wrapper'
+import {StateError} from 'redux/store.types'
 
 const initialState: UserState = {
     user : null,
@@ -16,7 +16,7 @@ const initialState: UserState = {
         forgetPass: {loading: false, error: null, success: false},
         resetPass: {loading: false, error: null, success: false},
         activate: {loading: false, error: null, success: false},
-        sendCode: {loading: false, error: null, success: false, timer: null}
+        sendCode: {loading: false, error: null, success: false, timer: 0}
     },
     current : '',
     activation: false,
@@ -72,8 +72,8 @@ export const userSlice = createSlice({
             state.user = action.payload.user
             state.fields.activate = {loading: false, success: true, error: null}
         },
-        setTimer: (state, action: PayloadAction<UserField>) => {
-           const timer = state.fields[action.payload]
+        clearTimer: (state, action: PayloadAction<UserField>) => {
+            state.fields[action.payload].timer = 0
         }
     },
     extraReducers: {
@@ -84,6 +84,6 @@ export const userSlice = createSlice({
 })
 
 export const {loginSuccess, getUserSuccess, resetSuccess, startAsync, failAsync, signOutSuccess, successAsync, setUser,
-sendCodeSuccess, sendCodeFailure, activateSuccess} = userSlice.actions
+sendCodeSuccess, sendCodeFailure, activateSuccess, clearTimer} = userSlice.actions
 
 export default userSlice.reducer

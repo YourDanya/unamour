@@ -7,7 +7,7 @@ const signUpContent = {
         },
         eng: {
             signUp: 'sign-up',
-            switch: 'sign-in',
+            switch: 'login',
             forget: 'Forgot your password?',
         },
         ru: {

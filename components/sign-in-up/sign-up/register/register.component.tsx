@@ -5,10 +5,6 @@ import FormMessage from 'components/common/form-message/form-message.component'
 import React from 'react'
 import useRegister from 'components/sign-in-up/sign-up/register/register.hook'
 
-type RegisterProps = {
-    register: {success: null | string, error: null | string, loading: boolean}
-}
-
 const Register: FC<RegisterProps> = (props) => {
     const {register} = props
     const {transl, inputs, handleChange, handleValidate, handleSubmit} = useRegister()

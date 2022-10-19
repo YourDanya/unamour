@@ -1,6 +1,5 @@
 import {StateField} from 'redux/store.types'
 import {AppState} from 'redux/store'
-import {Locale} from 'types/types'
 import {CheckTimerField} from 'redux/store.types'
 
 export type UserState = {
@@ -50,3 +49,5 @@ export type User = {
 export type GetUserField = <TField extends UserField> (state: AppState, field: TField) => TField
 
 export type SelectUserField = <TField extends UserField> (state: AppState, field: TField) => CheckTimerField<TField>
+
+export type _SelectUserField = <TField extends UserField> (field: TField) => ((state: AppState) => CheckTimerField<TField>)

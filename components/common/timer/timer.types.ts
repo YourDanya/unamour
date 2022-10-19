@@ -1,6 +1,9 @@
 import {ReactNode} from 'react'
+import {MouseAction} from 'types/types'
 
 export type TimerProps = {
-    initTimer: number
-    children: (timer: string) => ReactNode
+    initTimer: number,
+    onSubmit?: MouseAction,
+    clearInitTimer?: () => void,
+    children: ((timer: string) => ReactNode) | ((timer: string, onSubmit: MouseAction) => ReactNode)
 }

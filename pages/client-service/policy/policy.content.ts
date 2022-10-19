@@ -247,7 +247,7 @@ const policyContent = {
                 'participate in the discussion of his responsibilities for the organization of work related to the protection of personal data during their processing.',
                 'submit proposals for improving the activities and improving working methods, submit comments and options for eliminating the identified shortcomings in the process of personal data processing.',
                 'receive explanations on the processing of personal data.',
-                'sign-in and endorse documents within its competence.'
+                'login and endorse documents within its competence.'
             ],
             numText27: 'Employees who directly process and/or have access to personal data in connection with the performance of their official (employment) duties are required to comply with the requirements of Ukrainian legislation in the field of personal data protection and internal documents regarding the processing and protection of personal data in personal databases. ',
             numText28: 'Employees who have access to personal data, including those who process them, are obliged not to disclose in any way personal data entrusted to them or which became known in connection with the performance of professional or official or job responsibilities. This obligation shall apply after the termination of their activities related to personal data, except as provided by law. ',
