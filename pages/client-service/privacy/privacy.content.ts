@@ -94,7 +94,7 @@ const privacyContent = {
             ],
             numSubtitle2: 'ORDER',
             numText1: 'The order is placed by the customer by adding the product to the cart.',
-            numText2: 'An order is considered to be properly executed if the customer has filled in all the fields of the form that allow to identify the customer and contact him:',
+            numText2: 'An order is considered to be properly executed if the customer has filled in all the fields of the update-user-form that allow to identify the customer and contact him:',
             list1: [
                 'Full name / name.',
                 'Contact phone.',
@@ -106,7 +106,7 @@ const privacyContent = {
             numText3: 'The manager of the UNAMOUR online store upon receipt of the order checks the availability of goods and if the order is made in accordance with paragraph 2.2. under these conditions, accepts the order and contacts the customer to confirm the details. ',
             numText4: 'From the moment of accepting the order by the UNAMOR online store, the customer has the right to cancel the order or make changes to the order (delete / add goods to the order, change the characteristics of the goods (color, size, quantity, etc.)). After payment of the invoice, the removal of product items from the order is not allowed. ',
             numSubtitle4: 'ORDER FORMATION.',
-            numText5: 'Employees of the UNAMOR online store form orders. Orders with the status "PROCESSED", formed and confirmed by 15-00, are sent on the same day. In that case, if you made an order on a Sunday or public holiday, its sending is postponed to the first working day following the day of ordering. City of sender - Kyiv. ',
+            numText5: 'Employees of the UNAMOR online store update-user-form orders. Orders with the status "PROCESSED", formed and confirmed by 15-00, are sent on the same day. In that case, if you made an order on a Sunday or public holiday, its sending is postponed to the first working day following the day of ordering. City of sender - Kyiv. ',
             numText6: 'In the absence of any goods in the online store UNAMOUR employee checks availability throughout the network and makes an internal movement after agreeing on terms with the customer. If the product is not available throughout the network, the manager of the UNAMOUR online store may offer the customer to replace the missing product with any other product. With the consent of the client, the other offered goods are added to the order, in case of disagreement, the order becomes the status of "REFUSAL". ',
             numText7: 'At the end of the order formation, the manager of the online store-warehouse UNAMOUR notifies the customer of the status of the order and issues an invoice to the customer for payment, if the chosen payment method complies with paragraph 5.1.2.',
             numSubtitle5: 'ORDER PAYMENT',
@@ -144,8 +144,8 @@ const privacyContent = {
             label2: '* Exception: production defect or resort (other size, color or article). In this case, the return is made at our expense. \ N \ n Goods of improper quality (after use or with damaged labels) ordered on UNAMOUR, are not subject to exchange and return. ',
             text1: 'Return process:',
             list6: [
-                'Fill in the return form (sent by the manager at the customer\'s request to the messenger or e-mail).',
-                'Send the goods and the completed form to the address indicated in it.',
+                'Fill in the return update-user-form (sent by the manager at the customer\'s request to the messenger or e-mail).',
+                'Send the goods and the completed update-user-form to the address indicated in it.',
                 'Get money by bank transfer *',
                 'The refund period is within 10 working days of receiving the return from the online store manager.'
             ],

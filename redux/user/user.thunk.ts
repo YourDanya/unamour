@@ -17,6 +17,8 @@ import {activateSuccess} from 'redux/user/user.slice'
 import {sendCodeFailure} from 'redux/user/user.slice'
 import {sendCodeSuccess} from 'redux/user/user.slice'
 import {StateError} from 'redux/store.types'
+import {UpdatePassData} from './user.types'
+import {DeleteUserData} from './user.types'
 
 export const loginAsync = (loginData: LoginData): AppThunk => {
     return async (dispatch) => {
@@ -91,6 +93,28 @@ export const resetPassAsync = (resetData: ResetPassData): AppThunk => {
         dispatch(apiCallAsync(resetPass, resetPassSuccess, resetPassFailure))
     }
 }
+
+export const updatePassAsync = (updatePassData: UpdatePassData): AppThunk => {
+    return async (dispatch) => {
+        dispatch(startAsync('updatePass'))
+        const updatePass = () => Api.post('/auth/update-password', updatePassData)
+        const updatePassFailure = (error: StateError) => failAsync({error, field: 'updatePass'})
+        const updatePassSuccess = () => successAsync({field: 'updatePass'})
+        dispatch(apiCallAsync(updatePass, updatePassSuccess, updatePassFailure))
+    }
+}
+
+export const deleteUserAsync = (deleteUserData: DeleteUserData): AppThunk => {
+    return async (dispatch) => {
+        dispatch(startAsync('deleteUser'))
+        const deleteUser = () => Api.post('/auth/delete-me', deleteUserData)
+        const deleteUserFailure = (error: StateError) => failAsync({error, field: 'deleteUser'})
+        const deleteUserSuccess = () => successAsync({field: 'deleteUser'})
+        dispatch(apiCallAsync(deleteUser, deleteUserSuccess, deleteUserFailure))
+    }
+}
+
+
 
 // export const updateUser = (): AppThunk => {
 //     return async () => {

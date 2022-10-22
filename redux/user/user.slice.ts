@@ -16,7 +16,9 @@ const initialState: UserState = {
         forgetPass: {loading: false, error: null, success: false},
         resetPass: {loading: false, error: null, success: false},
         activate: {loading: false, error: null, success: false},
-        sendCode: {loading: false, error: null, success: false, timer: 0}
+        sendCode: {loading: false, error: null, success: false, timer: 0},
+        updatePass: {loading: false, error: null, success: false},
+        deleteUser: {loading: false, error: null, success: false}
     },
     current : '',
     activation: false,
@@ -74,6 +76,9 @@ export const userSlice = createSlice({
         },
         clearTimer: (state, action: PayloadAction<UserField>) => {
             state.fields[action.payload].timer = 0
+        },
+        clearSuccess: (state, action: PayloadAction<UserField>) => {
+            state.fields[action.payload].success = false
         }
     },
     extraReducers: {
@@ -84,6 +89,6 @@ export const userSlice = createSlice({
 })
 
 export const {loginSuccess, getUserSuccess, resetSuccess, startAsync, failAsync, signOutSuccess, successAsync, setUser,
-sendCodeSuccess, sendCodeFailure, activateSuccess, clearTimer} = userSlice.actions
+sendCodeSuccess, sendCodeFailure, activateSuccess, clearTimer, clearSuccess} = userSlice.actions
 
 export default userSlice.reducer

@@ -1,4 +1,6 @@
-import {UserErrors, UserSuccess} from "./user.types";
+import {ContentErrors} from 'redux/store.types'
+import {UserErrors} from 'redux/user/user.types'
+import {UserSuccess} from 'redux/user/user.types'
 
 export const userErrors: UserErrors = {
     '5': {
@@ -53,6 +55,16 @@ export const userErrors: UserErrors = {
             ua: 'Ви нещодавно відправляли код.',
             eng: 'Вы недавно отправляли код.',
             ru: 'You recently submitted a code.'
+        },
+        updatePass: {
+            ua: 'Старий пароль невірний.',
+            eng: 'Old password is wrong.',
+            ru: 'Старый пароль неверный.'
+        },
+        deleteUser: {
+            ua: 'Невірний пароль.',
+            eng: 'Wrong password.',
+            ru: 'Неверный пароль.'
         }
     }
 }
@@ -97,5 +109,15 @@ export const userSuccess: UserSuccess = {
         ua: 'Код відправлане вам на пошту.',
         eng: 'The code has been sent to you by mail.',
         ru: 'Код отправлено вам на почту.'
+    },
+    updatePass: {
+        ua: 'Пароль успішно змінено.',
+        eng: 'Password changed successfully.',
+        ru: 'Пароль успешно изменен.'
+    },
+    deleteUser: {
+        ua: 'Ваш акаунт успішно видалено.',
+        eng: 'Your account was successfully deleted.',
+        ru: 'Ваш акаунт успешно удален.'
     }
 }

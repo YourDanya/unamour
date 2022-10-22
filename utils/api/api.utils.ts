@@ -44,7 +44,7 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
         } catch (err: any) {
             const res = err.response as AxiosResponse
             const code = res.status.toString()[0]
-            const {message} = res?.data
+            const {message} = res?.data || {}
             const timer = +res?.data?.timer
             dispatch(errorAction({code, message, timer}))
         }

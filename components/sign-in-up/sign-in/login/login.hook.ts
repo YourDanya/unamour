@@ -7,19 +7,15 @@ import {resetSuccess} from 'redux/user/user.slice'
 import {useInput} from 'hooks/input/input.hooks'
 import loginContent from 'components/sign-in-up/sign-in/login/login.content'
 import {useState} from 'react'
-import {useArgSelector} from 'hooks/enhanced/enhanced.hooks'
-import {_selectUserField} from 'redux/user/user.selectors'
-import {AppState} from 'redux/store'
-import {useSelector} from 'react-redux'
+import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
-import {useShallSelector} from 'hooks/enhanced/enhanced.hooks'
 
 const useLogin = () => {
     const [transl, content] = useLocale(loginContent)
     const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
 
     const [counter, setCounter] = useState(0)
-    const login = useArgSelector(_selectUserField, 'login')
+    const login = useParamSelector(selectUserField, 'login')
 
     console.log('rendering login')
 

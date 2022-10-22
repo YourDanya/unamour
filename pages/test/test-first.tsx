@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import {_selectUserField} from 'redux/user/user.selectors'
-import {useArgSelector} from 'hooks/enhanced/enhanced.hooks'
+import {selectUserField} from 'redux/user/user.selectors'
+import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {UserField} from 'redux/user/user.types'
 
 const TestFirst = () => {
@@ -19,8 +19,8 @@ const TestFirst = () => {
         }
     }
 
-    const register = useArgSelector(_selectUserField, fieldOne)
-    const sendCode = useArgSelector(_selectUserField, 'register')
+    const register = useParamSelector(selectUserField, fieldOne)
+    const sendCode = useParamSelector(selectUserField, 'register')
 
     return (
         <div className={'test-first'}>

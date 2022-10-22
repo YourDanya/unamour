@@ -2,7 +2,7 @@ import {useSelector} from 'react-redux'
 import {UseShallSelector} from 'hooks/enhanced/enhanced.types'
 import {shallowEqual} from 'react-redux'
 import {useMemo} from 'react'
-import {UseArgSelector} from 'hooks/enhanced/enhanced.types'
+import {UseParamSelector} from 'hooks/enhanced/enhanced.types'
 import {useRef} from 'react'
 
 export const useDebounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
@@ -18,7 +18,7 @@ export const useShallSelector: UseShallSelector = (selector) => {
     return useSelector(selector, shallowEqual)
 }
 
-export const useArgSelector: UseArgSelector = (callback, ...args) => {
+export const useParamSelector: UseParamSelector = (callback, ...args) => {
 
     const argRef = useRef<any[] | null>(null)
 

@@ -1,7 +1,7 @@
-export const updateUserContent = {
+const formContent = {
     inputs: {
-        name: {value: ''},
-        surname: {value: ''},
+        name: {value: '', validations: {minLength: 3, maxLength: 30}},
+        surname: {value: '', validations: {minLength: 3, maxLength: 30}},
         email: {value: '', validations: {isEmail: true}},
         phone: {value: '', validations: {isPhone: true}},
         birthDate: {value: ''}
@@ -19,8 +19,6 @@ export const updateUserContent = {
                 newPassword: 'Придумайте новий пароль',
                 passwordConfirm: 'Повторіть пароль'
             },
-            password: 'пароль',
-            changePassword: 'Зміна пароля',
             save: 'зберегти'
         },
         eng: {
@@ -35,8 +33,6 @@ export const updateUserContent = {
                 newPassword: 'New password',
                 passwordConfirm: 'Confirm password',
             },
-            password: 'password',
-            changePassword: 'Change password',
             save: 'save'
         },
         ru: {
@@ -51,9 +47,9 @@ export const updateUserContent = {
                 newPassword: 'Придумайте новый пароль',
                 passwordConfirm: 'Повторите пароль'
             },
-            password: 'пароль',
-            changePassword: 'Изменение пароля',
             save: 'сохранить'
         }
     }
 }
+
+export default formContent

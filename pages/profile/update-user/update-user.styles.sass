@@ -23,9 +23,10 @@
     background-color: black
     border-radius: 2px
     margin-top: 20px
-  &__change-pass
+  &__other
     margin-left: 250px
     align-self: start
+  &__change-pass, &__delete
     &-title
       font-size: 12px
       text-transform: uppercase
@@ -39,15 +40,43 @@
       color: #bd944d
       text-decoration: underline
       margin-left: 5px
+  &__delete
+    &-img
+      height: 20px
+  &__change-pass
+    margin-bottom: 70px
+  &__modal
+    width: 430px
+    height: 400px
+    padding: 50px
+    &--delete
+      height: 300px
+      .update-user__modal-form
+        grid-template-rows: auto auto 1fr
+    &-form
+      display: grid
+      grid-template-rows: repeat(4, auto) 1fr
+      height: 100%
+      align-items: start
+    &-title
+      text-transform: uppercase
+      margin-bottom: 50px
+      font-size: 12px
+    &-btn
+      margin-top: 0
+      align-self: end
+    .modal-content__close
+      top: 10px
+      right: 10px
 
 @media (max-width: 1200px)
   .update-user
-    &__change-pass
+    &__other
       margin-left: 200px
 
 @media (max-width: 992px)
   .update-user
-    &__change-pass
+    &__other
       margin-left: 150px
 
 @media (max-width: 768px)
@@ -56,7 +85,7 @@
     &__form
       width: 400px
       margin-bottom: 50px
-    &__change-pass
+    &__other
       width: auto
       justify-self: start
       align-self: start
@@ -65,4 +94,7 @@
 @media (max-width: 576px)
   .update-user
     &__form
-      width: 90%
+      width: 100%
+    &__modal
+      width: 100%
+      padding: 50px 10px

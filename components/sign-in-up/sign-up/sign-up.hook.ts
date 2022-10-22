@@ -5,16 +5,16 @@ import {useDispatch} from 'react-redux'
 import {sendCodeAsync} from 'redux/user/user.thunk'
 import {useRef} from 'react'
 import {useState} from 'react'
-import {useArgSelector} from 'hooks/enhanced/enhanced.hooks'
-import {_selectUserField} from 'redux/user/user.selectors'
+import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
+import {selectUserField} from 'redux/user/user.selectors'
 import {SelectTimerField} from 'redux/store.types'
 
 const useSignUp = () => {
     const [transl] = useLocale(signUpContent)
     const [counter, setCounter] = useState(0)
 
-    const register = useArgSelector(_selectUserField, 'register')
-    const sendCode = useArgSelector(_selectUserField, 'sendCode') as SelectTimerField
+    const register = useParamSelector(selectUserField, 'register')
+    const sendCode = useParamSelector(selectUserField, 'sendCode') as SelectTimerField
 
     console.log('rendering sign-up')
 

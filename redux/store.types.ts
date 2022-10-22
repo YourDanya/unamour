@@ -8,9 +8,9 @@ export type SelectField = {loading : boolean, error : string | null, success : s
 
 export type SelectTimerField = SelectField & {timer: number}
 
-export type ContentSuccess = Record<string, Record<Locale, string>>
+export type ContentSuccess<T extends string = string> = Record<T, Record<Locale, string>>
 
-export type ContentErrors = {'4': Record<string, LocaleError | MessLocaleError>, '5': LocaleError}
+export type ContentErrors<T extends string = string> = {'4': Record<T, LocaleError | MessLocaleError>, '5': LocaleError}
 
 export type LocaleError = Record<Locale, string>
 
