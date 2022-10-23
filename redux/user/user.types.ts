@@ -67,3 +67,9 @@ export type SelectUserField = <TField extends UserField> (field: TField) => ((st
 export type UserErrors = ContentErrors<UserField>
 
 export type UserSuccess = ContentSuccess<UserField>
+
+type Flatten<Type> = Type extends Array<infer Item> ? Item : Type
+
+type TFlatten = Flatten<number[]>
+
+let s : TFlatten

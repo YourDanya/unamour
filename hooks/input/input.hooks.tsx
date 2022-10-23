@@ -46,7 +46,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
     }, [])
 
     const resetValues = useCallback (() => {
-        valRef.current = initInputs.values
+        valRef.current = {...initInputs.values}
         console.log('init values', initInputs.values)
         setValues({...initInputs.values})
     }, [])

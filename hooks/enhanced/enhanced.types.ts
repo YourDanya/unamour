@@ -1,9 +1,9 @@
 import {DefaultRootState} from 'react-redux'
+import {useEffect} from 'react'
 
-export type UseDebounce = {}
 
 export type UseShallSelector = <TState = DefaultRootState, TSelected = unknown>
 (selector: (state: TState) => TSelected) => TSelected
 
-export type UseParamSelector = <TArgs extends any[], TState = DefaultRootState, TSelected = unknown>
-(callback: (...args: TArgs) => ((state: TState) => TSelected) , ...args: TArgs) => TSelected
+export type UseParamSelector = <TParams extends any[], TState = DefaultRootState, TSelected = unknown>
+(paramSelector: (...params: TParams) => ((state: TState) => TSelected) , ...params: TParams) => TSelected
