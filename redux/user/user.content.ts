@@ -31,7 +31,7 @@ export const userErrors: UserErrors = {
             eng: 'User activated.',
             ru: 'Пользоватеь активирован.'
         },
-        signOut: {
+        logout: {
             ua: 'Щось пійшло не так. Спробоуйте пізніше',
             eng: 'Something went wrong. Try again later.',
             ru: 'Что-то пошло не так. Попройбуйте снова позже.'
@@ -100,7 +100,7 @@ export const userSuccess: UserSuccess = {
         eng: 'You have successfully activated your account.',
         ru: 'Вы успешно активировали аккаунт.'
     },
-    signOut: {
+    logout: {
         ua: 'Ви успышно вийшли.',
         eng: 'You have benn successfully signed out.',
         ru: 'Вы успешно вышли.'

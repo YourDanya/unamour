@@ -13,8 +13,6 @@ const NavMenu: React.FC<navMenuProps> = (props) => {
     const {showTopModal} = props
     const {clientService, handleClientClick, user, transl, content} = useNavMenu()
 
-    console.log('render nav menu')
-
     return (
         <>
             <div className="container menu">

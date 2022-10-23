@@ -4,20 +4,19 @@ import ProfileMenu from 'components/profile/profile-menu/profile-menu.component'
 import ModalContent from 'components/common/modal-content/modal-content.component'
 import Modal from 'components/common/modal/modal.component'
 import useProfile from 'components/profile/profile.hook'
-
-type ProfileProps = {}
+import {ProfileProps} from 'components/profile/profile.types'
 
 const Profile: React.FC<ProfileProps> = (props) => {
 
     const {children} = props
-    const {user, transl, content, modalState, hideModal, showModal, handleSignOut, signOut} = useProfile()
+    const {user, transl, content, modalState, hideModal, showModal, handleLogout, logout} = useProfile()
 
     return user &&
         (<div className={'profile'}>
             <div className={'profile__top'}>
                 <div className={'profile__sign-out'}>
-                    <Button className={'profile__sign-out-btn'} onClick={handleSignOut} loading={signOut.loading}>
-                        {transl.signOut}
+                    <Button className={'profile__sign-out-btn'} onClick={handleLogout} loading={logout.loading}>
+                        {transl.logout}
                     </Button>
                 </div>
                 <div className={'profile__name'}>

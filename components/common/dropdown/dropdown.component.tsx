@@ -1,14 +1,11 @@
 import React from 'react'
-import {useToggle} from 'hooks/event-handler/event-handler.hooks'
+import useDropdown from 'components/common/dropdown/dropdown.hook'
+import {DropdownProps} from 'components/common/dropdown/dropdown.types'
 
-type DropdownProps = {
-    name: string,
-    plus?: boolean,
-    className?: string
-}
+const Dropdown: React.FC<DropdownProps> = (props) => {
 
-const Dropdown: React.FC<DropdownProps> = ({name, plus, children, className}) => {
-    const [show, handleClick] = useToggle()
+    const {name, plus, children, className} = props
+    const {show, handleClick} = useDropdown()
 
     return (
         <div className={`dropdown ${plus? 'dropdown--plus' : '' } ${show ? 'dropdown--show' : ''} ${className}`}>

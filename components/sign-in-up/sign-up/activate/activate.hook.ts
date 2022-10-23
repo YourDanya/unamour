@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux'
 import {activateAsync} from 'redux/user/user.thunk'
 import {sendCodeAsync} from 'redux/user/user.thunk'
 import {ActivateProps} from 'components/sign-in-up/sign-up/activate/activate.types'
-import {clearTimer} from 'redux/user/user.slice'
+import {resetTimer} from 'redux/user/user.slice'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 
@@ -23,9 +23,8 @@ const useActivate = (props: ActivateProps) => {
         dispatch(sendCodeAsync())
     }
     const clearInitTimer = () => {
-        dispatch(clearTimer('sendCode'))
+        dispatch(resetTimer('sendCode'))
     }
-
 
     return {inputs, handleChange, handleValidate, transl, activateSubmit, sendCodeSubmit, sendCode, activate, clearInitTimer}
 }

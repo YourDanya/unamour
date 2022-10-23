@@ -3,6 +3,7 @@ import {NextPage} from 'next'
 import {ReactElement} from 'react'
 import {AppProps} from 'next/app'
 import {MouseEvent} from 'react'
+import {StateField} from 'redux/store.types'
 
 export type NextPageWithLayout<P ={}
     // extends ComponentContent = {} & ComponentContent
@@ -26,3 +27,5 @@ export type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
 
 export type MouseAction = (event: MouseEvent<HTMLElement>) => void
+
+export type Indexed<T> = {[key: string]: T[keyof T]}

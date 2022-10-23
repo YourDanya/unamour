@@ -37,7 +37,9 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
         try {
             const res = await apiCall()
             if (Array.isArray(successAction)) {
-                successAction.forEach(elem => {dispatch(elem(res.data))})
+                successAction.forEach(action => {
+                    dispatch(action(res.data))
+                })
             } else {
                 dispatch(successAction(res.data))
             }
@@ -46,7 +48,13 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
             const code = res.status.toString()[0]
             const {message} = res?.data || {}
             const timer = +res?.data?.timer
-            dispatch(errorAction({code, message, timer}))
+            if (Array.isArray(errorAction)) {
+                errorAction.forEach(action => {
+                    dispatch(action({code, message, timer}))
+                })
+            } else {
+                dispatch(errorAction({code, message, timer}))
+            }
         }
     }
 }

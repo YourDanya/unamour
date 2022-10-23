@@ -8,7 +8,7 @@ const profileContent = {
     translations: {
         ua: {
             greeting: 'ПРИВІТ,',
-            signOut: 'ВИХІД',
+            logout: 'ВИХІД',
             menu: [
                 'ДАНІ АККАУНТУ',
                 'ІСТОРІЯ ЗАМОВЛЕНЬ',
@@ -19,7 +19,7 @@ const profileContent = {
         },
         eng: {
             greeting: 'HELLO,',
-            signOut: 'EXIT',
+            logout: 'EXIT',
             menu: [
                 'ACCOUNT DATA',
                 'PURCHASE HISTORY',
@@ -30,7 +30,7 @@ const profileContent = {
         },
         ru: {
             greeting: 'ПРИВЕТ,',
-            signOut: 'ВИХОД',
+            logout: 'ВИХОД',
             menu: [
                 'ДАННЫЕ АККАУНТА',
                 'ИСТОРИЯ ЗАКАЗОВ',

@@ -12,7 +12,7 @@ type LoginProps = {
 const Login: FC<LoginProps> = (props) => {
 
     const {handleResetPass} = props
-    const {transl, inputs, handleChange, handleClick, handleValidate, login, counter, setCounter} = useLogin()
+    const {transl, inputs, handleChange, handleClick, handleValidate, login} = useLogin()
 
     return (
         <>
@@ -49,9 +49,6 @@ const Login: FC<LoginProps> = (props) => {
                     </div>
                 </div>
             </form>
-            {/*<Button className={'sign__test-btn'} onClick={() => {setCounter(counter+1)}}>*/}
-            {/*    {counter}*/}
-            {/*</Button>*/}
         </>
     )
 }

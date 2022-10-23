@@ -47,7 +47,7 @@ export type ActivateData = {
     code: string
 }
 
-export type UserField = 'login' | 'register' | 'signOut' | 'getUser' | 'forgetPass' | 'resetPass' | 'activate' |
+export type UserField = 'login' | 'register' | 'logout' | 'getUser' | 'forgetPass' | 'resetPass' | 'activate' |
     'sendCode' | 'updatePass' | 'deleteUser'
 
 export type User = {
@@ -68,8 +68,4 @@ export type UserErrors = ContentErrors<UserField>
 
 export type UserSuccess = ContentSuccess<UserField>
 
-type Flatten<Type> = Type extends Array<infer Item> ? Item : Type
 
-type TFlatten = Flatten<number[]>
-
-let s : TFlatten

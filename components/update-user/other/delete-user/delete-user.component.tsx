@@ -21,13 +21,14 @@ const DeleteUser: FC<DeleteUserProps> = (props) => {
                 handleChange={handleChange}
                 error={inputs.errors.password}
                 handleValidate={handleValidate}
+                type={'password'}
             />
             <Button
                 className={'update-user__button update-user__modal-btn'}
                 onClick={handleSubmit}
                 loading={deleteUser.loading}
             >
-                {transl.title}
+                {transl.delete}
             </Button>
             <FormMessage success={deleteUser.success} error={deleteUser.error}/>
         </form>

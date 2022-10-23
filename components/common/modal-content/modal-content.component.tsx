@@ -1,15 +1,8 @@
 import React from 'react'
+import {ModalContentProps} from 'components/common/modal-content/modal-content.types'
 import useModalContent from 'components/common/modal-content/modal-content.hook'
 
-
-type modalContentProps = {
-    active : boolean,
-    hideModal: () => void,
-    className?: string,
-    hideOnRouteChange?: boolean
-}
-
-const ModalContent: React.FC<modalContentProps> = (props) => {
+const ModalContent: React.FC<ModalContentProps> = (props) => {
     const {children, className, hideModal, active} = props
 
     useModalContent(hideModal)

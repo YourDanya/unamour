@@ -4,7 +4,7 @@ import deleteUserContent from 'components/update-user/other/delete-user/delete-u
 import {DeleteUserProps} from 'components/update-user/other/delete-user/delete-user.types'
 import {useDispatch} from 'react-redux'
 import {useEffect} from 'react'
-import {clearSuccess} from 'redux/user/user.slice'
+import {resetSuccess} from 'redux/user/user.slice'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 import {useRouter} from 'next/router'
@@ -25,7 +25,7 @@ const useDeleteUser = (props: DeleteUserProps) => {
     useEffect(() => {
         if (deleteUser.success) {
             resetValues()
-            dispatch(clearSuccess('deleteUser'))
+            dispatch(resetSuccess('deleteUser'))
             hideModal()
             router.push('/')
         }
