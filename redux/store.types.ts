@@ -16,4 +16,4 @@ export type LocaleError = Record<Locale, string>
 
 export type MessLocaleError =  Record<string, LocaleError>
 
-export type CheckTimerField<Field> = Field extends 'sendCode' ? SelectTimerField : SelectField
+export type CheckTimerField<Field> = Field extends 'sendRegisterCode' ? SelectTimerField : SelectField

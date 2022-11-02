@@ -7,7 +7,7 @@ const loginContent = {
         ua: {
             signIn: 'вхід',
             inputs: {
-                email: 'Ваш e-mail',
+                email: 'Ваш email',
                 password: 'Ваш пароль',
             },
             forget: 'Забули пароль?',
@@ -25,7 +25,7 @@ const loginContent = {
         ru: {
             signIn: 'вход',
             inputs: {
-                email: 'Ваш e-mail',
+                email: 'Ваш email',
                 password: 'Ваш пароль'
             },
             consent: 'Нажимая кнопку Войти, я согласен на обработку и \nпередачу моих персональных данных.',

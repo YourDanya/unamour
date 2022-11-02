@@ -20,7 +20,7 @@ const TestFirst = () => {
     }
 
     const register = useParamSelector(selectUserField, fieldOne)
-    const sendCode = useParamSelector(selectUserField, 'register')
+    const sendRegisterCode = useParamSelector(selectUserField, 'register')
 
     return (
         <div className={'test-first'}>

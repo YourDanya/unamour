@@ -23,10 +23,10 @@
     background-color: black
     border-radius: 2px
     margin-top: 20px
-  &__other
+  &__settings
     margin-left: 250px
     align-self: start
-  &__change-pass, &__delete
+  &__setting
     &-title
       font-size: 12px
       text-transform: uppercase
@@ -36,31 +36,37 @@
       display: flex
       align-items: center
       transform: translateX(-3px)
+      &--email
+        margin-bottom: 5px
     &-text
       color: #bd944d
       text-decoration: underline
       margin-left: 5px
-  &__delete
     &-img
       height: 20px
   &__change-pass
     margin-bottom: 70px
   &__modal
     width: 430px
-    height: 400px
     padding: 50px
+    &--pass
+      height: 400px
+      .update-user__modal-form
+        grid-template-rows: repeat(5, 1fr) auto
+    &--email
+      height: 330px
+      .update-user__modal-form
+        grid-template-rows: repeat(4, 1fr) auto
     &--delete
       height: 270px
       .update-user__modal-form
-        grid-template-rows: auto auto 1fr
+        grid-template-rows: repeat(3, 1fr) auto
     &-form
       display: grid
-      grid-template-rows: repeat(4, auto) 1fr
       height: 100%
       align-items: start
     &-title
       text-transform: uppercase
-      margin-bottom: 50px
       font-size: 12px
     &-btn
       margin-top: 0
@@ -76,7 +82,7 @@
 
 @media (max-width: 992px)
   .update-user
-    &__other
+    &__settings
       margin-left: 150px
 
 @media (max-width: 768px)
@@ -85,7 +91,7 @@
     &__form
       width: 400px
       margin-bottom: 50px
-    &__other
+    &__settings
       width: auto
       justify-self: start
       align-self: start

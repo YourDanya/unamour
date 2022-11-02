@@ -12,7 +12,7 @@ const footerContent = {
             contact: 'Звя\'затися з нами',
             logo: 'Зроблено на',
             input: {
-                email: 'Ваш e-mail'
+                email: 'Ваш email'
             }
         },
         eng: {
@@ -22,7 +22,7 @@ const footerContent = {
             contact: 'Contact us',
             logo: 'Made in',
             input: {
-                email: 'Your e-mail'
+                email: 'Your email'
             }
         },
         ru: {
@@ -32,7 +32,7 @@ const footerContent = {
             contact: 'Связаться с нами',
             logo: 'Сделано на',
             input: {
-                email: 'Ваш e-mail'
+                email: 'Ваш email'
             }
         }
     }

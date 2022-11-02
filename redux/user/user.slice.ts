@@ -6,7 +6,8 @@ import {UserField} from 'redux/user/user.types'
 import {HYDRATE} from 'next-redux-wrapper'
 import {StateError} from 'redux/store.types'
 import {StateField} from 'redux/store.types'
-import {Indexed} from 'types/types'
+import {Entry} from 'types/types'
+
 
 const initialState: UserState = {
     user : null,
@@ -17,13 +18,15 @@ const initialState: UserState = {
         getUser: {loading: false, error: null, success: false},
         forgetPass: {loading: false, error: null, success: false},
         resetPass: {loading: false, error: null, success: false},
-        activate: {loading: false, error: null, success: false},
-        sendCode: {loading: false, error: null, success: false, timer: 0},
+        activateUser: {loading: false, error: null, success: false},
+        sendRegisterCode: {loading: false, error: null, success: false, timer: 0},
         updatePass: {loading: false, error: null, success: false},
-        deleteUser: {loading: false, error: null, success: false}
-    },
-    current : '',
-    activation: false,
+        deleteUser: {loading: false, error: null, success: false},
+        updateEmail: {loading: false, error: null, success: false},
+        sendUpdateEmailCode: {loading: false, error: null, success: false, timer: 0},
+        activateEmail: {loading: false, error: null, success: false},
+        updateUser: {loading: false, error: null, success: false}
+    }
 }
 
 export const userSlice = createSlice({
@@ -33,15 +36,15 @@ export const userSlice = createSlice({
         userFieldStart: (state, action: PayloadAction<UserField>) => {
             const field = action.payload
             state.fields[field].loading = true
-            state.current = field
         },
-        userFieldFailure: (state, action: PayloadAction<{error:StateError, field: UserField}>) => {
+        userFieldFailure: (state, action: PayloadAction<{error: StateError, field: UserField}>) => {
             const {field, error} = action.payload
-            state.fields[field].loading = false
-            state.fields[field].error = error
+            const {timer} = error
+            state.fields[field] = {loading: false, success: false, error, timer}
         },
         userFieldSuccess: (state, action: PayloadAction<UserField>) => {
-            state.fields[action.payload] = {success: true, loading: false, error: null}
+            const {timer} = state.fields[action.payload]
+            state.fields[action.payload] = {success: true, loading: false, error: null, timer}
         },
         setUser: (state, action: PayloadAction<{user: User | null}>) => {
             state.user = action.payload.user
@@ -54,8 +57,9 @@ export const userSlice = createSlice({
         },
         setField: (state, action: PayloadAction<{field: UserField, value: Partial<StateField>}>) => {
             const {field, value} = action.payload
-            Object.entries(value).forEach(([ key, value]) => {
-                (state.fields[field] as Indexed<StateField>)[key] = value
+            Object.entries(value).forEach((entry) => {
+                const [key, val] = entry as Entry<StateField>
+                (state.fields[field][key] as typeof val) = val
             })
         }
     },

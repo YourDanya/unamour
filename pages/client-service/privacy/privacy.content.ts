@@ -144,7 +144,7 @@ const privacyContent = {
             label2: '* Exception: production defect or resort (other size, color or article). In this case, the return is made at our expense. \ N \ n Goods of improper quality (after use or with damaged labels) ordered on UNAMOUR, are not subject to exchange and return. ',
             text1: 'Return process:',
             list6: [
-                'Fill in the return update-user-form (sent by the manager at the customer\'s request to the messenger or e-mail).',
+                'Fill in the return update-user-form (sent by the manager at the customer\'s request to the messenger or email).',
                 'Send the goods and the completed update-user-form to the address indicated in it.',
                 'Get money by bank transfer *',
                 'The refund period is within 10 working days of receiving the return from the online store manager.'

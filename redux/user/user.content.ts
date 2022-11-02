@@ -16,20 +16,15 @@ export const userErrors: UserErrors = {
         },
         register: {
             // 'Inactive user already exists' : {
-            //     ua: 'Неактивний користувач с заданим e-mail вже існує. Перейдіть на пошту для підтверждення акаунта..',
-            //     eng: 'User with provided e-mail already exists. Go to the e-mail to confirm your account. ',
-            //     ru: 'Пользователь с заданым e-mail уже существует. Перейти на почту для подтверждения акаунта.'
+            //     ua: 'Неактивний Юзер с заданим email вже існує. Перейдіть на пошту для підтверждення акаунта..',
+            //     eng: 'User with provided email already exists. Go to the email to confirm your account. ',
+            //     ru: 'Пользователь с заданым email уже существует. Перейти на почту для подтверждения акаунта.'
             // },
             'User already exists' : {
-                ua: 'Користувач с заданим email вже існує. Введіть інший.',
-                eng: 'User with provided e-mail already exists. Enter another.',
-                ru: 'Пользователь с заданым e-mail уже существует. Введите другой.'
+                ua: 'Юзер з наданим email вже існує. Введіть інший.',
+                eng: 'User with provided email already exists. Enter another.',
+                ru: 'Пользователь с предоставленным email уже существует. Введите другой.'
             }
-        },
-        activate: {
-            ua: 'Користувача активовано.',
-            eng: 'User activated.',
-            ru: 'Пользоватеь активирован.'
         },
         logout: {
             ua: 'Щось пійшло не так. Спробоуйте пізніше',
@@ -37,9 +32,9 @@ export const userErrors: UserErrors = {
             ru: 'Что-то пошло не так. Попройбуйте снова позже.'
         },
         forgetPass: {
-            ua: 'Невірний e-mail.',
-            eng: 'Invalid e-mail.',
-            ru: 'Неверный e-mail.'
+            ua: 'Невірний email.',
+            eng: 'Invalid email.',
+            ru: 'Неверный email.'
         },
         resetPass: {
             ua: 'Невірний токен.',
@@ -51,10 +46,15 @@ export const userErrors: UserErrors = {
             eng: 'Wrong token.',
             ru: 'Неверный токен.'
         },
-        sendCode: {
+        sendRegisterCode: {
             ua: 'Ви нещодавно відправляли код.',
-            eng: 'Вы недавно отправляли код.',
-            ru: 'You recently submitted a code.'
+            eng: 'You recently submitted a code.',
+            ru: 'Вы недавно отправляли код.'
+        },
+        activateUser: {
+            ua: 'Невірний код.',
+            eng: 'Wrong code.',
+            ru: 'Неверный код.'
         },
         updatePass: {
             ua: 'Старий пароль невірний.',
@@ -65,6 +65,33 @@ export const userErrors: UserErrors = {
             ua: 'Невірний пароль.',
             eng: 'Wrong password.',
             ru: 'Неверный пароль.'
+        },
+        updateEmail: {
+            'Wrong password' : {
+                ua: 'Невірний пароль.',
+                eng: 'Wrong password.',
+                ru: 'Неверный пароль'
+            },
+            'Email is already in use' : {
+                ua: 'Наданий email використовується іншим юзером.',
+                eng: 'Provided email is in use by another user.',
+                ru: 'Предоставленный email используется другим пользователем.'
+            }
+        },
+        sendUpdateEmailCode: {
+            ua: 'Ви нещодавно відправляли код.',
+            eng: 'You recently submitted a code.',
+            ru: 'Вы недавно отправляли код.'
+        },
+        activateEmail: {
+            ua: 'Невірний код.',
+            eng: 'Wrong code.',
+            ru: 'Неверный код.'
+        },
+        updateUser: {
+            ua: 'Не вдалося змінити дані юзера.',
+            eng: 'Failed to change user data.',
+            ru: 'Не удалось изменить данные пользователя.'
         }
     }
 }
@@ -77,7 +104,7 @@ export const userSuccess: UserSuccess = {
     },
     forgetPass: {
         ua: 'Вам на пошту було вислано посилання для відновлення пароля.',
-        eng: 'You have been sent a link to reset your password.',
+        eng: 'You have been sent a link to reset-pass your password.',
         ru: 'Вам на почту была отправлена ссылка для восстановления пароля.'
     },
     resetPass: {
@@ -91,21 +118,21 @@ export const userSuccess: UserSuccess = {
         ru: 'Получено токен юзера.'
     },
     register: {
-        ua: 'Ви успішно зіреєстувалися.',
+        ua: 'Ви успішно зареєстувалися.',
         eng: 'You have been successfully signed up.',
         ru: 'Вы успешно зарегестрировались.'
     },
-    activate: {
-        ua: 'Ви успішно активували акаунт.',
-        eng: 'You have successfully activated your account.',
-        ru: 'Вы успешно активировали аккаунт.'
+    activateUser: {
+        ua: 'Юзера активовано.',
+        eng: 'User activated.',
+        ru: 'Пользоватеь активирован.'
     },
     logout: {
         ua: 'Ви успышно вийшли.',
         eng: 'You have benn successfully signed out.',
         ru: 'Вы успешно вышли.'
     },
-    sendCode: {
+    sendRegisterCode: {
         ua: 'Код відправлане вам на пошту.',
         eng: 'The code has been sent to you by mail.',
         ru: 'Код отправлено вам на почту.'
@@ -119,5 +146,25 @@ export const userSuccess: UserSuccess = {
         ua: 'Ваш акаунт успішно видалено.',
         eng: 'Your account was successfully deleted.',
         ru: 'Ваш акаунт успешно удален.'
+    },
+    updateEmail: {
+        ua: 'Створено запит для зміни пошти.',
+        eng: 'The email change request was created.',
+        ru: 'Создано запрос для изменения почты.'
+    },
+    sendUpdateEmailCode: {
+        ua: 'Код для підтверждення було вислано на пошту.',
+        eng: 'The activation code was sent to the email.',
+        ru: 'Код для подтверждения был выслан на почту.'
+    },
+    activateEmail: {
+        ua: 'Пошту успішно змінено.',
+        eng: 'Email was successfully updated.',
+        ru: 'Почта успешно изменена.'
+    },
+    updateUser: {
+        ua: 'Успішно оновлено дані юзера.',
+        eng: 'User data has been updated successfully.',
+        ru: 'Успешно обновлены данные пользователя.'
     }
 }

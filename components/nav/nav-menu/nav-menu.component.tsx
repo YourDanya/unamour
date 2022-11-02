@@ -3,13 +3,9 @@ import Button from 'components/common/button/button.component'
 import useNavMenu from 'components/nav/nav-menu/nav-menu.hook'
 import NavLink from 'components/common/nav-link/nav-link.component'
 import {Fragment} from 'react'
+import {NavMenuProps} from 'components/nav/nav-menu/nav-menu.types'
 
-type navMenuProps = {
-    showTopModal: (event: React.MouseEvent<HTMLElement>) => void
-}
-
-const NavMenu: React.FC<navMenuProps> = (props) => {
-
+const NavMenu: React.FC<NavMenuProps> = (props) => {
     const {showTopModal} = props
     const {clientService, handleClientClick, user, transl, content} = useNavMenu()
 

@@ -9,6 +9,7 @@ import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 import {useRouter} from 'next/router'
 import {deleteUserAsync} from 'redux/user/user.thunk'
+import {useLayoutEffect} from 'react'
 
 const useDeleteUser = (props: DeleteUserProps) => {
     const {hideModal} = props
@@ -22,7 +23,8 @@ const useDeleteUser = (props: DeleteUserProps) => {
     })
 
     const router = useRouter()
-    useEffect(() => {
+    useLayoutEffect(() => {
+        console.log('delete user success')
         if (deleteUser.success) {
             resetValues()
             dispatch(resetSuccess('deleteUser'))

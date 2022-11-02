@@ -2,7 +2,6 @@ const formContent = {
     inputs: {
         name: {value: '', validations: {minLength: 3, maxLength: 30}},
         surname: {value: '', validations: {minLength: 3, maxLength: 30}},
-        email: {value: '', validations: {isEmail: true}},
         phone: {value: '', validations: {isPhone: true}},
         birthDate: {value: ''}
     },
@@ -12,7 +11,6 @@ const formContent = {
             inputs: {
                 name: 'Ім\'я',
                 surname: 'Прізвище',
-                email: 'Ваш e-mail',
                 phone: 'Номер',
                 birthDate: 'Дата нарождення',
                 oldPassword: 'Старий пароль',
@@ -26,7 +24,6 @@ const formContent = {
             inputs: {
                 name: 'Name',
                 surname: 'Surname',
-                email: 'Your e-mail',
                 phone: 'Phone',
                 birthDate: 'Birth date',
                 oldPassword: 'Old password',
@@ -40,7 +37,6 @@ const formContent = {
             inputs: {
                 name: 'Имя',
                 surname: 'Фамилия',
-                email: 'Ваш e-mail',
                 phone: 'Номер',
                 birthDate: 'Дата рождения',
                 oldPassword: 'Старый пароль',

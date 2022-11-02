@@ -26,7 +26,7 @@ const cartFormContent = {
                 apartment: 'Квартира, офіс',
                 name: 'Ім\'я',
                 surname: 'Прізвище',
-                email: 'Ваш e-mail',
+                email: 'Ваш email',
                 number: 'Номер',
                 comment: 'Коментар',
                 save: 'Зберегти інформацію для наступних покупок?'
@@ -65,7 +65,7 @@ const cartFormContent = {
                 apartment: 'Квартира, офис',
                 name: 'Имя',
                 surname: 'Фамилия',
-                email: 'Ваш e-mail',
+                email: 'Ваш email',
                 number: 'Номер',
                 comment: 'Комментарий',
                 save: 'Сохранить информацию для последующих покупок?'

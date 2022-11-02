@@ -19,7 +19,6 @@ export const useShallSelector: UseShallSelector = (selector) => {
 }
 
 export const useParamSelector: UseParamSelector = (callback, ...args) => {
-
     const argRef = useRef<any[] | null>(null)
 
     const update = args.reduce((accum, elem, idx ) => elem === argRef.current?.[idx] && accum, true)

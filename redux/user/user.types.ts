@@ -7,8 +7,6 @@ import {ContentSuccess} from 'redux/store.types'
 export type UserState = {
     user: null | User,
     fields: Record<UserField, StateField>,
-    current: UserField | '',
-    activation: boolean,
 }
 
 export type LoginData = {
@@ -43,12 +41,25 @@ export type RegisterData = {
     password: string
 }
 
+export type UpdateEmailData = {
+    password: string,
+    newEmail: string
+}
+
 export type ActivateData = {
     code: string
 }
 
-export type UserField = 'login' | 'register' | 'logout' | 'getUser' | 'forgetPass' | 'resetPass' | 'activate' |
-    'sendCode' | 'updatePass' | 'deleteUser'
+export type UpdateUserData = {
+    name: string,
+    birthDate: string,
+    phone: string,
+    surname: string
+}
+
+export type UserField = 'login' | 'register' | 'logout' | 'getUser' | 'forgetPass' | 'resetPass' | 'activateUser' |
+    'sendRegisterCode' | 'updatePass' | 'deleteUser' | 'updateEmail' | 'sendUpdateEmailCode' | 'activateEmail'
+    | 'updateUser'
 
 export type User = {
     name: string,

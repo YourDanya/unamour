@@ -1,8 +1,8 @@
-import {InputProps} from 'components/common/input/input.component'
 import {useDebounceEffect} from 'hooks/component/component.hooks'
 import {useToggle} from 'hooks/event-handler/event-handler.hooks'
 import React from 'react'
 import {useMemo} from 'react'
+import {InputProps} from 'components/common/input/input.types'
 
 const useInput = (props: InputProps) => {
     const {handleValidate, error, name, value, validateDeps} = props

@@ -2,10 +2,10 @@ import Input from 'components/common/input/input.component'
 import Button from 'components/common/button/button.component'
 import {FC} from 'react'
 import useUpdateUserForm from 'components/update-user/update-user-form/update-user-form.hook'
+import FormMessage from 'components/common/form-message/form-message.component'
 
 const UpdateUserForm: FC = () => {
-
-    const {transl, handleChange, handleValidate, inputs, handleSubmit} = useUpdateUserForm()
+    const {transl, handleChange, handleValidate, inputs, handleSubmit, updateUser} = useUpdateUserForm()
 
     return (
         <form className={'update-user__form'}>
@@ -29,15 +29,6 @@ const UpdateUserForm: FC = () => {
                 handleValidate={handleValidate}
             />
             <Input
-                className={'update-user__input update-user__email'}
-                name={'email'}
-                handleChange={handleChange}
-                placeholder={transl.inputs.email}
-                value={inputs.values.email}
-                error={inputs.errors.email}
-                handleValidate={handleValidate}
-            />
-            <Input
                 className={'update-user__input update-user__phone'}
                 name={'phone'}
                 handleChange={handleChange}
@@ -55,9 +46,10 @@ const UpdateUserForm: FC = () => {
                 error={inputs.errors.birthDate}
                 handleValidate={handleValidate}
             />
-            <Button className={'update-user__button'} onClick={handleSubmit}>
+            <Button className={'update-user__button'} onClick={handleSubmit} loading={updateUser.loading}>
                 {transl.save}
             </Button>
+            <FormMessage error={updateUser.error} success={updateUser.success}/>
         </form>
     )
 }

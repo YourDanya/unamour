@@ -12,6 +12,7 @@ const useTimer = (props: TimerProps) => {
     let intervalRef = useRef<number>()
 
     useEffect(() => {
+        console.log('timer', initTimer)
         if (!initTimer) return
         timerRef.current = initTimer
         setTimer(initTimer)
@@ -31,7 +32,7 @@ const useTimer = (props: TimerProps) => {
 
     const onSubmit = (event: MouseEvent<HTMLElement>) => {
         event.preventDefault()
-        if (props.onSubmit && timer < 1000)
+        if (props.onSubmit && timer<1000)
             props.onSubmit(event)
     }
 

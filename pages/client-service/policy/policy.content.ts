@@ -163,7 +163,7 @@ const policyContent = {
                 'personal data base - a named set of organized personal data in electronic update-user-form and / or in the update-user-form of personal data files.',
                 'responsible person - a designated person who organizes work related to the protection of personal data during their processing, in accordance with the law.',
                 'owner of personal data base - a natural or legal person who by law or with the consent of the personal data subject has the right to process this data, who approves the purpose of personal data processing in this database, establishes the composition of these data and processing procedures, if otherwise not defined by law. ',
-                'The state register of personal data bases is the only state information system for collecting, accumulating and processing information on registered personal data bases.',
+                'The state register-form of personal data bases is the only state information system for collecting, accumulating and processing information on registered personal data bases.',
                 'publicly available sources of personal data - directories, address books, registers, lists, catalogs, other systematic collections of public information that contain personal data posted and published with the knowledge of the personal data subject.\n Public sources of personal data are not considered social networks and Internet resources in which the personal data subject leaves his personal data (except when the personal data subject explicitly states that the personal data is placed for the purpose of their free distribution and use). \ n ',
                 'the consent of the personal data subject - any documented, voluntary expression of the will of an individual to grant permission for the processing of his personal data in accordance with the stated purpose of their processing',
                 'depersonalization of personal data - removal of information that allows to identify a person.',
@@ -247,7 +247,7 @@ const policyContent = {
                 'participate in the discussion of his responsibilities for the organization of work related to the protection of personal data during their processing.',
                 'submit proposals for improving the activities and improving working methods, submit comments and options for eliminating the identified shortcomings in the process of personal data processing.',
                 'receive explanations on the processing of personal data.',
-                'login and endorse documents within its competence.'
+                'login-form and endorse documents within its competence.'
             ],
             numText27: 'Employees who directly process and/or have access to personal data in connection with the performance of their official (employment) duties are required to comply with the requirements of Ukrainian legislation in the field of personal data protection and internal documents regarding the processing and protection of personal data in personal databases. ',
             numText28: 'Employees who have access to personal data, including those who process them, are obliged not to disclose in any way personal data entrusted to them or which became known in connection with the performance of professional or official or job responsibilities. This obligation shall apply after the termination of their activities related to personal data, except as provided by law. ',

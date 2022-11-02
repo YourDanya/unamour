@@ -54,7 +54,7 @@ import 'components/nav/hamburger/hamburger.styles.sass'
 import 'components/shop-items-collection/shop-items-collection.styles.sass'
 import 'components/shop-item-preview/shop-item-preview.styles.sass'
 import 'components/footer/footer.styles.sass'
-import 'components/sign-in-up/sign-in-up.styles.sass'
+import 'components/nav-auth/nav-auth.styles.sass'
 import 'components/cookie/cookies.styles.sass'
 
 import 'pages/auth/auth.styles.sass'

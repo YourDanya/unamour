@@ -1,19 +1,6 @@
 import React from 'react'
 import useInput from 'components/common/input/input.hook'
-import {DependencyList} from 'react'
-
-export type InputProps = {
-    placeholder: string
-    name: string,
-    value: string,
-    className?: string
-    handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-    error?: string | null,
-    type?: string,
-    handleValidate?: (name: string) => void,
-    validateDeps?: DependencyList,
-    children?: React.ReactNode
-}
+import {InputProps} from 'components/common/input/input.types'
 
 const Input: React.FC<InputProps> = (props) => {
     const {value, name, handleChange, placeholder, className, children, error, type} = props

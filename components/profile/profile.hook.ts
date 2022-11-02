@@ -10,15 +10,17 @@ import {resetSuccess} from 'redux/user/user.slice'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
+import {useLayoutEffect} from 'react'
 
 const useProfile = () => {
     const user = useSelector(selectUser) as User
     const router = useRouter()
-    
+
     const [transl, content] = useLocale(profileContent)
     const [modalState, showModal, hideModal] = useModal({menu: false})
 
     const logout = useParamSelector(selectUserField, 'logout')
+    const getUser = useParamSelector(selectUserField, 'getUser')
 
     const dispatch = useDispatch()
     const handleLogout = () => {
@@ -30,6 +32,12 @@ const useProfile = () => {
             dispatch(resetSuccess('logout'))
         }
     }, [logout.success])
+
+    useEffect(() => {
+        if (!user && getUser.error) {
+            router.push('/')
+        }
+    }, [user, getUser])
 
     return {user, transl, content, modalState, showModal, hideModal, handleLogout, logout}
 }

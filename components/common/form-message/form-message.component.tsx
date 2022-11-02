@@ -10,7 +10,7 @@ const FormMessage: React.FC<FormMessageProps> = (props) => {
     const {success, error, className} = props
 
     return (
-        <div className={`form-message ${className}`}>
+        <div className={`form-message ${className ?? ''}`}>
             {success && (
                 <div className={`form-message__success`}>
                     {success}

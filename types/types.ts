@@ -28,4 +28,8 @@ export type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
 
 export type MouseAction = (event: MouseEvent<HTMLElement>) => void
 
-export type Indexed<T> = {[key: string]: T[keyof T]}
+export type Mapped<T> = {[key in keyof T]: T[key]}
+
+export type Entry<T> = {
+    [key in keyof Required<T>]: [key, T[key]]
+}[keyof T]

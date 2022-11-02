@@ -21,7 +21,7 @@ const contactsContent = {
             inputs: {
                 name: 'Ім\'я',
                 number: 'Телефон',
-                email: 'Ваш e-mail',
+                email: 'Ваш email',
                 message: 'Повідомлення'
             },
             city: 'Київ',
@@ -65,7 +65,7 @@ const contactsContent = {
             inputs: {
                 name: 'Имя',
                 number: 'Телефон',
-                email: 'Ваш e-mail',
+                email: 'Ваш email',
                 message: 'Сообщение'
             },
             city: 'Киев',
