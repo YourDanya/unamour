@@ -6,7 +6,7 @@ import MapComponent from 'components/common/map/map.component'
 import Input from 'components/common/input/input.component'
 
 const ContactComponent: React.FC = () => {
-    const {handleChange, handleSubmit, handleValidate, transl, inputs} = useContact()
+    const {onChange, handleSubmit, onValidate, transl, inputs} = useContact()
 
     return (
         <div className={'contacts'}>
@@ -26,35 +26,36 @@ const ContactComponent: React.FC = () => {
                         name={'name'}
                         placeholder={transl.inputs.name}
                         value={inputs.values.name}
-                        handleChange={handleChange}
+                        onChange={onChange}
                         error={inputs.errors.name}
-                        handleValidate={handleValidate}
+                        onValidate={onValidate}
                     />
                     <Input
                         className={'contact__input'}
                         name={'number'}
                         placeholder={transl.inputs.number}
                         value={inputs.values.number}
-                        handleChange={handleChange}
+                        onChange={onChange}
                         error={inputs.errors.number}
-                        handleValidate={handleValidate}
+                        onValidate={onValidate}
                     />
                     <Input
                         className={'contact__input'}
                         name={'email'}
                         placeholder={transl.inputs.email}
                         value={inputs.values.email}
-                        handleChange={handleChange}
+                        onChange={onChange}
                         error={inputs.errors.email}
-                        handleValidate={handleValidate}
+                        onValidate={onValidate}
                     />
                     <Textarea
                         className={'contact__textarea'}
                         name={'message'}
-                        placeholder={inputs.values.message}
-                        handleChange={handleChange}
+                        placeholder={transl.inputs.message}
+                        value={inputs.values.message}
+                        onChange={onChange}
                         error={inputs.errors.message}
-                        handleValidate={handleValidate}
+                        onValidate={onValidate}
                     />
                     <Button className={'contacts__button'} onClick={handleSubmit}>
                         {transl.submit}

@@ -7,7 +7,7 @@ export type DiscountProps = {}
 
 const Discount: React.FC<DiscountProps> = (props) => {
 
-    const {active, toggleActive, found, setFound, inputs, handleChange, handleValidate, transl} = useDiscount(props)
+    const {active, toggleActive, found, setFound, inputs, onChange, onValidate, transl} = useDiscount(props)
 
     return (
         <div className={'discount'}>
@@ -19,9 +19,9 @@ const Discount: React.FC<DiscountProps> = (props) => {
                             name={'cert'}
                             placeholder={transl.inputs.cert}
                             value={inputs.values.cert}
-                            handleChange={handleChange}
+                            onChange={onChange}
                             error={inputs.errors.cert}
-                            handleValidate={handleValidate}
+                            onValidate={onValidate}
                         >
                             <Button className='discount__apply' name='certificate' onClick={setFound}>
                                 {transl.apply}
@@ -42,7 +42,7 @@ const Discount: React.FC<DiscountProps> = (props) => {
                             name={'promo'}
                             placeholder={transl.inputs.promo}
                             value={inputs.values.promo}
-                            handleChange={handleChange}
+                            onChange={onChange}
                             error={inputs.errors.promo}
                         >
                             <Button className='discount__apply' name='promo' onClick={setFound}>

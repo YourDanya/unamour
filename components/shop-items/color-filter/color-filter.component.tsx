@@ -13,7 +13,7 @@ export type ColorsFilterProps = {
 const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
 
     const {content: colors, transl} = props
-    const {colorValues, handleChange} = useColorsFilter(props)
+    const {colorValues, onChange} = useColorsFilter(props)
 
     return (
         <>
@@ -25,7 +25,7 @@ const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
                     name={param}
                     label={transl[index]}
                     value={colorValues[param]}
-                    handleChange={handleChange}
+                    onChange={onChange}
                 />
             ))}
         </>

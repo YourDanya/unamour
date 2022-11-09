@@ -37,28 +37,7 @@ export const useDoubleToggle = (initState?: boolean, params?: { firstCond?: bool
     return [active, handleFirst, handleSecond]
 }
 
-export const useToggleMany = <T extends readonly string[], K>(arr: T, attribute: string = 'name'): [
-    active: Record<T[number], boolean>,
-    handleEvent: (event: any) => void,
-    setActive: (active: Record<T[number], boolean>) => void,
-    stateRef: React.MutableRefObject<any>
-] => {
-
-    const initialState: Record<T[number], boolean> = {} as Record<T[number], boolean>
-    arr.forEach((elem) => initialState[elem as T[number]] = false)
-
-    const [active, setActive] = useState(initialState)
-    const stateRef = useRef(initialState)
-
-    const handleEvent = (event: any) => {
-        const property = event?.currentTarget?.getAttribute(attribute)
-        stateRef.current[property as T[number]] = !stateRef.current[property as T[number]]
-        setActive({...stateRef.current})
-    }
-    return [active, handleEvent, setActive, stateRef]
-}
-
-export const _useToggleMany = <T,>(initialState: Record<keyof T, boolean>, attribute: string = 'name'): [
+export const useToggleMany = <T,>(initialState: Record<keyof T, boolean>, attribute: string = 'name'): [
     active: Record<keyof T, boolean>,
     handleEvent: (event: any) => void,
     setActive: (active: Record<keyof T, boolean>) => void,

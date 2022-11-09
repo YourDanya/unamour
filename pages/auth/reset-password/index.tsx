@@ -5,7 +5,7 @@ import useResetPass from 'pages/auth/reset-password/reset-password.hook'
 import Input from 'components/common/input/input.component'
 
 const ResetPass: NextPage = () => {
-    const {transl, resetPass, inputs, handleChange, handleValidate, handleSubmit} = useResetPass()
+    const {transl, resetPass, inputs, onChange, onValidate, handleSubmit} = useResetPass()
 
     return (
         <div className={'auth'}>
@@ -16,9 +16,9 @@ const ResetPass: NextPage = () => {
                     name={'password'}
                     placeholder={transl.inputs.password}
                     value={inputs.values.password}
-                    handleChange={handleChange}
+                    onChange={onChange}
                     error={inputs.errors.password}
-                    handleValidate={handleValidate}
+                    onValidate={onValidate}
                     type={'password'}
                 />
                 <Input
@@ -26,9 +26,9 @@ const ResetPass: NextPage = () => {
                     name={'passwordConfirm'}
                     placeholder={transl.inputs.passwordConfirm}
                     value={inputs.values.passwordConfirm}
-                    handleChange={handleChange}
+                    onChange={onChange}
                     error={inputs.errors.passwordConfirm}
-                    handleValidate={handleValidate}
+                    onValidate={onValidate}
                     type={'password'}
                 />
                 <Button className='auth__button' onClick={handleSubmit} loading={resetPass.loading}>

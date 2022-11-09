@@ -6,7 +6,7 @@ type CartFormProps = {}
 
 const CartForm: React.FC<CartFormProps> = (props) => {
 
-    const {transl, inputs, handleChange, handleValidate, handleSubmit} = useCartForm()
+    const {transl, inputs, onChange, onValidate, handleSubmit} = useCartForm()
 
     return (
         <form className='cart__form'>
@@ -16,33 +16,33 @@ const CartForm: React.FC<CartFormProps> = (props) => {
                 name={'country'}
                 placeholder={transl.inputs.country}
                 value={inputs.values.country}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.country}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__city cart__input'}
                 name={'city'}
                 placeholder={transl.inputs.city}
                 value={inputs.values.city}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.city}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__input cart__index'}
                 name={'index'}
                 placeholder={transl.inputs.index}
                 value={inputs.values.index}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.index}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             {/*<RadioButtons*/}
             {/*    className={'cart__delivery'}*/}
             {/*    name={'delivery'}*/}
             {/*    inputs={deliveryTypes}*/}
-            {/*    handleChange={handleChange}*/}
+            {/*    onChange={onChange}*/}
             {/*    active={deliveryActive}*/}
             {/*/>*/}
             <Input
@@ -50,27 +50,27 @@ const CartForm: React.FC<CartFormProps> = (props) => {
                 placeholder={transl.inputs.street}
                 name={'street'}
                 value={inputs.values.street}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.street}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__input cart__house'}
                 placeholder={transl.inputs.house}
                 name={'house'}
                 value={inputs.values.house}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.house}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__input cart__apartment'}
                 placeholder={transl.inputs.apartment}
                 name={'apartment'}
                 value={inputs.values.apartment}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.apartment}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <div className='cart__title'>{transl.receiverData}</div>
             <Input
@@ -78,49 +78,49 @@ const CartForm: React.FC<CartFormProps> = (props) => {
                 placeholder={transl.inputs.name}
                 name={'name'}
                 value={inputs.values.name}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.name}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__input cart__surname'}
                 placeholder={transl.inputs.surname}
                 name={'surname'}
                 value={inputs.values.surname}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.surname}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__input cart__email'}
                 placeholder={transl.inputs.email}
                 name={'email'}
                 value={inputs.values.email}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.email}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__input cart__number'}
                 placeholder={transl.inputs.number}
                 name={'number'}
                 value={inputs.values.number}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.number}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'cart__input cart__comment'}
                 placeholder={transl.inputs.comment}
                 name={'comment'}
                 value={inputs.values.comment}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.comment}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             {/*<Checkbox*/}
             {/*    value={save}*/}
-            {/*    handleChange={handleSave}*/}
+            {/*    onChange={handleSave}*/}
             {/*    label={'Зберегти інформацію для наступних покупок?'}*/}
             {/*    className={'checkbox--cart'}*/}
             {/*/>*/}

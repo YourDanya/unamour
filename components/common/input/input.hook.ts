@@ -5,7 +5,7 @@ import {useMemo} from 'react'
 import {InputProps} from 'components/common/input/input.types'
 
 const useInput = (props: InputProps) => {
-    const {handleValidate, error, name, value, validateDeps} = props
+    const {onValidate, error, name, value, validateDeps} = props
 
     const [focused, _handleFocus] = useToggle()
 
@@ -15,12 +15,12 @@ const useInput = (props: InputProps) => {
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         _handleFocus(event)
-        handleValidate && handleValidate(name)
+        onValidate && onValidate(name)
     }
 
     useDebounceEffect(() => {
-        if (handleValidate && error) {
-            handleValidate(name)
+        if (onValidate && error) {
+            onValidate(name)
         }
     }, [value, validateDeps])
 

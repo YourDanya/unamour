@@ -9,7 +9,7 @@ import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 
 const useResetPass = () => {
     const [transl, content] = useLocale(resetPassContent)
-    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
     const forgetPass = useParamSelector(selectUserField, 'forgetPass')
 
     const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const useResetPass = () => {
         }, 1000)
     }, [forgetPass.success])
 
-    return {content, transl, inputs, handleChange, handleValidate, forgetSubmit, forgetPass}
+    return {content, transl, inputs, onChange, onValidate, forgetSubmit, forgetPass}
 }
 
 export default useResetPass

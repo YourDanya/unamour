@@ -1,8 +1,9 @@
-import {CartItemObject, decreaseQuantity, increaseQuantity, removeItem} from 'redux/cart/cart.slice'
+import { decreaseQuantity, increaseQuantity, removeItem} from 'redux/cart/cart.slice'
 import {useDispatch} from 'react-redux'
 import cartItemContent from 'components/cart-item/cart-item.content'
 import {useMatchUrl} from 'hooks/other/other.hooks'
 import {useLocale} from 'hooks/other/other.hooks'
+import {CartItemObject} from 'redux/cart/cart.types'
 
 const useCartItem = (props: CartItemObject) => {
     const {data: {slug, size}} = props

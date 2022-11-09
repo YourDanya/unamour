@@ -4,7 +4,7 @@ import useCheckBox from 'components/common/checkbox/checkbox.hook'
 type CheckboxProps = {
     label: string,
     value: boolean,
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     className?: string,
     styles?: object,
     name?: string
@@ -12,7 +12,7 @@ type CheckboxProps = {
 
 const Checkbox: React.FC<CheckboxProps> = (props) => {
 
-    const {label, className, value, handleChange, name, styles, ...otherProps} = props
+    const {label, className, value, onChange, name, styles, ...otherProps} = props
     const {focused, setFocused, handleClick} = useCheckBox()
 
     return (
@@ -24,7 +24,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
                     type={'checkbox'}
                     checked={value}
                     name={name}
-                    onChange={handleChange}
+                    onChange={onChange}
                     onFocus={setFocused}
                     onBlur={setFocused}
                     onMouseDown={handleClick}

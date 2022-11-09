@@ -7,7 +7,7 @@ import {selectUserField} from 'redux/user/user.selectors'
 
 const useSignIn = () => {
     const [transl, content] = useLocale(loginContent)
-    const {inputs, handleChange, handleValidate, withSubmit} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, withSubmit} = useInput(content.inputs)
 
     const dispatch = useDispatch()
     const login = useParamSelector(selectUserField,'login')
@@ -16,7 +16,7 @@ const useSignIn = () => {
         console.log('resetting password')
     })
 
-    return {content, transl, inputs, handleChange, handleValidate, handleSubmit, login}
+    return {content, transl, inputs, onChange, onValidate, handleSubmit, login}
 }
 
 export default useSignIn

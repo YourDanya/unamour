@@ -17,7 +17,7 @@ const useNavSearch = () => {
     const [searchItems, setSearchItems] = useState<ClientItem[]>([])
     const [input, setInput] = useState('')
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const input = event.target.value
         if (input) {
             const searchItems = items.filter(item => item.name.toLowerCase().includes(input.toLowerCase()))
@@ -28,7 +28,7 @@ const useNavSearch = () => {
         setInput(input)
     }
 
-    return {hidden, searchItems, input, handleChange, transl}
+    return {hidden, searchItems, input, onChange, transl}
 }
 
 export default useNavSearch

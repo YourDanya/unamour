@@ -11,7 +11,7 @@ const ActivateUser: FC<ActivateProps> = (props) => {
 
     const {sendRegisterCode} = props
     const {
-        inputs, handleChange, handleValidate, transl, activateSubmit, sendRegisterCodeSubmit, activateUser, clearInitTimer
+        inputs, onChange, onValidate, transl, activateSubmit, sendRegisterCodeSubmit, activateUser, clearInitTimer
     } = useActivateUser(props)
 
     return (
@@ -24,9 +24,9 @@ const ActivateUser: FC<ActivateProps> = (props) => {
                 name={'code'}
                 placeholder={transl.inputs.code}
                 value={inputs.values.code}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.code}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <div className="nav-auth__bottom">
                 <Button className="nav-auth__button" onClick={activateSubmit} loading={activateUser.loading}>

@@ -1,36 +1,38 @@
 export const presentContent = {
-    inputs: {
-        recName: {value: '', error: ''},
-        recSurname: {value: '', error: ''},
-        recEmail: {value: '', validations: {isEmail: true}, error: ''},
-        recPhone: {value: '', validations: {isPhone: true}, error: ''},
-        sendName: {value: '', error: ''},
-        sendEmail: {value: '', validations: {isEmail: true}, error: ''},
-        country: {value: '', error: ''},
-        city: {value: '', error: ''},
-        index: {value: '', validations: {minLength: 5, maxLength: 5}, error: ''},
-        street: {value: '', error: ''},
-        house: {value: '', error: ''},
-        apartment: {value: '', error: ''},
-        delivery: {value: ['ukrPoshta', 'novaPoshta'], error: ''},
-        anonymously: {value: false, error: ''},
-        surprise: {value: false, error: ''}
+    common: {
+        inputs: {
+            recName: {value: ''},
+            recSurname: {value: ''},
+            recEmail: {value: '', validations: {isEmail: true} },
+            recPhone: {value: '', validations: {isPhone: true} },
+            sendName: {value: '', },
+            sendEmail: {value: '', validations: {isEmail: true} },
+            country: {value: ''},
+            city: {value: ''},
+            index: {value: '', validations: {minLength: 5, maxLength: 5},},
+            street: {value: ''},
+            house: {value: ''},
+            apartment: {value: ''},
+            delivery: {value: ['ukrPoshta', 'novaPoshta']},
+            anonymously: {value: false},
+            surprise: {value: false}
+        }
     },
     translations: {
         ua: {
             inputs: {
-                recName: {placeholder: 'Ім\'я отримувача'},
-                recSurname: {placeholder: 'Прізвище отримувача'},
-                recEmail: {placeholder: 'email отримувача'},
-                recPhone: {placeholder: 'Номер отримувача'},
-                sendName: {placeholder: 'Ім\'я відправника'},
-                sendEmail: {placeholder: 'email відправника'},
-                country: {placeholder: 'Країна'},
-                city: {placeholder: 'Місто'},
-                index: {placeholder: 'Індекс'},
-                street: {placeholder: 'Вулиця'},
-                house: {placeholder: 'Будинок'},
-                apartment: {placeholder: 'Квартира'},
+                recName: 'Ім\'я отримувача',
+                recSurname: 'Прізвище отримувача',
+                recEmail: 'email отримувача',
+                recPhone: 'Номер отримувача',
+                sendName: 'Ім\'я відправника',
+                sendEmail: 'email відправника',
+                country: 'Країна',
+                city: 'Місто',
+                index: 'Індекс',
+                street: 'Вулиця',
+                house: 'Будинок',
+                apartment: 'Квартира',
                 delivery: {
                     labels: [
                         {
@@ -45,24 +47,24 @@ export const presentContent = {
                         }
                     ]
                 },
-                anonymously: {placeholder: 'Подарувати анонімно?'},
-                surprise: {placeholder: 'Зробити сюрприз?'}
+                anonymously: 'Подарувати анонімно?',
+                surprise: 'Зробити сюрприз?'
             }
         },
         eng: {
             inputs: {
-                recName: {placeholder: 'Name of recipient'},
-                recSurname: {placeholder: 'Recipient\'s Surname'},
-                recEmail: {placeholder: 'Recipient\'s email'},
-                recPhone: {placeholder: 'Recipient number'},
-                sendName: {placeholder: 'Name of sender'},
-                sendEmail: {placeholder: 'Sender\'s email'},
-                country: {placeholder: 'Country'},
-                city: {placeholder: 'City'},
-                index: {placeholder: 'Index'},
-                street: {placeholder: 'Street'},
-                house: {placeholder: 'House'},
-                apartment: {placeholder: 'Apartment'},
+                recName: 'Name of recipient',
+                recSurname: 'Recipient\'s Surname',
+                recEmail: 'Recipient\'s email',
+                recPhone: 'Recipient number',
+                sendName: 'Name of sender',
+                sendEmail: 'Sender\'s email',
+                country: 'Country',
+                city: 'City',
+                index: 'Index',
+                street: 'Street',
+                house: 'House',
+                apartment: 'Apartment',
                 delivery: {
                     labels: [
                         {
@@ -77,24 +79,24 @@ export const presentContent = {
                         }
                     ]
                 },
-                anonymously: {placeholder: 'Give anonymously?'},
-                surprise: {placeholder: 'Make a surprise?'}
+                anonymously: 'Give anonymously?',
+                surprise: 'Make a surprise?'
             }
         },
         ru: {
             inputs: {
-                recName: {placeholder: 'Имя получателя'},
-                recSurname: {placeholder: 'Фамилия получателя'},
-                recEmail: {placeholder: 'email получателя'},
-                recPhone: {placeholder: 'Номер получателя'},
-                sendName: {placeholder: 'Имя отправителя'},
-                sendEmail: {placeholder: 'email отправителя'},
-                country: {placeholder: 'Страна'},
-                city: {placeholder: 'Город'},
-                index: {placeholder: 'Индекс'},
-                street: {placeholder: 'Улица'},
-                house: {placeholder: 'Дом'},
-                apartment: {placeholder: 'Квартира'},
+                recName: 'Имя получателя',
+                recSurname: 'Фамилия получателя',
+                recEmail: 'email получателя',
+                recPhone: 'Номер получателя',
+                sendName: 'Имя отправителя',
+                sendEmail: 'email отправителя',
+                country: 'Страна',
+                city: 'Город',
+                index: 'Индекс',
+                street: 'Улица',
+                house: 'Дом',
+                apartment: 'Квартира',
                 delivery: {
                     labels: [
                         {
@@ -109,8 +111,8 @@ export const presentContent = {
                         }
                     ]
                 },
-                anonymously: {placeholder: 'Подарить анонимно?'},
-                surprise: {placeholder: 'Сделать сюрприз?'}
+                anonymously: 'Подарить анонимно?',
+                surprise: 'Сделать сюрприз?'
             }
         }
     }

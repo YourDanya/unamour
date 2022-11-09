@@ -1,7 +1,9 @@
 const resetPasswordContent = {
-    inputs: {
-        password: {value: '', validations: {required: true, minLength: 6, maxLength: 15}},
-        passwordConfirm: {value: '', validations: {required: true, minLength: 6, maxLength: 15, equalToField: 'password'}}
+    common: {
+        inputs: {
+            password: {value: '', validations: {required: true, minLength: 6, maxLength: 15}},
+            passwordConfirm: {value: '', validations: {required: true, minLength: 6, maxLength: 15, equalToField: 'password'}}
+        }
     },
     translations: {
         ua: {

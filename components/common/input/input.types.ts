@@ -6,10 +6,10 @@ export type InputProps = {
     name: string,
     value: string,
     className?: string
-    handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     error?: string | null,
     type?: string,
-    handleValidate?: (name: string) => void,
+    onValidate?: (name: string) => void,
     validateDeps?: DependencyList,
     children?: React.ReactNode
 }

@@ -3,6 +3,8 @@ import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import Link from 'next/link'
 import {UseLocale} from 'hooks/other/other.types'
+import {UseMapForm} from 'hooks/other/other.types'
+import {useInput} from 'hooks/input/input.hooks'
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -66,9 +68,11 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
 
             returnElem = (
                 <div className={className} key={prop}>
-                    {prop.startsWith('numSubtitle') && count1 >= 0 && `${count1 + 1}. `}
-                    {prop.startsWith('numText') && `${count1}.${count2}. `}
-                    {value}
+                    <>
+                        {prop.startsWith('numSubtitle') && count1 >= 0 && `${count1 + 1}. `}
+                        {prop.startsWith('numText') && `${count1}.${count2}. `}
+                        {value}
+                    </>
                 </div>
             )
 
@@ -101,8 +105,12 @@ export const useMatchUrl = (url: string): [match: boolean] => {
     return [useRouter().pathname === url]
 }
 
-export const useLocale: UseLocale = (content) => {
+export const useLocale: UseLocale = ((content) => {
     const locale = useRouter().locale as Locale
-    const {translations, ...other} = content
-    return [translations[locale], {...other}]
+    const {translations, common} = content
+    return common? [translations[locale], common] : [translations[locale]]
+}) as UseLocale
+
+export const useMapForm: UseMapForm = (values, translations, validations) => {
+
 }

@@ -6,15 +6,14 @@ import {useToggleMany} from 'hooks/event-handler/event-handler.hooks'
 import {useSetFalseMany} from 'hooks/event-handler/event-handler.hooks'
 
 const useDiscount = (props: DiscountProps) => {
-
     const [transl, content] = useLocale(discountContent)
 
-    const [active, toggleActive] = useToggleMany(['certificate', 'promo'] as const, 'name')
+    const [active, toggleActive] = useToggleMany({certificate: false, promo: false}, 'name')
     const [found, setFound] = useSetFalseMany(['certificate', 'promo'] as const, 'name')
 
-    const {inputs, handleChange, handleValidate} = useInput(content.inputs)
+    const {inputs, onChange, onValidate} = useInput(content.inputs)
 
-    return {transl, active, toggleActive, found, setFound, inputs, handleChange, handleValidate}
+    return {transl, active, toggleActive, found, setFound, inputs, onChange, onValidate}
 }
 
 export default useDiscount

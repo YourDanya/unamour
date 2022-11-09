@@ -1,8 +1,10 @@
 const footerContent = {
-    years: '© 2020-2022',
-    name: 'UNAMOUR',
-    input: {
-        email: {value: '', validations: {isEmail: true}}
+    common: {
+        years: '© 2020-2022',
+        name: 'UNAMOUR',
+        input: {
+            email: {value: '', validations: {isEmail: true}}
+        },
     },
     translations: {
         ua: {

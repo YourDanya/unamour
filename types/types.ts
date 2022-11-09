@@ -33,3 +33,5 @@ export type Mapped<T> = {[key in keyof T]: T[key]}
 export type Entry<T> = {
     [key in keyof Required<T>]: [key, T[key]]
 }[keyof T]
+
+export type Localize<T> = {[key in keyof T as `${Locale}${Capitalize<keyof T & string>}`] : {value: T[key]}}

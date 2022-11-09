@@ -4,15 +4,11 @@ import Input from 'components/common/input/input.component'
 import Button from 'components/common/button/button.component'
 import Checkbox from 'components/common/checkbox/checkbox.component'
 import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
-
-export type PresentFormProps = {
-    price: number,
-}
+import {PresentFormProps} from 'components/shop-item/present/present-form/present-form.types'
 
 const PresentForm: React.FC<PresentFormProps> = (props) => {
-
     const {price} = props
-    const {inputs, handleValidate, handleChange, transl, handleSubmit, content, labels} = usePresentForm()
+    const {inputs, onValidate, onChange, transl, handleSubmit, content, labels} = usePresentForm()
 
     return (
         <div className={'present__form'}>
@@ -24,36 +20,36 @@ const PresentForm: React.FC<PresentFormProps> = (props) => {
                 name={'recName'}
                 placeholder={transl.inputs.recName}
                 value={inputs.values.recName}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.recName}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input"
                 name={'recSurname'}
                 placeholder={transl.inputs.recSurname}
                 value={inputs.values.recSurname}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.recSurname}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input"
                 name={'recEmail'}
                 placeholder={transl.inputs.recEmail}
                 value={inputs.values.recEmail}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.recEmail}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input present__recipient-phone"
                 name={'recPhone'}
                 placeholder={transl.inputs.recPhone}
                 value={inputs.values.recPhone}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.recPhone}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <div className={'present__label'}>
                 {transl.fromWhom}
@@ -63,18 +59,18 @@ const PresentForm: React.FC<PresentFormProps> = (props) => {
                 name={'sendName'}
                 placeholder={transl.inputs.sendName}
                 value={inputs.values.sendName}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.sendName}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input present__sender-email"
                 name={'sendEmail'}
                 placeholder={transl.inputs.sendEmail}
                 value={inputs.values.sendEmail}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.sendEmail}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <div className={'present__label'}>
                 {transl.where}
@@ -84,27 +80,27 @@ const PresentForm: React.FC<PresentFormProps> = (props) => {
                 name={'country'}
                 placeholder={transl.inputs.country}
                 value={inputs.values.country}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.country}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input"
                 name={'city'}
                 placeholder={transl.inputs.city}
                 value={inputs.values.city}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.city}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input present__index"
                 name={'index'}
                 placeholder={transl.inputs.index}
                 value={inputs.values.index}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.index}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <div className={'present__index-label'}>
                 {transl.index}
@@ -114,27 +110,27 @@ const PresentForm: React.FC<PresentFormProps> = (props) => {
                 name={'street'}
                 placeholder={transl.inputs.street}
                 value={inputs.values.street}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.street}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input"
                 name={'house'}
                 placeholder={transl.inputs.house}
                 value={inputs.values.house}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.house}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className="present__input present__apartment"
                 name={'apartment'}
                 placeholder={transl.inputs.apartment}
                 value={inputs.values.apartment}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.apartment}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <div className={'present__label'}>{transl.delivery}</div>
             <RadioButtons
@@ -142,9 +138,16 @@ const PresentForm: React.FC<PresentFormProps> = (props) => {
                 name={'delivery'}
                 labels={labels}
                 values={content.inputs.delivery.values}
-                handleChange={handleChange}
+                onChange={onChange}
                 active={inputs.values.delivery}
-            />
+            >
+                {transl.inputs.delivery.map(({price, duration, title}) => (
+                    <div className="delivery-type" key={title}>
+                        <div className="delivery-type__price">{price}</div>
+                        <div className="delivery-type__duration">{duration}</div>
+                    </div>
+                ))}
+            </RadioButtons>
             <div className="present__total">
                 <div className="present__total-label">
                     {transl.totalPrice} {price} {transl.currency}
@@ -158,14 +161,14 @@ const PresentForm: React.FC<PresentFormProps> = (props) => {
                 name={'anonymously'}
                 label={transl.inputs.anonymously}
                 value={inputs.values.anonymously}
-                handleChange={handleChange}
+                onChange={onChange}
             />
             <Checkbox
                 className={'present__checkbox present__surprise'}
                 name={'surprise'}
                 label={transl.inputs.surprise}
                 value={inputs.values.surprise}
-                handleChange={handleChange}
+                onChange={onChange}
             />
             <Button className={'present__button'} onClick={handleSubmit}>
                 {transl.pay} {price} {transl.currency}

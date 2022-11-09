@@ -4,11 +4,11 @@ import {useInput} from 'hooks/input/input.hooks'
 
 const useContact = () => {
     const [transl, content] = useLocale(contactsContent)
-    const {inputs, handleChange, handleValidate, errRef, resetValues} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, errRef, resetValues} = useInput(content.inputs)
     const handleSubmit = () => {
 
     }
-    return {transl, inputs, handleChange, handleValidate, handleSubmit}
+    return {transl, inputs, onChange, onValidate, handleSubmit}
 }
 
 export default useContact

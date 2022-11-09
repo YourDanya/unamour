@@ -10,10 +10,9 @@ import {resetSuccess} from 'redux/user/user.slice'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
-import {useLayoutEffect} from 'react'
 
 const useProfile = () => {
-    const user = useSelector(selectUser) as User
+    const user = <User> useSelector(selectUser)
     const router = useRouter()
 
     const [transl, content] = useLocale(profileContent)

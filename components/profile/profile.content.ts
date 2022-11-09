@@ -1,6 +1,6 @@
 const profileContent = {
     menu: [
-        '/profile/update-user',
+        '/profile/update-input-user',
         '/profile/purchase-history',
         '/profile/wishlist',
         '/profile/admin'

@@ -5,12 +5,11 @@ import {useLocale} from 'hooks/other/other.hooks'
 import {useInput} from 'hooks/input/input.hooks'
 
 const useFooter = () => {
-
     const [transl, content] = useLocale(footerContent)
-    const {inputs, handleChange} = useInput(content.input)
+    const {inputs, onChange} = useInput(content.input)
     const [modal, showModal, hideModal] = useModal({links: false})
 
-    return {handleChange, modal, showModal, hideModal, content, transl, inputs}
+    return {onChange, modal, showModal, hideModal, content, transl, inputs}
 }
 
 export default useFooter

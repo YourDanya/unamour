@@ -1,4 +1,12 @@
 .profile
+  &-spinner
+    min-height: inherit
+    .spinner__content
+      border-color: transparent #828282 #828282 #828282
+    &--hidden
+      display: none
+  &--hidden
+    display: none
   &__top
     padding: 30px 150px
     background-image: url('../../public/images/profile/profile-bg.jpg')
@@ -43,19 +51,25 @@
       color: white
       text-transform: uppercase
     &-modal
+      height: 100%
+      width: 100%
       display: none
   &__page
     padding: 50px 150px 150px
 
 @media (max-width: 1200px)
   .profile
-    &__top, &__page
+    &__top
       padding: 30px 100px
+    &__page
+      padding: 30px 100px 150px
 
 @media (max-width: 992px)
   .profile
-    &__top, &__page
+    &__top
       padding: 50px 40px
+    &__page
+      padding: 50px 40px 100px
     &__menu-link, &__name, &__sign-out-btn
       font-size: 11px
     &__menu
@@ -81,7 +95,6 @@
             color: #bdbdbd
       &-modal
         display: block
-        width: 95%
 
 @media (max-width: 576px)
   .profile

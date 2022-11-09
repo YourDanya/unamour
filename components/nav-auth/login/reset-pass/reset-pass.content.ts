@@ -1,6 +1,8 @@
 export const resetPassContent = {
-    inputs: {
-        email: {value: '', validations: {required: true, isEmail: true, minLength: 7}},
+    common: {
+        inputs: {
+            email: {value: '', validations: {required: true, isEmail: true, minLength: 7}},
+        },
     },
     translations: {
         ua: {

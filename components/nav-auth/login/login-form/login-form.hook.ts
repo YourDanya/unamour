@@ -11,7 +11,7 @@ import {selectUserField} from 'redux/user/user.selectors'
 
 const useLoginForm = () => {
     const [transl, content] = useLocale(loginFormContent)
-    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
 
     const login = useParamSelector(selectUserField, 'login')
 
@@ -26,13 +26,13 @@ const useLoginForm = () => {
         if (login.success) {
             resetValues()
             setTimeout(() => {
-                router.push('/profile/update-user')
+                router.push('/profile/update-input-user')
                 dispatch(resetSuccess('login'))
             }, 1000)
         }
     }, [login.success])
 
-    return {content, transl, inputs, handleChange, handleClick, handleValidate, login}
+    return {content, transl, inputs, onChange, handleClick, onValidate, login}
 }
 
 export default useLoginForm

@@ -1,7 +1,9 @@
 const updateEmailFormContent = {
-    inputs: {
-        password: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
-        newEmail: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
+    common: {
+        inputs: {
+            password: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
+            newEmail: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
+        },
     },
     translations: {
         ua: {

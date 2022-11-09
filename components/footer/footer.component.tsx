@@ -10,7 +10,7 @@ import Input from 'components/common/input/input.component'
 
 const Footer: React.FC = () => {
 
-    const {handleChange, modal, showModal, hideModal, content, inputs, transl} = useFooter()
+    const {onChange, modal, showModal, hideModal, content, inputs, transl} = useFooter()
 
     return (
         <footer className='footer'>
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
                             placeholder={transl.input.email}
                             name={'email'}
                             value={inputs.values.email}
-                            handleChange={handleChange}
+                            onChange={onChange}
                         >
                             <button className='footer__submit'>
                                 <img src={telegram.src} alt={'footer icon'}/>

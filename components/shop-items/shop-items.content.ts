@@ -1,122 +1,124 @@
 const shopItemsContent = {
-    categories: [
-        '/shop-items/all',
-        '/shop-items/eco-leather',
-        '/shop-items/dresses',
-        '/shop-items/skirts',
-        '/shop-items/shirts-and-blouses',
-        '/shop-items/tops-and-bodies',
-        '/shop-items/jackets-and-vets',
-        '/shop-items/pants-and-shorts',
-        '/shop-items/overalls',
-        '/shop-items/jersey',
-        '/shop-items/swimwear',
-        '/shop-items/top-cloth',
-        '/shop-items/sets',
-        '/shop-items/accessories',
-    ],
-    filters: {
-        price: {
-            min: '1000',
-            max: '16000'
-        },
-        sorting: [
-            '-price',
-            'price',
-            'date'
+    common: {
+        categories: [
+            '/shop-items/all',
+            '/shop-items/eco-leather',
+            '/shop-items/dresses',
+            '/shop-items/skirts',
+            '/shop-items/shirts-and-blouses',
+            '/shop-items/tops-and-bodies',
+            '/shop-items/jackets-and-vets',
+            '/shop-items/pants-and-shorts',
+            '/shop-items/overalls',
+            '/shop-items/jersey',
+            '/shop-items/swimwear',
+            '/shop-items/top-cloth',
+            '/shop-items/sets',
+            '/shop-items/accessories',
         ],
-        size: [
-            'xxs',
-            'xs',
-            'xs-s',
-            's',
-            's-m',
-            'm',
-            'l',
-            'ind'
-        ],
-        color: [
-            {
-                code: '#fffcf5',
-                param: 'milk'
+        filters: {
+            price: {
+                min: '1000',
+                max: '16000'
             },
-            {
-                code: '#212121',
-                param: 'black'
-            },
-            {
-                code: '#910951',
-                param: 'purple'
-            },
-            {
-                code: '#cfc0b6',
-                param: 'grey'
-            },
-            {
-                code: '#ffffff',
-                param: 'white'
-            },
-            {
-                code: '#a86540',
-                param: 'light-brown'
-            },
-            {
-                code: '#a77752',
-                param: 'beige'
-            },
-            {
-                code: '#442d25',
-                param: 'coffee'
-            },
-            {
-                code: '#735435',
-                param: 'brown'
-            },
-            {
-                code: '#87776b',
-                param: 'cocoa'
-            },
-            {
-                code: '#4d4d59',
-                param: 'metallic'
-            },
-            {
-                code: '#d4b2a7',
-                param: 'dusty-rose'
-            },
-            {
-                code: '#ffeede',
-                param: 'cream'
-            },
-            {
-                code: '#1800cc',
-                param: 'dark-blue'
-            },
-            {
-                code: '#ff0000',
-                param: 'red'
-            },
-            {
-                code: '#87cefa',
-                param: 'blue'
-            },
-            {
-                code: '#dadeaf',
-                param: 'pearl-gray'
-            },
-            {
-                code: '#313126',
-                param: 'graphite'
-            },
-            {
-                code: '#ededed',
-                param: 'light-gray'
-            },
-            {
-                code: '#f2e8c9',
-                param: 'creamy'
-            }
-        ],
+            sorting: [
+                '-price',
+                'price',
+                'date'
+            ],
+            size: [
+                'xxs',
+                'xs',
+                'xs-s',
+                's',
+                's-m',
+                'm',
+                'l',
+                'ind'
+            ],
+            color: [
+                {
+                    code: '#fffcf5',
+                    param: 'milk'
+                },
+                {
+                    code: '#212121',
+                    param: 'black'
+                },
+                {
+                    code: '#910951',
+                    param: 'purple'
+                },
+                {
+                    code: '#cfc0b6',
+                    param: 'grey'
+                },
+                {
+                    code: '#ffffff',
+                    param: 'white'
+                },
+                {
+                    code: '#a86540',
+                    param: 'light-brown'
+                },
+                {
+                    code: '#a77752',
+                    param: 'beige'
+                },
+                {
+                    code: '#442d25',
+                    param: 'coffee'
+                },
+                {
+                    code: '#735435',
+                    param: 'brown'
+                },
+                {
+                    code: '#87776b',
+                    param: 'cocoa'
+                },
+                {
+                    code: '#4d4d59',
+                    param: 'metallic'
+                },
+                {
+                    code: '#d4b2a7',
+                    param: 'dusty-rose'
+                },
+                {
+                    code: '#ffeede',
+                    param: 'cream'
+                },
+                {
+                    code: '#1800cc',
+                    param: 'dark-blue'
+                },
+                {
+                    code: '#ff0000',
+                    param: 'red'
+                },
+                {
+                    code: '#87cefa',
+                    param: 'blue'
+                },
+                {
+                    code: '#dadeaf',
+                    param: 'pearl-gray'
+                },
+                {
+                    code: '#313126',
+                    param: 'graphite'
+                },
+                {
+                    code: '#ededed',
+                    param: 'light-gray'
+                },
+                {
+                    code: '#f2e8c9',
+                    param: 'creamy'
+                }
+            ],
+        }
     },
     translations: {
         //////////////////////////////////////////////////////////////////

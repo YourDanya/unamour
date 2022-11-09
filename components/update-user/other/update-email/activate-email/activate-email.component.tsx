@@ -9,7 +9,7 @@ import useActivateEmail from 'components/update-user/other/update-email/activate
 
 const ActivateEmail: FC<ActivateEmailProps> = (props) => {
     const {sendUpdateEmailCode} = props
-    const {inputs, handleChange, handleValidate, transl, activateEmailSubmit, sendUpdateEmailCodeSubmit, activateEmail,
+    const {inputs, onChange, onValidate, transl, activateEmailSubmit, sendUpdateEmailCodeSubmit, activateEmail,
         clearInitTimer} = useActivateEmail(props)
 
     return (
@@ -22,9 +22,9 @@ const ActivateEmail: FC<ActivateEmailProps> = (props) => {
                 name={'code'}
                 placeholder={transl.inputs.code}
                 value={inputs.values.code}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.code}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <div className="nav-auth__bottom">
                 <Button className="nav-auth__button" onClick={activateEmailSubmit} loading={activateEmail.loading}>

@@ -20,19 +20,21 @@ export const createClientItems = (fetchedItems: FetchedItem[], locale: Locale): 
     const clientItems: ClientItem [] = []
 
     fetchedItems.forEach(item => {
+        // @ts-ignore
         const {variants: commonVariants, ...common} = item.common
         const {translations} = item
 
+        // @ts-ignore
         const {variants: translateVariants, ...translation} = translations[locale]
 
-        const mergedVariants = commonVariants.map((variant, index) => {
+        const mergedVariants = commonVariants.map((variant: { color: any }, index: string | number) => {
             const translateVariant = translateVariants[index]
             return {
                 ...variant, ...translateVariant, color: {...variant.color, ...translateVariant.color}
             }
         })
 
-        mergedVariants.forEach((variant, index) => {
+        mergedVariants.forEach((variant: any, index: any) => {
             const clientItem = {
                 ...common,
                 ...variant,

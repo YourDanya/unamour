@@ -1,9 +1,11 @@
 const registerFormContent = {
-    inputs: {
-        email: {value: '', validations: { required: true, isEmail: true, minLength: 7}},
-        name: {required: true, value: '', validations: {required: true, minLength: 3}},
-        password: {required: true, value: '', validations: {required: true, minLength: 6, maxLength: 20}},
-        passwordConfirm: {required: true, value: '', validations: {required: true, minLength: 6, maxLength: 20, equalToField: 'password'}}
+    common: {
+        inputs: {
+            email: {value: '', validations: { required: true, isEmail: true, minLength: 7}},
+            name: {required: true, value: '', validations: {required: true, minLength: 3}},
+            password: {required: true, value: '', validations: {required: true, minLength: 6, maxLength: 20}},
+            passwordConfirm: {required: true, value: '', validations: {required: true, minLength: 6, maxLength: 20, equalToField: 'password'}}
+        },
     },
     translations: {
         ua: {

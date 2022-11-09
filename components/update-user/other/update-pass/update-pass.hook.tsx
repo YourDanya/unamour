@@ -13,7 +13,7 @@ const useUpdatePass = (props: UpdatePassProps) => {
     const {hideModal} = props
 
     const [transl, content] = useLocale(updatePassContent)
-    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs, transl.inputs)
+    const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs, transl.inputs)
 
     const updatePass = useParamSelector(selectUserField, 'updatePass')
     
@@ -32,7 +32,7 @@ const useUpdatePass = (props: UpdatePassProps) => {
         }
     }, [updatePass.success])
 
-    return {transl, handleChange, handleValidate, inputs, handleSubmit, updatePass}
+    return {transl, onChange, onValidate, inputs, handleSubmit, updatePass}
 }
 
 export default useUpdatePass

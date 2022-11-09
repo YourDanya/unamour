@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
-import {ShopItemsProps} from 'components/shop-items/shop-items.component'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useRouter} from 'next/router'
 import shopItemsContent from 'components/shop-items/shop-items.content'
+import {ShopItemsProps} from 'components/shop-items/shop-items.types'
 
 const useShopItems = (props: ShopItemsProps) => {
-
     const [transl, content] = useLocale(shopItemsContent)
     const filters = Object.keys(content.filters)
 

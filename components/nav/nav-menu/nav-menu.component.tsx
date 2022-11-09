@@ -33,7 +33,7 @@ const NavMenu: React.FC<NavMenuProps> = (props) => {
                         </Fragment>
                     ))}
                     {user ? (
-                        <NavLink className={'menu__item'} href={'/profile/update-user'}>
+                        <NavLink className={'menu__item'} href={'/profile/update-input-user'}>
                             {transl.profile}
                         </NavLink>
                     ) : (

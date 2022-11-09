@@ -1,18 +1,20 @@
 const cartFormContent = {
-    inputs: {
-        country: {value: '', validations: {required: true}},
-        city: {value: '', validations: {required: true}},
-        index: {value: '', validations: {required: true, minLength: 5, maxLength: 5}},
-        delivery: {value: '', validations: {required: true}},
-        street: {value: '', validations: {required: true}},
-        house: {value: '', validations: {required: true}},
-        apartment: {value: '', validations: {required: true}},
-        name: {value: '', validations: {required: true}},
-        surname: {value: '', validations: {required: true}},
-        email: {value: '', validations: {isEmail: true, minLength: 5}},
-        number: {value: '', validations: {required: true}},
-        comment: {value: '', validations: {required: true}},
-        save: {value: false, validations: {required: true}}
+    common: {
+        inputs: {
+            country: {value: '', validations: {required: true}},
+            city: {value: '', validations: {required: true}},
+            index: {value: '', validations: {required: true, minLength: 5, maxLength: 5}},
+            delivery: {value: '', validations: {required: true}},
+            street: {value: '', validations: {required: true}},
+            house: {value: '', validations: {required: true}},
+            apartment: {value: '', validations: {required: true}},
+            name: {value: '', validations: {required: true}},
+            surname: {value: '', validations: {required: true}},
+            email: {value: '', validations: {isEmail: true, minLength: 5}},
+            number: {value: '', validations: {required: true}},
+            comment: {value: '', validations: {required: true}},
+            save: {value: false, validations: {required: true}}
+        },
     },
     translations: {
         ua: {

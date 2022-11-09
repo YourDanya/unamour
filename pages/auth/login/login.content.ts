@@ -1,7 +1,9 @@
 const loginContent = {
-    inputs: {
-        email: {value: '', validations: {required: true, isEmail: true}} ,
-        password: {value: '', validations: {required: true, minLength: 6, maxLength: 20}}
+    common: {
+        inputs: {
+            email: {value: '', validations: {required: true, isEmail: true}} ,
+            password: {value: '', validations: {required: true, minLength: 6, maxLength: 20}}
+        }
     },
     translations: {
         ua: {

@@ -11,13 +11,13 @@ const useColorsFilter = (props: ColorsFilterProps) => {
     const colorValues = state as GenState
     const colorRef = useRef(colorValues)
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const name = event.currentTarget.name
         colorRef.current[name] = !colorValues[name]
         setState({...colorRef.current})
     }
 
-    return {colorValues, handleChange}
+    return {colorValues, onChange}
 }
 
 export default useColorsFilter

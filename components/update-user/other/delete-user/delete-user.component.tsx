@@ -6,25 +6,25 @@ import {DeleteUserProps} from 'components/update-user/other/delete-user/delete-u
 import FormMessage from 'components/common/form-message/form-message.component'
 
 const DeleteUser: FC<DeleteUserProps> = (props) => {
-    const {transl, handleChange, handleValidate, inputs, handleSubmit, deleteUser} = useDeleteUser(props)
+    const {transl, onChange, onValidate, inputs, handleSubmit, deleteUser} = useDeleteUser(props)
 
     return (
         <form className='update-user__modal-form'>
-            <div className={'update-user__modal-title'}>
+            <div className={'update-input-user__modal-title'}>
                 {transl.title}
             </div>
             <Input
-                className={'update-user__input'}
+                className={'update-input-user__input'}
                 name={'password'}
                 placeholder={transl.inputs.password}
                 value={inputs.values.password}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.password}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
                 type={'password'}
             />
             <Button
-                className={'update-user__button update-user__modal-btn'}
+                className={'update-input-user__button update-input-user__modal-btn'}
                 onClick={handleSubmit}
                 loading={deleteUser.loading}
             >

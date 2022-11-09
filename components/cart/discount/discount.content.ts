@@ -1,7 +1,9 @@
 const discountContent = {
-    inputs: {
-        cert: {value: ''},
-        promo: {value: ''}
+    common: {
+        inputs: {
+            cert: {value: ''},
+            promo: {value: ''}
+        }
     },
     translations: {
         ua: {

@@ -41,7 +41,7 @@ const SearchPage: NextPage<SearchProps> = () => {
                         placeholder={'Знайти'}
                         value={input}
                         name={'search'}
-                        handleChange={onChange}
+                        onChange={onChange}
                     >
                         <img className={'search__icon'} src={search.src} alt={'search icon'}/>
                     </Input>

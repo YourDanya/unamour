@@ -13,7 +13,7 @@ import {selectUserField} from 'redux/user/user.selectors'
 
 const useUpdateUserForm = () => {
     const [transl, content] = useLocale(formContent)
-    const {inputs, handleChange, handleValidate: _handleValidate, setOuterValues, errRef, setOuterErrors
+    const {inputs, onChange, onValidate: _onValidate, setOuterValues, errRef, setOuterErrors
     } = useInput(content.inputs)
 
     const dispatch = useDispatch()
@@ -21,7 +21,7 @@ const useUpdateUserForm = () => {
         event.preventDefault()
         Object.entries(inputs.values).forEach(( entry) => {
             const [key, value] = <Entry<typeof inputs.values>> entry
-            if (value) _handleValidate(key)
+            if (value) _onValidate(key)
         }, <typeof inputs.values> {})
         let allowSend = true
         const sendData = Object.entries(inputs.values).reduce((accum, entry) => {
@@ -35,7 +35,7 @@ const useUpdateUserForm = () => {
         if (allowSend) dispatch(updateUserAsync(sendData))
     }
 
-    const handleValidate = (name: string) => {
+    const onValidate = (name: string) => {
         const key = <keyof typeof inputs.values> name
         if (errRef.current.errors[key]) {
             if (inputs.values[key] === '') {
@@ -43,7 +43,7 @@ const useUpdateUserForm = () => {
                 errRef.current.errors[key] = null
                 setOuterErrors({...errRef.current.errors})
             } else {
-                _handleValidate(key)
+                _onValidate(key)
             }
         }
     }
@@ -57,7 +57,7 @@ const useUpdateUserForm = () => {
         }
     }, [user])
 
-    return {transl, inputs, handleChange, handleValidate, handleSubmit, updateUser}
+    return {transl, inputs, onChange, onValidate, handleSubmit, updateUser}
 }
 
 export default useUpdateUserForm

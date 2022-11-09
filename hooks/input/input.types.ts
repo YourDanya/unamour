@@ -12,11 +12,6 @@ export type InputObj = {
 
 export type InputsObj = Record<string, InputObj>
 
-export type Inputs <T extends string | number| symbol, K> = {
-    values: Record<T, K>,
-    errors: Record<T, string | null>,
-}
-
 export type ValidationInputs <T extends string | number | symbol, > = {
     values: Record<T, Value>,
     errors: Record<T, string | null>,
@@ -37,10 +32,10 @@ export type ValidationInput = {
 
 export type UseInput = <T extends InputsObj> (inputsObj: T, translInputs?: Record<keyof T, string>) => {
     inputs: {values: {[K in keyof T]: T[K]['value']}, errors: Record<keyof T, string | null>},
-    setOuterValues: (values: {[K in keyof T]: T[K]['value']}) => void,
+    setOuterValues: (values: {[K in keyof T]?: T[K]['value']}) => void,
     setOuterErrors: (errors: {[K in keyof T]: string | null}) => void,
-    handleChange: (event: React.ChangeEvent<HTMLElement>) => void,
-    handleValidate: (event: any) => void,
+    onChange: (event: React.ChangeEvent<HTMLElement>) => void,
+    onValidate: (event: any) => void,
     resetValues: () => void,
     errRef: React.MutableRefObject<{ errors: Record<keyof T, string | null>, count: number }>,
     setReqErrors: () => void,

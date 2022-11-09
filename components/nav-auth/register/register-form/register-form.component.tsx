@@ -8,7 +8,7 @@ import {RegisterProps} from 'components/nav-auth/register/register-form/register
 
 const RegisterForm: FC<RegisterProps> = (props) => {
     const {register} = props
-    const {transl, inputs, handleChange, handleValidate, handleSubmit} = useRegisterForm()
+    const {transl, inputs, onChange, onValidate, handleSubmit} = useRegisterForm()
 
     return (
         <form className={'nav-auth__form'}>
@@ -17,27 +17,27 @@ const RegisterForm: FC<RegisterProps> = (props) => {
                 name={'name'}
                 placeholder={transl.inputs.name}
                 value={inputs.values.name}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.name}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'nav-auth__input'}
                 name={'email'}
                 placeholder={transl.inputs.email}
                 value={inputs.values.email}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.email}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Input
                 className={'nav-auth__input'}
                 name={'password'}
                 placeholder={transl.inputs.password}
                 value={inputs.values.password}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.password}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
                 type={'password'}
             />
             <Input
@@ -45,9 +45,9 @@ const RegisterForm: FC<RegisterProps> = (props) => {
                 name={'passwordConfirm'}
                 placeholder={transl.inputs.passwordConfirm}
                 value={inputs.values.passwordConfirm}
-                handleChange={handleChange}
+                onChange={onChange}
                 error={inputs.errors.passwordConfirm}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
                 validateDeps={[inputs.values.password]}
                 type={'password'}
             />

@@ -8,14 +8,9 @@ import SizesFilter from 'components/shop-items/size-filter/size-filter.component
 import useShopItems from 'components/shop-items/shop-items.hook'
 import Link from 'next/link'
 import SortingFilter from 'components/shop-items/sorting-filter/sorting-filter.component'
-
-
-export type ShopItemsProps = {
-    children?: React.ReactNode
-}
+import {ShopItemsProps} from 'components/shop-items/shop-items.types'
 
 const ShopItems: React.FC<ShopItemsProps> = (props) => {
-
     const {children} = props
     const {content, transl, handleLinkClick, params, handleResetClick, filters} = useShopItems(props)
 

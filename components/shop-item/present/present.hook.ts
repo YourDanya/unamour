@@ -5,8 +5,8 @@ import {useInput} from 'hooks/input/input.hooks'
 
 const usePresent = (props: PresentProps) => {
     const [transl, content] = useLocale(presentContent)
-    const {inputs, handleChange, handleValidate} = useInput(content.inputs)
-    return {...props, transl, inputs, handleChange, handleValidate}
+    const {inputs, onChange, onValidate} = useInput(content.inputs)
+    return {...props, transl, inputs, onChange, onValidate}
 }
 
 export default usePresent

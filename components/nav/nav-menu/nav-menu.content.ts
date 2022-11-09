@@ -2,25 +2,27 @@ import Link from 'next/link'
 import React from 'react'
 
 const navMenuContent = {
-    firstLinks: [
-        '/shop-items/all',
-        '/shop-items/new',
-        '/shop-items/best',
-        '/shop-items/coming',
-        '/shop-items/special-price'
-    ],
-    secondLinks: [
-        '/favorites',
-        '/vacancies',
-        '/contacts',
-    ],
-    serviceLinks: [
-        '/client-service/delivery',
-        '/client-service/return',
-        '/client-service/clothing-care',
-        '/client-service/policy',
-        '/client-service/warranty-period'
-    ],
+    common: {
+        firstLinks: [
+            '/shop-items/all',
+            '/shop-items/new',
+            '/shop-items/best',
+            '/shop-items/coming',
+            '/shop-items/special-price'
+        ],
+        secondLinks: [
+            '/favorites',
+            '/vacancies',
+            '/contacts',
+        ],
+        serviceLinks: [
+            '/client-service/delivery',
+            '/client-service/return',
+            '/client-service/clothing-care',
+            '/client-service/policy',
+            '/client-service/warranty-period'
+        ],
+    },
     translations: {
         ua: {
             firstLinks: [

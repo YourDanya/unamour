@@ -15,7 +15,7 @@ import {useRouter} from 'next/router'
 const useActivateUser = (props: ActivateProps) => {
     const {sendRegisterCode} = props
     const [transl, content] = useLocale(activateUserContent)
-    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
     const activateUser = useParamSelector(selectUserField, 'activateUser')
 
     const dispatch = useDispatch()
@@ -34,7 +34,7 @@ const useActivateUser = (props: ActivateProps) => {
         if (activateUser.success) {
             resetValues()
             setTimeout(() => {
-                router.push('/profile/update-user')
+                router.push('/profile/update-input-user')
                 dispatch(resetSuccess('register'))
                 dispatch(resetSuccess('activateUser'))
                 dispatch(resetSuccess('sendRegisterCode'))
@@ -42,7 +42,7 @@ const useActivateUser = (props: ActivateProps) => {
         }
     },[activateUser.success])
 
-    return {inputs, handleChange, handleValidate, transl, activateSubmit, sendRegisterCodeSubmit, sendRegisterCode,
+    return {inputs, onChange, onValidate, transl, activateSubmit, sendRegisterCodeSubmit, sendRegisterCode,
         activateUser, clearInitTimer}
 }
 

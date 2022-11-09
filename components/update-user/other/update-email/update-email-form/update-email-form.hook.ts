@@ -8,7 +8,7 @@ import {updateEmailAsync} from 'redux/user/user.thunk'
 
 const useUpdateEmailForm = () => {
     const [transl, content] = useLocale(updateEmailFormContent)
-    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
 
     const updateEmail = useParamSelector(selectUserField, 'updateEmail')
 
@@ -17,7 +17,7 @@ const useUpdateEmailForm = () => {
         dispatch(updateEmailAsync(inputs.values))
     })
 
-    return {transl, handleChange, handleValidate, inputs, handleSubmit, updateEmail}
+    return {transl, onChange, onValidate, inputs, handleSubmit, updateEmail}
 }
 
 export default useUpdateEmailForm

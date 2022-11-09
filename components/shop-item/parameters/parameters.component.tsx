@@ -1,5 +1,5 @@
 import React from 'react'
-import {CommonVariant} from 'redux/shop-items/shop-items.types'
+import {ItemVariant} from 'redux/shop-items/shop-items.types'
 
 type ParametersProps = {
     name: string,
@@ -10,7 +10,7 @@ type ParametersProps = {
     showModal: (event: React.MouseEvent<HTMLButtonElement>) => void,
     handleSizeClick: (event: React.MouseEvent<HTMLButtonElement>) => void,
     color: {code: string, name: string},
-    variants: CommonVariant[],
+    variants: ItemVariant[],
     modalState:  Record<"size" | "present", boolean> & {modal: boolean}
 }
 

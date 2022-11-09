@@ -11,13 +11,13 @@ const useSizesFilter = (props: SizesFilterProps) => {
     const sizeValues = state as GenState
     const sizeRef = useRef(sizeValues)
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const name = event.currentTarget.name
         sizeRef.current[name] = !sizeValues[name]
         setState({...sizeRef.current})
     }
 
-    return {sizeValues, handleChange}
+    return {sizeValues, onChange}
 }
 
 export default useSizesFilter

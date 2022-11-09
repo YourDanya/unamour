@@ -1,17 +1,9 @@
-import React from 'react'
+import {FC} from 'react'
+import {RadioButtonProps} from 'components/common/radio-buttons/radio-buttons.types'
+import {Children} from 'react'
 
-type RadioButtonProps = {
-    labels: {label: string, node?: React.ReactNode }[],
-    values: string[],
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    active: string,
-    name: string,
-    className?: string
-}
-
-const RadioButtons: React.FC<RadioButtonProps> = (props) => {
-
-    const {values, handleChange, active, name, className, labels} = props
+const RadioButtons: FC<RadioButtonProps> = (props) => {
+    const {values, onChange, active, name, className, labels, children} = props
 
     return (
         <div className={`radio-group ${className ?? ''}`}>
@@ -24,15 +16,15 @@ const RadioButtons: React.FC<RadioButtonProps> = (props) => {
                             value={value}
                             name={name}
                             id={value}
-                            onChange={handleChange}
+                            onChange={onChange}
                             checked={active === value}
                         />
                     </div>
                     <label className="radio-group__label" htmlFor={value}>
-                        {labels[index].label}
+                        {labels[index]}
                     </label>
                     <div className="radio-group__node">
-                        {labels[index].node}
+                        {Children.toArray(children)[index]}
                     </div>
                 </div>
             ))}

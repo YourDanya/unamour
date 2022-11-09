@@ -9,7 +9,7 @@ import {LoginProps} from 'components/nav-auth/login/login-form/login-form.types'
 
 const LoginForm: FC<LoginProps> = (props) => {
     const {handleResetPass} = props
-    const {transl, inputs, handleChange, handleClick, handleValidate, login} = useLoginForm()
+    const {transl, inputs, onChange, handleClick, onValidate, login} = useLoginForm()
 
     return (
         <>
@@ -20,8 +20,8 @@ const LoginForm: FC<LoginProps> = (props) => {
                     name={'email'}
                     value={inputs.values.email}
                     error={inputs.errors.email}
-                    handleChange={handleChange}
-                    handleValidate={handleValidate}
+                    onChange={onChange}
+                    onValidate={onValidate}
                 />
                 <Input
                     type={'password'}
@@ -30,8 +30,8 @@ const LoginForm: FC<LoginProps> = (props) => {
                     name={'password'}
                     value={inputs.values.password}
                     error={inputs.errors.password}
-                    handleChange={handleChange}
-                    handleValidate={handleValidate}
+                    onChange={onChange}
+                    onValidate={onValidate}
                 />
                 <div className="nav-auth__bottom">
                     <Button className="nav-auth__button" onClick={handleClick} loading={login.loading}>

@@ -117,14 +117,14 @@ export const useDebounceEffect = <T extends any[], >(effect: EffectCallback, dep
 //     elements.map(({type, className, name, placeholder}, index) => {
 //             if (type === 'input') {
 //                 return (
-//                     <div className={className} key={index}>
+//                     <update-input className={className} key={index}>
 //                         <Input
 //                             placeholder={placeholder}
 //                             name={name}
-//                             handleChange={handleChange}
+//                             onChange={onChange}
 //                             value={values[name]}
 //                         />
-//                     </div>
+//                     </update-input>
 //                 )
 //             } else if (type === 'check') {
 //
@@ -135,9 +135,9 @@ export const useDebounceEffect = <T extends any[], >(effect: EffectCallback, dep
 //
 //             } else {
 //                 return (
-//                     <div className={className} key={name}>
+//                     <update-input className={className} key={name}>
 //                         {placeholder}
-//                     </div>
+//                     </update-input>
 //                 )
 //             }
 //         }

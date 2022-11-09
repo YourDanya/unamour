@@ -1,14 +1,16 @@
 const menuContent = {
-    links: [
-        'clothing-care',
-        'delivery',
-        'order-tracking',
-        'return',
-        'ordering',
-        'policy',
-        'privacy',
-        'warranty-period',
-    ],
+    common: {
+        links: [
+            'clothing-care',
+            'delivery',
+            'order-tracking',
+            'return',
+            'ordering',
+            'policy',
+            'privacy',
+            'warranty-period',
+        ]
+    },
     translations: {
         ua: {
             links: [

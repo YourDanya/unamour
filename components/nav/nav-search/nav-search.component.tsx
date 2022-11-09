@@ -6,7 +6,7 @@ import Input from 'components/common/input/input.component'
 
 const NavSearch: React.FC = () => {
 
-    const {hidden, searchItems, input, handleChange, transl} = useNavSearch()
+    const {hidden, searchItems, input, onChange, transl} = useNavSearch()
 
     return (
         <div className={`nav-search ${hidden ? 'nav-search--hidden' : ''}`}>
@@ -19,7 +19,7 @@ const NavSearch: React.FC = () => {
                     name={'search'}
                     placeholder={'Знайти'}
                     value={input}
-                    handleChange={handleChange}
+                    onChange={onChange}
                 >
                     <img className={'nav-search__icon'} src={search.src} alt={'search icon'}/>
                 </Input>
@@ -42,15 +42,15 @@ const NavSearch: React.FC = () => {
                 </div>
             ) : (
                 <div className="nav-search__popular">
-                    {/*<div className="search-popular-title">ПОПУЛЯРНЫЕ ЗАПРОСЫ</div>*/}
-                    {/*<div className="search-popular-element">Платья</div>*/}
-                    {/*<div className="search-popular-element">Брюки и шорты</div>*/}
-                    {/*<div className="search-popular-element">Жакеты и жилеты</div>*/}
-                    {/*<div className="search-popular-element">Верхняя одежда</div>*/}
-                    {/*<div className="search-popular-element">Комплекты</div>*/}
-                    {/*<div className="search-popular-element">Рубашки и блузы</div>*/}
-                    {/*<div className="search-popular-element">Комбинезоны</div>*/}
-                    {/*<div className="search-popular-element">Трикотаж</div>*/}
+                    {/*<update-input className="search-popular-title">ПОПУЛЯРНЫЕ ЗАПРОСЫ</update-input>*/}
+                    {/*<update-input className="search-popular-element">Платья</update-input>*/}
+                    {/*<update-input className="search-popular-element">Брюки и шорты</update-input>*/}
+                    {/*<update-input className="search-popular-element">Жакеты и жилеты</update-input>*/}
+                    {/*<update-input className="search-popular-element">Верхняя одежда</update-input>*/}
+                    {/*<update-input className="search-popular-element">Комплекты</update-input>*/}
+                    {/*<update-input className="search-popular-element">Рубашки и блузы</update-input>*/}
+                    {/*<update-input className="search-popular-element">Комбинезоны</update-input>*/}
+                    {/*<update-input className="search-popular-element">Трикотаж</update-input>*/}
                 </div>
             )}
         </div>

@@ -6,12 +6,12 @@ import {useDispatch} from 'react-redux'
 
 const useRegisterForm = () => {
     const [transl, content] = useLocale(registerFormContent)
-    const {inputs, handleChange, handleValidate, withSubmit} = useInput(content.inputs, transl.inputs)
+    const {inputs, onChange, onValidate, withSubmit} = useInput(content.inputs, transl.inputs)
     const dispatch = useDispatch()
     const handleSubmit = withSubmit(() => {
         dispatch(registerAsync(inputs.values))
     })
-    return {transl, inputs, handleChange, handleValidate, handleSubmit}
+    return {transl, inputs, onChange, onValidate, handleSubmit}
 }
 
 export default useRegisterForm

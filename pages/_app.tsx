@@ -20,6 +20,7 @@ import 'components/common/sidebar/sidebar.styles.sass'
 import 'components/common/modal-content/modal-content.styles.sass'
 import 'components/common/map/map.styles.sass'
 
+import '/pages/admin/items/admin-items.styles.sass'
 import 'components/profile/profile.styles.sass'
 import 'components/profile/profile-menu/profile-menu.styles.sass'
 import 'components/footer/links/links.styles.sass'

@@ -9,32 +9,32 @@ import React from 'react'
 const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
 
     const {updateEmail} = props
-    const {transl, handleChange, handleValidate, inputs, handleSubmit} = useUpdateEmailForm()
+    const {transl, onChange, onValidate, inputs, handleSubmit} = useUpdateEmailForm()
 
     return (
-        <form className={'update-user__form update-user__modal-form'}>
-            <div className={'update-user__title'}>{transl.title}</div>
+        <form className={'update-input-user__form update-user__modal-form'}>
+            <div className={'update-input-user__title'}>{transl.title}</div>
             <Input
-                className={'update-user__input'}
+                className={'update-input-user__input'}
                 name={'password'}
-                handleChange={handleChange}
+                onChange={onChange}
                 placeholder={transl.inputs.password}
                 value={inputs.values.password}
                 error={inputs.errors.password}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
                 type={'password'}
             />
             <Input
-                className={'update-user__input'}
+                className={'update-input-user__input'}
                 name={'newEmail'}
-                handleChange={handleChange}
+                onChange={onChange}
                 placeholder={transl.inputs.newEmail}
                 value={inputs.values.newEmail}
                 error={inputs.errors.newEmail}
-                handleValidate={handleValidate}
+                onValidate={onValidate}
             />
             <Button
-                className={'update-user__button update-user__modal-btn'}
+                className={'update-input-user__button update-input-user__modal-btn'}
                 onClick={handleSubmit}
                 loading={updateEmail.loading}
             >

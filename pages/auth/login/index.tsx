@@ -7,7 +7,7 @@ import NavLink from 'components/common/nav-link/nav-link.component'
 
 const SignIn: NextPage = () => {
 
-    const {transl, login, inputs, handleChange, handleValidate, handleSubmit} = useSignIn()
+    const {transl, login, inputs, onChange, onValidate, handleSubmit} = useSignIn()
 
     return (
         <div className={'auth'}>
@@ -18,18 +18,18 @@ const SignIn: NextPage = () => {
                     name={'passwordConfirm'}
                     placeholder={transl.inputs.email}
                     value={inputs.values.email}
-                    handleChange={handleChange}
+                    onChange={onChange}
                     error={inputs.errors.email}
-                    handleValidate={handleValidate}
+                    onValidate={onValidate}
                 />
                 <Input
                     className={'auth__input'}
                     name={'password'}
                     placeholder={transl.inputs.password}
                     value={inputs.values.password}
-                    handleChange={handleChange}
+                    onChange={onChange}
                     error={inputs.errors.password}
-                    handleValidate={handleValidate}
+                    onValidate={onValidate}
                     type={'password'}
                 />
                 <Button className='auth__button' onClick={handleSubmit} loading={login.loading}>

@@ -1,9 +1,11 @@
 const contactsContent = {
-    inputs: {
-        name: {value: '', validations: {minLength: 3, mexLength: 15}},
-        number: {value: '', validations: {isPhone: true}},
-        email: {value: '', validations: {isEmail: true}},
-        message: {value: '', validations: {minLength: 10, maxLength: 200}}
+    common: {
+        inputs: {
+            name: {value: '', validations: {minLength: 3, mexLength: 15}},
+            number: {value: '', validations: {isPhone: true}},
+            email: {value: '', validations: {isEmail: true}},
+            message: {value: '', validations: {minLength: 10, maxLength: 200}}
+        }
     },
     translations: {
         ua: {

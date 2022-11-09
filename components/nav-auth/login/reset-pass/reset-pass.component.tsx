@@ -7,7 +7,7 @@ import {ResetProps} from 'components/nav-auth/login/reset-pass/reset-pass.types'
 
 const ResetPass: FC<ResetProps> = (props) => {
     const {handleResetPass} = props
-    const {transl, inputs, handleChange, handleValidate, forgetSubmit, forgetPass} = useResetPass()
+    const {transl, inputs, onChange, onValidate, forgetSubmit, forgetPass} = useResetPass()
 
     return (
         <>
@@ -22,8 +22,8 @@ const ResetPass: FC<ResetProps> = (props) => {
                         name={'email'}
                         value={inputs.values.email}
                         error={inputs.errors.email}
-                        handleChange={handleChange}
-                        handleValidate={handleValidate}
+                        onChange={onChange}
+                        onValidate={onValidate}
                     />
                     <div className="nav-auth__bottom">
                         <Button className="nav-auth__button nav-auth__button--reset" onClick={forgetSubmit} loading={forgetPass.loading}>

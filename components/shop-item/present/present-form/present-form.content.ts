@@ -1,20 +1,22 @@
 const presentFormContent = {
-    inputs: {
-        recName: {value: '', validations: {required: true}},
-        recSurname: {value: '', validations: {required: true}},
-        recEmail: {value: '', validations: {required: true, isEmail: true}},
-        recPhone: {value: '', validations: {required: true, isPhone: true}},
-        sendName: {value: '', validations: {required: true}},
-        sendEmail: {value: '', validations: {required: true, isEmail: true},},
-        country: {value: '', validations: {required: true}},
-        city: {value: '', validations: {required: true}},
-        index: {value: '', validations: {required: true, minLength: 5, maxLength: 5}},
-        street: {value: '', validations: {required: true}},
-        house: {value: '', validations: {required: true}},
-        apartment: {value: '', validations: {required: true}},
-        delivery: {value: 'ukrPoshta', values: ['ukrPoshta', 'novaPoshta']},
-        anonymously: {value: false,},
-        surprise: {value: false,}
+    common: {
+        inputs: {
+            recName: {value: '', validations: {required: true}},
+            recSurname: {value: '', validations: {required: true}},
+            recEmail: {value: '', validations: {required: true, isEmail: true}},
+            recPhone: {value: '', validations: {required: true, isPhone: true}},
+            sendName: {value: '', validations: {required: true}},
+            sendEmail: {value: '', validations: {required: true, isEmail: true}},
+            country: {value: '', validations: {required: true}},
+            city: {value: '', validations: {required: true}},
+            index: {value: '', validations: {required: true, minLength: 5, maxLength: 5}},
+            street: {value: '', validations: {required: true}},
+            house: {value: '', validations: {required: true}},
+            apartment: {value: '', validations: {required: true}},
+            delivery: {value: 'ukrPoshta', values: ['ukrPoshta', 'novaPoshta']},
+            anonymously: {value: false},
+            surprise: {value: false}
+        }
     },
     translations: {
         ua: {
@@ -31,20 +33,18 @@ const presentFormContent = {
                 street: 'Вулиця',
                 house: 'Будинок',
                 apartment: 'Квартира',
-                delivery: {
-                    labels: [
-                        {
-                            title: 'Доставка "Нова Пошта"',
-                            price: '200 ₴',
-                            duration: 'від 5 до 6 робочих днів'
-                        },
-                        {
-                            title: 'Доставка "Укр Пошта"',
-                            price: '250 ₴',
-                            duration: 'від 5 до 6 робочих днів'
-                        }
-                    ]
-                },
+                delivery: [
+                    {
+                        title: 'Доставка "Нова Пошта"',
+                        price: '200 ₴',
+                        duration: 'від 5 до 6 робочих днів'
+                    },
+                    {
+                        title: 'Доставка "Укр Пошта"',
+                        price: '250 ₴',
+                        duration: 'від 5 до 6 робочих днів'
+                    }
+                ],
                 anonymously: 'Подарувати анонімно?',
                 surprise: 'Зробити сюрприз?'
             },
@@ -72,20 +72,18 @@ const presentFormContent = {
                 street: 'Street',
                 house: 'House',
                 apartment: 'Apartment',
-                delivery: {
-                    labels: [
-                        {
-                            title: 'Delivery "Nova Poshta"',
-                            price: '200 ₴',
-                            duration: 'for 5 to 6 business days'
-                        },
-                        {
-                            title: 'Delivery "Ukr Poshta"',
-                            price: '250 ₴',
-                            duration: 'for 5 to 6 business days'
-                        }
-                    ]
-                },
+                delivery: [
+                    {
+                        title: 'Delivery "Nova Poshta"',
+                        price: '200 ₴',
+                        duration: 'for 5 to 6 business days'
+                    },
+                    {
+                        title: 'Delivery "Ukr Poshta"',
+                        price: '250 ₴',
+                        duration: 'for 5 to 6 business days'
+                    }
+                ],
                 anonymously: 'Give anonymously?',
                 surprise: 'Make a surprise?'
             },
@@ -113,20 +111,18 @@ const presentFormContent = {
                 street: 'Улица',
                 house: 'Дом',
                 apartment: 'Квартира',
-                delivery: {
-                    labels: [
-                        {
-                            title: 'Доставка "Новая Почта"',
-                            price: '200 ₴',
-                            duration: 'от 5 до 6 рабочих дней'
-                        },
-                        {
-                            title: 'Доставка "Укр Почта"',
-                            price: '250 ₴',
-                            duration: 'от 5 до 6 рабочих дней'
-                        }
-                    ]
-                },
+                delivery: [
+                    {
+                        title: 'Доставка "Новая Почта"',
+                        price: '200 ₴',
+                        duration: 'от 5 до 6 рабочих дней'
+                    },
+                    {
+                        title: 'Доставка "Укр Почта"',
+                        price: '250 ₴',
+                        duration: 'от 5 до 6 рабочих дней'
+                    }
+                ],
                 anonymously: 'Подарить анонимно?',
                 surprise: 'Сделать сюрприз?'
             },

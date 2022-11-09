@@ -11,7 +11,7 @@ export type SizesFilterProps = {
 const SizesFilter: React.FC<SizesFilterProps> = (props) => {
 
     const {content: sizes} = props
-    const {sizeValues, handleChange} = useSizesFilter(props)
+    const {sizeValues, onChange} = useSizesFilter(props)
 
     return (
         <>
@@ -22,7 +22,7 @@ const SizesFilter: React.FC<SizesFilterProps> = (props) => {
                     name={size}
                     label={sizes[index]}
                     value={sizeValues[size]}
-                    handleChange={handleChange}
+                    onChange={onChange}
                 />
             ))}
         </>

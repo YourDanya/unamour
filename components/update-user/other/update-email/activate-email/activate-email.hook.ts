@@ -15,7 +15,7 @@ const useActivateEmail = (props: ActivateEmailProps) => {
     const {hideModal} = props
 
     const [transl, content] = useLocale(activateEmailContent)
-    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
 
     const activateEmail = useParamSelector(selectUserField, 'activateEmail')
 
@@ -41,7 +41,7 @@ const useActivateEmail = (props: ActivateEmailProps) => {
         }
     }, [activateEmail.success])
 
-    return {transl, handleChange, handleValidate, inputs, activateEmailSubmit, activateEmail, clearInitTimer,
+    return {transl, onChange, onValidate, inputs, activateEmailSubmit, activateEmail, clearInitTimer,
     sendUpdateEmailCodeSubmit}
 }
 

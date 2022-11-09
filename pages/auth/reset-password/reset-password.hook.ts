@@ -10,11 +10,11 @@ import {selectUserField} from 'redux/user/user.selectors'
 
 const useResetPass = () => {
     const [transl, content] = useLocale(resetPasswordContent)
-    const {inputs, handleChange, handleValidate, withSubmit, resetValues} = useInput(content.inputs, transl.inputs)
+    const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs, transl.inputs)
 
     const dispatch = useDispatch()
     const resetPass = useParamSelector(selectUserField, 'resetPass')
-    
+
     const router = useRouter()
     const token = router.query.token as string
 
@@ -31,7 +31,7 @@ const useResetPass = () => {
         }
     }, [resetPass.success])
 
-    return {content, transl, inputs, handleChange, handleValidate, handleSubmit, resetPass}
+    return {content, transl, inputs, onChange, onValidate, handleSubmit, resetPass}
 }
 
 export default useResetPass

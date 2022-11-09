@@ -8,13 +8,12 @@ import {ProfileProps} from 'components/profile/profile.types'
 import Spinner from 'components/common/spinner/spinner.component'
 
 const Profile: React.FC<ProfileProps> = (props) => {
-
     const {children} = props
     const {user, transl, content, modalState, hideModal, showModal, handleLogout, logout} = useProfile()
 
     return (
-        user ? (
-            <div className={'profile'}>
+        <>
+            <div className={`profile ${!user ? 'profile--hidden' : ''}`}>
                 <div className={'profile__top'}>
                     <div className={'profile__sign-out'}>
                         <Button className={'profile__sign-out-btn'} onClick={handleLogout} loading={logout.loading}>
@@ -22,7 +21,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
                         </Button>
                     </div>
                     <div className={'profile__name'}>
-                        {transl.greeting} {user.name}!
+                        {transl.greeting} {user?.name}!
                     </div>
                     <ProfileMenu className={'profile__menu--hide'} menu={content.menu} translMenu={transl.menu}/>
                     <Button className={'profile__menu-btn'} onClick={showModal} name={'menu'}>
@@ -37,9 +36,8 @@ const Profile: React.FC<ProfileProps> = (props) => {
                     {children}
                 </div>
             </div>
-        ) : (
-            <Spinner/>
-        )
+            <Spinner className={`profile-spinner ${user? 'profile-spinner--hidden' : ''}`}/>
+        </>
     )
 }
 

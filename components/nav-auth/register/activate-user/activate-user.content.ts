@@ -1,6 +1,8 @@
 const activateUserContent = {
-    inputs: {
-        code: {value: '', validations: {required: true, maxLength: 30}}
+    common: {
+        inputs: {
+            code: {value: '', validations: {required: true, maxLength: 30}}
+        }
     },
     translations: {
         ua: {

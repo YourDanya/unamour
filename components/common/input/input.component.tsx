@@ -3,7 +3,7 @@ import useInput from 'components/common/input/input.hook'
 import {InputProps} from 'components/common/input/input.types'
 
 const Input: React.FC<InputProps> = (props) => {
-    const {value, name, handleChange, placeholder, className, children, error, type} = props
+    const {value, name, onChange, placeholder, className, children, error, type} = props
     const {focused, handleFocus, handleBlur, autoComplete} = useInput(props)
 
     return (
@@ -14,7 +14,7 @@ const Input: React.FC<InputProps> = (props) => {
                     <input
                         onBlur={handleBlur}
                         onFocus={handleFocus}
-                        onChange={handleChange}
+                        onChange={onChange}
                         name={name}
                         className={`input__input`}
                         value={value}

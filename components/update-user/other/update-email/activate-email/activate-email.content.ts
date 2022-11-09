@@ -1,6 +1,8 @@
 const updateEmailFormContent = {
-    inputs: {
-        code: {value: '', validations: {required: true}}
+    common: {
+        inputs: {
+            code: {value: '', validations: {required: true}}
+        }
     },
     translations: {
         ua: {

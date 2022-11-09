@@ -29,7 +29,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 
     const valRef = useRef({...values})
 
-    const handleChange = useCallback((event: React.ChangeEvent<HTMLElement>) => {
+    const onChange = useCallback((event: React.ChangeEvent<HTMLElement>) => {
         const {name, value, type} = event.target as HTMLInputElement & { name: keyof T }
         switch (type) {
             case 'checkbox': {
@@ -49,7 +49,6 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 
     const resetValues = useCallback(() => {
         valRef.current = {...initInputs.values}
-        console.log('init values', initInputs.values)
         setValues({...initInputs.values})
     }, [])
 
@@ -63,7 +62,6 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
             validateValues = valRef.current
             validateTransl = translInputs
         }
-
         return validate({
                 value: valRef.current[name],
                 name,
@@ -97,7 +95,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
         }
     }, [])
 
-    const handleValidate = useCallback((name: string & keyof T) => {
+    const onValidate = useCallback((name: string & keyof T) => {
         const error = getError(name)
 
         if (errRef.current.errors[name] && !error) errRef.current.count -= 1
@@ -107,7 +105,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
         setErrors({...errRef.current.errors, [name]: error})
     }, [])
 
-    const setOuterValues = useCallback((values: Mapped<typeof initInputs.values>) => {
+    const setOuterValues = useCallback((values: Partial<typeof initInputs.values>) => {
         const filteredValues = Object.entries(values).reduce((accum, entry) => {
             const [key, value] = <Entry<typeof initInputs.values>> entry
             if (key in initInputs.values) {
@@ -131,7 +129,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
         setErrors({...errRef.current.errors})
     }, [])
 
-    return {inputs: {values, errors}, handleChange, handleValidate, resetValues, errRef, setReqErrors, withSubmit,
+    return {inputs: {values, errors}, onChange, onValidate, resetValues, errRef, setReqErrors, withSubmit,
     setOuterValues, setOuterErrors}
 }
 
