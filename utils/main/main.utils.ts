@@ -2,6 +2,7 @@ import {MapField} from 'utils/main/main.types'
 import {LocaleError} from 'redux/store.types'
 import {MessLocaleError} from 'redux/store.types'
 import {CheckTimerField} from 'redux/store.types'
+import {CapitalizeString} from 'utils/main/main.types'
 
 export const sleep= (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -53,3 +54,7 @@ export const mapField: MapField = (field, stateField, locale, contentErrors,
     const success = stateField.success ? contentSuccess[field][locale] : null
     return {loading, error, success, timer}
 }
+
+export const capitalizeString: CapitalizeString = ((string: string) => {
+    return string.charAt(0).toUpperCase().concat(string.slice(1))
+}) as CapitalizeString

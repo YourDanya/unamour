@@ -1,4 +1,4 @@
-const ItemCommon = {
+const itemCommonContent = {
     common: {
         inputs: {
             slug: {validations: {}},
@@ -6,7 +6,7 @@ const ItemCommon = {
             best: {validations: {}},
             special: {validations: {}},
             coming: {validations: {}},
-            oldPrice: {validations: {}}
+            oldPrice: {validations: {}},
         }
     },
     translations: {
@@ -17,7 +17,7 @@ const ItemCommon = {
                 best: 'найкращі',
                 special: 'особливі',
                 coming: 'скоро буде',
-                oldPrice: 'стара ціна'
+                oldPrice: 'стара ціна',
             }
         },
         eng: {
@@ -43,4 +43,4 @@ const ItemCommon = {
     }
 }
 
-export default ItemCommon
+export default itemCommonContent

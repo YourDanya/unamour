@@ -34,7 +34,7 @@ export type ItemCommonTranslation = {
 }
 
 export type ItemVariantsTranslation = {
-    variants: ItemVariantTranslation[]
+    translations: Record<Locale, {variants: ItemVariantTranslation[]}>
 }
 
 export type ItemVariantTranslation = {
@@ -47,7 +47,7 @@ export type ItemTranslations = {
     translations: Record<Locale, ItemCommonTranslation>
 }
 
-export type FetchedItem = { common: ItemCommon } & ItemTranslations
+export type FetchedItem = { common: ItemCommon } & ItemTranslations & ItemVariants & ItemVariantsTranslation
 
 export type ClientItem = ItemCommon & ItemCommonTranslation & ItemVariant  & ItemVariantTranslation & ItemTranslations
 & ItemVariants & ItemVariantsTranslation

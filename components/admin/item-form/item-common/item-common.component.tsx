@@ -1,13 +1,13 @@
 import {FC} from 'react'
 import Input from 'components/common/input/input.component'
-import React from 'react'
 import Checkbox from 'components/common/checkbox/checkbox.component'
-import useItemCommon from 'components/admin/item-form/item-common/item-common.hook'
-import {ItemCommonProps} from 'components/admin/item-form/item-common/item-common.types'
 import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
+import React from 'react'
+import useItemCommon from 'components/admin/item-form/item-common/item-common.hook'
+import {ItemCommonProps} from 'components/admin/item-form/item-form.types'
 
 const ItemCommon: FC<ItemCommonProps> = (props) => {
-    const {transl, inputs, onInputChange, onValidate, categoryTransl, categoryValues} = useItemCommon(props)
+    const {transl, inputs, onChange, onValidate, categoryTransl, categoryValues} = useItemCommon(props)
 
     return (
         <>
@@ -16,7 +16,7 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 name={'slug'}
                 placeholder={transl.inputs.slug}
                 value={inputs.values.slug}
-                onChange={onInputChange}
+                onChange={onChange}
                 error={inputs.errors.slug}
                 onValidate={onValidate}
             />
@@ -25,7 +25,7 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 name={'oldPrice'}
                 placeholder={transl.inputs.oldPrice}
                 value={inputs.values.oldPrice}
-                onChange={onInputChange}
+                onChange={onChange}
                 error={inputs.errors.oldPrice}
                 onValidate={onValidate}
             />
@@ -34,26 +34,26 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 name={'best'}
                 label={transl.inputs.best}
                 value={inputs.values.best}
-                onChange={onInputChange}
+                onChange={onChange}
             />
             <Checkbox
                 className={`item-form__check`}
                 name={'special'}
                 label={transl.inputs.special}
                 value={inputs.values.special}
-                onChange={onInputChange}
+                onChange={onChange}
             />
             <Checkbox
                 className={`item-form__check`}
                 name={'coming'}
                 label={transl.inputs.coming}
                 value={inputs.values.coming}
-                onChange={onInputChange}
+                onChange={onChange}
             />
             <RadioButtons
                 labels={categoryTransl}
                 values={categoryValues}
-                onChange={onInputChange}
+                onChange={onChange}
                 active={inputs.values.slugCategory}
                 name={'category'}
             />

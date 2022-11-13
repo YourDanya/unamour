@@ -6,3 +6,5 @@ import {SelectField} from 'redux/store.types'
 
 export type MapField = <TField extends string> (field: TField, stateField: StateField, locale: Locale, errors: ContentErrors,
                         success: ContentSuccess) => SelectField
+
+export type CapitalizeString = <T extends string> (string: T) => Capitalize<T>
