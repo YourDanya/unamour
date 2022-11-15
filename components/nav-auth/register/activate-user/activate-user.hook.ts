@@ -34,7 +34,7 @@ const useActivateUser = (props: ActivateProps) => {
         if (activateUser.success) {
             resetValues()
             setTimeout(() => {
-                router.push('/profile/update-input-user')
+                router.push('/profile/update-user')
                 dispatch(resetSuccess('register'))
                 dispatch(resetSuccess('activateUser'))
                 dispatch(resetSuccess('sendRegisterCode'))

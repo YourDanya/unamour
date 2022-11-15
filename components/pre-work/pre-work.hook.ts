@@ -1,6 +1,6 @@
 import {useSelector} from 'react-redux'
 import {useDispatch} from 'react-redux'
-import {fetchItems} from 'redux/shop-items/shop-items.thunk'
+import {getItems} from 'redux/shop-items/shop-items.thunk'
 import {getUserAsync} from 'redux/user/user.thunk'
 import {selectClientItems} from 'redux/shop-items/shop-items.selector'
 import {useEffect} from 'react'
@@ -11,7 +11,7 @@ const usePreWork = () => {
 
     useEffect(() => {
         if (items.length === 0) {
-            dispatch(fetchItems())
+            dispatch(getItems())
         }
         dispatch(getUserAsync())
     }, [])

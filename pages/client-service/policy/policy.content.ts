@@ -160,7 +160,7 @@ const policyContent = {
             numSubtitle2: 'DEFINITION OF TERMS',
             numText0: 'Basic terms:',
             list1: [
-                'personal data base - a named set of organized personal data in electronic update-input-user-form and / or in the update-input-user-form of personal data files.',
+                'personal data base - a named set of organized personal data in electronic update-user-form and / or in the update-user-form of personal data files.',
                 'responsible person - a designated person who organizes work related to the protection of personal data during their processing, in accordance with the law.',
                 'owner of personal data base - a natural or legal person who by law or with the consent of the personal data subject has the right to process this data, who approves the purpose of personal data processing in this database, establishes the composition of these data and processing procedures, if otherwise not defined by law. ',
                 'The state register-form of personal data bases is the only state information system for collecting, accumulating and processing information on registered personal data bases.',

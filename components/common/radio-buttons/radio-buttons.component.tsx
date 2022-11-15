@@ -15,7 +15,6 @@ const RadioButtons: FC<RadioButtonProps> = (props) => {
                             className="radio-group__input"
                             value={value}
                             name={name}
-                            id={value}
                             onChange={onChange}
                             checked={active === value}
                         />

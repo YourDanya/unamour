@@ -1,5 +1,5 @@
 import global from 'utils/global/global.utils'
-import {fetchItems} from 'redux/shop-items/shop-items.thunk'
+import {getItems} from 'redux/shop-items/shop-items.thunk'
 import {Locale, NextPageWithLayout} from 'types/types'
 import {getShopItemsLayout} from 'components/shop-items/shop-items.component'
 import {setClientItems} from 'redux/shop-items/shop-items.slice'
@@ -30,7 +30,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         if (!items) {
             console.log('no items')
             //fetching items
-            await dispatch(fetchItems())
+            await dispatch(getItems())
             const fetchedItems = store.getState().shopItems.fetchedItems
             //creating client items
             items = createClientItems(fetchedItems, locale)

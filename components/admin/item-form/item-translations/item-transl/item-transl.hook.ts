@@ -5,7 +5,6 @@ import {useInput} from 'hooks/input/input.hooks'
 import {useLocale} from 'hooks/other/other.hooks'
 import itemTransl from 'components/admin/item-form/item-translations/item-transl/item-transl.content'
 import {ItemTranslProps} from 'components/admin/item-form/item-translations/item-transl/item-transl.types'
-import {useEffect} from 'react'
 
 const useItemTransl = (props: ItemTranslProps) => {
     const {values, locale, refObj} = props
@@ -20,9 +19,9 @@ const useItemTransl = (props: ItemTranslProps) => {
     }, [])
     const {inputs, onChange, onValidate} = useInput(initValues)
 
-    useEffect(() => {
-        refObj[locale] = inputs.values
-    }, [inputs.values])
+    // useEffect(() => {
+    //     refObj[locale] = inputs.values
+    // }, [inputs.values])
 
     return {inputs, onChange, onValidate, transl: {...transl, locale}}
 }

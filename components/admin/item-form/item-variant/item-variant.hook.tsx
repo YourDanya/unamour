@@ -24,34 +24,34 @@ const useItemVariant = (props: ItemVariantProps) => {
 
     const [sizeValues, onSizesChange] = useToggleMany(sizeObject)
 
-    useEffect(() => {
-        if (sizeValues.length)
-        refObj.sizes = sizeContent.filter((accum, elem) => sizeValues[elem])
-    }, [sizeValues])
+    // useEffect(() => {
+    //     if (sizeValues.length)
+    //     refObj.sizes = sizeContent.filter((accum, elem) => sizeValues[elem])
+    // }, [sizeValues])
 
     const {inputs, onChange: onInputsChange, errRef, setOuterValues} =
-        useInput({price: {value: price.toString()}, color: {value: color.param}, newImage: {value: ''}})
+        useInput({price: {value: price.toString()}, color: {value: color.slug}, newImage: {value: ''}})
 
     const colors = useMemo(() => {
         return colorsContent.reduce((accum, elem, index) => {
-            accum.obj[elem.param] = elem
+            accum.obj[elem.slug] = elem
             accum.labels.push(colorsTransl[index])
-            accum.values.push(elem.param)
+            accum.values.push(elem.slug)
             return accum
-        }, {} as {obj: ColorRecord, labels: string[], values: string []} )
+        }, {obj: {}, labels: [], values: []} as {obj: ColorRecord, labels: string[], values: string []} )
     }, [])
 
-    useEffect(() => {
-        if (!errRef.current.errors.price) {
-            refObj.price = price
-        }
-    }, [inputs.values.price])
-
-    useEffect(() => {
-        if (!errRef.current.errors.color) {
-            refObj.color = colors.obj[inputs.values.color]
-        }
-    }, [inputs.values.color])
+        // useEffect(() => {
+        //     if (!errRef.current.errors.price) {
+        //         refObj.price = price
+        //     }
+        // }, [inputs.values.price])
+        //
+        // useEffect(() => {
+        //     if (!errRef.current.errors.color) {
+        //         refObj.color = colors.obj[inputs.values.color]
+        //     }
+        // }, [inputs.values.color])
 
     const [imageValues, setImageValues] = useState(images)
 
@@ -71,9 +71,9 @@ const useItemVariant = (props: ItemVariantProps) => {
         setImageValues({...imageValues})
     }
 
-    useEffect(() => {
-        refObj.images = imageValues
-    },[imageValues])
+    // useEffect(() => {
+    //     refObj.images = imageValues
+    // },[imageValues])
 
     return {onSizesChange, inputs, onInputsChange, transl, sizeValues, colors, imageValues,
     onSaveImage, onDeleteImage, onAddImage}

@@ -1,8 +1,10 @@
 const updatePassContent = {
-    inputs: {
-        oldPassword: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
-        newPassword: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
-        passwordConfirm: {value: '', validations: {required: true, minLength: 6, maxLength: 40, equalToField: 'newPassword'}}
+    common: {
+        inputs: {
+            oldPassword: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
+            newPassword: {value: '', validations: {required: true, minLength: 6, maxLength: 40}},
+            passwordConfirm: {value: '', validations: {required: true, minLength: 6, maxLength: 40, equalToField: 'newPassword'}}
+        }
     },
     translations: {
         ua: {

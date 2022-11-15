@@ -1,8 +1,11 @@
 import {Locale} from 'types/types'
+import {StateField} from 'redux/store.types'
+import {ContentErrors} from 'redux/store.types'
+import {ContentSuccess} from 'redux/store.types'
 
 export type Color = {
     code: string,
-    param: string,
+    slug: string,
 }
 
 export type ItemCommon = {
@@ -47,18 +50,90 @@ export type ItemTranslations = {
     translations: Record<Locale, ItemCommonTranslation>
 }
 
-export type FetchedItem = { common: ItemCommon } & ItemTranslations & ItemVariants & ItemVariantsTranslation
+export type FetchedItem = {
+    common: {
+        slug: string,
+        slugCategory: string,
+        best: boolean,
+        special: boolean,
+        coming: boolean,
+        oldPrice: string,
+        variants: [
+            {
+                color: {
+                    code: string,
+                    slug: string
+                },
+                sizes: [string],
+                images: [string],
+                price: number
+            }
+        ]
+    },
+    translations: {
+        ua: {
+            name: string,
+            category: string,
+            currency: string,
+            description: string,
+            composition: string,
+            parameters: string,
+            delivery: string,
+            variants: [
+                {
+                    color: {
+                        name: string
+                    }
+                }
+            ],
+        },
+        eng: {
+            name: string,
+            category: string,
+            currency: string,
+            description: string,
+            composition: string,
+            parameters: string,
+            delivery: string,
+            variants: [
+                {
+                    color: {
+                        name: string
+                    },
+                }
+            ]
+        },
+        ru: {
+            name: string,
+            category: string,
+            currency: string,
+            description: string,
+            composition: string,
+            parameters: string,
+            delivery: string,
+            variants: [
+                {
+                    color: {
+                        name: string
+                    }
+                }
+            ]
+        }
+    }
+}
 
 export type ClientItem = ItemCommon & ItemCommonTranslation & ItemVariant  & ItemVariantTranslation & ItemTranslations
 & ItemVariants & ItemVariantsTranslation
 
-export type Merged<T, K> = Omit<T & K, keyof (T | K)> & Pick<T & K, keyof (T | K)>
+export type ShopItemsField = 'getItems'
 
-export type ItemCategory = {slug: string} & Record<Locale, string>
+export type ShopItemsErrors = ContentErrors<ShopItemsField>
+
+export type ShopItemsSuccess = ContentSuccess<ShopItemsField>
+
 
 export type ShopItemsState = {
     fetchedItems: FetchedItem[],
     clientItems: ClientItem[],
-    error: object | null,
-    categories: ItemCategory[]
+    fields: Record<ShopItemsField, StateField>
 }

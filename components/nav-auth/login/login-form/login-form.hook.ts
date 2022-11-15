@@ -26,7 +26,7 @@ const useLoginForm = () => {
         if (login.success) {
             resetValues()
             setTimeout(() => {
-                router.push('/profile/update-input-user')
+                router.push('/profile/update-user')
                 dispatch(resetSuccess('login'))
             }, 1000)
         }

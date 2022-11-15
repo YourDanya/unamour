@@ -12,10 +12,10 @@ const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
     const {transl, onChange, onValidate, inputs, handleSubmit} = useUpdateEmailForm()
 
     return (
-        <form className={'update-input-user__form update-user__modal-form'}>
-            <div className={'update-input-user__title'}>{transl.title}</div>
+        <form className={'update-user__form update-user__modal-form'}>
+            <div className={'update-user__title'}>{transl.title}</div>
             <Input
-                className={'update-input-user__input'}
+                className={'update-user__input'}
                 name={'password'}
                 onChange={onChange}
                 placeholder={transl.inputs.password}
@@ -25,7 +25,7 @@ const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
                 type={'password'}
             />
             <Input
-                className={'update-input-user__input'}
+                className={'update-user__input'}
                 name={'newEmail'}
                 onChange={onChange}
                 placeholder={transl.inputs.newEmail}
@@ -34,7 +34,7 @@ const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <Button
-                className={'update-input-user__button update-input-user__modal-btn'}
+                className={'update-user__button update-user__modal-btn'}
                 onClick={handleSubmit}
                 loading={updateEmail.loading}
             >

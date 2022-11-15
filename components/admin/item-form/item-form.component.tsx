@@ -8,7 +8,7 @@ import ItemCommon from 'components/admin/item-form/item-common/item-common.compo
 import ItemTranslations from 'components/admin/item-form/item-translations/item-translations.component'
 
 const ItemForm: FC<FetchedItem> = (props) => {
-    const {common, translations, variants} = props
+    const {common: {variants, ...common}, translations} = props
     const {ref, onVariantAdd, onSave, transl} = useItemForm(props)
 
     return (

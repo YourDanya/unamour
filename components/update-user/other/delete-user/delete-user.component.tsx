@@ -10,11 +10,11 @@ const DeleteUser: FC<DeleteUserProps> = (props) => {
 
     return (
         <form className='update-user__modal-form'>
-            <div className={'update-input-user__modal-title'}>
+            <div className={'update-user__modal-title'}>
                 {transl.title}
             </div>
             <Input
-                className={'update-input-user__input'}
+                className={'update-user__input'}
                 name={'password'}
                 placeholder={transl.inputs.password}
                 value={inputs.values.password}
@@ -24,7 +24,7 @@ const DeleteUser: FC<DeleteUserProps> = (props) => {
                 type={'password'}
             />
             <Button
-                className={'update-input-user__button update-input-user__modal-btn'}
+                className={'update-user__button update-user__modal-btn'}
                 onClick={handleSubmit}
                 loading={deleteUser.loading}
             >

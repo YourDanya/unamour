@@ -56,6 +56,7 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 onChange={onChange}
                 active={inputs.values.slugCategory}
                 name={'category'}
+                className={'item-form__radio'}
             />
         </>
     )

@@ -39,83 +39,83 @@ const shopItemsContent = {
             color: [
                 {
                     code: '#fffcf5',
-                    param: 'milk'
+                    slug: 'milk'
                 },
                 {
                     code: '#212121',
-                    param: 'black'
+                    slug: 'black'
                 },
                 {
                     code: '#910951',
-                    param: 'purple'
+                    slug: 'purple'
                 },
                 {
                     code: '#cfc0b6',
-                    param: 'grey'
+                    slug: 'grey'
                 },
                 {
                     code: '#ffffff',
-                    param: 'white'
+                    slug: 'white'
                 },
                 {
                     code: '#a86540',
-                    param: 'light-brown'
+                    slug: 'light-brown'
                 },
                 {
                     code: '#a77752',
-                    param: 'beige'
+                    slug: 'beige'
                 },
                 {
                     code: '#442d25',
-                    param: 'coffee'
+                    slug: 'coffee'
                 },
                 {
                     code: '#735435',
-                    param: 'brown'
+                    slug: 'brown'
                 },
                 {
                     code: '#87776b',
-                    param: 'cocoa'
+                    slug: 'cocoa'
                 },
                 {
                     code: '#4d4d59',
-                    param: 'metallic'
+                    slug: 'metallic'
                 },
                 {
                     code: '#d4b2a7',
-                    param: 'dusty-rose'
+                    slug: 'dusty-rose'
                 },
                 {
                     code: '#ffeede',
-                    param: 'cream'
+                    slug: 'cream'
                 },
                 {
                     code: '#1800cc',
-                    param: 'dark-blue'
+                    slug: 'dark-blue'
                 },
                 {
                     code: '#ff0000',
-                    param: 'red'
+                    slug: 'red'
                 },
                 {
                     code: '#87cefa',
-                    param: 'blue'
+                    slug: 'blue'
                 },
                 {
                     code: '#dadeaf',
-                    param: 'pearl-gray'
+                    slug: 'pearl-gray'
                 },
                 {
                     code: '#313126',
-                    param: 'graphite'
+                    slug: 'graphite'
                 },
                 {
                     code: '#ededed',
-                    param: 'light-gray'
+                    slug: 'light-gray'
                 },
                 {
                     code: '#f2e8c9',
-                    param: 'creamy'
+                    slug: 'creamy'
                 }
             ],
         }

@@ -8,7 +8,6 @@ import {StateError} from 'redux/store.types'
 import {StateField} from 'redux/store.types'
 import {Entry} from 'types/types'
 
-
 const initialState: UserState = {
     user : null,
     fields: {

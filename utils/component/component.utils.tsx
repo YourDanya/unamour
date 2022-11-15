@@ -28,6 +28,7 @@ export const createClientItems = (fetchedItems: FetchedItem[], locale: Locale): 
         const {variants: translateVariants, ...translation} = translations[locale]
 
         const mergedVariants = commonVariants.map((variant: { color: any }, index: string | number) => {
+            // @ts-ignore
             const translateVariant = translateVariants[index]
             return {
                 ...variant, ...translateVariant, color: {...variant.color, ...translateVariant.color}

@@ -66,7 +66,8 @@ export type User = {
     email: string,
     surname: string,
     phone: string,
-    birthDate: string
+    birthDate: string,
+    isAdmin: boolean
 }
 
 export type GetUserField = <TField extends UserField> (state: AppState, field: TField) => TField

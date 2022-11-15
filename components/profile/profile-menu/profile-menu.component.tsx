@@ -1,19 +1,13 @@
 import React from 'react'
 import NavLink from 'components/common/nav-link/nav-link.component'
-
-type ProfileMenuProps = {
-    className?: string,
-    menu: string[],
-    translMenu: string[]
-}
+import {ProfileMenuProps} from 'components/profile/profile-menu/profile-menu.types'
 
 const ProfileMenu: React.FC<ProfileMenuProps> = (props) => {
-
-    const {menu, translMenu, className} = props
+    const {menu, translMenu, className, user} = props
 
     return (
         <div className={`profile__menu ${className ?? ''}`}>
-            {menu.map((item, index) => (
+            {menu.map((item, index) => (index !== 4 || user?.isAdmin) && (
                 <NavLink
                     href={item}
                     key={index}

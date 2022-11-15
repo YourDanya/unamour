@@ -1,84 +1,84 @@
 export const colorContent = {
     common: [
         {
+            slug: 'milk',
             code: '#fffcf5',
-            param: 'milk'
         },
         {
+            slug: 'black',
             code: '#212121',
-            param: 'black'
         },
         {
+            slug: 'purple',
             code: '#910951',
-            param: 'purple'
         },
         {
-            code: '#cfc0b6',
-            param: 'grey'
+            slug: 'grey',
+            code: '#cfc0b6'
         },
         {
-            code: '#ffffff',
-            param: 'white'
+            slug: 'white',
+            code: '#ffffff'
         },
         {
+            slug: 'light-brown',
             code: '#a86540',
-            param: 'light-brown'
         },
         {
-            code: '#a77752',
-            param: 'beige'
+            slug: 'beige',
+            code: '#a77752'
         },
         {
-            code: '#442d25',
-            param: 'coffee'
+            slug: 'coffee',
+            code: '#442d25'
         },
         {
-            code: '#735435',
-            param: 'brown'
+            slug: 'brown',
+            code: '#735435'
         },
         {
-            code: '#87776b',
-            param: 'cocoa'
+            slug: 'cocoa',
+            code: '#87776b'
         },
         {
-            code: '#4d4d59',
-            param: 'metallic'
+            slug: 'metallic',
+            code: '#4d4d59'
         },
         {
-            code: '#d4b2a7',
-            param: 'dusty-rose'
+            slug: 'dusty-rose',
+            code: '#d4b2a7'
         },
         {
-            code: '#ffeede',
-            param: 'cream'
+            slug: 'cream',
+            code: '#ffeede'
         },
         {
-            code: '#1800cc',
-            param: 'dark-blue'
+            slug: 'dark-blue',
+            code: '#1800cc'
         },
         {
-            code: '#ff0000',
-            param: 'red'
+            slug: 'red',
+            code: '#ff0000'
         },
         {
-            code: '#87cefa',
-            param: 'blue'
+            slug: 'blue',
+            code: '#87cefa'
         },
         {
-            code: '#dadeaf',
-            param: 'pearl-gray'
+            slug: 'pearl-gray',
+            code: '#dadeaf'
         },
         {
-            code: '#313126',
-            param: 'graphite'
+            slug: 'graphite',
+            code: '#313126'
         },
         {
-            code: '#ededed',
-            param: 'light-gray'
+            slug: 'light-gray',
+            code: '#ededed'
         },
         {
-            code: '#f2e8c9',
-            param: 'creamy'
+            slug: 'creamy',
+            code: '#f2e8c9'
         }
     ],
     translations: {

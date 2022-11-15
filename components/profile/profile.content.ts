@@ -1,10 +1,12 @@
 const profileContent = {
-    menu: [
-        '/profile/update-input-user',
-        '/profile/purchase-history',
-        '/profile/wishlist',
-        '/profile/admin'
-    ],
+    common: {
+        menu: [
+            '/profile/update-user',
+            '/profile/purchase-history',
+            '/profile/wishlist',
+            '/admin/items'
+        ]
+    },
     translations: {
         ua: {
             greeting: 'ПРИВІТ,',

@@ -8,10 +8,10 @@ const UpdateUserForm: FC = () => {
     const {transl, onChange, onValidate, inputs, handleSubmit, updateUser} = useUpdateUserForm()
 
     return (
-        <form className={'update-input-user__form'}>
-            <div className={'update-input-user__title'}>{transl.title}</div>
+        <form className={'update-user__form'}>
+            <div className={'update-user__title'}>{transl.title}</div>
             <Input
-                className={'update-input-user__input update-input-user__name'}
+                className={'update-user__input update-user__name'}
                 name={'name'}
                 onChange={onChange}
                 placeholder={transl.inputs.name}
@@ -20,7 +20,7 @@ const UpdateUserForm: FC = () => {
                 onValidate={onValidate}
             />
             <Input
-                className={'update-input-user__input update-input-user__surname'}
+                className={'update-user__input update-user__surname'}
                 name={'surname'}
                 onChange={onChange}
                 placeholder={transl.inputs.surname}
@@ -29,7 +29,7 @@ const UpdateUserForm: FC = () => {
                 onValidate={onValidate}
             />
             <Input
-                className={'update-input-user__input update-input-user__phone'}
+                className={'update-user__input update-user__phone'}
                 name={'phone'}
                 onChange={onChange}
                 placeholder={transl.inputs.phone}
@@ -38,7 +38,7 @@ const UpdateUserForm: FC = () => {
                 onValidate={onValidate}
             />
             <Input
-                className={'update-input-user__input update-input-user__birthDate'}
+                className={'update-user__input update-user__birthDate'}
                 name={'birthDate'}
                 placeholder={transl.inputs.birthDate}
                 onChange={onChange}
@@ -46,7 +46,7 @@ const UpdateUserForm: FC = () => {
                 error={inputs.errors.birthDate}
                 onValidate={onValidate}
             />
-            <Button className={'update-input-user__button'} onClick={handleSubmit} loading={updateUser.loading}>
+            <Button className={'update-user__button'} onClick={handleSubmit} loading={updateUser.loading}>
                 {transl.save}
             </Button>
             <FormMessage error={updateUser.error} success={updateUser.success}/>

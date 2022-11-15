@@ -11,7 +11,7 @@ export type ResetFilter = (filter: string, setState: SetState, toUpdate: Mutable
 
 export type GeneralContent = string[]
 
-export type Color = {param: string, code: string}
+export type Color = {slug: string, code: string}
 export type ColorContent = Color []
 export type ColorRecord = Record<string, Color>
 export type PriceContent = {min: string, max: string}

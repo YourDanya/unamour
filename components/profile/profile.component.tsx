@@ -23,13 +23,23 @@ const Profile: React.FC<ProfileProps> = (props) => {
                     <div className={'profile__name'}>
                         {transl.greeting} {user?.name}!
                     </div>
-                    <ProfileMenu className={'profile__menu--hide'} menu={content.menu} translMenu={transl.menu}/>
+                    <ProfileMenu
+                        className={'profile__menu--hide'}
+                        menu={content.menu}
+                        translMenu={transl.menu}
+                        user={user}
+                    />
                     <Button className={'profile__menu-btn'} onClick={showModal} name={'menu'}>
                         {transl.profileMenu}
                     </Button>
                 </div>
                 <ModalContent active={modalState.menu} hideModal={hideModal} className={'profile__menu-modal'}>
-                    <ProfileMenu className={'profile__menu--modal'} menu={content.menu} translMenu={transl.menu}/>
+                    <ProfileMenu
+                        className={'profile__menu--modal'}
+                        menu={content.menu}
+                        translMenu={transl.menu}
+                        user={user}
+                    />
                 </ModalContent>
                 <Modal active={modalState.modal} hideModal={hideModal}/>
                 <div className={'profile__page'}>

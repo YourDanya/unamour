@@ -1,9 +1,11 @@
 const formContent = {
-    inputs: {
-        name: {value: '', validations: {minLength: 3, maxLength: 30}},
-        surname: {value: '', validations: {minLength: 3, maxLength: 30}},
-        phone: {value: '', validations: {isPhone: true}},
-        birthDate: {value: ''}
+    common: {
+        inputs: {
+            name: {value: '', validations: {minLength: 3, maxLength: 30}},
+            surname: {value: '', validations: {minLength: 3, maxLength: 30}},
+            phone: {value: '', validations: {isPhone: true}},
+            birthDate: {value: ''}
+        }
     },
     translations: {
         ua: {

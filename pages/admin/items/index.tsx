@@ -1,14 +1,25 @@
-import React from "react"
+import React from 'react'
 import {NextPage} from 'next'
-import useAdmin from 'pages/admin/items/admin-items.hook'
+import useAdminItems from 'pages/admin/items/admin-items.hook'
+import ItemForm from 'components/admin/item-form/item-form.component'
+import Spinner from 'components/common/spinner/spinner.component'
 
-const Admin: NextPage = () => {
-    const {items} = useAdmin()
+const AdminItems: NextPage = () => {
+    const {items, user} = useAdminItems()
 
     return (
-        <div className={'admin-items'}>
-        </div>
+        <>
+            {items.length > 0 && user?.isAdmin ? (
+                <div className={'admin-items'}>
+                    {items.map((item, index) => index === 0 && (
+                        <ItemForm key={item.common.slug} {...item}/>
+                    ))}
+                </div>
+            ) : (
+                <Spinner className={'admin-spinner'}/>
+            )}
+        </>
     )
 }
 
-export default Admin
+export default AdminItems

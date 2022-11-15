@@ -4,7 +4,7 @@ import {UserSuccess} from 'redux/user/user.types'
 
 export const userErrors: UserErrors = {
     '5': {
-        ua: 'Щось пійшло не так. Спробоуйте пізніше',
+        ua: 'Щось пійшло не так. Спробоуйте пізніше.',
         eng: 'Something went wrong. Try again later.',
         ru: 'Что-то пошло не так. Попройбуйте снова позже.'
     },
