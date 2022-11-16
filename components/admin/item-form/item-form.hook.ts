@@ -8,9 +8,7 @@ const useItemForm = (props: FetchedItem) => {
     const [transl] = useLocale(itemFormContent)
 
     const ref = useRef(props)
-
     const onVariantAdd = () => {}
-
     const onSave = () => {}
 
     return {ref, onVariantAdd,  onSave, transl}

@@ -7,7 +7,6 @@ import FormMessage from 'components/common/form-message/form-message.component'
 import React from 'react'
 
 const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
-
     const {updateEmail} = props
     const {transl, onChange, onValidate, inputs, handleSubmit} = useUpdateEmailForm()
 

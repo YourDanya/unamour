@@ -3,7 +3,6 @@ import useDropdown from 'components/common/dropdown/dropdown.hook'
 import {DropdownProps} from 'components/common/dropdown/dropdown.types'
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-
     const {name, plus, children, className} = props
     const {show, onClick} = useDropdown()
 

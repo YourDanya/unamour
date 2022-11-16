@@ -2,7 +2,7 @@ const ItemVariantContent = {
     common: {
         inputs: {
             price: {validations: {required: true, isNumber: true}}
-        },
+        }
     },
     translations: {
         ua: {
@@ -14,7 +14,8 @@ const ItemVariantContent = {
                 price: 'ціна',
                 newImage: 'введіть адресу'
             },
-            addImage: 'додати картинку'
+            addImage: 'додати картинку',
+            variant: 'варіант'
         },
         eng: {
             price: 'price',
@@ -25,7 +26,8 @@ const ItemVariantContent = {
                 price: 'price',
                 newImage: 'enter url'
             },
-            addImage: 'add image'
+            addImage: 'add image',
+            variant: 'variant'
         },
         ru: {
             price: 'цена',
@@ -36,7 +38,8 @@ const ItemVariantContent = {
                 price: 'цена',
                 newImage: 'введите адрес'
             },
-            addImage: 'добавить картинку'
+            addImage: 'добавить картинку',
+            variant: 'вариант'
         }
     }
 }

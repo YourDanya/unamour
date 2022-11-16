@@ -4,13 +4,16 @@ import Checkbox from 'components/common/checkbox/checkbox.component'
 import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
 import React from 'react'
 import useItemCommon from 'components/admin/item-form/item-common/item-common.hook'
-import {ItemCommonProps} from 'components/admin/item-form/item-form.types'
+import {ItemCommonProps} from 'components/admin/item-form/item-common/item-common.types'
 
 const ItemCommon: FC<ItemCommonProps> = (props) => {
     const {transl, inputs, onChange, onValidate, categoryTransl, categoryValues} = useItemCommon(props)
 
     return (
-        <>
+        <div className={'item-form__block'}>
+            <div className={'item-form__title'}>
+                {transl.title}
+            </div>
             <Input
                 className={'item-form__input'}
                 name={'slug'}
@@ -50,15 +53,18 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 value={inputs.values.coming}
                 onChange={onChange}
             />
+            <div className={'item-form__label'}>
+                {transl.category}
+            </div>
             <RadioButtons
+                className={'item-form__radio'}
                 labels={categoryTransl}
                 values={categoryValues}
                 onChange={onChange}
                 active={inputs.values.slugCategory}
                 name={'category'}
-                className={'item-form__radio'}
             />
-        </>
+        </div>
     )
 }
 

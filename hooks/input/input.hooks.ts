@@ -136,6 +136,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 export const validate = <T extends ValidationInput, >(input: T, locale: Locale) => {
     const value = input.value as string
     const {validations, values, name, translInputs} = input
+    console.log('value', value)
     const length = value.length
     const errors: string[] = []
 

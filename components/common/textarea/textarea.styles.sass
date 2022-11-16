@@ -1,15 +1,38 @@
 .textarea
   &__input
+    padding: 0
     border: none
-    border-bottom: 1px solid #e0e0e0
     min-height: 80px
-    padding-top: 20px
     resize: vertical
     outline: none
     display: block
     width: 100%
-    font-size: 12px
-    &::placeholder
-      color: #a1a1a1
-    &:focus
-      border-color: black
+    font-size: 11px
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar
+      display: none
+  &__placeholder
+    position: absolute
+    top: 0
+    left: 0
+    pointer-events: none
+    transition: font-size 0.4s, transform 0.4s
+    color: #a1a1a1
+    font-size: 11px
+  &__error
+    margin-top: 5px
+    font-size: 10px
+    color: red
+  &__main
+    z-index: 10
+    position: relative
+  &__state
+    border-bottom: 1px solid #e0e0e0
+    padding: 10px 0
+    &--focused
+      .textarea__placeholder
+        opacity: 0
+    &--full
+      .textarea__placeholder
+        opacity: 0

@@ -12,21 +12,25 @@ import {ItemVariantProps} from 'components/admin/item-form/item-variant/item-var
 const ItemVariant: FC<ItemVariantProps> = (props) => {
     const {} = props
     const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs, imageValues,
-    onDeleteImage, onSaveImage, onAddImage} = useItemVariant(props)
+    onDeleteImage, onSaveImage, onAddImage, } = useItemVariant(props)
 
     return (
-        <>
+        <div className={'item-form__variant'}>
+            <div className={'item-form__subtitle'}>
+                {transl.variant}
+            </div>
             {/*price*/}
             <Input
-                className={'item-form__price'}
+                className={'item-form__input'}
                 name={'price'}
-                placeholder={transl.inputs.price}
-                value={inputs.values.price}
-                onChange={onInputsChange}
+                placeholder={''}
+                value={'value'}
+                onChange={() => {}}
             />
             {/*color*/}
-            <Dropdown name={transl.color}>
+            <Dropdown className={'item-form__dropdown'} name={transl.color} >
                 <RadioButtons
+                    className={'item-form__radio'}
                     name={'color'}
                     labels={colors.labels}
                     values={colors.values}
@@ -35,7 +39,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 >
                     {Object.entries(colors.obj).map(([key, value]) => (
                         <div
-                            className={'item-variant__color'}
+                            className={'item-form__color'}
                             style={{backgroundColor: value.code}}
                             key={key}
                         />
@@ -43,20 +47,20 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 </RadioButtons>
             </Dropdown>
             {/*sizes*/}
-            <Dropdown name={transl.sizes}>
+            <Dropdown className={'item-form__dropdown'} name={transl.sizes}>
                 {Object.entries(sizeValues).map(([key, value], index,  arr) => (
                     <Checkbox
-                        className={`item-form__size ${index === arr.length - 1 ? 'item-form__size--last' : ''}`}
+                        className={`item-form__check ${index === arr.length - 1 ? 'item-form__check--last' : ''}`}
                         key={key}
                         name={key}
                         label={key}
-                        value={value}
+                        value={true}
                         onChange={onSizesChange}
                     />
                 ))}
             </Dropdown>
-            {/*images*/}
-            <Dropdown name={transl.images}>
+            images
+            <Dropdown className={'item-form__dropdown'} name={transl.images}>
                 {imageValues.map((url, index,arr) => (
                     <UpdateInput
                         className={`item-form__image ${index === arr.length - 1 ? 'item-form__image--last' : ''}`}
@@ -64,19 +68,19 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                         index={index}
                         onDelete={onDeleteImage}
                         onSave={onSaveImage}
-                        key={url}
+                        key={index}
                     />
                 ))}
                 <Input
-                    className={'item-form__image'}
+                    className={'item-form__input'}
                     name={'newImage'}
                     placeholder={transl.inputs.newImage}
                     value={inputs.values.newImage}
                     onChange={onInputsChange}
                 />
-                <Button className={'item-form__price'} onClick={onAddImage}/>
+                <Button className={'item-form__button'} onClick={onAddImage}/>
             </Dropdown>
-        </>
+        </div>
     )
 }
 

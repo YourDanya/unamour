@@ -8,8 +8,7 @@ const Input: React.FC<InputProps> = (props) => {
 
     return (
         <div className={`input ${className ?? ''}`}>
-            <div
-                className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
+            <div className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
                 <div className="input__main">
                     <input
                         onBlur={handleBlur}

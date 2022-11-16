@@ -29,7 +29,6 @@ export type ItemVariant = {
 export type ItemCommonTranslation = {
     name: string,
     category: string,
-    currency: string,
     description: string,
     composition: string,
     parameters: string,

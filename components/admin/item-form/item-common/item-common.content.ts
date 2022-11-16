@@ -18,7 +18,9 @@ const itemCommonContent = {
                 special: 'особливі',
                 coming: 'скоро буде',
                 oldPrice: 'стара ціна',
-            }
+            },
+            category: 'категорія',
+            title: 'загальне'
         },
         eng: {
             inputs: {
@@ -28,7 +30,9 @@ const itemCommonContent = {
                 special: 'special',
                 coming: 'coming',
                 oldPrice: 'old price'
-            }
+            },
+            category: 'category',
+            title: 'common'
         },
         ru: {
             inputs: {
@@ -38,7 +42,9 @@ const itemCommonContent = {
                 special: 'особые',
                 coming: 'скоро будет',
                 oldPrice: 'старая цена'
-            }
+            },
+            category: 'категория',
+            title: 'общее'
         }
     }
 }
