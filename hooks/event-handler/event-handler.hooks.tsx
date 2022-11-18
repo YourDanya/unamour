@@ -12,6 +12,7 @@ export const useCombineHandlers = (...eventHandlers: ((event: any) => void)[]):
 export const useToggle = (): [active: boolean, handleEvent: (event: any) => void, setActive: (active: boolean) => void] => {
     const [active, setActive] = useState(false)
     const handleEvent = (event: any) => {
+        event.preventDefault()
         setActive(!active)
     }
     return [active, handleEvent, setActive]

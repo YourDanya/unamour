@@ -20,7 +20,7 @@ const useAdminItems = () => {
             router.push('/')
         }
     }, [getUser])
-    
+
     return {items, user, getItems}
 }
 

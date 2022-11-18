@@ -10,9 +10,8 @@ import React from 'react'
 import {ItemVariantProps} from 'components/admin/item-form/item-variant/item-variant.types'
 
 const ItemVariant: FC<ItemVariantProps> = (props) => {
-    const {} = props
     const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs, imageValues,
-    onDeleteImage, onSaveImage, onAddImage, } = useItemVariant(props)
+        onDeleteImage, onSaveImage, onAddImage} = useItemVariant(props)
 
     return (
         <div className={'item-form__variant'}>
@@ -23,9 +22,9 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
             <Input
                 className={'item-form__input'}
                 name={'price'}
-                placeholder={''}
-                value={'value'}
-                onChange={() => {}}
+                placeholder={transl.inputs.price}
+                value={inputs.values.price}
+                onChange={onSizesChange}
             />
             {/*color*/}
             <Dropdown className={'item-form__dropdown'} name={transl.color} >
@@ -54,12 +53,12 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                         key={key}
                         name={key}
                         label={key}
-                        value={true}
+                        value={value}
                         onChange={onSizesChange}
                     />
                 ))}
             </Dropdown>
-            images
+            {/*images*/}
             <Dropdown className={'item-form__dropdown'} name={transl.images}>
                 {imageValues.map((url, index,arr) => (
                     <UpdateInput

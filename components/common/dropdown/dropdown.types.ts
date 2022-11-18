@@ -4,5 +4,6 @@ export type DropdownProps = {
     name: string,
     plus?: boolean,
     className?: string,
-    children?: ReactNode
+    children?: ReactNode,
+    parentName?: string
 }

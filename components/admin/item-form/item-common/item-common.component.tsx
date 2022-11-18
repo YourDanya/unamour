@@ -5,6 +5,7 @@ import RadioButtons from 'components/common/radio-buttons/radio-buttons.componen
 import React from 'react'
 import useItemCommon from 'components/admin/item-form/item-common/item-common.hook'
 import {ItemCommonProps} from 'components/admin/item-form/item-common/item-common.types'
+import Dropdown from 'components/common/dropdown/dropdown.component'
 
 const ItemCommon: FC<ItemCommonProps> = (props) => {
     const {transl, inputs, onChange, onValidate, categoryTransl, categoryValues} = useItemCommon(props)
@@ -53,17 +54,16 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 value={inputs.values.coming}
                 onChange={onChange}
             />
-            <div className={'item-form__label'}>
-                {transl.category}
-            </div>
-            <RadioButtons
-                className={'item-form__radio'}
-                labels={categoryTransl}
-                values={categoryValues}
-                onChange={onChange}
-                active={inputs.values.slugCategory}
-                name={'category'}
-            />
+            <Dropdown className={'item-form__dropdown'} name={transl.category}>
+                <RadioButtons
+                    className={'item-form__radio'}
+                    labels={categoryTransl}
+                    values={categoryValues}
+                    onChange={onChange}
+                    active={inputs.values.slugCategory}
+                    name={'category'}
+                />
+            </Dropdown>
         </div>
     )
 }

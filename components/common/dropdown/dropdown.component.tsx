@@ -4,7 +4,7 @@ import {DropdownProps} from 'components/common/dropdown/dropdown.types'
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
     const {name, plus, children, className} = props
-    const {show, onClick} = useDropdown()
+    const {show, onClick, elemRef, showChildren} = useDropdown(props)
 
     return (
         <div className={`dropdown ${plus? 'dropdown--plus' : '' } ${show ? 'dropdown--show' : ''} ${className}`}>
@@ -12,8 +12,8 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
                 <div className={'dropdown__sign'}/>
                 <div className={'dropdown__name'}>{name}</div>
             </button>
-            <div className={`dropdown__content  ${show ? 'dropdown__content--show' : ''}`}>
-                <div className={'dropdown__children'}>{children}</div>
+            <div className={`dropdown__content  ${show ? 'dropdown__content--show' : ''}`} ref={elemRef}>
+                <div className={'dropdown__children'}>{showChildren && children}</div>
             </div>
         </div>
     )
