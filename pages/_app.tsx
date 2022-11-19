@@ -19,6 +19,7 @@ import 'components/common/modal/modal.styles.sass'
 import 'components/common/sidebar/sidebar.styles.sass'
 import 'components/common/modal-content/modal-content.styles.sass'
 import 'components/common/map/map.styles.sass'
+import 'components/common/pagination/pagination.styles.sass'
 
 import 'components/admin/item-form/item-form.styles.sass'
 import 'components/profile/profile.styles.sass'

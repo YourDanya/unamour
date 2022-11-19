@@ -3,6 +3,7 @@ import {NextPage} from 'next'
 import useAdminItems from 'pages/admin/items/admin-items.hook'
 import ItemForm from 'components/admin/item-form/item-form.component'
 import Spinner from 'components/common/spinner/spinner.component'
+import Pagination from 'components/common/pagination/pagination.component'
 
 const AdminItems: NextPage = () => {
     const {items, user, getItems} = useAdminItems()
@@ -11,13 +12,15 @@ const AdminItems: NextPage = () => {
         <>
             {items.length > 0 && user?.isAdmin ? (
                 <div className={'admin-items'}>
-                    {items.map((item, index) => index < 10 && (
-                        <ItemForm
-                            itemIndex={index}
-                            key={`${item.common.slug}${index}`}
-                            {...item}
-                        />
-                    ))}
+                    <Pagination>
+                        {items.map((item, index) => (
+                            <ItemForm
+                                itemIndex={index}
+                                key={`${item.common.slug}${index}`}
+                                {...item}
+                            />
+                        ))}
+                    </Pagination>
                 </div>
             ) : (
                 <Spinner className={'admin-spinner'}/>

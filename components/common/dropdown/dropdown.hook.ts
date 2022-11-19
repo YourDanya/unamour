@@ -41,7 +41,6 @@ const useDropdown = (props: DropdownProps) => {
 
     useLayoutEffect(() => {
         const y = elemRef?.current?.firstElementChild?.getBoundingClientRect().y
-        console.log(parentName, y)
     }, [])
 
     useEffect(() => {

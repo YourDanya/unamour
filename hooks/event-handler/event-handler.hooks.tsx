@@ -1,15 +1,18 @@
-import React, {useRef, useState} from 'react'
+import {useRef, useState, MouseEvent, ChangeEvent} from 'react'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
+import {MutableRefObject} from 'react'
+import {UseSetActive} from 'hooks/event-handler/event-handler.types'
+import {UseToggle} from 'hooks/event-handler/event-handler.types'
 
 export const useCombineHandlers = (...eventHandlers: ((event: any) => void)[]):
-    (event: React.MouseEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>) => void => {
+    (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => void => {
 
-    return (event: React.MouseEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>) => {
+    return (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => {
         eventHandlers.forEach(eventHandler => eventHandler(event))
     }
 }
 
-export const useToggle = (): [active: boolean, handleEvent: (event: any) => void, setActive: (active: boolean) => void] => {
+export const useToggle : UseToggle = () => {
     const [active, setActive] = useState(false)
     const handleEvent = (event: any) => {
         event.preventDefault()
@@ -19,17 +22,17 @@ export const useToggle = (): [active: boolean, handleEvent: (event: any) => void
 }
 
 export const useDoubleToggle = (initState?: boolean, params?: { firstCond?: boolean, secondCond?: boolean }):
-    [active: boolean, handleFirst: (event: React.MouseEvent<HTMLElement>) => void, handleSecond: (event: React.MouseEvent<HTMLElement>) => void] => {
+    [active: boolean, handleFirst: (event: MouseEvent<HTMLElement>) => void, handleSecond: (event: MouseEvent<HTMLElement>) => void] => {
 
     const [active, setActive] = useState(initState ?? false)
 
-    const handleFirst = (event: React.MouseEvent<HTMLElement>) => {
+    const handleFirst = (event: MouseEvent<HTMLElement>) => {
         if (active && (params?.firstCond ?? true)) {
             setActive(false)
         }
     }
 
-    const handleSecond = (event: React.MouseEvent<HTMLElement>) => {
+    const handleSecond = (event: MouseEvent<HTMLElement>) => {
         if (!active && (params?.secondCond ?? true)) {
             setActive(true)
         }
@@ -38,18 +41,18 @@ export const useDoubleToggle = (initState?: boolean, params?: { firstCond?: bool
     return [active, handleFirst, handleSecond]
 }
 
-export const useToggleMany = <T,>(initialState: Record<keyof T, boolean>, attribute: string = 'name'): [
+export const useToggleMany = <T, >(initialState: Record<keyof T, boolean>, attribute: string = 'name'): [
     active: Record<keyof T, boolean>,
     handleEvent: (event: any) => void,
     setActive: (active: Record<keyof T, boolean>) => void,
-    stateRef: React.MutableRefObject<any>
+    stateRef: MutableRefObject<any>
 ] => {
 
     const [active, setActive] = useState(initialState)
     const stateRef = useRef(initialState)
 
     useOmitFirstEffect(() => {
-       stateRef.current = active
+        stateRef.current = active
     }, [active])
 
     const handleEvent = (event: any) => {
@@ -60,49 +63,37 @@ export const useToggleMany = <T,>(initialState: Record<keyof T, boolean>, attrib
     return [active, handleEvent, setActive, stateRef]
 }
 
-
-export const useSetActive = (initActive: string, attribute: string = 'name'):
-    [active: string, handleEvent: (event: any) => void, setActive: (active: string) => void] => {
-
-    const [active, setActive] = useState(initActive)
-
-    const handleEvent = (event: any) => {
-        setActive(event.currentTarget.getAttribute(attribute))
+export const useSetActive: UseSetActive = ((initActive, attribute= 'name') => {
+    const [active, setActive] = useState(initActive as string | number)
+    const handleEvent = (event: MouseEvent<HTMLElement>) => {
+        let value: string | number = event.currentTarget.getAttribute(attribute) as string
+        if (typeof initActive === 'number') value = +value
+        setActive(value)
     }
-
     return [active, handleEvent, setActive]
-}
-
-export const useSetNumber = (initActive: number, attribute: string):
-    [active: number, handleEvent: (event: any) => void, setActive: (active: number) => void] => {
-
-    const [active, setActive] = useState(initActive)
-    const handleEvent = (event: any) => {
-        setActive(+event.currentTarget.getAttribute(attribute))
-    }
-
-    return [active, handleEvent, setActive]
-}
+}) as UseSetActive
 
 export const useToggleActive = (attribute: string = 'name'):
-    [active: string | null, handleEvent: (event: React.MouseEvent<HTMLElement>) => void, ref: React.MutableRefObject<string | null>] => {
+    [active: string | null, handleEvent: (event: MouseEvent<HTMLElement>) => void, ref: MutableRefObject<string | null>] => {
 
     const [active, setActive] = useState<string | null>(null)
-    const ref = useRef<string|null>(null)
-    const handleEvent = (event: React.MouseEvent<HTMLElement>) => {
+    const ref = useRef<string | null>(null)
+    const handleEvent = (event: MouseEvent<HTMLElement>) => {
         const value = event.currentTarget.getAttribute(attribute)
         if (active === value) {
             setActive(null)
         } else {
             const active = event.currentTarget.getAttribute(attribute)
-            ref.current= active
+            ref.current = active
             setActive(active)
         }
     }
     return [active, handleEvent, ref]
 }
 
-export const useSetFalseMany = <T extends readonly string[], >(arr: T, attribute: string): [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void] => {
+export const useSetFalseMany = <T extends readonly string[], >(arr: T, attribute: string):
+    [active: Record<typeof arr[number], boolean>, handleEvent: (event: any) => void] => {
+
     const initialState: any = {}
     arr.forEach((elem) => initialState[elem] = true)
     const [active, setActive] = useState(initialState)

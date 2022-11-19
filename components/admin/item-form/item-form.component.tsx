@@ -11,8 +11,10 @@ const ItemForm: FC<ItemFormProps> = (props) => {
     const {common: {variants, ...common}, translations, itemIndex} = props
     const {ref, onVariantAdd, onSave, transl} = useItemForm(props)
 
-    if (itemIndex === 0) console.log('rendering first', new Date().getSeconds())
-    if (itemIndex === 275) console.log('rendering last', new Date().getSeconds())
+    // if (itemIndex === 0) console.log('rendering first', new Date().getSeconds())
+    // if (itemIndex === 275) console.log('rendering last', new Date().getSeconds())
+
+    console.log('rendering item form')
 
     return (
         <form>
