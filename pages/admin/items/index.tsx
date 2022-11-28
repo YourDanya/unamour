@@ -15,7 +15,6 @@ const AdminItems: NextPage = () => {
                     <Pagination>
                         {items.map((item, index) => (
                             <ItemForm
-                                itemIndex={index}
                                 key={`${item.common.slug}${index}`}
                                 {...item}
                             />

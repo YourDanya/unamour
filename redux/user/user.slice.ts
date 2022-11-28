@@ -48,13 +48,13 @@ export const userSlice = createSlice({
         setUser: (state, action: PayloadAction<{user: User | null}>) => {
             state.user = action.payload.user
         },
-        resetTimer: (state, action: PayloadAction<UserField>) => {
+        resetUserTimer: (state, action: PayloadAction<UserField>) => {
             state.fields[action.payload].timer = 0
         },
-        resetSuccess: (state, action: PayloadAction<UserField>) => {
+        resetUserSuccess: (state, action: PayloadAction<UserField>) => {
             state.fields[action.payload].success = false
         },
-        setField: (state, action: PayloadAction<{field: UserField, value: Partial<StateField>}>) => {
+        setUserField: (state, action: PayloadAction<{field: UserField, value: Partial<StateField>}>) => {
             const {field, value} = action.payload
             Object.entries(value).forEach((entry) => {
                 const [key, val] = entry as Entry<StateField>
@@ -69,7 +69,7 @@ export const userSlice = createSlice({
     }
 })
 
-export const {userFieldStart, userFieldFailure, userFieldSuccess, setUser, resetTimer, resetSuccess, setField
+export const {userFieldStart, userFieldFailure, userFieldSuccess, setUser, resetUserTimer, resetUserSuccess, setField
 } = userSlice.actions
 
 export default userSlice.reducer

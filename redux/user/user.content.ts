@@ -1,4 +1,3 @@
-import {ContentErrors} from 'redux/store.types'
 import {UserErrors} from 'redux/user/user.types'
 import {UserSuccess} from 'redux/user/user.types'
 

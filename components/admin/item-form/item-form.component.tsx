@@ -8,26 +8,22 @@ import ItemVariants from 'components/admin/item-form/item-variants/item-variants
 import {ItemFormProps} from 'components/admin/item-form/item-form.types'
 
 const ItemForm: FC<ItemFormProps> = (props) => {
-    const {common: {variants, ...common}, translations, itemIndex} = props
+    const {common: {variants, ...common}, translations} = props
     const {ref, onVariantAdd, onSave, transl} = useItemForm(props)
 
-    // if (itemIndex === 0) console.log('rendering first', new Date().getSeconds())
-    // if (itemIndex === 275) console.log('rendering last', new Date().getSeconds())
-
-    console.log('rendering item form')
-
     return (
-        <form>
+        <form className={'item-form'}>
             <ItemCommon {...common} refObj={ref.current}/>
             <ItemTranslations translations={translations} refObj={ref.current}/>
             <ItemVariants variants={variants} refObj={ref.current}/>
-            <Button onClick={onVariantAdd}>
-                {transl.addVariant}
-            </Button>
-
-            <Button onClick={onSave}>
-                {transl.save}
-            </Button>
+            <div className={'item-form__buttons'}>
+                <Button className={'item-form__button'} onClick={onVariantAdd}>
+                    {transl.addVariant}
+                </Button>
+                <Button className={'item-form__button'} onClick={onSave}>
+                    {transl.save}
+                </Button>
+            </div>
         </form>
     )
 }

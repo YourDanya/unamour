@@ -14,7 +14,7 @@ import {StateError} from 'redux/store.types'
 import {UpdatePassData} from './user.types'
 import {DeleteUserData} from './user.types'
 import {setUser} from 'redux/user/user.slice'
-import {setField} from 'redux/user/user.slice'
+import {setUserField} from 'redux/user/user.slice'
 import {UpdateEmailData} from './user.types'
 import {UpdateUserData} from './user.types'
 
@@ -42,7 +42,7 @@ export const sendRegisterCodeAsync = (): AppThunk => {
     return async (dispatch) => {
         dispatch(userFieldStart('sendRegisterCode'))
         const sendRegisterCode = () => Api.post('/auth/send-activation-code')
-        const setTimer = ({timer}: {timer: number}) => setField({field: 'sendRegisterCode', value: {timer}})
+        const setTimer = ({timer}: {timer: number}) => setUserField({field: 'sendRegisterCode', value: {timer}})
         const setSuccess = () => userFieldSuccess('sendRegisterCode')
         const sendRegisterCodeSuccess = [setTimer, setSuccess]
         const sendRegisterCodeFailure = (error: StateError) => userFieldFailure({error, field: 'sendRegisterCode'})
@@ -139,7 +139,7 @@ export const sendUpdateEmailCodeAsync = (): AppThunk => {
     return async (dispatch) => {
         dispatch(userFieldStart('sendUpdateEmailCode'))
         const sendRegisterCode = () => Api.post('/auth/send-update-email-code')
-        const setTimer = ({timer}: {timer: number}) => setField({field: 'sendUpdateEmailCode', value: {timer}})
+        const setTimer = ({timer}: {timer: number}) => setUserField({field: 'sendUpdateEmailCode', value: {timer}})
         const setSuccess = () => userFieldSuccess('sendUpdateEmailCode')
         const sendRegisterCodeSuccess = [setTimer, setSuccess]
         const setError = (error: StateError) => userFieldFailure({error, field: 'sendUpdateEmailCode'})

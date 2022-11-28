@@ -1,3 +1,9 @@
-const perPageValues = Array.from({length: 10}, (_, elem) => elem+1)
+const a = {b: {c: 10}}
 
-console.log('per page values', perPageValues)
+const f = (obj) => {
+    obj.c = 100
+}
+
+f(a.b)
+
+console.log('c', a.b.c)

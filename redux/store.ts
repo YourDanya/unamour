@@ -9,6 +9,7 @@ import cart from 'redux/cart/cart.slice'
 import user from 'redux/user/user.slice'
 import main from 'redux/main/main.slice'
 import test from 'redux/test/test.slice'
+import admin from 'redux/admin/admin.slice'
 
 export type AppStore = ReturnType<typeof makeStore>
 export type AppState = ReturnType<AppStore['getState']>
@@ -22,7 +23,8 @@ export const makeStore = () =>
             cart,
             user,
             main,
-            test
+            test,
+            admin
         },
         middleware: [thunk],
         devTools: true

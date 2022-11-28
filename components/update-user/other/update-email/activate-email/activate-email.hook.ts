@@ -4,9 +4,9 @@ import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 import {useDispatch} from 'react-redux'
 import {useEffect} from 'react'
-import {resetSuccess} from 'redux/user/user.slice'
+import {resetUserSuccess} from 'redux/user/user.slice'
 import activateEmailContent from 'components/update-user/other/update-email/activate-email/activate-email.content'
-import {resetTimer} from 'redux/user/user.slice'
+import {resetUserTimer} from 'redux/user/user.slice'
 import {ActivateEmailProps} from 'components/update-user/other/update-email/activate-email/activate-email.types'
 import {sendUpdateEmailCodeAsync} from 'redux/user/user.thunk'
 import {activateEmailAsync} from 'redux/user/user.thunk'
@@ -27,15 +27,15 @@ const useActivateEmail = (props: ActivateEmailProps) => {
         dispatch(sendUpdateEmailCodeAsync())
     }
     const clearInitTimer = () => {
-        dispatch(resetTimer('sendUpdateEmailCode'))
+        dispatch(resetUserTimer('sendUpdateEmailCode'))
     }
 
     useEffect(() => {
         if (activateEmail.success) {
             resetValues()
             setTimeout(() => {
-                resetSuccess('sendUpdateEmailCode')
-                resetSuccess('activateEmail')
+                resetUserSuccess('sendUpdateEmailCode')
+                resetUserSuccess('activateEmail')
                 hideModal()
             })
         }

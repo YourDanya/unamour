@@ -1,22 +1,42 @@
 .pagination
-  z-index: 10
-  bottom: 0
-  position: sticky
-  display: flex
-  justify-content: center
-  align-items: center
-  height: 40px
-  width: 100px
-  background-color: black
-  &__back
-    &-arrow
-  &__dorward
-    &-arrow
-  &__number
-  &__ellipsis
-    &-elem
+  &__items
+    margin-bottom: 20px
+  &__content
+    border-radius: 2px
+    z-index: 10
+    bottom: 0
+    position: sticky
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: white
+    width: 300px
+    height: 40px
   &__elem
+    display: flex
+    align-items: center
+    justify-content: center
+    color: #333
+    border: 2px solid #d2d2d2
+    margin: 0 4px
+    font-size: 12px
+    height: 25px
+    width: 25px
+  &__active
+    background-color: black
     color: white
-    font-size: 20px
-    height: 30px
-    width: 30px
+    border-color: black
+  &__forward, &__back
+    color: #4f4f4f
+    font-size: 14px
+  &__ellipsis
+    border: none
+    width: auto
+    &-elem
+      background-color: black
+      margin: 8px 2px 0 2px
+      width: 1.44px
+      height: 1.44px
+      border-radius: 50px
+  &__input
+    display: none

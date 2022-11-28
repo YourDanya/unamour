@@ -67,6 +67,7 @@ export const useSetActive: UseSetActive = ((initActive, attribute= 'name') => {
     const [active, setActive] = useState(initActive as string | number)
     const handleEvent = (event: MouseEvent<HTMLElement>) => {
         let value: string | number = event.currentTarget.getAttribute(attribute) as string
+        console.log('attribute', attribute)
         if (typeof initActive === 'number') value = +value
         setActive(value)
     }

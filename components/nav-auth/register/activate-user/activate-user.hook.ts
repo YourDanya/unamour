@@ -4,12 +4,12 @@ import activateUserContent from 'components/nav-auth/register/activate-user/acti
 import {useDispatch} from 'react-redux'
 import {sendRegisterCodeAsync} from 'redux/user/user.thunk'
 import {ActivateProps} from 'components/nav-auth/register/activate-user/activate-user.types'
-import {resetTimer} from 'redux/user/user.slice'
+import {resetUserTimer} from 'redux/user/user.slice'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 import {activateUserAsync} from 'redux/user/user.thunk'
 import {useEffect} from 'react'
-import {resetSuccess} from 'redux/user/user.slice'
+import {resetUserSuccess} from 'redux/user/user.slice'
 import {useRouter} from 'next/router'
 
 const useActivateUser = (props: ActivateProps) => {
@@ -26,7 +26,7 @@ const useActivateUser = (props: ActivateProps) => {
         dispatch(sendRegisterCodeAsync())
     }
     const clearInitTimer = () => {
-        dispatch(resetTimer('sendRegisterCode'))
+        dispatch(resetUserTimer('sendRegisterCode'))
     }
 
     const router = useRouter()
@@ -35,9 +35,9 @@ const useActivateUser = (props: ActivateProps) => {
             resetValues()
             setTimeout(() => {
                 router.push('/profile/update-user')
-                dispatch(resetSuccess('register'))
-                dispatch(resetSuccess('activateUser'))
-                dispatch(resetSuccess('sendRegisterCode'))
+                dispatch(resetUserSuccess('register'))
+                dispatch(resetUserSuccess('activateUser'))
+                dispatch(resetUserSuccess('sendRegisterCode'))
             }, 1000)
         }
     },[activateUser.success])
