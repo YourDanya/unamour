@@ -13,9 +13,9 @@ const ItemForm: FC<ItemFormProps> = (props) => {
 
     return (
         <form className={'item-form'}>
-            <ItemCommon {...common} refObj={ref.current}/>
-            <ItemTranslations translations={translations} refObj={ref.current}/>
-            <ItemVariants variants={variants} refObj={ref.current}/>
+            <ItemCommon {...common} refObj={ref}/>
+            <ItemTranslations translations={translations} refObj={ref}/>
+            <ItemVariants variants={variants} refObj={ref}/>
             <div className={'item-form__buttons'}>
                 <Button className={'item-form__button'} onClick={onVariantAdd}>
                     {transl.addVariant}

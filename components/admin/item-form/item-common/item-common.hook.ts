@@ -8,6 +8,7 @@ import {ItemCommonProps} from 'components/admin/item-form/item-common/item-commo
 
 const useItemCommon = (props: ItemCommonProps) => {
     let {refObj, ...otherProps} = props
+
     const [transl] = useLocale(itemCommonContent)
 
     const [categoryTransl, categoryValues] = useLocale(categoriesContent)
@@ -21,8 +22,7 @@ const useItemCommon = (props: ItemCommonProps) => {
     const {inputs, onChange, onValidate} = useInput(initValues)
 
     useEffect(() => {
-        refObj = {...refObj, common: {...inputs.values}}
-        console.log('ref obj common', refObj)
+        refObj.current = {...refObj.current, common: {...inputs.values}}
     }, [inputs.values])
 
     return {transl, inputs, onChange, onValidate, categoryTransl, categoryValues}

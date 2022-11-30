@@ -15,7 +15,7 @@ const useItemForm = (props: ItemFormProps) => {
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
-        console.log('ref obj', ref.current)
+        console.log('ref current', ref.current)
     }
 
     return {ref, onVariantAdd,  onSave, transl}

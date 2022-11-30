@@ -9,7 +9,13 @@ const ItemTranslUa: FC<ItemCommonTranslLocale> = (props) => {
     const {transl, content} = useItemTranslUa()
 
     return (
-        <ItemTransl values={values} locale={transl.ua} content={content.inputs} refObj={refObj}/>
+        <ItemTransl
+            values={values}
+            locale={'ua'}
+            localeTransl={transl.ua}
+            content={content.inputs}
+            refObj={refObj}
+        />
     )
 }
 

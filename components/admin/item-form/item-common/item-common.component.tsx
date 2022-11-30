@@ -61,7 +61,7 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                     values={categoryValues}
                     onChange={onChange}
                     active={inputs.values.slugCategory}
-                    name={'category'}
+                    name={'slugCategory'}
                 />
             </Dropdown>
         </div>
