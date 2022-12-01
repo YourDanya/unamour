@@ -119,7 +119,7 @@ export const useGetFilterState = (filter: string, filterContent: FilterContent) 
                 generalContent.forEach(elem => state[elem] = pathParamValues[elem] ?? false)
             } else {
                 const colorContent = filterContent as ColorContent
-                colorContent.forEach(elem => state[elem.param] = pathParamValues[elem.param] ?? false)
+                colorContent.forEach(elem => state[elem.slug] = pathParamValues[elem.slug] ?? false)
             }
             return state
         }

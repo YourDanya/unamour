@@ -1,4 +1,5 @@
 import React from 'react'
+import {CSSProperties} from 'react'
 
 export type RadioButtonProps = {
     labels: string[],
@@ -7,7 +8,8 @@ export type RadioButtonProps = {
     active: string,
     name: string,
     className?: string,
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    styles?: CSSProperties []
 }
 
 export type RadioLabel = {label: string, node?: React.ReactNode}

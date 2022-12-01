@@ -2,13 +2,7 @@ import React from 'react'
 import {ColorContent} from 'components/shop-items/shop-items.types'
 import useColorsFilter from 'components/shop-items/color-filter/color-filter.hook'
 import Checkbox from 'components/common/checkbox/checkbox.component'
-
-export type ColorsFilterProps = {
-    content: ColorContent,
-    transl: string [],
-    filter: string,
-    filters: string[],
-}
+import {ColorsFilterProps} from 'components/shop-items/color-filter/color-filter.types'
 
 const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
 
@@ -17,14 +11,14 @@ const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
 
     return (
         <>
-            {colors.map(({param, code}, index) => (
+            {colors.map(({slug, code}, index) => (
                 <Checkbox
                     className={'shop-items__color'}
                     styles={{backgroundColor: code}}
                     key={code}
-                    name={param}
+                    name={slug}
                     label={transl[index]}
-                    value={colorValues[param]}
+                    value={colorValues[slug]}
                     onChange={onChange}
                 />
             ))}

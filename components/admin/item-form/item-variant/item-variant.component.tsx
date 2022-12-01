@@ -11,7 +11,7 @@ import {ItemVariantProps} from 'components/admin/item-form/item-variant/item-var
 
 const ItemVariant: FC<ItemVariantProps> = (props) => {
     const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs, imageValues,
-        onDeleteImage, onSaveImage, onAddImage} = useItemVariant(props)
+        onDeleteImage, onSaveImage, onAddImage, onDeleteVariant} = useItemVariant(props)
 
     return (
         <div className={'item-form__variant'}>
@@ -24,7 +24,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 name={'price'}
                 placeholder={transl.inputs.price}
                 value={inputs.values.price}
-                onChange={onSizesChange}
+                onChange={onInputsChange}
             />
             {/*color*/}
             <Dropdown className={'item-form__dropdown'} name={transl.color} >
@@ -35,15 +35,15 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                     values={colors.values}
                     onChange={onInputsChange}
                     active={inputs.values.color}
-                >
-                    {Object.entries(colors.obj).map(([key, value]) => (
-                        <div
-                            className={'item-form__color'}
-                            style={{backgroundColor: value.code}}
-                            key={key}
-                        />
-                    ))}
-                </RadioButtons>
+                    styles={colors.styles}
+                />
+                {/*{colors.codes.map((code, index) => (*/}
+                {/*    <div*/}
+                {/*        className={'item-form__color'}*/}
+                {/*        style={{backgroundColor: code}}*/}
+                {/*        key={index}*/}
+                {/*    />*/}
+                {/*))}*/}
             </Dropdown>
             {/*sizes*/}
             <Dropdown className={'item-form__dropdown'} name={transl.sizes}>
@@ -79,6 +79,9 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 />
                 <Button className={'item-form__button'} onClick={onAddImage}/>
             </Dropdown>
+            <Button className={'item-form__button'} onClick={onDeleteVariant}>
+                {transl.delete}
+            </Button>
         </div>
     )
 }

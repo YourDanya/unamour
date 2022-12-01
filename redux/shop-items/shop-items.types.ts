@@ -20,7 +20,7 @@ export type ItemCommon = {
 export type ItemVariants = {variants: ItemVariant[]}
 
 export type ItemVariant = {
-    color: Color,
+    color: string,
     sizes: string[],
     images: string[],
     price: number,
@@ -59,10 +59,7 @@ export type FetchedItem = {
         oldPrice: string,
         variants: [
             {
-                color: {
-                    code: string,
-                    slug: string
-                },
+                color: string,
                 sizes: [string],
                 images: [string],
                 price: number
@@ -77,14 +74,7 @@ export type FetchedItem = {
             description: string,
             composition: string,
             parameters: string,
-            delivery: string,
-            variants: [
-                {
-                    color: {
-                        name: string
-                    }
-                }
-            ],
+            delivery: string
         },
         eng: {
             name: string,
@@ -93,14 +83,7 @@ export type FetchedItem = {
             description: string,
             composition: string,
             parameters: string,
-            delivery: string,
-            variants: [
-                {
-                    color: {
-                        name: string
-                    },
-                }
-            ]
+            delivery: string
         },
         ru: {
             name: string,
@@ -109,14 +92,7 @@ export type FetchedItem = {
             description: string,
             composition: string,
             parameters: string,
-            delivery: string,
-            variants: [
-                {
-                    color: {
-                        name: string
-                    }
-                }
-            ]
+            delivery: string
         }
     }
 }
@@ -129,7 +105,6 @@ export type ShopItemsField = 'getItems'
 export type ShopItemsErrors = ContentErrors<ShopItemsField>
 
 export type ShopItemsSuccess = ContentSuccess<ShopItemsField>
-
 
 export type ShopItemsState = {
     fetchedItems: FetchedItem[],

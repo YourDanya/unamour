@@ -1,15 +1,21 @@
 import {FC} from 'react'
 import {RadioButtonProps} from 'components/common/radio-buttons/radio-buttons.types'
 import {Children} from 'react'
+import useRadioButtons from 'components/common/radio-buttons/radio-buttons.hook'
+import {CSSProperties} from 'react'
 
 const RadioButtons: FC<RadioButtonProps> = (props) => {
-    const {values, onChange, active, name, className, labels, children} = props
+    const {values, onChange, active, name, className, labels, styles} = props
+    const {children} = useRadioButtons(props)
 
     return (
         <div className={`radio-group ${className ?? ''}`}>
             {values.map((value, index) => (
                 <div className="radio-group__elem" key={value}>
-                    <div className={`radio-group__button ${active === value ? 'radio-group__button--active' : ''}`}>
+                    <div
+                        className={`radio-group__button ${active === value ? 'radio-group__button--active' : ''}`}
+                        style={styles && styles[index]}
+                    >
                         <input
                             type="radio"
                             className="radio-group__input"
@@ -23,7 +29,7 @@ const RadioButtons: FC<RadioButtonProps> = (props) => {
                         {labels[index]}
                     </label>
                     <div className="radio-group__node">
-                        {Children.toArray(children)[index]}
+                        {children && children[index]}
                     </div>
                 </div>
             ))}

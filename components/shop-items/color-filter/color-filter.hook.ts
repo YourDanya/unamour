@@ -1,8 +1,8 @@
-import {ColorsFilterProps} from "./color-filter.component"
 import {useFilter} from "../filters.hooks"
 import {GenState} from "../shop-items.types"
 import {ChangeEvent} from "react"
 import {useRef} from 'react'
+import {ColorsFilterProps} from 'components/shop-items/color-filter/color-filter.types'
 
 const useColorsFilter = (props: ColorsFilterProps) => {
 

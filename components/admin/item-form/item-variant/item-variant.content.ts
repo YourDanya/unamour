@@ -15,7 +15,8 @@ const ItemVariantContent = {
                 newImage: 'введіть адресу'
             },
             addImage: 'додати картинку',
-            variant: 'варіант'
+            variant: 'варіант',
+            delete: 'видалити варіант'
         },
         eng: {
             price: 'price',
@@ -27,7 +28,8 @@ const ItemVariantContent = {
                 newImage: 'enter url'
             },
             addImage: 'add image',
-            variant: 'variant'
+            variant: 'variant',
+            delete: 'delete variant'
         },
         ru: {
             price: 'цена',
@@ -39,7 +41,8 @@ const ItemVariantContent = {
                 newImage: 'введите адрес'
             },
             addImage: 'добавить картинку',
-            variant: 'вариант'
+            variant: 'вариант',
+            delete: 'удалить вариант'
         }
     }
 }

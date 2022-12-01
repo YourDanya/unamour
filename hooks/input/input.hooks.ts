@@ -22,7 +22,6 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
         }, <ValidationInputs<keyof T>> {validations: {}, values: {}, errors: {}})
     }, [])
 
-
     const [values, setValues] = useState(initInputs.values)
     const [errors, setErrors] = useState(initInputs.errors)
     const {validations} = initInputs
@@ -39,6 +38,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
             }
             case 'text' :
             case 'password' :
+            case 'textarea' :
             case 'radio' : {
                 valRef.current[name] = value
                 setValues({...valRef.current})
