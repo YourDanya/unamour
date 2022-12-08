@@ -11,8 +11,8 @@ const AdminItems: NextPage = () => {
     return (
         <>
             {items.length > 0 && user?.isAdmin ? (
-                <div className={'admin-items'}>
-                    <Pagination>
+                <div className={'admin-items container'}>
+                    <Pagination className={'admin-pagination'}>
                         {items.map((item, index) => (
                             <ItemForm
                                 key={`${item.common.slug}${index}`}

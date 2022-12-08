@@ -5,20 +5,21 @@ import {ItemFormProps} from 'components/admin/item-form/item-form.types'
 import {MouseAction} from 'types/types'
 
 const useItemForm = (props: ItemFormProps) => {
-    const {common: {...otherCommon}, translations} = props
     const [transl] = useLocale(itemFormContent)
 
     const ref = useRef(props)
-    const onVariantAdd: MouseAction = (event) => {
+
+    const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
     }
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
-        console.log('ref current', ref.current)
+        console.log('ref obj', ref.current)
     }
 
-    return {ref, onVariantAdd,  onSave, transl}
+
+    return {ref, onAddVariant,  onSave, transl}
 }
 
 export default useItemForm

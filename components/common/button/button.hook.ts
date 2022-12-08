@@ -2,11 +2,10 @@ import {ButtonProps} from 'components/common/button/button.types'
 import {MouseEvent} from 'react'
 
 const useButton = (props: ButtonProps) => {
-    const {loading, onClick} = props
-    const handleClick = (event: MouseEvent<HTMLElement>) => {
-        if (!loading) onClick(event)
+    const onClick = (event: MouseEvent<HTMLElement>) => {
+        if (!props.loading) props.onClick(event)
     }
-    return {handleClick}
+    return {onClick}
 }
 
 export default useButton

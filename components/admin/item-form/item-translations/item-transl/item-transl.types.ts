@@ -1,10 +1,13 @@
 import {ItemCommonTranslation} from 'redux/shop-items/shop-items.types'
 import {Validations} from 'hooks/input/input.types'
-import {RefObj} from 'components/admin/item-form/item-form.types'
+import {MutableRefObject} from 'react'
+import {FetchedItem} from 'redux/shop-items/shop-items.types'
+import {Locale} from 'types/types'
 
 export type ItemTranslProps = {
     values: ItemCommonTranslation,
-    locale: string,
+    locale: Locale,
     localeTransl: string,
     content: Record<keyof ItemCommonTranslation, {validations: Validations}>,
-} & RefObj
+    refObj: MutableRefObject<FetchedItem>
+}

@@ -8,7 +8,7 @@ import {ItemTranslProps} from 'components/admin/item-form/item-translations/item
 import {useEffect} from 'react'
 
 const useItemTransl = (props: ItemTranslProps) => {
-    const {values, locale, refObj, localeTransl} = props
+    let {values, locale, refObj, localeTransl} = props
     const [transl] = useLocale(itemTransl)
 
     const initValues = useMemo(() => {
@@ -22,8 +22,8 @@ const useItemTransl = (props: ItemTranslProps) => {
 
     useEffect(() => {
         const translations = {...refObj.current.translations}
-        translations[locale] = inputs.values
-        refObj.current.translations = translations
+        translations[locale] = {...inputs.values}
+        refObj.current = {...refObj.current, translations}
     }, [inputs.values])
 
     return {inputs, onChange, onValidate, transl: {...transl, locale: localeTransl}}

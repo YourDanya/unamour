@@ -1,15 +1,15 @@
 const itemFormContent = {
     translations: {
         ua: {
-            addVariant: 'додати варіант',
+            // addVariant: 'додати варіант',
             save: 'зберегти'
         },
         eng: {
-            addVariant: 'add variant',
+            // addVariant: 'add variant',
             save: 'save'
         },
         ru: {
-            addVariant: 'добавить вариант',
+            // addVariant: 'добавить вариант',
             save: 'сохранить'
         }
     }

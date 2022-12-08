@@ -4,15 +4,15 @@ import usePagination from 'components/common/pagination/pagination.hook'
 import {PaginationProps} from 'components/common/pagination/pagination.types'
 
 const Pagination: FC<PaginationProps> = (props) => {
+    const {className} = props
     const {
-        onBack, onForward, children, currentPage, perPage, pagesNumber, onPageClick, onPageChange,
-        perPageValues, setPerPage
+        onBack, onForward, children, currentPage, pagesNumber, onPageClick, onPageChange, childRef, width
     } = usePagination(props)
 
     return (
         <>
-            <div className={'pagination'}>
-                <div className={'pagination__items'}>
+            <div className={`pagination ${className ?? ''}`}>
+                <div className={'pagination__items'} ref={childRef}>
                     {children.map((elem, index) =>
                         index === 0
                         // &&

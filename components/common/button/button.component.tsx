@@ -4,12 +4,11 @@ import {ButtonProps} from 'components/common/button/button.types'
 import useButton from 'components/common/button/button.hook'
 
 const Button: React.FC<ButtonProps> = (props) => {
-
-    const {className, children, name, loading} = props
-    const {handleClick} = useButton(props)
+    const {className, children, name, loading, onClick: _, ...other} = props
+    const {onClick} = useButton(props)
 
     return (
-        <button className={`button ${className ?? ''}`} onClick={handleClick} name={name?? ''}>
+        <button className={`button ${className ?? ''}`} onClick={onClick} name={name?? ''} {...other}>
             {loading? <Spinner/> : children}
         </button>
     )

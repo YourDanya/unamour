@@ -111,6 +111,4 @@ export const useLocale: UseLocale = ((content) => {
     return common? [translations[locale], common] : [translations[locale]]
 }) as UseLocale
 
-export const useMapForm: UseMapForm = (values, translations, validations) => {
-
-}
+export const useMapForm: UseMapForm = (values, translations, validations) => {}

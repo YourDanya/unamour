@@ -9,21 +9,16 @@ import {ItemFormProps} from 'components/admin/item-form/item-form.types'
 
 const ItemForm: FC<ItemFormProps> = (props) => {
     const {common: {variants, ...common}, translations} = props
-    const {ref, onVariantAdd, onSave, transl} = useItemForm(props)
+    const {ref, onAddVariant, onSave, transl} = useItemForm(props)
 
     return (
         <form className={'item-form'}>
             <ItemCommon {...common} refObj={ref}/>
             <ItemTranslations translations={translations} refObj={ref}/>
             <ItemVariants variants={variants} refObj={ref}/>
-            <div className={'item-form__buttons'}>
-                <Button className={'item-form__button'} onClick={onVariantAdd}>
-                    {transl.addVariant}
-                </Button>
-                <Button className={'item-form__button'} onClick={onSave}>
-                    {transl.save}
-                </Button>
-            </div>
+            <Button className={'item-form__button item-form__button--save'} onClick={onSave}>
+                {transl.save}
+            </Button>
         </form>
     )
 }

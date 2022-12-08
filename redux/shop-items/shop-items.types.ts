@@ -23,7 +23,7 @@ export type ItemVariant = {
     color: string,
     sizes: string[],
     images: string[],
-    price: number,
+    price: string,
 }
 
 export type ItemCommonTranslation = {
@@ -60,9 +60,9 @@ export type FetchedItem = {
         variants: [
             {
                 color: string,
-                sizes: [string],
-                images: [string],
-                price: number
+                sizes: string[],
+                images: string[],
+                price: string
             }
         ]
     },
@@ -70,29 +70,29 @@ export type FetchedItem = {
         ua: {
             name: string,
             category: string,
-            currency: string,
             description: string,
             composition: string,
             parameters: string,
-            delivery: string
+            delivery: string,
+            // currency: string
         },
         eng: {
             name: string,
             category: string,
-            currency: string,
             description: string,
             composition: string,
             parameters: string,
-            delivery: string
+            delivery: string,
+            // currency: string
         },
         ru: {
             name: string,
             category: string,
-            currency: string,
             description: string,
             composition: string,
             parameters: string,
-            delivery: string
+            delivery: string,
+            // currency: string,
         }
     }
 }

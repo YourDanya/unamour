@@ -1,13 +1,16 @@
 const itemVariantsContent = {
     translations: {
         ua: {
-            title: 'варіанти'
+            title: 'варіанти',
+            addVariant: 'додати варіант',
         },
         eng: {
-            title: 'variants'
+            title: 'variants',
+            addVariant: 'add variant',
         },
         ru: {
-            title: 'варианты'
+            title: 'варианты',
+            addVariant: 'добавить вариант'
         }
     }
 }

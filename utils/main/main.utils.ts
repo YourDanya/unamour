@@ -1,7 +1,6 @@
 import {MapField} from 'utils/main/main.types'
 import {LocaleError} from 'redux/store.types'
 import {MessLocaleError} from 'redux/store.types'
-import {CheckTimerField} from 'redux/store.types'
 import {CapitalizeString} from 'utils/main/main.types'
 
 export const sleep= (ms: number) => {
@@ -34,7 +33,6 @@ export const parseTimer = (milliseconds: number) => {
 
 export const mapField: MapField = (field, stateField, locale, contentErrors,
                                    contentSuccess) => {
-
     const code = stateField?.error?.code as '4' | '5'
     const message = stateField?.error?.message as string
     let error: string | null = null
