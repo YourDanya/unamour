@@ -1,4 +1,14 @@
 const itemTransl = {
+    common: {
+        inputs: {
+            name: {validations: {required: true}},
+            category: {validations: {required: true}},
+            description: {validations: {required: true}},
+            composition: {validations: {required: true}},
+            parameters: {validations: {required: true}},
+            delivery: {validations: {required: true}}
+        }
+    },
     translations: {
         ua: {
             inputs: {

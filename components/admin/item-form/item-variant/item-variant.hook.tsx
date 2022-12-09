@@ -13,18 +13,23 @@ const useItemVariant = (props: ItemVariantProps) => {
     const {color, sizes, images, refObj, price, variantIndex} = props
     const [colorsTransl, colorsContent] = useLocale(colorContent)
     const [transl] = useLocale(itemVariantContent)
-    
+
     const sizeObject = useMemo(() => {
-        return sizeContent.reduce((accum, elem) => {
-            accum[elem] = sizes.some((size) => elem === size)
-            return accum
+        const sizeMap = {} as Record<string, boolean>
+         if (sizes) sizes.forEach(size => {
+            sizeMap[size] = true
+            return sizeMap
+        }, {} as Record<string, boolean>)
+        return sizeContent.reduce((sizeObject, size) => {
+            sizeObject[size] = sizeMap[size] ?? false
+            return sizeObject
         }, {} as Record<string, boolean>)
     }, [])
 
     const [sizeValues, onSizesChange] = useToggleMany(sizeObject)
 
     const {inputs, onChange: onInputsChange, errRef, setOuterValues} =
-        useInput({price: {value: price}, color: {value: color}})
+        useInput({price: {value: price ?? 0}, color: {value: color}})
 
     const colors = useMemo(() => {
         return colorsContent.reduce((accum, {slug, code}, index) => {

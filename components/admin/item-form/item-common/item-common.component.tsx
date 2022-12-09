@@ -8,7 +8,7 @@ import {ItemCommonProps} from 'components/admin/item-form/item-common/item-commo
 import Dropdown from 'components/common/dropdown/dropdown.component'
 
 const ItemCommon: FC<ItemCommonProps> = (props) => {
-    const {transl, inputs, onChange, onValidate, categoryTransl, categoryValues} = useItemCommon(props)
+    const {transl, inputs, onChange, categoryTransl, categoryValues} = useItemCommon(props)
 
     return (
         <div className={'item-form__block'}>
@@ -22,7 +22,6 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 value={inputs.values.slug}
                 onChange={onChange}
                 error={inputs.errors.slug}
-                onValidate={onValidate}
             />
             <Input
                 className={'item-form__input'}
@@ -31,7 +30,6 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 value={inputs.values.oldPrice}
                 onChange={onChange}
                 error={inputs.errors.oldPrice}
-                onValidate={onValidate}
             />
             <Checkbox
                 className={`item-form__check`}

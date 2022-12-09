@@ -17,7 +17,7 @@ export type ItemCommon = {
     oldPrice: string,
 }
 
-export type ItemVariants = {variants: ItemVariant[]}
+export type ItemVariants = { variants: ItemVariant[] }
 
 export type ItemVariant = {
     color: string,
@@ -36,7 +36,7 @@ export type ItemCommonTranslation = {
 }
 
 export type ItemVariantsTranslation = {
-    translations: Record<Locale, {variants: ItemVariantTranslation[]}>
+    translations: Record<Locale, { variants: ItemVariantTranslation[] }>
 }
 
 export type ItemVariantTranslation = {
@@ -57,14 +57,12 @@ export type FetchedItem = {
         special: boolean,
         coming: boolean,
         oldPrice: string,
-        variants: [
-            {
-                color: string,
-                sizes: string[],
-                images: string[],
-                price: string
-            }
-        ]
+        variants: {
+            color: string,
+            sizes: string[],
+            images: string[],
+            price: string
+        }[]
     },
     translations: {
         ua: {
@@ -97,8 +95,8 @@ export type FetchedItem = {
     }
 }
 
-export type ClientItem = ItemCommon & ItemCommonTranslation & ItemVariant  & ItemVariantTranslation & ItemTranslations
-& ItemVariants & ItemVariantsTranslation
+export type ClientItem = ItemCommon & ItemCommonTranslation & ItemVariant & ItemVariantTranslation & ItemTranslations
+    & ItemVariants & ItemVariantsTranslation
 
 export type ShopItemsField = 'getItems'
 

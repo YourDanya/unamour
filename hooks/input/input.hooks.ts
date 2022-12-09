@@ -97,10 +97,8 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 
     const onValidate = useCallback((name: string & keyof T) => {
         const error = getError(name)
-
         if (errRef.current.errors[name] && !error) errRef.current.count -= 1
         if (!errRef.current.errors[name] && error) errRef.current.count += 1
-
         errRef.current.errors[name] = error
         setErrors({...errRef.current.errors, [name]: error})
     }, [])
@@ -158,6 +156,14 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                     ua: 'Введіть вірний email.',
                     eng: 'Enter a valid email.',
                     ru: 'Введите правильный email.'
+                }[locale])
+                break
+            }
+            case ('isNumber') : {
+                if (!/^\d+(\.\d{1,2})?$/.test(value)) errors.push({
+                    ua: 'Введіть число.',
+                    eng: 'Enter a number.',
+                    ru: 'Введите число.'
                 }[locale])
                 break
             }

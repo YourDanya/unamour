@@ -3,23 +3,31 @@ import {useLocale} from 'hooks/other/other.hooks'
 import itemFormContent from 'components/admin/item-form/item-form.content'
 import {ItemFormProps} from 'components/admin/item-form/item-form.types'
 import {MouseAction} from 'types/types'
+import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
+import {selectAdminField} from 'redux/admin/admin.selectors'
+import {useLayoutEffect} from 'react'
+import {setAdminField} from 'redux/admin/admin.slice'
 
 const useItemForm = (props: ItemFormProps) => {
+    const {common: {slug}} = props
     const [transl] = useLocale(itemFormContent)
-
     const ref = useRef(props)
-
-    const onAddVariant: MouseAction = (event) => {
-        event.preventDefault()
-    }
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
-        console.log('ref obj', ref.current)
     }
 
+    const onDelete: MouseAction = (event) => {
+        event.preventDefault()
+    }
 
-    return {ref, onAddVariant,  onSave, transl}
+    const updateItem = useParamSelector(selectAdminField, 'updateItem', slug)
+
+    useLayoutEffect(() => {
+        setAdminField({field: 'updateItem', slug, value: {loading: false, success: false, error: null}})
+    }, [])
+
+    return {ref, onSave, onDelete, transl, updateItem}
 }
 
 export default useItemForm

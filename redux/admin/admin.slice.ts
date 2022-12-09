@@ -1,9 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {PayloadAction} from '@reduxjs/toolkit'
-import {UserField} from 'redux/user/user.types'
 import {StateError} from 'redux/store.types'
 import {StateField} from 'redux/store.types'
-import {Entry} from 'types/types'
 import {HYDRATE} from 'next-redux-wrapper'
 import {AdminState} from 'redux/admin/admin.types'
 import {AdminObjField} from 'redux/admin/admin.types'
@@ -77,15 +75,21 @@ export const userSlice = createSlice({
         setAdminField: (state, action: PayloadAction<
             {field: AdminObjField | AdminField, slug: string, value: Partial<StateField>}>) => {
             const {field, slug, value} = action.payload
-            Object.entries(value).forEach((entry) => {
-                const [key, val] = entry as Entry<StateField>
-                if (slug) {
-                    ((state.fields[field] as Record<string, StateField>) [slug][key] as typeof val) = val
-                } else {
-                    ((state.fields[field] as StateField)[key] as typeof val) = val
-                }
-            })
-        }
+            // Object.entries(value).forEach((entry) => {
+            //     const [key, val] = entry as Entry<StateField>
+            //     if (slug) {
+            //         ((state.fields[field] as Record<string, StateField>) [slug][key] as typeof val) = val
+            //     } else {
+            //         ((state.fields[field] as StateField)[key] as typeof val) = val
+            //     }
+            // })
+            if (slug) {
+                ((state.fields[field] as Record<string, StateField>)[slug] as StateField) =
+                    {...(state.fields[field] as Record<string, StateField>)[slug], ...value}
+            } else {
+                (state.fields[field] as StateField) = {...state.fields[field] as StateField, ...value}
+            }
+        },
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {

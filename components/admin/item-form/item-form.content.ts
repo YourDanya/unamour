@@ -1,16 +1,16 @@
 const itemFormContent = {
     translations: {
         ua: {
-            // addVariant: 'додати варіант',
-            save: 'зберегти'
+            save: 'зберегти товар',
+            delete: 'видалити товар'
         },
         eng: {
-            // addVariant: 'add variant',
-            save: 'save'
+            save: 'save item',
+            delete: 'delete item'
         },
         ru: {
-            // addVariant: 'добавить вариант',
-            save: 'сохранить'
+            save: 'сохранить товар',
+            delete: 'удалить'
         }
     }
 }

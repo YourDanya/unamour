@@ -1,8 +1,7 @@
 import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
 import Dropdown from 'components/common/dropdown/dropdown.component'
 import Checkbox from 'components/common/checkbox/checkbox.component'
-import {FC} from 'react'
-import UpdateInput from 'components/common/update-input/update-input.component'
+import {FC, memo} from 'react'
 import useItemVariant from 'components/admin/item-form/item-variant/item-variant.hook'
 import Input from 'components/common/input/input.component'
 import Button from 'components/common/button/button.component'
@@ -53,24 +52,6 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
             </Dropdown>
             {/*images*/}
             {/*<Dropdown className={'item-form__dropdown'} name={transl.images}>*/}
-            {/*    {imageValues.map((url, index,arr) => (*/}
-            {/*        <UpdateInput*/}
-            {/*            className={`item-form__image ${index === arr.length - 1 ? 'item-form__image--last' : ''}`}*/}
-            {/*            value={url}*/}
-            {/*            index={index}*/}
-            {/*            onDelete={onDeleteImage}*/}
-            {/*            onSave={onSaveImage}*/}
-            {/*            key={index}*/}
-            {/*        />*/}
-            {/*    ))}*/}
-            {/*    <Input*/}
-            {/*        className={'item-form__input'}*/}
-            {/*        name={'newImage'}*/}
-            {/*        placeholder={transl.inputs.newImage}*/}
-            {/*        value={inputs.values.newImage}*/}
-            {/*        onChange={onInputsChange}*/}
-            {/*    />*/}
-            {/*    <Button className={'item-form__button'} onClick={onAddImage}/>*/}
             {/*</Dropdown>*/}
             <Button className={'item-form__button'} onClick={onDeleteVariant} data-value={variantIndex}>
                 {transl.delete}

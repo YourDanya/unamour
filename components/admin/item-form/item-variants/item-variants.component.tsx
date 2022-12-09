@@ -12,7 +12,7 @@ const ItemVariants: FC<ItemVariantsProps> = (props) => {
     return (
         <div className={'item-form__block'}>
             <div className={'item-form__title'}>{transl.title}</div>
-            {variants.map((elem, index) => (
+            {variants.length > 0 && variants.map((elem, index) => (
                 <ItemVariant
                     key={elem.color}
                     {...elem}

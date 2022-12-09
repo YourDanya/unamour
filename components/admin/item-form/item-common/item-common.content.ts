@@ -1,12 +1,12 @@
 const itemCommonContent = {
     common: {
         inputs: {
-            slug: {validations: {}},
-            slugCategory: {validations: {}},
+            slug: {validations: {required: true, minLength: 5, maxLength: 30}},
+            slugCategory: {validations: {required: true}},
             best: {validations: {}},
             special: {validations: {}},
             coming: {validations: {}},
-            oldPrice: {validations: {}},
+            oldPrice: {validations: {required: true, isNumber: true}},
         }
     },
     translations: {
