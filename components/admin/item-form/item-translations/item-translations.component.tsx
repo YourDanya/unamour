@@ -6,15 +6,15 @@ import useItemTranslations from 'components/admin/item-form/item-translations/it
 import {ItemTranslationProps} from 'components/admin/item-form/item-translations/item-translations.types'
 
 const ItemTranslations: FC<ItemTranslationProps> = (props) => {
-    const {translations: {ua, eng, ru}, refObj} = props
+    const {translations: {ua, eng, ru}, itemValueRef} = props
     const {transl} = useItemTranslations()
 
     return (
         <div className={'item-form__block'}>
             <div className={'item-form__title'}>{transl.title}</div>
-            <ItemTranslUa {...ua} refObj={refObj}/>
-            <ItemTranslEng {...eng} refObj={refObj}/>
-            <ItemTranslRu {...ru} refObj={refObj}/>
+            <ItemTranslUa {...ua} itemValueRef={itemValueRef}/>
+            <ItemTranslEng {...eng} itemValueRef={itemValueRef}/>
+            <ItemTranslRu {...ru} itemValueRef={itemValueRef}/>
         </div>
     )
 }

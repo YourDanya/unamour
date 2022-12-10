@@ -10,7 +10,7 @@ import {useEffect} from 'react'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
 
 const useItemVariant = (props: ItemVariantProps) => {
-    const {color, sizes, images, refObj, price, variantIndex} = props
+    const {color, sizes, images, itemValueRef, price, variantIndex} = props
     const [colorsTransl, colorsContent] = useLocale(colorContent)
     const [transl] = useLocale(itemVariantContent)
 
@@ -41,13 +41,13 @@ const useItemVariant = (props: ItemVariantProps) => {
     }, [])
 
     useEffect(() => {
-        const copy: FetchedItem = JSON.parse(JSON.stringify(refObj.current))
+        const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
         const sizes = Object.entries(sizeValues).reduce((sizes, [key, value]) => {
             if (value) sizes.push(key)
             return sizes
         }, [] as string[])
         copy.common.variants[variantIndex] = {...copy.common.variants[variantIndex], ...inputs.values, sizes}
-        refObj.current = copy
+        itemValueRef.current = copy
     }, [inputs.values, sizeValues])
 
     return {onSizesChange, inputs, onInputsChange, transl, sizeValues, colors}

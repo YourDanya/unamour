@@ -6,7 +6,7 @@ import useItemVariants from 'components/admin/item-form/item-variants/item-varia
 import Button from 'components/common/button/button.component'
 
 const ItemVariants: FC<ItemVariantsProps> = (props) => {
-    const {refObj} = props
+    const {variants: _, ...otherProps} = props
     const {transl, variants, onDeleteVariant, onAddVariant} = useItemVariants(props)
 
     return (
@@ -16,7 +16,7 @@ const ItemVariants: FC<ItemVariantsProps> = (props) => {
                 <ItemVariant
                     key={elem.color}
                     {...elem}
-                    refObj={refObj}
+                    {...otherProps}
                     variantIndex={index}
                     onDeleteVariant={onDeleteVariant}
                 />

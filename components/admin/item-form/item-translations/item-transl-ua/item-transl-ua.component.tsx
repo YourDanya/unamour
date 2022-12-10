@@ -5,7 +5,7 @@ import ItemTransl from 'components/admin/item-form/item-translations/item-transl
 import {ItemCommonTranslLocale} from 'components/admin/item-form/item-translations/item-translations.types'
 
 const ItemTranslUa: FC<ItemCommonTranslLocale> = (props) => {
-    const {refObj, ...values} = props
+    const {itemValueRef, ...values} = props
     const {transl, content} = useItemTranslUa()
 
     return (
@@ -14,7 +14,7 @@ const ItemTranslUa: FC<ItemCommonTranslLocale> = (props) => {
             locale={'ua'}
             localeTransl={transl.ua}
             content={content.inputs}
-            refObj={refObj}
+            itemValueRef={itemValueRef}
         />
     )
 }

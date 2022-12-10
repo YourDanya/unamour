@@ -9,5 +9,6 @@ export type ItemTranslProps = {
     locale: Locale,
     localeTransl: string,
     content: Record<keyof ItemCommonTranslation, {validations: Validations}>,
-    refObj: MutableRefObject<FetchedItem>
+    itemValueRef: MutableRefObject<FetchedItem>,
+    itemErrRef: MutableRefObject<number>
 }

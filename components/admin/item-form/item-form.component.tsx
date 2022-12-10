@@ -10,14 +10,14 @@ import ItemMessage from 'components/admin/item-form/item-message/item-message.co
 
 const ItemForm: FC<ItemFormProps> = (props) => {
     const {common: {variants, ...common}, translations} = props
-    const {ref, onDelete, onSave, transl, updateItem} = useItemForm(props)
+    const {itemValueRef, onDelete, onSave, transl, updateItem, itemErrRef} = useItemForm(props)
 
     return (
         <form className={'item-form'}>
             <ItemMessage updateItem={updateItem}/>
-            <ItemCommon {...common} refObj={ref}/>
-            <ItemTranslations translations={translations} refObj={ref}/>
-            <ItemVariants variants={variants} refObj={ref}/>
+            <ItemCommon {...common} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
+            <ItemTranslations translations={translations} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
+            <ItemVariants variants={variants} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
             <Button className={'item-form__button item-form__button--delete'} onClick={onDelete}>
                 {transl.delete}
             </Button>

@@ -11,7 +11,8 @@ import {setAdminField} from 'redux/admin/admin.slice'
 const useItemForm = (props: ItemFormProps) => {
     const {common: {slug}} = props
     const [transl] = useLocale(itemFormContent)
-    const ref = useRef(props)
+    const itemValueRef = useRef(props)
+    const itemErrRef = useRef(0)
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
@@ -27,7 +28,7 @@ const useItemForm = (props: ItemFormProps) => {
         setAdminField({field: 'updateItem', slug, value: {loading: false, success: false, error: null}})
     }, [])
 
-    return {ref, onSave, onDelete, transl, updateItem}
+    return {itemValueRef, onSave, onDelete, transl, updateItem, itemErrRef}
 }
 
 export default useItemForm

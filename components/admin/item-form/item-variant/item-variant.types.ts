@@ -7,9 +7,10 @@ export type ItemVariantProps = {
     sizes: string[],
     images: string[],
     price: string,
-    refObj: MutableRefObject<FetchedItem>,
     variantIndex: number,
-    onDeleteVariant: MouseAction
+    onDeleteVariant: MouseAction,
+    itemValueRef: MutableRefObject<FetchedItem>,
+    itemErrRef: MutableRefObject<number>
 }
 
 

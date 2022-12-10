@@ -1,4 +1,13 @@
-import {ItemCommon} from 'redux/shop-items/shop-items.types'
-import {RefObj} from 'components/admin/item-form/item-form.types'
+import {MutableRefObject} from 'react'
+import {FetchedItem} from 'redux/shop-items/shop-items.types'
 
-export type ItemCommonProps = ItemCommon & RefObj
+export type ItemCommonProps = {
+    slug: string,
+    slugCategory: string,
+    best: boolean,
+    special: boolean,
+    coming: boolean,
+    oldPrice: string,
+    itemValueRef: MutableRefObject<FetchedItem>,
+    itemErrRef: MutableRefObject<number>
+}

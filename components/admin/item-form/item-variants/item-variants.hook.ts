@@ -6,14 +6,14 @@ import {MouseAction} from 'types/types'
 import {ItemVariant} from 'redux/shop-items/shop-items.types'
 
 const useItemVariants = (props: ItemVariantsProps) => {
-    const {refObj} = props
+    const {itemValueRef} = props
     const [transl] = useLocale(itemVariantsContent)
     const [variants, setVariants] = useState(props.variants)
 
     const onDeleteVariant: MouseAction = (event) => {
         event.preventDefault()
         const index = +(event.currentTarget.getAttribute('data-value') as string)
-        const variants = refObj.current.common.variants
+        const variants = itemValueRef.current.common.variants
         if (variants.length === 0) return
         variants.splice(index, 1)
         setVariants([...variants])
@@ -21,7 +21,7 @@ const useItemVariants = (props: ItemVariantsProps) => {
 
     const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
-        const variants = refObj.current.common.variants
+        const variants = itemValueRef.current.common.variants
         const newVariant = {} as ItemVariant
         variants.push(newVariant)
         setVariants([...variants])

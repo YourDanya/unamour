@@ -6,6 +6,7 @@ import {HYDRATE} from 'next-redux-wrapper'
 import {AdminState} from 'redux/admin/admin.types'
 import {AdminObjField} from 'redux/admin/admin.types'
 import {AdminField} from 'redux/admin/admin.types'
+import {updateItemValue} from 'redux/admin/admin.types'
 
 const initialState: AdminState = {
     fields: {
@@ -21,7 +22,7 @@ export const userSlice = createSlice({
         adminFieldStart: (state, action: PayloadAction<{ field: AdminObjField | AdminField, slug: string }>) => {
             const {field, slug} = action.payload
             if (slug) {
-                (state.fields[field] as Record<string, StateField>)[slug].loading = true
+                (state.fields[field] as Record<string, updateItemValue>)[slug].loading = true
             } else {
                 (state.fields[field] as StateField).loading = true
             }
@@ -32,8 +33,8 @@ export const userSlice = createSlice({
             const {field, error, slug} = action.payload
             const {timer} = error
             if (slug) {
-                (state.fields[field] as Record<string, StateField>) [slug] =
-                    {loading: false, success: false, error, ...(timer) && {timer}}
+                (state.fields[field] as Record<string, updateItemValue>) [slug] =
+                    {loading: false, success: false, error: {server: error, client: 0}, ...(timer) && {timer}}
             } else {
                 (state.fields[field] as StateField) = {loading: false, success: false, error, ...(timer) && {timer}}
             }
@@ -44,36 +45,35 @@ export const userSlice = createSlice({
         }>) => {
             const {field, slug} = action.payload
             if (slug) {
-                const {timer} = (state.fields[field] as Record<string, StateField>) [slug];
-                (state.fields[field] as Record<string, StateField>) [slug] =
-                    {loading: false, success: false, error: null, ...(timer) && {timer}}
+                (state.fields[field] as Record<string, updateItemValue>) [slug] =
+                    {loading: false, success: false, error: {server: null, client: 0}}
             } else {
                 const {timer} = (state.fields[field] as StateField);
                 (state.fields[field] as StateField) = {loading: false, success: false, error: null, ...(timer) && {timer}}
             }
         },
-        resetAdminTimer: (state, action: PayloadAction<{
-            field: AdminObjField | AdminField, slug: string
-        }> ) => {
-            const {field, slug} = action.payload
-            if (slug) {
-                (state.fields[field] as Record<string, StateField>)[slug].timer = 0
-            } else {
-                (state.fields[field] as StateField).timer = 0
-            }
-        },
+        // resetAdminTimer: (state, action: PayloadAction<{
+        //     field: AdminObjField | AdminField, slug: string
+        // }> ) => {
+        //     const {field, slug} = action.payload
+        //     if (slug) {
+        //         (state.fields[field] as Record<string, updateItemValue>)[slug].timer = 0
+        //     } else {
+        //         (state.fields[field] as StateField).timer = 0
+        //     }
+        // },
         resetAdminSuccess: (state, action: PayloadAction <{
             field: AdminObjField | AdminField, slug: string
         }> ) => {
             const {field, slug} = action.payload
             if (slug) {
-                (state.fields[field] as Record<string, StateField>)[slug].success = false
+                (state.fields[field] as Record<string, updateItemValue>)[slug].success = false
             } else {
                 (state.fields[field]  as StateField).success = false
             }
         },
         setAdminField: (state, action: PayloadAction<
-            {field: AdminObjField | AdminField, slug: string, value: Partial<StateField>}>) => {
+            {field: AdminObjField | AdminField, slug: string, value: Partial<updateItemValue> | Partial<StateField>}>) => {
             const {field, slug, value} = action.payload
             // Object.entries(value).forEach((entry) => {
             //     const [key, val] = entry as Entry<StateField>
@@ -84,10 +84,10 @@ export const userSlice = createSlice({
             //     }
             // })
             if (slug) {
-                ((state.fields[field] as Record<string, StateField>)[slug] as StateField) =
-                    {...(state.fields[field] as Record<string, StateField>)[slug], ...value}
+                ((state.fields[field] as Record<string, updateItemValue>)[slug] as updateItemValue) =
+                    {...(state.fields[field] as Record<string, updateItemValue>)[slug], ...(value as Partial<updateItemValue>)}
             } else {
-                (state.fields[field] as StateField) = {...state.fields[field] as StateField, ...value}
+                (state.fields[field] as StateField) = {...state.fields[field] as StateField, ...(value as Partial<StateField>)}
             }
         },
     },
@@ -99,7 +99,7 @@ export const userSlice = createSlice({
 })
 
 export const {
-    adminFieldStart, adminFieldFailure, adminFieldSuccess, setAdminField, resetAdminSuccess, resetAdminTimer
+    adminFieldStart, adminFieldFailure, adminFieldSuccess, setAdminField, resetAdminSuccess,
 } = userSlice.actions
 
 export default userSlice.reducer
