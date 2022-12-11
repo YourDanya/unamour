@@ -1,7 +1,7 @@
 import React from 'react'
 
 type FormMessageProps = {
-    success: string | null,
+    success?: string | null,
     error: string | null,
     className?: string
 }

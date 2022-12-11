@@ -6,6 +6,8 @@ import itemCommonContent from 'components/admin/item-form/item-common/item-commo
 import {ItemCommonProps} from 'components/admin/item-form/item-common/item-common.types'
 import {useMemo} from 'react'
 import {useDebounceEffect} from 'hooks/component/component.hooks'
+import {useDispatch} from 'react-redux'
+import {setAdminField} from 'redux/admin/admin.slice'
 
 const useItemCommon = (props: ItemCommonProps) => {
     const {itemValueRef, itemErrRef, ...otherProps} = props
@@ -24,14 +26,18 @@ const useItemCommon = (props: ItemCommonProps) => {
 
     const {inputs, onChange, onValidate, errRef} = useInput(initValues)
 
+    const dispatch = useDispatch()
+
     useDebounceEffect(() => {
         const beforeCount = errRef.current.count
         Object.keys(inputs.errors).forEach((key) => onValidate(key))
         const afterCount = errRef.current.count
         itemErrRef.current += afterCount - beforeCount
-        if (itemErrRef.current === 0) {
-
-        }
+        dispatch(setAdminField({
+            field: 'updateItem',
+            slug: itemValueRef.current.common.slug,
+            value: {error: {client: itemErrRef.current, server: null}}
+        }))
     }, [inputs.values])
 
     return {transl, inputs, onChange, onValidate, categoryTransl, categoryValues}

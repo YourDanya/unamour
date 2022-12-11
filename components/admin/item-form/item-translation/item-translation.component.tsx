@@ -1,22 +1,23 @@
 import {FC} from 'react'
 import Input from 'components/common/input/input.component'
 import React from 'react'
-import useItemTransl from 'components/admin/item-form/item-translations/item-transl/item-transl.hook'
-import {ItemTranslProps} from 'components/admin/item-form/item-translations/item-transl/item-transl.types'
 import Textarea from 'components/common/textarea/textarea.component'
+import {ItemTranslationProps} from 'components/admin/item-form/item-translation/item-translation.types'
+import useItemTranslation from 'components/admin/item-form/item-translation/item-translation.hook'
 
-const ItemTransl: FC<ItemTranslProps> = (props) => {
-    const {transl, inputs, onChange, onValidate} = useItemTransl(props)
+const ItemTranslation: FC<ItemTranslationProps> = (props) => {
+    const {locale} = props
+    const {transl, inputs, onChange, onValidate} = useItemTranslation(props)
 
     return (
         <div className={'item-form__block'}>
             <div className={'item-form__subtitle'}>
-                {transl.locale}
+                {transl[locale]}
             </div>
             <Input
                 className={'item-form__input'}
                 name={'name'}
-                placeholder={`${transl.inputs.name} ${transl.locale}`}
+                placeholder={`${transl.inputs.name} ${transl[locale]}`}
                 value={inputs.values.name}
                 onChange={onChange}
                 error={inputs.errors.name}
@@ -25,7 +26,7 @@ const ItemTransl: FC<ItemTranslProps> = (props) => {
             <Textarea
                 className={'item-form__textarea'}
                 name={'description'}
-                placeholder={`${transl.inputs.description} ${transl.locale}`}
+                placeholder={`${transl.inputs.description} ${transl[locale]}`}
                 value={inputs.values.description}
                 onChange={onChange}
                 error={inputs.errors.description}
@@ -34,7 +35,7 @@ const ItemTransl: FC<ItemTranslProps> = (props) => {
             <Textarea
                 className={'item-form__textarea'}
                 name={'composition'}
-                placeholder={`${transl.inputs.composition} ${transl.locale}`}
+                placeholder={`${transl.inputs.composition} ${transl[locale]}`}
                 value={inputs.values.composition}
                 onChange={onChange}
                 error={inputs.errors.composition}
@@ -43,7 +44,7 @@ const ItemTransl: FC<ItemTranslProps> = (props) => {
             <Textarea
                 className={'item-form__textarea'}
                 name={'parameters'}
-                placeholder={`${transl.inputs.parameters} ${transl.locale}`}
+                placeholder={`${transl.inputs.parameters} ${transl[locale]}`}
                 value={inputs.values.parameters}
                 onChange={onChange}
                 error={inputs.errors.parameters}
@@ -52,7 +53,7 @@ const ItemTransl: FC<ItemTranslProps> = (props) => {
             <Textarea
                 className={'item-form__textarea'}
                 name={'delivery'}
-                placeholder={`${transl.inputs.delivery} ${transl.locale}`}
+                placeholder={`${transl.inputs.delivery} ${transl[locale]}`}
                 value={inputs.values.delivery}
                 onChange={onChange}
                 error={inputs.errors.delivery}
@@ -62,4 +63,4 @@ const ItemTransl: FC<ItemTranslProps> = (props) => {
     )
 }
 
-export default ItemTransl
+export default ItemTranslation

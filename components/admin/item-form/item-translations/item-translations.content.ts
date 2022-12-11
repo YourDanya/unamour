@@ -1,4 +1,4 @@
-const itemTranslationContent = {
+const itemTranslationsContent = {
     translations: {
         ua: {
             title: 'Переклади'
@@ -12,4 +12,4 @@ const itemTranslationContent = {
     }
 }
 
-export default itemTranslationContent
+export default itemTranslationsContent

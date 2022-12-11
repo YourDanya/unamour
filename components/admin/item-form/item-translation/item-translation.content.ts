@@ -1,4 +1,4 @@
-const itemTransl = {
+const itemTranslationContent = {
     common: {
         inputs: {
             name: {validations: {required: true}},
@@ -19,7 +19,10 @@ const itemTransl = {
                 composition: 'композиція',
                 parameters: 'параметри',
                 delivery: 'доставка'
-            }
+            },
+            ua: 'українською',
+            eng: 'англійською',
+            ru: 'російською'
         },
         eng: {
             inputs: {
@@ -30,7 +33,10 @@ const itemTransl = {
                 composition: 'composition',
                 parameters: 'parameters',
                 delivery: 'delivery'
-            }
+            },
+            ua: 'in ukrainian',
+            eng: 'in english',
+            ru: 'in russian'
         },
         ru: {
             inputs: {
@@ -41,9 +47,12 @@ const itemTransl = {
                 composition: 'композиция',
                 parameters: 'параметры',
                 delivery: 'доставка'
-            }
+            },
+            ua: 'на украинском',
+            eng: 'на английском',
+            ru: 'на русском'
         }
     }
 }
 
-export default itemTransl
+export default itemTranslationContent

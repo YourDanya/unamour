@@ -1,13 +1,14 @@
 import {AdminErrors} from 'redux/admin/admin.types'
 import {AdminSuccess} from 'redux/admin/admin.types'
+import {GetAdminClientErrors} from 'redux/admin/admin.types'
 
 export const adminErrors: AdminErrors = {
-    '5' : {
+    '5': {
         ua: 'Щось пійшло не так. Спробоуйте пізніше.',
         eng: 'Something went wrong. Try again later.',
         ru: 'Что-то пошло не так. Попройбуйте снова позже.'
     },
-    '4' : {
+    '4': {
         updateItem: {
             ua: 'невірні дані. не вдалося оновити товар.',
             eng: 'wrong data. item was not updated.',
@@ -22,14 +23,24 @@ export const adminErrors: AdminErrors = {
 }
 
 export const adminSuccess: AdminSuccess = {
-    updateItem : {
+    updateItem: {
         ua: 'товар успішно оновлено',
         eng: 'item updated successfully',
         ru: 'товар успешно обналвен'
     },
-    updateItems : {
+    updateItems: {
         ua: 'товари успішно оновлені',
         eng: 'items updated successfully',
         ru: 'товары успешно обнавлены'
     }
+}
+
+export const getAdminClientErrors: GetAdminClientErrors = ({field,locale, count}) => {
+    return {
+        updateItem: {
+            ua: `не можна виконати дію. кількість помилок: ${count}`,
+            eng: `the action cannot be performed. number of errors: ${count}`,
+            ru: `нельзя выполнить действие. количество ошибок: ${count}`
+        }
+    }[field][locale]
 }

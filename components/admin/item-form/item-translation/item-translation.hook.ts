@@ -2,14 +2,14 @@ import {useMemo} from 'react'
 import {Entry} from 'types/types'
 import {useInput} from 'hooks/input/input.hooks'
 import {useLocale} from 'hooks/other/other.hooks'
-import itemTransl from 'components/admin/item-form/item-translations/item-transl/item-transl.content'
-import {ItemTranslProps} from 'components/admin/item-form/item-translations/item-transl/item-transl.types'
 import {useEffect} from 'react'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
+import {ItemTranslationProps} from 'components/admin/item-form/item-translation/item-translation.types'
+import itemTranslationContent from 'components/admin/item-form/item-translation/item-translation.content'
 
-const useItemTransl = (props: ItemTranslProps) => {
-    let {values, locale, itemValueRef, localeTransl} = props
-    const [transl, content] = useLocale(itemTransl)
+const useItemTranslation = (props: ItemTranslationProps) => {
+    const {values, locale, itemValueRef, itemErrRef} = props
+    const [transl, content] = useLocale(itemTranslationContent)
 
     const initValues = useMemo(() => {
         return Object.entries(values).reduce((initValues, entry) => {
@@ -27,15 +27,15 @@ const useItemTransl = (props: ItemTranslProps) => {
         const before = errRef.current.count
         Object.keys(inputs.errors).forEach((key) => onValidate(key))
         const after = errRef.current.count
-        errRef.current.count += after - before
-        if (errRef.current.count === 0) {
+        itemErrRef.current += after - before
+        if (itemErrRef.current === 0) {
             const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
             copy.translations[locale] = {...inputs.values}
             itemValueRef.current = copy
         }
     }, [inputs.values])
 
-    return {inputs, onChange, onValidate, transl: {...transl, locale: localeTransl}}
+    return {inputs, onChange, onValidate, transl}
 }
 
-export default useItemTransl
+export default useItemTranslation

@@ -1,5 +1,5 @@
 import {useLocale} from 'hooks/other/other.hooks'
-import itemTranslationContent from 'components/admin/item-form/item-translations/item-translation.content'
+import itemTranslationContent from 'components/admin/item-form/item-translations/item-translations.content'
 
 const useItemTranslations = () => {
     const [transl] = useLocale(itemTranslationContent)

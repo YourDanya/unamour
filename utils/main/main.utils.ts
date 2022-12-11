@@ -3,26 +3,30 @@ import {LocaleError} from 'redux/store.types'
 import {MessLocaleError} from 'redux/store.types'
 import {CapitalizeString} from 'utils/main/main.types'
 
-export const sleep= (ms: number) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-export const removeFromArr = (arr: any[], value: any) => {
-    const index = arr.indexOf(value)
-    if (index > -1) {
-        arr.splice(index, 1)
-    }
-    return arr
-}
-
-export const debounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
-    let timeout: NodeJS.Timeout
-
-    return (...args: T) => {
-        clearTimeout(timeout)
-        timeout = setTimeout(() => callback(...args), delay)
-    }
-}
+// export const sleep= (ms: number) => {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+//
+// export const removeFromArr = (arr: any[], value: any) => {
+//     const index = arr.indexOf(value)
+//     if (index > -1) {
+//         arr.splice(index, 1)
+//     }
+//     return arr
+// }
+//
+// export const debounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
+//     let timeout: NodeJS.Timeout
+//
+//     return (...args: T) => {
+//         clearTimeout(timeout)
+//         timeout = setTimeout(() => callback(...args), delay)
+//     }
+// }
+//
+// export const capitalizeString: CapitalizeString = ((string: string) => {
+//     return string.charAt(0).toUpperCase().concat(string.slice(1))
+// }) as CapitalizeString
 
 export const parseTimer = (milliseconds: number) => {
     let seconds = Math.floor(milliseconds / 1000)
@@ -53,6 +57,3 @@ export const mapField: MapField = (field, stateField, locale, contentErrors,
     return {loading, error, success, timer}
 }
 
-export const capitalizeString: CapitalizeString = ((string: string) => {
-    return string.charAt(0).toUpperCase().concat(string.slice(1))
-}) as CapitalizeString
