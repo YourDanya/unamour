@@ -1,7 +1,7 @@
 export type PresentProps = {
-    price: number,
+    price: string,
     name: string,
     images: string[],
     activeSize: string,
-    color: object & { code: string }
+    color: string
 }

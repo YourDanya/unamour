@@ -1,10 +1,9 @@
 import React from 'react'
-import {CartItemObject} from 'redux/cart/cart.slice'
 import useCartItem from 'components/cart-item/cart-item.hook'
 import Link from 'next/link'
 
 
-const CartItem: React.FC<CartItemObject> = (props) => {
+const CartItem: React.FC<any> = (props) => {
 
     const {data: {name, category, slug, slugCategory, price, images, size, color}, quantity} = props
 

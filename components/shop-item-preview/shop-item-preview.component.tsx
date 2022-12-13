@@ -11,7 +11,7 @@ const ShopItemPreview: React.FC<ClientItem> = (props) => {
 
     return (
         <div className='shop-item-preview'>
-            <Link href={`/shop-items/${slugCategory}/${slug}?color=${color.slug}`}>
+            <Link href={`/shop-items/${slugCategory}/${slug}?color=${color}`}>
                 <a className={`shop-item-preview__link`} onMouseEnter={handleMouse} onMouseLeave={handleMouse} onClick={handleClick}>
                     <LoadImage
                         dataAttr={'0'}

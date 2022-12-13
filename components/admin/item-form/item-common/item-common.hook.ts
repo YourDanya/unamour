@@ -33,11 +33,13 @@ const useItemCommon = (props: ItemCommonProps) => {
         Object.keys(inputs.errors).forEach((key) => onValidate(key))
         const afterCount = errRef.current.count
         itemErrRef.current += afterCount - beforeCount
-        dispatch(setAdminField({
-            field: 'updateItem',
-            slug: itemValueRef.current.common.slug,
-            value: {error: {client: itemErrRef.current, server: null}}
-        }))
+        if (beforeCount !== afterCount) {
+            dispatch(setAdminField({
+                field: 'updateItem',
+                slug: itemValueRef.current.common.slug,
+                value: {error: {client: itemErrRef.current, server: null}}
+            }))
+        }
     }, [inputs.values])
 
     return {transl, inputs, onChange, onValidate, categoryTransl, categoryValues}

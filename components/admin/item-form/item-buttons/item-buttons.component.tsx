@@ -4,9 +4,10 @@ import {FC} from 'react'
 import Button from 'components/common/button/button.component'
 import React from 'react'
 import {ItemButtonsProps} from 'components/admin/item-form/item-buttons/item-buttons.types'
+import closeRed from 'public/icons/close-red.svg'
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
-    const {updateItemState, transl, onSave, onDelete} = useItemButtons(props)
+    const {updateItemState, transl, onSave, onDelete, isClientError, onClose} = useItemButtons(props)
 
     return (
         <>
@@ -28,10 +29,16 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
                 success={updateItemState.success}
                 error={updateItemState.error?.server}
             />
-            <FormMessage
-                className={'item-form__message'}
-                error={updateItemState.error?.client}
-            />
+            {isClientError && (
+                <FormMessage
+                    className={'item-form__message'}
+                    error={updateItemState.error?.client}
+                >
+                    <Button className={'item-form__message-close'} onClick={onClose}>
+                        <img className={'item-form__message-close-img'} src={closeRed.src}/>
+                    </Button>
+                </FormMessage>
+            )}
         </>
     )
 }

@@ -1,13 +1,8 @@
 import React from 'react'
-
-type FormMessageProps = {
-    success?: string | null,
-    error: string | null,
-    className?: string
-}
+import {FormMessageProps} from 'components/common/form-message/form-message.types'
 
 const FormMessage: React.FC<FormMessageProps> = (props) => {
-    const {success, error, className} = props
+    const {success, error, className, children} = props
 
     return (
         <div className={`form-message ${className ?? ''}`}>
@@ -21,6 +16,7 @@ const FormMessage: React.FC<FormMessageProps> = (props) => {
                     {error}
                 </div>
             )}
+            {children}
         </div>
     )
 }

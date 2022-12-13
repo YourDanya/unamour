@@ -21,7 +21,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         const dispatch = store.dispatch as AppThunkDispatch
 
         //retrieving categories and locale
-        let categories = store.getState().shopItems.categories
+        // let categories = store.getState().shopItems.categories
         const locale = context.locale as Locale
 
         // checking if items are in global
@@ -51,14 +51,14 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
             console.log('wrong slug')
             return {notFound: true}
         }
-        const category = categories.find(category => category.slug.includes(slug[0]))
-        if (!category) {
-            //category not found
-            return {notFound: true}
-        }
+        // const category = categories.find(category => category.slug.includes(slug[0]))
+        // if (!category) {
+        //     //category not found
+        //     return {notFound: true}
+        // }
         if (slug[1]) {
             //one item
-            const item = items.find(item => item.slug === slug[1] && item.color.slug === query.color)
+            const item = items.find(item => item.slug === slug[1] && item.color === query.color)
             if (item) {
                 return {props: {item}}
             } else {
@@ -82,7 +82,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
                 }
                 if (price) {
                     const [min, max] = price.split('-').map(elem => +elem)
-                    items = items.filter(item => item.price >= min && item.price <= max)
+                    items = items.filter(item => +item.price >= min && +item.price <= max)
                 }
                 if (otherFilters) {
                     console.log(otherFilters)
@@ -96,8 +96,8 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
                             }, {} as Record<string, boolean>)
                         items = items.filter(item => {
                             if (filter==='color') {
-                                const {slug: color} = item['color'] as {slug: string}
-                                return color in filterValues
+                                // const {slug: color} = item['color'] as {slug: string}
+                                // return color in filterValues
                             }
                             if (filter==='size') {
                                 const sizes = item['sizes'] as string[]
@@ -116,7 +116,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
                 }
             }
 
-            return {props: {items, title: category[locale]}}
+            return {props: {items, title: 'Переглянути усе'}}
         }
     }
 )

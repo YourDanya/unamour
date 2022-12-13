@@ -21,3 +21,5 @@ const OrderTracking: NextPageWithLayout<OrderTrackingProps> = () => {
 }
 
 OrderTracking.getLayout = getClientServiceLayout
+
+export default OrderTracking

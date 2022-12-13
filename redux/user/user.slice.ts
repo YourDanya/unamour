@@ -69,7 +69,7 @@ export const userSlice = createSlice({
     }
 })
 
-export const {userFieldStart, userFieldFailure, userFieldSuccess, setUser, resetUserTimer, resetUserSuccess, setField
+export const {userFieldStart, userFieldFailure, userFieldSuccess, setUser, resetUserTimer, resetUserSuccess, setUserField
 } = userSlice.actions
 
 export default userSlice.reducer

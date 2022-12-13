@@ -4,9 +4,9 @@ import usePresentItem from 'components/shop-item/present/present-item/present-it
 type presentItemProps = {
     images: string[],
     name: string,
-    color: object & { code: string },
+    color: string,
     activeSize: string,
-    price: number
+    price: string
 }
 
 const PresentItem: React.FC<presentItemProps> = (props) => {
@@ -21,7 +21,7 @@ const PresentItem: React.FC<presentItemProps> = (props) => {
                 <div className={'present__name'}>{name}</div>
                 <div className={'present__property-block'}>
                     <div className="present__property">{transl.color}</div>
-                    <div className={'present__color'} style={{backgroundColor: color.code}}/>
+                    {/*<div className={'present__color'} style={{backgroundColor: color.code}}/>*/}
                 </div>
                 <div className={'present__property-block'}>
                     <div className="present__property">{transl.size}</div>

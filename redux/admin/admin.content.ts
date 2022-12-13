@@ -38,9 +38,9 @@ export const adminSuccess: AdminSuccess = {
 export const getAdminClientErrors: GetAdminClientErrors = ({field,locale, count}) => {
     return {
         updateItem: {
-            ua: `не можна виконати дію. кількість помилок: ${count}`,
-            eng: `the action cannot be performed. number of errors: ${count}`,
-            ru: `нельзя выполнить действие. количество ошибок: ${count}`
+            ua: `не можна зберегти. кількість помилок: ${count}`,
+            eng: `cannot be saved. number of errors: ${count}`,
+            ru: `нельзя сохранить. количество ошибок: ${count}`
         }
     }[field][locale]
 }

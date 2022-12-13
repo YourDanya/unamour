@@ -8,9 +8,10 @@ import itemVariantContent from 'components/admin/item-form/item-variant/item-var
 import {ItemVariantProps} from 'components/admin/item-form/item-variant/item-variant.types'
 import {useEffect} from 'react'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
+import {useState} from 'react'
 
 const useItemVariant = (props: ItemVariantProps) => {
-    const {color, sizes, images, itemValueRef, price, variantIndex} = props
+    const {color, sizes, itemValueRef, price, variantIndex, itemErrRef} = props
     const [colorsTransl, colorsContent] = useLocale(colorContent)
     const [transl] = useLocale(itemVariantContent)
 
@@ -28,7 +29,7 @@ const useItemVariant = (props: ItemVariantProps) => {
 
     const [sizeValues, onSizesChange] = useToggleMany(sizeObject)
 
-    const {inputs, onChange: onInputsChange, errRef, setOuterValues} =
+    const {inputs, onChange: onInputsChange, errRef, onValidate} =
         useInput({price: {value: price ?? 0}, color: {value: color}})
 
     const colors = useMemo(() => {
@@ -40,17 +41,33 @@ const useItemVariant = (props: ItemVariantProps) => {
         }, {styles: [], labels: [], values: [] } as { styles: { backgroundColor: string }[], labels: string[], values: string[] })
     }, [])
 
+    const [sizeError, setSizeError] = useState('')
+    const [colorError, setColorError] = useState('')
+
     useEffect(() => {
         const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
         const sizes = Object.entries(sizeValues).reduce((sizes, [key, value]) => {
             if (value) sizes.push(key)
             return sizes
         }, [] as string[])
+
+        if (sizes.length === 0) {
+            if (!sizeError) {
+                setSizeError('error')
+                itemErrRef.current += 1
+            }
+        }
+        else {
+            if (sizeError) {
+                setSizeError('')
+                itemErrRef.current -= 1
+            }
+        }
         copy.common.variants[variantIndex] = {...copy.common.variants[variantIndex], ...inputs.values, sizes}
         itemValueRef.current = copy
     }, [inputs.values, sizeValues])
 
-    return {onSizesChange, inputs, onInputsChange, transl, sizeValues, colors}
+    return {onSizesChange, inputs, onInputsChange, transl, sizeValues, colors, sizeError}
 }
 
 export default useItemVariant

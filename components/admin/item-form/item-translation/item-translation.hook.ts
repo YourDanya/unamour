@@ -6,6 +6,8 @@ import {useEffect} from 'react'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
 import {ItemTranslationProps} from 'components/admin/item-form/item-translation/item-translation.types'
 import itemTranslationContent from 'components/admin/item-form/item-translation/item-translation.content'
+import {setAdminField} from 'redux/admin/admin.slice'
+import {useDispatch} from 'react-redux'
 
 const useItemTranslation = (props: ItemTranslationProps) => {
     const {values, locale, itemValueRef, itemErrRef} = props
@@ -23,6 +25,7 @@ const useItemTranslation = (props: ItemTranslationProps) => {
 
     const {inputs, onChange, onValidate, errRef} = useInput(initValues)
 
+    const dispatch = useDispatch()
     useEffect(() => {
         const before = errRef.current.count
         Object.keys(inputs.errors).forEach((key) => onValidate(key))
@@ -32,6 +35,13 @@ const useItemTranslation = (props: ItemTranslationProps) => {
             const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
             copy.translations[locale] = {...inputs.values}
             itemValueRef.current = copy
+        }
+        if (after !== before) {
+            dispatch(setAdminField({
+                field: 'updateItem',
+                slug: itemValueRef.current.common.slug,
+                value: {error: {client: itemErrRef.current, server: null}}
+            }))
         }
     }, [inputs.values])
 

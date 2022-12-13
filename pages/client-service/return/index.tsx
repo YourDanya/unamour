@@ -1,4 +1,3 @@
-import React from 'react'
 import {NextPageWithLayout} from 'types/types'
 import {getClientServiceLayout} from 'components/client-service/service.component'
 import Link from 'next/link'
@@ -33,3 +32,5 @@ const Return: NextPageWithLayout<ReturnProps> = () => {
 }
 
 Return.getLayout = getClientServiceLayout
+
+export default Return

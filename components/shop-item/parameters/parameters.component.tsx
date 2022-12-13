@@ -1,22 +1,9 @@
 import React from 'react'
-import {ItemVariant} from 'redux/shop-items/shop-items.types'
-
-type ParametersProps = {
-    name: string,
-    oldPrice: number,
-    price: number,
-    sizes: string[],
-    activeSize: string | null,
-    showModal: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    handleSizeClick: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    color: {code: string, name: string},
-    variants: ItemVariant[],
-    modalState:  Record<"size" | "present", boolean> & {modal: boolean}
-}
+import {ParametersProps} from 'components/shop-item/parameters/parameters.types'
 
 const Parameters: React.FC<ParametersProps> = (props) => {
 
-    const {name, oldPrice, price, sizes, showModal, activeSize, handleSizeClick, color, variants, modalState} = props
+    const {name, oldPrice, price, sizes, showModal, activeSize, handleSizeClick, color, variants} = props
 
     return (
         <>
@@ -51,19 +38,19 @@ const Parameters: React.FC<ParametersProps> = (props) => {
                 </div>
             </div>
             <div className="shop-item__colors">
-                <div className={'shop-item__colors-label'}>Колір: {color.name}</div>
+                <div className={'shop-item__colors-label'}>Колір: {color}</div>
                 <div className="shop-item__colors-list">
                     {<div className='shop-item__color shop-item__color--current'
-                          style={{backgroundColor: color.code}}/>
+                          style={{backgroundColor: color}}/>
                     }
-                    {variants.map(({color: { code}}) => code === color.code ? null : (
-                        <button
-                            className={`shop-item__color`}
-                            key={code}
-                            style={{backgroundColor: code}}
-                            onClick={(event) => console.log(event.target)}
-                        />
-                    ))}
+                    {/*{variants.map(({color: {code}}) => code === color.code ? null : (*/}
+                    {/*    <button*/}
+                    {/*        className={`shop-item__color`}*/}
+                    {/*        key={code}*/}
+                    {/*        style={{backgroundColor: code}}*/}
+                    {/*        onClick={(event) => console.log(event.target)}*/}
+                    {/*    />*/}
+                    {/*))}*/}
                 </div>
             </div>
         </>

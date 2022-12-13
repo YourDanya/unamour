@@ -26,7 +26,6 @@ const ShopItem: React.FC<ClientItem> = (props) => {
                 <div className={'shop-item__about'}>
                     <Links category={category} slugCategory={slugCategory}/>
                     <Parameters
-                        modalState={modalState}
                         name={name}
                         oldPrice={oldPrice}
                         price={price}

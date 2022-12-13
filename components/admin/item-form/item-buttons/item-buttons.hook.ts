@@ -10,12 +10,13 @@ import {useEffect} from 'react'
 
 const useItemButtons = (props: ItemButtonsProps) => {
     const [transl] = useLocale(itemButtonsContent)
-    const {slug, itemErrRef} = props
+    const {slug} = props
     const updateItemState = useParamSelector(selectAdminField, 'updateItem', slug) as SelectUpdateItem
     const [isClientError, setClientError] = useState(false)
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
+        console.log('is client error', isClientError)
         if (updateItemState.error.client) {
             setClientError(true)
         }
@@ -25,17 +26,18 @@ const useItemButtons = (props: ItemButtonsProps) => {
         event.preventDefault()
     }
 
+    const onClose: MouseAction = (event) => {
+        event.preventDefault()
+        setClientError(false)
+    }
+
     useEffect(() => {
         if (!updateItemState.error.client) {
             setClientError(false)
         }
     }, [updateItemState.error.client])
 
-    // useLayoutEffect(() => {
-    //     setAdminField({field: 'updateItem', slug, value: {loading: false, success: false, error: null}})
-    // }, [])
-
-    return {updateItemState, transl, onSave, onDelete, isClientError}
+    return {updateItemState, transl, onSave, onDelete, isClientError, onClose}
 }
 
 export default useItemButtons

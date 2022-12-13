@@ -1,16 +1,17 @@
 import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
 import Dropdown from 'components/common/dropdown/dropdown.component'
 import Checkbox from 'components/common/checkbox/checkbox.component'
-import {FC, memo} from 'react'
+import {FC} from 'react'
 import useItemVariant from 'components/admin/item-form/item-variant/item-variant.hook'
 import Input from 'components/common/input/input.component'
 import Button from 'components/common/button/button.component'
 import React from 'react'
 import {ItemVariantProps} from 'components/admin/item-form/item-variant/item-variant.types'
+import FormMessage from 'components/common/form-message/form-message.component'
 
 const ItemVariant: FC<ItemVariantProps> = (props) => {
     const {variantIndex, onDeleteVariant} = props
-    const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs} = useItemVariant(props)
+    const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs, sizeError} = useItemVariant(props)
 
     return (
         <div className={'item-form__variant'}>
@@ -36,6 +37,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                     active={inputs.values.color}
                     styles={colors.styles}
                 />
+                {/*<FormMessage error={colorError}/>*/}
             </Dropdown>
             {/*sizes*/}
             <Dropdown className={'item-form__dropdown'} name={transl.sizes}>
@@ -49,9 +51,9 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                         onChange={onSizesChange}
                     />
                 ))}
+                <FormMessage error={sizeError}/>
             </Dropdown>
             {/*images*/}
-            {/*<Dropdown className={'item-form__dropdown'} name={transl.images}>*/}
             {/*</Dropdown>*/}
             <Button className={'item-form__button'} onClick={onDeleteVariant} data-value={variantIndex}>
                 {transl.delete}

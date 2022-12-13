@@ -37,3 +37,6 @@ const WarrantyPeriod: NextPageWithLayout<WarrantyPeriodProps> = () => {
 }
 
 WarrantyPeriod.getLayout = getClientServiceLayout
+
+
+export default WarrantyPeriod
