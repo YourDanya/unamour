@@ -43,6 +43,9 @@ const useItemTranslation = (props: ItemTranslationProps) => {
                 value: {error: {client: itemErrRef.current, server: null}}
             }))
         }
+        const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
+        copy.common = {...copy.common, ...inputs.values}
+        itemValueRef.current = copy
     }, [inputs.values])
 
     return {inputs, onChange, onValidate, transl}

@@ -16,7 +16,7 @@ const ItemForm: FC<ItemFormProps> = (props) => {
             <ItemCommon {...common} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
             <ItemTranslations translations={translations} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
             <ItemVariants variants={variants} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
-            <ItemButtons slug={common.slug} itemErrRef={itemErrRef}/>
+            <ItemButtons slug={common.slug} itemValueRef={itemValueRef}/>
         </form>
     )
 }

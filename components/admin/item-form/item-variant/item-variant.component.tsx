@@ -11,7 +11,7 @@ import FormMessage from 'components/common/form-message/form-message.component'
 
 const ItemVariant: FC<ItemVariantProps> = (props) => {
     const {variantIndex, onDeleteVariant} = props
-    const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs, sizeError} = useItemVariant(props)
+    const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs, sizeError, colorError} = useItemVariant(props)
 
     return (
         <div className={'item-form__variant'}>
@@ -25,6 +25,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 placeholder={transl.inputs.price}
                 value={inputs.values.price}
                 onChange={onInputsChange}
+                error={inputs.errors.price}
             />
             {/*color*/}
             <Dropdown className={'item-form__dropdown'} name={transl.color}>
@@ -37,7 +38,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                     active={inputs.values.color}
                     styles={colors.styles}
                 />
-                {/*<FormMessage error={colorError}/>*/}
+                <FormMessage error={inputs.errors.color || colorError}/>
             </Dropdown>
             {/*sizes*/}
             <Dropdown className={'item-form__dropdown'} name={transl.sizes}>

@@ -1,7 +1,8 @@
 const ItemVariantContent = {
     common: {
         inputs: {
-            price: {validations: {required: true, isNumber: true}}
+            price: {validations: {required: true, isNumber: true}},
+            color: {validations: {required: true}}
         }
     },
     translations: {
@@ -16,7 +17,9 @@ const ItemVariantContent = {
             },
             addImage: 'додати картинку',
             variant: 'варіант',
-            delete: 'видалити варіант'
+            delete: 'видалити варіант',
+            sizeError: 'Список розмірів не повинен бути пустим.',
+            colorError: 'Обраний кольор вже зайнятий.'
         },
         eng: {
             price: 'price',
@@ -29,7 +32,9 @@ const ItemVariantContent = {
             },
             addImage: 'add image',
             variant: 'variant',
-            delete: 'delete variant'
+            delete: 'delete variant',
+            sizeError: 'Size list must not be empty.',
+            colorError: 'The selected color is already taken.'
         },
         ru: {
             price: 'цена',
@@ -42,7 +47,9 @@ const ItemVariantContent = {
             },
             addImage: 'добавить картинку',
             variant: 'вариант',
-            delete: 'удалить вариант'
+            delete: 'удалить вариант',
+            sizeError: 'Список размеров не должен быть пустым.',
+            colorError: 'Выбранный цвет уже занят.'
         }
     }
 }

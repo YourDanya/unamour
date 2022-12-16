@@ -134,14 +134,14 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 export const validate = <T extends ValidationInput, >(input: T, locale: Locale) => {
     const value = input.value as string
     const {validations, values, name, translInputs} = input
-    const length = value.length
+    const length = value?.length
     const errors: string[] = []
 
     loop: for (let validation in validations) {
         let valValue = validations[validation]
         switch (validation) {
             case ('required'): {
-                if (!value) {
+                if (value === '' || value === null || value === undefined) {
                     errors.push({
                         ua: 'Поле є обов\'язковим для заповнення.',
                         eng: 'This Field is required.',

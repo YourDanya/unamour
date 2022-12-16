@@ -9,17 +9,17 @@ import {useState} from 'react'
 import {useEffect} from 'react'
 
 const useItemButtons = (props: ItemButtonsProps) => {
+    const {slug, itemValueRef} = props
     const [transl] = useLocale(itemButtonsContent)
-    const {slug} = props
     const updateItemState = useParamSelector(selectAdminField, 'updateItem', slug) as SelectUpdateItem
     const [isClientError, setClientError] = useState(false)
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
-        console.log('is client error', isClientError)
         if (updateItemState.error.client) {
             setClientError(true)
         }
+        console.log('client', itemValueRef.current)
     }
 
     const onDelete: MouseAction = (event) => {
