@@ -3,7 +3,7 @@ import {useInput} from 'hooks/input/input.hooks'
 import deleteUserContent from 'components/update-user/other/delete-user/delete-user.content'
 import {DeleteUserProps} from 'components/update-user/other/delete-user/delete-user.types'
 import {useDispatch} from 'react-redux'
-import {resetUserSuccess} from 'redux/user/user.slice'
+import {resetUserFieldSuccess} from 'redux/user/user.slice'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 import {useRouter} from 'next/router'
@@ -25,7 +25,7 @@ const useDeleteUser = (props: DeleteUserProps) => {
     useLayoutEffect(() => {
         if (deleteUser.success) {
             resetValues()
-            dispatch(resetUserSuccess('deleteUser'))
+            dispatch(resetUserFieldSuccess('deleteUser'))
             hideModal()
             router.push('/')
         }

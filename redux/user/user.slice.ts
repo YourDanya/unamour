@@ -1,12 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {UserState} from 'redux/user/user.types'
-import {PayloadAction} from '@reduxjs/toolkit'
-import {User} from 'redux/user/user.types'
-import {UserField} from 'redux/user/user.types'
 import {HYDRATE} from 'next-redux-wrapper'
-import {StateError} from 'redux/store.types'
 import {StateField} from 'redux/store.types'
 import {Entry} from 'types/types'
+import {SetUserFieldStartAction} from 'redux/user/user.types'
+import {SetUserFieldFailureAction} from 'redux/user/user.types'
+import {SetUserFieldSuccessAction} from 'redux/user/user.types'
+import {SetUserAction} from 'redux/user/user.types'
+import {ResetUserFieldTimerAction} from 'redux/user/user.types'
+import {ResetUserFieldSuccessAction} from 'redux/user/user.types'
+import {SetUserFieldAction} from 'redux/user/user.types'
 
 const initialState: UserState = {
     user : null,
@@ -32,29 +35,29 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        userFieldStart: (state, action: PayloadAction<UserField>) => {
+        setUserFieldStart: (state, action: SetUserFieldStartAction) => {
             const field = action.payload
             state.fields[field].loading = true
         },
-        userFieldFailure: (state, action: PayloadAction<{error: StateError, field: UserField}>) => {
+        setUserFieldFailure: (state, action: SetUserFieldFailureAction) => {
             const {field, error} = action.payload
             const {timer} = error
             state.fields[field] = {loading: false, success: false, error, timer}
         },
-        userFieldSuccess: (state, action: PayloadAction<UserField>) => {
+        setUserFieldSuccess: (state, action: SetUserFieldSuccessAction) => {
             const {timer} = state.fields[action.payload]
             state.fields[action.payload] = {success: true, loading: false, error: null, timer}
         },
-        setUser: (state, action: PayloadAction<{user: User | null}>) => {
+        setUser: (state, action: SetUserAction) => {
             state.user = action.payload.user
         },
-        resetUserTimer: (state, action: PayloadAction<UserField>) => {
+        resetUserFieldTimer: (state, action: ResetUserFieldTimerAction) => {
             state.fields[action.payload].timer = 0
         },
-        resetUserSuccess: (state, action: PayloadAction<UserField>) => {
+        resetUserFieldSuccess: (state, action: ResetUserFieldSuccessAction) => {
             state.fields[action.payload].success = false
         },
-        setUserField: (state, action: PayloadAction<{field: UserField, value: Partial<StateField>}>) => {
+        setUserField: (state, action: SetUserFieldAction) => {
             const {field, value} = action.payload
             Object.entries(value).forEach((entry) => {
                 const [key, val] = entry as Entry<StateField>
@@ -69,7 +72,8 @@ export const userSlice = createSlice({
     }
 })
 
-export const {userFieldStart, userFieldFailure, userFieldSuccess, setUser, resetUserTimer, resetUserSuccess, setUserField
+export const {setUserFieldStart, setUserFieldFailure, setUserFieldSuccess, setUser, resetUserFieldTimer,
+    resetUserFieldSuccess, setUserField
 } = userSlice.actions
 
 export default userSlice.reducer

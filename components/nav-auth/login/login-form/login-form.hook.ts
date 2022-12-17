@@ -3,7 +3,7 @@ import {useLocale} from 'hooks/other/other.hooks'
 import {useRouter} from 'next/router'
 import {useDispatch} from 'react-redux'
 import {loginAsync} from 'redux/user/user.thunk'
-import {resetUserSuccess} from 'redux/user/user.slice'
+import {resetUserFieldSuccess} from 'redux/user/user.slice'
 import {useInput} from 'hooks/input/input.hooks'
 import loginFormContent from 'components/nav-auth/login/login-form/login-form.content'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
@@ -27,7 +27,7 @@ const useLoginForm = () => {
             resetValues()
             setTimeout(() => {
                 router.push('/profile/update-user')
-                dispatch(resetUserSuccess('login'))
+                dispatch(resetUserFieldSuccess('login'))
             }, 1000)
         }
     }, [login.success])

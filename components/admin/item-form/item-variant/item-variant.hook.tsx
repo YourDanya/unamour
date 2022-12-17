@@ -117,7 +117,6 @@ const useItemVariant = (props: ItemVariantProps) => {
 
     useEffect(() => {
         return () => {
-            console.log('here')
             const beforeCount = itemErrRef.current
             itemErrRef.current -= variantErrRef.current
             const afterCount = itemErrRef.current

@@ -6,7 +6,7 @@ import {useEffect} from 'react'
 import {logoutAsync} from 'redux/user/user.thunk'
 import {selectUser} from 'redux/user/user.selectors'
 import profileContent from 'components/profile/profile.content'
-import {resetUserSuccess} from 'redux/user/user.slice'
+import {resetUserFieldSuccess} from 'redux/user/user.slice'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
@@ -28,7 +28,7 @@ const useProfile = () => {
     useEffect(() => {
         if (logout.success) {
             router.push('/')
-            dispatch(resetUserSuccess('logout'))
+            dispatch(resetUserFieldSuccess('logout'))
         }
     }, [logout.success])
 

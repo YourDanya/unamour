@@ -23,11 +23,11 @@ export const Api = {
             return await instance.put(url, options)
         },
     patch:
-        async (url: string, options: string) => {
+        async (url: string, options: object) => {
             return await instance.patch(url, options)
         },
     delete:
-        async (url: string, options: string) => {
+        async (url: string) => {
             return await instance.delete(url)
         }
 }

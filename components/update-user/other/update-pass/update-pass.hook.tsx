@@ -6,7 +6,7 @@ import {useDispatch} from 'react-redux'
 import {selectUserField} from 'redux/user/user.selectors'
 import {updatePassAsync} from 'redux/user/user.thunk'
 import {useEffect} from 'react'
-import {resetUserSuccess} from 'redux/user/user.slice'
+import {resetUserFieldSuccess} from 'redux/user/user.slice'
 import {UpdatePassProps} from 'components/update-user/other/update-pass/update-pass.types'
 
 const useUpdatePass = (props: UpdatePassProps) => {
@@ -26,7 +26,7 @@ const useUpdatePass = (props: UpdatePassProps) => {
         if (updatePass.success) {
             resetValues()
             setTimeout(() => {
-                dispatch(resetUserSuccess('updatePass'))
+                dispatch(resetUserFieldSuccess('updatePass'))
                 hideModal()
             }, 3000)
         }

@@ -7,6 +7,8 @@ import {itemButtonsContent} from 'components/admin/item-form/item-buttons/item-b
 import {MouseAction} from 'types/types'
 import {useState} from 'react'
 import {useEffect} from 'react'
+import {useDispatch} from 'react-redux'
+import {updateItemAsync} from 'redux/admin/admin.thunk'
 
 const useItemButtons = (props: ItemButtonsProps) => {
     const {slug, itemValueRef} = props
@@ -14,12 +16,15 @@ const useItemButtons = (props: ItemButtonsProps) => {
     const updateItemState = useParamSelector(selectAdminField, 'updateItem', slug) as SelectUpdateItem
     const [isClientError, setClientError] = useState(false)
 
+    const dispatch = useDispatch()
+
     const onSave: MouseAction = (event) => {
         event.preventDefault()
         if (updateItemState.error.client) {
             setClientError(true)
+        } else {
+            dispatch(updateItemAsync(itemValueRef.current, slug))
         }
-        console.log('client', itemValueRef.current)
     }
 
     const onDelete: MouseAction = (event) => {
