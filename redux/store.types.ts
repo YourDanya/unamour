@@ -1,7 +1,7 @@
 import {Locale} from 'redux/main/main.types'
 
-export type StateError = { code: string, message: string, timer?: number }
-export type StateField = {loading: boolean, error: StateError | null, success: boolean, timer?: number | null}
+export type ServerError = { code: string, message: string, timer?: number }
+export type StateField = {loading: boolean, error: ServerError | null, success: boolean, timer?: number | null}
 export type SelectField = {loading : boolean, error : string | null, success : string | null}
 export type SelectTimerField = SelectField & {timer: number}
 

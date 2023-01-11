@@ -5,9 +5,11 @@ import Button from 'components/common/button/button.component'
 import React from 'react'
 import {ItemButtonsProps} from 'components/admin/item-form/item-buttons/item-buttons.types'
 import closeRed from 'public/icons/close-red.svg'
+import closeGreen from 'public/icons/close-green.svg'
+import Timer from 'components/common/timer/timer.component'
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
-    const {updateItemState, transl, onSave, onDelete, isClientError, onClose} = useItemButtons(props)
+    const {updateItemState, transl, onSave, onDelete, isMessage, onClose, onSuccessTimerExpiration} = useItemButtons(props)
 
     return (
         <>
@@ -24,18 +26,36 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
             >
                 {transl.save}
             </Button>
-            <FormMessage
-                className={'item-form__message'}
-                success={updateItemState.success}
-                error={updateItemState.error?.server}
-            />
-            {isClientError && (
+            <Timer
+                clearInitTimer={onSuccessTimerExpiration}
+                initTimer={updateItemState.success? 5000 : undefined}
+            >
+                {(timer, _) => isMessage.server && (
+                    <FormMessage
+                        className={'item-form__message'}
+                        success={updateItemState.success && `${updateItemState.success} ${timer}`}
+                        error={updateItemState.error?.server}
+                    >
+                        {updateItemState.success && (
+                            <Button className={'item-form__message-close'} onClick={onClose} data-value={'server'}>
+                                <img className={'item-form__message-close-img'} src={closeGreen.src} alt={'close'}/>
+                            </Button>
+                        )}
+                        {updateItemState.error.server && (
+                            <Button className={'item-form__message-close'} onClick={onClose} data-value={'server'}>
+                                <img className={'item-form__message-close-img'} src={closeRed.src} alt={'close'}/>
+                            </Button>
+                        )}
+                    </FormMessage>
+                )}
+            </Timer>
+            {isMessage.client && (
                 <FormMessage
                     className={'item-form__message'}
                     error={updateItemState.error?.client}
                 >
-                    <Button className={'item-form__message-close'} onClick={onClose}>
-                        <img className={'item-form__message-close-img'} src={closeRed.src}/>
+                    <Button className={'item-form__message-close'} onClick={onClose} data-value={'client'}>
+                        <img className={'item-form__message-close-img'} src={closeRed.src} alt={'close'}/>
                     </Button>
                 </FormMessage>
             )}

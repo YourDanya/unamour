@@ -66,7 +66,6 @@ const useItemVariant = (props: ItemVariantProps) => {
 
         variantErrRef.current += afterInputsCount - beforeInputsCount
 
-        console.log('color error', inputs.errors.color)
         if (!errRef.current.errors.color) {
             const isColorError = itemValueRef.current.common.variants.reduce((isColorError, variant, index) => {
                 if (variant.color === inputs.values.color && index !== variantIndex) isColorError = true

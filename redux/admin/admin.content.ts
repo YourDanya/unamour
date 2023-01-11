@@ -10,28 +10,28 @@ export const adminErrors: AdminErrors = {
     },
     '4': {
         updateItem: {
-            ua: 'невірні дані. не вдалося оновити товар.',
-            eng: 'wrong data. item was not updated.',
-            ru: 'неверные данные. товар не бьл обнолвен.'
+            ua: 'Невірні дані. Не вдалося оновити товар.',
+            eng: 'Wrong data. Item was not updated.',
+            ru: 'Неверные данные. Товар не бьл обнолвен.'
         },
         updateItems: {
-            ua: 'невірні дані. не вдалося оновити товар.',
-            eng: 'wrong data. items were not updated.',
-            ru: 'неверные данные. товары успешно обновлены.'
+            ua: 'Невірні дані. Не вдалося оновити товар.',
+            eng: 'Wrong data. Items were not updated.',
+            ru: 'Неверные данные. Товары успешно обновлены.'
         }
     }
 }
 
 export const adminSuccess: AdminSuccess = {
     updateItem: {
-        ua: 'товар успішно оновлено',
-        eng: 'item updated successfully',
-        ru: 'товар успешно обналвен'
+        ua: 'Товар успішно оновлено.\nПовідомлення буде видалено через',
+        eng: 'Item updated successfully.\nMessage will be cleared in',
+        ru: 'Товар успешно обналвен.\nУведомление будет удалено через'
     },
     updateItems: {
-        ua: 'товари успішно оновлені',
-        eng: 'items updated successfully',
-        ru: 'товары успешно обнавлены'
+        ua: 'Товари успішно оновлені.',
+        eng: 'Items updated successfully.',
+        ru: 'Товары успешно обнавлены.'
     }
 }
 

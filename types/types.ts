@@ -35,3 +35,4 @@ export type Entry<T> = {
 }[keyof T]
 
 export type Localize<T> = {[key in keyof T as `${Locale}${Capitalize<keyof T & string>}`] : {value: T[key]}}
+

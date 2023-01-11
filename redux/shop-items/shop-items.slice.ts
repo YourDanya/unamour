@@ -1,7 +1,7 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {HYDRATE} from "next-redux-wrapper"
 import {ClientItem, FetchedItem, ShopItemsState} from "./shop-items.types"
-import {StateError} from 'redux/store.types'
+import {ServerError} from 'redux/store.types'
 
 const initialState: ShopItemsState = {
     fetchedItems: [],
@@ -19,7 +19,7 @@ export const shopItemsSlice = createSlice({
             state.fetchedItems = action.payload
             console.log('fetch items success')
         },
-        getItemsError: (state, action: PayloadAction<StateError>) => {
+        getItemsError: (state, action: PayloadAction<ServerError>) => {
             state.fields.getItems = {loading: false, success: false, error: action.payload}
             console.log('fetch items error')
         },

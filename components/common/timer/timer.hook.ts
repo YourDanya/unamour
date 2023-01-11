@@ -7,14 +7,13 @@ import {MouseEvent} from 'react'
 
 const useTimer = (props: TimerProps) => {
     const {initTimer, clearInitTimer} = props
-    const [timer, setTimer] = useState(initTimer)
-    const timerRef = useRef(initTimer)
+    const [timer, setTimer] = useState<number>(initTimer as number)
+    const timerRef = useRef<number>(initTimer as number)
     let intervalRef = useRef<number>()
 
     useEffect(() => {
-        console.log('timer', initTimer)
         if (!initTimer) return
-        timerRef.current = initTimer
+        timerRef.current = (initTimer as number)
         setTimer(initTimer)
         window.clearInterval(intervalRef.current)
         intervalRef.current = window.setInterval(() => {

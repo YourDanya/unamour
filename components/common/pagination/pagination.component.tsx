@@ -6,7 +6,7 @@ import {PaginationProps} from 'components/common/pagination/pagination.types'
 const Pagination: FC<PaginationProps> = (props) => {
     const {className} = props
     const {
-        onBack, onForward, children, currentPage, pagesNumber, onPageClick, onPageChange, childRef, width
+        onBack, onForward, children, currentPage, pagesNumber, onPageClick, onPageChange, childRef, width, perPage
     } = usePagination(props)
 
     return (
@@ -14,9 +14,9 @@ const Pagination: FC<PaginationProps> = (props) => {
             <div className={`pagination ${className ?? ''}`}>
                 <div className={'pagination__items'} ref={childRef}>
                     {children.map((elem, index) =>
-                        index === 0
+                        // index === 0
                         // &&
-                        // index >= (currentPage - 1) * perPage && index < currentPage * perPage
+                        index >= (currentPage - 1) * perPage && index < currentPage * perPage
                         && elem
                     )}
                 </div>

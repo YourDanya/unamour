@@ -30,10 +30,6 @@ export const selectAdminField: SelectAdminField = ((field, slug) => {
                 let client = ''
                 if (error.client) client = getAdminClientErrors({field, locale, count: error.client})
                 return {...otherMappedField, error: {client, server}}
-                // return Object.entries(adminField).reduce((accum, [slug, slugValue]) => {
-                //     accum[slug] = mapField(field, slugValue, locale, adminErrors, adminSuccess)
-                //     return accum
-                // }, {} as Record<keyof typeof adminField, SelectField>)
             } else {
                 adminField = adminField as StateField
                 return mapField(field, adminField, locale, adminErrors, adminSuccess)

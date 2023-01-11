@@ -32,7 +32,11 @@ const ActivateUser: FC<ActivateProps> = (props) => {
                 <Button className="nav-auth__button" onClick={activateSubmit} loading={activateUser.loading}>
                     {transl.activate}
                 </Button>
-                <Timer initTimer={sendRegisterCode.timer} onSubmit={sendRegisterCodeSubmit} clearInitTimer={clearInitTimer}>
+                <Timer
+                    initTimer={sendRegisterCode.timer}
+                    onSubmit={sendRegisterCodeSubmit}
+                    clearInitTimer={clearInitTimer}
+                >
                     {(timer, onSubmit) => (
                         <Button className={'nav-auth__resend'} onClick={onSubmit} loading={sendRegisterCode.loading}>
                             {transl.resend} {transl.in} {timer}

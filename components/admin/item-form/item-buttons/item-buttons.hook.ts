@@ -6,22 +6,24 @@ import {useLocale} from 'hooks/other/other.hooks'
 import {itemButtonsContent} from 'components/admin/item-form/item-buttons/item-buttons.content'
 import {MouseAction} from 'types/types'
 import {useState} from 'react'
-import {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {updateItemAsync} from 'redux/admin/admin.thunk'
+import {resetAdminFieldSuccess} from 'redux/admin/admin.slice'
+import {useEffect} from 'react'
+import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 
 const useItemButtons = (props: ItemButtonsProps) => {
     const {slug, itemValueRef} = props
     const [transl] = useLocale(itemButtonsContent)
     const updateItemState = useParamSelector(selectAdminField, 'updateItem', slug) as SelectUpdateItem
-    const [isClientError, setClientError] = useState(false)
+    const [isMessage, setMessage] = useState({client: false, server: false})
 
     const dispatch = useDispatch()
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
         if (updateItemState.error.client) {
-            setClientError(true)
+            setMessage({...isMessage, client: true})
         } else {
             dispatch(updateItemAsync(itemValueRef.current, slug))
         }
@@ -33,16 +35,29 @@ const useItemButtons = (props: ItemButtonsProps) => {
 
     const onClose: MouseAction = (event) => {
         event.preventDefault()
-        setClientError(false)
+        const value = event.currentTarget.getAttribute('data-value') as keyof typeof isMessage
+        setMessage({...isMessage, [value]: false})
     }
 
-    useEffect(() => {
+    const onSuccessTimerExpiration = () => {
+        setMessage({...isMessage, server: false})
+        dispatch(resetAdminFieldSuccess({field: 'updateItem', slug}))
+    }
+
+    useOmitFirstEffect(() => {
         if (!updateItemState.error.client) {
-            setClientError(false)
+            setMessage({...isMessage, client: false})
         }
     }, [updateItemState.error.client])
 
-    return {updateItemState, transl, onSave, onDelete, isClientError, onClose}
+    useEffect(() => {
+        const server = !!updateItemState.error.server || !!updateItemState.success
+        if (isMessage.server !== server) {
+            setMessage({...isMessage, server})
+        }
+    }, [updateItemState.error.server, updateItemState.success])
+
+    return {updateItemState, transl, onSave, onDelete, isMessage, onClose, onSuccessTimerExpiration}
 }
 
 export default useItemButtons

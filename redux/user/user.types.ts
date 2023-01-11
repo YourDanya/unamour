@@ -5,7 +5,7 @@ import {ContentErrors} from 'redux/store.types'
 import {ContentSuccess} from 'redux/store.types'
 import {AppThunk} from 'redux/store'
 import {PayloadAction} from '@reduxjs/toolkit'
-import {StateError} from 'redux/store.types'
+import {ServerError} from 'redux/store.types'
 
 export type UserState = {
     user: null | User,
@@ -61,7 +61,7 @@ export type UpdateUserAsync = (updateUserData: {
 }) => AppThunk
 
 export type SetUserFieldStartAction = PayloadAction<UserField>
-export type SetUserFieldFailureAction = PayloadAction<{error: StateError, field: UserField}>
+export type SetUserFieldFailureAction = PayloadAction<{error: ServerError, field: UserField}>
 export type SetUserFieldSuccessAction = PayloadAction<UserField>
 export type SetUserAction = PayloadAction<{user: User | null}>
 export type ResetUserFieldTimerAction = PayloadAction<UserField>

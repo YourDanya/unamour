@@ -23,13 +23,20 @@ export const userSlice = createSlice({
         setAdminFieldStart: (state, action: SetAdminFieldStartAction) => {
             const {field, slug} = action.payload
             if (slug) {
-                (state.fields[field] as Record<string, UpdateItemValue>)[slug].loading = true
+                let updateItemValue = (state.fields[field] as Record<string, UpdateItemValue>)[slug]
+                if(!updateItemValue) {
+                    updateItemValue = {loading: true, error: {server: null, client: 0}, success: false}
+                } else {
+                    updateItemValue.loading = true
+                }
+                (state.fields[field] as Record<string, UpdateItemValue>)[slug] = updateItemValue
             } else {
                 (state.fields[field] as StateField).loading = true
             }
         },
         setAdminFieldFailure: (state, action: SetAdminFieldFailureAction) => {
             const {field, error, slug} = action.payload
+            // const error = getError(field, serverError, adminErrors)
             if (slug) {
                 (state.fields[field] as Record<string, UpdateItemValue>) [slug] =
                     {loading: false, success: false, error: {server: error, client: 0}}
@@ -41,9 +48,9 @@ export const userSlice = createSlice({
             const {field, slug} = action.payload
             if (slug) {
                 (state.fields[field] as Record<string, UpdateItemValue>) [slug] =
-                    {loading: false, success: false, error: {server: null, client: 0}}
+                    {loading: false, success: true, error: {server: null, client: 0}}
             } else {
-                (state.fields[field] as StateField) = {loading: false, success: false, error: null}
+                (state.fields[field] as StateField) = {loading: false, success: true, error: null}
             }
         },
         resetAdminFieldSuccess: (state, action: ResetAdminFieldSuccessAction) => {
