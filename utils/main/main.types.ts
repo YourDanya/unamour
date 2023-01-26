@@ -11,3 +11,5 @@ export type MapField = <TField extends string> (field: TField, stateField: State
 export type CapitalizeString = <T extends string> (string: T) => Capitalize<T>
 
 export type GetError = <TField extends string,> (field: TField,error: ServerError | null, contentErrors: ContentErrors, locale: Locale) => string
+
+export type NullObj = <TObj> (obj: TObj) => TObj

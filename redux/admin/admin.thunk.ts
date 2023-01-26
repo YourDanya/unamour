@@ -9,10 +9,10 @@ import {setAdminFieldStart} from 'redux/admin/admin.slice'
 export const updateItemAsync : UpdateItemAsync = (item, slug) => {
     return async (dispatch) => {
         dispatch(setAdminFieldStart({field: 'updateItem', slug: slug}))
-        const updateItem = () => Api.put(`/shop-item/${slug}`, {item})
-        const updateItemSuccess = () => setAdminFieldSuccess({field: 'updateItem', slug})
-        const updateItemFailure = (error: ServerError) => setAdminFieldFailure({error, field: 'updateItem', slug})
-        dispatch(apiCallAsync(updateItem, updateItemSuccess, updateItemFailure))
+        // const updateItem = () => Api.put(`/shop-item/${slug}`, {item})
+        // const updateItemSuccess = ({slug: newSlug}: any) => setAdminFieldSuccess({field: 'updateItem', slug, newSlug})
+        // const updateItemFailure = (error: ServerError) => setAdminFieldFailure({error, field: 'updateItem', slug})
+        // dispatch(apiCallAsync(updateItem, updateItemSuccess, updateItemFailure))
     }
 }
 

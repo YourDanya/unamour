@@ -18,8 +18,10 @@ export const selectAdminField: SelectAdminField = ((field, slug) => {
             if (!('success' in adminField) && slug) {
                 field = field as 'updateItem'
                 adminField = (adminField as Record<string, UpdateItemValue>)[slug] as UpdateItemValue
-                if (!adminField) adminField = {loading: false, success: false, error: {client: 0, server: null}}
-                const {error, ...otherAdminField} = adminField
+                if (!adminField) {
+                    adminField = {loading: false, success: false, error: {client: 0, server: null}, newSlug: ''}
+                }
+                const {error, newSlug, ...otherAdminField} = adminField
                 const {error: server, ...otherMappedField} = mapField(
                     field,
                     {...otherAdminField, error: error.server},
@@ -29,7 +31,8 @@ export const selectAdminField: SelectAdminField = ((field, slug) => {
                 )
                 let client = ''
                 if (error.client) client = getAdminClientErrors({field, locale, count: error.client})
-                return {...otherMappedField, error: {client, server}}
+                console.log('element', adminField)
+                return {...otherMappedField, error: {client, server}, newSlug}
             } else {
                 adminField = adminField as StateField
                 return mapField(field, adminField, locale, adminErrors, adminSuccess)

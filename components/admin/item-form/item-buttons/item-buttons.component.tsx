@@ -10,7 +10,7 @@ import Timer from 'components/common/timer/timer.component'
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
     const {updateItemState, transl, onSave, onDelete, isMessage, onClose, onSuccessTimerExpiration} = useItemButtons(props)
-
+    
     return (
         <>
             <Button

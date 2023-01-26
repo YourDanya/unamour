@@ -21,7 +21,12 @@ export const useShallSelector: UseShallSelector = (selector) => {
 export const useParamSelector: UseParamSelector = (callback, ...args) => {
     const argRef = useRef<any[] | null>(null)
 
-    const update = args.reduce((accum, elem, idx ) => elem === argRef.current?.[idx] && accum, true)
+    let update: boolean = false
+    if (!argRef.current === null) {
+        update = args.reduce((accum, elem, idx ) => {
+            return elem !== argRef.current?.[idx] && accum
+        }, true)
+    }
 
     const selector = useMemo(() => {
         argRef.current = args

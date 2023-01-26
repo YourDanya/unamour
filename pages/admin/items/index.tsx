@@ -6,7 +6,7 @@ import Spinner from 'components/common/spinner/spinner.component'
 import Pagination from 'components/common/pagination/pagination.component'
 
 const AdminItems: NextPage = () => {
-    const {items, user, getItems} = useAdminItems()
+    const {items, user} = useAdminItems()
 
     return (
         <>
@@ -16,6 +16,7 @@ const AdminItems: NextPage = () => {
                         {items.map((item, index) => (
                             <ItemForm
                                 key={`${item.common.slug}${index}`}
+                                itemIndex={index}
                                 {...item}
                             />
                         ))}

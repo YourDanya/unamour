@@ -13,9 +13,9 @@ export type AdminState = {
     fields: Record<AdminField, StateField> & {updateItem: Record<string, UpdateItemValue>}
 }
 
-export type UpdateItemValue = {loading:boolean, success: boolean, error: {server: ServerError | null, client: number}}
+export type UpdateItemValue = {loading:boolean, success: boolean, error: {server: ServerError | null, client: number}, newSlug: string}
 
-export type SelectUpdateItem = {loading: boolean, success: string, error: {server: string, client: string}}
+export type SelectUpdateItem = {loading: boolean, success: string, error: {server: string, client: string}, newSlug: string}
 export type SelectAdminField = (field: AdminField | 'updateItem', slug?: string) =>
      ((state: AppState) => SelectField | SelectUpdateItem)
 
@@ -27,10 +27,11 @@ export type GetAdminClientErrors = (params: {field: 'updateItem', locale: Locale
 
 export type SetAdminFieldStartAction = PayloadAction<{field: 'updateItem' | AdminField, slug: string}>
 export type SetAdminFieldFailureAction = PayloadAction<{error: ServerError, field: 'updateItem' | AdminField, slug: string}>
-export type SetAdminFieldSuccessAction = PayloadAction<{ field: 'updateItem' | AdminField, slug: string }>
+export type SetAdminFieldSuccessAction = PayloadAction<{ field: 'updateItem' | AdminField, slug: string, newSlug: string}>
 export type ResetAdminFieldSuccessAction = PayloadAction <{field: 'updateItem' | AdminField, slug: string}>
 export type SetAdminFieldAction = PayloadAction<{field: 'updateItem' | AdminField, slug: string,
     value: Partial<UpdateItemValue> | Partial<StateField>}>
+export type DeleteUpdateItemFieldAction = PayloadAction<{slug: string}>
 
 export type UpdateItemAsync = (item: FetchedItem, slug: string) => AppThunk
 

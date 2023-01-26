@@ -2,6 +2,7 @@ import {MapField} from 'utils/main/main.types'
 import {LocaleError} from 'redux/store.types'
 import {MessLocaleError} from 'redux/store.types'
 import {GetError} from 'utils/main/main.types'
+import {NullObj} from 'utils/main/main.types'
 
 // export const sleep= (ms: number) => {
 //     return new Promise(resolve => setTimeout(resolve, ms));
@@ -58,7 +59,6 @@ export const mapField: MapField = (field, stateField, locale, contentErrors,
     return {loading, error, success, timer}
 }
 
-
 export const getError: GetError = (field, serverError, contentErrors, locale) => {
     const code = serverError?.code as '4' | '5'
     const message = serverError?.message as string
@@ -76,4 +76,55 @@ export const getError: GetError = (field, serverError, contentErrors, locale) =>
         }
     }
     return error
+}
+
+export const nullObj: NullObj = (obj) => {
+
+    for (let prop in obj) {
+        if (typeof obj[prop] === 'string') {
+            (obj[prop] as string) = ''
+        }
+        if (typeof obj[prop] === 'number') {
+            (obj[prop] as number) = 0
+        }
+        if (typeof obj[prop] === 'boolean') {
+            (obj[prop] as boolean) = false
+        }
+        if (typeof obj[prop] === 'object') {
+            if (Array.isArray(obj[prop]) && typeof (obj[prop] as any[])[0] !== 'object') {
+                (obj[prop] as any[]) = []
+            }
+            if (Array.isArray(obj[prop]) && typeof (obj[prop] as any[])[0] === 'object') {
+                for (let i in obj[prop]) {
+                    obj[prop][i] = nullObj(obj[prop][i])
+                }
+            }
+            else {
+                obj[prop] = nullObj(obj[prop])
+            }
+        }
+    }
+
+    return obj
+}
+
+export const checkEqual = (obj1: any, obj2: any) => {
+    let stack1 = [obj1], newStack1:any[] = [], stack2 = [obj2], newStack2
+    while (stack1.length !== 0) {
+        newStack1 = []
+        newStack2 = []
+        stack1.forEach((objElem, index ) => {
+            Object.entries(objElem).forEach(([key, value]) => {
+                if (typeof value === 'object' && typeof stack2[index][key] === 'object') {
+                    newStack1.push(value)
+                    newStack2.push(stack2[index][key])
+                }
+                else if (typeof value!== typeof stack2[index][key] || stack2[index][key] !== value) {
+                    return false
+                }
+            })
+        })
+        stack1 = newStack1
+    }
+    return true
 }

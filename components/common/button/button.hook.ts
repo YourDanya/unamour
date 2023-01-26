@@ -3,7 +3,12 @@ import {MouseEvent} from 'react'
 
 const useButton = (props: ButtonProps) => {
     const onClick = (event: MouseEvent<HTMLElement>) => {
-        if (!props.loading) props.onClick(event)
+        if (!props.loading) {
+            props.onClick(event)
+        }
+        else {
+            event.preventDefault()
+        }
     }
     return {onClick}
 }

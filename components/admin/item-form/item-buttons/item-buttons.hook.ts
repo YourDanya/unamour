@@ -11,10 +11,12 @@ import {updateItemAsync} from 'redux/admin/admin.thunk'
 import {resetAdminFieldSuccess} from 'redux/admin/admin.slice'
 import {useEffect} from 'react'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
+import {deleteUpdateItemField} from 'redux/admin/admin.slice'
 
 const useItemButtons = (props: ItemButtonsProps) => {
-    const {slug, itemValueRef} = props
+    const {itemValueRef} = props
     const [transl] = useLocale(itemButtonsContent)
+    const [slug, setSlug] = useState(props.slug)
     const updateItemState = useParamSelector(selectAdminField, 'updateItem', slug) as SelectUpdateItem
     const [isMessage, setMessage] = useState({client: false, server: false})
 
@@ -49,6 +51,16 @@ const useItemButtons = (props: ItemButtonsProps) => {
             setMessage({...isMessage, client: false})
         }
     }, [updateItemState.error.client])
+
+    console.log('render', slug)
+
+    useEffect(() => {
+        console.log('update item state', updateItemState.newSlug)
+        if (updateItemState.newSlug) {
+            setSlug(updateItemState.newSlug)
+            dispatch(deleteUpdateItemField({slug}))
+        }
+    }, [updateItemState.newSlug])
 
     useEffect(() => {
         const server = !!updateItemState.error.server || !!updateItemState.success
