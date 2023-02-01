@@ -20,7 +20,8 @@ const itemCommonContent = {
                 oldPrice: 'стара ціна',
             },
             category: 'категорія',
-            title: 'загальне'
+            title: 'загальне',
+            uniqueSlug: 'Слаг повинен бути унікальним'
         },
         eng: {
             inputs: {
@@ -32,7 +33,8 @@ const itemCommonContent = {
                 oldPrice: 'old price'
             },
             category: 'category',
-            title: 'common'
+            title: 'common',
+            uniqueSlug: 'Slug should be unique'
         },
         ru: {
             inputs: {
@@ -44,7 +46,8 @@ const itemCommonContent = {
                 oldPrice: 'старая цена'
             },
             category: 'категория',
-            title: 'общее'
+            title: 'общее',
+            uniqueSlug: 'Слаг должен быть уникальным'
         }
     }
 }

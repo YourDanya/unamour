@@ -39,7 +39,7 @@ const useItemTranslation = (props: ItemTranslationProps) => {
         if (after !== before) {
             dispatch(setAdminField({
                 field: 'updateItem',
-                slug: itemValueRef.current.common.slug,
+                _id: itemValueRef.current._id,
                 value: {error: {client: itemErrRef.current, server: null}}
             }))
         }

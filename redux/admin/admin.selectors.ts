@@ -8,6 +8,9 @@ import {adminSuccess} from 'redux/admin/admin.content'
 import {UpdateItemValue} from 'redux/admin/admin.types'
 import {getAdminClientErrors} from 'redux/admin/admin.content'
 import {SelectAdminField} from 'redux/admin/admin.types'
+import {checkEqual} from 'utils/main/main.utils'
+import {selectFetchedItems} from 'redux/shop-items/shop-items.selector'
+import {SelectIsSlugUnique} from 'redux/admin/admin.types'
 
 export const selectAdminStore = (state: AppState) => state.admin
 
@@ -31,12 +34,24 @@ export const selectAdminField: SelectAdminField = ((field, slug) => {
                 )
                 let client = ''
                 if (error.client) client = getAdminClientErrors({field, locale, count: error.client})
-                console.log('element', adminField)
-                return {...otherMappedField, error: {client, server}, newSlug}
+                return {...otherMappedField, error: {server, client}, newSlug}
             } else {
                 adminField = adminField as StateField
                 return mapField(field, adminField, locale, adminErrors, adminSuccess)
             }
-        }
+        }, {memoizeOptions: {resultEqualityCheck: checkEqual}}
     )
 }) as SelectAdminField
+
+export const selectCheckSlug: SelectIsSlugUnique = (slug, index) => {
+    return createSelector(
+        [selectFetchedItems], (items) => {
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].common.slug === slug && i !== index) {
+                    return false
+                }
+            }
+            return true
+        }
+    )
+}

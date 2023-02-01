@@ -50,6 +50,7 @@ export type ItemTranslations = {
 }
 
 export type FetchedItem = {
+    _id: string,
     common: {
         slug: string,
         slugCategory: string,

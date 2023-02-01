@@ -11,12 +11,10 @@ const ItemForm: FC<ItemFormProps> = (props) => {
     const {common: {variants, ...common}, translations, itemIndex} = props
     const {itemValueRef, itemErrRef, transl} = useItemForm(props)
 
-    console.log('item form')
-
     return (
         <form className={'item-form'}>
-            <div className={'item-form__title item-form__title--main'}>{transl.item} {common.slug} №{itemIndex + 1}</div>
-            <ItemCommon {...common} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
+            <div className={'item-form__title item-form__title--main'}>{transl.item} №{itemIndex + 1} {common.slug}</div>
+            <ItemCommon {...common} itemValueRef={itemValueRef} itemErrRef={itemErrRef} itemIndex={itemIndex}/>
             <ItemTranslations translations={translations} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
             <ItemVariants variants={variants} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
             <ItemButtons slug={common.slug} itemValueRef={itemValueRef}/>

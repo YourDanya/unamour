@@ -22,57 +22,57 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setAdminFieldStart: (state, action: SetAdminFieldStartAction) => {
-            const {field, slug} = action.payload
-            if (slug) {
-                let updateItemValue = (state.fields[field] as Record<string, UpdateItemValue>)[slug]
+            const {field, _id} = action.payload
+            if (_id) {
+                let updateItemValue = (state.fields[field] as Record<string, UpdateItemValue>)[_id]
                 if(!updateItemValue) {
-                    updateItemValue = {loading: true, error: {server: null, client: 0}, success: false, newSlug: ''}
+                    updateItemValue = {loading: true, error: {server: null, client: 0}, success: false}
                 } else {
                     updateItemValue.loading = true
                 }
-                (state.fields[field] as Record<string, UpdateItemValue>)[slug] = updateItemValue
+                (state.fields[field] as Record<string, UpdateItemValue>)[_id] = updateItemValue
             } else {
                 (state.fields[field] as StateField).loading = true
             }
         },
         setAdminFieldFailure: (state, action: SetAdminFieldFailureAction) => {
-            const {field, error, slug} = action.payload
-            if (slug) {
-                (state.fields[field] as Record<string, UpdateItemValue>) [slug] =
-                    {loading: false, success: false, error: {server: error, client: 0}, newSlug: ''}
+            const {field, error, _id} = action.payload
+            if (_id) {
+                (state.fields[field] as Record<string, UpdateItemValue>) [_id] =
+                    {loading: false, success: false, error: {server: error, client: 0}}
             } else {
                 (state.fields[field] as StateField) = {loading: false, success: false, error}
             }
         },
         setAdminFieldSuccess: (state, action: SetAdminFieldSuccessAction) => {
-            const {field, slug, newSlug} = action.payload
-            if (slug) {
-                (state.fields[field] as Record<string, UpdateItemValue>) [slug] =
-                    {loading: false, success: true, error: {server: null, client: 0}, newSlug}
+            const {field, _id} = action.payload
+            if (_id) {
+                (state.fields[field] as Record<string, UpdateItemValue>) [_id] =
+                    {loading: false, success: true, error: {server: null, client: 0} }
             } else {
                 (state.fields[field] as StateField) = {loading: false, success: true, error: null}
             }
         },
         resetAdminFieldSuccess: (state, action: ResetAdminFieldSuccessAction) => {
-            const {field, slug} = action.payload
-            if (slug) {
-                (state.fields[field] as Record<string, UpdateItemValue>)[slug].success = false
+            const {field, _id} = action.payload
+            if (_id) {
+                (state.fields[field] as Record<string, UpdateItemValue>)[_id].success = false
             } else {
                 (state.fields[field] as StateField).success = false
             }
         },
         setAdminField: (state, action: SetAdminFieldAction) => {
-            const {field, slug, value} = action.payload
-            if (slug) {
-                ((state.fields[field] as Record<string, UpdateItemValue>)[slug] as UpdateItemValue) =
-                    {...(state.fields[field] as Record<string, UpdateItemValue>)[slug], ...(value as Partial<UpdateItemValue>)}
+            const {field, _id, value} = action.payload
+            if (_id) {
+                ((state.fields[field] as Record<string, UpdateItemValue>)[_id] as UpdateItemValue) =
+                    {...(state.fields[field] as Record<string, UpdateItemValue>)[_id], ...(value as Partial<UpdateItemValue>)}
             } else {
                 (state.fields[field] as StateField) = {...state.fields[field] as StateField, ...(value as Partial<StateField>)}
             }
         },
         deleteUpdateItemField: (state, action: DeleteUpdateItemFieldAction) => {
-            const {slug} = action.payload
-            delete state.fields['updateItem'][slug]
+            const {_id} = action.payload
+            delete state.fields['updateItem'][_id]
         }
     },
     extraReducers: {

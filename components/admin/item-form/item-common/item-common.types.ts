@@ -9,5 +9,6 @@ export type ItemCommonProps = {
     coming: boolean,
     oldPrice: string,
     itemValueRef: MutableRefObject<FetchedItem>,
-    itemErrRef: MutableRefObject<number>
+    itemErrRef: MutableRefObject<number>,
+    itemIndex: number
 }

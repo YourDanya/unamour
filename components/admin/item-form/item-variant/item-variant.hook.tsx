@@ -96,16 +96,16 @@ const useItemVariant = (props: ItemVariantProps) => {
 
         const afterCount = variantErrRef.current
         if (beforeCount !== afterCount) {
-            console.log('before item err ref', itemErrRef.current)
+            // console.log('before item err ref', itemErrRef.current)
             itemErrRef.current += afterCount - beforeCount
-            if (variantIndex === 2) {
-                console.log('after count', afterCount)
-                console.log('before count', beforeCount)
-                console.log('item err ref', itemErrRef.current)
-            }
+            // if (variantIndex === 2) {
+            //     console.log('after count', afterCount)
+            //     console.log('before count', beforeCount)
+            //     console.log('item err ref', itemErrRef.current)
+            // }
             dispatch(setAdminField({
                 field: 'updateItem',
-                slug: itemValueRef.current.common.slug,
+                _id: itemValueRef.current._id,
                 value: {error: {client: itemErrRef.current, server: null}}
             }))
         }
@@ -122,7 +122,7 @@ const useItemVariant = (props: ItemVariantProps) => {
             if (afterCount !== beforeCount) {
                 dispatch(setAdminField({
                     field: 'updateItem',
-                    slug: itemValueRef.current.common.slug,
+                    _id: itemValueRef.current._id,
                     value: {error: {client: itemErrRef.current, server: null}}
                 }))
             }

@@ -9,9 +9,11 @@ import {useDispatch} from 'react-redux'
 import {setAdminField} from 'redux/admin/admin.slice'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
 import {useEffect} from 'react'
+import {selectCheckSlug} from 'redux/admin/admin.selectors'
+import {useRefSelector} from 'hooks/enhanced/enhanced.hooks'
 
 const useItemCommon = (props: ItemCommonProps) => {
-    const {itemValueRef, itemErrRef, ...otherProps} = props
+    const {itemValueRef, itemErrRef, itemIndex, ...otherProps} = props
     const [transl, content] = useLocale(itemCommonContent)
     const [categoryTransl, categoryValues] = useLocale(categoriesContent)
 
@@ -27,22 +29,37 @@ const useItemCommon = (props: ItemCommonProps) => {
         })
     }, [])
 
-    const {inputs, onChange, onValidate, errRef} = useInput(initValues)
+    const {inputs, onChange, onValidate, errRef, setOuterErrors} = useInput(initValues)
 
     const dispatch = useDispatch()
+
+    const isSlugUnique = useRefSelector(selectCheckSlug, inputs.values.slug, itemIndex)
 
     useEffect(() => {
         const beforeCount = errRef.current.count
         Object.keys(inputs.errors).forEach((key) => onValidate(key))
+
+        if (!isSlugUnique.current && !errRef.current.errors.slug) {
+            errRef.current.errors.slug = transl.uniqueSlug
+            errRef.current.count += 1
+            setOuterErrors({...errRef.current.errors})
+        }
+        else if (isSlugUnique.current && errRef.current.errors.slug) {
+            errRef.current.errors.slug = ''
+            errRef.current.count -= 1
+            setOuterErrors({...errRef.current.errors})
+        }
+
         const afterCount = errRef.current.count
         itemErrRef.current += afterCount - beforeCount
         if (beforeCount !== afterCount) {
             dispatch(setAdminField({
                 field: 'updateItem',
-                slug: itemValueRef.current.common.slug,
+                _id: itemValueRef.current._id,
                 value: {error: {client: itemErrRef.current, server: null}}
             }))
         }
+
         const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
         copy.common = {...copy.common, ...inputs.values}
         itemValueRef.current = copy
