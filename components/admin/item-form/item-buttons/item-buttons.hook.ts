@@ -9,28 +9,44 @@ import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {updateItemAsync} from 'redux/admin/admin.thunk'
 import {resetAdminFieldSuccess} from 'redux/admin/admin.slice'
-import {useEffect} from 'react'
+import {useEffect, memo} from 'react'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
-import {useRef} from 'react'
+// import {_selectAdminField} from 'redux/admin/admin.selectors'
+// import {useSelector} from 'react-redux'
+// import {AppState} from 'redux/store'
+
 
 const useItemButtons = (props: ItemButtonsProps) => {
     const {itemValueRef} = props
     const [transl] = useLocale(itemButtonsContent)
     const _id = itemValueRef.current._id
 
+    // const updateItemState = useSelector((state : AppState) => _id? _selectAdminField(state, 'updateItem', _id) : null) as SelectUpdateItem
     const updateItemState = useParamSelector(selectAdminField, 'updateItem', _id) as SelectUpdateItem
+
     const [isMessage, setMessage] = useState({client: false, server: false})
+    // console.log('render item-buttons', _id[_id.length - 2] + _id[_id.length - 1])
 
     const dispatch = useDispatch()
-
     const onSave: MouseAction = (event) => {
         event.preventDefault()
-        console.log('updateItemState', updateItemState)
-        if (updateItemState.error.client) {
-            setMessage({...isMessage, client: true})
-        } else {
-            dispatch(updateItemAsync(itemValueRef.current, _id))
+        if (_id) {
+            if (updateItemState.error.client) {
+                setMessage({...isMessage, client: true})
+            } else {
+                dispatch(updateItemAsync(itemValueRef.current, _id))
+            }
         }
+        else {
+
+        }
+    }
+
+    const [count, setCount] = useState(0)
+
+    const onIncrement: MouseAction = (event) => {
+        event.preventDefault()
+        setCount(count + 1)
     }
 
     const onDelete: MouseAction = (event) => {
@@ -61,7 +77,7 @@ const useItemButtons = (props: ItemButtonsProps) => {
         }
     }, [updateItemState.error.server, updateItemState.success])
 
-    return {updateItemState, transl, onSave, onDelete, isMessage, onClose, onSuccessTimerExpiration}
+    return {updateItemState, transl, onSave, onDelete, isMessage, onClose, onSuccessTimerExpiration,count, onIncrement}
 }
 
 export default useItemButtons

@@ -51,6 +51,7 @@ export type ItemTranslations = {
 
 export type FetchedItem = {
     _id: string,
+    updateTime: string,
     common: {
         slug: string,
         slugCategory: string,

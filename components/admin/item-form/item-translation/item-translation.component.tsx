@@ -1,6 +1,5 @@
 import {FC} from 'react'
 import Input from 'components/common/input/input.component'
-import React from 'react'
 import Textarea from 'components/common/textarea/textarea.component'
 import {ItemTranslationProps} from 'components/admin/item-form/item-translation/item-translation.types'
 import useItemTranslation from 'components/admin/item-form/item-translation/item-translation.hook'

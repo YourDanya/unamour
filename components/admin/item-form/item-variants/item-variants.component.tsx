@@ -1,5 +1,4 @@
-import {FC} from 'react'
-import React from 'react'
+import {FC, memo} from 'react'
 import {ItemVariantsProps} from 'components/admin/item-form/item-variants/item-variants.types'
 import ItemVariant from 'components/admin/item-form/item-variant/item-variant.component'
 import useItemVariants from 'components/admin/item-form/item-variants/item-variants.hook'
@@ -28,4 +27,4 @@ const ItemVariants: FC<ItemVariantsProps> = (props) => {
     )
 }
 
-export default ItemVariants
+export default memo(ItemVariants)

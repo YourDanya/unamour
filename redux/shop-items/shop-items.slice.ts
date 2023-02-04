@@ -26,6 +26,10 @@ export const shopItemsSlice = createSlice({
         setClientItems: (state, action: PayloadAction<ClientItem[]>) => {
             state.clientItems = action.payload
         },
+        setFetchedItem: (state, action: PayloadAction<FetchedItem>) => {
+            const index = state.fetchedItems.findIndex(item => item._id = action.payload._id)
+            state.fetchedItems[index] = action.payload
+        }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
@@ -34,7 +38,7 @@ export const shopItemsSlice = createSlice({
     }
 })
 
-export const {getItemsSuccess, getItemsError,  setClientItems} = shopItemsSlice.actions
+export const {getItemsSuccess, getItemsError,  setClientItems, setFetchedItem} = shopItemsSlice.actions
 
 
 export default shopItemsSlice.reducer

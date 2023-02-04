@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import {FC, memo} from 'react'
 import useItemTranslations from 'components/admin/item-form/item-translations/item-translations.hook'
 import {ItemTranslationsProps} from 'components/admin/item-form/item-translations/item-translations.types'
 import {Locale} from 'types/types'
@@ -24,4 +24,4 @@ const ItemTranslations: FC<ItemTranslationsProps> = (props) => {
     )
 }
 
-export default ItemTranslations
+export default memo(ItemTranslations)

@@ -6,16 +6,20 @@ import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectUserField} from 'redux/user/user.selectors'
 import {useRouter} from 'next/router'
 import {selectShopItemsField} from 'redux/shop-items/shop-items.selector'
+import {MouseEvent} from 'react'
 import {useState} from 'react'
-import {nullObj} from 'utils/main/main.utils'
+import {FetchedItem} from 'redux/shop-items/shop-items.types'
+import {useLocale} from 'hooks/other/other.hooks'
+import adminItemsContent from 'pages/admin/items/admin-items.content'
 
 const useAdminItems = () => {
-    const fetchedItems = useSelector(selectFetchedItems)
-    const [items, setItems] = useState(fetchedItems)
+    const items = useSelector(selectFetchedItems)
     const user = useSelector(selectUser)
     const getUser = useParamSelector(selectUserField, 'getUser')
     const router = useRouter()
     const getItems = useParamSelector(selectShopItemsField, 'getItems')
+    const [toAddItem, setToAddItem] = useState<null | FetchedItem>(null)
+    const [transl] = useLocale(adminItemsContent)
 
     useEffect(() => {
         if (getUser.error || (getUser.success && !user?.isAdmin)) {
@@ -23,16 +27,12 @@ const useAdminItems = () => {
         }
     }, [getUser])
 
-    useEffect(() => {
-        setItems(fetchedItems)
-    }, [fetchedItems])
-
-    const onAddItem = () => {
-        const newItem = nullObj(items[items.length - 1])
-        setItems([...items, newItem])
+    const onAddItem = (event: MouseEvent) => {
+        event.preventDefault()
+        setToAddItem(items[items.length - 1])
     }
 
-    return {items, user, getItems, onAddItem}
+    return {items, user, getItems, onAddItem, toAddItem, transl}
 }
 
 export default useAdminItems

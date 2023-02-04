@@ -19,6 +19,8 @@ export type SelectUpdateItem = {loading: boolean, success: string, error: {serve
 export type SelectAdminField = (field: AdminField | 'updateItem', _id?: string) =>
      ((state: AppState) => SelectField | SelectUpdateItem)
 export type SelectIsSlugUnique = (_id: string, index: number) => ((state: AppState) => boolean)
+export type SelectAdminFieldParams = (state: AppState, field: AdminField | 'updateItem', _id?: string) =>
+    {field: AdminField | 'updateItem', _id?: string}
 
 export type AdminField = 'updateItems'
 export type AdminErrors = ContentErrors<AdminField | 'updateItem'>

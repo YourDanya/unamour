@@ -79,36 +79,40 @@ export const getError: GetError = (field, serverError, contentErrors, locale) =>
 }
 
 export const nullObj: NullObj = (obj) => {
-
-    for (let prop in obj) {
-        if (typeof obj[prop] === 'string') {
-            (obj[prop] as string) = ''
-        }
-        if (typeof obj[prop] === 'number') {
-            (obj[prop] as number) = 0
-        }
-        if (typeof obj[prop] === 'boolean') {
-            (obj[prop] as boolean) = false
-        }
-        if (typeof obj[prop] === 'object') {
-            if (Array.isArray(obj[prop]) && typeof (obj[prop] as any[])[0] !== 'object') {
-                (obj[prop] as any[]) = []
+    const stack: any[] = [obj]
+    while (stack.length !== 0) {
+        let tempObj = stack.pop()
+        for (let prop in tempObj) {
+            if (typeof tempObj[prop] === 'string') {
+                (tempObj[prop] as string) = ''
             }
-            if (Array.isArray(obj[prop]) && typeof (obj[prop] as any[])[0] === 'object') {
-                for (let i in obj[prop]) {
-                    obj[prop][i] = nullObj(obj[prop][i])
+            if (typeof tempObj[prop] === 'number') {
+                (tempObj[prop] as number) = 0
+            }
+            if (typeof tempObj[prop] === 'boolean') {
+                (tempObj[prop] as boolean) = false
+            }
+            if (typeof tempObj[prop] === 'object') {
+                if (Array.isArray(tempObj[prop]) && typeof (tempObj[prop] as any[])[0] !== 'object') {
+                    (tempObj[prop] as any[]) = []
+                }
+                if (Array.isArray(tempObj[prop]) && typeof (tempObj[prop] as any[])[0] === 'object') {
+                    for (let i in tempObj[prop]) {
+                        stack.push(tempObj[prop][i])
+                    }
+                }
+                else {
+                    stack.push(tempObj[prop])
                 }
             }
-            else {
-                obj[prop] = nullObj(obj[prop])
-            }
-        }
+        }    
     }
-
     return obj
 }
 
 export const checkEqual = (obj1: any, obj2: any) => {
+    console.log('obj1', obj1)
+    console.log('obj2', obj2)
     let stack1: any[] = [{obj: obj1}], newStack1, stack2: any[] = [{obj: obj2}], newStack2 = []
     while (stack1.length !== 0) {
         newStack1 = []
@@ -124,6 +128,7 @@ export const checkEqual = (obj1: any, obj2: any) => {
                     newStack2.push(stack2[i][key])
                 }
                 else if (typeof stack1[i][key] !== typeof stack2[i][key] || stack1[i][key] !== stack2[i][key]) {
+                    console.log('obj1 !== obj2')
                     return false
                 }
             }
@@ -131,5 +136,6 @@ export const checkEqual = (obj1: any, obj2: any) => {
         stack1 = newStack1
         stack2 = newStack2
     }
+    console.log('obj1 === obj2')
     return true
 }

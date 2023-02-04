@@ -1,15 +1,14 @@
 import useItemButtons from 'components/admin/item-form/item-buttons/item-buttons.hook'
 import FormMessage from 'components/common/form-message/form-message.component'
-import {FC} from 'react'
+import {FC, memo} from 'react'
 import Button from 'components/common/button/button.component'
-import React from 'react'
 import {ItemButtonsProps} from 'components/admin/item-form/item-buttons/item-buttons.types'
 import closeRed from 'public/icons/close-red.svg'
 import closeGreen from 'public/icons/close-green.svg'
 import Timer from 'components/common/timer/timer.component'
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
-    const {updateItemState, transl, onSave, onDelete, isMessage, onClose, onSuccessTimerExpiration} = useItemButtons(props)
+    const {updateItemState, transl, onSave, onDelete, isMessage, onClose, onSuccessTimerExpiration, count, onIncrement} = useItemButtons(props)
     
     return (
         <>
@@ -59,8 +58,11 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
                     </Button>
                 </FormMessage>
             )}
+            <Button className='item-form__button' onClick={onIncrement}>
+                {count}
+            </Button>
         </>
     )
 }
 
-export default ItemButtons
+export default memo(ItemButtons)

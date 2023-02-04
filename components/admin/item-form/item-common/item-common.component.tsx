@@ -1,8 +1,7 @@
-import {FC} from 'react'
+import {FC, memo} from 'react'
 import Input from 'components/common/input/input.component'
 import Checkbox from 'components/common/checkbox/checkbox.component'
 import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
-import React from 'react'
 import useItemCommon from 'components/admin/item-form/item-common/item-common.hook'
 import {ItemCommonProps} from 'components/admin/item-form/item-common/item-common.types'
 import Dropdown from 'components/common/dropdown/dropdown.component'
@@ -66,4 +65,4 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
     )
 }
 
-export default ItemCommon
+export default memo(ItemCommon)
