@@ -45,7 +45,8 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
             }
         } catch (err: any) {
             const res = err.response as AxiosResponse
-            let code = res.status.toString()[0]
+            console.log('err', err)
+            let code = res?.status?.toString()[0] ?? ''
             if (code !== '4' && code!== '5') code = '5'
             const {message} = res?.data || {}
             const timer = +res?.data?.timer

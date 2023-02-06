@@ -8,16 +8,38 @@ import {ItemFormProps} from 'components/admin/item-form/item-form.types'
 import ItemButtons from 'components/admin/item-form/item-buttons/item-buttons.component'
 
 const ItemForm: FC<ItemFormProps> = (props) => {
-    const {common: {variants, ...common}, translations, itemIndex, className} = props
+    const {_id, deleted, common: {variants, ...common}, translations, itemIndex, className} = props
     const {itemValueRef, itemErrRef, transl} = useItemForm(props)
 
     return (
         <form className={`item-form ${className ? className : ''}`}>
-            <div className={'item-form__title item-form__title--main'}>{transl.item} №{itemIndex + 1} {common.slug}</div>
-            <ItemCommon {...common} itemValueRef={itemValueRef} itemErrRef={itemErrRef} itemIndex={itemIndex}/>
-            <ItemTranslations translations={translations} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
-            <ItemVariants variants={variants} itemValueRef={itemValueRef} itemErrRef={itemErrRef}/>
-            <ItemButtons slug={common.slug} itemValueRef={itemValueRef}/>
+             {!deleted && (
+                 <>
+                     <div className={'item-form__title item-form__title--main'}>
+                         {transl.item} №{itemIndex + 1} {common.slug}
+                     </div>
+                     <ItemCommon
+                         {...common}
+                         itemValueRef={itemValueRef}
+                         itemErrRef={itemErrRef}
+                         itemIndex={itemIndex}
+                         _id={_id}
+                     />
+                     <ItemTranslations
+                         translations={translations}
+                         itemValueRef={itemValueRef}
+                         itemErrRef={itemErrRef}
+                         _id={_id}
+                     />
+                     <ItemVariants
+                         variants={variants}
+                         itemValueRef={itemValueRef}
+                         itemErrRef={itemErrRef}
+                         _id={_id}
+                     />
+                 </>
+            )}
+            <ItemButtons itemValueRef={itemValueRef} _id={_id}/>
         </form>
     )
 }

@@ -1,13 +1,13 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {HYDRATE} from "next-redux-wrapper"
-import {ClientItem, FetchedItem, ShopItemsState} from "./shop-items.types"
+import {HYDRATE} from 'next-redux-wrapper'
+import {ClientItem, FetchedItem, ShopItemsState} from './shop-items.types'
 import {ServerError} from 'redux/store.types'
 
 const initialState: ShopItemsState = {
     fetchedItems: [],
     clientItems: [],
     fields: {
-        getItems : {error: null, success: false, loading: false}
+        getItems: {error: null, success: false, loading: false}
     }
 }
 
@@ -27,18 +27,34 @@ export const shopItemsSlice = createSlice({
             state.clientItems = action.payload
         },
         setFetchedItem: (state, action: PayloadAction<FetchedItem>) => {
-            const index = state.fetchedItems.findIndex(item => item._id = action.payload._id)
+            let index = state.fetchedItems.findIndex(item => item._id === action.payload._id)
+            if (index === -1) {
+                index = state.fetchedItems.findIndex(item => item._id === '')
+            }
+            console.log('index', index)
             state.fetchedItems[index] = action.payload
+        },
+        addItem: (state, action: PayloadAction<FetchedItem>) => {
+            state.fetchedItems.push(action.payload)
+        },
+        setItemDeleted: (state, action: PayloadAction<string>) => {
+            const index = state.fetchedItems.findIndex(item => item._id === action.payload)
+            state.fetchedItems[index].deleted = true
+        },
+        removeDeletedItem: (state) => {
+            const index = state.fetchedItems.findIndex(item => item.deleted || !item._id)
+            state.fetchedItems.splice(index, 1)
         }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             state.clientItems = [...action.payload.shopItems.clientItems]
-        },
+        }
     }
 })
 
-export const {getItemsSuccess, getItemsError,  setClientItems, setFetchedItem} = shopItemsSlice.actions
+export const {getItemsSuccess, getItemsError, setClientItems, setFetchedItem, addItem, setItemDeleted, removeDeletedItem}
+    = shopItemsSlice.actions
 
 
 export default shopItemsSlice.reducer

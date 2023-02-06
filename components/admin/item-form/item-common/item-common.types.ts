@@ -10,5 +10,6 @@ export type ItemCommonProps = {
     oldPrice: string,
     itemValueRef: MutableRefObject<FetchedItem>,
     itemErrRef: MutableRefObject<number>,
-    itemIndex: number
+    itemIndex: number,
+    _id: string
 }

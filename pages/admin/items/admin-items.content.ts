@@ -1,13 +1,16 @@
 const adminItemsContent = {
     translations: {
         ua: {
-            create: 'створити товар'
+            create: 'створити товар',
+            saveBeforeCreate : 'Сбережіть попередній товар перед створенням нового.'
         },
         eng: {
-            create: 'create item'
+            create: 'create item',
+            saveBeforeCreate: 'Save previous item before creating a new one.'
         },
         ru: {
-            create: 'создать товар'
+            create: 'создать товар',
+            saveBeforeCreate: 'Сохраните предыдущий товар перед созданием нового.'
         }
     }
 }

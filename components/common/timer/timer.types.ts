@@ -7,3 +7,5 @@ export type TimerProps = {
     clearInitTimer?: () => void,
     children: ((timer: string) => ReactNode) | ((timer: string, onSubmit: MouseAction) => ReactNode)
 }
+
+export type UseTimerParams = Omit<TimerProps, 'children'>

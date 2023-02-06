@@ -5,5 +5,6 @@ import {FetchedItem} from 'redux/shop-items/shop-items.types'
 export type ItemVariantsProps = {
     variants: ItemVariant[],
     itemValueRef: MutableRefObject<FetchedItem>,
-    itemErrRef: MutableRefObject<number>
+    itemErrRef: MutableRefObject<number>,
+    _id: string
 }

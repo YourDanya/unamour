@@ -13,7 +13,9 @@ import {DeleteUpdateItemFieldAction} from 'redux/admin/admin.types'
 const initialState: AdminState = {
     fields: {
         updateItem: {},
-        updateItems: {loading: false, success: false, error: null}
+        createItem: {},
+        deleteItem: {},
+        updateItems: {loading: false, success: false, error: null},
     }
 }
 
@@ -23,7 +25,7 @@ export const userSlice = createSlice({
     reducers: {
         setAdminFieldStart: (state, action: SetAdminFieldStartAction) => {
             const {field, _id} = action.payload
-            if (_id) {
+            if (_id !== undefined) {
                 let updateItemValue = (state.fields[field] as Record<string, UpdateItemValue>)[_id]
                 if(!updateItemValue) {
                     updateItemValue = {loading: true, error: {server: null, client: 0}, success: false}
@@ -45,11 +47,17 @@ export const userSlice = createSlice({
             }
         },
         setAdminFieldSuccess: (state, action: SetAdminFieldSuccessAction) => {
-            const {field, _id} = action.payload
-            if (_id) {
+            let {field, _id} = action.payload
+            if (_id !== undefined) {
+                _id = _id as string
                 (state.fields[field] as Record<string, UpdateItemValue>) [_id] =
-                    {loading: false, success: true, error: {server: null, client: 0} }
-            } else {
+                    {loading: false, success: true, error: {server: null, client: 0}}
+                if (field === 'createItem') {
+                    state.fields['createItem'][''] =
+                        {loading: false, success: false, error: {server: null, client: 0}}
+                }
+            }
+            else {
                 (state.fields[field] as StateField) = {loading: false, success: true, error: null}
             }
         },
@@ -63,7 +71,7 @@ export const userSlice = createSlice({
         },
         setAdminField: (state, action: SetAdminFieldAction) => {
             const {field, _id, value} = action.payload
-            if (_id) {
+            if (_id !== undefined) {
                 ((state.fields[field] as Record<string, UpdateItemValue>)[_id] as UpdateItemValue) =
                     {...(state.fields[field] as Record<string, UpdateItemValue>)[_id], ...(value as Partial<UpdateItemValue>)}
             } else {

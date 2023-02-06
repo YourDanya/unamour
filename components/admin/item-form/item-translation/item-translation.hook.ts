@@ -8,9 +8,10 @@ import {ItemTranslationProps} from 'components/admin/item-form/item-translation/
 import itemTranslationContent from 'components/admin/item-form/item-translation/item-translation.content'
 import {setAdminField} from 'redux/admin/admin.slice'
 import {useDispatch} from 'react-redux'
+import {AdminIdField} from 'redux/admin/admin.types'
 
 const useItemTranslation = (props: ItemTranslationProps) => {
-    const {values, locale, itemValueRef, itemErrRef} = props
+    const {values, locale, itemValueRef, itemErrRef, _id} = props
     const [transl, content] = useLocale(itemTranslationContent)
 
     const initValues = useMemo(() => {
@@ -37,9 +38,15 @@ const useItemTranslation = (props: ItemTranslationProps) => {
             itemValueRef.current = copy
         }
         if (after !== before) {
+            let field: AdminIdField
+            if (_id) {
+                field = 'updateItem'
+            } else {
+                field = 'createItem'
+            }
             dispatch(setAdminField({
-                field: 'updateItem',
-                _id: itemValueRef.current._id,
+                field,
+                _id,
                 value: {error: {client: itemErrRef.current, server: null}}
             }))
         }

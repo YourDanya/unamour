@@ -12,9 +12,10 @@ import {useState} from 'react'
 import {setAdminField} from 'redux/admin/admin.slice'
 import {useDispatch} from 'react-redux'
 import {useRef} from 'react'
+import {AdminIdField} from 'redux/admin/admin.types'
 
 const useItemVariant = (props: ItemVariantProps) => {
-    const {color, sizes, itemValueRef, price, variantIndex, itemErrRef} = props
+    const {color, sizes, itemValueRef, price, variantIndex, itemErrRef, _id} = props
     const [colorsTransl, colorsContent] = useLocale(colorContent)
     const [transl, content] = useLocale(itemVariantContent)
 
@@ -103,9 +104,15 @@ const useItemVariant = (props: ItemVariantProps) => {
             //     console.log('before count', beforeCount)
             //     console.log('item err ref', itemErrRef.current)
             // }
+            let field: AdminIdField
+            if (_id) {
+                field = 'updateItem'
+            } else {
+                field = 'createItem'
+            }
             dispatch(setAdminField({
-                field: 'updateItem',
-                _id: itemValueRef.current._id,
+                field,
+                _id,
                 value: {error: {client: itemErrRef.current, server: null}}
             }))
         }
@@ -122,7 +129,7 @@ const useItemVariant = (props: ItemVariantProps) => {
             if (afterCount !== beforeCount) {
                 dispatch(setAdminField({
                     field: 'updateItem',
-                    _id: itemValueRef.current._id,
+                    _id,
                     value: {error: {client: itemErrRef.current, server: null}}
                 }))
             }

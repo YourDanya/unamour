@@ -10,7 +10,8 @@ export type ItemVariantProps = {
     variantIndex: number,
     onDeleteVariant: MouseAction,
     itemValueRef: MutableRefObject<FetchedItem>,
-    itemErrRef: MutableRefObject<number>
+    itemErrRef: MutableRefObject<number>,
+    _id: string
 }
 
 

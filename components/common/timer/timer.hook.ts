@@ -2,10 +2,10 @@ import {useState} from 'react'
 import {parseTimer} from 'utils/main/main.utils'
 import {useEffect} from 'react'
 import {useRef} from 'react'
-import {TimerProps} from 'components/common/timer/timer.types'
 import {MouseEvent} from 'react'
+import {UseTimerParams} from 'components/common/timer/timer.types'
 
-const useTimer = (props: TimerProps) => {
+const useTimer = (props: UseTimerParams) => {
     const {initTimer, clearInitTimer} = props
     const [timer, setTimer] = useState<number>(initTimer as number)
     const timerRef = useRef<number>(initTimer as number)

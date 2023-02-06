@@ -3,8 +3,6 @@ import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import Link from 'next/link'
 import {UseLocale} from 'hooks/other/other.types'
-import {UseMapForm} from 'hooks/other/other.types'
-import {useInput} from 'hooks/input/input.hooks'
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -111,4 +109,3 @@ export const useLocale: UseLocale = ((content) => {
     return common? [translations[locale], common] : [translations[locale]]
 }) as UseLocale
 
-export const useMapForm: UseMapForm = (values, translations, validations) => {}

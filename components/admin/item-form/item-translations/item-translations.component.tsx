@@ -5,7 +5,7 @@ import {Locale} from 'types/types'
 import ItemTranslation from 'components/admin/item-form/item-translation/item-translation.component'
 
 const ItemTranslations: FC<ItemTranslationsProps> = (props) => {
-    const {translations, itemValueRef, itemErrRef} = props
+    const {translations, itemValueRef, itemErrRef, _id} = props
     const {transl} = useItemTranslations()
 
     return (
@@ -18,6 +18,7 @@ const ItemTranslations: FC<ItemTranslationsProps> = (props) => {
                     itemErrRef={itemErrRef}
                     itemValueRef={itemValueRef}
                     values={values}
+                    _id={_id}
                 />
             ))}
         </div>

@@ -7,5 +7,6 @@ export type ItemTranslationProps = {
     values: ItemCommonTranslation,
     locale: Locale,
     itemValueRef: MutableRefObject<FetchedItem>,
-    itemErrRef: MutableRefObject<number>
+    itemErrRef: MutableRefObject<number>,
+    _id: string
 }

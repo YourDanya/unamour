@@ -59,6 +59,15 @@ export const mapField: MapField = (field, stateField, locale, contentErrors,
     return {loading, error, success, timer}
 }
 
+// export const mapUpdateItem: MapField = (field, stateField, locale, contentErrors,
+//                                    contentSuccess) => {
+//
+//     const {loading, timer, error: serverError} = stateField
+//     const error = getError(field, serverError, contentErrors, locale)
+//     const success = stateField.success ? contentSuccess[field][locale] : null
+//     return {loading, error, success, timer}
+// }
+
 export const getError: GetError = (field, serverError, contentErrors, locale) => {
     const code = serverError?.code as '4' | '5'
     const message = serverError?.message as string
@@ -111,8 +120,8 @@ export const nullObj: NullObj = (obj) => {
 }
 
 export const checkEqual = (obj1: any, obj2: any) => {
-    console.log('obj1', obj1)
-    console.log('obj2', obj2)
+    // console.log('obj1', obj1)
+    // console.log('obj2', obj2)
     let stack1: any[] = [{obj: obj1}], newStack1, stack2: any[] = [{obj: obj2}], newStack2 = []
     while (stack1.length !== 0) {
         newStack1 = []
@@ -128,7 +137,7 @@ export const checkEqual = (obj1: any, obj2: any) => {
                     newStack2.push(stack2[i][key])
                 }
                 else if (typeof stack1[i][key] !== typeof stack2[i][key] || stack1[i][key] !== stack2[i][key]) {
-                    console.log('obj1 !== obj2')
+                    // console.log('obj1 !== obj2')
                     return false
                 }
             }
@@ -136,6 +145,10 @@ export const checkEqual = (obj1: any, obj2: any) => {
         stack1 = newStack1
         stack2 = newStack2
     }
-    console.log('obj1 === obj2')
+    // console.log('obj1 === obj2')
     return true
+}
+
+export const useTimer = () => {
+
 }

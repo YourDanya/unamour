@@ -11,9 +11,10 @@ import {FetchedItem} from 'redux/shop-items/shop-items.types'
 import {useEffect} from 'react'
 import {selectCheckSlug} from 'redux/admin/admin.selectors'
 import {useRefSelector} from 'hooks/enhanced/enhanced.hooks'
+import {AdminIdField} from 'redux/admin/admin.types'
 
 const useItemCommon = (props: ItemCommonProps) => {
-    const {itemValueRef, itemErrRef, itemIndex, ...otherProps} = props
+    const {itemValueRef, itemErrRef, itemIndex, _id, ...otherProps} = props
     const [transl, content] = useLocale(itemCommonContent)
     const [categoryTransl, categoryValues] = useLocale(categoriesContent)
 
@@ -53,9 +54,16 @@ const useItemCommon = (props: ItemCommonProps) => {
         const afterCount = errRef.current.count
         itemErrRef.current += afterCount - beforeCount
         if (beforeCount !== afterCount) {
+            console.log('dispatching', itemValueRef.current._id)
+            let field: AdminIdField
+            if (_id) {
+                field = 'updateItem'
+            } else {
+                field = 'createItem'
+            }
             dispatch(setAdminField({
-                field: 'updateItem',
-                _id: itemValueRef.current._id,
+                field,
+                _id,
                 value: {error: {client: itemErrRef.current, server: null}}
             }))
         }

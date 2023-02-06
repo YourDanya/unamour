@@ -18,12 +18,10 @@ export const selectAdminStore = (state: AppState) => state.admin
 export const selectAdminField: SelectAdminField = ((field, _id) => {
     return createSelector(
         [selectAdminStore, selectLocale], (adminStore, locale) => {
-            if (typeof _id === 'string') {
-                console.log('selector', _id[_id.length - 2] + _id[_id.length - 1])
-            }
-            let adminField: Record<string, UpdateItemValue> | StateField | UpdateItemValue = adminStore.fields[field]
-            if (!('success' in adminField) && _id) {
-                field = field as 'updateItem'
+            let adminField: StateField | Record<string, UpdateItemValue> | Record<string, StateField> | UpdateItemValue
+                = adminStore.fields[field]
+            if (field === 'updateItem' || field === 'createItem') {
+                _id = _id as string
                 adminField = (adminField as Record<string, UpdateItemValue>)[_id] as UpdateItemValue
                 if (!adminField) {
                     adminField = {loading: false, success: false, error: {client: 0, server: null}}
@@ -39,10 +37,16 @@ export const selectAdminField: SelectAdminField = ((field, _id) => {
                 let client = ''
                 if (error.client) client = getAdminClientErrors({field, locale, count: error.client})
                 return {...otherMappedField, error: {server, client}}
+            } else if (field === 'deleteItem') {
+                _id = _id as string
+                adminField = (adminField as Record<string, StateField>)[_id]
+                if (!adminField) {
+                    adminField = {loading: false, success: false, error: null}
+                }
             } else {
                 adminField = adminField as StateField
-                return mapField(field, adminField, locale, adminErrors, adminSuccess)
             }
+            return mapField(field, adminField, locale, adminErrors, adminSuccess)
         }, {memoizeOptions: {resultEqualityCheck: checkEqual}}
     )
 }) as SelectAdminField

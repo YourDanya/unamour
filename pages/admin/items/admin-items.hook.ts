@@ -8,9 +8,10 @@ import {useRouter} from 'next/router'
 import {selectShopItemsField} from 'redux/shop-items/shop-items.selector'
 import {MouseEvent} from 'react'
 import {useState} from 'react'
-import {FetchedItem} from 'redux/shop-items/shop-items.types'
 import {useLocale} from 'hooks/other/other.hooks'
 import adminItemsContent from 'pages/admin/items/admin-items.content'
+import {useDispatch} from 'react-redux'
+import {addItem} from 'redux/shop-items/shop-items.slice'
 
 const useAdminItems = () => {
     const items = useSelector(selectFetchedItems)
@@ -18,8 +19,8 @@ const useAdminItems = () => {
     const getUser = useParamSelector(selectUserField, 'getUser')
     const router = useRouter()
     const getItems = useParamSelector(selectShopItemsField, 'getItems')
-    const [toAddItem, setToAddItem] = useState<null | FetchedItem>(null)
     const [transl] = useLocale(adminItemsContent)
+    const [itemError, setItemError] = useState('')
 
     useEffect(() => {
         if (getUser.error || (getUser.success && !user?.isAdmin)) {
@@ -27,12 +28,21 @@ const useAdminItems = () => {
         }
     }, [getUser])
 
+    const dispatch = useDispatch()
+    const toAddItem = !items[items.length - 1]?._id
+
     const onAddItem = (event: MouseEvent) => {
         event.preventDefault()
-        setToAddItem(items[items.length - 1])
+        if (!toAddItem) {
+            const item = {...items[items.length - 1]}
+            item._id = ''
+            dispatch(addItem(item))
+        } else if (!itemError) {
+            setItemError(transl.saveBeforeCreate)
+        }
     }
 
-    return {items, user, getItems, onAddItem, toAddItem, transl}
+    return {items, user, getItems, onAddItem, toAddItem, transl, itemError}
 }
 
 export default useAdminItems
