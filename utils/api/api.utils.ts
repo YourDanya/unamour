@@ -1,6 +1,9 @@
 import axios from 'axios'
 import {AxiosResponse} from 'axios'
 import {ApiCallAsync} from 'utils/api/api.types'
+import {ApiCall} from 'utils/api/api.types'
+import {AxiosPromise} from 'axios'
+import {ServerError} from 'redux/store.types'
 
 let baseURL = 'http://localhost:5000'
 
@@ -9,7 +12,7 @@ let instance = axios.create({
     withCredentials: true
 })
 
-export const Api = {
+export const api = {
     get:
         async (url: string) => {
             return await instance.get(url)
@@ -47,7 +50,7 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
             const res = err.response as AxiosResponse
             console.log('err', err)
             let code = res?.status?.toString()[0] ?? ''
-            if (code !== '4' && code!== '5') code = '5'
+            if (code !== '4' && code !== '5') code = '5'
             const {message} = res?.data || {}
             const timer = +res?.data?.timer
             if (Array.isArray(errorAction)) {
@@ -58,5 +61,20 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
                 dispatch(errorAction({code, message, timer}))
             }
         }
+    }
+}
+
+
+export const apiCall: ApiCall = async (apiCall)  => {
+    try {
+        const {data} = await apiCall()
+        return {data, err: null}
+    } catch (err: any) {
+        const res = err.response as AxiosResponse
+        console.log('err', err)
+        let code = res?.status?.toString()[0] ?? ''
+        if (code !== '4' && code !== '5') code = '5'
+        const {message} = res?.data || {}
+        return {data: null, err: {code, message}}
     }
 }

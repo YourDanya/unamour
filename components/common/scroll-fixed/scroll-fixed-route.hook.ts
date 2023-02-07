@@ -14,8 +14,8 @@ const useScrollFixedRoute = (state: State, setState: (state: State) => void, sta
         const elemRect = elemRef.current?.getBoundingClientRect() as DOMRect
         const toScroll = stateRef.current.scrollY - stateRef.current.toParentTop
         // console.log('ref', ref.current)
-        console.log('on path change')
-        console.log('scrollY', stateRef.current.scrollY)
+        // console.log('on path change')
+        // console.log('scrollY', stateRef.current.scrollY)
         // console.log('toParentTop', stateRef.current.toParentTop)
         // console.log('toScroll', toScroll)
         setState({...state, translateY: 0})

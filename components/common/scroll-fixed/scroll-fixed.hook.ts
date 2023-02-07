@@ -7,7 +7,6 @@ import {Property} from 'csstype'
 import Position = Property.Position
 
 const useScrollHook = (props: ScrollFixedProps) => {
-
     const {topOffset, bottomOffset} = props
 
     const [state, setState] = useState<State>({position: 'static', top: 0, bottom: 'unset', translateY: 0})
@@ -22,7 +21,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
             stateRef.current.self = false
             return
         }
-        console.log('scrollY prev', stateRef.current.scrollY)
+        // console.log('scrollY prev', stateRef.current.scrollY)
 
         const scrollY = window.scrollY
         const viewPort = window.innerHeight
@@ -32,7 +31,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
         const parentRect = parentElement?.getBoundingClientRect() as DOMRect
 
         // console.log('\nscrolling', scrollY)
-        console.log('scrollY', scrollY)
+        // console.log('scrollY', scrollY)
         // console.log('viewport', viewPort)
         // console.log('rect bottom', rect.bottom)
         // console.log('rect top', rect.top)
@@ -53,7 +52,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
         //scrolling down
         down: if (scrollY > stateRef.current.scrollY) {
             //reaching menu end
-            console.log('scrolling down')
+            // console.log('scrolling down')
             if (rect.bottom - viewPort <= - bottomOffset + 5) {
                 //reaching parent end
                 if (parentRect.bottom <= viewPort + 100) {
@@ -84,7 +83,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
             }
             //not reaching end
             else {
-                console.log('not reaching end')
+                // console.log('not reaching end')
                 //switched to static
                 if (stateRef.current.position !== 'static') {
                     position = 'static'
@@ -100,7 +99,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
         }
         //scrolling up
         else {
-            console.log('scrolling up')
+            // console.log('scrolling up')
             //reaching menu top
             if (rect.top >= topOffset - 5) {
                 stateRef.current.toParentTop = scrollY + rect.top - stateRef.current.parentToPageTop
@@ -132,7 +131,7 @@ const useScrollHook = (props: ScrollFixedProps) => {
 
         stateRef.current.scrollY = scrollY
 
-        console.log(stateRef.current.scrollY)
+        // console.log(stateRef.current.scrollY)
 
         if (toUpdate) {
             stateRef.current.position = position

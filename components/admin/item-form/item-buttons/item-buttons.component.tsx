@@ -7,33 +7,30 @@ import closeRed from 'public/icons/close-red.svg'
 import ItemMessage from 'components/admin/item-form/item-buttons/item-message/item-message.component'
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
+    const {deleted} = props
     const {updateItemState, transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, createItemState,
     deleteItemState} = useItemButtons(props)
     
     return (
         <>
-            <Button
-                className={'item-form__button item-form__button--delete'}
-                onClick={onDelete}
-                loading={deleteItemState.loading}
-            >
-                {transl.delete}
-            </Button>
-            <Button
-                className={'item-form__button item-form__button--save'}
-                onClick={onSave}
-                loading={updateItemState.loading || createItemState.loading}
-            >
-                {transl.save}
-            </Button>
-            {/*<Timer*/}
-            {/*    clearInitTimer={onSuccessTimerExpiration}*/}
-            {/*    initTimer={updateItemState.success || createItemState.success ? 5000 : undefined}*/}
-            {/*>*/}
-            {/*    {(timer, _) => isMessage.server && (*/}
-            {/*    */}
-            {/*    )}*/}
-            {/*</Timer>*/}
+            {!deleted && (
+                <>
+                    <Button
+                        className={'item-form__button item-form__button--delete'}
+                        onClick={onDelete}
+                        loading={deleteItemState.loading}
+                    >
+                        {transl.delete}
+                    </Button>
+                    <Button
+                        className={'item-form__button item-form__button--save'}
+                        onClick={onSave}
+                        loading={updateItemState.loading || createItemState.loading}
+                    >
+                        {transl.save}
+                    </Button>
+                </>
+            )}
             <ItemMessage
                 isMessage={isMessage.updateItem}
                 field={'updateItem'}
@@ -50,12 +47,14 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
                 onClose={onClose}
                 onTimerExpiration={onTimerExpiration}
             />
-            {/*<ItemMessage*/}
-            {/*    success={createItemState.success}*/}
-            {/*    error={createItemState.error}*/}
-            {/*    onClose={onClose}*/}
-            {/*    onTimerExpiration={onTimerExpiration}*/}
-            {/*/>*/}
+            <ItemMessage
+                isMessage={isMessage.deleteItem}
+                field={'deleteItem'}
+                success={deleteItemState.success}
+                error={deleteItemState.error}
+                onClose={onClose}
+                onTimerExpiration={onTimerExpiration}
+            />
             {isMessage.client && (
                 <FormMessage
                     className={'item-form__message'}

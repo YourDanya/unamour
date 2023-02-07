@@ -12,9 +12,9 @@ const ItemForm: FC<ItemFormProps> = (props) => {
     const {itemValueRef, itemErrRef, transl} = useItemForm(props)
 
     return (
-        <form className={`item-form ${className ? className : ''}`}>
-             {!deleted && (
-                 <>
+        <form className={`item-form ${className ? className : ''} ${deleted? 'item-form--deleted' : ''}`}>
+             {/*{!deleted && (*/}
+             {/*    <>*/}
                      <div className={'item-form__title item-form__title--main'}>
                          {transl.item} №{itemIndex + 1} {common.slug}
                      </div>
@@ -37,15 +37,15 @@ const ItemForm: FC<ItemFormProps> = (props) => {
                          itemErrRef={itemErrRef}
                          _id={_id}
                      />
-                 </>
-            )}
-            <ItemButtons itemValueRef={itemValueRef} _id={_id}/>
+            {/*     </>*/}
+            {/*)}*/}
+            <ItemButtons itemValueRef={itemValueRef} _id={_id} deleted={deleted}/>
         </form>
     )
 }
 
 const areEqual = (prevProps: ItemFormProps, currentProps: ItemFormProps) => {
-    return prevProps.updateTime === currentProps.updateTime
+    return prevProps.updateTime === currentProps.updateTime && prevProps.deleted === currentProps.deleted
 }
 
 export default React.memo(ItemForm, areEqual)

@@ -75,7 +75,6 @@ export const useResizeObserve = (callback: (() => void), ...elements: HTMLElemen
 }
 
 export const useLayoutResizeObserve = (callback: (() => void), ...elements: HTMLElement []) => {
-
     useLayoutEffect(() => {
         const resizeObserver = new ResizeObserver(callback)
         elements.length === 0 && elements.push(document.body)

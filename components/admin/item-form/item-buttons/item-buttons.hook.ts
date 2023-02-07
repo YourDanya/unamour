@@ -33,6 +33,7 @@ const useItemButtons = (props: ItemButtonsProps) => {
     // if (!_id) {
     //     console.log('createItemState.loading', createItemState.loading)
     //     console.log('updateItemState.loading', updateItemState.loading)
+    //     console.log('deleteItemState.loading', deleteItemState.loading)
     // }
 
     const [isMessage, setMessage] = useState({client: false, updateItem: false, createItem: false, deleteItem: false})
@@ -67,15 +68,16 @@ const useItemButtons = (props: ItemButtonsProps) => {
 
     const onClose: MouseAction = (event) => {
         event.preventDefault()
-        const value = event.currentTarget.getAttribute('data-value') as keyof typeof isMessage
-        setMessage({...isMessage, [value]: false})
+        const field = event.currentTarget.getAttribute('data-value') as keyof typeof isMessage
+        setMessage({...isMessage, [field]: false})
     }
-
-    // console.log('updateItemState.success', updateItemState.success)
 
     const onTimerExpiration = (field: AdminIdField) => {
         setMessage({...isMessage, [field]: false})
         dispatch(resetAdminFieldSuccess({field, _id}))
+        if (field === 'deleteItem') {
+            dispatch(removeDeletedItem())
+        }
     }
 
     useOmitFirstEffect(() => {
@@ -103,6 +105,13 @@ const useItemButtons = (props: ItemButtonsProps) => {
             setMessage({...isMessage, createItem})
         }
     }, [createItemState.error, createItemState.success])
+
+    useEffect(() => {
+        const deleteItem = !!deleteItemState.error || !!deleteItemState.success
+        if (isMessage.deleteItem !== deleteItem) {
+            setMessage({...isMessage, deleteItem})
+        }
+    }, [deleteItemState.error, deleteItemState.success])
 
     return {updateItemState, transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, createItemState,
     deleteItemState, onDeleteExpiration}

@@ -1,4 +1,3 @@
-import {Locale} from 'types/types'
 import {StateField} from 'redux/store.types'
 import {ContentErrors} from 'redux/store.types'
 import {ContentSuccess} from 'redux/store.types'
@@ -6,47 +5,6 @@ import {ContentSuccess} from 'redux/store.types'
 export type Color = {
     code: string,
     slug: string,
-}
-
-export type ItemCommon = {
-    slug: string,
-    slugCategory: string,
-    best: boolean,
-    special: boolean,
-    coming: boolean,
-    oldPrice: string,
-}
-
-export type ItemVariants = { variants: ItemVariant[] }
-
-export type ItemVariant = {
-    color: string,
-    sizes: string[],
-    images: string[],
-    price: string,
-}
-
-export type ItemCommonTranslation = {
-    name: string,
-    category: string,
-    description: string,
-    composition: string,
-    parameters: string,
-    delivery: string
-}
-
-export type ItemVariantsTranslation = {
-    translations: Record<Locale, { variants: ItemVariantTranslation[] }>
-}
-
-export type ItemVariantTranslation = {
-    color: {
-        name: string
-    }
-}
-
-export type ItemTranslations = {
-    translations: Record<Locale, ItemCommonTranslation>
 }
 
 export type FetchedItem = {
@@ -98,17 +56,84 @@ export type FetchedItem = {
     }
 }
 
-export type ClientItem = ItemCommon & ItemCommonTranslation & ItemVariant & ItemVariantTranslation & ItemTranslations
-    & ItemVariants & ItemVariantsTranslation
+export type CategoryItem = {
+    common: {
+        slug: string,
+        images: string[],
+        sizes: string[]
+        price: string,
+        oldPrice: string
+        color: string,
+    }
+    translations: {
+        ua: {
+            name: string
+        },
+        eng: {
+            name: string
+        },
+        ru: {
+            name: string
+        }
+    }
+}
+
+export type ClientItem = {
+    common: {
+        slug: string,
+        slugCategory: string,
+        best: boolean,
+        special: boolean,
+        coming: boolean,
+        oldPrice: string,
+        color: string,
+        sizes: string[],
+        images: string[],
+        price: string,
+        variants: {
+            color: string,
+            sizes: string[],
+            images: string[],
+            price: string
+        }[]
+    }
+    translations: {
+        ua: {
+            name: string,
+            category: string,
+            description: string,
+            composition: string,
+            parameters: string,
+            delivery: string,
+            // currency: string
+        },
+        eng: {
+            name: string,
+            category: string,
+            description: string,
+            composition: string,
+            parameters: string,
+            delivery: string,
+            // currency: string
+        },
+        ru: {
+            name: string,
+            category: string,
+            description: string,
+            composition: string,
+            parameters: string,
+            delivery: string,
+            // currency: string,
+        }
+    }
+}
 
 export type ShopItemsField = 'getItems'
-
 export type ShopItemsErrors = ContentErrors<ShopItemsField>
-
 export type ShopItemsSuccess = ContentSuccess<ShopItemsField>
 
 export type ShopItemsState = {
     fetchedItems: FetchedItem[],
-    clientItems: ClientItem[],
+    categoryItems: CategoryItem[],
     fields: Record<ShopItemsField, StateField>
 }

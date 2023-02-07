@@ -5,7 +5,7 @@ import {ServerError} from 'redux/store.types'
 
 const initialState: ShopItemsState = {
     fetchedItems: [],
-    clientItems: [],
+    categoryItems: [],
     fields: {
         getItems: {error: null, success: false, loading: false}
     }
@@ -24,7 +24,7 @@ export const shopItemsSlice = createSlice({
             console.log('fetch items error')
         },
         setClientItems: (state, action: PayloadAction<ClientItem[]>) => {
-            state.clientItems = action.payload
+            // state.clientItems = action.payload
         },
         setFetchedItem: (state, action: PayloadAction<FetchedItem>) => {
             let index = state.fetchedItems.findIndex(item => item._id === action.payload._id)
@@ -48,7 +48,7 @@ export const shopItemsSlice = createSlice({
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            state.clientItems = [...action.payload.shopItems.clientItems]
+            // state.categoryItems = [...action.payload.shopItems.categoryItems]
         }
     }
 })
