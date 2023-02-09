@@ -6,25 +6,29 @@ import ColorsFilter from 'components/shop-items/color-filter/color-filter.compon
 import Dropdown from 'components/common/dropdown/dropdown.component'
 import SizesFilter from 'components/shop-items/size-filter/size-filter.component'
 import useShopItems from 'components/shop-items/shop-items.hook'
-import Link from 'next/link'
 import SortingFilter from 'components/shop-items/sorting-filter/sorting-filter.component'
 import {ShopItemsProps} from 'components/shop-items/shop-items.types'
+import NavLink from 'components/common/nav-link/nav-link.component'
+import {sizeContent} from 'components/common/content/content'
 
 const ShopItems: React.FC<ShopItemsProps> = (props) => {
     const {children} = props
-    const {content, transl, handleLinkClick, params, handleResetClick, filters} = useShopItems(props)
+    const {content, transl, categories, colors, params, handleResetClick, filters} = useShopItems(props)
 
     return (
         <div className='shop-items'>
             <div className='shop-items__menu'>
                 <ScrollFixed topOffset={120} bottomOffset={20}>
-                    <div className='shop-items__menu-list'>
-                        {content.categories.map((ref, index) => (
-                            <Link href={`${ref}${params ? `?${params}` : ''}`} key={ref}>
-                                <a className={'shop-items__menu-item'} onClick={handleLinkClick}>
-                                    {transl.categories[index]}
-                                </a>
-                            </Link>
+                    <div className='shop-items__categories'>
+                        {categories[1].map((ref, index) => (
+                            <NavLink
+                                href={`${ref}${params ? `?${params}` : ''}`}
+                                className={'shop-items__category'}
+                                activeClassName={'shop-items__category--active'}
+                                key={ref}
+                            >
+                                {categories[0][index]}
+                            </NavLink>
                         ))}
                     </div>
                     <div className='shop-items__filters'>
@@ -46,15 +50,15 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
                         </Dropdown>
                         <Dropdown name={transl.filter3} className='shop-items__sizes'>
                             <SizesFilter
-                                content={content.filters.size}
+                                content={sizeContent}
                                 filter={'size'}
                                 filters={filters}
                             />
                         </Dropdown>
                         <Dropdown name={transl.filter4} className={'shop-items__colors'}>
                             <ColorsFilter
-                                content={content.filters.color}
-                                transl={transl.color}
+                                content={colors[1]}
+                                transl={colors[0]}
                                 filter={'color'}
                                 filters={filters}
                             />

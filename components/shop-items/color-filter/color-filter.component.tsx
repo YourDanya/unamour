@@ -1,11 +1,9 @@
 import React from 'react'
-import {ColorContent} from 'components/shop-items/shop-items.types'
 import useColorsFilter from 'components/shop-items/color-filter/color-filter.hook'
 import Checkbox from 'components/common/checkbox/checkbox.component'
 import {ColorsFilterProps} from 'components/shop-items/color-filter/color-filter.types'
 
 const ColorsFilter: React.FC<ColorsFilterProps> = (props) => {
-
     const {content: colors, transl} = props
     const {colorValues, onChange} = useColorsFilter(props)
 

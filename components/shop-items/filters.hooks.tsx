@@ -61,8 +61,12 @@ export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=
                 let param = ''
                 if (elem === filter) {
                     if (filter === 'sorting') {
-                        if (state === '') param = ''
-                        else param = `${filter}=${state}`
+                        if (state === '') {
+                            param = ''
+                        }
+                        else {
+                            param = `${filter}=${state}`
+                        }
                     }
                     else if(filter === 'price') {
                         const priceState = state as PriceState
@@ -73,7 +77,9 @@ export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=
                         const value = Object.keys(objState).filter(prop => objState[prop]).join(';')
                         param = value ? `${filter}=${value}` : ''
                     }
-                } else if (elem in pathRef.current.query) param = `${elem}=${pathRef.current.query[elem]}`
+                } else if (elem in pathRef.current.query) {
+                    param = `${elem}=${pathRef.current.query[elem]}`
+                }
                 return param
             })
             .filter(elem => elem !== '')
@@ -127,7 +133,6 @@ export const useGetFilterState = (filter: string, filterContent: FilterContent) 
 }
 
 export const useFilter: UseFilter = (props) => {
-
     const {filters, filter, content} = props
 
     const toUpdate = useRef(false)

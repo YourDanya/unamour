@@ -1,23 +1,26 @@
 import React, {useState} from 'react'
 import {ClientItem} from 'redux/shop-items/shop-items.types'
 import {useToggleMany} from 'hooks/event-handler/event-handler.hooks'
+import {CategoryItem} from 'redux/shop-items/shop-items.types'
+import {MouseAction} from 'types/types'
+import {useLocale} from 'hooks/other/other.hooks'
 
-const useShopItemPreview = (props: ClientItem) => {
+const useShopItemPreview = (props: CategoryItem) => {
+    const [transl] = useLocale(props)
     const [hovered, setHovered] = useState(false)
-
     const [loaded, handleLoaded, _, loadRef] = useToggleMany({0: false, 1: false} , 'data-attr')
 
-    const handleMouse = (event: React.MouseEvent<HTMLElement>) => {
+    const onMouse: MouseAction = () => {
         const loaded = Object.values(loadRef.current).reduce((accum, current) => accum && current)
         if (loaded) setHovered(!hovered)
     }
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const onClick: MouseAction = (event) => {
         const loaded = Object.values(loadRef.current).reduce((accum, current) => accum && current)
         if (!loaded) event.preventDefault()
     }
 
-    return {hovered, handleMouse, setHovered, loaded, handleLoaded, handleClick}
+    return {hovered, onMouse, setHovered, loaded, handleLoaded, onClick, transl}
 }
 
 export default useShopItemPreview

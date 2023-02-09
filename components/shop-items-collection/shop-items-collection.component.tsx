@@ -1,13 +1,8 @@
-import React from 'react'
+import {FC} from 'react'
+import {ItemsCollectionProps} from 'components/shop-items-collection/shop-items-collection.types'
 import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
-import {ClientItem} from 'redux/shop-items/shop-items.types'
 
-interface itemsCollectionProps {
-    items: ClientItem[],
-    title: string,
-}
-
-const ShopItemsCollection: React.FC<itemsCollectionProps> = ({items, title}) => {
+const ShopItemsCollection: FC<ItemsCollectionProps> = ({items, title}) => {
 
     return (
         <div className={'shop-items-collection'}>
@@ -16,7 +11,7 @@ const ShopItemsCollection: React.FC<itemsCollectionProps> = ({items, title}) => 
             </div>
             <div className={'shop-items-collection__items'}>
                 {items && items.map((props, index) => (
-                    <div className='shop-items-collection__item' key={props.slug + index}>
+                    <div className='shop-items-collection__item' key={props.common.slug + index}>
                         <ShopItemPreview {...props}/>
                     </div>
                 ))}

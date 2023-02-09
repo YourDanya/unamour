@@ -8,48 +8,13 @@ export const mapDelivery: MapDelivery = (labels) => labels.map(({title, price, d
     return {
         label: title,
         node: (
-            <div className='delivery-type'>
-                <div className='delivery-type__price'>{price}</div>
-                <div className='delivery-type__duration'>{duration}</div>
+            <div className="delivery-type">
+                <div className="delivery-type__price">{price}</div>
+                <div className="delivery-type__duration">{duration}</div>
             </div>
         )
     }
 })
-
-// export const createClientItems = (fetchedItems: FetchedItem[], locale: Locale): ClientItem[] => {
-//     const clientItems: ClientItem [] = []
-//
-//     fetchedItems.forEach(item => {
-//         // @ts-ignore
-//         const {variants: commonVariants, ...common} = item.common
-//         const {translations} = item
-//
-//         // @ts-ignore
-//         const {variants: translateVariants, ...translation} = translations[locale]
-//
-//         const mergedVariants = commonVariants.map((variant: { color: any }, index: string | number) => {
-//             // @ts-ignore
-//             const translateVariant = translateVariants[index]
-//             return {
-//                 ...variant, ...translateVariant, color: {...variant.color, ...translateVariant.color}
-//             }
-//         })
-//
-//         mergedVariants.forEach((variant: any, index: any) => {
-//             const clientItem = {
-//                 ...common,
-//                 ...variant,
-//                 ...translation,
-//                 variants: mergedVariants,
-//                 translations
-//             }
-//             clientItems.push(clientItem)
-//         })
-//
-//         // const clientItem : ClientItem = {} as ClientItem
-//     })
-//     return clientItems
-// }
 
 export const filterItems: FilterItems = (items, filters) => {
     const {sorting, price, ...otherFilters} = filters
@@ -57,12 +22,17 @@ export const filterItems: FilterItems = (items, filters) => {
     if (sorting) {
         items = [...items].sort((item1, item2) => {
             const desc = sorting.startsWith('-')
-            let sortParam = sorting as keyof CategoryItem
-            if (desc) sortParam = (sortParam as string).replace('-', '') as keyof CategoryItem
-            const value1 = Number(item1[sortParam]) ?? 0
-            const value2 = Number(item2[sortParam]) ?? 0
-            if (desc) return value2 - value1
-            else return value1 - value2
+            let sortParam = sorting as keyof CategoryItem['common']
+            if (desc) {
+                sortParam = sortParam.replace('-', '') as keyof CategoryItem['common']
+            }
+            const value1 = Number(item1.common[sortParam]) ?? 0
+            const value2 = Number(item2.common[sortParam]) ?? 0
+            if (desc) {
+                return value2 - value1
+            } else {
+                return value1 - value2
+            }
         })
     }
     if (price) {
@@ -79,12 +49,13 @@ export const filterItems: FilterItems = (items, filters) => {
                     accum[filterValue] = true
                     return accum
                 }, {} as Record<string, boolean>)
+            console.log('filterValues', filterValues)
             items = items.filter(item => {
-                if (filter==='color') {
+                if (filter === 'color') {
                     const color = item.common['color']
                     return color in filterValues
                 }
-                if (filter==='size') {
+                if (filter === 'size') {
                     const sizes = item.common['sizes'] as string[]
                     let found = false
                     sizes.every(size => {

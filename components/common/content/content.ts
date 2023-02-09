@@ -274,7 +274,7 @@ export const categoriesContent = {
     ],
     translations: {
         ua: [
-            // 'подивитись все',
+            'подивитись все',
             'екокожа',
             'сукня',
             'спідниці',
@@ -290,7 +290,7 @@ export const categoriesContent = {
             'аксесуари'
         ],
         eng: [
-            // 'view all',
+            'view all',
             'eco leather',
             'dresses',
             'skirts',
@@ -306,7 +306,7 @@ export const categoriesContent = {
             'accessories'
         ],
         ru: [
-            // 'посмотреть все',
+            'посмотреть все',
             'экокожа',
             'платья',
             'юбки',

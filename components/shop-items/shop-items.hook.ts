@@ -1,12 +1,18 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useRouter} from 'next/router'
 import shopItemsContent from 'components/shop-items/shop-items.content'
 import {ShopItemsProps} from 'components/shop-items/shop-items.types'
+import {categoriesContent} from 'components/common/content/content'
+import {colorContent} from 'components/common/content/content'
+import {MouseAction} from 'types/types'
+import {useMemo} from 'react'
 
 const useShopItems = (props: ShopItemsProps) => {
     const [transl, content] = useLocale(shopItemsContent)
-    const filters = Object.keys(content.filters)
+    const categories = useLocale(categoriesContent)
+    const colors = useLocale(colorContent)
+    const filters = useMemo(() => ['sorting', 'price', 'size', 'color'], [])
 
     const router = useRouter()
     const path = router.asPath
@@ -14,20 +20,15 @@ const useShopItems = (props: ShopItemsProps) => {
     const mainPath = pathArr[0]
     const params = pathArr[1]
 
-    const handleLinkClick = (event: any) => {
-        const href = event.currentTarget.getAttribute('href')
-        if (mainPath === href) event.preventDefault()
-    }
-
     const [reset, setReset] = useState(false)
 
-    const handleResetClick = (event: React.MouseEvent<HTMLElement>) => {
+    const handleResetClick: MouseAction = () => {
         if (path!==mainPath) {
             router.push(`${mainPath}?reset`, mainPath)
         }
     }
 
-    return {content, transl, handleLinkClick, params, handleResetClick, filters, reset, setReset}
+    return {content, transl, params, handleResetClick, filters, reset, setReset, categories, colors}
 }
 
 export default useShopItems
