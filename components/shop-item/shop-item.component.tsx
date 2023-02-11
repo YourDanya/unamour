@@ -8,16 +8,15 @@ import Dropdowns from 'components/shop-item/dropdowns/dropdowns.component'
 import ModalContent from 'components/common/modal-content/modal-content.component'
 import Buttons from 'components/shop-item/buttons/buttons.component'
 import Present from 'components/shop-item/present/present.component'
-import {ClientItem} from 'redux/shop-items/shop-items.types'
 import Modal from 'components/common/modal/modal.component'
 import Links from 'components/shop-item/links/links.component'
+import {FetchedItem} from 'redux/shop-items/shop-items.types'
 
-const ShopItem: React.FC<ClientItem> = (props) => {
+const ShopItem: React.FC<FetchedItem> = (props) => {
+    const {common: {variants, slugCategory, oldPrice}} = props
 
-    const {name, color, sizes, images, variants, price, delivery, description, composition, parameters,
-        category, slugCategory, oldPrice} = props
-
-    const {activeSize, handleSizeClick, modalState, showModal, hideModal} = useShopItem()
+    const {activeSize, onSetActiveSize, modalState, showModal, hideModal, currentVariant: {sizes, images, price, color},
+        transl: {name, delivery, description, composition, parameters, category}} = useShopItem(props)
 
     return (
         <div className='shop-item'>
@@ -31,7 +30,7 @@ const ShopItem: React.FC<ClientItem> = (props) => {
                         price={price}
                         sizes={sizes}
                         activeSize={activeSize}
-                        handleSizeClick={handleSizeClick}
+                        handleSizeClick={onSetActiveSize}
                         color={color}
                         variants={variants}
                         showModal={showModal}

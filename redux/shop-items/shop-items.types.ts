@@ -87,10 +87,6 @@ export type ClientItem = {
         special: boolean,
         coming: boolean,
         oldPrice: string,
-        color: string,
-        sizes: string[],
-        images: string[],
-        price: string,
         variants: {
             color: string,
             sizes: string[],

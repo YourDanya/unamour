@@ -13,4 +13,4 @@ export type ApiCallAsync = (
     errorAction: ErrorAction | ErrorAction[]) => AppThunk
 
 export type ApiCall = <TData> (apiCall: () => AxiosPromise) =>
-    Promise<({data:TData, err: null} | {data: null, err: ServerError})>
+    Promise<({data:TData, err: {}} | {data: {}, err: ServerError})>

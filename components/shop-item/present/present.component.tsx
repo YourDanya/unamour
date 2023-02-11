@@ -9,7 +9,7 @@ const Present: React.FC<PresentProps> = (props) => {
     return (
         <div className={`present`}>
             <PresentItem images={images} name={name} color={color} activeSize={activeSize} price={price}/>
-            <PresentForm  price={price}/>
+            <PresentForm price={price}/>
         </div>
     )
 }

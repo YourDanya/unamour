@@ -1,19 +1,12 @@
 import useSlider from 'components/common/slider/slider.hook'
-import React, {ReactNode} from 'react'
+import {FC} from 'react'
+import {SliderProps} from 'components/common/slider/slider.types'
 
-export type SliderProps = {
-    children: ReactNode,
-    current?: number,
-    setCurrent?: (index: number) => void,
-    perSlide?: number,
-    className?: string
-}
-
-const Slider: React.FC<SliderProps> = (props) => {
+const Slider: FC<SliderProps> = (props) => {
 
     const {
-        perSlide, elements, slideRef, length, current, transition, handleForwardClick, handleBackClick, elemWidth,
-        indent, handleDown, moveState, className, handleClickCapture
+        perSlide, elements, slideRef, length, current, transition, onForward, onBack, elemWidth, indent, onDown,
+        moveState, className, onCapture
     } = useSlider(props)
 
     return (
@@ -21,12 +14,12 @@ const Slider: React.FC<SliderProps> = (props) => {
             <button
                 className={`slider__arrow slider__back 
                 ${current === 0 ? 'slider__arrow--inactive' : ''}`}
-                onClick={handleBackClick}
+                onClick={onBack}
             />
             <button
                 className={`slider__arrow slider__forward 
                 ${current === length - (perSlide) ? 'slider__arrow--inactive' : ''}`}
-                onClick={handleForwardClick}
+                onClick={onForward}
             />
             <div
                 className={'slider__track'}
@@ -35,9 +28,9 @@ const Slider: React.FC<SliderProps> = (props) => {
                     transition: `${transition / 1000}s all`
                 }}
                 ref={slideRef}
-                onMouseDown={handleDown}
-                onTouchStart={handleDown}
-                onClickCapture={handleClickCapture}
+                onMouseDown={onDown}
+                onTouchStart={onDown}
+                onClickCapture={onCapture}
             >
                 {perSlide === 1 && (
                     <>

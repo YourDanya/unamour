@@ -68,13 +68,13 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
 export const apiCall: ApiCall = async (apiCall)  => {
     try {
         const {data} = await apiCall()
-        return {data, err: null}
+        return {data, err: {}}
     } catch (err: any) {
         const res = err.response as AxiosResponse
-        console.log('err', err)
+        console.log('err', err.response)
         let code = res?.status?.toString()[0] ?? ''
         if (code !== '4' && code !== '5') code = '5'
         const {message} = res?.data || {}
-        return {data: null, err: {code, message}}
+        return {data: {}, err: {code, message}}
     }
 }

@@ -17,7 +17,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
         if (category === 'all') {
             category = ''
         }
-
+        console.log('items')
         const {data} = await apiCall<{items: CategoryItem[]}>(() => api.get(`shop-item/category/${category}`))
         let {items} = data as {items: CategoryItem[]}
         if (!items || items.length === 0) {
