@@ -1,10 +1,7 @@
-import React from 'react'
+import {FC} from 'react'
 import useSizes from 'components/shop-item/sizes/sizes.hook'
 
-type SizesProps = {}
-
-const Sizes: React.FC<SizesProps> = () => {
-
+const Sizes: FC = () => {
     const {transl} = useSizes()
 
     return (

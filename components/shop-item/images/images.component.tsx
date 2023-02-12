@@ -7,7 +7,6 @@ export type ImagesProps = {
 }
 
 const Images: React.FC<ImagesProps> = (props) => {
-
     const {images, current, handleTabClick, setCurrent} = useImages(props)
 
     return (

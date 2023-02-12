@@ -1,11 +1,10 @@
-import React from 'react'
+import {FC} from 'react'
 import shoppingCart from '/public/icons/big-shopping-cart.svg'
 import CartItem from 'components/cart-item/cart-item.component'
 import useNavCart from 'components/nav/nav-cart/nav-cart.hook'
 import NavLink from 'components/common/nav-link/nav-link.component'
 
-const NavCart: React.FC = () => {
-
+const NavCart: FC = () => {
     const {cartItems, total, length, transl} = useNavCart()
 
     return (

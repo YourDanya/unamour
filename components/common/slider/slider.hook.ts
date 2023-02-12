@@ -16,7 +16,7 @@ const useSlider = (props: SliderProps) => {
     const transitionRef = useRef<{ now: boolean, add: null | number }>({now: false, add: null})
     const [transition, setTransition] = useState(400)
 
-    console.log('transition', transition)
+    // console.log('transition', transition)
 
     const onBack = () => {
         if (transitionRef.current.now) {
@@ -50,7 +50,7 @@ const useSlider = (props: SliderProps) => {
     }
 
     const onTransitionStart = (event: TransitionEvent) => {
-        console.log('transition start')
+        // console.log('transition start')
         if (event.target !== event.currentTarget) {
             return
         }
@@ -58,7 +58,7 @@ const useSlider = (props: SliderProps) => {
     }
 
     const onTransitionEnd = (event: TransitionEvent) => {
-        console.log('transition end')
+        // console.log('transition end')
         // debugger
         if (event.target !== event.currentTarget) {
             return

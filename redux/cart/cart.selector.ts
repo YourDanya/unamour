@@ -15,7 +15,7 @@ export const selectTotalPrice =
         [selectCartItems],
         cartItems => {
             let totalPrice = 0
-            cartItems.forEach(({quantity, data: {price}}) => totalPrice+=quantity*price)
+            cartItems.forEach(({quantity, common: {price}}) => totalPrice += quantity * +price)
             return totalPrice
         }
     )

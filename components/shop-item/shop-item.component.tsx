@@ -15,11 +15,14 @@ import {FetchedItem} from 'redux/shop-items/shop-items.types'
 const ShopItem: React.FC<FetchedItem> = (props) => {
     const {common: {variants, slugCategory, oldPrice}} = props
 
-    const {activeSize, onSetActiveSize, modalState, showModal, hideModal, currentVariant: {sizes, images, price, color},
-        transl: {name, delivery, description, composition, parameters, category}} = useShopItem(props)
+    const {
+        activeSize, onActiveSize, modalState, showModal, hideModal, onActiveColor, onAddItem,
+        currentVariant: {sizes, images, price, color},
+        transl: {name, delivery, description, composition, parameters, category}
+    } = useShopItem(props)
 
     return (
-        <div className='shop-item'>
+        <div className="shop-item">
             <div className="shop-item__content">
                 <Images images={images}/>
                 <div className={'shop-item__about'}>
@@ -30,12 +33,17 @@ const ShopItem: React.FC<FetchedItem> = (props) => {
                         price={price}
                         sizes={sizes}
                         activeSize={activeSize}
-                        handleSizeClick={onSetActiveSize}
+                        onActiveSize={onActiveSize}
                         color={color}
+                        onActiveColor={onActiveColor}
                         variants={variants}
                         showModal={showModal}
                     />
-                    <Buttons activeSize={activeSize} showModal={showModal}/>
+                    <Buttons
+                        activeSize={activeSize}
+                        showModal={showModal}
+                        onAddItem={onAddItem}
+                    />
                     <Dropdowns
                         delivery={delivery}
                         composition={composition}
@@ -51,7 +59,7 @@ const ShopItem: React.FC<FetchedItem> = (props) => {
                     name={name}
                     images={images}
                     color={color}
-                    activeSize={activeSize as string}
+                    activeSize={activeSize}
                 />
             </ModalContent>
             <ModalContent active={modalState.size} hideModal={hideModal} className={'sizes-modal'}>

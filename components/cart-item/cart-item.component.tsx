@@ -1,16 +1,15 @@
-import React from 'react'
+import {FC} from 'react'
 import useCartItem from 'components/cart-item/cart-item.hook'
 import Link from 'next/link'
+import {CartItem} from 'redux/cart/cart.types'
 
 
-const CartItem: React.FC<any> = (props) => {
-
-    const {data: {name, category, slug, slugCategory, price, images, size, color}, quantity} = props
-
-    const {increase, decrease, remove, cartPage, transl} = useCartItem(props)
+const CartItem: FC<CartItem> = (props) => {
+    const {common: {slug, slugCategory, price, images, size}, quantity} = props
+    const {increase, decrease, remove, transl, name, code} = useCartItem(props)
 
     return (
-        <div className={'cart-item'} key={name}>
+        <div className={'cart-item'}>
             <div className='close cart-item__close' onClick={remove}/>
             <Link href={`shop-items/${slugCategory}/${slug}`}>
                 <a className='cart-item__link'>
@@ -26,7 +25,7 @@ const CartItem: React.FC<any> = (props) => {
                 <div className='cart-item__property'>
                     <div className='cart-item__property-label'>{transl.color}</div>
                     <div className='cart-item__property-value'>
-                        <div className='cart-item__color' style={{backgroundColor: color.code}}/>
+                        <div className='cart-item__color' style={{backgroundColor: code}}/>
                     </div>
                 </div>
                 <div className='cart-item__property'>

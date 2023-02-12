@@ -1,18 +1,26 @@
-export type CartData = {
-    name: string,
-    category: string,
-    slug: string,
-    slugCategory: string,
-    price: number,
-    images: string[],
-    size: string,
-    color: { code: string, name: string }
-}
-
-export type CartItemObject = {
-    data: CartData, quantity: number
+export type CartItem = {
+    common: {
+        slug: string,
+        slugCategory: string,
+        price: string,
+        images: string[],
+        size: string,
+        color: string
+    },
+    translations: {
+        ua: {
+            name: string,
+        },
+        eng: {
+            name: string
+        },
+        ru: {
+            name: string
+        }
+    },
+    quantity: number
 }
 
 export type CartState = {
-    items: CartItemObject []
+    items: CartItem []
 }

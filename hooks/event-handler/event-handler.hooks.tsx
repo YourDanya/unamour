@@ -1,16 +1,8 @@
-import {useRef, useState, MouseEvent, ChangeEvent} from 'react'
+import {useRef, useState, MouseEvent} from 'react'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 import {MutableRefObject} from 'react'
 import {UseSetActive} from 'hooks/event-handler/event-handler.types'
 import {UseToggle} from 'hooks/event-handler/event-handler.types'
-
-export const useCombineHandlers = (...eventHandlers: ((event: any) => void)[]):
-    (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => void => {
-
-    return (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => {
-        eventHandlers.forEach(eventHandler => eventHandler(event))
-    }
-}
 
 export const useToggle : UseToggle = () => {
     const [active, setActive] = useState(false)

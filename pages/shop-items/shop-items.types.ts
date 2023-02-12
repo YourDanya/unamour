@@ -1,10 +1,11 @@
-import {ClientItem} from 'redux/shop-items/shop-items.types'
+import {FetchedItem} from 'redux/shop-items/shop-items.types'
+import {CategoryItem} from 'redux/shop-items/shop-items.types'
 
 export type ShopItemsPageProps = {
-    items: ClientItem[],
+    items: CategoryItem[],
     title: string
 }
 
 export type ShopItemPageProps = {
-    item: ClientItem
+    item: FetchedItem
 }

@@ -1,4 +1,3 @@
-import {ItemVariant} from 'redux/shop-items/shop-items.types'
 import {MouseAction} from 'types/types'
 
 export type ParametersProps = {
@@ -8,7 +7,10 @@ export type ParametersProps = {
     sizes: string[],
     activeSize: string | null,
     showModal: MouseAction,
-    handleSizeClick: MouseAction,
+    onActiveSize: MouseAction,
+    onActiveColor: MouseAction,
     color: string,
-    variants: ItemVariant[]
+    variants: {
+        color: string
+    }[]
 }
