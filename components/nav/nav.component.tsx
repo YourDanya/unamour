@@ -1,4 +1,4 @@
-import React from 'react'
+import {FC} from 'react'
 import Hamburger from 'components/nav/hamburger/hamburger.component'
 import NavSearch from 'components/nav/nav-search/nav-search.component'
 import NavHeader from 'components/nav/header/header.component'
@@ -9,7 +9,7 @@ import NavMenu from 'components/nav/nav-menu/nav-menu.component'
 import Sidebar from 'components/common/sidebar/sidebar.component'
 import SignInUp from 'components/nav-auth/nav-auth.component'
 
-const Nav: React.FC = () => {
+const Nav: FC = () => {
     const {modalState, showModal, hideModal, home, showTopModal, hideTopModal} = useNav()
 
     return (
@@ -26,7 +26,7 @@ const Nav: React.FC = () => {
                 <NavSearch/>
             </Sidebar>
             <Sidebar active={modalState.shopping} hideModal={hideModal}>
-                <NavCart/>
+                <NavCart modal={modalState.shopping} showModal={showModal} hideModal={hideModal}/>
             </Sidebar>
             <Modal active={modalState.modal} hideModal={hideModal}/>
         </nav>

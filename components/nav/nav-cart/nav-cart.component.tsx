@@ -3,9 +3,12 @@ import shoppingCart from '/public/icons/big-shopping-cart.svg'
 import CartItem from 'components/cart-item/cart-item.component'
 import useNavCart from 'components/nav/nav-cart/nav-cart.hook'
 import NavLink from 'components/common/nav-link/nav-link.component'
+import {NavCartProps} from 'components/nav/nav-cart/nav-cart.types'
+import Button from 'components/common/button/button.component'
 
-const NavCart: FC = () => {
-    const {cartItems, total, length, transl} = useNavCart()
+const NavCart: FC<NavCartProps> = (props) => {
+    const {hideModal} = props
+    const {cartItems, total, length, transl} = useNavCart(props)
 
     return (
         <div className={`nav-cart`}>
@@ -13,7 +16,9 @@ const NavCart: FC = () => {
                 <>
                     <div className="nav-cart__title">{transl.cart}</div>
                     <div className={'nav-cart__items'}>
-                        {cartItems.map((props, index) => <CartItem key={props.data.slug + index}  {...props}/>)}
+                        {cartItems.map((props) => (
+                            <CartItem key={props.common._id} {...props}/>
+                        ))}
                     </div>
                     <div className="nav-cart__total">
                         <div className="nav-cart__total-label">{transl.total}</div>
@@ -31,9 +36,9 @@ const NavCart: FC = () => {
             <NavLink className="nav-cart__button nav-cart__link" href={length > 0 ? '/cart' : '/favorite'}>
                 {length > 0 ? transl.order : transl.favorite}
             </NavLink>
-            <button className={'nav-cart__button nav-cart__button--white'}>
+            <Button className={'nav-cart__button nav-cart__button--white'} onClick={hideModal}>
                 {transl.continue}
-            </button>
+            </Button>
         </div>
     )
 }

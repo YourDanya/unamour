@@ -1,9 +1,9 @@
 const navCartContent = {
     translations: {
         ua: {
-            cart: 'корзина',
+            cart: 'кошик',
             total: 'разом:',
-            empty: 'ваша корзина пуста',
+            empty: 'ваш кошик пустий',
             order: 'оформити замовлення',
             favorite: 'дивитись обране',
             continue: 'продовжити покупки',

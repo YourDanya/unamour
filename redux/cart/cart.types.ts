@@ -5,7 +5,8 @@ export type CartItem = {
         price: string,
         images: string[],
         size: string,
-        color: string
+        color: string,
+        _id: string
     },
     translations: {
         ua: {

@@ -16,7 +16,7 @@ const ShopItem: React.FC<FetchedItem> = (props) => {
     const {common: {variants, slugCategory, oldPrice}} = props
 
     const {
-        activeSize, onActiveSize, modalState, showModal, hideModal, onActiveColor, onAddItem,
+        activeSize, onActiveSize, modalState, showModal, hideModal, onCurrentVariant, onAddItem,
         currentVariant: {sizes, images, price, color},
         transl: {name, delivery, description, composition, parameters, category}
     } = useShopItem(props)
@@ -35,7 +35,7 @@ const ShopItem: React.FC<FetchedItem> = (props) => {
                         activeSize={activeSize}
                         onActiveSize={onActiveSize}
                         color={color}
-                        onActiveColor={onActiveColor}
+                        onActiveColor={onCurrentVariant}
                         variants={variants}
                         showModal={showModal}
                     />

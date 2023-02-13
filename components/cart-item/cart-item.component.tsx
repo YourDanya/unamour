@@ -2,18 +2,18 @@ import {FC} from 'react'
 import useCartItem from 'components/cart-item/cart-item.hook'
 import Link from 'next/link'
 import {CartItem} from 'redux/cart/cart.types'
-
+import LoadImage from 'components/common/load-image/load-image.component'
 
 const CartItem: FC<CartItem> = (props) => {
     const {common: {slug, slugCategory, price, images, size}, quantity} = props
-    const {increase, decrease, remove, transl, name, code} = useCartItem(props)
+    const {onIncrease, onDecrease, onRemove, transl, name, code} = useCartItem(props)
 
     return (
         <div className={'cart-item'}>
-            <div className='close cart-item__close' onClick={remove}/>
+            <div className='close cart-item__close' onClick={onRemove}/>
             <Link href={`shop-items/${slugCategory}/${slug}`}>
                 <a className='cart-item__link'>
-                    <img className='cart-item__img' src={images[0]}/>
+                    <LoadImage className='cart-item__img' src={images[0]} alt={'item image'}/>
                 </a>
             </Link>
             <div className='cart-item__name'>{name}</div>
@@ -38,9 +38,9 @@ const CartItem: FC<CartItem> = (props) => {
                     <div className='cart-item__property-label'>{transl.quantity}</div>
                     <div className='cart-item__property-value'>
                         <div className='cart-item__quantity-block'>
-                            <div className="minus cart-item__minus" onClick={decrease}/>
+                            <div className="minus cart-item__minus" onClick={onDecrease}/>
                             <div className="cart-item__quantity">{quantity}</div>
-                            <div className="plus cart-item__plus" onClick={increase}/>
+                            <div className="plus cart-item__plus" onClick={onIncrease}/>
                         </div>
                     </div>
                 </div>

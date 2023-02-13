@@ -10,6 +10,8 @@ import {CartItem} from 'redux/cart/cart.types'
 import {addItem} from 'redux/cart/cart.slice'
 import {useState} from 'react'
 import {MouseAction} from 'types/types'
+import {useLayoutEffect} from 'react'
+import {ShopItemVariant} from 'components/shop-item/shop-item.types'
 
 export const useShopItem = (props: FetchedItem) => {
     const [transl] = useLocale(props)
@@ -26,48 +28,54 @@ export const useShopItem = (props: FetchedItem) => {
     }
 
     const color = useRouter().query.color as string
-    const [activeColor, setActiveColor] = useState(color)
 
-    const onActiveColor: MouseAction = (event) => {
+    const [currentVariant, setCurrentVariant] = useState(() => {
+        return props.common.variants.find(variant => variant.color === color) as ShopItemVariant
+    })
+
+    const onCurrentVariant: MouseAction = (event) => {
         const color = event.currentTarget.getAttribute('name') as string
-        setActiveColor(color)
+        const variant = props.common.variants.find(variant => variant.color === color) as ShopItemVariant
+        if (!variant.sizes.find((size) => activeSize === size)) {
+            setActiveSize('')
+        }
+        setCurrentVariant(variant)
     }
 
     const [modalState, showModal, hideModal] = useModal({ size: false, present: false})
-
-    const currentVariant = useMemo(() => {
-        return props.common.variants.find(variant => variant.color === activeColor) as FetchedItem['common']['variants'][number]
-    }, [activeColor])
 
     const dispatch = useDispatch()
     const cartItemRef = useRef<CartItem>({} as CartItem)
 
     const onAddItem = () => {
-        const item = cartItemRef.current as CartItem
+        const item = JSON.parse(JSON.stringify(cartItemRef.current)) as CartItem
         dispatch(addItem(item))
     }
 
     useEffect(() => {
         const {common: {slug, slugCategory},
             translations: {ua: {name: uaName}, eng: {name: engName}, ru: {name: ruName}}} = props
-        const {images, price} = currentVariant
         cartItemRef.current = {
-            common: {slug, slugCategory, images, price, color: activeColor, size: ''},
+            common: {slug, slugCategory, size: '', ...currentVariant},
             translations: {ua: {name: uaName}, eng: {name: engName}, ru: {name: ruName}},
             quantity: 1
         }
     }, [])
 
     useEffect(() => {
-        cartItemRef.current.common.size = activeSize
-    }, [activeSize])
+        const {color, images, price} = currentVariant
+        cartItemRef.current.common = {
+            ...cartItemRef.current.common, color, images, price, _id: `${currentVariant._id}${activeSize}`
+        }
+    }, [currentVariant])
 
     useEffect(() => {
-        cartItemRef.current.common.color = activeColor
-    }, [activeColor])
+        cartItemRef.current.common.size = activeSize
+        cartItemRef.current.common._id = `${currentVariant._id}${activeSize}`
+    }, [activeSize])
 
     return {
-        activeSize, onActiveSize, modalState, showModal, hideModal, transl, onActiveColor, currentVariant,
+        activeSize, onActiveSize, modalState, showModal, hideModal, transl, onCurrentVariant, currentVariant,
         onAddItem
     }
 }

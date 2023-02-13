@@ -1,18 +1,8 @@
-import React from 'react'
+import {FC, memo} from 'react'
 import Button from 'components/common/button/button.component'
+import {SidebarProps} from 'components/common/sidebar/sidebar.types'
 
-type sidebarProps = {
-    active: boolean,
-    children: React.ReactNode,
-    left?: boolean,
-    top?: true,
-    hideModal?: (event: React.MouseEvent<HTMLElement>) => void,
-    hideTopModal?: (event: React.MouseEvent<HTMLElement>) => void,
-    name?: string
-}
-
-const Sidebar: React.FC<sidebarProps> = (props) => {
-
+const Sidebar: FC<SidebarProps> = (props) => {
     const {left, active, hideModal, hideTopModal, name, children} = props
 
     return (
@@ -32,6 +22,6 @@ const Sidebar: React.FC<sidebarProps> = (props) => {
     )
 }
 
-const shouldUpdate = (prevProps: sidebarProps, currentProps: sidebarProps) => prevProps.active === currentProps.active
+const shouldUpdate = (prevProps: SidebarProps, currentProps: SidebarProps) => prevProps.active === currentProps.active
 
-export default React.memo(Sidebar, shouldUpdate)
+export default memo(Sidebar, shouldUpdate)

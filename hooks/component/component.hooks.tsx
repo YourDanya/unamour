@@ -23,15 +23,20 @@ export const useModal: UseModal = (_initState, attribute = 'name') => {
         setModalState(newState)
     }
 
-    const showModal = (event: React.MouseEvent<HTMLElement>) => {
+    const showModal = (event: React.MouseEvent<HTMLElement> | string) => {
         const newState: typeof modalState = {} as typeof modalState
 
         for (let prop in modalState) {
             const modalProp = prop as ModalProp
             newState[modalProp] = false
         }
+        let name
+        if (typeof event === 'string') {
+            name = event as ModalProp
+        } else {
+            name = event.currentTarget.getAttribute(attribute) as ModalProp
+        }
 
-        const name = event.currentTarget.getAttribute(attribute) as ModalProp
         newState[name] = true
         newState['modal'] = true
 

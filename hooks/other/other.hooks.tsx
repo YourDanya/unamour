@@ -3,6 +3,7 @@ import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import Link from 'next/link'
 import {UseLocale} from 'hooks/other/other.types'
+import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -94,7 +95,7 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
 export const useRouteChange = (callback: () => void) => {
     const path = useRouter().asPath
 
-    useEffect(() => {
+    useOmitFirstEffect(() => {
         callback()
     }, [path])
 }

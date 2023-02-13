@@ -9,19 +9,19 @@ import {colorContent} from 'components/common/content/content'
 import {Color} from 'components/shop-items/shop-items.types'
 
 const useCartItem = (props: CartItem) => {
-    const {common: {slug, size, color}, translations} = props
+    const {common: {_id, color}, translations} = props
     const [{name}] = useLocale({translations})
     const [transl] = useLocale(cartItemContent)
 
     const dispatch = useDispatch()
-    const increase = () => {
-        dispatch(increaseQuantity({slug, size}))
+    const onIncrease = () => {
+        dispatch(increaseQuantity({_id}))
     }
-    const decrease = () => {
-        dispatch(decreaseQuantity({slug, size}))
+    const onDecrease = () => {
+        dispatch(decreaseQuantity({_id}))
     }
-    const remove= () => {
-        dispatch(removeItem({slug, size}))
+    const onRemove= () => {
+        dispatch(removeItem({_id}))
     }
 
     const cartPage = useMatchUrl('/cart')
@@ -30,7 +30,7 @@ const useCartItem = (props: CartItem) => {
         return (colorContent.common.find(tempColor => tempColor.slug === color) as Color).code
     },[])
 
-    return {increase, decrease, remove, cartPage, transl, name, code}
+    return {onIncrease, onDecrease, onRemove, cartPage, transl, name, code}
 }
 
 export default useCartItem

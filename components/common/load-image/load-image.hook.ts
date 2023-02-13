@@ -19,7 +19,6 @@ const useLoadImage = (props: LoadImageProps) => {
         setHeight(height)
     }
 
-
     useLayoutEffect(calcHeight,[])
     useResizeObserve(calcHeight)
     const imgRef = useRef<HTMLImageElement>(null)

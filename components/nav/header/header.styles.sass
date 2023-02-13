@@ -34,7 +34,13 @@
     background-color: transparent
     border: none
     padding: 0
-
+  &__cart-btn
+    position: relative
+  &__cart-quantity
+    font-size: 12px
+    position: absolute
+    left: 25px
+    bottom: -2px
 
 @media (max-width: 992px)
   .nav
@@ -49,11 +55,16 @@
         margin-left: 0
       &--last
         margin-right: 0
+    &__cart-quantity
+      left: 23px
 
 @media (max-width: 576px)
   .nav
-    &__header
     &__title
       font-size: 18px
     &__icon
       height: 17px
+    &__cart-quantity
+      left: 21px
+      bottom: -3px
+      font-size: 11px

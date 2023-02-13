@@ -22,7 +22,8 @@ export type FetchedItem = {
             color: string,
             sizes: string[],
             images: string[],
-            price: string
+            price: string,
+            _id: string
         }[]
     },
     translations: {

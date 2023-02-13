@@ -1,4 +1,4 @@
-import React from 'react'
+import {FC} from 'react'
 import search from 'public/icons/search.svg'
 import searchWhite from 'public/icons/search-white.svg'
 import shoppingCart from 'public/icons/shopping-cart.svg'
@@ -7,13 +7,12 @@ import bookmark from 'public/icons/bookmark.svg'
 import bookmarkWhite from 'public/icons/bookmark-white.svg'
 import Button from 'components/common/button/button.component'
 import NavLink from 'components/common/nav-link/nav-link.component'
+import {NavHeaderProps} from 'components/nav/header/header.types'
+import useNavHeader from 'components/nav/header/header.hook'
 
-type navHeaderProps = {
-    home: boolean,
-    showModal: (event: React.MouseEvent<HTMLElement>) => void
-}
-
-const NavHeader: React.FC<navHeaderProps> = ({showModal, home}) => {
+const NavHeader: FC<NavHeaderProps> = (props) => {
+    const {showModal, home} = props
+    const {quantity} = useNavHeader()
 
     return (
         <div className="container nav__header">
@@ -35,7 +34,10 @@ const NavHeader: React.FC<navHeaderProps> = ({showModal, home}) => {
                         alt={'shop item'}
                     />
                 </NavLink>
-                <Button name="shopping" onClick={showModal}>
+                <Button className={'nav__cart-btn'} name="shopping" onClick={showModal}>
+                    <div className={'nav__cart-quantity'}>
+                        {quantity}
+                    </div>
                     <img
                         className="nav__icon nav__icon--last"
                         src={home ? shoppingCartWhite.src : shoppingCart.src}
