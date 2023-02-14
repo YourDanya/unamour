@@ -3,15 +3,15 @@ import {UseShallSelector} from 'hooks/enhanced/enhanced.types'
 import {shallowEqual} from 'react-redux'
 import {useMemo} from 'react'
 import {UseParamSelector} from 'hooks/enhanced/enhanced.types'
-import {useRef} from 'react'
 import {UseRefSelector} from 'hooks/enhanced/enhanced.types'
+import {useRef} from 'react'
 
 export const useDebounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
-    let timeout: NodeJS.Timeout
+    let timeout = useRef<number>()
 
     return (...args: T) => {
-        clearTimeout(timeout)
-        timeout = setTimeout(() => callback(...args), delay)
+        clearTimeout(timeout.current)
+        timeout.current = setTimeout(() => callback(...args), delay) as unknown as number
     }
 }
 

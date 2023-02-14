@@ -116,7 +116,6 @@ export const useOmitFirstLayoutEffect = <T extends any[], >(effect: EffectCallba
 }
 
 export const useDebounceEffect = <T extends any[], >(effect: EffectCallback, deps: DependencyList, delay = 1000, condition = true) => {
-
     let timeout = useRef<NodeJS.Timeout>()
 
     useEffect(() => {

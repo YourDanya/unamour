@@ -4,4 +4,4 @@ export type UseSetActive = <TInitActive extends string | number> (initActive: TI
     [active: TInitActive extends string? string : number, handleEvent: (event: MouseEvent<HTMLElement>) => void,
         setActive: (active: TInitActive extends string? string : number) => void]
 
-export type UseToggle = () => [active: boolean, handleEvent: (event: any) => void, setActive: (active: boolean) => void]
+export type UseToggle = () => [active: boolean, onEvent: (event: any) => void, setActive: (active: boolean) => void]

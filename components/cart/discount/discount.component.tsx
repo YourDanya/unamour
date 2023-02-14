@@ -2,11 +2,10 @@ import React from 'react'
 import Button from 'components/common/button/button.component'
 import useDiscount from 'components/cart/discount/discount.hook'
 import Input from 'components/common/input/input.component'
+import {FC} from 'react'
+import {DiscountProps} from 'components/cart/discount/discount.types'
 
-export type DiscountProps = {}
-
-const Discount: React.FC<DiscountProps> = (props) => {
-
+const Discount: FC<DiscountProps> = (props) => {
     const {active, toggleActive, found, setFound, inputs, onChange, onValidate, transl} = useDiscount(props)
 
     return (
@@ -22,11 +21,10 @@ const Discount: React.FC<DiscountProps> = (props) => {
                             onChange={onChange}
                             error={inputs.errors.cert}
                             onValidate={onValidate}
-                        >
-                            <Button className='discount__apply' name='certificate' onClick={setFound}>
-                                {transl.apply}
-                            </Button>
-                        </Input>
+                        />
+                        <Button className='discount__apply' name='certificate' onClick={setFound}>
+                            {transl.apply}
+                        </Button>
                     </>
                 ) : (
                     <button className="discount__button" name={'certificate'} onClick={toggleActive}>
@@ -44,11 +42,10 @@ const Discount: React.FC<DiscountProps> = (props) => {
                             value={inputs.values.promo}
                             onChange={onChange}
                             error={inputs.errors.promo}
-                        >
-                            <Button className='discount__apply' name='promo' onClick={setFound}>
-                                {transl.apply}
-                            </Button>
-                        </Input>
+                        />
+                        <Button className='discount__apply' name='promo' onClick={setFound}>
+                            {transl.apply}
+                        </Button>
                     </>
                 ) : (
                     <button className="discount__button" name={'promo'} onClick={toggleActive}>

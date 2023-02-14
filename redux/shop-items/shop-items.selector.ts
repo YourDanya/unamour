@@ -12,15 +12,18 @@ export const selectFetchedItems = createSelector([selectShopItemsStore],
     shopItems => shopItems.fetchedItems
 )
 
-export const selectClientItems = createSelector([selectShopItemsStore],
-    items => items.clientItems
-)
-
 export const selectShopItemsField = ((field: ShopItemsField) => {
     return createSelector(
-        [selectShopItemsStore, selectLocale], (shopItemsStore, locale) => {
+        [selectShopItemsStore, selectLocale],
+        (shopItemsStore, locale) => {
             const userField = shopItemsStore.fields[field]
             return mapField(field, userField, locale, shopItemsErrors, shopItemsSuccess)
         }
     )
 })
+
+export const selectSearchItems = createSelector(
+    [selectShopItemsStore],
+    (shopItemsStore) => shopItemsStore.searchItems
+)
+

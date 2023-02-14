@@ -1,34 +1,41 @@
-import React, {useState} from 'react'
+import {useState, ChangeEvent} from 'react'
 import {useRouter} from 'next/router'
 import {useSelector} from 'react-redux'
-import {ClientItem} from 'redux/shop-items/shop-items.types'
 import {Locale} from 'redux/main/main.types'
 import {useLocale} from 'hooks/other/other.hooks'
 import navSearchContent from 'components/nav/nav-search/nav-search.content'
-import {selectClientItems} from 'redux/shop-items/shop-items.selector'
+import {selectSearchItems} from 'redux/shop-items/shop-items.selector'
+import {useDispatch} from 'react-redux'
+import {useDebounce} from 'hooks/enhanced/enhanced.hooks'
+import {searchItemsAsync} from 'redux/shop-items/shop-items.thunk'
+import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
+import {selectShopItemsField} from 'redux/shop-items/shop-items.selector'
 
 const useNavSearch = () => {
-
     const [transl] = useLocale(navSearchContent)
 
     const [hidden, setHidden] = useState(true)
     const locale = useRouter().locale as Locale
-    const items = useSelector(selectClientItems)
-    const [searchItems, setSearchItems] = useState<ClientItem[]>([])
+    const items = useSelector(selectSearchItems)
+    const searchItems = useParamSelector(selectShopItemsField, 'searchItems')
+
     const [input, setInput] = useState('')
 
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const input = event.target.value
-        if (input) {
-            const searchItems = items.filter(item => item.name.toLowerCase().includes(input.toLowerCase()))
-            setSearchItems(searchItems)
-        } else {
-            setSearchItems([])
+    const dispatch = useDispatch()
+
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const query = event.currentTarget.value
+        setInput(query)
+        if (!searchItems.loading) {
+            onSubmit(query)
         }
-        setInput(input)
     }
 
-    return {hidden, searchItems, input, onChange, transl}
+    const onSubmit = useDebounce((query: string) => {
+        dispatch(searchItemsAsync({query, locale}))
+    })
+
+    return {hidden, items, input, onChange, transl, locale, searchItems}
 }
 
 export default useNavSearch

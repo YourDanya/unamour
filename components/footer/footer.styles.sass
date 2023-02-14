@@ -30,6 +30,11 @@
   &__form
     flex-grow: 1
     position: relative
+    &-add
+      transition: 0.4s all
+      opacity: 0
+      &--focused
+        opacity: 1
     .input__state
       padding: 10px 0 15px 0
       border-color: black
@@ -37,8 +42,6 @@
       opacity: 0
     .input__state--focused
       .input__placeholder
-        opacity: 1
-      .input__children
         opacity: 1
     .input__state--full
       .input__placeholder
@@ -55,6 +58,8 @@
     width: 100%
     color: #a1a1a1
     bottom: -12px
+    left: 0
+    white-space: pre
     position: absolute
     margin-top: 1px
     font-size: 9px

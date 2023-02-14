@@ -16,14 +16,14 @@ import {NullObj} from 'utils/main/main.types'
 //     return arr
 // }
 //
-// export const debounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
-//     let timeout: NodeJS.Timeout
-//
-//     return (...args: T) => {
-//         clearTimeout(timeout)
-//         timeout = setTimeout(() => callback(...args), delay)
-//     }
-// }
+export const debounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
+    let timeout: NodeJS.Timeout
+
+    return (...args: T) => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => callback(...args), delay)
+    }
+}
 //
 // export const capitalizeString: CapitalizeString = ((string: string) => {
 //     return string.charAt(0).toUpperCase().concat(string.slice(1))

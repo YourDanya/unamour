@@ -7,55 +7,32 @@ import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.comp
 import {ClientItem} from 'redux/shop-items/shop-items.types'
 import {NextPage} from 'next'
 import Input from 'components/common/input/input.component'
-import {selectClientItems} from 'redux/shop-items/shop-items.selector'
 
-type SearchProps = {}
-
-const SearchPage: NextPage<SearchProps> = () => {
-
-    const query = useRouter().query.query as string
-    const locale = useRouter().locale as Locale
-    const items = useSelector(selectClientItems)
-    const [searchItems, setSearchItems] = useState<ClientItem[]>([])
-    const [input, setInput] = useState(query)
-
-    useEffect(() => {
-        if (input) {
-            const searchItems = items.filter(item => item.name.toLowerCase().includes(input.toLowerCase()))
-            setSearchItems(searchItems)
-        } else {
-            setSearchItems([])
-        }
-    }, [input])
-
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInput(event.target.value)
-    }
+const Search: NextPage = () => {
 
     return (
         <div className={'search-page'}>
-            <div className="search-page__top">
-                <div className='search-page__title'>РЕЗУЛЬТАТИ ПОШУКУ</div>
-                <div className='search-page__input'>
-                    <Input
-                        placeholder={'Знайти'}
-                        value={input}
-                        name={'search'}
-                        onChange={onChange}
-                    >
-                        <img className={'search__icon'} src={search.src} alt={'search icon'}/>
-                    </Input>
-                </div>
-            </div>
-            <div className='search-page__results'>
-                {searchItems.map((item, index) =>
-                    <div className="search-page__item" key={item.slug + 1}>
-                        <ShopItemPreview {...item}/>
-                    </div>
-                )}
-            </div>
+            {/*<div className="search-page__top">*/}
+            {/*    <div className='search-page__title'>РЕЗУЛЬТАТИ ПОШУКУ</div>*/}
+            {/*    <div className='search-page__input'>*/}
+            {/*        <Input*/}
+            {/*            placeholder={'Знайти'}*/}
+            {/*            value={input}*/}
+            {/*            name={'search'}*/}
+            {/*            onChange={onChange}*/}
+            {/*        />*/}
+            {/*        <img className={'search__icon'} src={search.src} alt={'search icon'}/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div className='search-page__results'>*/}
+            {/*    {searchItems.map((item, index) =>*/}
+            {/*        <div className="search-page__item" key={item.slug + 1}>*/}
+            {/*            <ShopItemPreview {...item}/>*/}
+            {/*        </div>*/}
+            {/*    )}*/}
+            {/*</div>*/}
         </div>
     )
 }
 
-export default SearchPage
+export default Search

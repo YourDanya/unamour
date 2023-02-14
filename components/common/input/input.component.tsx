@@ -1,18 +1,18 @@
-import React from 'react'
+import {FC, memo} from 'react'
 import useInput from 'components/common/input/input.hook'
 import {InputProps} from 'components/common/input/input.types'
 
-const Input: React.FC<InputProps> = (props) => {
+const Input: FC<InputProps> = (props) => {
     const {value, name, onChange, placeholder, className, children, error, type} = props
-    const {focused, handleFocus, handleBlur, autoComplete} = useInput(props)
+    const {focused, onFocus, onBlur, autoComplete} = useInput(props)
 
     return (
         <div className={`input ${className ?? ''}`}>
             <div className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
                 <div className="input__main">
                     <input
-                        onBlur={handleBlur}
-                        onFocus={handleFocus}
+                        onBlur={onBlur}
+                        onFocus={onFocus}
                         onChange={onChange}
                         name={name}
                         className={`input__input`}
@@ -24,7 +24,11 @@ const Input: React.FC<InputProps> = (props) => {
                         {placeholder}
                     </label>
                 </div>
-                {children && (<div className="input__children">{children}</div>)}
+                {children && (
+                    <div className="input__children">
+                        {children}
+                    </div>
+                )}
             </div>
             {error && (
                 <div className="input__error">
@@ -39,4 +43,4 @@ const areEqual = (prevProps: InputProps, currentProps: InputProps) =>
     prevProps.value === currentProps.value && prevProps.error === currentProps.error &&
     prevProps.validateDeps === currentProps.validateDeps
 
-export default React.memo(Input, areEqual)
+export default memo(Input, areEqual)

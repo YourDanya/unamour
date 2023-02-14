@@ -1,10 +1,7 @@
-import React from 'react'
+import {FC} from 'react'
+import {SpinnerProps} from 'components/common/spinner/spinner.types'
 
-type spinnerProps = {
-    className?: string
-}
-
-const Spinner: React.FC<spinnerProps> = ({className}) => {
+const Spinner: FC<SpinnerProps> = ({className}) => {
     return (
         <div className={`spinner ${className?? ''}`}>
             <div className={'spinner__content'}/>

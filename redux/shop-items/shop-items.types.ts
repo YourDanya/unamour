@@ -1,6 +1,8 @@
 import {StateField} from 'redux/store.types'
 import {ContentErrors} from 'redux/store.types'
 import {ContentSuccess} from 'redux/store.types'
+import {AppThunk} from 'redux/store'
+import {Locale} from 'types/types'
 
 export type Color = {
     code: string,
@@ -126,12 +128,15 @@ export type ClientItem = {
     }
 }
 
-export type ShopItemsField = 'getItems'
+export type ShopItemsField = 'getItems' | 'searchItems'
 export type ShopItemsErrors = ContentErrors<ShopItemsField>
 export type ShopItemsSuccess = ContentSuccess<ShopItemsField>
 
 export type ShopItemsState = {
     fetchedItems: FetchedItem[],
-    categoryItems: CategoryItem[],
+    searchItems: CategoryItem[],
+    viewedItems: CategoryItem[],
     fields: Record<ShopItemsField, StateField>
 }
+
+export type SearchItems = (SearchItemsData: {query: string, locale: Locale}) => AppThunk

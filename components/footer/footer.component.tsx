@@ -1,4 +1,4 @@
-import React from 'react'
+import {FC} from 'react'
 import telegram from 'public/icons/telegram.svg'
 import react from 'public/logo/next.svg'
 import useFooter from 'components/footer/footer.hook'
@@ -8,9 +8,8 @@ import Link from 'next/link'
 import Links from 'components/footer/links/links.component'
 import Input from 'components/common/input/input.component'
 
-const Footer: React.FC = () => {
-
-    const {onChange, modal, showModal, hideModal, content, inputs, transl} = useFooter()
+const Footer: FC = () => {
+    const {onChange, modal, showModal, hideModal, content, inputs, transl, onFocus, focused} = useFooter()
 
     return (
         <footer className='footer'>
@@ -24,7 +23,10 @@ const Footer: React.FC = () => {
                             name={'email'}
                             value={inputs.values.email}
                             onChange={onChange}
-                        >
+                            onFocus={onFocus}
+                            onBLur={onFocus}
+                        />
+                        <div className={`footer__form-add ${focused? 'footer__form-add--focused' : ''}`}>
                             <button className='footer__submit'>
                                 <img src={telegram.src} alt={'footer icon'}/>
                             </button>
@@ -34,7 +36,7 @@ const Footer: React.FC = () => {
                                     <a className='footer__policy-link'>{transl.policyLink}</a>
                                 </Link>
                             </div>
-                        </Input>
+                        </div>
                     </div>
                 </div>
             </div>

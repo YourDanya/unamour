@@ -1,20 +1,22 @@
 import {useDebounceEffect} from 'hooks/component/component.hooks'
-import {useToggle} from 'hooks/event-handler/event-handler.hooks'
-import React from 'react'
+import {FocusEvent} from 'react'
 import {useMemo} from 'react'
 import {InputProps} from 'components/common/input/input.types'
+import {useState} from 'react'
 
 const useInput = (props: InputProps) => {
     const {onValidate, error, name, value, validateDeps} = props
 
-    const [focused, _handleFocus] = useToggle()
+    const [focused, setFocused] = useState(false)
 
-    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-       _handleFocus(event)
+    const onFocus = (event: FocusEvent<HTMLInputElement>) => {
+        setFocused(!focused)
+        props.onFocus && props.onFocus()
     }
 
-    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-        _handleFocus(event)
+    const onBlur = (event: FocusEvent<HTMLInputElement>) => {
+        setFocused(!focused)
+        props.onBLur && props.onBLur()
         onValidate && onValidate(name)
     }
 
@@ -31,7 +33,7 @@ const useInput = (props: InputProps) => {
         else return 'on'
     }, [])
 
-    return {focused, handleFocus, handleBlur, autoComplete}
+    return {focused, onFocus, onBlur, autoComplete}
 }
 
 export default useInput
