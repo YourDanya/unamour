@@ -7,6 +7,8 @@
   &__input
     width: 100%
     margin-top: 20px
+    &-wrapper
+      position: relative
   &__results
     margin-top: 40px
   &__item
@@ -38,18 +40,21 @@
       display: flex
       justify-content: center
   &__spinner
+    position: absolute
     .spinner__content
       width: 16px
       height: 16px
       border-color: #4f4f4f
       border-width: 2px
       border-top-color: transparent
-  &__icon
+  &__icon, &__spinner
+    position: absolute
     z-index: 100
     top: 50%
     transform: translateY(-50%)
     right: 0
-    position: absolute
+  &__spinner
+    width: auto
   &__popular
     margin-top: 60px
     font-size: 12px

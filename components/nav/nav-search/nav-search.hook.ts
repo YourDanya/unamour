@@ -14,7 +14,6 @@ import {selectShopItemsField} from 'redux/shop-items/shop-items.selector'
 const useNavSearch = () => {
     const [transl] = useLocale(navSearchContent)
 
-    const [hidden, setHidden] = useState(true)
     const locale = useRouter().locale as Locale
     const items = useSelector(selectSearchItems)
     const searchItems = useParamSelector(selectShopItemsField, 'searchItems')
@@ -22,6 +21,12 @@ const useNavSearch = () => {
     const [input, setInput] = useState('')
 
     const dispatch = useDispatch()
+
+    const onSubmit = useDebounce((query: string) => {
+        if (query) {
+            dispatch(searchItemsAsync({query, locale}))
+        }
+    })
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const query = event.currentTarget.value
@@ -31,11 +36,7 @@ const useNavSearch = () => {
         }
     }
 
-    const onSubmit = useDebounce((query: string) => {
-        dispatch(searchItemsAsync({query, locale}))
-    })
-
-    return {hidden, items, input, onChange, transl, locale, searchItems}
+    return {items, input, onChange, transl, locale, searchItems}
 }
 
 export default useNavSearch

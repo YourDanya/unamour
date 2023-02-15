@@ -1,16 +1,14 @@
-import React from 'react'
+import {FC} from 'react'
 import useCartForm from 'components/cart/cart-form/cart-form.hook'
 import Input from 'components/common/input/input.component'
+import {CartFormProps} from 'components/cart/cart-form/cart-form.types'
 
-type CartFormProps = {}
-
-const CartForm: React.FC<CartFormProps> = (props) => {
-
-    const {transl, inputs, onChange, onValidate, handleSubmit} = useCartForm()
+const CartForm: FC<CartFormProps> = (props) => {
+    const {transl, inputs, onChange, onValidate, onSubmit} = useCartForm()
 
     return (
-        <form className='cart__form'>
-            <div className='cart__title'>{transl.delivery}</div>
+        <form className="cart__form">
+            <div className="cart__title">{transl.delivery}</div>
             <Input
                 className={'cart__input cart__country'}
                 name={'country'}
@@ -29,15 +27,22 @@ const CartForm: React.FC<CartFormProps> = (props) => {
                 error={inputs.errors.city}
                 onValidate={onValidate}
             />
-            <Input
-                className={'cart__input cart__index'}
-                name={'index'}
-                placeholder={transl.inputs.index}
-                value={inputs.values.index}
-                onChange={onChange}
-                error={inputs.errors.index}
-                onValidate={onValidate}
-            />
+            <div className="cart__index-wrapper">
+                <Input
+                    className={'cart__input cart__index'}
+                    name={'index'}
+                    placeholder={transl.inputs.index}
+                    value={inputs.values.index}
+                    onChange={onChange}
+                    error={inputs.errors.index}
+                    onValidate={onValidate}
+                />
+                {!inputs.values.index && !inputs.errors.index && (
+                    <div className="cart__index-label">
+                        {transl.indexLabel}
+                    </div>
+                )}
+            </div>
             {/*<RadioButtons*/}
             {/*    className={'cart__delivery'}*/}
             {/*    name={'delivery'}*/}
@@ -72,7 +77,7 @@ const CartForm: React.FC<CartFormProps> = (props) => {
                 error={inputs.errors.apartment}
                 onValidate={onValidate}
             />
-            <div className='cart__title'>{transl.receiverData}</div>
+            <div className="cart__title">{transl.receiverData}</div>
             <Input
                 className={'cart__input cart__name'}
                 placeholder={transl.inputs.name}

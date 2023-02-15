@@ -6,25 +6,27 @@ import Input from 'components/common/input/input.component'
 import Spinner from 'components/common/spinner/spinner.component'
 
 const NavSearch: FC = () => {
-    const {hidden, items, input, onChange, transl, locale, searchItems} = useNavSearch()
+    const {items, input, onChange, transl, locale, searchItems} = useNavSearch()
 
     return (
-        <div className={`nav-search ${hidden ? 'nav-search--hidden' : ''}`}>
+        <div className={`nav-search`}>
             <div className="nav-search__title">
                 {transl.search}
             </div>
-            <Input
-                className={'nav-search__input'}
-                name={'search'}
-                placeholder={'Знайти'}
-                value={input}
-                onChange={onChange}
-            />
-            {searchItems.loading ? (
-                <Spinner className={'nav-search__spinner'}/>
-            ) : (
-                <img className={'nav-search__icon'} src={search.src} alt={'search icon'}/>
-            )}
+            <div className="nav-search__input-wrapper">
+                <Input
+                    className={'nav-search__input'}
+                    name={'search'}
+                    placeholder={'Знайти'}
+                    value={input}
+                    onChange={onChange}
+                />
+                {searchItems.loading ? (
+                    <Spinner className={'nav-search__spinner'}/>
+                ) : (
+                    <img className={'nav-search__icon'} src={search.src} alt={'search icon'}/>
+                )}
+            </div>
             {items.length > 0 ? (
                 <div className="nav-search__results">
                     {items.filter((item, index) => index < 4).map((item, index) =>

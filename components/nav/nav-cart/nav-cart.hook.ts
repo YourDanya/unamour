@@ -14,9 +14,9 @@ const useNavCart = (props: NavCartProps) => {
     const [transl] = useLocale(navCartContent)
 
     useEffect(() => {
-        if (cartItems.length > 0 && !modal) {
-            showModal('shopping')
-        }
+        // if (cartItems.length > 0 && !modal) {
+        //     showModal('shopping')
+        // }
     }, [cartItems])
 
     return {cartItems, total, length, transl}

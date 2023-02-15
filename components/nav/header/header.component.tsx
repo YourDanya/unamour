@@ -35,7 +35,7 @@ const NavHeader: FC<NavHeaderProps> = (props) => {
                     />
                 </NavLink>
                 <Button className={'nav__cart-btn'} name="shopping" onClick={showModal}>
-                    <div className={'nav__cart-quantity'}>
+                    <div className={`nav__cart-quantity ${home? 'nav__cart-quantity--home' : ''}`}>
                         {quantity}
                     </div>
                     <img

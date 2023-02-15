@@ -29,6 +29,7 @@
     margin-left: 5px
     height: 16px
   &__title
+    text-transform: uppercase
     width: 100%
     font-size: 12px
     margin-bottom: 35px
@@ -51,17 +52,18 @@
   &__index
     margin-bottom: 40px
     position: relative
-    width: 35%
-    &:after
+    &-wrapper
+      width: 35%
+      position: relative
+    &-label
+      top: 30px
       font-size: 10px
       position: absolute
       height: 40px
-      bottom: -40px
       display: flex
       align-items: center
       color: #828282
       line-height: 12px
-      content: 'Введіть 00000, якщо у вашої країни немає індексу'
   &__delivery
     width: 100%
   &__street
@@ -93,12 +95,13 @@
 
 @media (max-width: 992px)
   .cart
-    padding: 0 15px
+    padding: 30px 15px
+    flex-direction: column
     &__content
-      margin-right: 40px
-      width: calc(65% - 40px)
+      margin-right: 0
+      width: 100%
     &__order
-      width: 35%
+      width: 100%
     &__city
       margin-right: 15px
       width: calc(65% - 15px)
@@ -117,8 +120,11 @@
       margin-left: 5px
       width: calc(50% - 5px)
 
-@media (max-width: 768px)
-  .cart
-
 @media (max-width: 576px)
   .cart
+    &__input
+      width: 100%
+      margin-right: 0
+      margin-bottom: 20px
+    &__index-wrapper
+      width: 100%

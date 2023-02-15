@@ -33,6 +33,7 @@ const cartFormContent = {
                 comment: 'Коментар',
                 save: 'Зберегти інформацію для наступних покупок?'
             },
+            indexLabel: 'Введіть 00000, якщо у вашої країни немає індексу',
             delivery: 'доставка',
             receiverData: 'дані одержувача'
         },
@@ -52,6 +53,7 @@ const cartFormContent = {
                 comment: 'Comment',
                 save: 'Save information for future purchases?'
             },
+            indexLabel: 'Enter 00000 if your country does not have an index',
             delivery: 'delivery',
             receiverData: 'receiver data'
         },
@@ -72,6 +74,7 @@ const cartFormContent = {
                 comment: 'Комментарий',
                 save: 'Сохранить информацию для последующих покупок?'
             },
+            indexLabel: 'Введите 00000, если у вашей страны нет индекса',
             delivery: 'доставка',
             receiverData: 'данные получателя'
         }

@@ -1,36 +1,47 @@
-import React, {useEffect, useState} from 'react'
-import search from 'public/icons/search.svg'
-import {useRouter} from 'next/router'
-import {useSelector} from 'react-redux'
-import {Locale} from 'types/types'
-import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
-import {ClientItem} from 'redux/shop-items/shop-items.types'
+import React, {} from 'react'
 import {NextPage} from 'next'
+import search from 'public/icons/search.svg'
+import useSearch from 'pages/search/search.hook'
+import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
 import Input from 'components/common/input/input.component'
+import Button from 'components/common/button/button.component'
+import Spinner from 'components/common/spinner/spinner.component'
 
 const Search: NextPage = () => {
+    const {items, onChange, transl, input, onSubmit, searchItems, first} = useSearch()
 
     return (
-        <div className={'search-page'}>
-            {/*<div className="search-page__top">*/}
-            {/*    <div className='search-page__title'>РЕЗУЛЬТАТИ ПОШУКУ</div>*/}
-            {/*    <div className='search-page__input'>*/}
-            {/*        <Input*/}
-            {/*            placeholder={'Знайти'}*/}
-            {/*            value={input}*/}
-            {/*            name={'search'}*/}
-            {/*            onChange={onChange}*/}
-            {/*        />*/}
-            {/*        <img className={'search__icon'} src={search.src} alt={'search icon'}/>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*<div className='search-page__results'>*/}
-            {/*    {searchItems.map((item, index) =>*/}
-            {/*        <div className="search-page__item" key={item.slug + 1}>*/}
-            {/*            <ShopItemPreview {...item}/>*/}
-            {/*        </div>*/}
-            {/*    )}*/}
-            {/*</div>*/}
+        <div className={'search'}>
+            <div className="container search__top">
+                <div className="search__title">{transl.results}</div>
+                <div className="search__input-wrapper">
+                    <Input
+                        placeholder={transl.input}
+                        value={input}
+                        name={'search'}
+                        onChange={onChange}
+                    />
+                    <Button onClick={onSubmit}>
+                        <img className={'search__icon'} src={search.src} alt={'search icon'}/>
+                    </Button>
+                </div>
+            </div>
+            {searchItems.loading || first ? (
+                    <Spinner className={'search__spinner'}/>
+                ) :
+                (items.length > 0 ? (
+                        <div className="search__results">
+                            {items.map((item, index) => (
+                                <ShopItemPreview {...item} key={item.common.slug + index}/>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="search__not-found">
+                            {transl.notFound}
+                        </div>
+                    )
+                )
+            }
         </div>
     )
 }

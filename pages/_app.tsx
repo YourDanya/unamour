@@ -80,21 +80,28 @@ import Nav from 'components/nav/nav.component'
 import Footer from 'components/footer/footer.component'
 import {wrapper} from 'redux/store'
 import PreWork from 'components/pre-work/pre-work.component'
+import {useStore} from 'react-redux'
+import {PersistGate} from 'redux-persist/integration/react'
+import {Store} from 'redux'
+import {any} from 'prop-types'
 
 function App(props: AppPropsWithLayout) {
-
     const {Component, pageProps} = props
     const {getLayout} = useApp(props)
 
+    const store = useStore()
+
     return (
         <>
-            <PreWork/>
-            <Nav/>
-            <div className={'page'}>
-                {getLayout(<Component {...pageProps}/>)}
-            </div>
-            <Footer/>
-            {/*<Cookie/>*/}
+            {/*<PersistGate persistor={store.__persistor}>*/}
+                <PreWork/>
+                <Nav/>
+                <div className={'page'}>
+                    {getLayout(<Component {...pageProps}/>)}
+                </div>
+                <Footer/>
+                {/*<Cookie/>*/}
+            {/*</PersistGate>*/}
         </>
     )
 }

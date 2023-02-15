@@ -3,13 +3,13 @@ import useInput from 'components/common/input/input.hook'
 import {InputProps} from 'components/common/input/input.types'
 
 const Input: FC<InputProps> = (props) => {
-    const {value, name, onChange, placeholder, className, children, error, type} = props
+    const {value, name, onChange, placeholder, className, error, type} = props
     const {focused, onFocus, onBlur, autoComplete} = useInput(props)
 
     return (
         <div className={`input ${className ?? ''}`}>
             <div className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
-                <div className="input__main">
+                <div className={'input__main'}>
                     <input
                         onBlur={onBlur}
                         onFocus={onFocus}
@@ -24,11 +24,6 @@ const Input: FC<InputProps> = (props) => {
                         {placeholder}
                     </label>
                 </div>
-                {children && (
-                    <div className="input__children">
-                        {children}
-                    </div>
-                )}
             </div>
             {error && (
                 <div className="input__error">

@@ -7,7 +7,6 @@ import CartItem from 'components/cart-item/cart-item.component'
 import {NextPage} from 'next'
 
 const Cart: NextPage = () => {
-
     const {cartItems, total} = useCart()
 
     return (
@@ -15,7 +14,7 @@ const Cart: NextPage = () => {
             <div className='cart__content'>
                 <div className='cart__items'>
                     {cartItems.map((props, index) => (
-                        <CartItem key={props.data.slug + index}  {...props}/>
+                        <CartItem key={props.common.slug + index}  {...props}/>
                     ))}
                 </div>
                 <Discount/>

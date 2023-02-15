@@ -1,16 +1,11 @@
-import React from 'react'
+import {FC} from 'react'
 import useOrder from 'components/cart/order/order.hook'
 import Button from 'components/common/button/button.component'
 import Link from 'next/link'
 import presentImg from '/public/icons/present.svg'
+import {OrderProps} from 'components/cart/order/order.types'
 
-type orderProps = {
-    total: number,
-    className: string
-}
-
-const Order: React.FC<orderProps> = (props) => {
-
+const Order: FC<OrderProps> = (props) => {
     const {total, className} = props
     const {transl} = useOrder()
 
@@ -38,7 +33,7 @@ const Order: React.FC<orderProps> = (props) => {
             <Button className={'order__button'} onClick={() => {}}>
                 {transl.makeOrder}
             </Button>
-            <Button className={'button--white order__button order__button--present'} onClick={() => {}}>
+            <Button className={'order__button order__button--present'} onClick={() => {}}>
                 <>
                     {transl.hint}
                     <img className='order__present-img' src={presentImg.src} alt={'present'}/>

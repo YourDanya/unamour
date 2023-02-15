@@ -7,11 +7,11 @@ const useCartForm = () => {
 
     const {inputs, onChange, onValidate, errRef, resetValues} = useInput(content.inputs)
 
-    const handleSubmit = () => {
+    const onSubmit = () => {
 
     }
 
-    return {inputs, onChange, onValidate, transl, handleSubmit}
+    return {inputs, onChange, onValidate, transl, onSubmit}
 }
 
 export default useCartForm

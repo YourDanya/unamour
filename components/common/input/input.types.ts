@@ -1,4 +1,4 @@
-import {ChangeEvent, ReactNode} from 'react'
+import {ChangeEvent} from 'react'
 import {DependencyList} from 'react'
 
 export type InputProps = {
@@ -12,6 +12,5 @@ export type InputProps = {
     onValidate?: (name: string) => void,
     validateDeps?: DependencyList,
     onFocus?: () => void,
-    onBLur?: () => void,
-    children?: ReactNode
+    onBLur?: () => void
 }
