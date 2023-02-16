@@ -8,9 +8,11 @@ import ItemMessage from 'components/admin/item-form/item-buttons/item-message/it
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
     const {deleted} = props
-    const {updateItemState, transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, createItemState,
-    deleteItemState} = useItemButtons(props)
-    
+    const {
+        updateItemState, transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, createItemState,
+        deleteItemState
+    } = useItemButtons(props)
+
     return (
         <>
             {!deleted && (

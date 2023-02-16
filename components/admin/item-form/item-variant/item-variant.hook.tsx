@@ -21,10 +21,12 @@ const useItemVariant = (props: ItemVariantProps) => {
 
     const sizeObject = useMemo(() => {
         const sizeMap = {} as Record<string, boolean>
-        if (sizes) sizes.forEach(size => {
-            sizeMap[size] = true
-            return sizeMap
-        }, {} as Record<string, boolean>)
+        if (sizes) {
+            sizes.forEach(size => {
+                sizeMap[size] = true
+                return sizeMap
+            }, {} as Record<string, boolean>)
+        }
         return sizeContent.reduce((sizeObject, size) => {
             sizeObject[size] = sizeMap[size] ?? false
             return sizeObject

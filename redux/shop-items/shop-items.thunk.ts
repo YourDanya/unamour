@@ -9,16 +9,6 @@ import {CategoryItem} from 'redux/shop-items/shop-items.types'
 import {setSearchItems} from 'redux/shop-items/shop-items.slice'
 import {setShopItemFieldStart} from 'redux/shop-items/shop-items.slice'
 
-export const getItems = (): AppThunk => {
-    return async (dispatch) => {
-        dispatch(setShopItemFieldStart('getItems'))
-        const getItems = () => api.get('/shop-item/all')
-        const getItemsSuccess = () => setShopItemFieldSuccess('getItems')
-        const getItemsError = (error: ServerError) => setShopItemFieldFailure({field: 'getItems', error})
-        dispatch(apiCallAsync(getItems, getItemsSuccess, getItemsError))
-    }
-}
-
 export const searchItemsAsync: SearchItems = (searchItemsData) => {
     return async(dispatch) => {
         dispatch(setShopItemFieldStart('searchItems'))

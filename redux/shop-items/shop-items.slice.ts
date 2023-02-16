@@ -6,7 +6,6 @@ import {ServerError} from 'redux/store.types'
 import {CategoryItem} from './shop-items.types'
 
 const initialState: ShopItemsState = {
-    fetchedItems: [],
     searchItems: [],
     viewedItems: [],
     fields: {
@@ -35,25 +34,6 @@ export const shopItemsSlice = createSlice({
         setSearchItems: (state, action: PayloadAction<CategoryItem[]>) => {
             state.searchItems = action.payload
         },
-
-        setFetchedItem: (state, action: PayloadAction<FetchedItem>) => {
-            let index = state.fetchedItems.findIndex(item => item._id === action.payload._id)
-            if (index === -1) {
-                index = state.fetchedItems.findIndex(item => item._id === '')
-            }
-            state.fetchedItems[index] = action.payload
-        },
-        addItem: (state, action: PayloadAction<FetchedItem>) => {
-            state.fetchedItems.push(action.payload)
-        },
-        setItemDeleted: (state, action: PayloadAction<string>) => {
-            const index = state.fetchedItems.findIndex(item => item._id === action.payload)
-            state.fetchedItems[index].deleted = true
-        },
-        removeDeletedItem: (state) => {
-            const index = state.fetchedItems.findIndex(item => item.deleted || !item._id)
-            state.fetchedItems.splice(index, 1)
-        }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
@@ -63,8 +43,7 @@ export const shopItemsSlice = createSlice({
 })
 
 export const {
-    setShopItemFieldStart, setShopItemFieldFailure, setShopItemFieldSuccess, resetShopItemFieldSuccess,
-    setFetchedItem, addItem, setItemDeleted, removeDeletedItem, setSearchItems
+    setShopItemFieldStart, setShopItemFieldFailure, setShopItemFieldSuccess, resetShopItemFieldSuccess, setSearchItems
 } = shopItemsSlice.actions
 
 

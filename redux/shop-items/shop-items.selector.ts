@@ -8,10 +8,6 @@ import {shopItemsSuccess} from 'redux/shop-items/shop-items.content'
 
 export const selectShopItemsStore = (state: AppState) => state.shopItems
 
-export const selectFetchedItems = createSelector([selectShopItemsStore],
-    shopItems => shopItems.fetchedItems
-)
-
 export const selectShopItemsField = ((field: ShopItemsField) => {
     return createSelector(
         [selectShopItemsStore, selectLocale],

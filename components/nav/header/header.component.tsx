@@ -13,7 +13,7 @@ import useNavHeader from 'components/nav/header/header.hook'
 const NavHeader: FC<NavHeaderProps> = (props) => {
     const {showModal, home} = props
     const {quantity} = useNavHeader()
-
+    
     return (
         <div className="container nav__header">
             <NavLink href={'/'} className="nav__title">
@@ -36,7 +36,7 @@ const NavHeader: FC<NavHeaderProps> = (props) => {
                 </NavLink>
                 <Button className={'nav__cart-btn'} name="shopping" onClick={showModal}>
                     <div className={`nav__cart-quantity ${home? 'nav__cart-quantity--home' : ''}`}>
-                        {quantity}
+                        {quantity !==0 && quantity}
                     </div>
                     <img
                         className="nav__icon nav__icon--last"

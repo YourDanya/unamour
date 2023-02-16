@@ -2,21 +2,25 @@ import {createSlice} from '@reduxjs/toolkit'
 import {StateField} from 'redux/store.types'
 import {HYDRATE} from 'next-redux-wrapper'
 import {AdminState} from 'redux/admin/admin.types'
-import {UpdateItemValue} from 'redux/admin/admin.types'
+import {WithClientErrValue} from 'redux/admin/admin.types'
 import {SetAdminFieldStartAction} from 'redux/admin/admin.types'
 import {SetAdminFieldFailureAction} from 'redux/admin/admin.types'
 import {ResetAdminFieldSuccessAction} from 'redux/admin/admin.types'
 import {SetAdminFieldSuccessAction} from 'redux/admin/admin.types'
 import {SetAdminFieldAction} from 'redux/admin/admin.types'
 import {DeleteUpdateItemFieldAction} from 'redux/admin/admin.types'
+import {PayloadAction} from '@reduxjs/toolkit'
+import {FetchedItem} from 'redux/shop-items/shop-items.types'
+import {SetAdminItemsAction} from 'redux/admin/admin.types'
 
 const initialState: AdminState = {
     fields: {
         updateItem: {},
         createItem: {},
         deleteItem: {},
-        updateItems: {loading: false, success: false, error: null},
-    }
+        getItems: {loading: false, success: false, error: null},
+    },
+    items: [],
 }
 
 export const userSlice = createSlice({
@@ -26,13 +30,13 @@ export const userSlice = createSlice({
         setAdminFieldStart: (state, action: SetAdminFieldStartAction) => {
             const {field, _id} = action.payload
             if (_id !== undefined) {
-                let updateItemValue = (state.fields[field] as Record<string, UpdateItemValue>)[_id]
-                if(!updateItemValue) {
-                    updateItemValue = {loading: true, error: {server: null, client: 0}, success: false}
+                let WithClientErrValue = (state.fields[field] as Record<string, WithClientErrValue>)[_id]
+                if(!WithClientErrValue) {
+                    WithClientErrValue = {loading: true, error: {server: null, client: 0}, success: false}
                 } else {
-                    updateItemValue.loading = true
+                    WithClientErrValue.loading = true
                 }
-                (state.fields[field] as Record<string, UpdateItemValue>)[_id] = updateItemValue
+                (state.fields[field] as Record<string, WithClientErrValue>)[_id] = WithClientErrValue
             } else {
                 (state.fields[field] as StateField).loading = true
             }
@@ -40,7 +44,7 @@ export const userSlice = createSlice({
         setAdminFieldFailure: (state, action: SetAdminFieldFailureAction) => {
             const {field, error, _id} = action.payload
             if (_id) {
-                (state.fields[field] as Record<string, UpdateItemValue>) [_id] =
+                (state.fields[field] as Record<string, WithClientErrValue>) [_id] =
                     {loading: false, success: false, error: {server: error, client: 0}}
             } else {
                 (state.fields[field] as StateField) = {loading: false, success: false, error}
@@ -50,7 +54,7 @@ export const userSlice = createSlice({
             let {field, _id} = action.payload
             if (_id !== undefined) {
                 _id = _id as string
-                (state.fields[field] as Record<string, UpdateItemValue>) [_id] =
+                (state.fields[field] as Record<string, WithClientErrValue>) [_id] =
                     {loading: false, success: true, error: {server: null, client: 0}}
                 if (field === 'createItem') {
                     state.fields['createItem'][''] =
@@ -64,7 +68,7 @@ export const userSlice = createSlice({
         resetAdminFieldSuccess: (state, action: ResetAdminFieldSuccessAction) => {
             const {field, _id} = action.payload
             if (_id) {
-                (state.fields[field] as Record<string, UpdateItemValue>)[_id].success = false
+                (state.fields[field] as Record<string, WithClientErrValue>)[_id].success = false
             } else {
                 (state.fields[field] as StateField).success = false
             }
@@ -72,8 +76,8 @@ export const userSlice = createSlice({
         setAdminField: (state, action: SetAdminFieldAction) => {
             const {field, _id, value} = action.payload
             if (_id !== undefined) {
-                ((state.fields[field] as Record<string, UpdateItemValue>)[_id] as UpdateItemValue) =
-                    {...(state.fields[field] as Record<string, UpdateItemValue>)[_id], ...(value as Partial<UpdateItemValue>)}
+                ((state.fields[field] as Record<string, WithClientErrValue>)[_id] as WithClientErrValue) =
+                    {...(state.fields[field] as Record<string, WithClientErrValue>)[_id], ...(value as Partial<WithClientErrValue>)}
             } else {
                 (state.fields[field] as StateField) = {...state.fields[field] as StateField, ...(value as Partial<StateField>)}
             }
@@ -81,6 +85,28 @@ export const userSlice = createSlice({
         deleteUpdateItemField: (state, action: DeleteUpdateItemFieldAction) => {
             const {_id} = action.payload
             delete state.fields['updateItem'][_id]
+        },
+
+        setAdminItems : (state, action: SetAdminItemsAction) => {
+            state.items = action.payload.items
+        },
+        setAdminItem: (state, action: PayloadAction<FetchedItem>) => {
+            let index = state.items.findIndex(item => item._id === action.payload._id)
+            if (index === -1) {
+                index = state.items.findIndex(item => item._id === '')
+            }
+            state.items[index] = action.payload
+        },
+        addAdminItem: (state, action: PayloadAction<FetchedItem>) => {
+            state.items.push(action.payload)
+        },
+        setAdminItemDeleted: (state, action: PayloadAction<string>) => {
+            const index = state.items.findIndex(item => item._id === action.payload)
+            state.items[index].deleted = true
+        },
+        removeAdminDeletedItem: (state) => {
+            const index = state.items.findIndex(item => item.deleted || !item._id)
+            state.items.splice(index, 1)
         }
     },
     extraReducers: {
@@ -92,7 +118,8 @@ export const userSlice = createSlice({
 
 export const {
     setAdminFieldStart, setAdminFieldFailure, setAdminFieldSuccess, setAdminField, resetAdminFieldSuccess,
-    deleteUpdateItemField
+    removeAdminDeletedItem, addAdminItem, setAdminItemDeleted, setAdminItem, deleteUpdateItemField,
+    setAdminItems
 } = userSlice.actions
 
 export default userSlice.reducer

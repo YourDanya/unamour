@@ -10,21 +10,22 @@ import {FetchedItem} from 'redux/shop-items/shop-items.types'
 import {AppThunk} from 'redux/store'
 
 export type AdminState = {
-    fields: Record<AdminField, StateField> & Record<'updateItem' | 'createItem', Record<string, UpdateItemValue>>
-        & Record<'deleteItem', Record<string, StateField>>
+    fields: Record<AdminField, StateField> & Record<'updateItem' | 'createItem', Record<string, WithClientErrValue>>
+        & Record<'deleteItem', Record<string, StateField>>,
+    items: FetchedItem []
 }
 
-export type UpdateItemValue = {loading: boolean, success: boolean, error: {server: ServerError | null, client: number}}
-export type UpdateItemValues = Record<string, UpdateItemValue>
+export type WithClientErrValue = {loading: boolean, success: boolean, error: {server: ServerError | null, client: number}}
+export type WithClientErrValues = Record<string, WithClientErrValue>
 
-export type SelectUpdateItem = {loading: boolean, success: string, error: {server: string, client: string}}
+export type SelectWithClientErr = {loading: boolean, success: string, error: {server: string, client: string}}
 export type SelectAdminField = (field: AdminField | AdminIdField, _id?: string) =>
-     ((state: AppState) => SelectField | SelectUpdateItem)
+     ((state: AppState) => SelectField | SelectWithClientErr)
 export type SelectIsSlugUnique = (_id: string, index: number) => ((state: AppState) => boolean)
 export type SelectAdminFieldParams = (state: AppState, field: AdminField | 'updateItem', _id?: string) =>
     {field: AdminField | 'updateItem', _id?: string}
 
-export type AdminField = 'updateItems'
+export type AdminField = 'getItems'
 export type AdminIdField = 'updateItem' | 'createItem' | 'deleteItem'
 export type AdminErrors = ContentErrors<AdminField | AdminIdField>
 export type AdminSuccess = ContentSuccess<AdminField | AdminIdField>
@@ -36,8 +37,9 @@ export type SetAdminFieldFailureAction = PayloadAction<{error: ServerError, fiel
 export type SetAdminFieldSuccessAction = PayloadAction<{ field: AdminIdField | AdminField, _id?: string}>
 export type ResetAdminFieldSuccessAction = PayloadAction <{field: AdminIdField | AdminField, _id?: string}>
 export type SetAdminFieldAction = PayloadAction<{field: AdminIdField | AdminField, _id?: string,
-    value: Partial<UpdateItemValue> | Partial<StateField>}>
+    value: Partial<WithClientErrValue> | Partial<StateField>}>
 export type DeleteUpdateItemFieldAction = PayloadAction<{_id: string}>
+export type SetAdminItemsAction = PayloadAction<{items: FetchedItem[]}>
 
 export type UpdateItemAsync = (item: FetchedItem, _id: string) => AppThunk
 export type CreateItemAsync = (item: FetchedItem, _id: string) => AppThunk

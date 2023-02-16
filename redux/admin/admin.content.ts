@@ -9,10 +9,10 @@ export const adminErrors: AdminErrors = {
         ru: 'Что-то пошло не так. Попройбуйте снова позже.'
     },
     '4': {
-        updateItems: {
-            ua: 'Невірні дані. Не вдалося оновити товар.',
-            eng: 'Wrong data. Items were not updated.',
-            ru: 'Неверные данные. Товары успешно обновлены.'
+        getItems: {
+            ua: 'Не вдалося завантажити товари.',
+            eng: 'Items were not fetched.',
+            ru: 'Не удалось загрузить товары.'
         },
         updateItem: {
             ua: 'Невірні дані. Не вдалося оновити товар.',
@@ -33,10 +33,10 @@ export const adminErrors: AdminErrors = {
 }
 
 export const adminSuccess: AdminSuccess = {
-    updateItems: {
-        ua: 'Товари успішно оновлені.',
-        eng: 'Items updated successfully.',
-        ru: 'Товары успешно обнавлены.'
+    getItems: {
+        ua: 'Товари успішно завантажені',
+        eng: 'Items fetched successfully.',
+        ru: 'Товары успешно загружены.'
     },
     updateItem: {
         ua: 'Товар успішно оновлено.\nПовідомлення буде видалено через',

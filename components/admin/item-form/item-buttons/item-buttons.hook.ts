@@ -1,6 +1,6 @@
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
 import {selectAdminField} from 'redux/admin/admin.selectors'
-import {SelectUpdateItem} from 'redux/admin/admin.types'
+import {SelectWithClientErr} from 'redux/admin/admin.types'
 import {ItemButtonsProps} from 'components/admin/item-form/item-buttons/item-buttons.types'
 import {useLocale} from 'hooks/other/other.hooks'
 import {itemButtonsContent} from 'components/admin/item-form/item-buttons/item-buttons.content'
@@ -16,7 +16,7 @@ import {SelectField} from 'redux/store.types'
 import {createItemAsync} from 'redux/admin/admin.thunk'
 import {useOmitFirstLayoutEffect} from 'hooks/component/component.hooks'
 import {deleteItemAsync} from 'redux/admin/admin.thunk'
-import {removeDeletedItem} from 'redux/shop-items/shop-items.slice'
+import {removeAdminDeletedItem} from 'redux/admin/admin.slice'
 // import {_selectAdminField} from 'redux/admin/admin.selectors'
 // import {useSelector} from 'react-redux'
 // import {AppState} from 'redux/store'
@@ -25,9 +25,9 @@ const useItemButtons = (props: ItemButtonsProps) => {
     const {itemValueRef, _id} = props
     const [transl] = useLocale(itemButtonsContent)
 
-    // const updateItemState = useSelector((state : AppState) => _id? _selectAdminField(state, 'updateItem', _id) : null) as SelectUpdateItem
-    const updateItemState = useParamSelector(selectAdminField, 'updateItem', _id) as SelectUpdateItem
-    const createItemState = useParamSelector(selectAdminField, 'createItem', _id) as SelectUpdateItem
+    // const updateItemState = useSelector((state : AppState) => _id? _selectAdminField(state, 'updateItem', _id) : null) as SelectWithClientErr
+    const updateItemState = useParamSelector(selectAdminField, 'updateItem', _id) as SelectWithClientErr
+    const createItemState = useParamSelector(selectAdminField, 'createItem', _id) as SelectWithClientErr
     const deleteItemState = useParamSelector(selectAdminField, 'deleteItem', _id) as SelectField
 
     // if (!_id) {
@@ -58,12 +58,12 @@ const useItemButtons = (props: ItemButtonsProps) => {
         if (_id) {
             dispatch(deleteItemAsync(_id))
         } else {
-            dispatch(removeDeletedItem())
+            dispatch(removeAdminDeletedItem())
         }
     }
 
     const onDeleteExpiration = () => {
-        dispatch(removeDeletedItem())
+        dispatch(removeAdminDeletedItem())
     }
 
     const onClose: MouseAction = (event) => {
@@ -76,7 +76,7 @@ const useItemButtons = (props: ItemButtonsProps) => {
         setMessage({...isMessage, [field]: false})
         dispatch(resetAdminFieldSuccess({field, _id}))
         if (field === 'deleteItem') {
-            dispatch(removeDeletedItem())
+            dispatch(removeAdminDeletedItem())
         }
     }
 

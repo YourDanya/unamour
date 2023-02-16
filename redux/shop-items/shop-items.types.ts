@@ -128,12 +128,11 @@ export type ClientItem = {
     }
 }
 
-export type ShopItemsField = 'getItems' | 'searchItems'
+export type ShopItemsField = 'searchItems'
 export type ShopItemsErrors = ContentErrors<ShopItemsField>
 export type ShopItemsSuccess = ContentSuccess<ShopItemsField>
 
 export type ShopItemsState = {
-    fetchedItems: FetchedItem[],
     searchItems: CategoryItem[],
     viewedItems: CategoryItem[],
     fields: Record<ShopItemsField, StateField>

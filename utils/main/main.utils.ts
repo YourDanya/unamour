@@ -3,6 +3,8 @@ import {LocaleError} from 'redux/store.types'
 import {MessLocaleError} from 'redux/store.types'
 import {GetError} from 'utils/main/main.types'
 import {NullObj} from 'utils/main/main.types'
+import {GetLocalStorage} from 'utils/main/main.types'
+import {MapWithClientErrField} from 'utils/main/main.types'
 
 // export const sleep= (ms: number) => {
 //     return new Promise(resolve => setTimeout(resolve, ms));
@@ -38,35 +40,23 @@ export const parseTimer = (milliseconds: number) => {
 
 export const mapField: MapField = (field, stateField, locale, contentErrors,
                                    contentSuccess) => {
-    // const code = stateField?.error?.code as '4' | '5'
-    // const message = stateField?.error?.message as string
-    // let error: string | null = null
-    // if (code === '5') {
-    //     error = contentErrors['5'][locale]
-    // } else if (code) {
-    //     let fieldError = contentErrors['4'][field] as LocaleError | MessLocaleError
-    //     if (fieldError.ua) {
-    //         fieldError = fieldError as LocaleError
-    //         error = fieldError?.[locale]
-    //     } else if (message) {
-    //         fieldError = fieldError as MessLocaleError
-    //         error = fieldError[message]?.[locale]
-    //     }
-    // }
     const {loading, timer, error: serverError} = stateField
     const error = getError(field, serverError, contentErrors, locale)
     const success = stateField.success ? contentSuccess[field][locale] : null
     return {loading, error, success, timer}
 }
 
-// export const mapUpdateItem: MapField = (field, stateField, locale, contentErrors,
-//                                    contentSuccess) => {
-//
-//     const {loading, timer, error: serverError} = stateField
-//     const error = getError(field, serverError, contentErrors, locale)
-//     const success = stateField.success ? contentSuccess[field][locale] : null
-//     return {loading, error, success, timer}
-// }
+export const mapWithClientErrField: MapWithClientErrField = (params) => {
+    const {field, stateField, locale, contentErrors, contentSuccess, clientErrors} = params
+    const {loading, error} = stateField
+    const server = getError(field, error.server, contentErrors, locale)
+    let client = ''
+    if (typeof clientErrors === 'function' && error.client) {
+        client = clientErrors()
+    }
+    const success = stateField.success ? contentSuccess[field][locale] : ''
+    return {loading, error: {client, server}, success}
+}
 
 export const getError: GetError = (field, serverError, contentErrors, locale) => {
     const code = serverError?.code as '4' | '5'
@@ -149,6 +139,6 @@ export const checkEqual = (obj1: any, obj2: any) => {
     return true
 }
 
-export const useTimer = () => {
-
+export const getLocalStorage: GetLocalStorage = (key) => {
+    return JSON.parse(JSON.parse(localStorage.getItem('persist:nextjs') as string)[key])
 }

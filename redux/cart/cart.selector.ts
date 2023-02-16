@@ -1,5 +1,6 @@
 import {AppState} from 'redux/store'
 import {createSelector} from '@reduxjs/toolkit'
+import {getLocalStorage} from 'utils/main/main.utils'
 
 export const selectCart = (state: AppState) => state.cart
 
@@ -10,9 +11,7 @@ export const selectCartItems = createSelector(
 export const selectTotalPrice = createSelector(
     [selectCartItems],
     (cartItems) => {
-        let totalPrice = 0
-        cartItems.forEach(({quantity, common: {price}}) => totalPrice += quantity * +price)
-        return totalPrice
+        return cartItems.reduce((totalPrice, {quantity, common: {price}}) => totalPrice + quantity * +price, 0)
     }
 )
 
@@ -22,3 +21,8 @@ export const selectItemsQuantity = createSelector(
         return cartItems.reduce((quantity, item) => quantity + item.quantity, 0)
     }
 )
+
+export const getLSItemsQuantity = () => {
+    const cartItems = getLocalStorage('cart').items
+    return cartItems.reduce((quantity, item) => quantity + item.quantity, 0)
+}

@@ -9,6 +9,8 @@ import FormMessage from 'components/common/form-message/form-message.component'
 const AdminItems: NextPage = () => {
     const {items, user, onAddItem, transl, itemError} = useAdminItems()
 
+    console.log('render')
+
     return (
         <div className={'admin-items'}>
             {items.length > 0 && user?.isAdmin ? (

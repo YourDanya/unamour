@@ -8,11 +8,6 @@ export const shopItemsErrors: ShopItemsErrors = {
         ru: 'Что-то пошло не так. Попройбуйте снова позже.'
     },
     '4': {
-        getItems: {
-            ua: 'Щось пійшло не так. Спробоуйте пізніше.',
-            eng: 'Something went wrong. Try again later.',
-            ru: 'Что-то пошло не так. Попройбуйте снова позже.'
-        },
         searchItems: {
             ua: 'Невірні дані.',
             eng: 'Wrong data.',
@@ -22,11 +17,6 @@ export const shopItemsErrors: ShopItemsErrors = {
 }
 
 export const shopItemsSuccess: ShopItemsSuccess = {
-    getItems: {
-        ua: 'Товари успішно отримано.',
-        eng: 'Items fetched successfully.',
-        ru: 'Товары успешно получено.'
-    },
     searchItems: {
         ua: 'Знайдено товари.',
         eng: 'Items were found.',

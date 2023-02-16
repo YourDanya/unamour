@@ -1,17 +1,17 @@
 import {selectItemsQuantity} from 'redux/cart/cart.selector'
 import {useSelector} from 'react-redux'
-import {useState} from 'react'
-import {useEffect} from 'react'
 
 const useNavHeader = () => {
-    const _quantity = useSelector(selectItemsQuantity)
-    const [quantity, setQuantity] = useState(_quantity)
+    const quantity = useSelector(selectItemsQuantity)
 
-    useEffect(() => {
-        const quantity = JSON.parse(JSON.parse(localStorage.getItem('persist:nextjs') as string).cart).items[0].quantity
-        console.log('quantity', quantity)
-        setQuantity(quantity)
-    }, [])
+    // useLayoutEffect(() => {
+    //     setQuantity(selectQuantity)
+    // }, [selectQuantity])
+
+    // useLayoutEffect(() => {
+    //     const quantity = getLSItemsQuantity()
+    //     setQuantity(quantity)
+    // }, [])
 
     return {quantity}
 }

@@ -83,17 +83,16 @@ import PreWork from 'components/pre-work/pre-work.component'
 import {useStore} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 import {Store} from 'redux'
-import {any} from 'prop-types'
 
 function App(props: AppPropsWithLayout) {
     const {Component, pageProps} = props
     const {getLayout} = useApp(props)
 
-    const store = useStore()
+    const store = useStore() as Store & {__persistor: any}
 
     return (
         <>
-            {/*<PersistGate persistor={store.__persistor}>*/}
+            <PersistGate persistor={store.__persistor}>
                 <PreWork/>
                 <Nav/>
                 <div className={'page'}>
@@ -101,7 +100,7 @@ function App(props: AppPropsWithLayout) {
                 </div>
                 <Footer/>
                 {/*<Cookie/>*/}
-            {/*</PersistGate>*/}
+            </PersistGate>
         </>
     )
 }

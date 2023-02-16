@@ -42,11 +42,11 @@ export const userSlice = createSlice({
         setUserFieldFailure: (state, action: SetUserFieldFailureAction) => {
             const {field, error} = action.payload
             const {timer} = error
-            state.fields[field] = {loading: false, success: false, error, timer}
+            state.fields[field] = {loading: false, success: false, error, ...timer!==undefined && {timer}}
         },
         setUserFieldSuccess: (state, action: SetUserFieldSuccessAction) => {
             const {timer} = state.fields[action.payload]
-            state.fields[action.payload] = {success: true, loading: false, error: null, timer}
+            state.fields[action.payload] = {success: true, loading: false, error: null, ...timer!==undefined && {timer}}
         },
         setUser: (state, action: SetUserAction) => {
             state.user = action.payload.user
