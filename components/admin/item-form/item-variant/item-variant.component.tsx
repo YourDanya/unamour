@@ -8,9 +8,10 @@ import Button from 'components/common/button/button.component'
 import React from 'react'
 import {ItemVariantProps} from 'components/admin/item-form/item-variant/item-variant.types'
 import FormMessage from 'components/common/form-message/form-message.component'
+import ItemImage from 'components/admin/item-form/item-image/item-image.component'
 
 const ItemVariant: FC<ItemVariantProps> = (props) => {
-    const {variantIndex, onDeleteVariant} = props
+    const {variantIndex, onDeleteVariant, images} = props
     const {onInputsChange, onSizesChange, transl, sizeValues, colors, inputs, sizeError, colorError} = useItemVariant(props)
 
     return (
@@ -55,6 +56,11 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 <FormMessage error={sizeError}/>
             </Dropdown>
             {/*images*/}
+            <Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>
+                {images.map((url) => (
+                    <ItemImage key={url} url={url}/>
+                ))}
+            </Dropdown>
             {/*</Dropdown>*/}
             <Button className={'item-form__button'} onClick={onDeleteVariant} data-value={variantIndex}>
                 {transl.delete}

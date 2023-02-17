@@ -1,20 +1,18 @@
-import React from 'react'
+import {FC} from 'react'
+import {HamburgerProps} from 'components/nav/hamburger/hamburger.types'
+import Button from 'components/common/button/button.component'
 
-type hamburgerProps = {
-    hamburger: boolean,
-    showModal: (event: React.MouseEvent<HTMLElement>) => void,
-    hideModal: (event: React.MouseEvent<HTMLElement>) => void
-}
-
-const Hamburger: React.FC<hamburgerProps> = ({hamburger, showModal, hideModal}) => {
+const Hamburger: FC<HamburgerProps> = ({hamburger, showModal, hideModal}) => {
 
     return (
-        <div className={`container hamburger ${hamburger ? 'hamburger--active' : ''}`}>
-            <button name={'hamburger'} className={`hamburger__button`} onClick={hamburger? hideModal : showModal}>
-                <div className="hamburger__line"/>
-                <div className="hamburger__line"/>
-                <div className="hamburger__line"/>
-            </button>
+        <div className={`hamburger ${hamburger ? 'hamburger--active' : ''}`}>
+            <Button className={`hamburger__button`} name={'hamburger'} onClick={hamburger? hideModal : showModal}>
+                {/*<div className='hamburger__content'>*/}
+                    <div className="hamburger__line"/>
+                    <div className="hamburger__line"/>
+                    <div className="hamburger__line"/>
+                {/*</div>*/}
+            </Button>
         </div>
     )
 }

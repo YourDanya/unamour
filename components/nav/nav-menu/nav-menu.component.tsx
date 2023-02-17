@@ -1,13 +1,13 @@
-import React from 'react'
+import {FC} from 'react'
 import Button from 'components/common/button/button.component'
 import useNavMenu from 'components/nav/nav-menu/nav-menu.hook'
 import NavLink from 'components/common/nav-link/nav-link.component'
 import {Fragment} from 'react'
 import {NavMenuProps} from 'components/nav/nav-menu/nav-menu.types'
 
-const NavMenu: React.FC<NavMenuProps> = (props) => {
+const NavMenu: FC<NavMenuProps> = (props) => {
     const {showTopModal} = props
-    const {clientService, handleClientClick, user, transl, content} = useNavMenu()
+    const {clientService, onClientService, user, transl, content} = useNavMenu()
 
     return (
         <>
@@ -26,7 +26,7 @@ const NavMenu: React.FC<NavMenuProps> = (props) => {
                                 {transl.secondLinks[idx]}
                             </NavLink>
                             {idx === 0 && (
-                                <Button className={'menu__item'} onClick={handleClientClick}>
+                                <Button className={'menu__item'} onClick={onClientService}>
                                     {transl.service}
                                 </Button>
                             )}
@@ -44,7 +44,7 @@ const NavMenu: React.FC<NavMenuProps> = (props) => {
                 </div>
             </div>
             <div className={`menu service-menu ${clientService ? 'service-menu--active' : ''}`}>
-                <Button className="service-menu__back" onClick={handleClientClick}>
+                <Button className="service-menu__back" onClick={onClientService}>
                     <div className={'arrow-back service-menu__arrow'}/>
                     {transl.back}
                 </Button>

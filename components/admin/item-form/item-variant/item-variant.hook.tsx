@@ -20,13 +20,11 @@ const useItemVariant = (props: ItemVariantProps) => {
     const [transl, content] = useLocale(itemVariantContent)
 
     const sizeObject = useMemo(() => {
-        const sizeMap = {} as Record<string, boolean>
-        if (sizes) {
-            sizes.forEach(size => {
-                sizeMap[size] = true
-                return sizeMap
-            }, {} as Record<string, boolean>)
-        }
+        const sizeMap = sizes.reduce((sizeMap, size) => {
+            sizeMap[size] = true
+            return sizeMap
+        }, {} as Record<string, boolean>)
+
         return sizeContent.reduce((sizeObject, size) => {
             sizeObject[size] = sizeMap[size] ?? false
             return sizeObject
@@ -42,9 +40,7 @@ const useItemVariant = (props: ItemVariantProps) => {
             colors.labels.push(colorsTransl[index])
             return colors
         }, {
-            styles: [],
-            labels: [],
-            values: []
+            styles: [], labels: [], values: []
         } as { styles: { backgroundColor: string }[], labels: string[], values: string[] })
     }, [])
 

@@ -10,6 +10,17 @@
   border-color: black
   border-style: dashed
   border-width: 0 0 1px 0
+  &__image
+    width: 100%
+    margin-bottom: 10px
+    &-wrapper
+      display: flex
+      flex-wrap: wrap
+      margin-bottom: 20px
+      justify-content: space-between
+      .item-form__button
+        width: 135px
+
   &--deleted
     .item-form__title, .item-form__block
       opacity: 0
@@ -29,6 +40,9 @@
       padding: 10px 0
     .dropdown__children
       padding: 10px
+    &--images
+      .dropdown__content--show
+        max-height: 2000px
   &__input
     width: 300px
     margin-bottom: 20px

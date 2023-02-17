@@ -6,9 +6,9 @@ import {useSelector} from 'react-redux'
 
 const useNavMenu = () => {
     const [transl, content] = useLocale(navMenuContent)
-    const [clientService, handleClientClick] = useToggle()
+    const [clientService, onClientService] = useToggle()
     const user = useSelector(selectUser)
-    return {clientService, handleClientClick, user, transl, content}
+    return {clientService, onClientService, user, transl, content}
 }
 
 export default useNavMenu
