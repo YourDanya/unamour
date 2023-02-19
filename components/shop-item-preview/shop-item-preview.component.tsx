@@ -10,25 +10,30 @@ const ShopItemPreview: FC<CategoryItem> = (props) => {
 
     return (
         <div className='shop-item-preview'>
-            <Link href={`/shop-items/${slugCategory}/${slug}?color=${color}`}>
-                <a className={`shop-item-preview__link`} onMouseEnter={onMouse} onMouseLeave={onMouse} onClick={onClick}>
-                    <LoadImage
-                        dataAttr={'0'}
-                        loaded={loaded[0]}
-                        handleLoaded={handleLoaded}
-                        className={`shop-item-preview__img ${hovered ? 'shop-item-preview__img--hidden' : ''}`}
-                        src={images[0]}
-                        alt="preview item image"
-                    />
-                    <LoadImage
-                        dataAttr={'1'}
-                        loaded={loaded[1]}
-                        handleLoaded={handleLoaded}
-                        className={`shop-item-preview__img ${hovered ? '' : 'shop-item-preview__img--hidden'} `}
-                        src={images[1]}
-                        alt="preview item image"
-                    />
-                </a>
+            <Link
+                href={`/shop-items/${slugCategory}/${slug}?color=${color}`}
+                className={`shop-item-preview__link`}
+                onMouseEnter={onMouse}
+                onMouseLeave={onMouse}
+                onClick={onClick}>
+
+                <LoadImage
+                    dataAttr={'0'}
+                    loaded={loaded[0]}
+                    handleLoaded={handleLoaded}
+                    className={`shop-item-preview__img ${hovered ? 'shop-item-preview__img--hidden' : ''}`}
+                    src={images[0]}
+                    alt="preview item image"
+                />
+                <LoadImage
+                    dataAttr={'1'}
+                    loaded={loaded[1]}
+                    handleLoaded={handleLoaded}
+                    className={`shop-item-preview__img ${hovered ? '' : 'shop-item-preview__img--hidden'} `}
+                    src={images[1]}
+                    alt="preview item image"
+                />
+
             </Link>
             <div className={'shop-item-preview__bottom'}>
                 <div className="shop-item-preview__name">
@@ -39,7 +44,7 @@ const ShopItemPreview: FC<CategoryItem> = (props) => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default ShopItemPreview

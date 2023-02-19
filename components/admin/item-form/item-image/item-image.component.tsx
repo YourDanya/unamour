@@ -3,26 +3,26 @@ import Button from 'components/common/button/button.component'
 import React from 'react'
 import useItemImage from 'components/admin/item-form/item-image/item-image.hook'
 import {ItemImageProps} from 'components/admin/item-form/item-image/item-image.types'
+import {baseURL} from 'utils/api/api.utils'
 
 const ItemImage: FC<ItemImageProps> = (props) => {
-    const {transl, btnRef, onUpdate, onSelect, url} = useItemImage(props)
+    const {transl, onUpdate, url, onDelete} = useItemImage(props)
 
     return (
         <div className={'item-form__image-wrapper'}>
-            <img className={'item-form__image'} src={url}/>
+            <img className={'item-form__image'} src={url.includes('http') ? url : `${baseURL}/images/${url}`}/>
             <Button className={'item-form__button'} onClick={onUpdate}>
                 {transl.updateImage}
             </Button>
-            <Button className={'item-form__button'} onClick={() => {}}>
+            <Button className={'item-form__button'} onClick={onDelete}>
                 {transl.deleteImage}
             </Button>
-            <input
-                ref={btnRef}
-                type="file"
-                onChange={onSelect}
-                accept="image/*"
-                style={{display: 'none'}}
-            />
+            {/*<input*/}
+            {/*    type="file"*/}
+            {/*    onChange={onUpdate}*/}
+            {/*    accept="image/*"*/}
+            {/*    style={{display: 'none'}}*/}
+            {/*/>*/}
         </div>
     )
 }

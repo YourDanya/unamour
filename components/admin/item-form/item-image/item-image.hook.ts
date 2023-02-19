@@ -1,45 +1,43 @@
 import {useLocale} from 'hooks/other/other.hooks'
 import itemImageContent from 'components/admin/item-form/item-image/item-image.content'
-import {useRef} from 'react'
-import {MouseAction} from 'types/types'
-import {ChangeEvent} from 'react'
 import {useState} from 'react'
-import {useEffect} from 'react'
 import {ItemImageProps} from 'components/admin/item-form/item-image/item-image.types'
+import {useEffect} from 'react'
+import {MouseAction} from 'types/types'
 
 const useItemImage = (props: ItemImageProps) => {
+    const {id, onDeleteImage, onUpdateImage, file} = props
     const [transl] = useLocale(itemImageContent)
-    const btnRef = useRef<HTMLInputElement>(null)
 
-    const onUpdate: MouseAction = (event) => {
+    const onUpdate:MouseAction = (event) => {
         event.preventDefault()
-        btnRef?.current?.click()
+        onUpdateImage(id)
     }
 
-    const [file, setFile] = useState<File>()
-
-    const onSelect = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]
-        console.log('file', file)
-        if (file) {
-            setFile(file)
-        }
+    const onDelete: MouseAction = (event) => {
+        event.preventDefault()
+        onDeleteImage(id)
     }
 
-    const [url, setUrl] = useState(props.url)
+    const [url, setUrl] = useState(props.id)
+
+    // const urlRef = useRef<URL>()
 
     useEffect(() => {
-        if (!file) {
+        if (!file || typeof file === 'string') {
             return
         }
-        const objectUrl = URL.createObjectURL(file)
+        const objectUrl = URL.createObjectURL(file as File)
         console.log(objectUrl)
         setUrl(objectUrl)
         // free memory when ever this component is unmounted
-        return () => URL.revokeObjectURL(objectUrl)
+        return () => {
+            console.log('unmount')
+            URL.revokeObjectURL(objectUrl)
+        }
     }, [file])
 
-    return {transl, btnRef, onUpdate, onSelect, url}
+    return {transl, onUpdate, url, onDelete}
 }
 
 export default useItemImage

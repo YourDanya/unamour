@@ -9,7 +9,6 @@ const initialState: ShopItemsState = {
     searchItems: [],
     viewedItems: [],
     fields: {
-        getItems: {error: null, success: false, loading: false},
         searchItems: {error: null, success: false, loading: false}
     }
 }

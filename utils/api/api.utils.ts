@@ -5,7 +5,7 @@ import {ApiCall} from 'utils/api/api.types'
 import {AxiosPromise} from 'axios'
 import {ServerError} from 'redux/store.types'
 
-let baseURL = 'http://localhost:5000'
+export const baseURL = 'http://localhost:5000'
 
 let instance = axios.create({
     baseURL,
@@ -18,8 +18,8 @@ export const api = {
             return await instance.get(url)
         },
     post:
-        async (url: string, options: object = {}) => {
-            return await instance.post(url, options)
+        async (url: string, options: object = {}, config: object = {}) => {
+            return await instance.post(url, options, config)
         },
     put:
         async (url: string, options: object) => {

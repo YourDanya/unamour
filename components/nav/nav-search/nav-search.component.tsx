@@ -33,22 +33,22 @@ const NavSearch: FC = () => {
                         <Link
                             href={`/shop-items/${item.common.slugCategory}/${item.common.slug}`}
                             key={item.translations[locale].name + index}
-                        >
-                            <a className="nav-search__item">
-                                <img
-                                    className="nav-search__item-img"
-                                    src={item.common.images[0]}
-                                    alt={'search item image'}
-                                />
-                                <div className="nav-search__item-name">
-                                    {item.translations[locale].name}
-                                </div>
-                            </a>
+                            className="nav-search__item">
+
+                            <img
+                                className="nav-search__item-img"
+                                src={item.common.images[0]}
+                                alt={'search item image'}
+                            />
+                            <div className="nav-search__item-name">
+                                {item.translations[locale].name}
+                            </div>
+
                         </Link>
                     )}
                     <div className="nav-search__button-wrapper">
-                        <Link href={`/search?query=${input}`}>
-                            <a className="nav-search__button">{transl.allRes}</a>
+                        <Link href={`/search?query=${input}`} className="nav-search__button">
+                            {transl.allRes}
                         </Link>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ const NavSearch: FC = () => {
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 export default NavSearch

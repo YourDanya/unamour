@@ -1,3 +1,6 @@
 export type ItemImageProps = {
-    url: string
+    id: string,
+    onUpdateImage: (id: string) => void,
+    onDeleteImage: (id: string) => void,
+    file?: File | string
 }

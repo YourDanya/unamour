@@ -41,12 +41,12 @@ const Order: FC<OrderProps> = (props) => {
             </Button>
             <div className='cart__policy'>
                 {transl.policy}
-                <Link href={'/'}>
-                    <a className='order__policy-link'>{transl.policyLink}</a>
+                <Link href={'/'} className='order__policy-link'>
+                    {transl.policyLink}
                 </Link>
             </div>
         </div>
-    )
+    );
 }
 
 export default Order

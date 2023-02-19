@@ -27,4 +27,4 @@ const ItemVariants: FC<ItemVariantsProps> = (props) => {
     )
 }
 
-export default memo(ItemVariants)
+export default ItemVariants

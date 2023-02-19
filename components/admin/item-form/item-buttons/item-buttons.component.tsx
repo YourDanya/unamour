@@ -1,6 +1,6 @@
 import useItemButtons from 'components/admin/item-form/item-buttons/item-buttons.hook'
 import FormMessage from 'components/common/form-message/form-message.component'
-import {FC, memo} from 'react'
+import {FC} from 'react'
 import Button from 'components/common/button/button.component'
 import {ItemButtonsProps} from 'components/admin/item-form/item-buttons/item-buttons.types'
 import closeRed from 'public/icons/close-red.svg'
@@ -8,9 +8,10 @@ import ItemMessage from 'components/admin/item-form/item-buttons/item-message/it
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
     const {deleted} = props
+
     const {
         updateItemState, transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, createItemState,
-        deleteItemState
+        deleteItemState, createItemImages, updateItemImages, deleteItemImages
     } = useItemButtons(props)
 
     return (
@@ -27,36 +28,63 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
                     <Button
                         className={'item-form__button item-form__button--save'}
                         onClick={onSave}
-                        loading={updateItemState.loading || createItemState.loading}
+                        loading={updateItemState.loading || createItemState.loading || createItemImages.loading
+                            || updateItemImages.loading || deleteItemImages.loading}
                     >
                         {transl.save}
                     </Button>
                 </>
             )}
-            <ItemMessage
-                isMessage={isMessage.updateItem}
-                field={'updateItem'}
-                success={updateItemState.success}
-                error={updateItemState.error.server}
-                onClose={onClose}
-                onTimerExpiration={onTimerExpiration}
-            />
-            <ItemMessage
-                isMessage={isMessage.createItem}
-                field={'createItem'}
-                success={createItemState.success}
-                error={createItemState.error.server}
-                onClose={onClose}
-                onTimerExpiration={onTimerExpiration}
-            />
-            <ItemMessage
-                isMessage={isMessage.deleteItem}
-                field={'deleteItem'}
-                success={deleteItemState.success}
-                error={deleteItemState.error}
-                onClose={onClose}
-                onTimerExpiration={onTimerExpiration}
-            />
+            <div className="item-form__messages">
+                <ItemMessage
+                    isMessage={isMessage.updateItem}
+                    field={'updateItem'}
+                    success={updateItemState.success}
+                    error={updateItemState.error.server}
+                    onClose={onClose}
+                    onTimerExpiration={onTimerExpiration}
+                />
+                <ItemMessage
+                    isMessage={isMessage.createItem}
+                    field={'createItem'}
+                    success={createItemState.success}
+                    error={createItemState.error.server}
+                    onClose={onClose}
+                    onTimerExpiration={onTimerExpiration}
+                />
+                <ItemMessage
+                    isMessage={isMessage.deleteItem}
+                    field={'deleteItem'}
+                    success={deleteItemState.success}
+                    error={deleteItemState.error}
+                    onClose={onClose}
+                    onTimerExpiration={onTimerExpiration}
+                />
+                <ItemMessage
+                    isMessage={isMessage.createItemImages}
+                    field={'createItemImages'}
+                    success={createItemImages.success}
+                    error={createItemImages.error}
+                    onClose={onClose}
+                    onTimerExpiration={onTimerExpiration}
+                />
+                <ItemMessage
+                    isMessage={isMessage.updateItemImages}
+                    field={'updateItemImages'}
+                    success={updateItemImages.success}
+                    error={updateItemImages.error}
+                    onClose={onClose}
+                    onTimerExpiration={onTimerExpiration}
+                />
+                <ItemMessage
+                    isMessage={isMessage.deleteItemImages}
+                    field={'deleteItemImages'}
+                    success={deleteItemImages.success}
+                    error={deleteItemImages.error}
+                    onClose={onClose}
+                    onTimerExpiration={onTimerExpiration}
+                />
+            </div>
             {isMessage.client && (
                 <FormMessage
                     className={'item-form__message'}
@@ -71,4 +99,4 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
     )
 }
 
-export default memo(ItemButtons)
+export default ItemButtons

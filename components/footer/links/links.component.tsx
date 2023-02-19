@@ -8,20 +8,20 @@ type LinkProps = {
 const Links: React.FC<LinkProps> = ({className}) => {
     return (
         <div className={`footer__links ${className??''}`}>
-            <Link href="/">
-                <a className='footer__link'>КОНТАКТИ</a>
+            <Link href="/" className='footer__link'>
+                КОНТАКТИ
             </Link>
-            <Link href="/">
-                <a className='footer__link'>INSTAGRAM</a>
+            <Link href="/" className='footer__link'>
+                INSTAGRAM
             </Link>
-            <Link href={'/'}>
-                <a className='footer__link'>WHATSAPP</a>
+            <Link href={'/'} className='footer__link'>
+                WHATSAPP
             </Link>
-            <Link href={'/'}>
-                <a className='footer__link'>TELEGRAM</a>
+            <Link href={'/'} className='footer__link'>
+                TELEGRAM
             </Link>
         </div>
-    )
+    );
 }
 
 export default Links

@@ -11,7 +11,7 @@ import {AppThunk} from 'redux/store'
 
 export type AdminState = {
     fields: Record<AdminField, StateField> & Record<'updateItem' | 'createItem', Record<string, WithClientErrValue>>
-        & Record<'deleteItem', Record<string, StateField>>,
+        & Record<'deleteItem' | 'updateItemImages' | 'deleteItemImages' | 'createItemImages', Record<string, StateField>>,
     items: FetchedItem []
 }
 
@@ -26,7 +26,7 @@ export type SelectAdminFieldParams = (state: AppState, field: AdminField | 'upda
     {field: AdminField | 'updateItem', _id?: string}
 
 export type AdminField = 'getItems'
-export type AdminIdField = 'updateItem' | 'createItem' | 'deleteItem'
+export type AdminIdField = 'updateItem' | 'createItem' | 'deleteItem' | 'updateItemImages' | 'deleteItemImages' | 'createItemImages'
 export type AdminErrors = ContentErrors<AdminField | AdminIdField>
 export type AdminSuccess = ContentSuccess<AdminField | AdminIdField>
 
@@ -41,9 +41,18 @@ export type SetAdminFieldAction = PayloadAction<{field: AdminIdField | AdminFiel
 export type DeleteUpdateItemFieldAction = PayloadAction<{_id: string}>
 export type SetAdminItemsAction = PayloadAction<{items: FetchedItem[]}>
 
-export type UpdateItemAsync = (item: FetchedItem, _id: string) => AppThunk
 export type CreateItemAsync = (item: FetchedItem, _id: string) => AppThunk
+export type UpdateItemAsync = (item: FetchedItem, _id: string) => AppThunk
 export type DeleteItemAsync = (_id: string) => AppThunk
+
+export type CreateItemImagesAsync = (data: FormData) => AppThunk
+export type UpdateItemImagesAsync = (data: UpdateItemImagesData) => AppThunk
+export type DeleteItemImagesAsync = (data: DeleteItemImagesData) => AppThunk
+
+export type CreateItemImagesData = {files: FormData, colors: string[], _id: string}
+export type UpdateItemImagesData = {data: FormData, _id: string}
+export type DeleteItemImagesData = {images: {id: string, color: string}[], _id: string}
+
 
 // export type SelectAdminField = <TField extends AdminField | AdminObjField> (field: TField) =>
 //     TField extends AdminObjField ? StateField : ''

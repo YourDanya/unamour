@@ -32,8 +32,8 @@ const Footer: FC = () => {
                             </button>
                             <div className='footer__policy'>
                                 {transl.policy}
-                                <Link href={'/client-service/policy'}>
-                                    <a className='footer__policy-link'>{transl.policyLink}</a>
+                                <Link href={'/client-service/policy'} className='footer__policy-link'>
+                                    {transl.policyLink}
                                 </Link>
                             </div>
                         </div>
@@ -51,7 +51,7 @@ const Footer: FC = () => {
                 <div className="footer__logo">
                     {transl.logo}
                     <Link href={'https://nextjs.org/'}>
-                        <a><img src={react.src} className={'footer__logo-img'} alt={'footer icon'}/></a>
+                        <img src={react.src} className={'footer__logo-img'} alt={'footer icon'}/>
                     </Link>
                 </div>
             </div>
@@ -60,7 +60,7 @@ const Footer: FC = () => {
                 <Links/>
             </ModalContent>
         </footer>
-    )
+    );
 }
 
 export default Footer

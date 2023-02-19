@@ -12,6 +12,9 @@ import {AppThunk} from 'redux/store'
 import {setAdminItem} from 'redux/admin/admin.slice'
 import {setAdminItemDeleted} from 'redux/admin/admin.slice'
 import {setAdminItems} from 'redux/admin/admin.slice'
+import {UpdateItemImagesAsync} from 'redux/admin/admin.types'
+import {CreateItemImagesAsync} from 'redux/admin/admin.types'
+import {DeleteItemImagesAsync} from 'redux/admin/admin.types'
 
 export const updateItemAsync : UpdateItemAsync = (item, _id) => {
     return async (dispatch) => {
@@ -59,3 +62,49 @@ export const getItemsAsync = (): AppThunk => {
         dispatch(apiCallAsync(getItems, getItemsSuccess, getItemsError))
     }
 }
+
+export const updateItemImagesAsync : UpdateItemImagesAsync = ({data, _id}) => {
+    return async (dispatch) => {
+        dispatch(setAdminFieldStart({field: 'updateItemImages', _id}))
+        // data.forEach(elem => console.log('elem', elem))
+        const updateItemImages = () => api.post(`/edit-files-by-ids`, data,
+            {headers: { 'Content-Type': 'multipart/form-data' }})
+        const setSuccess = () => setAdminFieldSuccess({field: 'updateItemImages', _id})
+        const updateItemImagesSuccess = [setSuccess]
+        const updateItemImagesError = (error: ServerError) => setAdminFieldFailure({field: 'updateItemImages',
+            error, _id})
+        dispatch(apiCallAsync(updateItemImages, updateItemImagesSuccess, updateItemImagesError))
+    }
+}
+
+export const createItemImagesAsync : CreateItemImagesAsync = (data) => {
+    return async (dispatch) => {
+        const _id = data.get('_id') as string
+        dispatch(setAdminFieldStart({field: 'createItemImages', _id}))
+        data.forEach(elem => console.log('creating element', elem))
+        const createItemImages = () => api.post(`/shop-item/add-images`, data,
+            {headers: { 'Content-Type': 'multipart/form-data' }})
+        const setSuccess = () => setAdminFieldSuccess({field: 'createItemImages', _id})
+        const setItem = ({item}: {item: FetchedItem}) => setAdminItem(item)
+        const createItemImagesSuccess = [setSuccess, setItem]
+        const createItemImagesError = (error: ServerError) => setAdminFieldFailure(
+            {field: 'createItemImages', error, _id})
+        dispatch(apiCallAsync(createItemImages, createItemImagesSuccess, createItemImagesError))
+    }
+}
+
+export const deleteItemImagesAsync : DeleteItemImagesAsync = (data) => {
+    return async (dispatch) => {
+        const _id = data._id
+        dispatch(setAdminFieldStart({field: 'deleteItemImages', _id}))
+        // Object.entries(data).forEach(elem => console.log('elem', elem))
+        const deleteItemImages = () => api.post(`/shop-item/remove-images`, data)
+        const setSuccess = () => setAdminFieldSuccess({field: 'deleteItemImages', _id})
+        const setItem = ({item}: {item: FetchedItem}) => setAdminItem(item)
+        const deleteItemImagesSuccess = [setSuccess, setItem]
+        const deleteItemImagesError = (error: ServerError) => setAdminFieldFailure({field: 'deleteItemImages',
+            error, _id})
+        dispatch(apiCallAsync(deleteItemImages, deleteItemImagesSuccess, deleteItemImagesError))
+    }
+}
+

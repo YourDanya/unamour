@@ -11,10 +11,10 @@ const CartItem: FC<CartItem> = (props) => {
     return (
         <div className={'cart-item'}>
             <div className='close cart-item__close' onClick={onRemove}/>
-            <Link href={`shop-items/${slugCategory}/${slug}`}>
-                <a className='cart-item__link'>
-                    <LoadImage className='cart-item__img' src={images[0]} alt={'item image'}/>
-                </a>
+            <Link href={`shop-items/${slugCategory}/${slug}`} className='cart-item__link'>
+
+                <LoadImage className='cart-item__img' src={images[0]} alt={'item image'}/>
+
             </Link>
             <div className='cart-item__name'>{name}</div>
             <div className='cart-item__price-block'>
@@ -46,7 +46,7 @@ const CartItem: FC<CartItem> = (props) => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default CartItem

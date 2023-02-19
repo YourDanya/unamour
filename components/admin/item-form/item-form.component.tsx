@@ -8,8 +8,8 @@ import {ItemFormProps} from 'components/admin/item-form/item-form.types'
 import ItemButtons from 'components/admin/item-form/item-buttons/item-buttons.component'
 
 const ItemForm: FC<ItemFormProps> = (props) => {
-    const {_id, deleted, common: {variants, ...common}, translations, itemIndex, className} = props
-    const {itemValueRef, itemErrRef, transl} = useItemForm(props)
+    const {_id, deleted, common: {variants, ...common}, translations, itemIndex, className, updateTime} = props
+    const {itemValueRef, itemErrRef, transl, imagesRef, initImagesRef} = useItemForm(props)
 
     return (
         <form className={`item-form ${className ? className : ''} ${deleted? 'item-form--deleted' : ''}`}>
@@ -35,11 +35,19 @@ const ItemForm: FC<ItemFormProps> = (props) => {
                          variants={variants}
                          itemValueRef={itemValueRef}
                          itemErrRef={itemErrRef}
+                         imagesRef={imagesRef}
                          _id={_id}
                      />
             {/*     </>*/}
             {/*)}*/}
-            <ItemButtons itemValueRef={itemValueRef} _id={_id} deleted={deleted}/>
+            <ItemButtons
+                itemValueRef={itemValueRef}
+                _id={_id}
+                deleted={deleted}
+                imagesRef={imagesRef}
+                updateTime={updateTime}
+                initImagesRef={initImagesRef}
+            />
         </form>
     )
 }

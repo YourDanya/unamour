@@ -13,9 +13,12 @@ import {setAdminField} from 'redux/admin/admin.slice'
 import {useDispatch} from 'react-redux'
 import {useRef} from 'react'
 import {AdminIdField} from 'redux/admin/admin.types'
+import {ChangeEvent} from 'react'
+import {MouseAction} from 'types/types'
+import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 
 const useItemVariant = (props: ItemVariantProps) => {
-    const {color, sizes, itemValueRef, price, variantIndex, itemErrRef, _id} = props
+    const {color, sizes, itemValueRef, price, variantIndex, itemErrRef, _id, imagesRef} = props
     const [colorsTransl, colorsContent] = useLocale(colorContent)
     const [transl, content] = useLocale(itemVariantContent)
 
@@ -134,7 +137,78 @@ const useItemVariant = (props: ItemVariantProps) => {
         }
     }, [])
 
-    return {onSizesChange, inputs, onInputsChange, transl, sizeValues, colors, sizeError, colorError}
+    const modeRef = useRef({type: '', id: ''})
+
+    const addItemsRef = useRef(0)
+
+    const [images, setImages] = useState<{id: string, value:string | File}[]>(
+        props.images.map((imageId) => ({id: imageId, value: imageId}))
+    )
+
+    useOmitFirstEffect(() => {
+        const images = props.images.map((imageId) => ({id: imageId, value: imageId}))
+        setImages([...images])
+    }, [props.images])
+
+    const btnRef = useRef<HTMLInputElement>(null)
+
+    const onUpdateImage = (id: string) => {
+        modeRef.current = {type: 'update', id}
+        btnRef?.current?.click()
+    }
+
+    const onDeleteImage = (id: string) => {
+        console.log('id', id)
+        console.log('imagesRef.current', imagesRef.current)
+        delete imagesRef.current[id]
+        const index = images.findIndex((image) => image.id === id)
+        images.splice(index, 1)
+        setImages([...images])
+    }
+
+    const onAddImage: MouseAction = (event) => {
+        event.preventDefault()
+        modeRef.current = {type: 'create', id: ''}
+        btnRef?.current?.click()
+    }
+
+    const onSelect = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log('selecting')
+
+        const file = event.target.files?.[0]
+        if (!file) {
+            return
+        }
+
+        let {type, id} = modeRef.current
+
+        if (type === 'create') {
+            // console.log('creating')
+            id = new Date().toString()
+            images.push({id, value: file})
+            imagesRef.current[id] = {color, file}
+        } else {
+            // console.log('updating')
+            imagesRef.current[`${id}`].file = file
+            const index = images.findIndex((image) => image.id === id)
+            images[index].value = file
+            imagesRef.current[id].file = file
+        }
+        modeRef.current = {type: '', id: ''}
+
+        setImages([...images])
+    }
+
+    useOmitFirstEffect(() => {
+        images.forEach((image) => {
+            imagesRef.current[image.id].color = inputs.values.color
+        })
+    }, [inputs.values.color])
+
+    return {
+        onSizesChange, inputs, onInputsChange, transl, sizeValues, colors, sizeError, colorError, onUpdateImage,
+        onDeleteImage, onAddImage, images, btnRef, onSelect
+    }
 }
 
 export default useItemVariant

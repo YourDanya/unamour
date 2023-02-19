@@ -28,6 +28,21 @@ export const adminErrors: AdminErrors = {
             ua: 'Невірні дані. Не вдалося видалити товар.',
             eng: 'Wrong data. Item was not  deleted.',
             ru: 'Неверные данные. Товар не бьл удален.'
+        },
+        updateItemImages: {
+            ua: 'Не вдалося оновити картинки.',
+            eng: 'Images were not updated.',
+            ru: 'Не удалось обновить картинки.'
+        },
+        createItemImages: {
+            ua: 'Не вдалося створити картинки.',
+            eng: 'Images were not created.',
+            ru: 'Не удалось создать картинки.'
+        },
+        deleteItemImages: {
+            ua: 'Не вдалося видалити картинки.',
+            eng: 'Images were not deleted.',
+            ru: 'Не удалось удалить картинки.'
         }
     }
 }
@@ -38,21 +53,38 @@ export const adminSuccess: AdminSuccess = {
         eng: 'Items fetched successfully.',
         ru: 'Товары успешно загружены.'
     },
-    updateItem: {
-        ua: 'Товар успішно оновлено.\nПовідомлення буде видалено через',
-        eng: 'Item updated successfully.\nMessage will be cleared in',
-        ru: 'Товар успешно обналвен.\nУведомление будет удалено через'
-    },
+
     createItem: {
         ua: 'Товар успішно створено.\nПовідомлення буде видалено через',
         eng: 'Item was successfully created.\nMessage will be cleared in',
         ru: 'Товар успешно создан.\nУведомление будет удалено через'
     },
+    updateItem: {
+        ua: 'Товар успішно оновлено.\nПовідомлення буде видалено через',
+        eng: 'Item was successfully updated.\nMessage will be cleared in',
+        ru: 'Товар успешно обналвен.\nУведомление будет удалено через'
+    },
     deleteItem: {
         ua: 'Товар успішно видалено.\nПовідомлення буде видалено через',
         eng: 'Item was successfully deleted.\nMessage will be cleared in',
         ru: 'Товар успешно удален.\nУведомление будет удалено через'
-    }
+    },
+    
+    createItemImages: {
+        ua: 'Картинки успішно створено.\nПовідомлення буде видалено через',
+        eng: 'Images were successfully created.\nMessage will be cleared in',
+        ru: 'Картинки успешно созданы.\nУведомление будет удалено через'
+    },
+    updateItemImages: {
+        ua: 'Картинки успішно оновлено.\nПовідомлення буде видалено через',
+        eng: 'Images were successfully updated.\nMessage will be cleared in',
+        ru: 'Картинки успешно удалены.\nУведомление будет удалено через'
+    },
+    deleteItemImages: {
+        ua: 'Картинки успішно видалено.\nПовідомлення буде видалено через',
+        eng: 'Images were successfully deleted.\nMessage will be cleared in',
+        ru: 'Картинки успешно удалены.\nУведомление будет удалено через'
+    },
 }
 
 export const getAdminClientErrors: GetAdminClientErrors = ({field,locale, count}) => {

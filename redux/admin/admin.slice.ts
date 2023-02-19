@@ -18,6 +18,9 @@ const initialState: AdminState = {
         updateItem: {},
         createItem: {},
         deleteItem: {},
+        createItemImages: {},
+        deleteItemImages: {},
+        updateItemImages: {},
         getItems: {loading: false, success: false, error: null},
     },
     items: [],
@@ -30,13 +33,13 @@ export const userSlice = createSlice({
         setAdminFieldStart: (state, action: SetAdminFieldStartAction) => {
             const {field, _id} = action.payload
             if (_id !== undefined) {
-                let WithClientErrValue = (state.fields[field] as Record<string, WithClientErrValue>)[_id]
-                if(!WithClientErrValue) {
-                    WithClientErrValue = {loading: true, error: {server: null, client: 0}, success: false}
+                let withClientErrValue = (state.fields[field] as Record<string, WithClientErrValue>)[_id]
+                if(!withClientErrValue) {
+                    withClientErrValue = {loading: true, error: {server: null, client: 0}, success: false}
                 } else {
-                    WithClientErrValue.loading = true
+                    withClientErrValue.loading = true
                 }
-                (state.fields[field] as Record<string, WithClientErrValue>)[_id] = WithClientErrValue
+                (state.fields[field] as Record<string, WithClientErrValue>)[_id] = withClientErrValue
             } else {
                 (state.fields[field] as StateField).loading = true
             }
@@ -52,6 +55,7 @@ export const userSlice = createSlice({
         },
         setAdminFieldSuccess: (state, action: SetAdminFieldSuccessAction) => {
             let {field, _id} = action.payload
+            console.log('success', field)
             if (_id !== undefined) {
                 _id = _id as string
                 (state.fields[field] as Record<string, WithClientErrValue>) [_id] =

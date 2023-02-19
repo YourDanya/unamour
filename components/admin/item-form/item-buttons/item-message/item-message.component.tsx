@@ -13,7 +13,7 @@ const ItemMessage: FC<ItemMessageProps> = (props) => {
     return (<>
         {isMessage && (
             <FormMessage
-                className={'item-form__message'}
+                className='item-form__message'
                 success={success && `${success} ${timer}`}
                 error={error}
             >

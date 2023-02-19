@@ -34,7 +34,7 @@ export const selectAdminField: SelectAdminField = ((field, _id) => {
                     field, locale, contentErrors: adminErrors, stateField: adminField, contentSuccess: adminSuccess,
                     clientErrors: () => getAdminClientErrors({field, locale, count})
                 })
-            } else if (field === 'deleteItem') {
+            } else if (field === 'deleteItem' || field === 'deleteItemImages' || field === 'updateItemImages' || field === 'createItemImages') {
                 _id = _id as string
                 adminField = (adminField as Record<string, StateField>)[_id]
                 if (!adminField) {
