@@ -84,17 +84,17 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
                     onClose={onClose}
                     onTimerExpiration={onTimerExpiration}
                 />
+                {isMessage.client && (
+                    <FormMessage
+                        className={'item-form__message'}
+                        error={updateItemState.error?.client || createItemState.error.client}
+                    >
+                        <Button className={'item-form__message-close'} onClick={onClose} data-value={'client'}>
+                            <img className={'item-form__message-close-img'} src={closeRed.src} alt={'close'}/>
+                        </Button>
+                    </FormMessage>
+                )}
             </div>
-            {isMessage.client && (
-                <FormMessage
-                    className={'item-form__message'}
-                    error={updateItemState.error?.client || createItemState.error.client}
-                >
-                    <Button className={'item-form__message-close'} onClick={onClose} data-value={'client'}>
-                        <img className={'item-form__message-close-img'} src={closeRed.src} alt={'close'}/>
-                    </Button>
-                </FormMessage>
-            )}
         </>
     )
 }

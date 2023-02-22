@@ -27,6 +27,7 @@ const useItemForm = (props: ItemFormProps) => {
             return imagesObj
         }, {} as ImageFiles)
         initImagesRef.current = JSON.parse(JSON.stringify(imagesRef.current))
+        itemValueRef.current = JSON.parse(JSON.stringify(props))
     }, [props])
 
     return {itemValueRef, itemErrRef, transl, imagesRef, initImagesRef}

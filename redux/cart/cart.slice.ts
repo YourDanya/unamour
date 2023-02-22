@@ -50,15 +50,18 @@ export const cartSlice = createSlice({
                     state.items[itemIndex].quantity--
                 }
             }
-        }
+        },
+
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-
+            
         }
     }
 })
 
-export const {addItem, removeItem, increaseQuantity, decreaseQuantity} = cartSlice.actions
+export const {
+    addItem, removeItem, increaseQuantity, decreaseQuantity
+} = cartSlice.actions
 
 export default cartSlice.reducer

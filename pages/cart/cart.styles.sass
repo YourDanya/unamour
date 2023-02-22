@@ -34,6 +34,7 @@
     font-size: 12px
     margin-bottom: 35px
   &__form
+    grid-column: 1
     display: flex
     flex-wrap: wrap
   &__input
@@ -44,7 +45,15 @@
     .input__error
     .input__placeholder
       font-size: 12px
-  &__country
+  //&__country
+  //  width: calc(70% - 30px)
+  &__settlementType
+    width: 100%
+    margin-bottom: 20px
+    .radio-group__elem
+      margin-bottom: 20px
+    &-label
+      margin-bottom: 20px
   &__city
     width: calc(65% - 30px)
     margin-right: 30px

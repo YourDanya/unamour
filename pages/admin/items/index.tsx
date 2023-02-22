@@ -9,8 +9,6 @@ import FormMessage from 'components/common/form-message/form-message.component'
 const AdminItems: NextPage = () => {
     const {items, user, onAddItem, transl, itemError} = useAdminItems()
 
-    console.log('render')
-
     return (
         <div className={'admin-items'}>
             {items.length > 0 && user?.isAdmin ? (
@@ -19,7 +17,7 @@ const AdminItems: NextPage = () => {
                         {items.map((item, index) => (
                             <ItemForm
                                 className={index === items.length - 1 ? 'admin-items__last-item' : ''}
-                                key={`${item.common.slug}${index}`}
+                                key={index}
                                 itemIndex={index}
                                 {...item}
                             />

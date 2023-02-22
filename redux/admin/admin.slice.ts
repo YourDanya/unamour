@@ -33,13 +33,13 @@ export const userSlice = createSlice({
         setAdminFieldStart: (state, action: SetAdminFieldStartAction) => {
             const {field, _id} = action.payload
             if (_id !== undefined) {
-                let withClientErrValue = (state.fields[field] as Record<string, WithClientErrValue>)[_id]
-                if(!withClientErrValue) {
-                    withClientErrValue = {loading: true, error: {server: null, client: 0}, success: false}
+                let stateField = (state.fields[field] as Record<string, WithClientErrValue>)[_id]
+                if(!stateField) {
+                    stateField = {loading: true, error: {server: null, client: 0}, success: false}
                 } else {
-                    withClientErrValue.loading = true
+                    stateField.loading = true
                 }
-                (state.fields[field] as Record<string, WithClientErrValue>)[_id] = withClientErrValue
+                (state.fields[field] as Record<string, WithClientErrValue>)[_id] = stateField
             } else {
                 (state.fields[field] as StateField).loading = true
             }

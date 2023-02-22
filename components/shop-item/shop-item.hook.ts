@@ -53,10 +53,10 @@ export const useShopItem = (props: FetchedItem) => {
     }
 
     useEffect(() => {
-        const {common: {slug, slugCategory},
+        const {_id, common: {slug, slugCategory},
             translations: {ua: {name: uaName}, eng: {name: engName}, ru: {name: ruName}}} = props
         cartItemRef.current = {
-            common: {slug, slugCategory, size: '', ...currentVariant},
+            common: {itemId: _id, slug, slugCategory, size: '', ...currentVariant},
             translations: {ua: {name: uaName}, eng: {name: engName}, ru: {name: ruName}},
             quantity: 1
         }

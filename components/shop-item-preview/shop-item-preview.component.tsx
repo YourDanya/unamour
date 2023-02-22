@@ -3,6 +3,7 @@ import useShopItemPreview from 'components/shop-item-preview/shop-item-preview.h
 import LoadImage from 'components/common/load-image/load-image.component'
 import Link from 'next/link'
 import {CategoryItem} from 'redux/shop-items/shop-items.types'
+import {baseURL} from 'utils/api/api.utils'
 
 const ShopItemPreview: FC<CategoryItem> = (props) => {
     const {common: {images, price, slug, slugCategory, color}} = props
@@ -22,7 +23,7 @@ const ShopItemPreview: FC<CategoryItem> = (props) => {
                     loaded={loaded[0]}
                     handleLoaded={handleLoaded}
                     className={`shop-item-preview__img ${hovered ? 'shop-item-preview__img--hidden' : ''}`}
-                    src={images[0]}
+                    src={`${baseURL}/images/${images[0]}`}
                     alt="preview item image"
                 />
                 <LoadImage
@@ -30,7 +31,7 @@ const ShopItemPreview: FC<CategoryItem> = (props) => {
                     loaded={loaded[1]}
                     handleLoaded={handleLoaded}
                     className={`shop-item-preview__img ${hovered ? '' : 'shop-item-preview__img--hidden'} `}
-                    src={images[1]}
+                    src={`${baseURL}/images/${images[1]}`}
                     alt="preview item image"
                 />
 

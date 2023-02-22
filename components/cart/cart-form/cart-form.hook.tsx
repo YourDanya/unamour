@@ -1,17 +1,7 @@
-import cartFormContent from 'components/cart/cart-form/cart-form.content'
-import {useLocale} from 'hooks/other/other.hooks'
-import {useInput} from 'hooks/input/input.hooks'
+import {CartFormProps} from 'components/cart/cart-form/cart-form.types'
 
-const useCartForm = () => {
-    const [transl, content] = useLocale(cartFormContent)
+const useCartForm = (props: CartFormProps) => {
 
-    const {inputs, onChange, onValidate, errRef, resetValues} = useInput(content.inputs)
-
-    const onSubmit = () => {
-
-    }
-
-    return {inputs, onChange, onValidate, transl, onSubmit}
 }
 
 export default useCartForm

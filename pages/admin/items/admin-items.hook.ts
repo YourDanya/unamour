@@ -12,6 +12,7 @@ import {useDispatch} from 'react-redux'
 import {addAdminItem} from 'redux/admin/admin.slice'
 import {selectAdminItems} from 'redux/admin/admin.selectors'
 import {selectAdminField} from 'redux/admin/admin.selectors'
+import {ItemVariant} from 'components/admin/item-form/item-form.types'
 
 const useAdminItems = () => {
     const router = useRouter()
@@ -34,7 +35,12 @@ const useAdminItems = () => {
     const onAddItem = (event: MouseEvent) => {
         event.preventDefault()
         if (!toAddItem) {
-            const item = {...items[items.length - 1]}
+            const item = JSON.parse(JSON.stringify(items[items.length - 1]))
+            // const variants = ))
+            item.common.variants.forEach((variant: ItemVariant) => {
+                delete (variant as any)._id
+                variant.images = []
+            })
             item._id = ''
             dispatch(addAdminItem(item))
         } else if (!itemError) {

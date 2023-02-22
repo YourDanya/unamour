@@ -5,6 +5,7 @@ import {ItemVariantsProps} from 'components/admin/item-form/item-variants/item-v
 import {MouseAction} from 'types/types'
 import {ItemVariant} from 'components/admin/item-form/item-form.types'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
+import {nullObj} from 'utils/main/main.utils'
 
 const useItemVariants = (props: ItemVariantsProps) => {
     const {itemValueRef, imagesRef} = props
@@ -14,6 +15,7 @@ const useItemVariants = (props: ItemVariantsProps) => {
     const onDeleteVariant: MouseAction = (event) => {
         event.preventDefault()
         const index = +(event.currentTarget.getAttribute('data-value') as string)
+        console.log('variants before', itemValueRef.current.common.variants)
         const variants = itemValueRef.current.common.variants
         if (variants.length === 0) {
             return
@@ -23,16 +25,18 @@ const useItemVariants = (props: ItemVariantsProps) => {
                 delete imagesRef.current[imageId]
             }
         }
-        console.log('imagesRef.current', imagesRef.current)
         variants.splice(index, 1)
+        console.log('variants after', itemValueRef.current.common.variants)
         setVariants([...variants])
     }
 
     const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
+        console.log('variants before', itemValueRef.current.common.variants)
         const variants = itemValueRef.current.common.variants
-        const newVariant = {} as ItemVariant
+        const newVariant: ItemVariant = {color: '', images: [], sizes: [], price: ''} as unknown as ItemVariant
         variants.push(newVariant)
+        console.log('variants after', itemValueRef.current.common.variants)
         setVariants([...variants])
     }
 

@@ -45,12 +45,11 @@ const useItemCommon = (props: ItemCommonProps) => {
             errRef.current.count += 1
             setOuterErrors({...errRef.current.errors})
         }
-        else if (isSlugUnique.current && errRef.current.errors.slug) {
-            errRef.current.errors.slug = ''
-            errRef.current.count -= 1
-            setOuterErrors({...errRef.current.errors})
-        }
-
+        // else if (isSlugUnique.current && errRef.current.errors.slug) {
+        //     errRef.current.errors.slug = ''
+        //     errRef.current.count -= 1
+        //     setOuterErrors({...errRef.current.errors})
+        // }
         const afterCount = errRef.current.count
         itemErrRef.current += afterCount - beforeCount
         if (beforeCount !== afterCount) {

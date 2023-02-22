@@ -5,11 +5,16 @@ import useRadioButtons from 'components/common/radio-buttons/radio-buttons.hook'
 import {CSSProperties} from 'react'
 
 const RadioButtons: FC<RadioButtonProps> = (props) => {
-    const {values, onChange, active, name, className, labels, styles} = props
+    const {values, onChange, active, name, className, labels, styles, title} = props
     const {children} = useRadioButtons(props)
 
     return (
         <div className={`radio-group ${className ?? ''}`}>
+            {title && (
+                <div className={'radio-group__title'}>
+                    {title}
+                </div>
+            )}
             {values.map((value, index) => (
                 <div className="radio-group__elem" key={value}>
                     <div

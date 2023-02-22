@@ -39,6 +39,7 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
     return async (dispatch, getState) => {
         try {
             const res = await apiCall()
+            // console.log('data', res.data)
             if (Array.isArray(successAction)) {
                 successAction.forEach(action => {
                     dispatch(action(res.data))

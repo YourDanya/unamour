@@ -17,12 +17,11 @@ import {useOmitFirstLayoutEffect} from 'hooks/component/component.hooks'
 import {deleteItemAsync} from 'redux/admin/admin.thunk'
 import {removeAdminDeletedItem} from 'redux/admin/admin.slice'
 import {updateItemImagesAsync} from 'redux/admin/admin.thunk'
-import {useMemo} from 'react'
 import {deleteItemImagesAsync} from 'redux/admin/admin.thunk'
 import {createItemImagesAsync} from 'redux/admin/admin.thunk'
 import {DeleteItemImagesData} from 'redux/admin/admin.types'
-import {ImageFiles} from 'components/admin/item-form/item-form.types'
 import {useRef} from 'react'
+import {updateItemAsync} from 'redux/admin/admin.thunk'
 
 const useItemButtons = (props: ItemButtonsProps) => {
     const {itemValueRef, _id, imagesRef, updateTime, initImagesRef} = props
@@ -52,15 +51,19 @@ const useItemButtons = (props: ItemButtonsProps) => {
 
     const test = useRef(0)
 
+    const stackActions = useRef<((args: any) => void)[]>([])
+    const stackCreateImages = useRef<((args: any) => void)[]>([])
+
     const onSave: MouseAction = (event) => {
         event.preventDefault()
         if (updateItemState.error.client || createItemState.error.client) {
             setMessage({...isMessage, client: true})
         } else {
             if (_id) {
-                console.log('initImagesRef', initImagesRef.current)
-                console.log('imagesRef', imagesRef.current)
-                // dispatch(updateItemAsync(itemValueRef.current, _id))
+                console.log('itemValueRef.current', itemValueRef.current)
+                // console.log('initImagesRef', initImagesRef.current)
+                // console.log('imagesRef', imagesRef.current)
+                dispatch(updateItemAsync(itemValueRef.current, _id))
                 let updateData = {data: new FormData(), _id}
                 let createData = new FormData()
                 createData.append('_id', _id)
@@ -84,25 +87,40 @@ const useItemButtons = (props: ItemButtonsProps) => {
                         deleteData.images.push({id: imageId, color: initImagesRef.current[imageId].color})
                     }
                 }
-                if (test.current >= 100) {
-                    return
-                } else {
-                    test.current++
-                }
+                // if (test.current >= 0) {
+                //     return
+                // } else {
+                //     test.current++
+                // }
                 if (shouldCreate) {
                     console.log('shouldCreate', shouldCreate)
-                    dispatch(createItemImagesAsync(createData))
+                    stackActions.current.push(() => dispatch(createItemImagesAsync(createData)))
                 }
                 if (shouldUpdate) {
                     console.log('shouldUpdate',shouldUpdate)
-                    dispatch(updateItemImagesAsync(updateData))
+                    stackActions.current.push(() => dispatch(updateItemImagesAsync(updateData)))
                 }
                 if (shouldDelete) {
                     console.log('shouldDelete', shouldDelete)
-                    dispatch(deleteItemImagesAsync(deleteData))
+                    stackActions.current.push(() => dispatch(deleteItemImagesAsync(deleteData)))
                 }
             } else {
                 dispatch(createItemAsync(itemValueRef.current, _id))
+                let createData = new FormData()
+                let shouldCreate = false
+                for (let imageId in imagesRef.current) {
+                    if (!(imageId in initImagesRef.current)) {
+                        shouldCreate = true
+                        createData.append(`${imageId}_${imagesRef.current[imageId].color}`, imagesRef.current[imageId].file)
+                    }
+                }
+                if (shouldCreate) {
+                    stackCreateImages.current.push((_id = '') => {
+                        console.log('_id', _id)
+                        createData.append('_id', _id)
+                        dispatch(createItemImagesAsync(createData))
+                    })
+                }
             }
         }
     }
@@ -148,23 +166,35 @@ const useItemButtons = (props: ItemButtonsProps) => {
 
     // item effects
     useEffect(() => {
-        const updateItem = !!updateItemState.error.server || !!updateItemState.success
-        if (isMessage.updateItem !== updateItem) {
-            setMessage({...isMessage, updateItem})
-        }
-    }, [updateItemState.error.server, updateItemState.success])
-
-    useEffect(() => {
         const createItem = !!createItemState.error.server || !!createItemState.success
         if (isMessage.createItem !== createItem) {
             setMessage({...isMessage, createItem})
         }
-    }, [createItemState.error, createItemState.success])
+        if ((createItemState.error.server || createItemState.success) && stackActions.current.length > 0) {
+            const action = stackActions.current.pop() as () => void
+            action()
+        }
+    }, [createItemState.error.server, createItemState.success])
+
+    useEffect(() => {
+        const updateItem = !!updateItemState.error.server || !!updateItemState.success
+        if (isMessage.updateItem !== updateItem) {
+            setMessage({...isMessage, updateItem})
+        }
+        if ((updateItemState.error.server || updateItemState.success) && stackActions.current.length > 0) {
+            const action = stackActions.current.pop() as () => void
+            action()
+        }
+    }, [updateItemState.error.server, updateItemState.success])
 
     useEffect(() => {
         const deleteItem = !!deleteItemState.error || !!deleteItemState.success
         if (isMessage.deleteItem !== deleteItem) {
             setMessage({...isMessage, deleteItem})
+        }
+        if ((deleteItemState.error || deleteItemState.success) && stackActions.current.length > 0) {
+            const action = stackActions.current.pop() as () => void
+            action()
         }
     }, [deleteItemState.error, deleteItemState.success])
 
@@ -174,12 +204,20 @@ const useItemButtons = (props: ItemButtonsProps) => {
         if (isMessage.createItemImages !== shouldMessage) {
             setMessage({...isMessage, createItemImages: shouldMessage})
         }
+        if ((createItemImages.success || createItemImages.error) && stackActions.current.length > 0) {
+            const action = stackActions.current.pop() as () => void
+            action()
+        }
     }, [createItemImages.success, createItemImages.error])
 
     useEffect(() => {
         const shouldMessage = !!updateItemImages.error || !!updateItemImages.success
         if (isMessage.updateItem !== shouldMessage) {
             setMessage({...isMessage, updateItemImages: shouldMessage})
+        }
+        if ((updateItemImages.success || updateItemImages.error) && stackActions.current.length > 0) {
+            const action = stackActions.current.pop() as () => void
+            action()
         }
     }, [updateItemImages.success, updateItemImages.error])
 
@@ -188,8 +226,19 @@ const useItemButtons = (props: ItemButtonsProps) => {
         if (isMessage.deleteItem !== shouldMessage) {
             setMessage({...isMessage, deleteItemImages: shouldMessage})
         }
+        if ((deleteItemImages.success || deleteItemImages.error) && stackActions.current.length > 0) {
+            const action = stackActions.current.pop() as () => void
+            action()
+        }
     }, [deleteItemImages.success, deleteItemImages.error])
-    
+
+    useOmitFirstEffect(() => {
+        if (stackCreateImages.current.length > 0) {
+            const action = stackCreateImages.current.pop() as (_id: string) => void
+            action(_id)
+        }
+    }, [_id])
+
     return {
         updateItemState, transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, createItemState,
         deleteItemState, onDeleteExpiration, updateItemImages, deleteItemImages, createItemImages,

@@ -1,10 +1,10 @@
 import {FC} from 'react'
-import useCartForm from 'components/cart/cart-form/cart-form.hook'
 import Input from 'components/common/input/input.component'
+import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
 import {CartFormProps} from 'components/cart/cart-form/cart-form.types'
 
 const CartForm: FC<CartFormProps> = (props) => {
-    const {transl, inputs, onChange, onValidate, onSubmit} = useCartForm()
+    const {transl, inputs, onChange, onValidate, content} = props
 
     return (
         <form className="cart__form">
@@ -17,6 +17,18 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onChange={onChange}
                 error={inputs.errors.country}
                 onValidate={onValidate}
+            />
+            <div className={'cart__settlementType-label'}>
+                {/*{transl.}*/}
+            </div>
+            <RadioButtons
+                title={transl.inputs.settlementType.title}
+                className={'cart__settlementType'}
+                name={'settlementType'}
+                labels={transl.inputs.settlementType.labels}
+                values={content.inputs.settlementType.values}
+                onChange={onChange}
+                active={inputs.values.settlementType}
             />
             <Input
                 className={'cart__city cart__input'}

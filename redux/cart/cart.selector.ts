@@ -26,3 +26,4 @@ export const getLSItemsQuantity = () => {
     const cartItems = getLocalStorage('cart').items
     return cartItems.reduce((quantity, item) => quantity + item.quantity, 0)
 }
+

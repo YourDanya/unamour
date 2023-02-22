@@ -7,7 +7,7 @@ import CartItem from 'components/cart-item/cart-item.component'
 import {NextPage} from 'next'
 
 const Cart: NextPage = () => {
-    const {cartItems, total} = useCart()
+    const {cartItems, total, onSubmit, createOrder, formRef, ...otherProps} = useCart()
 
     return (
         <div className='cart'>
@@ -18,9 +18,26 @@ const Cart: NextPage = () => {
                     ))}
                 </div>
                 <Discount/>
-                <CartForm/>
+                <CartForm {...otherProps}/>
             </div>
-            <Order className={'cart__order'} total={total}/>
+            <Order className={'cart__order'} total={total} onSubmit={onSubmit} createOrder={createOrder}/>
+            <form
+                className={'cart__payment-form'}
+                method="post"
+                action="https://secure.wayforpay.com/pay"
+                acceptCharset="utf-8"
+                ref={formRef}
+            >
+                {/*<input name="merchantAuthType" value="SimpleSignature"/>*/}
+                {/*<input name="merchantTransactionSecureType" value="AUTO"/>*/}
+                {/*<input type="hidden" name="orderTimeout" value="5"/>*/}
+                {/*<input name="clientFirstName" value="Вадим"/>*/}
+                {/*<input name="clientPhone" value="+380992856055"/>*/}
+                {/*<input name="clientLastName" value="Баранівський"/>*/}
+                {/*<input name="clientAddress" value="пр. Гагарина, 12"/>*/}
+                {/*<input name="clientCity" value="Днепропетровск"/>*/}
+                {/*<input name="clientEmail" value="some@mail.com"/>*/}
+            </form>
         </div>
     )
 }

@@ -43,7 +43,7 @@ export const mapField: MapField = (field, stateField, locale, contentErrors,
     const {loading, timer, error: serverError} = stateField
     const error = getError(field, serverError, contentErrors, locale)
     const success = stateField.success ? contentSuccess[field][locale] : null
-    return {loading, error, success, timer}
+    return {loading, error, success, ...timer && {timer}}
 }
 
 export const mapWithClientErrField: MapWithClientErrField = (params) => {
@@ -78,10 +78,14 @@ export const getError: GetError = (field, serverError, contentErrors, locale) =>
 }
 
 export const nullObj: NullObj = (obj) => {
+    obj = JSON.parse(JSON.stringify(obj))
     const stack: any[] = [obj]
     while (stack.length !== 0) {
         let tempObj = stack.pop()
         for (let prop in tempObj) {
+            if (prop === '_id') {
+                delete tempObj[prop]
+            }
             if (typeof tempObj[prop] === 'string') {
                 (tempObj[prop] as string) = ''
             }

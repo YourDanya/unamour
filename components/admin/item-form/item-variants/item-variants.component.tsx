@@ -1,4 +1,4 @@
-import {FC, memo} from 'react'
+import {FC} from 'react'
 import {ItemVariantsProps} from 'components/admin/item-form/item-variants/item-variants.types'
 import ItemVariant from 'components/admin/item-form/item-variant/item-variant.component'
 import useItemVariants from 'components/admin/item-form/item-variants/item-variants.hook'
@@ -13,7 +13,7 @@ const ItemVariants: FC<ItemVariantsProps> = (props) => {
             <div className={'item-form__title'}>{transl.title}</div>
             {variants.length > 0 && variants.map((elem, index) => (
                 <ItemVariant
-                    key={elem.color}
+                    key={index}
                     {...elem}
                     {...otherProps}
                     variantIndex={index}

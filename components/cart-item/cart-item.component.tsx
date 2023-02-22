@@ -3,6 +3,7 @@ import useCartItem from 'components/cart-item/cart-item.hook'
 import Link from 'next/link'
 import {CartItem} from 'redux/cart/cart.types'
 import LoadImage from 'components/common/load-image/load-image.component'
+import {baseURL} from 'utils/api/api.utils'
 
 const CartItem: FC<CartItem> = (props) => {
     const {common: {slug, slugCategory, price, images, size}, quantity} = props
@@ -12,9 +13,7 @@ const CartItem: FC<CartItem> = (props) => {
         <div className={'cart-item'}>
             <div className='close cart-item__close' onClick={onRemove}/>
             <Link href={`shop-items/${slugCategory}/${slug}`} className='cart-item__link'>
-
-                <LoadImage className='cart-item__img' src={images[0]} alt={'item image'}/>
-
+                <LoadImage className='cart-item__img' src={`${baseURL}/images/${images[0]}`} alt={'item image'}/>
             </Link>
             <div className='cart-item__name'>{name}</div>
             <div className='cart-item__price-block'>

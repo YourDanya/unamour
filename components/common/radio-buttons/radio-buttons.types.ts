@@ -9,7 +9,8 @@ export type RadioButtonProps = {
     name: string,
     className?: string,
     children?: React.ReactNode,
-    styles?: CSSProperties []
+    styles?: CSSProperties [],
+    title?: string
 }
 
 export type RadioLabel = {label: string, node?: React.ReactNode}

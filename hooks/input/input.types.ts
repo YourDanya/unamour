@@ -30,6 +30,8 @@ export type ValidationInput = {
     name: string
 }
 
+export type UseInputInputs<T extends InputsObj> = {values: {[K in keyof T]: T[K]['value']}, errors: Record<keyof T, string | null>}
+
 export type UseInput = <T extends InputsObj> (inputsObj: T, translInputs?: Record<keyof T, string>) => {
     inputs: {values: {[K in keyof T]: T[K]['value']}, errors: Record<keyof T, string | null>},
     setOuterValues: (values: {[K in keyof T]?: T[K]['value']}) => void,

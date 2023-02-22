@@ -1,6 +1,7 @@
 import React from 'react'
 import useImages from 'components/shop-item/images/images.hook'
 import Slider from 'components/common/slider/slider.component'
+import {baseURL} from 'utils/api/api.utils'
 
 export type ImagesProps = {
     images: string[]
@@ -19,14 +20,14 @@ const Images: React.FC<ImagesProps> = (props) => {
                         data-index={index}
                         onClick={handleTabClick}
                     >
-                        <img className='shop-item__tab-img' src={url} alt={`tab image ${index}`}/>
+                        <img className='shop-item__tab-img' src={`${baseURL}/images/${url}`} alt={`tab image ${index}`}/>
                     </button>
                 )}
             </div>
             <div className="shop-item__slider">
                 <Slider current={current} setCurrent={setCurrent}>
                     {images.map((url, index) =>
-                        <img className={'shop-item__slider-img'} src={url} alt={`slide image ${index}`} key={url + index}/>
+                        <img className={'shop-item__slider-img'} src={`${baseURL}/images/${url}`} alt={`slide image ${index}`} key={url + index}/>
                     )}
                 </Slider>
             </div>
