@@ -11,49 +11,49 @@ const NavMenu: FC<NavMenuProps> = (props) => {
 
     return (
         <>
-            <div className="container menu">
-                <div className="menu__items menu__items--first">
+            <div className="container nav-menu">
+                <div className="nav-menu__items nav-menu__items--first">
                     {content.firstLinks.map((elem, idx) => (
-                        <NavLink className={'menu__item'} href={elem} key={elem}>
+                        <NavLink className={'nav-menu__item'} href={elem} key={elem}>
                             {transl.firstLinks[idx]}
                         </NavLink>
                     ))}
                 </div>
-                <div className={`menu__items menu__items--second`}>
+                <div className={`nav-menu__items nav-menu__items--second`}>
                     {content.secondLinks.map((elem, idx) => (
                         <Fragment key={elem}>
-                            <NavLink className={'menu__item'} href={elem}>
+                            <NavLink className={'nav-menu__item'} href={elem}>
                                 {transl.secondLinks[idx]}
                             </NavLink>
                             {idx === 0 && (
-                                <Button className={'menu__item'} onClick={onClientService}>
+                                <Button className={'nav-menu__item'} onClick={onClientService}>
                                     {transl.service}
                                 </Button>
                             )}
                         </Fragment>
                     ))}
                     {user ? (
-                        <NavLink className={'menu__item'} href={'/profile/update-user'}>
+                        <NavLink className={'nav-menu__item'} href={'/profile/update-user'}>
                             {transl.profile}
                         </NavLink>
                     ) : (
-                        <Button className={'menu__item'} onClick={showTopModal} name={'sign'}>
+                        <Button className={'nav-menu__item'} onClick={showTopModal} name={'sign'}>
                             {transl.login}
                         </Button>
                     )}
                 </div>
             </div>
-            <div className={`menu service-menu ${clientService ? 'service-menu--active' : ''}`}>
-                <Button className="service-menu__back" onClick={onClientService}>
-                    <div className={'arrow-back service-menu__arrow'}/>
+            <div className={`container nav-menu nav-menu--service ${clientService ? 'nav-menu--service--active' : ''}`}>
+                <Button className="nav-menu__back" onClick={onClientService}>
+                    <div className={'arrow-back'}/>
                     {transl.back}
                 </Button>
-                <div className="menu__items">
-                    <div className="menu__item menu__item--bold">
+                <div className="nav-menu__items">
+                    <div className="nav-menu__item nav-menu__item--bold">
                         {transl.service}
                     </div>
                     {content.serviceLinks.map((elem, idx) => (
-                        <NavLink className={'menu__item'} href={elem} key={elem}>
+                        <NavLink className={'nav-menu__item'} href={elem} key={elem}>
                             {transl.serviceLinks[idx]}
                         </NavLink>
                     ))}

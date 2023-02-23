@@ -30,7 +30,11 @@ export const useShopItem = (props: FetchedItem) => {
     const color = useRouter().query.color as string
 
     const [currentVariant, setCurrentVariant] = useState(() => {
-        return props.common.variants.find(variant => variant.color === color) as ShopItemVariant
+        let currentVariant = props.common.variants.find(variant => variant.color === color)
+        if (!currentVariant) {
+            currentVariant = props.common.variants[0]
+        }
+        return currentVariant
     })
 
     const onCurrentVariant: MouseAction = (event) => {

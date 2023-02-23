@@ -12,12 +12,13 @@ export type CheckoutState = {
 
 export type CheckoutField = 'createOrder'
 
-export type CreateOrderAsync = (createOrderData: CreateOrderData) => AppThunk
+export type CreateOrderAsync = (data: CreateOrderData, type: string) => AppThunk
 
 export type CreateOrderData = {
     email: string,
     phone: string,
     name: string,
+    deliveryService: 'novaposhta',
     'destination': {
         'RecipientCityName': string,
         'SettlementType': string,
@@ -48,7 +49,8 @@ export type PaymentData = {
     orderReference: string
     paymentSystems: string,
     products: PaymentItem[],
-    serviceUrl: string
+    serviceUrl: string,
+    returnUrl: string
 }
 
 export type PaymentItem = {
@@ -57,8 +59,52 @@ export type PaymentItem = {
     name: string
     price: string
     size: string
-    uniqueNameIntheCart: "Сукня Love Me white XS"
+    uniqueNameIntheCart: string
     count: string
     volume: any
     weight: any,
+}
+
+export type Order = {
+    client: {
+        phone: string,
+        email: string,
+        name: string
+    },
+    payment: {
+        amount: 2.5,
+        status: 'refunded',
+        method: 'online',
+        currency: 'UAH'
+    },
+    delivery: {
+        nextDestination: {
+            RecipientCityName: string,
+            SettlementType: string,
+            RecipientArea: string,
+            RecipientAreaRegions: string,
+            RecipientAddressName: string,
+            RecipientHouse: string,
+            RecipientFlat: string,
+            ServiceType: 'DoorsWarehouse' | 'DoorsDoors'
+        },
+        deliveryService: 'novaposhta',
+        Ref: string,
+        CostOnSite: number,
+        EstimatedDeliveryDate: string,
+        IntDocNumber: string
+    },
+    _id: string,
+    products: {
+        id: string,
+        name: string,
+        count: 2,
+        color: string,
+        size: string,
+        images: string [],
+        _id: '63f797ed4b5fe9aab1380b67'
+    }[],
+    weight: string,
+    volume: string,
+    description: string,
 }

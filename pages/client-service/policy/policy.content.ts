@@ -242,7 +242,7 @@ const policyContent = {
             ],
             numText26: 'In order to perform his duties, the responsible person has the right to:',
             list8: [
-                'receive the necessary documents, including orders and other administrative documents issued by the Owner of the personal data base related to the processing of personal data.',
+                'receive the necessary documents, including order and other administrative documents issued by the Owner of the personal data base related to the processing of personal data.',
                 'make copies of the documents received, including copies of files, any records stored on local area networks and autonomous computer systems.',
                 'participate in the discussion of his responsibilities for the organization of work related to the protection of personal data during their processing.',
                 'submit proposals for improving the activities and improving working methods, submit comments and options for eliminating the identified shortcomings in the process of personal data processing.',

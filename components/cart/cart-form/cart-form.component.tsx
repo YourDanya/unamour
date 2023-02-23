@@ -18,20 +18,44 @@ const CartForm: FC<CartFormProps> = (props) => {
                 error={inputs.errors.country}
                 onValidate={onValidate}
             />
-            <div className={'cart__settlementType-label'}>
-                {/*{transl.}*/}
-            </div>
+            <Input
+                className={'cart__input cart__region'}
+                name={'region'}
+                placeholder={transl.inputs.region}
+                value={inputs.values.region}
+                onChange={onChange}
+                error={inputs.errors.region}
+                onValidate={onValidate}
+            />
             <RadioButtons
-                title={transl.inputs.settlementType.title}
                 className={'cart__settlementType'}
+                title={transl.inputs.settlementType.title}
                 name={'settlementType'}
                 labels={transl.inputs.settlementType.labels}
                 values={content.inputs.settlementType.values}
                 onChange={onChange}
                 active={inputs.values.settlementType}
             />
+            <RadioButtons
+                className={'cart__paymentType'}
+                title={transl.inputs.paymentType.title}
+                name={'paymentType'}
+                labels={transl.inputs.paymentType.labels}
+                values={content.inputs.paymentType.values}
+                onChange={onChange}
+                active={inputs.values.paymentType}
+            />
+            <RadioButtons
+                className={'cart__serviceType'}
+                title={transl.inputs.serviceType.title}
+                name={'serviceType'}
+                labels={transl.inputs.serviceType.labels}
+                values={content.inputs.serviceType.values}
+                onChange={onChange}
+                active={inputs.values.serviceType}
+            />
             <Input
-                className={'cart__city cart__input'}
+                className={`cart__input cart__city ${inputs.values.serviceType === 'DoorsWarehouse' ? 'cart__city--office' : ''}`}
                 name={'city'}
                 placeholder={transl.inputs.city}
                 value={inputs.values.city}
@@ -39,56 +63,47 @@ const CartForm: FC<CartFormProps> = (props) => {
                 error={inputs.errors.city}
                 onValidate={onValidate}
             />
-            <div className="cart__index-wrapper">
+            {inputs.values.serviceType === 'DoorsDoors' ? (
+                <>
+                    <Input
+                        className={'cart__input cart__street'}
+                        placeholder={transl.inputs.street}
+                        name={'street'}
+                        value={inputs.values.street}
+                        onChange={onChange}
+                        error={inputs.errors.street}
+                        onValidate={onValidate}
+                    />
+                    <Input
+                        className={'cart__input cart__house'}
+                        placeholder={transl.inputs.house}
+                        name={'house'}
+                        value={inputs.values.house}
+                        onChange={onChange}
+                        error={inputs.errors.house}
+                        onValidate={onValidate}
+                    />
+                    <Input
+                        className={'cart__input cart__apartment'}
+                        placeholder={transl.inputs.apartment}
+                        name={'apartment'}
+                        value={inputs.values.apartment}
+                        onChange={onChange}
+                        error={inputs.errors.apartment}
+                        onValidate={onValidate}
+                    />
+                </>
+            ) : (
                 <Input
-                    className={'cart__input cart__index'}
-                    name={'index'}
-                    placeholder={transl.inputs.index}
-                    value={inputs.values.index}
+                    className={'cart__input cart__office'}
+                    placeholder={transl.inputs.office}
+                    name={'office'}
+                    value={inputs.values.office}
                     onChange={onChange}
-                    error={inputs.errors.index}
+                    error={inputs.errors.office}
                     onValidate={onValidate}
                 />
-                {!inputs.values.index && !inputs.errors.index && (
-                    <div className="cart__index-label">
-                        {transl.indexLabel}
-                    </div>
-                )}
-            </div>
-            {/*<RadioButtons*/}
-            {/*    className={'cart__delivery'}*/}
-            {/*    name={'delivery'}*/}
-            {/*    inputs={deliveryTypes}*/}
-            {/*    onChange={onChange}*/}
-            {/*    active={deliveryActive}*/}
-            {/*/>*/}
-            <Input
-                className={'cart__input cart__street'}
-                placeholder={transl.inputs.street}
-                name={'street'}
-                value={inputs.values.street}
-                onChange={onChange}
-                error={inputs.errors.street}
-                onValidate={onValidate}
-            />
-            <Input
-                className={'cart__input cart__house'}
-                placeholder={transl.inputs.house}
-                name={'house'}
-                value={inputs.values.house}
-                onChange={onChange}
-                error={inputs.errors.house}
-                onValidate={onValidate}
-            />
-            <Input
-                className={'cart__input cart__apartment'}
-                placeholder={transl.inputs.apartment}
-                name={'apartment'}
-                value={inputs.values.apartment}
-                onChange={onChange}
-                error={inputs.errors.apartment}
-                onValidate={onValidate}
-            />
+            )}
             <div className="cart__title">{transl.receiverData}</div>
             <Input
                 className={'cart__input cart__name'}

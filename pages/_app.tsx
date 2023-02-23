@@ -56,6 +56,7 @@ import 'components/nav-auth/nav-auth.styles.sass'
 import 'components/cookie/cookies.styles.sass'
 
 import 'pages/test/test.styles.sass'
+import 'pages/order/order.styles.sass'
 import 'pages/admin/items/admin-items.styles.sass'
 import 'pages/auth/auth.styles.sass'
 import 'pages/profile/wishlist/wishlist.styles.sass'

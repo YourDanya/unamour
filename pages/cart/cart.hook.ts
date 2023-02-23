@@ -14,7 +14,6 @@ import {selectPaymentData} from 'redux/checkout/checkout.selector'
 import {useEffect} from 'react'
 import {useRef} from 'react'
 import {PaymentData} from 'redux/checkout/checkout.types'
-import {ReactNode} from 'react'
 
 const useCart = () => {
     const cartItems = useSelector(selectCartItems)
@@ -33,25 +32,50 @@ const useCart = () => {
     const onSubmit: MouseAction = (event) => {
         event.preventDefault()
         Object.keys(inputs.values).forEach((key) => onValidate(key))
-        if (errRef.current.count !== 0) {
-            return
+        const settlementIndex = content.inputs.settlementType.values.findIndex(value => value === inputs.values.settlementType)
+        let destination
+        if (inputs.values.serviceType === 'DoorsDoors') {
+            for (let prop in errRef.current.errors) {
+                const key = prop as keyof typeof errRef.current.errors
+                if(errRef.current.errors[key] && key!== 'office') {
+                    return
+                }
+            }
+           destination = {
+               RecipientCityName: inputs.values.city,
+               SettlementType: transl.inputs.settlementType.labels[settlementIndex],
+               RecipientArea: inputs.values.region,
+               RecipientAreaRegions: "",
+               RecipientAddressName: inputs.values.street,
+               RecipientHouse: inputs.values.house,
+               RecipientFlat: inputs.values.apartment,
+               ServiceType: "DoorsDoors"
+           }
+        } else {
+            for (let prop in errRef.current.errors) {
+                const key = prop as keyof typeof errRef.current.errors
+                if(errRef.current.errors[key] && key!== 'street' && key!== 'apartment' &&  key!== 'house') {
+                    console.log('returning', key)
+                    return
+                }
+            }
+            destination = {
+                RecipientCityName: inputs.values.city,
+                SettlementType: transl.inputs.settlementType.labels[settlementIndex],
+                RecipientArea: inputs.values.region,
+                RecipientAreaRegions: '',
+                RecipientAddressName: inputs.values.office,
+                RecipientHouse: '',
+                RecipientFlat: '',
+                ServiceType: "DoorsWarehouse"
+            }
         }
         const createOrderData: CreateOrderData = {
             email: inputs.values.email,
             name: `${inputs.values.surname} ${inputs.values.name}`,
             phone: inputs.values.number,
-            destination: {
-                RecipientAddressName: inputs.values.house,
-                RecipientArea: inputs.values.street,
-                RecipientAreaRegions: '',
-                RecipientCityName: inputs.values.city,
-                RecipientFlat: inputs.values.apartment,
-                RecipientHouse: inputs.values.house,
-                ServiceType: 'DoorsWarehouse',
-                SettlementType: transl.inputs.settlementType.labels[
-                    content.inputs.settlementType.values.findIndex(value => value === inputs.values.settlementType)
-                    ]
-            },
+            deliveryService: 'novaposhta',
+            destination,
             products: cartItems.map(cartItem => ({
                 id: cartItem.common.itemId,
                 color: cartItem.common.color,
@@ -59,7 +83,7 @@ const useCart = () => {
                 count: cartItem.quantity
             }))
         }
-        dispatch(createOrderAsync(createOrderData))
+        dispatch(createOrderAsync(createOrderData, inputs.values.paymentType))
     }
 
     const formRef = useRef<any>(null)
@@ -68,6 +92,8 @@ const useCart = () => {
         if (!paymentData) {
             return
         }
+
+        console.log('paymentData', paymentData.returnUrl)
 
         for (let prop in paymentData) {
             let key = prop as keyof PaymentData
@@ -83,7 +109,6 @@ const useCart = () => {
                 formRef.current.append(input)
             }
         }
-
 
         for (let i in paymentData.products) {
             const item = paymentData.products[i]
@@ -106,9 +131,7 @@ const useCart = () => {
             priceInput.type = 'hidden'
             formRef.current.append(priceInput)
         }
-
         formRef.current.submit()
-
     }, [paymentData])
 
     return {inputs, onChange, onValidate, transl, onSubmit, content, cartItems, total, createOrder, formRef}

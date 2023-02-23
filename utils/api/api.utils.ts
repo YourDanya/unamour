@@ -7,6 +7,8 @@ import {ServerError} from 'redux/store.types'
 
 export const baseURL = 'http://localhost:5000'
 
+export const url = 'http://localhost:3000'
+
 let instance = axios.create({
     baseURL,
     withCredentials: true

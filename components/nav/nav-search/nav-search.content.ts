@@ -2,15 +2,18 @@ const navSearchContent = {
     translations: {
         ua: {
             search: 'пошук',
-            allRes: 'усі результати'
+            allRes: 'усі результати',
+            notFound: 'Нічого не знайдено'
         },
         eng: {
             search: 'search',
-            allRes: 'all results'
+            allRes: 'all results',
+            notFound: 'Not found'
         },
         ru: {
             search: 'поиск',
-            allRes: 'все результаты'
+            allRes: 'все результаты',
+            notFound: 'Ничего не найдено'
         }
     }
 }

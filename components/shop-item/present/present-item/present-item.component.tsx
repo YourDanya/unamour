@@ -1,27 +1,20 @@
-import React from 'react'
 import usePresentItem from 'components/shop-item/present/present-item/present-item.hook'
+import {baseURL} from 'utils/api/api.utils'
+import {FC} from 'react'
+import {PresentItemProps} from 'components/shop-item/present/present-item/present-item.types'
 
-type presentItemProps = {
-    images: string[],
-    name: string,
-    color: string,
-    activeSize: string,
-    price: string
-}
-
-const PresentItem: React.FC<presentItemProps> = (props) => {
-
-    const {images, name, color, activeSize, price} = props
-    const {transl} = usePresentItem()
+const PresentItem: FC<PresentItemProps> = (props) => {
+    const {images, name, activeSize, price} = props
+    const {transl, code} = usePresentItem(props)
 
     return (
         <div className="present__item">
-            <img className={'present__img'} src={images[0]} alt={'present img'}/>
+            <img className={'present__img'} src={`${baseURL}/images/${images[0]}`} alt={'present img'}/>
             <div className={'present__info'}>
                 <div className={'present__name'}>{name}</div>
                 <div className={'present__property-block'}>
                     <div className="present__property">{transl.color}</div>
-                    {/*<div className={'present__color'} style={{backgroundColor: color.code}}/>*/}
+                    <div className={'present__color'} style={{backgroundColor: code}}/>
                 </div>
                 <div className={'present__property-block'}>
                     <div className="present__property">{transl.size}</div>

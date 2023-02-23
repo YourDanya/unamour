@@ -9,7 +9,7 @@ const ContactComponent: React.FC = () => {
     const {onChange, handleSubmit, onValidate, transl, inputs} = useContact()
 
     return (
-        <div className={'contacts'}>
+        <div className={'contacts container'}>
             <h2 className="contacts__title">{transl.contacts}</h2>
             <div className="contacts__top">
                 <div className="contacts__text">
@@ -22,7 +22,7 @@ const ContactComponent: React.FC = () => {
                 <form className={'contacts__form'}>
                     <div className="contacts__feedback">{transl.feedback}</div>
                     <Input
-                        className={'contact__input'}
+                        className={'contacts__input'}
                         name={'name'}
                         placeholder={transl.inputs.name}
                         value={inputs.values.name}
@@ -31,7 +31,7 @@ const ContactComponent: React.FC = () => {
                         onValidate={onValidate}
                     />
                     <Input
-                        className={'contact__input'}
+                        className={'contacts__input'}
                         name={'number'}
                         placeholder={transl.inputs.number}
                         value={inputs.values.number}
@@ -40,7 +40,7 @@ const ContactComponent: React.FC = () => {
                         onValidate={onValidate}
                     />
                     <Input
-                        className={'contact__input'}
+                        className={'contacts__input'}
                         name={'email'}
                         placeholder={transl.inputs.email}
                         value={inputs.values.email}
@@ -49,7 +49,7 @@ const ContactComponent: React.FC = () => {
                         onValidate={onValidate}
                     />
                     <Textarea
-                        className={'contact__textarea'}
+                        className={'contacts__textarea'}
                         name={'message'}
                         placeholder={transl.inputs.message}
                         value={inputs.values.message}

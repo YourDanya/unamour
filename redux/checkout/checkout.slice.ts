@@ -5,6 +5,7 @@ import {ServerError} from 'redux/store.types'
 import {CheckoutState} from 'redux/checkout/checkout.types'
 import {CheckoutField} from 'redux/checkout/checkout.types'
 import {PaymentData} from 'redux/checkout/checkout.types'
+import {url} from 'utils/api/api.utils'
 
 const initialState: CheckoutState = {
     fields: {
@@ -30,6 +31,7 @@ export const checkoutSlice = createSlice({
             state.fields[action.payload] = {success: true, loading: false, error: null}
         },
         setPaymentData: (state, action: PayloadAction<PaymentData>) => {
+            action.payload.returnUrl= `${url}/order/${action.payload.orderReference}`
             state.paymentData = action.payload
         }
     },

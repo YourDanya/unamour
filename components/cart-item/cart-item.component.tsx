@@ -6,13 +6,13 @@ import LoadImage from 'components/common/load-image/load-image.component'
 import {baseURL} from 'utils/api/api.utils'
 
 const CartItem: FC<CartItem> = (props) => {
-    const {common: {slug, slugCategory, price, images, size}, quantity} = props
+    const {common: {slug, slugCategory, price, images, size, color}, quantity} = props
     const {onIncrease, onDecrease, onRemove, transl, name, code} = useCartItem(props)
 
     return (
         <div className={'cart-item'}>
             <div className='close cart-item__close' onClick={onRemove}/>
-            <Link href={`shop-items/${slugCategory}/${slug}`} className='cart-item__link'>
+            <Link href={`shop-items/${slugCategory}/${slug}?color=${color}`} className='cart-item__link'>
                 <LoadImage className='cart-item__img' src={`${baseURL}/images/${images[0]}`} alt={'item image'}/>
             </Link>
             <div className='cart-item__name'>{name}</div>
