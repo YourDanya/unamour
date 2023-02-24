@@ -1,13 +1,13 @@
 import {FC} from 'react'
-import useOrder from 'components/cart/order/order.hook'
+import useCartOrder from 'components/cart/cart-order/cart-order.hook'
 import Button from 'components/common/button/button.component'
 import Link from 'next/link'
 import presentImg from '/public/icons/present.svg'
-import {OrderProps} from 'components/cart/order/order.types'
+import {CartOrderProps} from 'components/cart/cart-order/cart-order.types'
 
-const Order: FC<OrderProps> = (props) => {
+const CartOrder: FC<CartOrderProps> = (props) => {
     const {total, className, onSubmit, createOrder} = props
-    const {transl} = useOrder()
+    const {transl} = useCartOrder()
 
     return (
         <div className={`cart-order ${className ?? ''}`}>
@@ -46,7 +46,7 @@ const Order: FC<OrderProps> = (props) => {
                 </Link>
             </div>
         </div>
-    );
+    )
 }
 
-export default Order
+export default CartOrder

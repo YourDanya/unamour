@@ -1,4 +1,4 @@
-const orderContent = {
+const cartOrderContent = {
     translations: {
         ua: {
             title: 'інформація про замовлення',
@@ -13,14 +13,14 @@ const orderContent = {
             currency: '₴',
         },
         eng: {
-            title: 'order information',
+            title: 'cart-order information',
             cost: 'Cost of goods',
             discount: 'Discount',
             delivery: 'Delivery',
             total: 'total to pay',
             hint: 'hint',
-            makeOrder: 'make order',
-            policy: 'By completing my order, I consent\n to the processing and transfer of my ',
+            makeOrder: 'make cart-order',
+            policy: 'By completing my cart-order, I consent\n to the processing and transfer of my ',
             policyLink: 'personal data',
             currency: '$',
         },
@@ -39,4 +39,4 @@ const orderContent = {
     }
 }
 
-export default orderContent
+export default cartOrderContent

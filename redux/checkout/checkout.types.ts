@@ -7,12 +7,15 @@ import {ContentSuccess} from 'redux/store.types'
 
 export type CheckoutState = {
     fields: Record<CheckoutField, StateField>,
-    paymentData: null | PaymentData
+    paymentData: null | PaymentData,
+    order: null | Order
 }
 
-export type CheckoutField = 'createOrder'
+export type CheckoutField = 'createOrder' | 'getOrder'
 
 export type CreateOrderAsync = (data: CreateOrderData, type: string) => AppThunk
+
+export type GetOrderAsync = (id: string) => AppThunk
 
 export type CreateOrderData = {
     email: string,
@@ -73,7 +76,7 @@ export type Order = {
     },
     payment: {
         amount: 2.5,
-        status: 'refunded',
+        status: 'refunded' | 'pending' | 'approved' | 'declined',
         method: 'online',
         currency: 'UAH'
     },

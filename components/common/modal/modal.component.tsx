@@ -1,11 +1,12 @@
-import React from 'react'
+import {MouseEvent, FC, memo} from 'react'
+import {MouseAction} from 'types/types'
 
 export type ModalProps = {
     active: boolean,
-    hideModal: (event: React.MouseEvent<HTMLElement>) => void
+    hideModal?: MouseAction
 }
 
-const Modal: React.FC<ModalProps> = ({active, hideModal}) => {
+const Modal: FC<ModalProps> = ({active, hideModal}) => {
 
     return (
         <div className={`modal ${active? 'modal--active' : ''}`} onClick={hideModal}/>
@@ -14,4 +15,4 @@ const Modal: React.FC<ModalProps> = ({active, hideModal}) => {
 
 const areEqual = (prevProps: ModalProps, currentProps: ModalProps) => prevProps.active===currentProps.active
 
-export default React.memo(Modal, areEqual)
+export default memo(Modal, areEqual)

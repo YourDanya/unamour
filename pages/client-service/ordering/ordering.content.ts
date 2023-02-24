@@ -24,14 +24,14 @@ const OrderingContent = {
                 'Select a product group (item type).',
                 'View the item you are interested in. In the product card, read the parameters of the product for each size, find out the composition of the fabric, available sizes and price.',
                 'Select item, color, size and add item to cart. Continue choosing items or proceed to checkout.',
-                'If you place an order - register-form, or make a purchase as a guest of the site.',
+                'If you place an cart-order - register-form, or make a purchase as a guest of the site.',
                 'After entering your data, check the correctness and confirm.',
-                'Then choose how you want to receive your checkout. You can find out the delivery time and cost in the @UNAMOUR profile, email unamour@gmail.com or call the toll-free number 8 (800) 707-71-04 (ext. 3). Also, the information will be indicated on the order page in a pop-up message before payment.',
-                'Confirm order.',
-                'Please check that your order is correct and that you have selected the correct delivery option.',
-                'Click on the "Checkout" button and you will automatically be redirected to the online payment page. Click on the button "Pay for the order" and enter the required data.',
-                'Orders placed on Friday evenings and weekends will be processed and forwarded to the shipping company on Monday. During the busy period of the warehouse of the online store, the processing time and transfer of the order to the transport company can reach up to 3 working days after payment.',
-                'After your order has shipped, you will receive an email notification with a tracking number to track your shipment.'
+                'Then choose how you want to receive your checkout. You can find out the delivery time and cost in the @UNAMOUR profile, email unamour@gmail.com or call the toll-free number 8 (800) 707-71-04 (ext. 3). Also, the information will be indicated on the cart-order page in a pop-up message before payment.',
+                'Confirm cart-order.',
+                'Please check that your cart-order is correct and that you have selected the correct delivery option.',
+                'Click on the "Checkout" button and you will automatically be redirected to the online payment page. Click on the button "Pay for the cart-order" and enter the required data.',
+                'Orders placed on Friday evenings and weekends will be processed and forwarded to the shipping company on Monday. During the busy period of the warehouse of the online store, the processing time and transfer of the cart-order to the transport company can reach up to 3 working days after payment.',
+                'After your cart-order has shipped, you will receive an email notification with a tracking number to track your shipment.'
             ],
             text1: 'If you have any questions, please contact us on + 380 66 384 7822, email unamour@gmail.com or profile @UNAMOUR.',
             text2: 'Happy shopping!'

@@ -92,11 +92,13 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
     })
 }
 
-export const useRouteChange = (callback: () => void) => {
+export const useRouteChange = (callback: (() => void) | undefined) => {
     const path = useRouter().asPath
 
     useOmitFirstEffect(() => {
-        callback()
+        if (callback) {
+            callback()
+        }
     }, [path])
 }
 

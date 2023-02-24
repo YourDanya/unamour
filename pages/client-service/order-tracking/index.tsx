@@ -9,7 +9,7 @@ const OrderTracking: NextPageWithLayout<OrderTrackingProps> = () => {
     const {transl} = useOrderTracking()
 
     return (
-        <div className={'order-tracking'}>
+        <div className={'cart-order-tracking'}>
             <div className="service__title">
                 {transl.title}
             </div>

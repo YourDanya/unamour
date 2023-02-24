@@ -3,7 +3,7 @@ const menuContent = {
         links: [
             'clothing-care',
             'delivery',
-            'order-tracking',
+            'cart-order-tracking',
             'return',
             'ordering',
             'policy',
@@ -28,9 +28,9 @@ const menuContent = {
             links: [
                 'clothing care',
                 'payment and delivery',
-                'order tracking',
+                'cart-order tracking',
                 'purchase returns',
-                'how to place an order',
+                'how to place an cart-order',
                 'privacy policy',
                 'public offer',
                 'guarantee period'

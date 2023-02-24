@@ -27,3 +27,7 @@ export const getLSItemsQuantity = () => {
     return cartItems.reduce((quantity, item) => quantity + item.quantity, 0)
 }
 
+export const selectOrderId = createSelector(
+    [selectCart],
+    (cart) => cart.orderId
+)

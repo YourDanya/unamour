@@ -1,5 +1,5 @@
 import {Order} from 'redux/checkout/checkout.types'
 
-export type OrderProps = {
+export type OrderPageProps = {
     order: Order
 }

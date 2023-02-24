@@ -5,7 +5,8 @@ import {CartState} from 'redux/cart/cart.types'
 import {CartItem} from 'redux/cart/cart.types'
 
 const initialState: CartState = {
-    items: []
+    items: [],
+    orderId: ''
 }
 
 export const cartSlice = createSlice({
@@ -51,7 +52,9 @@ export const cartSlice = createSlice({
                 }
             }
         },
-
+        setOrderId: (state, action: PayloadAction<string>) => {
+            state.orderId = action.payload
+        }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
@@ -61,7 +64,7 @@ export const cartSlice = createSlice({
 })
 
 export const {
-    addItem, removeItem, increaseQuantity, decreaseQuantity
+    addItem, removeItem, increaseQuantity, decreaseQuantity, setOrderId
 } = cartSlice.actions
 
 export default cartSlice.reducer

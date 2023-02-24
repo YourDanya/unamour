@@ -12,7 +12,7 @@ const OrderItem: FC<OrderItemProps> = (props) => {
             <img
                 className={'order__item-img'}
                 src={`${baseURL}/images/${images[0]}`}
-                alt={'order item image'}
+                alt={'cart-order item image'}
             />
             <div className={'order__item-about'}>
                 <div className={'order__item-name'}>

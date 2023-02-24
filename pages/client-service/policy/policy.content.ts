@@ -230,7 +230,7 @@ const policyContent = {
             numText22: 'Decisions to suspend or deny access to personal data may be appealed to the authorized state body for personal data protection, other public authorities and local governments, whose powers include the protection of personal data, or to the court.',
             numSubtitle8: 'Personal data protection: protection methods, responsible person, employees who directly process and/or have access to personal data in connection with their duties, the term of storage of personal data.',
             numText23: 'The owners of the personal database are equipped with system and software and hardware and means of communication that prevent loss, theft, unauthorized destruction, distortion, forgery, copying of information and meet the requirements of international and national standards.',
-            numText24: 'The responsible person organizes the work related to the protection of personal data during their processing, in accordance with the law. The responsible person is determined by the order of the Owner of the personal data base. \ N \ n The responsibilities of the responsible person for the organization of work related to the protection of personal data during their processing are specified in the job description. ',
+            numText24: 'The responsible person organizes the work related to the protection of personal data during their processing, in accordance with the law. The responsible person is determined by the cart-order of the Owner of the personal data base. \ N \ n The responsibilities of the responsible person for the organization of work related to the protection of personal data during their processing are specified in the job description. ',
             numText25: 'Responsible person must:',
             list7: [
                 'know the legislation of Ukraine in the field of personal data protection.',
@@ -240,9 +240,9 @@ const policyContent = {
                 'inform the Owner of the personal data base about the facts of violations by employees of the legislation of Ukraine in the field of personal data protection and internal documents governing the activities of the Personal Database Owner regarding processing and protection of personal data in personal databases within one working day. violations',
                 'ensure the storage of documents confirming the personal data subject\'s consent to the processing of his personal data and the notification of the specified subject about his rights.'
             ],
-            numText26: 'In order to perform his duties, the responsible person has the right to:',
+            numText26: 'In cart-order to perform his duties, the responsible person has the right to:',
             list8: [
-                'receive the necessary documents, including order and other administrative documents issued by the Owner of the personal data base related to the processing of personal data.',
+                'receive the necessary documents, including cart-order and other administrative documents issued by the Owner of the personal data base related to the processing of personal data.',
                 'make copies of the documents received, including copies of files, any records stored on local area networks and autonomous computer systems.',
                 'participate in the discussion of his responsibilities for the organization of work related to the protection of personal data during their processing.',
                 'submit proposals for improving the activities and improving working methods, submit comments and options for eliminating the identified shortcomings in the process of personal data processing.',
@@ -256,7 +256,7 @@ const policyContent = {
             numSubtitle9: 'RIGHTS OF THE PERSONAL DATA SUBJECT.',
             numText31: 'The personal data subject has the right to:',
             list9: [
-                'know about the location of the personal data base containing its personal data, its purpose and name, location and / or place of residence (stay) of the owner or administrator of this database or give a corresponding order to obtain this information to authorized persons, except as provided by law . ',
+                'know about the location of the personal data base containing its personal data, its purpose and name, location and / or place of residence (stay) of the owner or administrator of this database or give a corresponding cart-order to obtain this information to authorized persons, except as provided by law . ',
                 'receive information on the conditions for granting access to personal data, in particular information on third parties to whom his personal data contained in the relevant personal data base are transferred.',
                 'access to their personal data contained in the relevant personal database',
                 'receive no later than thirty calendar days from the date of receipt of the request, except as provided by law, an answer as to whether his personal data are stored in the relevant personal database, as well as receive the contents of his personal data stored.',

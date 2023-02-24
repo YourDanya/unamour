@@ -6,7 +6,7 @@ const orderTrackingContent = {
         },
         eng: {
             title: 'ORDER TRACKING',
-            text: 'Once your payment has been confirmed, you will receive an email with your order number. After your order has shipped, you will receive a shipping confirmation email including a tracking link. You can check the status and location of your order at any time using this link.'
+            text: 'Once your payment has been confirmed, you will receive an email with your cart-order number. After your cart-order has shipped, you will receive a shipping confirmation email including a tracking link. You can check the status and location of your cart-order at any time using this link.'
         },
         ru: {
             title: 'ОТСЛЕЖИВАНИЕ ЗАКАЗА',

@@ -13,7 +13,7 @@ const navCartContent = {
             cart: 'cart',
             total: 'total:',
             empty: 'your shopping cart is empty',
-            order: 'make an order',
+            order: 'make an cart-order',
             favorite: 'view favorite',
             continue: 'continue shopping',
             currency: '$'

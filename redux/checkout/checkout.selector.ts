@@ -27,3 +27,7 @@ export const selectPaymentData = createSelector(
         return checkoutStore.paymentData
     }
 )
+
+export const selectOrder = createSelector(
+    [selectCheckout], (checkoutStore) => checkoutStore.order
+)

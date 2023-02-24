@@ -2,12 +2,11 @@ import {wrapper} from 'redux/store'
 import {apiCall} from 'utils/api/api.utils'
 import {api} from 'utils/api/api.utils'
 import {NextPage} from 'next'
-import {OrderProps} from 'pages/order/order.types'
-import {useLocale} from 'hooks/other/other.hooks'
-import useOrder from 'pages/order/order.hook'
-import CartItem from 'components/cart-item/cart-item.component'
-import {baseURL} from 'utils/api/api.utils'
-import OrderItem from 'components/order/order-item/order-item.component'
+import {OrderPageProps} from 'pages/order/order-page.types'
+import Order from 'components/order/order.component'
+import useOrderPage from 'pages/order/order-page.hook'
+import ModalContent from 'components/common/modal-content/modal-content.component'
+import Modal from 'components/common/modal/modal.component'
 
 export const getServerSideProps = wrapper.getServerSideProps(store =>
     async (context) => {
@@ -21,43 +20,23 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
     }
 )
 
-const Order: NextPage<OrderProps> = (props) => {
-    const {order} = props
+const OrderPage: NextPage<OrderPageProps> = (props) => {
+    const {order, transl} = useOrderPage()
 
-    const {transl, colors} = useOrder(props)
-
-    console.log('order', order)
-
-    return (
-        <div className={'container order'}>
-            <div className={'order__title'}>
-                {transl.infoAbout}
-            </div>
-            <div className={'order__items'}>
-                <div className={'order__items-title'}>
-                    {transl.items}
-                </div>
-                {order.products.map((elem, index) => (
-                    <OrderItem key={index} {...elem} color={colors[index]}/>
-                ))}
-            </div>
-            {/*<div className={'grid-container'}>*/}
-            {/*    <img className={'grid-element-0'} src={'http://localhost:5000/images/1ToHK0UUM2NkjYhWoLdr77DCCDc0RCmVU'}/>*/}
-            {/*    <div className={'grid-element-1'}>*/}
-            {/*        element 1*/}
-            {/*    </div>*/}
-            {/*    <div className={'grid-element-2'}>*/}
-            {/*        element 2*/}
-            {/*    </div>*/}
-            {/*    <div className={'grid-element-3'}>*/}
-            {/*        element 3*/}
-            {/*    </div>*/}
-            {/*    <div className={'grid-element-4'}>*/}
-            {/*        element 4*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-        </div>
-    )
+    return (<>
+        {order?.payment?.status === 'approved' ? (
+            <Order {...order}/>
+        )  : (
+            <>
+                <ModalContent className={'order-page__modal-content'} active={true}>
+                    <div className={'order-page__message'}>
+                        {order?.payment?.status === 'declined' ? transl.declined : transl.pending}
+                    </div>
+                </ModalContent>
+                <Modal active={true}/>
+            </>
+        )}
+    </>)
 }
 
-export default Order
+export default OrderPage

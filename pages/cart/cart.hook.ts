@@ -14,12 +14,18 @@ import {selectPaymentData} from 'redux/checkout/checkout.selector'
 import {useEffect} from 'react'
 import {useRef} from 'react'
 import {PaymentData} from 'redux/checkout/checkout.types'
+import {selectOrderId} from 'redux/cart/cart.selector'
+import {selectOrder} from 'redux/checkout/checkout.selector'
+import {getOrderAsync} from 'redux/checkout/checkout.thunk'
+import {useRouter} from 'next/router'
 
 const useCart = () => {
     const cartItems = useSelector(selectCartItems)
     const total = useSelector(selectTotalPrice)
     const createOrder = useParamSelector(selectCheckoutField, 'createOrder')
     const paymentData = useSelector(selectPaymentData)
+    const orderId = useSelector(selectOrderId)
+    const order = useSelector(selectOrder)
 
     const [transl, content] = useLocale(cartFormContent)
 
@@ -27,7 +33,7 @@ const useCart = () => {
 
     const dispatch = useDispatch()
 
-    console.log('paymentData', paymentData)
+    console.log('paymentData', paymentData?.orderReference)
 
     const onSubmit: MouseAction = (event) => {
         event.preventDefault()
@@ -134,7 +140,10 @@ const useCart = () => {
         formRef.current.submit()
     }, [paymentData])
 
-    return {inputs, onChange, onValidate, transl, onSubmit, content, cartItems, total, createOrder, formRef}
+
+    return {
+        inputs, onChange, onValidate, transl, onSubmit, content, cartItems, total, createOrder, formRef
+    }
 }
 
 export default useCart

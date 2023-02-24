@@ -87,53 +87,53 @@ const privacyContent = {
             title1: 'PUBLIC OFFER',
             numSubtitle1: 'GENERAL TERMS',
             numList1: [
-                'These conditions establish the order of interaction between the UNAMOR online store and the customers of the UNAMOR online store - individuals and legal entities who have placed an order using the "Basket" clothing-care located on the UNAMOUR website (hereinafter - the website).',
+                'These conditions establish the cart-order of interaction between the UNAMOR online store and the customers of the UNAMOR online store - individuals and legal entities who have placed an cart-order using the "Basket" clothing-care located on the UNAMOUR website (hereinafter - the website).',
                 'The UNAMOR online store sells and delivers goods throughout Ukraine.',
                 'UNAMOR online store sells goods at retail. The action of returning the goods is carried out in accordance with the Law of Ukraine "On Consumer Protection". ',
-                'By placing an order on the site, the customer unconditionally agrees to abide by these terms and confirms that he is familiar with them.'
+                'By placing an cart-order on the site, the customer unconditionally agrees to abide by these terms and confirms that he is familiar with them.'
             ],
             numSubtitle2: 'ORDER',
-            numText1: 'The order is placed by the customer by adding the product to the cart.',
-            numText2: 'An order is considered to be properly executed if the customer has filled in all the fields of the update-user-form that allow to identify the customer and contact him:',
+            numText1: 'The cart-order is placed by the customer by adding the product to the cart.',
+            numText2: 'An cart-order is considered to be properly executed if the customer has filled in all the fields of the update-user-form that allow to identify the customer and contact him:',
             list1: [
                 'Full name / name.',
                 'Contact phone.',
                 'Address.',
-                'Desirable order of payment (payment methods are listed in item 5.1).',
+                'Desirable cart-order of payment (payment methods are listed in item 5.1).',
                 'Preferred method of delivery.'
             ],
             numSubtitle3: 'ACCEPTANCE OF ORDER BY UNAMOUR ONLINE STORE',
-            numText3: 'The manager of the UNAMOUR online store upon receipt of the order checks the availability of goods and if the order is made in accordance with paragraph 2.2. under these conditions, accepts the order and contacts the customer to confirm the details. ',
-            numText4: 'From the moment of accepting the order by the UNAMOR online store, the customer has the right to cancel the order or make changes to the order (delete / add goods to the order, change the characteristics of the goods (color, size, quantity, etc.)). After payment of the invoice, the removal of product items from the order is not allowed. ',
+            numText3: 'The manager of the UNAMOUR online store upon receipt of the cart-order checks the availability of goods and if the cart-order is made in accordance with paragraph 2.2. under these conditions, accepts the cart-order and contacts the customer to confirm the details. ',
+            numText4: 'From the moment of accepting the cart-order by the UNAMOR online store, the customer has the right to cancel the cart-order or make changes to the cart-order (delete / add goods to the cart-order, change the characteristics of the goods (color, size, quantity, etc.)). After payment of the invoice, the removal of product items from the cart-order is not allowed. ',
             numSubtitle4: 'ORDER FORMATION.',
-            numText5: 'Employees of the UNAMOR online store update-user-form order. Orders with the status "PROCESSED", formed and confirmed by 15-00, are sent on the same day. In that case, if you made an order on a Sunday or public holiday, its sending is postponed to the first working day following the day of ordering. City of sender - Kyiv. ',
-            numText6: 'In the absence of any goods in the online store UNAMOUR employee checks availability throughout the network and makes an internal movement after agreeing on terms with the customer. If the product is not available throughout the network, the manager of the UNAMOUR online store may offer the customer to replace the missing product with any other product. With the consent of the client, the other offered goods are added to the order, in case of disagreement, the order becomes the status of "REFUSAL". ',
-            numText7: 'At the end of the order formation, the manager of the online store-warehouse UNAMOUR notifies the customer of the status of the order and issues an invoice to the customer for payment, if the chosen payment method complies with paragraph 5.1.2.',
+            numText5: 'Employees of the UNAMOR online store update-user-form cart-order. Orders with the status "PROCESSED", formed and confirmed by 15-00, are sent on the same day. In that case, if you made an cart-order on a Sunday or public holiday, its sending is postponed to the first working day following the day of ordering. City of sender - Kyiv. ',
+            numText6: 'In the absence of any goods in the online store UNAMOUR employee checks availability throughout the network and makes an internal movement after agreeing on terms with the customer. If the product is not available throughout the network, the manager of the UNAMOUR online store may offer the customer to replace the missing product with any other product. With the consent of the client, the other offered goods are added to the cart-order, in case of disagreement, the cart-order becomes the status of "REFUSAL". ',
+            numText7: 'At the end of the cart-order formation, the manager of the online store-warehouse UNAMOUR notifies the customer of the status of the cart-order and issues an invoice to the customer for payment, if the chosen payment method complies with paragraph 5.1.2.',
             numSubtitle5: 'ORDER PAYMENT',
-            numText8: 'Payment for the order is made in the following ways:',
+            numText8: 'Payment for the cart-order is made in the following ways:',
             list2: [
                 'Payment on receipt (invoice).',
                 'Online card payment.',
                 'Payment via liqpay system.',
                 'Payment through invoice.'
             ],
-            numText9: 'You can pay for the order in cash upon receipt of the parcel at any branch of Nova Poshta. The commission for sending funds is paid by the buyer. The cost of postpay transfer is UAH 20 + 2% of the amount (Nova Poshta fee). Payment of the order from the Visa or MasteCard card on the website immediately after placing the order through the liqpay system. Payment is made on a page protected by security certificates. You only pay the cost of the goods, no fee is charged when paying online. ',
+            numText9: 'You can pay for the cart-order in cash upon receipt of the parcel at any branch of Nova Poshta. The commission for sending funds is paid by the buyer. The cost of postpay transfer is UAH 20 + 2% of the amount (Nova Poshta fee). Payment of the cart-order from the Visa or MasteCard card on the website immediately after placing the cart-order through the liqpay system. Payment is made on a page protected by security certificates. You only pay the cost of the goods, no fee is charged when paying online. ',
             numSubtitle6: 'ORDER DELIVERY',
-            numText10: 'Delivery by postal services. Free delivery to all branches of Nova Poshta and Ukrposhta when ordering from UAH 1,500. Delivery of the order to 1500 UAH. carried out at the expense of the client at the rates of the carrier in the following ways: ',
+            numText10: 'Delivery by postal services. Free delivery to all branches of Nova Poshta and Ukrposhta when ordering from UAH 1,500. Delivery of the cart-order to 1500 UAH. carried out at the expense of the client at the rates of the carrier in the following ways: ',
             list3: [
                 'Nova Poshta Delivery Service.',
                 'Ukrposhta Delivery Service.'
             ],
-            numText11: 'Delivery of the order to the selected UNAMOUR clothing studio. \ n Delivery is free within 3-4 working days. The generated order in the open status "WAITING FOR MOVEMENT" is transferred to the central warehouse, and from there to the studio. Upon arrival of the order, the client can try on the thing and pay in a convenient way at the checkout. ',
-            numText12: 'Online store-warehouse UNAMOUR is considered to have fulfilled its obligation to deliver the order at the time of transfer to the delivery clothing-care. The risk of death or damage to the goods after delivery to the delivery clothing-care is borne by the customer. ',
+            numText11: 'Delivery of the cart-order to the selected UNAMOUR clothing studio. \ n Delivery is free within 3-4 working days. The generated cart-order in the open status "WAITING FOR MOVEMENT" is transferred to the central warehouse, and from there to the studio. Upon arrival of the cart-order, the client can try on the thing and pay in a convenient way at the checkout. ',
+            numText12: 'Online store-warehouse UNAMOUR is considered to have fulfilled its obligation to deliver the cart-order at the time of transfer to the delivery clothing-care. The risk of death or damage to the goods after delivery to the delivery clothing-care is borne by the customer. ',
             numText13: 'FREE SHIPPING. Delivery for the client is free in the following cases: ',
             list4: [
                 'when ordering in the amount of 1500 (one thousand five hundred) hryvnias: to the branches of delivery services located in the client\'s city.',
-                'when moving the order to the studio internally.'
+                'when moving the cart-order to the studio internally.'
             ],
             label1: 'UNAMOUR online store-warehouse agrees on the method of delivery with the customer, but has the right to choose and use any most favorable method of delivery.',
             numSubtitle7: 'RETURN OF DEFECTIVE GOODS',
-            numText14: 'If the order is delivered to the studio, a refund is only possible at the same address where the purchase was made.',
+            numText14: 'If the cart-order is delivered to the studio, a refund is only possible at the same address where the purchase was made.',
             numText15: 'Goods of good quality ordered from UNAMOR and not fitted for any reason (style, size, color) shall be returned and exchanged within 14 days, excluding the day of purchase, provided that:',
             list5: [
                 'no traces of operation and wear.',
@@ -149,7 +149,7 @@ const privacyContent = {
                 'Get money by bank transfer *',
                 'The refund period is within 10 working days of receiving the return from the online store manager.'
             ],
-            label3: '* If you received a defective product or sent it not what you ordered, and you paid for delivery - the manager will offer free delivery of your next order.',
+            label3: '* If you received a defective product or sent it not what you ordered, and you paid for delivery - the manager will offer free delivery of your next cart-order.',
             text2: 'Product exchange process:',
             list7: [
                 'means and objects of sanitary hygiene (including toothbrushes).',

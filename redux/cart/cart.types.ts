@@ -33,5 +33,6 @@ export type CartItem = {
 }
 
 export type CartState = {
-    items: CartItem []
+    items: CartItem [],
+    orderId: string
 }
