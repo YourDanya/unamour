@@ -12,8 +12,8 @@ const navCartContent = {
         eng: {
             cart: 'cart',
             total: 'total:',
-            empty: 'your shopping cart is empty',
             order: 'make an cart-order',
+            empty: 'your shopping cart is empty',
             favorite: 'view favorite',
             continue: 'continue shopping',
             currency: '$'
@@ -22,8 +22,8 @@ const navCartContent = {
             cart: 'корзина',
             total: 'итого:',
             empty: 'ваш корзина пустая',
-            order: 'оформить заказ',
             favorite: 'смотреть избранное',
+            order: 'оформить заказ',
             continue: 'продолжить покупки',
             currency: '₴'
         }

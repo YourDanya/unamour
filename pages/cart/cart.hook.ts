@@ -2,38 +2,33 @@ import {useSelector} from 'react-redux'
 import {selectCartItems} from 'redux/cart/cart.selector'
 import {selectTotalPrice} from 'redux/cart/cart.selector'
 import {useLocale} from 'hooks/other/other.hooks'
-import cartFormContent from 'components/cart/cart-form/cart-form.content'
 import {useInput} from 'hooks/input/input.hooks'
 import {useDispatch} from 'react-redux'
 import {MouseAction} from 'types/types'
 import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
-import {createOrderAsync} from 'redux/checkout/checkout.thunk'
 import {CreateOrderData} from 'redux/checkout/checkout.types'
 import {selectCheckoutField} from 'redux/checkout/checkout.selector'
 import {selectPaymentData} from 'redux/checkout/checkout.selector'
 import {useEffect} from 'react'
 import {useRef} from 'react'
 import {PaymentData} from 'redux/checkout/checkout.types'
-import {selectOrderId} from 'redux/cart/cart.selector'
-import {selectOrder} from 'redux/checkout/checkout.selector'
-import {getOrderAsync} from 'redux/checkout/checkout.thunk'
-import {useRouter} from 'next/router'
+import cartContent from 'pages/cart/cart.content'
+import {selectUserFormData} from 'redux/cart/cart.selector'
+import {setUserFormData} from 'redux/cart/cart.slice'
+import {createOrderAsync} from 'redux/checkout/checkout.thunk'
 
 const useCart = () => {
     const cartItems = useSelector(selectCartItems)
     const total = useSelector(selectTotalPrice)
     const createOrder = useParamSelector(selectCheckoutField, 'createOrder')
     const paymentData = useSelector(selectPaymentData)
-    const orderId = useSelector(selectOrderId)
-    const order = useSelector(selectOrder)
+    const userFormData = useSelector(selectUserFormData)
 
-    const [transl, content] = useLocale(cartFormContent)
+    const [transl, content] = useLocale(cartContent)
 
-    const {inputs, onChange, onValidate, errRef} = useInput(content.inputs)
+    const {inputs, onChange, onValidate, errRef, setOuterValues} = useInput(content.inputs)
 
     const dispatch = useDispatch()
-
-    console.log('paymentData', paymentData?.orderReference)
 
     const onSubmit: MouseAction = (event) => {
         event.preventDefault()
@@ -90,7 +85,19 @@ const useCart = () => {
             }))
         }
         dispatch(createOrderAsync(createOrderData, inputs.values.paymentType))
+
+        if (inputs.values.save) {
+            dispatch(setUserFormData({...inputs.values}))
+        } else {
+            dispatch(setUserFormData(null))
+        }
     }
+
+    useEffect(() => {
+        if (userFormData) {
+            setOuterValues({...userFormData})
+        }
+    }, [])
 
     const formRef = useRef<any>(null)
 
@@ -99,15 +106,11 @@ const useCart = () => {
             return
         }
 
-        console.log('paymentData', paymentData.returnUrl)
-
         for (let prop in paymentData) {
             let key = prop as keyof PaymentData
             const item = paymentData[key]
 
             if ((typeof item == 'string') || (typeof item == 'number')) {
-                console.log(item)
-
                 const input = document.createElement('input')
                 input.name = prop
                 input.value = item as string

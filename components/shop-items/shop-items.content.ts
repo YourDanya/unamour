@@ -30,6 +30,7 @@ const shopItemsContent = {
             filter3: 'розмір',
             filter4: 'колір',
             reset: 'скинути',
+            all: 'подивитись усе'
         },
         ////////////////////////////////////////////////////////////////////////////
         eng: {
@@ -48,6 +49,7 @@ const shopItemsContent = {
             filter3: 'size',
             filter4: 'color',
             reset: 'reset',
+            all: 'view all'
         },
         /////////////////////////////////////////////////////////////////
         ru: {
@@ -65,7 +67,8 @@ const shopItemsContent = {
             },
             filter3: 'размер',
             filter4: 'цвет',
-            reset: 'сбросить'
+            reset: 'сбросить',
+            all: 'посмотреть все'
         }
     }
 }

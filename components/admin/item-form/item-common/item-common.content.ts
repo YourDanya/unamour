@@ -7,6 +7,8 @@ const itemCommonContent = {
             special: {validations: {}},
             coming: {validations: {}},
             oldPrice: {validations: {required: true, isNumber: true}},
+            weight: {validations: {}},
+            volume: {validations: {}}
         }
     },
     translations: {

@@ -1,9 +1,9 @@
 const menuContent = {
     common: {
         links: [
-            'clothing-care',
+            // 'clothing-care',
             'delivery',
-            'cart-order-tracking',
+            'order-tracking',
             'return',
             'ordering',
             'policy',
@@ -14,7 +14,7 @@ const menuContent = {
     translations: {
         ua: {
             links: [
-                'догляд за одягом',
+                // 'догляд за одягом',
                 'оплата та доставка',
                 'відстеження замовлення',
                 'повернення товару',
@@ -26,7 +26,7 @@ const menuContent = {
         },
         eng: {
             links: [
-                'clothing care',
+                // 'clothing care',
                 'payment and delivery',
                 'cart-order tracking',
                 'purchase returns',
@@ -38,7 +38,7 @@ const menuContent = {
         },
         ru: {
             links: [
-                'уход за одеждой',
+                // 'уход за одеждой',
                 'оплата и доставка',
                 'отслеживание заказа',
                 'возврат товара',

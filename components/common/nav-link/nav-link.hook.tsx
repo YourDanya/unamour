@@ -1,6 +1,6 @@
 import {useRouter} from "next/router"
-import {NavLinkProps} from "./nav-link.component"
 import {MouseEvent} from "react"
+import {NavLinkProps} from 'components/common/nav-link/nav-link.types'
 
 const useNavLink = (props: NavLinkProps) => {
 

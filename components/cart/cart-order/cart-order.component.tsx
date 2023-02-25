@@ -6,11 +6,11 @@ import presentImg from '/public/icons/present.svg'
 import {CartOrderProps} from 'components/cart/cart-order/cart-order.types'
 
 const CartOrder: FC<CartOrderProps> = (props) => {
-    const {total, className, onSubmit, createOrder} = props
+    const {total, onSubmit, createOrder} = props
     const {transl} = useCartOrder()
 
     return (
-        <div className={`cart-order ${className ?? ''}`}>
+        <div className={`cart-order`}>
             <div className="cart-order__title">{transl.title}</div>
             <div className="cart-order__properties">
                 <div className="cart-order__property">

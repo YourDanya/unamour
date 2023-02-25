@@ -1,29 +1,21 @@
-import React from 'react'
+import {FC} from 'react'
 import useNavLink from 'components/common/nav-link/nav-link.hook'
 import Link from 'next/link'
+import {NavLinkProps} from 'components/common/nav-link/nav-link.types'
 
-export type NavLinkProps = {
-    href: string,
-    className?: string,
-    activeClassName?: string,
-    children: React.ReactNode
-}
-
-const NavLink: React.FC<NavLinkProps> = (props) => {
+const NavLink: FC<NavLinkProps> = (props) => {
 
     const {href, activeClassName, className, children} = props
     const {path, handleClick} = useNavLink(props)
 
     return (
-        (<Link
+        <Link
             href={href}
             className={`nav-link ${className} ${path===href ? `nav-link--active ${activeClassName}` : ''}`}
             onClick={handleClick}>
-
             {children}
-
-        </Link>)
-    );
+        </Link>
+    )
 }
 
 export default NavLink

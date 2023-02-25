@@ -23,10 +23,8 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
             const textLink = prop.startsWith('textLink')
             const {props: {className, children}} = tempElem as JSX.Element
             returnElem = (
-                <Link href={ref}>
-                    <a className={`service__link ${textLink ? 'service__link--text' : ''}`}>
-                        {text}
-                    </a>
+                <Link href={ref} className={`service__link ${textLink ? 'service__link--text' : ''}`}>
+                    {text}
                 </Link>
             )
             if (textLink) {

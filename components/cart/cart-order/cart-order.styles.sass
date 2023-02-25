@@ -1,4 +1,8 @@
 .cart-order
+  width: 30%
+  top: 110px
+  position: sticky
+  align-self: start
   &__title
     text-align: center
     margin-bottom: 35px
@@ -41,3 +45,11 @@
     &-link
       font-size: 10px
       color: #4f4f4f
+
+@media (max-width: 1200px)
+  .cart-order
+    width: 35%
+
+@media (max-width: 992px)
+  .cart-order
+    width: 100%

@@ -1,16 +1,18 @@
 import React from 'react'
 import useCheckBox from 'components/common/checkbox/checkbox.hook'
+import {ChangeEvent} from 'react'
+import {FC} from 'react'
 
 type CheckboxProps = {
     label: string,
     value: boolean,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void,
     className?: string,
     styles?: object,
     name?: string
 }
 
-const Checkbox: React.FC<CheckboxProps> = (props) => {
+const Checkbox: FC<CheckboxProps> = (props) => {
 
     const {label, className, value, onChange, name, styles, ...otherProps} = props
     const {focused, setFocused, handleClick} = useCheckBox()

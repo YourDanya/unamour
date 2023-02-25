@@ -3,10 +3,12 @@ import {PayloadAction} from '@reduxjs/toolkit'
 import {HYDRATE} from 'next-redux-wrapper'
 import {CartState} from 'redux/cart/cart.types'
 import {CartItem} from 'redux/cart/cart.types'
+import {UserFormData} from 'redux/cart/cart.types'
 
 const initialState: CartState = {
     items: [],
-    orderId: ''
+    orderId: '',
+    userFormData: null
 }
 
 export const cartSlice = createSlice({
@@ -54,17 +56,23 @@ export const cartSlice = createSlice({
         },
         setOrderId: (state, action: PayloadAction<string>) => {
             state.orderId = action.payload
+        },
+        setCartItems: (state, action: PayloadAction<CartItem[]>) => {
+            state.items = action.payload
+        },
+        setUserFormData: (state, action: PayloadAction<UserFormData | null>) => {
+            state.userFormData = action.payload
         }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            
+
         }
     }
 })
 
 export const {
-    addItem, removeItem, increaseQuantity, decreaseQuantity, setOrderId
+    addItem, removeItem, increaseQuantity, decreaseQuantity, setOrderId, setCartItems, setUserFormData
 } = cartSlice.actions
 
 export default cartSlice.reducer

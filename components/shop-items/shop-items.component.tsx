@@ -1,4 +1,4 @@
-import React from 'react'
+import {FC, ReactNode} from 'react'
 import PriceFilter from 'components/shop-items/price-filter/price-filter.component'
 import Button from 'components/common/button/button.component'
 import ScrollFixed from 'components/common/scroll-fixed/scroll-fixed.component'
@@ -11,7 +11,7 @@ import {ShopItemsProps} from 'components/shop-items/shop-items.types'
 import NavLink from 'components/common/nav-link/nav-link.component'
 import {sizeContent} from 'components/common/content/content'
 
-const ShopItems: React.FC<ShopItemsProps> = (props) => {
+const ShopItems: FC<ShopItemsProps> = (props) => {
     const {children} = props
     const {content, transl, categories, colors, params, handleResetClick, filters} = useShopItems(props)
 
@@ -20,9 +20,16 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
             <div className='shop-items__menu'>
                 <ScrollFixed topOffset={120} bottomOffset={20}>
                     <div className='shop-items__categories'>
+                        <NavLink
+                            href={`/shop-items/all`}
+                            className={'shop-items__category'}
+                            activeClassName={'shop-items__category--active'}
+                        >
+                            {transl.all}
+                        </NavLink>
                         {categories[1].map((ref, index) => (
                             <NavLink
-                                href={`${ref}${params ? `?${params}` : ''}`}
+                                href={`/shop-items/${ref}${params ? `?${params}` : ''}`}
                                 className={'shop-items__category'}
                                 activeClassName={'shop-items__category--active'}
                                 key={ref}
@@ -78,7 +85,7 @@ const ShopItems: React.FC<ShopItemsProps> = (props) => {
 }
 
 
-export const getShopItemsLayout = (page: React.ReactNode) => {
+export const getShopItemsLayout = (page: ReactNode) => {
     return (
         <ShopItems>
             {page}

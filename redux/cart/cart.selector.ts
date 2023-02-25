@@ -31,3 +31,8 @@ export const selectOrderId = createSelector(
     [selectCart],
     (cart) => cart.orderId
 )
+
+export const selectUserFormData = createSelector(
+    [selectCart],
+    (cart) => cart.userFormData
+)

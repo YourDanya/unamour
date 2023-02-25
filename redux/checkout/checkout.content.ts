@@ -12,6 +12,11 @@ export const checkoutErrors: CheckoutErrors = {
             ua: 'Невірний логін або пароль.',
             eng: 'Wrong email or password.',
             ru: 'Неверниый логин или пароль.'
+        },
+        getOrder: {
+            ua: 'Не вдалося отримани інформацію про замовлення.',
+            eng: 'Failed to get info about order.',
+            ru: 'Не удалось получить информацию о заказе.'
         }
     }
 }
@@ -21,5 +26,10 @@ export const checkoutSuccess: CheckoutSuccess = {
         ua: 'Ви успішно увійшли. Через секунду вас буде пернаправлено.',
         eng: 'You have successfully logged in. You will be redirected in a second.',
         ru: 'Вы успешно вошли. Через секунду вас будет пернаправлено.'
+    },
+    getOrder: {
+        ua: 'Успішно отримано інформацію про замовлення.',
+        eng: 'Order information successfully received.',
+        ru: 'Успешно получено информацию о заказе.'
     }
 }

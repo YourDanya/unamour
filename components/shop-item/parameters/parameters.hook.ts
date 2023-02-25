@@ -16,7 +16,12 @@ const useParameters = (props: ParametersProps) => {
         })
     }, [color])
 
-    return {transl, colorCodes}
+    const currentColor = useMemo(() => {
+        const index = colors[1].findIndex(({slug}) => slug === color)
+        return {code: colors[1][index].code, transl: colors[0][index]}
+    }, [color])
+
+    return {transl, colorCodes, currentColor}
 }
 
 export default useParameters

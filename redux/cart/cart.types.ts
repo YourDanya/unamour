@@ -1,12 +1,3 @@
-import {AppThunk} from 'redux/store'
-import {StateField} from 'redux/store.types'
-import {AppState} from 'redux/store'
-import {CheckTimerField} from 'redux/store.types'
-import {UserField} from 'redux/user/user.types'
-import {SelectField} from 'redux/store.types'
-import {ContentErrors} from 'redux/store.types'
-import {ContentSuccess} from 'redux/store.types'
-
 export type CartItem = {
     common: {
         itemId: string
@@ -33,6 +24,28 @@ export type CartItem = {
 }
 
 export type CartState = {
-    items: CartItem [],
-    orderId: string
+    items: CartItem[],
+    orderId: string,
+    userFormData: UserFormData | null
 }
+
+export type UserFormData = {
+    country: string,
+    settlementType: string,
+    city: string,
+    region: string,
+    serviceType: string,
+    paymentType: string,
+    office: string,
+    street: string,
+    house: string,
+    apartment: string,
+    name: string,
+    surname: string,
+    email: string,
+    number: string,
+    comment: string,
+    save: boolean
+}
+
+

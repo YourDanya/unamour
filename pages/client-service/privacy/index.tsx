@@ -4,7 +4,6 @@ import {getClientServiceLayout} from 'components/client-service/service.componen
 import usePrivacy from 'pages/client-service/privacy/privacy.hook'
 
 const Privacy: NextPageWithLayout = () => {
-
     const {children} = usePrivacy()
 
     return (

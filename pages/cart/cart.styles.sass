@@ -9,11 +9,31 @@
   &__content
     width: calc(70% - 150px)
     margin-right: 150px
-  &__order
-    width: 30%
-    top: 110px
-    position: sticky
-    align-self: start
+  &__empty
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    flex-direction: column
+    height: 450px
+    &-img
+      margin-bottom: 30px
+      width: 30px
+    &-title
+      font-size: 12px
+      text-transform: uppercase
+      margin-bottom: 40px
+    &-link
+      width: 250px
+      color: black
+      height: 45px
+      display: flex
+      justify-content: center
+      align-items: center
+      font-size: 12px
+      text-transform: uppercase
+      border: 1px solid #e0e0e0
+
   &__policy
     white-space: pre
     text-align: center
@@ -40,8 +60,6 @@
     &__content
       margin-right: 50px
       width: calc(65% - 40px)
-    &__order
-      width: 35%
 
 @media (max-width: 992px)
   .cart
@@ -49,6 +67,4 @@
     flex-direction: column
     &__content
       margin-right: 0
-      width: 100%
-    &__order
       width: 100%

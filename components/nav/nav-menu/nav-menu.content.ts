@@ -1,14 +1,11 @@
-import Link from 'next/link'
-import React from 'react'
-
 const navMenuContent = {
     common: {
         firstLinks: [
-            '/shop-items/all',
-            '/shop-items/new',
-            '/shop-items/best',
-            '/shop-items/coming',
-            '/shop-items/special-price'
+            'all',
+            'new',
+            'best',
+            'coming',
+            'special-price'
         ],
         secondLinks: [
             '/favorites',

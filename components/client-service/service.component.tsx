@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import {ReactNode, FC} from 'react'
 import ServiceMenu from 'components/client-service/menu/menu.component'
 import Button from 'components/common/button/button.component'
 import useClientService from 'components/client-service/service.hook'
@@ -6,8 +6,7 @@ import ModalContent from 'components/common/modal-content/modal-content.componen
 import Modal from 'components/common/modal/modal.component'
 import {ClientServiceProps} from 'components/client-service/service.types'
 
-const ClientService: React.FC<ClientServiceProps> = ({children}) => {
-
+const ClientService: FC<ClientServiceProps> = ({children}) => {
     const {modalState, hideModal, showModal, transl} = useClientService()
 
     return (

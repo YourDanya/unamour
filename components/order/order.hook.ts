@@ -1,4 +1,3 @@
-import {OrderProps} from 'pages/order/order-page.types'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useMemo} from 'react'
 import {colorContent} from 'components/common/content/content'

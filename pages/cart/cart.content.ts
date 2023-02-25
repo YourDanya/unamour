@@ -1,116 +1,153 @@
-const DeliveryContent = {
-    formData: [
-        {
-            type: 'title',
-            className: 'cart__title'
+const cartContent = {
+    common: {
+        inputs: {
+            // country: {value: 'Україна', validations: {required: true}},
+            // settlementType: {value: 'city', values: ['city', 'village']},
+            // city: {value: 'Київ', validations: {required: true}},
+            // index: {value: '00000', validations: {required: true, minLength: 5, maxLength: 5}},
+            // region: {value: 'Київська', validations: {required: true}},
+            // serviceType: {value: 'DoorsWarehouse', values: ['DoorsWarehouse', 'DoorsDoors'], validations: {required: true}},
+            // paymentType: {value: 'online', values: ['online', 'after'], validations: {required: true}},
+            // office: {value: '99', validations: {required: true}},
+            // street: {value: 'Салютна', validations: {required: true}},
+            // house: {value: '2', validations: {required: true}},
+            // apartment: {value: '250', validations: {required: true}},
+            // name: {value: 'Данил', validations: {required: true}},
+            // surname: {value: 'Тарасенко', validations: {required: true}},
+            // email: {value: 'pochtaformumumu@gmail.com', validations: {isEmail: true, minLength: 5}},
+            // number: {value: '0956665297', validations: {required: true}},
+            // comment: {value: '', validations: {}},
+            // save: {value: false, validations: {}},
+            country: {value: '', validations: {required: true}},
+            settlementType: {value: 'city', values: ['city', 'village']},
+            city: {value: '', validations: {required: true}},
+            // index: {value: '', validations: {required: true, minLength: 5, maxLength: 5}},
+            region: {value: '', validations: {required: true}},
+            serviceType: {value: 'DoorsWarehouse', values: ['DoorsWarehouse', 'DoorsDoors'], validations: {required: true}},
+            paymentType: {value: 'online', values: ['online', 'after'], validations: {required: true}},
+            office: {value: '', validations: {required: true}},
+            street: {value: '', validations: {required: true}},
+            house: {value: '', validations: {required: true}},
+            apartment: {value: '', validations: {required: true}},
+            name: {value: '', validations: {required: true}},
+            surname: {value: '', validations: {required: true}},
+            email: {value: '', validations: {isEmail: true, minLength: 5}},
+            number: {value: '', validations: {required: true}},
+            comment: {value: '', validations: {}},
+            save: {value: false, validations: {required: true}}
         },
-        {
-            type: 'input',
-            name: 'country',
-            className: 'cart__input cart__country'
+    },
+    translations: {
+        ua: {
+            inputs: {
+                country: 'Країна',
+                settlementType: {
+                    title: 'Тип населеного пункту',
+                    labels: ['Місто', 'Село']
+                },
+                serviceType: {
+                    title: 'Тип доставки',
+                    labels: ['На відділення', 'На адресу']
+                },
+                paymentType: {
+                    title: 'Тип оплати',
+                    labels: ['Оплата картою', 'Оплата при отриманні']
+                },
+                region: 'Область',
+                city: 'Населений пункт',
+                // index: 'Індекс',
+                office: 'Відділення нової пошти',
+                delivery: '',
+                street: 'Вулиця',
+                house: 'Дім',
+                apartment: 'Квартира, офіс',
+                name: 'Ім\'я',
+                surname: 'Прізвище',
+                email: 'Ваш email',
+                number: 'Номер',
+                comment: 'Коментар',
+                save: 'Зберегти інформацію для наступних покупок?'
+            },
+            // indexLabel: 'Введіть 00000, якщо у вашої країни немає індексу',
+            delivery: 'доставка',
+            receiverData: 'дані одержувача',
+            empty: 'ваш кошик пустий',
+            favorites: 'дивитись обране'
         },
-        {
-            type: 'input',
-            name: 'city',
-            className: 'cart__input cart__city'
+        eng: {
+            inputs: {
+                country: 'Country',
+                settlementType: {
+                    title: 'Settlement type',
+                    labels:['City', 'Village']
+                },
+                serviceType: {
+                    title: 'Service type',
+                    labels: ['To warehouse', 'To address']
+                },
+                paymentType: {
+                    title: 'Payment Type',
+                    labels: ['Pay by card', 'Pay on delivery']
+                },
+                region: 'Region',
+                city: 'City',
+                // index: 'Index',
+                delivery: '',
+                office: 'Nova Poshta office',
+                street: 'Street',
+                house: 'House',
+                apartment: 'Apartment, office',
+                name: 'Name',
+                surname: 'Surname',
+                email: 'Your email',
+                number: 'Number',
+                comment: 'Comment',
+                save: 'Save information for future purchases?'
+            },
+            // indexLabel: 'Enter 00000 if your country does not have an index',
+            delivery: 'delivery',
+            receiverData: 'receiver data',
+            empty: 'your shopping cart is empty',
+            favorites: 'view favorite',
         },
-        {
-            type: 'input',
-            name: 'index',
-            className: 'cart__input cart__index'
-        },
-        {
-            type: 'radio',
-            name: 'delivery',
-            inputs: [
-                {
-                    value: 'novaPoshta',
-                    className: 'cart__input'
-                }
-            ]
-        },
-        {
-            type: 'input',
-            name: 'street',
-            className: 'cart__input cart__street'
-        },
-        {
-            type: 'input',
-            name: 'house',
-            className: 'cart__input cart__house'
-        },
-        {
-            type: 'input',
-            name: 'apartment',
-            className: 'cart__input cart__apartment'
-        },
-        {
-            type: 'title',
-            className: 'cart__title'
-        },
-        {
-            type: 'input',
-            name: 'name',
-            className: 'cart__input cart__surname'
-        },
-        {
-            type: 'input',
-            name: 'surname',
-            className: 'cart__input cart__surname'
-        },
-        {
-            type: 'input',
-            name: 'email',
-            className: 'cart__input cart__email'
-        },
-        {
-            type: 'input',
-            name: 'number',
-            className: 'cart__input cart__number'
-        },
-        {
-            type: 'input',
-            name: 'comment',
-            className: 'cart__input cart__comment'
-        },
-        {
-            type: 'check',
-            name: 'remember'
+        ru: {
+            title: 'доставка',
+            inputs: {
+                country: 'Страна',
+                settlementType: {
+                    title: 'Тип населенного пункта',
+                    labels:['Город', 'Деревня']
+                },
+                serviceType: {
+                    title: 'Тип доставки',
+                    labels: ['На отделение', 'На адрес']
+                },
+                paymentType: {
+                    title: 'Тип оплаты',
+                    labels: ['Оплата картой', 'Оплата при получении']
+                },
+                region: 'Область',
+                city: 'Населенный пункт',
+                // index: 'Индекс',
+                delivery: '',
+                street: 'Улица',
+                office: 'Отделение новой почты',
+                house: 'Дом',
+                apartment: 'Квартира, офис',
+                name: 'Имя',
+                surname: 'Фамилия',
+                email: 'Ваш email',
+                number: 'Номер',
+                comment: 'Комментарий',
+                save: 'Сохранить информацию для последующих покупок?'
+            },
+            empty: 'ваш корзина пустая',
+            favorites: 'смотреть избранное',
+            // indexLabel: 'Введите 00000, если у вашей страны нет индекса',
+            delivery: 'доставка',
+            receiverData: 'данные получателя'
         }
-    ],
-    formPlaceholders: [
-        'Країна',
-        'Місто',
-        'Індекс',
-        '',
-        'Вулиця',
-        'Дім',
-        'Квартира, офіс',
-        'Ім\'я',
-        'Прізвище',
-        'Email',
-        'Номер',
-        'Коментар',
-        'Зберегти інформацію для наступних покупок?'
-    ],
-    deliveryTypes: [
-        {
-            value: 'novaPoshta',
-            label: {
-                title: 'Доставка "Нова Пошта"',
-                price: '200 ₴',
-                duration: 'від 5 до 6 робочих днів'
-            }
-        },
-        {
-            value: 'ukrPoshta',
-            label: {
-                title: 'Доставка "Укр Пошта"',
-                price: '250 ₴',
-                duration: 'від 5 до 6 робочих днів'
-            }
-        }
-    ]
+    }
 }
 
-export default DeliveryContent
+export default cartContent

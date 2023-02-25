@@ -1,6 +1,6 @@
 import {NextPageWithLayout} from 'types/types'
 import ShopItem from 'components/shop-item/shop-item.component'
-import {ShopItemPageProps} from 'pages/shop-items/shop-items.types'
+import {ShopItemPageProps} from 'pages/shop-items/shop-items-page.types'
 import {wrapper} from 'redux/store'
 import {api} from 'utils/api/api.utils'
 import {apiCall} from 'utils/api/api.utils'
@@ -20,7 +20,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 )
 
 const ShopItemPage: NextPageWithLayout<ShopItemPageProps> = ({item}) => {
-    console.log('item', item)
     return (
         <>
             {item && <ShopItem {...item}/>}

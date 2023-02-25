@@ -1,12 +1,10 @@
 import React from 'react'
 import useMenu from 'components/client-service/menu/menu.hook'
 import Link from 'next/link'
+import {ServiceMenuProps} from 'components/client-service/menu/menu.types'
+import {FC} from 'react'
 
-type menuProps = {
-    className?: string
-}
-
-const ServiceMenu: React.FC<menuProps> = ({className}) => {
+const ServiceMenu: FC<ServiceMenuProps> = ({className}) => {
 
     const {content, transl, pathname} = useMenu()
 
@@ -18,9 +16,7 @@ const ServiceMenu: React.FC<menuProps> = ({className}) => {
                     key={url}
                     className={`service__menu-link ${`/client-service/${url}` === pathname ? 'service__menu-link--active' : ''} 
                          ${index===0? 'service__menu-link--first' : ''}`}>
-
                     {transl?.links[index]}
-
                 </Link>
             )}
         </div>

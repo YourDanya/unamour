@@ -274,7 +274,7 @@ export const categoriesContent = {
     ],
     translations: {
         ua: [
-            'подивитись все',
+            // 'подивитись все',
             'екокожа',
             'сукня',
             'спідниці',
@@ -290,7 +290,7 @@ export const categoriesContent = {
             'аксесуари'
         ],
         eng: [
-            'view all',
+            // 'view all',
             'eco leather',
             'dresses',
             'skirts',
@@ -306,7 +306,7 @@ export const categoriesContent = {
             'accessories'
         ],
         ru: [
-            'посмотреть все',
+            // 'посмотреть все',
             'экокожа',
             'платья',
             'юбки',
@@ -320,6 +320,39 @@ export const categoriesContent = {
             'верхняя одежда',
             'комплекты',
             'аксессуары',
+        ]
+    }
+}
+
+export const otherCategoriesContent = {
+    common: [
+        'all',
+        'new',
+        'best',
+        'coming',
+        'special-price'
+    ],
+    translations: {
+        ua: [
+            'одяг та аксесуари',
+            'нові надходження',
+            'бестселери',
+            'скоро у продажі',
+            'спеціальна ціна'
+        ],
+        eng: [
+            'clothes and accessories',
+            'new',
+            'bestseller',
+            'soon for sale',
+            'special price'
+        ],
+        ru: [
+            'одежда и аксессуары',
+            'новые поступления',
+            'бестселлеры',
+            'скоро в продаже',
+            'специальная цена'
         ]
     }
 }

@@ -2,6 +2,7 @@ import {FC} from 'react'
 import Input from 'components/common/input/input.component'
 import RadioButtons from 'components/common/radio-buttons/radio-buttons.component'
 import {CartFormProps} from 'components/cart/cart-form/cart-form.types'
+import Checkbox from 'components/common/checkbox/checkbox.component'
 
 const CartForm: FC<CartFormProps> = (props) => {
     const {transl, inputs, onChange, onValidate, content} = props
@@ -55,7 +56,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 active={inputs.values.serviceType}
             />
             <Input
-                className={`cart-form__input cart-form__city ${inputs.values.serviceType === 'DoorsWarehouse' ? 
+                className={`cart-form__input cart-form__city ${inputs.values.serviceType === 'DoorsWarehouse' ?
                     'cart-form__city--office' : ''}`}
                 name={'city'}
                 placeholder={transl.inputs.city}
@@ -151,12 +152,13 @@ const CartForm: FC<CartFormProps> = (props) => {
                 error={inputs.errors.comment}
                 onValidate={onValidate}
             />
-            {/*<Checkbox*/}
-            {/*    value={save}*/}
-            {/*    onChange={handleSave}*/}
-            {/*    label={'Зберегти інформацію для наступних покупок?'}*/}
-            {/*    className={'checkbox--cart'}*/}
-            {/*/>*/}
+            <Checkbox
+                className={'cart-form__checkbox'}
+                label={transl.inputs.save}
+                name={'save'}
+                value={inputs.values.save}
+                onChange={onChange}
+            />
         </form>
     )
 }

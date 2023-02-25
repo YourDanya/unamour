@@ -2,11 +2,9 @@ import {NextPageWithLayout} from 'types/types'
 import {getClientServiceLayout} from 'components/client-service/service.component'
 import Link from 'next/link'
 import useReturn from 'pages/client-service/return/return.hook'
-
-type ReturnProps = {}
+import {ReturnProps} from 'pages/client-service/return/return.types'
 
 const Return: NextPageWithLayout<ReturnProps> = () => {
-    
     const {transl} = useReturn()
     
     return (
@@ -24,7 +22,7 @@ const Return: NextPageWithLayout<ReturnProps> = () => {
             <div className="service__text">
                 {transl.text5}
                 <Link href="https://zakon.rada.gov.ua/laws/show/172-94-%D0%BF#Text">
-                    <a className={'service__link'}>{transl.textLink1}</a>
+                    {transl.textLink1}
                 </Link>
             </div>
         </div>

@@ -75,8 +75,8 @@ export type Order = {
         name: string
     },
     payment: {
-        amount: 2.5,
-        status: 'refunded' | 'pending' | 'approved' | 'declined',
+        amount: number,
+        status: 'refunded' | 'pending' | 'approved' | 'declined' | 'expired',
         method: 'online',
         currency: 'UAH'
     },
@@ -101,11 +101,11 @@ export type Order = {
     products: {
         id: string,
         name: string,
-        count: 2,
+        count: number,
         color: string,
         size: string,
         images: string [],
-        _id: '63f797ed4b5fe9aab1380b67'
+        _id: string
     }[],
     weight: string,
     volume: string,

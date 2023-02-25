@@ -1,9 +1,9 @@
-import {DiscountProps} from 'components/cart/discount/discount.component'
 import discountContent from 'components/cart/discount/discount.content'
 import {useInput} from 'hooks/input/input.hooks'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useToggleMany} from 'hooks/event-handler/event-handler.hooks'
 import {useSetFalseMany} from 'hooks/event-handler/event-handler.hooks'
+import {DiscountProps} from 'components/cart/discount/discount.types'
 
 const useDiscount = (props: DiscountProps) => {
     const [transl, content] = useLocale(discountContent)

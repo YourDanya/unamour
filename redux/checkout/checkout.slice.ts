@@ -34,8 +34,8 @@ export const checkoutSlice = createSlice({
             state.fields[action.payload] = {success: true, loading: false, error: null}
         },
         setPaymentData: (state, action: PayloadAction<PaymentData>) => {
-            action.payload.returnUrl = `${url}/cart`
-            // action.payload.returnUrl= `${url}/cart-order/${action.payload.orderReference}`
+            // action.payload.returnUrl = `${url}/cart`
+            action.payload.returnUrl = `${url}/order/${action.payload.orderReference}`
             state.paymentData = action.payload
         },
         setOrder: (state, action: PayloadAction<Order>) => {

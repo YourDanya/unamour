@@ -14,7 +14,7 @@ const NavMenu: FC<NavMenuProps> = (props) => {
             <div className="container nav-menu">
                 <div className="nav-menu__items nav-menu__items--first">
                     {content.firstLinks.map((elem, idx) => (
-                        <NavLink className={'nav-menu__item'} href={elem} key={elem}>
+                        <NavLink className={'nav-menu__item'} href={`/shop-items/${elem}`} key={elem}>
                             {transl.firstLinks[idx]}
                         </NavLink>
                     ))}

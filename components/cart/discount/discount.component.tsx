@@ -14,7 +14,7 @@ const Discount: FC<DiscountProps> = (props) => {
                 {active.certificate ? (
                     <>
                         <Input
-                            className={'cart__input discount__input'}
+                            className={'cart-form__input discount__input'}
                             name={'cert'}
                             placeholder={transl.inputs.cert}
                             value={inputs.values.cert}
@@ -36,7 +36,7 @@ const Discount: FC<DiscountProps> = (props) => {
                 {active.promo ? (
                     <>
                         <Input
-                            className={'cart__input discount__input'}
+                            className={'cart-form__input discount__input'}
                             name={'promo'}
                             placeholder={transl.inputs.promo}
                             value={inputs.values.promo}

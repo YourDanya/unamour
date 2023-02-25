@@ -3,7 +3,6 @@ import Link from 'next/link'
 import useFavorites from 'pages/favorites/favorites.hook'
 
 const Index: NextPage = () => {
-
     const {favorites, transl} = useFavorites()
 
     return (
@@ -19,10 +18,8 @@ const Index: NextPage = () => {
                     <div className="favorites__empty-title">
                         {transl.emptyTitle}
                     </div>
-                    <Link href={'/shop-items/all'}>
-                        <a className={'favorites__empty-button'}>
-                            {transl.emptyButton}
-                        </a>
+                    <Link href={'/shop-items/all'} className={'favorites__empty-button'}>
+                        {transl.emptyButton}
                     </Link>
                 </div>
             )}
