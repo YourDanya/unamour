@@ -139,8 +139,6 @@ const useItemVariant = (props: ItemVariantProps) => {
 
     const modeRef = useRef({type: '', id: ''})
 
-    const addItemsRef = useRef(0)
-
     const [images, setImages] = useState<{id: string, value:string | File}[]>(
         props.images.map((imageId) => ({id: imageId, value: imageId}))
     )

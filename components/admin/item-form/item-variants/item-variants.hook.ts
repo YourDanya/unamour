@@ -5,18 +5,20 @@ import {ItemVariantsProps} from 'components/admin/item-form/item-variants/item-v
 import {MouseAction} from 'types/types'
 import {ItemVariant} from 'components/admin/item-form/item-form.types'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
-import {nullObj} from 'utils/main/main.utils'
+import {useRef} from 'react'
 
 const useItemVariants = (props: ItemVariantsProps) => {
     const {itemValueRef, imagesRef} = props
     const [transl] = useLocale(itemVariantsContent)
     const [variants, setVariants] = useState(props.variants)
 
+    const variantImagesToUpdate = useRef()
+
     const onDeleteVariant: MouseAction = (event) => {
         event.preventDefault()
         const index = +(event.currentTarget.getAttribute('data-value') as string)
         console.log('variants before', itemValueRef.current.common.variants)
-        const variants = itemValueRef.current.common.variants
+        let variants = itemValueRef.current.common.variants
         if (variants.length === 0) {
             return
         }
@@ -26,7 +28,10 @@ const useItemVariants = (props: ItemVariantsProps) => {
             }
         }
         variants.splice(index, 1)
-        console.log('variants after', itemValueRef.current.common.variants)
+        variants = variants.map(variant => {
+            variant.images = ['no']
+            return variant
+        })
         setVariants([...variants])
     }
 
