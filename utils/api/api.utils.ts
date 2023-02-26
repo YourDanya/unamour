@@ -5,7 +5,7 @@ import {ApiCall} from 'utils/api/api.types'
 import {AxiosPromise} from 'axios'
 import {ServerError} from 'redux/store.types'
 
-export const baseURL = 'http://localhost:5000'
+export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://unamour-server.onrender.com'
 
 export const url = 'http://localhost:3000'
 

@@ -3,9 +3,9 @@ import OrderItem from 'components/order/order-item/order-item.component'
 import {Order} from 'redux/checkout/checkout.types'
 import useOrder from 'components/order/order.hook'
 
-const OrderFC :FC<Order> = (props) => {
+const OrderFC: FC<Order> = (props) => {
     const {transl, colors} = useOrder(props)
-    
+
     return (
         <div className={'container order'}>
             <div className={'order__title'}>
@@ -28,7 +28,13 @@ const OrderFC :FC<Order> = (props) => {
                         {transl.status}:
                     </div>
                     <div className="order__paragraph-property-value">
-                        {props.payment.status === 'approved' ? transl.approved : transl.pending}
+                        {props.payment.status === 'approved' ? (
+                            transl.approved
+                        ) : props.payment.status === 'refunded' ? (
+                            transl.refunded
+                        ) : (
+                            transl.pending
+                        )}
                     </div>
                     <div className="order__paragraph-property-name">
                         {transl.method}:

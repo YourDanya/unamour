@@ -6,12 +6,19 @@ import Modal from 'components/common/modal/modal.component'
 import Spinner from 'components/common/spinner/spinner.component'
 import Link from 'next/link'
 import Order from 'components/order/order.component'
+import {wrapper} from 'redux/store'
+
+export const getServerSideProps = wrapper.getServerSideProps(store =>
+    async (context) => {
+        return {props: {}}
+    }
+)
 
 const OrderPage: NextPage<OrderPageProps> = () => {
     const {order, transl} = useOrderPage()
     const status = order?.payment?.status
     return (<>
-        {order && status === 'approved' ? (
+        {order && (status === 'approved' || status === 'refunded') ? (
             <Order {...order}/>
         ) : (
             <>
