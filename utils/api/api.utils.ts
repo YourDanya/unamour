@@ -7,7 +7,7 @@ import {ServerError} from 'redux/store.types'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://unamour-server.onrender.com'
 
-export const url = 'http://localhost:3000'
+export const url = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://unamour-official.vercel.app'
 
 let instance = axios.create({
     baseURL,
