@@ -29,15 +29,15 @@ const usePreWork = () => {
 
     let intervalRef = useRef<NodeJS.Timer>()
 
-    useEffect(() => {
-        clearInterval(intervalRef.current as NodeJS.Timer)
-        if (!orderId) {
-            return
-        }
-        intervalRef.current = setInterval(() => {
-            dispatch(getOrderAsync(orderId))
-        }, 5000)
-    }, [orderId])
+    // useEffect(() => {
+    //     clearInterval(intervalRef.current as NodeJS.Timer)
+    //     if (!orderId) {
+    //         return
+    //     }
+    //     intervalRef.current = setInterval(() => {
+    //         dispatch(getOrderAsync(orderId))
+    //     }, 5000)
+    // }, [orderId])
 
 
     const order = useSelector(selectOrder)

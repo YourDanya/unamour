@@ -1,6 +1,6 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import {LoadImageProps} from 'components/common/load-image/load-image.component'
+import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {useExternalState, useResizeObserve} from 'hooks/component/component.hooks'
+import {LoadImageProps} from 'components/common/load-image/load-image.types'
 
 const useLoadImage = (props: LoadImageProps) => {
 
@@ -32,7 +32,9 @@ const useLoadImage = (props: LoadImageProps) => {
         }
     }, [loaded])
 
-    return {loaded, ref, height, handleLoaded, imgRef}
+    return {
+        loaded, ref, height, handleLoaded, imgRef
+    }
 }
 
 export default useLoadImage

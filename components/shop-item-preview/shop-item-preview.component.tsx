@@ -1,40 +1,42 @@
 import {FC} from 'react'
 import useShopItemPreview from 'components/shop-item-preview/shop-item-preview.hook'
-import LoadImage from 'components/common/load-image/load-image.component'
 import Link from 'next/link'
-import {CategoryItem} from 'redux/shop-items/shop-items.types'
+import {ShopItemPreviewProps} from 'components/shop-item-preview/shop-item-preview.types'
+import Image from 'next/image'
 import {baseURL} from 'utils/api/api.utils'
 
-const ShopItemPreview: FC<CategoryItem> = (props) => {
-    const {common: {images, price, slug, slugCategory, color}} = props
-    const {onMouse, loaded, handleLoaded, hovered, onClick, transl} = useShopItemPreview(props)
+const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
+    const {common: {images, price, slug, slugCategory, color}, itemRef, height, width} = props
+    const {onMouse, hovered, transl} = useShopItemPreview(props)
 
     return (
-        <div className='shop-item-preview'>
+        <div className="shop-item-preview" ref={itemRef}>
             <Link
                 href={`/shop-items/${slugCategory}/${slug}?color=${color}`}
                 className={`shop-item-preview__link`}
-                onMouseEnter={onMouse}
                 onMouseLeave={onMouse}
-                onClick={onClick}>
-
-                <LoadImage
-                    dataAttr={'0'}
-                    loaded={loaded[0]}
-                    handleLoaded={handleLoaded}
-                    className={`shop-item-preview__img ${hovered ? 'shop-item-preview__img--hidden' : ''}`}
+                onMouseEnter={onMouse}
+            >
+                <Image
                     src={`${baseURL}/images/${images[0]}`}
-                    alt="preview item image"
+                    alt={'shop item preview image'}
+                    width={width}
+                    height={height}
+                    style={{
+                        objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
+                        ... hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
+                    }}
                 />
-                <LoadImage
-                    dataAttr={'1'}
-                    loaded={loaded[1]}
-                    handleLoaded={handleLoaded}
-                    className={`shop-item-preview__img ${hovered ? '' : 'shop-item-preview__img--hidden'} `}
+                <Image
                     src={`${baseURL}/images/${images[1]}`}
-                    alt="preview item image"
+                    alt={'shop item preview image'}
+                    width={width}
+                    height={height}
+                    style={{
+                        objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
+                        ... !hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
+                    }}
                 />
-
             </Link>
             <div className={'shop-item-preview__bottom'}>
                 <div className="shop-item-preview__name">
@@ -45,7 +47,7 @@ const ShopItemPreview: FC<CategoryItem> = (props) => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default ShopItemPreview

@@ -1,16 +1,9 @@
 import React from 'react'
 import useLoadImage from 'components/common/load-image/load-image.hook'
+import {LoadImageProps} from 'components/common/load-image/load-image.types'
+import {FC} from 'react'
 
-export type LoadImageProps = {
-    src: string,
-    alt: string,
-    className?: string,
-    loaded?: boolean,
-    dataAttr?: string,
-    handleLoaded?: (event: any) => void
-}
-
-const LoadImage: React.FC<LoadImageProps> = (props) => {
+const LoadImage: FC<LoadImageProps> = (props) => {
 
     const {src, alt, className, dataAttr} = props
     const {loaded, ref, height, handleLoaded, imgRef} = useLoadImage(props)

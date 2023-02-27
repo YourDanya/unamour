@@ -29,8 +29,8 @@ const Test: NextPage = () => {
                     alt={''}
                     // fill
                     // style={{top: 0, left: 0}}
-                    width={width}
-                    height={height}
+                    width={300}
+                    height={400}
                     style={{objectFit: 'cover', objectPosition: 'center'}}
                 />
                 {/*<img*/}

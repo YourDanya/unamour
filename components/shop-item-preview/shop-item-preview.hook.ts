@@ -8,19 +8,19 @@ import {useLocale} from 'hooks/other/other.hooks'
 const useShopItemPreview = (props: CategoryItem) => {
     const [transl] = useLocale(props)
     const [hovered, setHovered] = useState(false)
-    const [loaded, handleLoaded, _, loadRef] = useToggleMany({0: false, 1: false} , 'data-attr')
-
+    // const [loaded, handleLoaded, _, loadRef] = useToggleMany({0: false, 1: false} , 'data-attr')
+    //
+    //
     const onMouse: MouseAction = () => {
-        const loaded = Object.values(loadRef.current).reduce((accum, current) => accum && current)
-        if (loaded) setHovered(!hovered)
+        setHovered(!hovered)
     }
+    //
+    // const onClick: MouseAction = (event) => {
+    //     const loaded = Object.values(loadRef.current).reduce((accum, current) => accum && current)
+    //     if (!loaded) event.preventDefault()
+    // }
 
-    const onClick: MouseAction = (event) => {
-        const loaded = Object.values(loadRef.current).reduce((accum, current) => accum && current)
-        if (!loaded) event.preventDefault()
-    }
-
-    return {hovered, onMouse, setHovered, loaded, handleLoaded, onClick, transl}
+    return {hovered, onMouse, transl}
 }
 
 export default useShopItemPreview

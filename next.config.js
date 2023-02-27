@@ -18,6 +18,18 @@ const nextConfig = {
                 hostname: 'media.naked-woman.org',
                 port: '',
                 pathname: '/**'
+            },
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                port: '5000',
+                pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'unamour-server.onrender.com',
+                port: '',
+                pathname: '/**'
             }
         ]
     },
