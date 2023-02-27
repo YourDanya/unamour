@@ -11,6 +11,9 @@ import {useDispatch} from 'react-redux'
 import {ChangeEvent} from 'react'
 import {searchItemsAsync} from 'redux/shop-items/shop-items.thunk'
 import {useEffect} from 'react'
+import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
+import {useLayoutEffect} from 'react'
+import {useRef} from 'react'
 
 const useSearch = () => {
     const [transl] = useLocale(searchContent)
@@ -47,7 +50,22 @@ const useSearch = () => {
         setInput(event.currentTarget.value)
     }
 
-    return {items, input, onChange, transl, locale, searchItems, onSubmit, first}
+    const [width, setWidth] = useState(0)
+
+    useLayoutResizeObserve(() => {{
+        if (itemRef.current) {
+            setWidth(itemRef.current.getBoundingClientRect().width)
+        }
+    }})
+
+    useLayoutEffect(() => {
+        const width = itemRef.current?.getBoundingClientRect().width as number
+        setWidth(width)
+    }, [])
+
+    const itemRef = useRef<HTMLDivElement>(null)
+
+    return {items, input, onChange, transl, locale, searchItems, onSubmit, first, itemRef, width}
 }
 
 export default useSearch

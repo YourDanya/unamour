@@ -8,7 +8,7 @@ import Button from 'components/common/button/button.component'
 import Spinner from 'components/common/spinner/spinner.component'
 
 const Search: NextPage = () => {
-    const {items, onChange, transl, input, onSubmit, searchItems, first} = useSearch()
+    const {items, onChange, transl, input, onSubmit, searchItems, first, width, itemRef} = useSearch()
 
     return (
         <div className={'search'}>
@@ -32,7 +32,13 @@ const Search: NextPage = () => {
                 (items.length > 0 ? (
                         <div className="search__results">
                             {items.map((item, index) => (
-                                <ShopItemPreview {...item} key={item.common.slug + index}/>
+                                <ShopItemPreview
+                                    {...item}
+                                    key={item.common.slug + index}
+                                    width={width}
+                                    height={width * 4 / 3}
+                                    itemRef={index === 0 ? itemRef : undefined}
+                                />
                             ))}
                         </div>
                     ) : (
