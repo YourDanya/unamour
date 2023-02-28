@@ -28,9 +28,18 @@ const useInput = (props: InputProps) => {
 
     const autoComplete = useMemo(() => {
         const value = name.toLowerCase()
-        if (value.includes('email')) return 'email'
-        if (value.includes('name')) return 'name'
-        else return 'on'
+        if (value.includes('email')) {
+            return 'email'
+        }
+        if (value.includes('surname')) {
+            return 'family-name'
+        }
+        if (value.includes('name')) {
+            return 'name'
+        }
+        else {
+            return 'on'
+        }
     }, [])
 
     return {focused, onFocus, onBlur, autoComplete}
