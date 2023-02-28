@@ -10,7 +10,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
     async (context) => {
         let query = context.query
         const {item: slug, color} = query
-        const {data, err} = await apiCall<{item: FetchedItem}>(() => api.get(`shop-item/${slug}?color=${color}`))
+        const {data, error} = await apiCall<{item: FetchedItem}>(() => api.get(`shop-item/${slug}?color=${color}`))
         const {item} = data as {item: FetchedItem}
         if (!item) {
             return {notFound: true}

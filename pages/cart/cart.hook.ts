@@ -16,6 +16,9 @@ import cartContent from 'pages/cart/cart.content'
 import {selectUserFormData} from 'redux/cart/cart.selector'
 import {setUserFormData} from 'redux/cart/cart.slice'
 import {createOrderAsync} from 'redux/checkout/checkout.thunk'
+import {useRouter} from 'next/router'
+import {setCartItems} from 'redux/cart/cart.slice'
+import {setPaymentData} from 'redux/checkout/checkout.slice'
 
 const useCart = () => {
     const cartItems = useSelector(selectCartItems)
@@ -29,6 +32,7 @@ const useCart = () => {
     const {inputs, onChange, onValidate, errRef, setOuterValues} = useInput(content.inputs)
 
     const dispatch = useDispatch()
+
 
     const onSubmit: MouseAction = (event) => {
         event.preventDefault()
@@ -86,11 +90,11 @@ const useCart = () => {
         }
         dispatch(createOrderAsync(createOrderData, inputs.values.paymentType))
 
-        if (inputs.values.save) {
-            dispatch(setUserFormData({...inputs.values}))
-        } else {
-            dispatch(setUserFormData(null))
-        }
+        // if (inputs.values.save) {
+        //     dispatch(setUserFormData({...inputs.values}))
+        // } else {
+        //     dispatch(setUserFormData(null))
+        // }
     }
 
     useEffect(() => {
@@ -101,8 +105,17 @@ const useCart = () => {
 
     const formRef = useRef<any>(null)
 
+    const router = useRouter()
+
     useEffect(() => {
         if (!paymentData) {
+            return
+        }
+
+        if (paymentData.orderId) {
+            router.push(paymentData.returnUrl)
+            dispatch(setCartItems([]))
+            dispatch(setPaymentData(null))
             return
         }
 

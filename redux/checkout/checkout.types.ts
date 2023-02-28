@@ -42,14 +42,15 @@ export type CheckoutErrors = ContentErrors<CheckoutField>
 export type CheckoutSuccess = ContentSuccess<CheckoutField>
 
 export type PaymentData = {
-    amount: number
-    apiVersion: number
-    currency: string
-    merchantAccount: string
-    merchantDomainName: string
-    merchantSignature: string
-    orderDate: number
-    orderReference: string
+    orderId: string,
+    amount: number,
+    apiVersion: number,
+    currency: string,
+    merchantAccount: string,
+    merchantDomainName: string,
+    merchantSignature: string,
+    orderDate: number,
+    orderReference: string,
     paymentSystems: string,
     products: PaymentItem[],
     serviceUrl: string,
@@ -58,13 +59,13 @@ export type PaymentData = {
 
 export type PaymentItem = {
     color: string,
-    id: string
-    name: string
-    price: string
-    size: string
-    uniqueNameIntheCart: string
-    count: string
-    volume: any
+    id: string,
+    name: string,
+    price: string,
+    size: string,
+    uniqueNameIntheCart: string,
+    count: string,
+    volume: any,
     weight: any,
 }
 
@@ -77,7 +78,7 @@ export type Order = {
     payment: {
         amount: number,
         status: 'refunded' | 'pending' | 'approved' | 'declined' | 'expired',
-        method: 'online',
+        method: 'online' | 'afterpayment',
         currency: 'UAH'
     },
     delivery: {

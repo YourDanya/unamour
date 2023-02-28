@@ -1,4 +1,4 @@
-export const shopItemPageContent = {
+export const shopItemsPageContent = {
     translations: {
         ua: {
             notFound: 'нічого не знайдено'

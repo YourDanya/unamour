@@ -44,7 +44,6 @@ const Cart: NextPage = () => {
                     />
                 </>
             )}
-
         </div>
     )
 }

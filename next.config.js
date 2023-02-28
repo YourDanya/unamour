@@ -12,6 +12,7 @@ const nextConfig = {
     },
     pageExtensions: ['tsx', 'jsx'],
     images: {
+        minimumCacheTTL: 600,
         remotePatterns: [
             {
                 protocol: 'https',

@@ -10,6 +10,7 @@ import {selectOrder} from 'redux/checkout/checkout.selector'
 import {useRef} from 'react'
 import {setOrderId} from 'redux/cart/cart.slice'
 import {setCartItems} from 'redux/cart/cart.slice'
+import {setPaymentData} from 'redux/checkout/checkout.slice'
 
 const usePreWork = () => {
     const user = useSelector(selectUser)
@@ -29,16 +30,15 @@ const usePreWork = () => {
 
     let intervalRef = useRef<NodeJS.Timer>()
 
-    // useEffect(() => {
-    //     clearInterval(intervalRef.current as NodeJS.Timer)
-    //     if (!orderId) {
-    //         return
-    //     }
-    //     intervalRef.current = setInterval(() => {
-    //         dispatch(getOrderAsync(orderId))
-    //     }, 5000)
-    // }, [orderId])
-
+    useEffect(() => {
+        clearInterval(intervalRef.current as NodeJS.Timer)
+        if (!orderId) {
+            return
+        }
+        intervalRef.current = setInterval(() => {
+            dispatch(getOrderAsync(orderId))
+        }, 5000)
+    }, [orderId])
 
     const order = useSelector(selectOrder)
 
@@ -55,6 +55,7 @@ const usePreWork = () => {
             dispatch(setCartItems([]))
         }
     }, [order])
+
 }
 
 export default usePreWork

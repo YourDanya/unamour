@@ -87,16 +87,12 @@ import PreWork from 'components/pre-work/pre-work.component'
 import {useStore} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 import {Store} from 'redux'
-import {baseURL} from 'utils/api/api.utils'
 
 function App(props: AppPropsWithLayout) {
     const {Component, pageProps} = props
     const {getLayout} = useApp(props)
 
     const store = useStore() as Store & {__persistor: any}
-
-    console.log('NODE_ENV', process.env.NODE_ENV)
-    console.log('base url', baseURL)
 
     return (
         <>

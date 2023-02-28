@@ -4,6 +4,8 @@ import {ApiCallAsync} from 'utils/api/api.types'
 import {ApiCall} from 'utils/api/api.types'
 import {AxiosPromise} from 'axios'
 import {ServerError} from 'redux/store.types'
+import {useEffect} from 'react'
+import {useState} from 'react'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://unamour-server.onrender.com'
 
@@ -41,7 +43,7 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
     return async (dispatch, getState) => {
         try {
             const res = await apiCall()
-            // console.log('data', res.data)
+            console.log('data', res.data)
             if (Array.isArray(successAction)) {
                 successAction.forEach(action => {
                     dispatch(action(res.data))
@@ -71,13 +73,43 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
 export const apiCall: ApiCall = async (apiCall)  => {
     try {
         const {data} = await apiCall()
-        return {data, err: {}}
-    } catch (err: any) {
-        const res = err.response as AxiosResponse
-        console.log('err', err.response)
+        return {data, error: {}}
+    } catch (error: any) {
+        const res = error.response as AxiosResponse
+        console.log('error', error.response)
         let code = res?.status?.toString()[0] ?? ''
         if (code !== '4' && code !== '5') code = '5'
         const {message} = res?.data || {}
-        return {data: {}, err: {code, message}}
+        return {data: {}, error: {code, message}}
     }
 }
+
+// export const useApiCall = (params) => {
+//     const {callback, onSuccess, onError} = params
+//
+//     const [isLoading, setIsLoading] = useState(false)
+//     const [isSuccess, setIsSuccess] = useState(false)
+//     const [isError, setIsError] = useState(false)
+//     const [data, setData] = useState(null)
+//     const [error, setError] = useState(null)
+//
+//     useEffect(async () => {
+//         if (!isLoading) {
+//             return
+//         }
+//         const {data, error} = await apiCall(callback)
+//         if (data) {
+//             setError(null)
+//             setIsSuccess(true)
+//             onSuccess()
+//         }
+//         if (error) {
+//             setData(data)
+//             setIsSuccess(false)
+//             onError(false)
+//         }
+//         setIsLoading(false)
+//     }, [isLoading])
+//
+//     return {isLoading, isSuccess, isError, data, error, setIsLoading, setIsError, setIsSuccess}
+// }

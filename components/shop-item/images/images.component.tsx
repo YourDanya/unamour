@@ -1,14 +1,13 @@
-import React from 'react'
+import {FC} from 'react'
 import useImages from 'components/shop-item/images/images.hook'
 import Slider from 'components/common/slider/slider.component'
 import {baseURL} from 'utils/api/api.utils'
+import {ImagesProps} from 'components/shop-item/images/images.types'
+import Image from 'next/image'
 
-export type ImagesProps = {
-    images: string[]
-}
-
-const Images: React.FC<ImagesProps> = (props) => {
-    const {images, current, handleTabClick, setCurrent} = useImages(props)
+const Images: FC<ImagesProps> = (props) => {
+    const {images} = props
+    const {current, handleTabClick, setCurrent, elemRef, width, height} = useImages()
 
     return (
         <div className="shop-item__images">
@@ -20,14 +19,28 @@ const Images: React.FC<ImagesProps> = (props) => {
                         data-index={index}
                         onClick={handleTabClick}
                     >
-                        <img className='shop-item__tab-img' src={`${baseURL}/images/${url}`} alt={`tab image ${index}`}/>
+                        <Image
+                            height={90}
+                            width={90 * 3 / 4}
+                            className='shop-item__tab-img'
+                            src={`${baseURL}/images/${url}`}
+                            alt={`tab image ${index}`}
+                            style={{objectFit: 'cover'}}
+                        />
                     </button>
                 )}
             </div>
-            <div className="shop-item__slider">
+            <div className="shop-item__slider" ref={elemRef}>
                 <Slider current={current} setCurrent={setCurrent}>
                     {images.map((url, index) =>
-                        <img className={'shop-item__slider-img'} src={`${baseURL}/images/${url}`} alt={`slide image ${index}`} key={url + index}/>
+                        <Image
+                            width={width}
+                            height={height}
+                            src={`${baseURL}/images/${url}`}
+                            alt={`slide image ${index}`}
+                            key={url + index}
+                            style={{objectFit: 'cover'}}
+                        />
                     )}
                 </Slider>
             </div>

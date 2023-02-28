@@ -33,9 +33,14 @@ export const checkoutSlice = createSlice({
         setCheckoutFieldSuccess: (state, action: PayloadAction<CheckoutField>) => {
             state.fields[action.payload] = {success: true, loading: false, error: null}
         },
-        setPaymentData: (state, action: PayloadAction<PaymentData>) => {
+        setPaymentData: (state, action: PayloadAction<PaymentData | null>) => {
             // action.payload.returnUrl = `${url}/cart`
-            action.payload.returnUrl = `${url}/order/${action.payload.orderReference}`
+            if (action.payload === null) {
+                state.paymentData = action.payload
+                return
+            }
+            const {orderReference, orderId} = action.payload as PaymentData
+            action.payload.returnUrl = `${url}/order/${orderReference ?? orderId}`
             state.paymentData = action.payload
         },
         setOrder: (state, action: PayloadAction<Order>) => {

@@ -11,9 +11,7 @@ import {useDispatch} from 'react-redux'
 import {ChangeEvent} from 'react'
 import {searchItemsAsync} from 'redux/shop-items/shop-items.thunk'
 import {useEffect} from 'react'
-import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
-import {useLayoutEffect} from 'react'
-import {useRef} from 'react'
+import {useGetParamForImages} from 'hooks/other/other.hooks'
 
 const useSearch = () => {
     const [transl] = useLocale(searchContent)
@@ -50,22 +48,9 @@ const useSearch = () => {
         setInput(event.currentTarget.value)
     }
 
-    const [width, setWidth] = useState(0)
+    const {width, height, elemRef} = useGetParamForImages()
 
-    useLayoutResizeObserve(() => {{
-        if (itemRef.current) {
-            setWidth(itemRef.current.getBoundingClientRect().width)
-        }
-    }})
-
-    useLayoutEffect(() => {
-        const width = itemRef.current?.getBoundingClientRect().width as number
-        setWidth(width)
-    }, [])
-
-    const itemRef = useRef<HTMLDivElement>(null)
-
-    return {items, input, onChange, transl, locale, searchItems, onSubmit, first, itemRef, width}
+    return {items, input, onChange, transl, locale, searchItems, onSubmit, first, width, height, elemRef}
 }
 
 export default useSearch

@@ -4,6 +4,10 @@ import {useEffect} from 'react'
 import Link from 'next/link'
 import {UseLocale} from 'hooks/other/other.types'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
+import {useState} from 'react'
+import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
+import {useLayoutEffect} from 'react'
+import {useRef} from 'react'
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -110,3 +114,23 @@ export const useLocale: UseLocale = ((content) => {
     return common? [translations[locale], common] : [translations[locale]]
 }) as UseLocale
 
+export const useGetParamForImages = (ratio = 4 / 3) => {
+    const [width, setWidth] = useState(0)
+    const [height, setHeight] = useState(0)
+    
+    useLayoutResizeObserve(() => {
+        const width = elemRef.current?.getBoundingClientRect().width as number
+        setWidth(width)
+        setHeight(width * ratio)
+    })
+
+    useLayoutEffect(() => {
+        const width = elemRef.current?.getBoundingClientRect().width as number
+        setWidth(width)
+        setHeight(width * ratio)
+    }, [])
+
+    const elemRef = useRef<HTMLDivElement>(null)
+
+    return {width, height, elemRef}
+}

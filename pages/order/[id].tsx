@@ -17,8 +17,9 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 const OrderPage: NextPage<OrderPageProps> = () => {
     const {order, transl} = useOrderPage()
     const status = order?.payment?.status
+    const method = order?.payment?.method
     return (<>
-        {order && (status === 'approved' || status === 'refunded') ? (
+        {order && (status === 'approved' || status === 'refunded' || method=== 'afterpayment') ? (
             <Order {...order}/>
         ) : (
             <>

@@ -40,7 +40,7 @@ export const filterItems: FilterItems = (items, filters) => {
         items = items.filter(item => +item.common.price >= min && +item.common.price <= max)
     }
     if (otherFilters) {
-        console.log(otherFilters)
+        // console.log(otherFilters)
         Object.entries(otherFilters).forEach(([filter, filterValueString]) => {
             const filterParam = filter as keyof ClientItem
             const filterValues = filterValueString
@@ -49,7 +49,7 @@ export const filterItems: FilterItems = (items, filters) => {
                     accum[filterValue] = true
                     return accum
                 }, {} as Record<string, boolean>)
-            console.log('filterValues', filterValues)
+            // console.log('filterValues', filterValues)
             items = items.filter(item => {
                 if (filter === 'color') {
                     const color = item.common['color']
