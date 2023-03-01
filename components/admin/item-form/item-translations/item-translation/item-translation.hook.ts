@@ -4,11 +4,14 @@ import {useInput} from 'hooks/input/input.hooks'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useEffect} from 'react'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
-import {ItemTranslationProps} from 'components/admin/item-form/item-translation/item-translation.types'
-import itemTranslationContent from 'components/admin/item-form/item-translation/item-translation.content'
 import {setAdminField} from 'redux/admin/admin.slice'
 import {useDispatch} from 'react-redux'
 import {AdminIdField} from 'redux/admin/admin.types'
+import {
+    ItemTranslationProps
+} from 'components/admin/item-form/item-translations/item-translation/item-translation.types'
+import itemTranslationContent
+    from 'components/admin/item-form/item-translations/item-translation/item-translation.content'
 
 const useItemTranslation = (props: ItemTranslationProps) => {
     const {values, locale, itemValueRef, itemErrRef, _id} = props

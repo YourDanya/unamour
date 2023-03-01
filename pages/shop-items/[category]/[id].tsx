@@ -38,10 +38,6 @@ export async function getStaticPaths() {
             params: {id: `${item.common.slug}?${item.common.color}`, category: category}
         }))
     }
-    //
-    // const paths = items.map((item) => ({
-    //     params: {id: `${item.common.slug}?${item.common.color}`}
-    // }))
 
     return {paths, fallback: true}
 }

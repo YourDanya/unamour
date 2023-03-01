@@ -2,7 +2,7 @@ import {FC, memo} from 'react'
 import useItemTranslations from 'components/admin/item-form/item-translations/item-translations.hook'
 import {ItemTranslationsProps} from 'components/admin/item-form/item-translations/item-translations.types'
 import {Locale} from 'types/types'
-import ItemTranslation from 'components/admin/item-form/item-translation/item-translation.component'
+import ItemTranslation from 'components/admin/item-form/item-translations/item-translation/item-translation.component'
 
 const ItemTranslations: FC<ItemTranslationsProps> = (props) => {
     const {translations, itemValueRef, itemErrRef, _id} = props
