@@ -12,7 +12,7 @@ const sizesContent = {
             help: 'Якщо виникнуть труднощі, ми з радістю допоможемо Вам із вибором розміру. Зв`яжіться з нами в онлайн-чаті, Instagram або зателефонуйте за номером +380 (66) 384 78 22.',
         },
         eng: {
-            title: 'you can choose the size you need based on the information in the measurements tab on the product page',
+            title: 'you can choose the size you need based on the information in the measurements tab on the product testing',
             how: 'How to determine the appropriate size',
             list: [
                 "Measure the chest girth at the most convex point of the bust.",

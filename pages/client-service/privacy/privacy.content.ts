@@ -117,7 +117,7 @@ const privacyContent = {
                 'Payment via liqpay system.',
                 'Payment through invoice.'
             ],
-            numText9: 'You can pay for the cart-order in cash upon receipt of the parcel at any branch of Nova Poshta. The commission for sending funds is paid by the buyer. The cost of postpay transfer is UAH 20 + 2% of the amount (Nova Poshta fee). Payment of the cart-order from the Visa or MasteCard card on the website immediately after placing the cart-order through the liqpay system. Payment is made on a page protected by security certificates. You only pay the cost of the goods, no fee is charged when paying online. ',
+            numText9: 'You can pay for the cart-order in cash upon receipt of the parcel at any branch of Nova Poshta. The commission for sending funds is paid by the buyer. The cost of postpay transfer is UAH 20 + 2% of the amount (Nova Poshta fee). Payment of the cart-order from the Visa or MasteCard card on the website immediately after placing the cart-order through the liqpay system. Payment is made on a testing protected by security certificates. You only pay the cost of the goods, no fee is charged when paying online. ',
             numSubtitle6: 'ORDER DELIVERY',
             numText10: 'Delivery by postal services. Free delivery to all branches of Nova Poshta and Ukrposhta when ordering from UAH 1,500. Delivery of the cart-order to 1500 UAH. carried out at the expense of the client at the rates of the carrier in the following ways: ',
             list3: [

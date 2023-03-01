@@ -4,6 +4,7 @@ const nextConfig = {
     reactStrictMode: false,
     experimental: {
         concurrentFeatures: true,
+        appDir: true
     },
     i18n: {
         locales: ['ua', 'eng', 'ru'],

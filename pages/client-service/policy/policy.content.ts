@@ -188,7 +188,7 @@ const policyContent = {
             list3: [
                 'paper document with details, which allows to identify this document and an individual.',
                 'an electronic document, which must contain the obligatory details that allow to identify this document and the individual. Voluntary expression of will of an individual to grant permission for the processing of his personal data should be certified by an electronic signature of the subject of personal data. ',
-                'mark on the electronic page of the document or in the electronic file processed in the information system on the basis of documented software and hardware solutions.'
+                'mark on the electronic testing of the document or in the electronic file processed in the information system on the basis of documented software and hardware solutions.'
             ],
             numText6: 'The consent of the personal data subject is given during the registration of civil relations in accordance with applicable law.',
             numText7: 'Notification of the subject of personal data on the inclusion of his personal data in the personal database, rights under the Law of Ukraine "On Personal Data Protection", the purpose of data collection and persons to whom his personal data is transferred during the registration of civil relations in accordance with current legislation. ',

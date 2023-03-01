@@ -43,19 +43,11 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    let query = context.params
-    let {category, reset: _, ...other} = query as Record<string, string>
-    let param = ''
-    if (otherCategoriesContent.common.includes(category) && category !== 'all') {
-        param = `?${category}=true`
-    }
+    let {category} = context.params as Record<string, string>
     const {data} = await apiCall<{ items: CategoryItem[] }>(() =>
-        api.get(`shop-item/category/${category}${param}`)
+        api.get(`shop-item/category/${category}`)
     )
-    let {items} = data as { items: CategoryItem[] }
-
-    const filters = other as Record<string, string>
-    items = filterItems(items, filters)
+    let {items} = data as {items: CategoryItem[]}
 
     return {props: {items}}
 }

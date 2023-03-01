@@ -26,10 +26,10 @@ const OrderingContent = {
                 'Select item, color, size and add item to cart. Continue choosing items or proceed to checkout.',
                 'If you place an cart-order - register-form, or make a purchase as a guest of the site.',
                 'After entering your data, check the correctness and confirm.',
-                'Then choose how you want to receive your checkout. You can find out the delivery time and cost in the @UNAMOUR profile, email unamour@gmail.com or call the toll-free number 8 (800) 707-71-04 (ext. 3). Also, the information will be indicated on the cart-order page in a pop-up message before payment.',
+                'Then choose how you want to receive your checkout. You can find out the delivery time and cost in the @UNAMOUR profile, email unamour@gmail.com or call the toll-free number 8 (800) 707-71-04 (ext. 3). Also, the information will be indicated on the cart-order testing in a pop-up message before payment.',
                 'Confirm cart-order.',
                 'Please check that your cart-order is correct and that you have selected the correct delivery option.',
-                'Click on the "Checkout" button and you will automatically be redirected to the online payment page. Click on the button "Pay for the cart-order" and enter the required data.',
+                'Click on the "Checkout" button and you will automatically be redirected to the online payment testing. Click on the button "Pay for the cart-order" and enter the required data.',
                 'Orders placed on Friday evenings and weekends will be processed and forwarded to the shipping company on Monday. During the busy period of the warehouse of the online store, the processing time and transfer of the cart-order to the transport company can reach up to 3 working days after payment.',
                 'After your cart-order has shipped, you will receive an email notification with a tracking number to track your shipment.'
             ],
