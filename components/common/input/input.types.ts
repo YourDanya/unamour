@@ -4,7 +4,7 @@ import {DependencyList} from 'react'
 export type InputProps = {
     placeholder: string
     name: string,
-    value: string,
+    value: string | number,
     className?: string
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
     error?: string | null,

@@ -1,8 +1,8 @@
-import React from 'react'
+import {FC, memo} from 'react'
 import {TextareaProps} from 'components/common/textarea/textare.types'
 import useTextArea from 'components/common/textarea/textares.hook'
 
-const Textarea: React.FC<TextareaProps> = (props) => {
+const Textarea: FC<TextareaProps> = (props) => {
     const {name, placeholder, onChange, error, className, value} = props
     const {onFocus, onBlur, focused} = useTextArea(props)
 
@@ -32,4 +32,9 @@ const Textarea: React.FC<TextareaProps> = (props) => {
     )
 }
 
-export default Textarea
+// export default Textarea
+
+export const areEqual = (prevProps: TextareaProps, nextProps: TextareaProps) =>
+    prevProps.value === nextProps.value && prevProps.error === nextProps.error
+
+export default memo(Textarea, areEqual)

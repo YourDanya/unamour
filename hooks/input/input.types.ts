@@ -1,11 +1,12 @@
 import React from 'react'
+import {MutableRefObject} from 'react'
 
-export type Value = string | boolean | number | string[]
+export type Value = string | boolean | number
 
 export type Validations = Record<string, string | boolean | number>
 
 export type InputObj = {
-    value: Value,
+    value?: Value,
     validations?: Validations,
     error?: string | null,
 }
@@ -20,14 +21,14 @@ export type ValidationInputs <T extends string | number | symbol, > = {
 
 export type Values = Record<string, Value>
 
-export type TranslInputs = Record<string, string>
+export type TranslInputs = Record<string | number | symbol, string>
 
 export type ValidationInput = {
     value: Value,
     validations: Validations,
     values? : Values,
     translInputs?: TranslInputs,
-    name: string
+    name: string | number | symbol
 }
 
 export type UseInputInputs<T extends InputsObj> = {values: {[K in keyof T]: T[K]['value']}, errors: Record<keyof T, string | null>}
@@ -44,4 +45,3 @@ export type UseInput = <T extends InputsObj> (inputsObj: T, translInputs?: Recor
     withSubmit: (callback: () => void) => (event: React.MouseEvent<HTMLElement>) => void
 }
 
-export type ErrRef <T,> = {errors : T, count: number}

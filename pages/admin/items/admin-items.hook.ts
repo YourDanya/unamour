@@ -1,8 +1,6 @@
 import {useSelector} from 'react-redux'
 import {selectUser} from 'redux/user/user.selectors'
 import {useEffect} from 'react'
-import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
-import {selectUserField} from 'redux/user/user.selectors'
 import {useRouter} from 'next/router'
 import {MouseEvent} from 'react'
 import {useState} from 'react'
@@ -11,15 +9,22 @@ import adminItemsContent from 'pages/admin/items/admin-items.content'
 import {useDispatch} from 'react-redux'
 import {addAdminItem} from 'redux/admin/admin.slice'
 import {selectAdminItems} from 'redux/admin/admin.selectors'
-import {selectAdminField} from 'redux/admin/admin.selectors'
 import {ItemVariant} from 'components/admin/item-form/item-form.types'
+import {useApiCall} from 'utils/api/api-v2.utils'
+import {useRef} from 'react'
 
 const useAdminItems = () => {
+    const test = useRef(performance.now())
+
+    test.current = performance.now()
+
     const router = useRouter()
     const items = useSelector(selectAdminItems)
     const user = useSelector(selectUser)
-    const getUser = useParamSelector(selectUserField, 'getUser')
-    const getItems = useParamSelector(selectAdminField, 'getItems')
+
+    const getUser = useApiCall( 'getUser')
+    const getItems = useApiCall( 'getItems')
+
     const [transl] = useLocale(adminItemsContent)
     const [itemError, setItemError] = useState('')
 
@@ -36,7 +41,6 @@ const useAdminItems = () => {
         event.preventDefault()
         if (!toAddItem) {
             const item = JSON.parse(JSON.stringify(items[items.length - 1]))
-            // const variants = ))
             item.common.variants.forEach((variant: ItemVariant) => {
                 delete (variant as any)._id
                 variant.images = []
@@ -48,7 +52,29 @@ const useAdminItems = () => {
         }
     }
 
-    return {items, user, getItems, onAddItem, toAddItem, transl, itemError}
+    const [slugs, setSlugs] = useState<Record<string, string>>({})
+    const slugsRef = useRef(slugs)
+
+    useEffect(() => {
+        if (items.length > 0) {
+            const slugs = items.reduce((slugs, item) => {
+                slugs[item._id] = item.common.slug
+                return slugs
+            }, {} as Record<string, string>)
+            slugsRef.current = slugs
+            setSlugs({...slugs})
+        }
+    }, [items])
+
+    useEffect(() => {
+        console.log('test', performance.now() - test.current)
+    })
+
+    const testRef = useRef({a: {b: 1}})
+
+    return {
+        items, user, getItems, onAddItem, toAddItem, transl, itemError, providerValue: {slugs, setSlugs, slugsRef, testRef}
+    }
 }
 
 export default useAdminItems

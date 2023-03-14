@@ -1,60 +1,36 @@
+import {memo} from 'react'
 import {FC} from 'react'
 import useItemForm from 'components/admin/item-form/item-form.hook'
-import React from 'react'
 import ItemCommon from 'components/admin/item-form/item-common/item-common.component'
-import ItemTranslations from 'components/admin/item-form/item-translations/item-translations.component'
-import ItemVariants from 'components/admin/item-form/item-variants/item-variants.component'
 import {ItemFormProps} from 'components/admin/item-form/item-form.types'
-import ItemButtons from 'components/admin/item-form/item-buttons/item-buttons.component'
+import ItemTranslations from 'components/admin/item-form/item-translations/item-translations.component'
+import {ItemFormContext} from 'components/admin/item-form/store/store'
 
 const ItemForm: FC<ItemFormProps> = (props) => {
-    const {_id, deleted, common: {variants, ...common}, translations, itemIndex, className, updateTime} = props
-    const {itemValueRef, itemErrRef, transl, imagesRef, initImagesRef} = useItemForm(props)
+    const {item: {deleted}, itemIndex, className} = props
+    const {transl, store} = useItemForm(props)
+
+    // console.log('render item form')
 
     return (
-        <form className={`item-form ${className ? className : ''} ${deleted? 'item-form--deleted' : ''}`}>
-             {/*{!deleted && (*/}
-             {/*    <>*/}
-                     <div className={'item-form__title item-form__title--main'}>
-                         {transl.item} №{itemIndex + 1} {common.slug}
-                     </div>
-                     <ItemCommon
-                         {...common}
-                         itemValueRef={itemValueRef}
-                         itemErrRef={itemErrRef}
-                         itemIndex={itemIndex}
-                         _id={_id}
-                     />
-                     <ItemTranslations
-                         translations={translations}
-                         itemValueRef={itemValueRef}
-                         itemErrRef={itemErrRef}
-                         _id={_id}
-                     />
-                     <ItemVariants
-                         variants={variants}
-                         itemValueRef={itemValueRef}
-                         itemErrRef={itemErrRef}
-                         imagesRef={imagesRef}
-                         _id={_id}
-                     />
-            {/*     </>*/}
-            {/*)}*/}
-            <ItemButtons
-                itemValueRef={itemValueRef}
-                _id={_id}
-                deleted={deleted}
-                imagesRef={imagesRef}
-                updateTime={updateTime}
-                initImagesRef={initImagesRef}
-            />
-        </form>
+        <ItemFormContext.Provider value={store}>
+            <form className={`item-form ${className ? className : ''} ${deleted ? 'item-form--deleted' : ''}`}>
+                <div className={'item-form__title item-form__title--main'}>
+                    {transl.item} №{itemIndex + 1}
+                </div>
+                <ItemCommon itemIndex={itemIndex}/>
+                <ItemTranslations/>
+                {/*<ItemVariants/>*/}
+                {/*<ItemButtons/>*/}
+            </form>
+        </ItemFormContext.Provider>
     )
 }
 
 const areEqual = (prevProps: ItemFormProps, currentProps: ItemFormProps) => {
-    return prevProps.updateTime === currentProps.updateTime && prevProps.deleted === currentProps.deleted
+    return prevProps.item.updateTime === currentProps.item.updateTime &&
+        prevProps.item.deleted === currentProps.item.deleted
 }
 
-export default React.memo(ItemForm, areEqual)
+export default memo(ItemForm, areEqual)
 

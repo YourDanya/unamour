@@ -4,6 +4,7 @@
   ],
   "rules": {
     "react/no-unescaped-entities": 0,
-    "react/jsx-no-comment-textnodes": 0
+    "react/jsx-no-comment-textnodes": 0,
+    "react-hooks/rules-of-hooks": 0
   }
 }

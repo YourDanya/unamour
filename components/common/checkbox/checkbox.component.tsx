@@ -1,16 +1,7 @@
-import React from 'react'
+import {memo} from 'react'
 import useCheckBox from 'components/common/checkbox/checkbox.hook'
-import {ChangeEvent} from 'react'
 import {FC} from 'react'
-
-type CheckboxProps = {
-    label: string,
-    value: boolean,
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void,
-    className?: string,
-    styles?: object,
-    name?: string
-}
+import {CheckboxProps} from 'components/common/checkbox/checkbox.types'
 
 const Checkbox: FC<CheckboxProps> = (props) => {
 
@@ -43,4 +34,6 @@ const Checkbox: FC<CheckboxProps> = (props) => {
 const areEqual = (prevProps: CheckboxProps, currentProps: CheckboxProps) =>
     prevProps.value === currentProps.value
 
-export default React.memo(Checkbox, areEqual)
+export default memo(Checkbox, areEqual)
+
+// export default Checkbox

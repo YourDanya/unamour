@@ -124,7 +124,7 @@ const vacanciesContent = {
                             'Join a growing company and grow with us.',
                             'Working in an office in the center of Kyiv (Olimpiyskaya metro station).',
                             'The work schedule is discussed individually with each candidate.',
-                            'Estimated salary is discussed with the successful candidate based on the results of the interview and the performance of the test task.'
+                            'Estimated salary is discussed with the successful candidate based on the results of the interview and the performance of the count-time task.'
                         ]
                     ],
                     resume: '"Answer for copywriter job".'
@@ -148,7 +148,7 @@ const vacanciesContent = {
                             'Join a growing company and grow with us.',
                             'Working in an office in the center of Kyiv (Olimpiyskaya metro station).',
                             'The work schedule is discussed individually with each candidate.',
-                            'Estimated salary is discussed with the successful candidate based on the results of the interview and the performance of the test task.'
+                            'Estimated salary is discussed with the successful candidate based on the results of the interview and the performance of the count-time task.'
                         ]
                     ],
                     resume: '"Application for photographer".'
@@ -170,7 +170,7 @@ const vacanciesContent = {
                             'Working in an office in the center of Kyiv (Olimpiyskaya metro station).',
                             'Schedule 5/2, floating holidays.',
                             'Working in a creative team led by a creative director.',
-                            'Estimated salary is discussed with the successful candidate based on the results of the interview and the performance of the test task.'
+                            'Estimated salary is discussed with the successful candidate based on the results of the interview and the performance of the count-time task.'
                         ]
                     ],
                     resume: '"Apply for retoucher".'

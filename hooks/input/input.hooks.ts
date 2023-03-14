@@ -1,11 +1,13 @@
 import React, {useMemo, useRef, useState} from 'react'
+import {useCallback} from 'react'
+import {ChangeEvent} from 'react'
 import {Locale} from 'redux/main/main.types'
 import {UseInput} from 'hooks/input/input.types'
 import {ValidationInput} from 'hooks/input/input.types'
 import {ValidationInputs} from 'hooks/input/input.types'
 import {TranslInputs} from 'hooks/input/input.types'
+import {Value} from 'hooks/input/input.types'
 import {useRouter} from 'next/router'
-import {useCallback} from 'react'
 import {Mapped} from 'types/types'
 import {Entry} from 'types/types'
 
@@ -15,11 +17,11 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
     const initInputs = useMemo(() => {
         return Object.entries(inputsObj).reduce((accum, [key, obj]) => {
             const tkey = key as keyof typeof accum.values & keyof typeof accum.errors
-            accum.values[tkey] = obj.value
+            accum.values[tkey] = obj.value as Value
             accum.errors[tkey] = obj.error ?? null
             if (obj.validations) accum.validations[tkey] = obj.validations
             return accum
-        }, <ValidationInputs<keyof T>> {validations: {}, values: {}, errors: {}})
+        }, <ValidationInputs<keyof T>>{validations: {}, values: {}, errors: {}})
     }, [])
 
     const [values, setValues] = useState(initInputs.values)
@@ -28,23 +30,14 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 
     const valRef = useRef({...values})
 
-    const onChange = useCallback((event: React.ChangeEvent<HTMLElement>) => {
+    const onChange = useCallback((event: ChangeEvent<HTMLElement>) => {
         const {name, value, type} = event.target as HTMLInputElement & { name: keyof T }
-        switch (type) {
-            case 'checkbox': {
-                valRef.current[name] = !valRef.current[name]
-                setValues({...valRef.current})
-                break
-            }
-            case 'text' :
-            case 'password' :
-            case 'textarea' :
-            case 'radio' : {
-                valRef.current[name] = value
-                setValues({...valRef.current})
-                break
-            }
+        if (type === 'checkbox') {
+            valRef.current[name] = !valRef.current[name]
+        } else {
+            valRef.current[name] = value
         }
+        setValues({...valRef.current})
     }, [])
 
     const resetValues = useCallback(() => {
@@ -55,7 +48,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
     const locale = useRouter().locale as Locale
     const errRef = useRef({errors: {...errors}, count: 0})
 
-    const getError = useCallback((name: keyof T & string) => {
+    const getError = useCallback((name: keyof T) => {
         let validateValues
         let validateTransl
         if (validations?.[name]?.equalToField) {
@@ -73,7 +66,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
     }, [])
 
     const setReqErrors = useCallback(() => {
-        Object.keys(errors).forEach((name: keyof T & string) => {
+        Object.keys(errors).forEach((name) => {
             if (!errRef.current.errors[name] && validations?.[name]?.required) {
                 const error = getError(name)
                 if (error) {
@@ -88,7 +81,9 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
     const withSubmit = useCallback((callback: () => void) => {
         return (event: React.MouseEvent<HTMLElement>) => {
             event.preventDefault()
-            if (errRef.current.count === 0) setReqErrors()
+            if (errRef.current.count === 0) {
+                setReqErrors()
+            }
             if (errRef.current.count === 0) {
                 callback()
             }
@@ -97,38 +92,44 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 
     const onValidate = useCallback((name: string & keyof T) => {
         const error = getError(name)
-        if (errRef.current.errors[name] && !error) errRef.current.count -= 1
-        if (!errRef.current.errors[name] && error) errRef.current.count += 1
+        if (errRef.current.errors[name] && !error) {
+            errRef.current.count -= 1
+        }
+        if (!errRef.current.errors[name] && error) {
+            errRef.current.count += 1
+        }
         errRef.current.errors[name] = error
         setErrors({...errRef.current.errors, [name]: error})
     }, [])
 
     const setOuterValues = useCallback((values: Partial<typeof initInputs.values>) => {
         const filteredValues = Object.entries(values).reduce((accum, entry) => {
-            const [key, value] = <Entry<typeof initInputs.values>> entry
+            const [key, value] = <Entry<typeof initInputs.values>>entry
             if (key in initInputs.values) {
                 accum[key] = value
             }
             return accum
-        }, <typeof initInputs.values> {})
+        }, <typeof initInputs.values>{})
         valRef.current = {...valRef.current, ...filteredValues}
         setValues({...valRef.current})
     }, [])
 
     const setOuterErrors = useCallback((errors: Mapped<typeof initInputs.errors>) => {
         const filteredValues = Object.entries(errors).reduce((accum, entry) => {
-            const [key, value] = <Entry<typeof initInputs.errors>> entry
+            const [key, value] = <Entry<typeof initInputs.errors>>entry
             if (key in initInputs.errors) {
                 accum[key] = value
             }
             return accum
-        }, <typeof initInputs.errors> {})
+        }, <typeof initInputs.errors>{})
         errRef.current.errors = {...errRef.current.errors, ...filteredValues}
         setErrors({...errRef.current.errors})
     }, [])
 
-    return {inputs: {values, errors}, onChange, onValidate, resetValues, errRef, setReqErrors, withSubmit,
-    setOuterValues, setOuterErrors}
+    return {
+        inputs: {values, errors}, onChange, onValidate, resetValues, errRef, setReqErrors, withSubmit,
+        setOuterValues, setOuterErrors
+    }
 }
 
 export const validate = <T extends ValidationInput, >(input: T, locale: Locale) => {

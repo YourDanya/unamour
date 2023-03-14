@@ -11,7 +11,7 @@ export type ItemTranslationsProps ={
         parameters: string,
         delivery: string
     }>,
-    itemValueRef: MutableRefObject<FetchedItem>,
-    itemErrRef: MutableRefObject<number>,
+    itemValue: MutableRefObject<FetchedItem>,
+    errorCount: MutableRefObject<number>,
     _id: string
 }

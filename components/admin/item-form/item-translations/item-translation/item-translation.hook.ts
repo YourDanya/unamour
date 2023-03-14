@@ -1,64 +1,41 @@
-import {useMemo} from 'react'
-import {Entry} from 'types/types'
-import {useInput} from 'hooks/input/input.hooks'
 import {useLocale} from 'hooks/other/other.hooks'
-import {useEffect} from 'react'
-import {FetchedItem} from 'redux/shop-items/shop-items.types'
-import {setAdminField} from 'redux/admin/admin.slice'
-import {useDispatch} from 'react-redux'
-import {AdminIdField} from 'redux/admin/admin.types'
-import {
-    ItemTranslationProps
-} from 'components/admin/item-form/item-translations/item-translation/item-translation.types'
-import itemTranslationContent
-    from 'components/admin/item-form/item-translations/item-translation/item-translation.content'
+import itemTranslationContent from 'components/admin/item-form/item-translations/item-translation/item-translation.content'
+import {useItemFormContext} from 'components/admin/item-form/store/store'
+import {ItemTranslationProps} from 'components/admin/item-form/item-translations/item-translation/item-translation.types'
+import {useInputChange} from 'hooks/input/input-v2.hooks'
+import {ChangeCallback} from 'hooks/input/input-v2.types'
+import {useValidateInput} from 'hooks/input/input-v2.hooks'
+import {useMapInputs} from 'hooks/input/input-v2.hooks'
+import {selectItemFormMain} from 'components/admin/item-form/store/store'
 
 const useItemTranslation = (props: ItemTranslationProps) => {
-    const {values, locale, itemValueRef, itemErrRef, _id} = props
+    const {locale} = props
     const [transl, content] = useLocale(itemTranslationContent)
 
-    const initValues = useMemo(() => {
-        return Object.entries(values).reduce((initValues, entry) => {
-            const [key, value] = entry as Entry<typeof values>
-            const {validations} = content.inputs[key]
-            initValues[key] = {value, validations}
-            return initValues
-        }, {} as {[key in keyof typeof values]:
-            {value: typeof values[key], validations: typeof content.inputs[key]['validations']}})
-    }, [])
+    const { itemValueRef, setItemValue, errorCountRef, setErrorCount} = useItemFormContext(selectItemFormMain)
+    const values = useItemFormContext(state => state.itemValue.translations[locale])
 
-    const {inputs, onChange, onValidate, errRef} = useInput(initValues)
+    const {errors, validations} = useMapInputs(content.inputs)
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        const before = errRef.current.count
-        Object.keys(inputs.errors).forEach((key) => onValidate(key))
-        const after = errRef.current.count
-        itemErrRef.current += after - before
-        if (itemErrRef.current === 0) {
-            const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
-            copy.translations[locale] = {...inputs.values}
-            itemValueRef.current = copy
+    const {onValidate, errRef} = useValidateInput({validations, errors})
+
+    const changeCallback: ChangeCallback<typeof values> = ({changeValues, name}) => {
+        itemValueRef.current.translations[locale] = {...changeValues}
+        setItemValue(itemValueRef.current)
+
+        const beforeCount = errRef.current.count
+        onValidate(name, changeValues[name])
+        const afterCount = errRef.current.count
+
+        if (afterCount !== beforeCount) {
+            errorCountRef.current += afterCount - beforeCount
+            setErrorCount(errorCountRef.current + afterCount - beforeCount)
         }
-        if (after !== before) {
-            let field: AdminIdField
-            if (_id) {
-                field = 'updateItem'
-            } else {
-                field = 'createItem'
-            }
-            dispatch(setAdminField({
-                field,
-                _id,
-                value: {error: {client: itemErrRef.current, server: null}}
-            }))
-        }
-        const copy: FetchedItem = JSON.parse(JSON.stringify(itemValueRef.current))
-        copy.common = {...copy.common, ...inputs.values}
-        itemValueRef.current = copy
-    }, [inputs.values])
+    }
 
-    return {inputs, onChange, onValidate, transl}
+    const {onChange} = useInputChange({values, changeCallback})
+
+    return {values, errors, onChange, transl}
 }
 
 export default useItemTranslation

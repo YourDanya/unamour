@@ -1,13 +1,15 @@
 import {ElementContent, Locale} from 'types/types'
 import {useRouter} from 'next/router'
-import {useEffect} from 'react'
-import Link from 'next/link'
-import {UseLocale} from 'hooks/other/other.types'
-import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 import {useState} from 'react'
-import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
 import {useLayoutEffect} from 'react'
 import {useRef} from 'react'
+import {useMemo} from 'react'
+import Link from 'next/link'
+import {UseLocale} from 'hooks/other/other.types'
+import {UseMemoizeObject} from 'hooks/other/other.types'
+import {useOmitFirstEffect} from 'hooks/component/component.hooks'
+import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
+import {checkEqual} from 'utils/main/main.utils'
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -18,10 +20,10 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
 
     const ending = useRouter().pathname.split('/').pop()
 
-    return arr.map(([prop, value], index) => {
+    return arr.map(([key, value], index) => {
         let returnElem
         let className: string = ''
-
+        const prop = key as string
         if (prop.startsWith('textLink') || prop.startsWith('link')) {
             const {text, ref} = value as { text: string, ref: string }
             const textLink = prop.startsWith('textLink')
@@ -133,4 +135,20 @@ export const useGetParamForImages = (ratio = 4 / 3) => {
     const elemRef = useRef<HTMLDivElement>(null)
 
     return {width, height, elemRef}
+}
+
+export const useMemoizeObject: UseMemoizeObject = (obj) => {
+    const objRef = useRef<typeof obj>(null as typeof obj)
+    const updateRef = useRef<Date>()
+    let update
+
+    if (!checkEqual(objRef.current, obj)) {
+        updateRef.current = new Date()
+        update = updateRef.current
+        objRef.current = obj
+    } else {
+        update = updateRef.current
+    }
+
+    return useMemo(() => (JSON.parse(JSON.stringify(obj))), [update])
 }

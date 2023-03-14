@@ -20,6 +20,8 @@ const itemCommonContent = {
                 special: 'особливі',
                 coming: 'скоро буде',
                 oldPrice: 'стара ціна',
+                weight: 'вага',
+                volume: 'об\'єм'
             },
             category: 'категорія',
             title: 'загальне',
@@ -32,7 +34,9 @@ const itemCommonContent = {
                 best: 'best',
                 special: 'special',
                 coming: 'coming',
-                oldPrice: 'old price'
+                oldPrice: 'old price',
+                weight: 'weight',
+                volume: 'volume'
             },
             category: 'category',
             title: 'common',
@@ -45,7 +49,9 @@ const itemCommonContent = {
                 best: 'лучшие',
                 special: 'особые',
                 coming: 'скоро будет',
-                oldPrice: 'старая цена'
+                oldPrice: 'старая цена',
+                weight: 'вес',
+                volume: 'объем'
             },
             category: 'категория',
             title: 'общее',

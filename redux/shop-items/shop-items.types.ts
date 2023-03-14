@@ -14,6 +14,8 @@ export type FetchedItem = {
     updateTime: string,
     deleted: boolean,
     common: {
+        volume: number,
+        weight: number
         slug: string,
         slugCategory: string,
         best: boolean,

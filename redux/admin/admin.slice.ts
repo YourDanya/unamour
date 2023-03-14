@@ -92,7 +92,7 @@ export const userSlice = createSlice({
         },
 
         setAdminItems : (state, action: SetAdminItemsAction) => {
-            state.items = action.payload.items
+            state.items = [...action.payload.items, ...action.payload.items]
         },
         setAdminItem: (state, action: PayloadAction<FetchedItem>) => {
             let index = state.items.findIndex(item => item._id === action.payload._id)

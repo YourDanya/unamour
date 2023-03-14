@@ -3,3 +3,5 @@ export type UseLocale = <T, K>
    [translations: T] : [translations: T, content: K]
 
 export type UseMapForm = (values: object, translations: object, validations: object) => void
+
+export type UseMemoizeObject = <T> (object: T) => T

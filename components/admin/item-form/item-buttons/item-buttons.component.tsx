@@ -10,8 +10,7 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
     const {deleted} = props
 
     const {
-        updateItemState, transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, createItemState,
-        deleteItemState, createItemImages, updateItemImages, deleteItemImages
+        transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, actionsList, actions, loading
     } = useItemButtons(props)
 
     return (
@@ -21,73 +20,35 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
                     <Button
                         className={'item-form__button item-form__button--delete'}
                         onClick={onDelete}
-                        loading={deleteItemState.loading}
+                        loading={actions.deleteItem.loading}
                     >
                         {transl.delete}
                     </Button>
                     <Button
                         className={'item-form__button item-form__button--save'}
                         onClick={onSave}
-                        loading={updateItemState.loading || createItemState.loading || createItemImages.loading
-                            || updateItemImages.loading || deleteItemImages.loading}
+                        loading={loading}
                     >
                         {transl.save}
                     </Button>
                 </>
             )}
             <div className="item-form__messages">
-                <ItemMessage
-                    isMessage={isMessage.updateItem}
-                    field={'updateItem'}
-                    success={updateItemState.success}
-                    error={updateItemState.error.server}
-                    onClose={onClose}
-                    onTimerExpiration={onTimerExpiration}
-                />
-                <ItemMessage
-                    isMessage={isMessage.createItem}
-                    field={'createItem'}
-                    success={createItemState.success}
-                    error={createItemState.error.server}
-                    onClose={onClose}
-                    onTimerExpiration={onTimerExpiration}
-                />
-                <ItemMessage
-                    isMessage={isMessage.deleteItem}
-                    field={'deleteItem'}
-                    success={deleteItemState.success}
-                    error={deleteItemState.error}
-                    onClose={onClose}
-                    onTimerExpiration={onTimerExpiration}
-                />
-                <ItemMessage
-                    isMessage={isMessage.createItemImages}
-                    field={'createItemImages'}
-                    success={createItemImages.success}
-                    error={createItemImages.error}
-                    onClose={onClose}
-                    onTimerExpiration={onTimerExpiration}
-                />
-                <ItemMessage
-                    isMessage={isMessage.updateItemImages}
-                    field={'updateItemImages'}
-                    success={updateItemImages.success}
-                    error={updateItemImages.error}
-                    onClose={onClose}
-                    onTimerExpiration={onTimerExpiration}
-                />
-                <ItemMessage
-                    isMessage={isMessage.deleteItemImages}
-                    field={'deleteItemImages'}
-                    success={deleteItemImages.success}
-                    error={deleteItemImages.error}
-                    onClose={onClose}
-                    onTimerExpiration={onTimerExpiration}
-                />
+                {actionsList.map(([actionName, actionValue]) => (
+                    <ItemMessage
+                        key={actionName}
+                        isMessage={isMessage.deleteItemImages}
+                        field={actionName}
+                        success={actionValue.success ? transl.success[actionName] : ''}
+                        error={actionValue.error ? transl.errors[actionName] : '' }
+                        onClose={onClose}
+                        onTimerExpiration={onTimerExpiration}
+                    />
+                ))}
                 {isMessage.client && (
                     <FormMessage
                         className={'item-form__message'}
-                        error={updateItemState.error?.client || createItemState.error.client}
+                        error={0 ? transl.clientError(0) : ''}
                     >
                         <Button className={'item-form__message-close'} onClick={onClose} data-value={'client'}>
                             <img className={'item-form__message-close-img'} src={closeRed.src} alt={'close'}/>

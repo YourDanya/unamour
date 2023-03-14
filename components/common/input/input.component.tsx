@@ -39,3 +39,5 @@ const areEqual = (prevProps: InputProps, currentProps: InputProps) =>
     prevProps.validateDeps === currentProps.validateDeps
 
 export default memo(Input, areEqual)
+
+// export default Input

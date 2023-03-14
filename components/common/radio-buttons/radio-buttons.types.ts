@@ -1,16 +1,17 @@
-import React from 'react'
+import {ChangeEvent, ReactNode} from 'react'
 import {CSSProperties} from 'react'
 
 export type RadioButtonProps = {
     labels: string[],
     values: string[],
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void,
     active: string,
     name: string,
     className?: string,
-    children?: React.ReactNode,
+    children?: ReactNode,
     styles?: CSSProperties [],
-    title?: string
+    title?: string,
+    error?: string
 }
 
-export type RadioLabel = {label: string, node?: React.ReactNode}
+export type RadioLabel = {label: string, node?: ReactNode}

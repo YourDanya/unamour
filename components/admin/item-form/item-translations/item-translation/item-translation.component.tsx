@@ -6,8 +6,8 @@ import useItemTranslation from 'components/admin/item-form/item-translations/ite
 
 const ItemTranslation: FC<ItemTranslationProps> = (props) => {
     const {locale} = props
-    const {transl, inputs, onChange, onValidate} = useItemTranslation(props)
-
+    const {transl, values, errors, onChange} = useItemTranslation(props)
+    
     return (
         <div className={'item-form__block'}>
             <div className={'item-form__subtitle'}>
@@ -17,46 +17,41 @@ const ItemTranslation: FC<ItemTranslationProps> = (props) => {
                 className={'item-form__input'}
                 name={'name'}
                 placeholder={`${transl.inputs.name} ${transl[locale]}`}
-                value={inputs.values.name}
+                value={values.name}
                 onChange={onChange}
-                error={inputs.errors.name}
-                onValidate={onValidate}
+                error={errors.name}
             />
             <Textarea
                 className={'item-form__textarea'}
                 name={'description'}
                 placeholder={`${transl.inputs.description} ${transl[locale]}`}
-                value={inputs.values.description}
+                value={values.description}
                 onChange={onChange}
-                error={inputs.errors.description}
-                onValidate={onValidate}
+                error={errors.description}
             />
             <Textarea
                 className={'item-form__textarea'}
                 name={'composition'}
                 placeholder={`${transl.inputs.composition} ${transl[locale]}`}
-                value={inputs.values.composition}
+                value={values.composition}
                 onChange={onChange}
-                error={inputs.errors.composition}
-                onValidate={onValidate}
+                error={errors.composition}
             />
             <Textarea
                 className={'item-form__textarea'}
                 name={'parameters'}
                 placeholder={`${transl.inputs.parameters} ${transl[locale]}`}
-                value={inputs.values.parameters}
+                value={values.parameters}
                 onChange={onChange}
-                error={inputs.errors.parameters}
-                onValidate={onValidate}
+                error={errors.parameters}
             />
             <Textarea
                 className={'item-form__textarea'}
                 name={'delivery'}
                 placeholder={`${transl.inputs.delivery} ${transl[locale]}`}
-                value={inputs.values.delivery}
+                value={values.delivery}
                 onChange={onChange}
-                error={inputs.errors.delivery}
-                onValidate={onValidate}
+                error={errors.delivery}
             />
         </div>
     )

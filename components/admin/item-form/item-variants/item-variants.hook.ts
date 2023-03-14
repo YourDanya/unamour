@@ -6,50 +6,48 @@ import {MouseAction} from 'types/types'
 import {ItemVariant} from 'components/admin/item-form/item-form.types'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 import {useRef} from 'react'
+import {useItemFormContext} from 'components/admin/item-form/store/store'
 
-const useItemVariants = (props: ItemVariantsProps) => {
-    const {itemValueRef, imagesRef} = props
+const useItemVariants = () => {
     const [transl] = useLocale(itemVariantsContent)
-    const [variants, setVariants] = useState(props.variants)
 
-    const variantImagesToUpdate = useRef()
-
-    const onDeleteVariant: MouseAction = (event) => {
-        event.preventDefault()
-        const index = +(event.currentTarget.getAttribute('data-value') as string)
-        console.log('variants before', itemValueRef.current.common.variants)
-        let variants = itemValueRef.current.common.variants
-        if (variants.length === 0) {
-            return
-        }
-        for (let imageId in imagesRef.current) {
-            if (imagesRef.current[imageId].color === variants[index].color) {
-                delete imagesRef.current[imageId]
-            }
-        }
-        variants.splice(index, 1)
-        variants = variants.map(variant => {
-            variant.images = ['no']
-            return variant
-        })
-        setVariants([...variants])
-    }
+    const {
+        itemValue: {common: {variants}}, itemValueRef, setItemValue, errorCountRef, setErrorCount
+    } = useItemFormContext(state => state)
 
     const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
-        console.log('variants before', itemValueRef.current.common.variants)
-        const variants = itemValueRef.current.common.variants
         const newVariant: ItemVariant = {color: '', images: [], sizes: [], price: ''} as unknown as ItemVariant
-        variants.push(newVariant)
-        console.log('variants after', itemValueRef.current.common.variants)
-        setVariants([...variants])
+        itemValueRef.current = {
+            ...itemValueRef.current, common: {
+                ...itemValueRef.current.common,
+                variants: [...itemValueRef.current.common.variants, newVariant]
+            }
+        }
+        setItemValue(itemValueRef.current)
     }
 
-    useOmitFirstEffect(() => {
-        setVariants([...props.variants])
-    }, [props.variants])
-
-    return {transl, variants, onDeleteVariant, onAddVariant}
+    return {transl, variants, onAddVariant}
 }
 
 export default useItemVariants
+
+// const onDeleteVariant: MouseAction = (event) => {
+//     event.preventDefault()
+//     const index = +(event.currentTarget.getAttribute('data-value') as string)
+//     let variants = itemValueRef.current.common.variants
+//     if (variants.length === 0) {
+//         return
+//     }
+//     for (let imageId in imageValues.current) {
+//         if (imageValues.current[imageId].color === variants[index].color) {
+//             delete imageValues.current[imageId]
+//         }
+//     }
+//     variants.splice(index, 1)
+//     variants = variants.map(variant => {
+//         variant.images = ['no']
+//         return variant
+//     })
+//     setVariants([...variants])
+// }

@@ -5,7 +5,7 @@ import useRadioButtons from 'components/common/radio-buttons/radio-buttons.hook'
 import {CSSProperties} from 'react'
 
 const RadioButtons: FC<RadioButtonProps> = (props) => {
-    const {values, onChange, active, name, className, labels, styles, title} = props
+    const {values, onChange, active, name, className, labels, styles, title, error} = props
     const {children} = useRadioButtons(props)
 
     return (
@@ -38,6 +38,11 @@ const RadioButtons: FC<RadioButtonProps> = (props) => {
                     </div>
                 </div>
             ))}
+            {error && (
+                <div className={'radio-group__error'}>
+                    {error}
+                </div>
+            )}
         </div>
     )
 }

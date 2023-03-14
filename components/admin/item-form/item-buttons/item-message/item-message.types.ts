@@ -1,11 +1,11 @@
 import {MouseAction} from 'types/types'
-import {AdminIdField} from 'redux/admin/admin.types'
+import {ItemButtonsActionName} from 'components/admin/item-form/item-buttons/item-buttons.types'
 
 export type ItemMessageProps = {
     success: string | null,
     error: string | null,
     onClose: MouseAction,
-    onTimerExpiration: (field: AdminIdField) => void
-    field: AdminIdField,
+    onTimerExpiration: (field: ItemButtonsActionName) => void
+    field: ItemButtonsActionName,
     isMessage: boolean
 }

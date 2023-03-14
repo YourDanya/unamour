@@ -4,9 +4,8 @@ import useItemVariants from 'components/admin/item-form/item-variants/item-varia
 import Button from 'components/common/button/button.component'
 import ItemVariant from 'components/admin/item-form/item-variants/item-variant/item-variant.component'
 
-const ItemVariants: FC<ItemVariantsProps> = (props) => {
-    const {variants: _, ...otherProps} = props
-    const {transl, variants, onDeleteVariant, onAddVariant} = useItemVariants(props)
+const ItemVariants: FC<ItemVariantsProps> = () => {
+    const {transl, variants, onAddVariant} = useItemVariants()
 
     return (
         <div className={'item-form__block'}>
@@ -14,10 +13,7 @@ const ItemVariants: FC<ItemVariantsProps> = (props) => {
             {variants.length > 0 && variants.map((elem, index) => (
                 <ItemVariant
                     key={index}
-                    {...elem}
-                    {...otherProps}
                     variantIndex={index}
-                    onDeleteVariant={onDeleteVariant}
                 />
             ))}
             <Button className={'item-form__button item-form__button--add'} onClick={onAddVariant}>

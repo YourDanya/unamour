@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {HYDRATE} from 'next-redux-wrapper'
-import {FetchedItem, ShopItemsState} from './shop-items.types'
+import {ShopItemsState} from './shop-items.types'
 import {ShopItemsField} from './shop-items.types'
 import {ServerError} from 'redux/store.types'
 import {CategoryItem} from './shop-items.types'
