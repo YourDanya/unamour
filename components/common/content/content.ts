@@ -255,6 +255,10 @@ export const sizeContent = [
     'ind'
 ]
 
+export const newSizeContent = [
+    '75А S', '75A', '75A Xs', '75B S', '75B Xs', '75B', '75C S', '75C Xs', '75C', 'IND'
+]
+
 export const categoriesContent = {
     common: [
         // 'all',

@@ -118,16 +118,27 @@ export const useGetParamForImages = (ratio = 4 / 3) => {
     const [width, setWidth] = useState(0)
     const [height, setHeight] = useState(0)
     
-    useLayoutResizeObserve(() => {
+    // useLayoutResizeObserve(() => {
+    //     const width = elemRef.current?.getBoundingClientRect().width as number
+    //     setWidth(width)
+    //     setHeight(width * ratio)
+    // })
+
+    const calcParams = () => {
         const width = elemRef.current?.getBoundingClientRect().width as number
         setWidth(width)
         setHeight(width * ratio)
-    })
+    }
 
     useLayoutEffect(() => {
-        const width = elemRef.current?.getBoundingClientRect().width as number
-        setWidth(width)
-        setHeight(width * ratio)
+        window.addEventListener('resize', calcParams)
+        return () => {
+            window.removeEventListener('resize', calcParams)
+        }
+    }, [])
+
+    useLayoutEffect(() => {
+        calcParams()
     }, [])
 
     const elemRef = useRef<HTMLDivElement>(null)

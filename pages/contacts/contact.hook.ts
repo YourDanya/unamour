@@ -1,6 +1,7 @@
 import contactsContent from 'pages/contacts/contacts.content'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useInput} from 'hooks/input/input.hooks'
+import {useGetParamForImages} from 'hooks/other/other.hooks'
 
 const useContact = () => {
     const [transl, content] = useLocale(contactsContent)
@@ -8,6 +9,9 @@ const useContact = () => {
     const handleSubmit = () => {
 
     }
+
+    // const {width, height, elemRef} = useGetParamForImages()
+
     return {transl, inputs, onChange, onValidate, handleSubmit}
 }
 

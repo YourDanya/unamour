@@ -6,7 +6,7 @@ import {ReturnProps} from 'pages/client-service/return/return.types'
 
 const Return: NextPageWithLayout<ReturnProps> = () => {
     const {transl} = useReturn()
-    
+
     return (
         <div className={'return'}>
             <div className="service__title">{transl.title1}</div>

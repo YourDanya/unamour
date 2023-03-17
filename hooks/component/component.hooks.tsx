@@ -129,7 +129,7 @@ export const useDebounceEffect = <T extends any[], >(effect: EffectCallback, dep
 }
 
 // export const useMapForm = (elements, translation) => {
-//     elements.map(({type, className, name, placeholder}, index) => {
+//     elements.contacts-map(({type, className, name, placeholder}, index) => {
 //             if (type === 'input') {
 //                 return (
 //                     <update-input className={className} key={index}>

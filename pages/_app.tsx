@@ -17,7 +17,6 @@ import 'components/common/input/input.styles.sass'
 import 'components/common/modal/modal.styles.sass'
 import 'components/common/sidebar/sidebar.styles.sass'
 import 'components/common/modal-content/modal-content.styles.sass'
-import 'components/common/map/map.styles.sass'
 import 'components/common/pagination/pagination.styles.sass'
 
 import 'components/admin/item-form/item-form.styles.sass'
@@ -72,11 +71,14 @@ import 'pages/client-service/clothing-care/clothing-care.styles.sass'
 import 'pages/client-service/return/return.styles.sass'
 import 'pages/client-service/delivery/delivery.styles.sass'
 import 'pages/contacts/contact.styles.sass'
+import 'pages/contacts/contacts-map/contacts-map.styles.sass'
 import 'pages/vacancies/vacancies.styles.sass'
 import 'pages/favorites/favorites.styles.sass'
 import 'pages/search/search.styles.sass'
 import 'pages/cart/cart.styles.sass'
 import 'pages/shop-items/shop-items-page.styles.sass'
+
+
 
 import useApp from 'pages/app.hook'
 import {AppPropsWithLayout} from 'types/types'

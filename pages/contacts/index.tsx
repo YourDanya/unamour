@@ -1,11 +1,12 @@
-import React from 'react'
+import {FC} from 'react'
 import useContact from 'pages/contacts/contact.hook'
 import Textarea from 'components/common/textarea/textarea.component'
 import Button from 'components/common/button/button.component'
-import MapComponent from 'components/common/map/map.component'
 import Input from 'components/common/input/input.component'
+import dynamic from 'next/dynamic'
+const ContactsMap = dynamic(() => import('pages/contacts/contacts-map/contacts-map.component'), {ssr: false})
 
-const ContactComponent: React.FC = () => {
+const ContactComponent: FC = () => {
     const {onChange, handleSubmit, onValidate, transl, inputs} = useContact()
 
     return (
@@ -13,7 +14,7 @@ const ContactComponent: React.FC = () => {
             <h2 className="contacts__title">{transl.contacts}</h2>
             <div className="contacts__top">
                 <div className="contacts__text">
-                    {transl.info.map((elem, index) =>
+                    {transl.onlineInfo.map((elem, index) =>
                         <div key={elem} className={`contacts__label ${index === 0 ? 'contacts__label--main' : ''}`}>
                             {elem}
                         </div>
@@ -63,18 +64,24 @@ const ContactComponent: React.FC = () => {
                     <div className="contacts__consent">
                         {transl.consent}
                     </div>
-                    {/*<FormMessage success={} error={}/>*/}
                 </form>
+                <div className="contacts__offline-info">
+                    {transl.offlineInfo.map((cityBlock, index) => (
+                        <div className={'contacts__address'} key={index}>
+                            {cityBlock.map((elem, index, {length}) => (
+                                <div key={elem} className={`contacts__label 
+                                ${index === 0 ? 'contacts__label--main' : ''} ${index === length - 1 ? 
+                                    'contacts__label--last' : ''}`}>
+                                    {elem}
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+                <ContactsMap/>
             </div>
-            <div className="contacts__address">
-                <div className="contacts__city">{transl.city}</div>
-                <div className="contacts__work-hours">{transl.workHours}</div>
-                <div className="contacts__number">{transl.number}</div>
-            </div>
-            <MapComponent/>
         </div>
     )
-
 }
 
 export default ContactComponent

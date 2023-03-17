@@ -22,6 +22,7 @@ const Images: FC<ImagesProps> = (props) => {
                         <Image
                             height={90}
                             width={90 * 3 / 4}
+                            quality={100}
                             className='shop-item__tab-img'
                             src={`${baseURL}/images/${url}`}
                             alt={`tab image ${index}`}
@@ -36,6 +37,7 @@ const Images: FC<ImagesProps> = (props) => {
                         <Image
                             width={width}
                             height={height}
+                            quality={90}
                             src={`${baseURL}/images/${url}`}
                             alt={`slide image ${index}`}
                             key={url + index}

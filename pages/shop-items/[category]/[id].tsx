@@ -39,7 +39,7 @@ export async function getStaticPaths() {
         }))
     }
     //
-    // const paths = items.map((item) => ({
+    // const paths = items.contacts-map((item) => ({
     //     params: {id: `${item.common.slug}?${item.common.color}`}
     // }))
 

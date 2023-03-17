@@ -22,6 +22,7 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     alt={'shop item preview image'}
                     width={width}
                     height={height}
+                    quality={100}
                     style={{
                         objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
                         ... hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
@@ -32,6 +33,7 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     alt={'shop item preview image'}
                     width={width}
                     height={height}
+                    quality={100}
                     style={{
                         objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
                         ... !hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
