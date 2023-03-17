@@ -4,11 +4,12 @@ import {MapContainer} from 'react-leaflet'
 import {Marker} from 'react-leaflet'
 import {Popup} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import {MapProps} from 'pages/contacts/contacts-map/contacts-map.types'
-import useContactsMap from 'pages/contacts/contacts-map/contacts-map.hook'
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import icon from 'leaflet/dist/images/marker-icon.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 import L from 'leaflet'
+import dynamic from 'next/dynamic'
+import useContactsMap from 'components/contacts/contacts-map/contacts-map.hook'
+import {MapProps} from 'components/contacts/contacts-map/contacts-map.types'
 
 let DefaultIcon = L.icon({
     iconUrl: icon.src,

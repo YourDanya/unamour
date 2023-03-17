@@ -4,7 +4,7 @@ import Textarea from 'components/common/textarea/textarea.component'
 import Button from 'components/common/button/button.component'
 import Input from 'components/common/input/input.component'
 import dynamic from 'next/dynamic'
-const ContactsMap = dynamic(() => import('pages/contacts/contacts-map/contacts-map.component'), {ssr: false})
+const ContactsMap = dynamic(() => import('components/contacts/contacts-map/contacts-map.component'), {ssr: false})
 
 const ContactComponent: FC = () => {
     const {onChange, handleSubmit, onValidate, transl, inputs} = useContact()
