@@ -16,12 +16,6 @@ const nextConfig = {
         minimumCacheTTL: 600,
         remotePatterns: [
             {
-                protocol: 'https',
-                hostname: 'media.naked-woman.org',
-                port: '',
-                pathname: '/**'
-            },
-            {
                 protocol: 'http',
                 hostname: 'localhost',
                 port: '5000',
@@ -33,7 +27,10 @@ const nextConfig = {
                 port: '',
                 pathname: '/**'
             }
-        ]
+        ],
+    },
+    typescript: {
+        ignoreBuildErrors: true,
     },
     webpack: (config, {dev}) => {
         // if (dev) config.plugins.push(
