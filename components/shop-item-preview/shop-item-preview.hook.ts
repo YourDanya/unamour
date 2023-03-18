@@ -5,8 +5,7 @@ import {CategoryItem} from 'redux/shop-items/shop-items.types'
 import {MouseAction} from 'types/types'
 import {useLocale} from 'hooks/other/other.hooks'
 
-const useShopItemPreview = (props: CategoryItem) => {
-    const [transl] = useLocale(props)
+const useShopItemPreview = () => {
     const [hovered, setHovered] = useState(false)
     // const [loaded, handleLoaded, _, loadRef] = useToggleMany({0: false, 1: false} , 'data-attr')
     //
@@ -20,7 +19,7 @@ const useShopItemPreview = (props: CategoryItem) => {
     //     if (!loaded) event.preventDefault()
     // }
 
-    return {hovered, onMouse, transl}
+    return {hovered, onMouse}
 }
 
 export default useShopItemPreview

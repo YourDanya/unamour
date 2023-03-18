@@ -2,24 +2,16 @@ import {useState} from 'react'
 import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
 import {useLayoutEffect} from 'react'
 import {useRef} from 'react'
+import {useRouter} from 'next/router'
+import {Locale} from 'types/types'
+import {useGetParamForImages} from 'hooks/other/other.hooks'
 
 export const useShopItemsCollection = () => {
-    const [width, setWidth] = useState(0)
+    const {width, height, elemRef} = useGetParamForImages(4 / 3)
 
-    useLayoutResizeObserve(() => {{
-        if (itemRef.current) {
-            setWidth(itemRef.current.getBoundingClientRect().width)
-        }
-    }})
+    const locale = useRouter().locale as Locale
 
-    useLayoutEffect(() => {
-        const width = itemRef.current?.getBoundingClientRect().width as number
-        setWidth(width)
-    }, [])
-
-    const itemRef = useRef<HTMLDivElement>(null)
-
-    return {width, itemRef}
+    return {width, elemRef, locale}
 }
 
 export default useShopItemsCollection

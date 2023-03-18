@@ -78,8 +78,6 @@ import 'pages/search/search.styles.sass'
 import 'pages/cart/cart.styles.sass'
 import 'pages/shop-items/shop-items-page.styles.sass'
 
-
-
 import useApp from 'pages/app.hook'
 import {AppPropsWithLayout} from 'types/types'
 import Nav from 'components/nav/nav.component'

@@ -6,8 +6,8 @@ import Image from 'next/image'
 import {baseURL} from 'utils/api/api.utils'
 
 const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
-    const {common: {images, price, slug, slugCategory, color}, itemRef, height, width} = props
-    const {onMouse, hovered, transl} = useShopItemPreview(props)
+    const {images, slug, slugCategory, color, itemRef, height, width} = props
+    const {onMouse, hovered} = useShopItemPreview()
 
     return (
         <div className="shop-item-preview" ref={itemRef}>
@@ -40,14 +40,6 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     }}
                 />
             </Link>
-            <div className={'shop-item-preview__bottom'}>
-                <div className="shop-item-preview__name">
-                    {transl.name}
-                </div>
-                <div className="shop-item-preview__price">
-                    {price} ₴
-                </div>
-            </div>
         </div>
     )
 }

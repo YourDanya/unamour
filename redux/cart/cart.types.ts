@@ -26,7 +26,8 @@ export type CartItem = {
 export type CartState = {
     items: CartItem[],
     orderId: string,
-    userFormData: UserFormData | null
+    userFormData: UserFormData | null,
+    shouldOpenNavCart: boolean
 }
 
 export type UserFormData = {

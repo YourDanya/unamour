@@ -7,7 +7,6 @@ import 'leaflet/dist/leaflet.css'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 import L from 'leaflet'
-import dynamic from 'next/dynamic'
 import useContactsMap from 'components/contacts/contacts-map/contacts-map.hook'
 import {MapProps} from 'components/contacts/contacts-map/contacts-map.types'
 

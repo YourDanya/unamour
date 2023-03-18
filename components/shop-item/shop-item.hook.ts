@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux'
 import {useEffect} from 'react'
 import {useRef} from 'react'
 import {CartItem} from 'redux/cart/cart.types'
-import {addItem} from 'redux/cart/cart.slice'
+import {addItem, setShouldOpenNavCart} from 'redux/cart/cart.slice'
 import {useState} from 'react'
 import {MouseAction} from 'types/types'
 import {useLayoutEffect} from 'react'
@@ -54,6 +54,7 @@ export const useShopItem = (props: FetchedItem) => {
     const onAddItem = () => {
         const item = JSON.parse(JSON.stringify(cartItemRef.current)) as CartItem
         dispatch(addItem(item))
+        dispatch(setShouldOpenNavCart(true))
     }
 
     useEffect(() => {

@@ -1,17 +1,27 @@
 import {NextPage} from 'next'
 import Link from 'next/link'
 import useFavorites from 'pages/favorites/favorites.hook'
+import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.component'
 
 const Index: NextPage = () => {
-    const {favorites, transl} = useFavorites()
+    const {items, transl, width, height, elemRef} = useFavorites()
 
     return (
         <div className={'favorites'}>
             <div className={'favorites__title'}>
                 {transl.favorite}
             </div>
-            {favorites ? (
+            {items ? (
                 <div className={'favorites__items'}>
+                    {items.map((item, index) => (
+                        <ShopItemPreview
+                            {...item.common}
+                            key={index}
+                            width={width}
+                            height={height}
+                            itemRef={elemRef}
+                        />
+                    ))}
                 </div>
             ) : (
                 <div className={'favorites__empty'}>
