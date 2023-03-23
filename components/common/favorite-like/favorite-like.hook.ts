@@ -6,6 +6,7 @@ import {useDebounce} from 'hooks/enhanced/enhanced.hooks'
 import {useEffect} from 'react'
 import {useRouter} from 'next/router'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
+import {instance} from 'utils/api/api.utils'
 
 const useFavoriteLike = (props: FavoriteLikeProps) => {
     const {id} = props
@@ -17,11 +18,13 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
         body: {
             id,
             color
-        }
+        },
+        keepAlive: true
     })
 
     const deleteFavorite = useApiCall(`users/favorites/${id}/${color}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        keepAlive: true
     })
 
     const loading = postFavorite.loading || deleteFavorite.loading
@@ -51,6 +54,21 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
     }
 
     const router = useRouter()
+
+    const onReloadToggle = async() => {
+        if (!debouncingRef.current) {
+            return
+        }
+        debouncingRef.current = false
+        if (likedRef.current) {
+            console.log('posting')
+            await instance('/users/favorites', {method: 'POST', data: {color, id}})
+        } else {
+            console.log('deleting')
+            await instance('/users/favorites', {method: 'DELETE', data: {color, id}})
+        }
+    }
+
     useEffect(() => {
         window.addEventListener('beforeunload', toggleFavorite)
         router.events.on('routeChangeStart', toggleFavorite)
@@ -64,6 +82,11 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
         toggleFavorite()
         setColor(props.color)
     }, [props.color])
+
+    useOmitFirstEffect(() => {
+        likedRef.current = props.liked
+        setLiked(props.liked)
+    }, [props.liked])
 
     return {liked, onAction, loading}
 }

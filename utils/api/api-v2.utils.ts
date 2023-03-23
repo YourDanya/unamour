@@ -19,12 +19,19 @@ export const apiCall: ApiCall = async (url, params) => {
         headers: {
             "Content-Type": "application/json",
             ...params?.headers
-        }
+        },
+        keepalive: params?.keepAlive
     } as RequestInit
-    
+
+    const time = performance.now()
     const response = await fetch(`${baseURL}/${url}`, options)
+    console.log('time', performance.now() - time)
     const data = await response?.json()
     const code = response?.status?.toString()[0] ?? '5'
+
+    console.log('response', response)
+
+    console.log('data', data)
 
     if (code === '4' || code === '5') {
         return {data: null, error: {code, ...data}}
