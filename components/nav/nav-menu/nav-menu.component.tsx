@@ -7,7 +7,7 @@ import {NavMenuProps} from 'components/nav/nav-menu/nav-menu.types'
 
 const NavMenu: FC<NavMenuProps> = (props) => {
     const {showTopModal} = props
-    const {clientService, onClientService, user, transl, content} = useNavMenu()
+    const {clientService, onClientService, user, transl, content, onShowModal} = useNavMenu(props)
 
     return (
         <>
@@ -37,7 +37,7 @@ const NavMenu: FC<NavMenuProps> = (props) => {
                             {transl.profile}
                         </NavLink>
                     ) : (
-                        <Button className={'nav-menu__item'} onClick={showTopModal} name={'sign'}>
+                        <Button className={'nav-menu__item'} onClick={onShowModal} name={'sign'}>
                             {transl.login}
                         </Button>
                     )}

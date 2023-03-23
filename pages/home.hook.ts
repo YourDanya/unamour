@@ -1,5 +1,7 @@
 import {useRef, useState} from 'react'
 import {useResizeObserve} from 'hooks/component/component.hooks'
+import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
+import {useLayoutEffect} from 'react'
 
 const useHome = () => {
     const containerRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement)
@@ -9,7 +11,7 @@ const useHome = () => {
     const [logoWidth, setLogoWidth] = useState(0)
     const [allLinkHeight, setAllLinkHeight] = useState(0)
 
-    useResizeObserve(() => {
+    const calc = () => {
         const {width: allLinkWidth} = allLinkRef.current.getBoundingClientRect()
         const {width: containerWidth} = containerRef.current.getBoundingClientRect()
 
@@ -31,6 +33,14 @@ const useHome = () => {
             setAllLinkHeight(allLinkWidth * 1.3)
             setLogoWidth(containerWidth)
         }
+    }
+
+    useLayoutEffect(() => {
+        calc()
+    }, [])
+
+    useLayoutResizeObserve(() => {
+        calc()
     })
 
     return {allLinkWidth, allLinkRef, containerRef, bestLinkWidth, logoWidth, allLinkHeight}

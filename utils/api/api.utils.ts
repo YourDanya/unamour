@@ -2,16 +2,12 @@ import axios from 'axios'
 import {AxiosResponse} from 'axios'
 import {ApiCallAsync} from 'utils/api/api.types'
 import {ApiCall} from 'utils/api/api.types'
-import {AxiosPromise} from 'axios'
-import {ServerError} from 'redux/store.types'
-import {useEffect} from 'react'
-import {useState} from 'react'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://unamour-server.onrender.com'
 
 export const url = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://unamour-official.vercel.app'
 
-let instance = axios.create({
+export let instance = axios.create({
     baseURL,
     withCredentials: true
 })
@@ -43,7 +39,6 @@ export const apiCallAsync: ApiCallAsync = (apiCall, successAction, errorAction) 
     return async (dispatch, getState) => {
         try {
             const res = await apiCall()
-            console.log('data', res.data)
             if (Array.isArray(successAction)) {
                 successAction.forEach(action => {
                     dispatch(action(res.data))

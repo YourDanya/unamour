@@ -1,10 +1,10 @@
 import {FC, memo} from 'react'
 import Button from 'components/common/button/button.component'
 import {SidebarProps} from 'components/common/sidebar/sidebar.types'
+import useSidebar from 'components/common/sidebar/sidebar.hook'
 
 const Sidebar: FC<SidebarProps> = (props) => {
     const {left, active, hideModal, hideTopModal, name, children} = props
-
     return (
         <div className={`sidebar ${left ? 'sidebar--left' : 'sidebar--right'} ${hideTopModal ? 'sidebar--top' : ''}
             ${left && active ? 'sidebar--left--active' : active ? 'sidebar--right--active' : ''} `}

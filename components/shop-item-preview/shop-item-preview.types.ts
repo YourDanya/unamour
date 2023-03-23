@@ -8,5 +8,6 @@ export type ShopItemPreviewProps = {
     color: string,
     width: number,
     height: number,
-    itemRef?: MutableRefObject<HTMLDivElement | null>
+    itemRef?: MutableRefObject<HTMLDivElement | null>,
+    className?: string
 }

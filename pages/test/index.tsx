@@ -1,44 +1,33 @@
 import {NextPage} from 'next'
-import Image from 'next/image'
-import {useRef} from 'react'
-import {useLayoutEffect} from 'react'
-import {useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 
 const Test: NextPage = () => {
-
-    const [width, setWidth] = useState(0)
-    const [height, setHeight] = useState(0)
-    const [ratio, setRatio] = useState(4 / 3) // height / weight
-
-    useLayoutEffect(() => {
-        const parent = ref.current?.parentElement as HTMLElement
-        const width = parent.getBoundingClientRect().width
-        setWidth(width)
-        const height = width * ratio
-        setHeight(height)
-    }, [])
-
-    const ref = useRef<HTMLImageElement>(null)
+    const [count, setCount] = useState(0)
 
     return (
-        <div className={'test'}>
-            <div className={'test__image-container'}>
-                <Image
-                    ref={ref}
-                    src={'https://media.naked-woman.org/uploads/big_img/1136/1min.jpg'}
-                    alt={''}
-                    // fill
-                    // style={{top: 0, left: 0}}
-                    width={300}
-                    height={400}
-                    style={{objectFit: 'cover', objectPosition: 'center'}}
-                />
-                {/*<img*/}
-                {/*    src={'https://media.naked-woman.org/uploads/big_img/1136/1min.jpg'}*/}
-                {/*/>*/}
+        <div className={'container test'}>
+            <Test2 type={'click'} callback={() => {setCount(count + 1)}}/>
+            <div className={'test__count'}>
+                {count}
             </div>
         </div>
     )
+}
+
+const Test2 = ({type, callback}: {type: string, callback: () => void}) => {
+    const ref = useRef(callback)
+
+    ref.current = callback
+
+    useEffect(() => {
+        const callback = () => ref.current()
+        window.addEventListener(type, callback)
+        return () => {
+            window.removeEventListener(type, callback)
+        }
+    }, [type])
+
+    return (<></>)
 }
 
 export default Test

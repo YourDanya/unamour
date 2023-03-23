@@ -1,4 +1,4 @@
-import React from 'react'
+import {FC} from 'react'
 import Parameters from 'components/shop-item/parameters/parameters.component'
 import Sizes from 'components/shop-item/sizes/sizes.component'
 import {useShopItem} from 'components/shop-item/shop-item.hook'
@@ -12,8 +12,8 @@ import Modal from 'components/common/modal/modal.component'
 import Links from 'components/shop-item/links/links.component'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
 
-const ShopItem: React.FC<FetchedItem> = (props) => {
-    const {common: {variants, slugCategory, oldPrice}} = props
+const ShopItem: FC<FetchedItem> = (props) => {
+    const {common: {variants, slugCategory, oldPrice}, _id} = props
 
     const {
         activeSize, onActiveSize, modalState, showModal, hideModal, onCurrentVariant, onAddItem,
@@ -40,6 +40,8 @@ const ShopItem: React.FC<FetchedItem> = (props) => {
                         showModal={showModal}
                     />
                     <Buttons
+                        id={_id}
+                        color={color}
                         activeSize={activeSize}
                         showModal={showModal}
                         onAddItem={onAddItem}

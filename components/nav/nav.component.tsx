@@ -10,16 +10,16 @@ import Sidebar from 'components/common/sidebar/sidebar.component'
 import SignInUp from 'components/nav-auth/nav-auth.component'
 
 const Nav: FC = () => {
-    const {modalState, showModal, hideModal, home, showTopModal, hideTopModal} = useNav()
+    const {modalState, showModal, hideModal, home, onHideTopModal} = useNav()
 
     return (
         <nav className={`nav ${home ? 'nav--home' : ''}`}>
             <Hamburger hamburger={modalState.hamburger} showModal={showModal} hideModal={hideModal}/>
             <NavHeader home={home} showModal={showModal}/>
             <Sidebar left active={modalState.hamburger}>
-                <NavMenu showTopModal={showTopModal}/>
+                <NavMenu showTopModal={showModal}/>
             </Sidebar>
-            <Sidebar left active={modalState.sign} hideTopModal={hideTopModal} name={'sign'}>
+            <Sidebar left active={modalState.sign} hideTopModal={onHideTopModal} name={'sign'}>
                 <SignInUp/>
             </Sidebar>
             <Sidebar active={modalState.search} hideModal={hideModal}>

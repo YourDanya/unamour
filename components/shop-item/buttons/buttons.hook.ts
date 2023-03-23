@@ -3,9 +3,13 @@ import {useLocale} from 'hooks/other/other.hooks'
 import {buttonsContent} from 'components/shop-item/buttons/buttons.content'
 import {useState} from 'react'
 import {MouseAction} from 'types/types'
+import {useSelector} from 'react-redux'
+import {selectUser} from 'redux/user/user.selectors'
+import {useApiCall} from 'utils/api/api-v2.utils'
+import {useMemo} from 'react'
 
 const useButtons = (props: ButtonsProps) => {
-    const {activeSize, showModal, onAddItem} = props
+    const {activeSize, showModal, onAddItem, color, id} = props
     const [transl] = useLocale(buttonsContent)
 
     const [isCart, setIsCart] = useState(true)
@@ -44,8 +48,17 @@ const useButtons = (props: ButtonsProps) => {
         }
     }
 
+    const user = useSelector(selectUser)
+
+    const liked = useMemo(() => {
+        if (!user) {
+            return false
+        }
+        return !! user.favorites.find((itemId, index) => itemId === id && user.favoritesColors[index] === color)
+    }, [user, color])
+
     return {
-        isCart, onCartEnter, onCartLeave, onCartClick, isPresent, onPresentClick, onPresentLeave, transl
+        isCart, onCartEnter, onCartLeave, onCartClick, isPresent, onPresentClick, onPresentLeave, transl, liked
     }
 }
 

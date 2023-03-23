@@ -2,7 +2,7 @@ import {ElementContent, Locale} from 'types/types'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import Link from 'next/link'
-import {UseLocale} from 'hooks/other/other.types'
+import {UseGetParamForImages, UseLocale} from 'hooks/other/other.types'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
 import {useState} from 'react'
 import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
@@ -114,7 +114,7 @@ export const useLocale: UseLocale = ((content) => {
     return common? [translations[locale], common] : [translations[locale]]
 }) as UseLocale
 
-export const useGetParamForImages = (ratio = 4 / 3) => {
+export const useGetParamForImages: UseGetParamForImages = (ratio = 4 / 3, ...deps) => {
     const [width, setWidth] = useState(0)
     const [height, setHeight] = useState(0)
     
@@ -139,7 +139,7 @@ export const useGetParamForImages = (ratio = 4 / 3) => {
 
     useLayoutEffect(() => {
         calcParams()
-    }, [])
+    }, [deps])
 
     const elemRef = useRef<HTMLDivElement>(null)
 

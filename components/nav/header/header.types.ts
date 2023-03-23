@@ -1,6 +1,7 @@
 import {MouseAction} from 'types/types'
+import {ModalState} from 'components/store/modal/modal.types'
 
 export type NavHeaderProps = {
     home: boolean,
-    showModal: MouseAction
+    showModal: (param: keyof ModalState) => void
 }

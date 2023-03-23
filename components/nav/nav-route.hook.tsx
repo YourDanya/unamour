@@ -20,9 +20,16 @@ const useNavRoute = (hideModal: () => void) => {
 
     const path = useSelector(selectPath)
 
-    useDebounceEffect(() => {
-        hideModal()
-    }, [path], 300)
+    // useDebounceEffect(() => {
+    //     hideModal()
+    // }, [path], 300)
+
+    useEffect(() => {
+        router.events.on('routeChangeComplete', hideModal)
+        return () => {
+            router.events.off('routeChangeComplete', hideModal)
+        }
+    }, [])
 
     return {home}
 }

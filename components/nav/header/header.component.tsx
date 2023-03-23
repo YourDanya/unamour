@@ -11,8 +11,8 @@ import {NavHeaderProps} from 'components/nav/header/header.types'
 import useNavHeader from 'components/nav/header/header.hook'
 
 const NavHeader: FC<NavHeaderProps> = (props) => {
-    const {showModal, home} = props
-    const {quantity} = useNavHeader()
+    const {home} = props
+    const {quantity, onShowModal} = useNavHeader(props)
     
     return (
         <div className="container nav__header">
@@ -20,7 +20,7 @@ const NavHeader: FC<NavHeaderProps> = (props) => {
                 UNAMOUR
             </NavLink>
             <div className="nav__icons">
-                <Button name="search" onClick={showModal}>
+                <Button name="search" onClick={onShowModal}>
                     <img
                         className={'nav__icon nav__icon--first'}
                         src={home ? searchWhite.src : search.src}
@@ -34,7 +34,7 @@ const NavHeader: FC<NavHeaderProps> = (props) => {
                         alt={'shop item'}
                     />
                 </NavLink>
-                <Button className={'nav__cart-btn'} name="shopping" onClick={showModal}>
+                <Button className={'nav__cart-btn'} name="shopping" onClick={onShowModal}>
                     <div className={`nav__cart-quantity ${home? 'nav__cart-quantity--home' : ''}`}>
                         {quantity !==0 && quantity}
                     </div>

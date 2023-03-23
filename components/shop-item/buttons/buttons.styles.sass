@@ -28,8 +28,21 @@
     border: 1px solid black
     cursor: pointer
     background-color: white
-    &-img
-      height: 26px
+    .favorite-like__state
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      transition: 0.5s all
+      path
+        stroke: black
+        fill: transparent
+        transition: 0.5s all
+    .favorite-like__state--liked
+      background-color: black
+      path
+        fill: white
   &__present
     background-color: transparent
     border: none

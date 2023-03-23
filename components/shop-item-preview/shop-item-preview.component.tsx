@@ -6,11 +6,11 @@ import Image from 'next/image'
 import {baseURL} from 'utils/api/api.utils'
 
 const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
-    const {images, slug, slugCategory, color, itemRef, height, width} = props
+    const {images, slug, slugCategory, color, itemRef, height, width, className} = props
     const {onMouse, hovered} = useShopItemPreview()
 
     return (
-        <div className="shop-item-preview" ref={itemRef}>
+        <div className={`shop-item-preview ${className ? className : ''}`} ref={itemRef}>
             <Link
                 href={`/shop-items/${slugCategory}/${slug}?color=${color}`}
                 className={`shop-item-preview__link`}
