@@ -2,22 +2,31 @@ import {useEffect} from 'react'
 import {useLocale} from 'hooks/other/other.hooks'
 import {useRouter} from 'next/router'
 import {useDispatch} from 'react-redux'
-import {loginAsync} from 'redux/user/user.thunk'
 import {resetUserFieldSuccess} from 'redux/user/user.slice'
 import {useInput} from 'hooks/input/input.hooks'
 import loginFormContent from 'components/nav-auth/login/login-form/login-form.content'
-import {useParamSelector} from 'hooks/enhanced/enhanced.hooks'
-import {selectUserField} from 'redux/user/user.selectors'
+import {useApiCall} from 'utils/api/api-v2.utils'
+import {setUser} from 'redux/user/user.slice'
+import {User} from 'redux/user/user.types'
+import {useMapApiRes} from 'utils/api/api-v2.utils'
+import useFavoritesStore from 'store/favorites/favorites.store'
 
 const useLoginForm = () => {
     const [transl, content] = useLocale(loginFormContent)
     const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
 
-    const login = useParamSelector(selectUserField, 'login')
-
     const dispatch = useDispatch()
-    const handleClick = withSubmit(() => {
-        dispatch(loginAsync(inputs.values))
+
+    const login = useApiCall('auth/login', {
+        method: 'POST',
+        body: inputs.values,
+        onSuccess: (data: {user: User}) => {
+            dispatch(setUser(data))
+        }
+    })
+
+    const onLogin = withSubmit(() => {
+        login.start()
     })
 
     const router = useRouter()
@@ -32,7 +41,9 @@ const useLoginForm = () => {
         }
     }, [login.success])
 
-    return {content, transl, inputs, onChange, handleClick, onValidate, login}
+    const mappedLogin = useMapApiRes({res: login, successTransl: transl.success, errorFourTransl: transl.error})
+
+    return {content, transl, inputs, onChange, onLogin, onValidate, login, mappedLogin}
 }
 
 export default useLoginForm

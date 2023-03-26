@@ -5,7 +5,7 @@ import navMenuContent from 'components/nav/nav-menu/nav-menu.content'
 import {useSelector} from 'react-redux'
 import {MouseAction} from 'types/types'
 import {NavMenuProps} from 'components/nav/nav-menu/nav-menu.types'
-import {ModalState} from 'components/store/modal/modal.types'
+import {ModalState} from 'store/modal/modal.types'
 
 const useNavMenu = (props: NavMenuProps) => {
     const {showTopModal} = props

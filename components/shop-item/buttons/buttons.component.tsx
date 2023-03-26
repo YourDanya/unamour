@@ -5,11 +5,13 @@ import useButtons from 'components/shop-item/buttons/buttons.hook'
 import {ButtonsProps} from 'components/shop-item/buttons/buttons.types'
 import Button from 'components/common/button/button.component'
 import FavoriteLike from 'components/common/favorite-like/favorite-like.component'
+import {Fragment} from 'react'
 
 const Buttons: FC<ButtonsProps> = (props) => {
     const {id, color} = props
     const {
-        isCart, onCartEnter, onCartClick, onCartLeave, isPresent, onPresentClick, onPresentLeave, transl, liked
+        isCart, onCartEnter, onCartClick, onCartLeave, isPresent, onPresentClick, onPresentLeave, transl, liked,
+        onFavoriteLike
     } = useButtons(props)
 
     return (
@@ -27,7 +29,9 @@ const Buttons: FC<ButtonsProps> = (props) => {
                     {transl.selectSize}
                 </div>
             </button>
-            <FavoriteLike className='shop-item__favorite' liked={liked} id={id} color={color}/>
+            <div onClickCapture={onFavoriteLike}>
+                <FavoriteLike className='shop-item__favorite' liked={liked} id={id} color={color}/>
+            </div>
             <div className="shop-item__present-cover">
                 <button
                     className="shop-item__present"

@@ -7,6 +7,9 @@ import {useSelector} from 'react-redux'
 import {selectUser} from 'redux/user/user.selectors'
 import {useApiCall} from 'utils/api/api-v2.utils'
 import {useMemo} from 'react'
+import modalStore from 'store/modal/modal.store'
+import useModalStore from 'store/modal/modal.store'
+import useFavoritesStore from 'store/favorites/favorites.store'
 
 const useButtons = (props: ButtonsProps) => {
     const {activeSize, showModal, onAddItem, color, id} = props
@@ -48,17 +51,28 @@ const useButtons = (props: ButtonsProps) => {
         }
     }
 
+    const {favorites} = useFavoritesStore()
     const user = useSelector(selectUser)
 
     const liked = useMemo(() => {
-        if (!user) {
+        if (favorites.length === 0) {
             return false
         }
-        return !! user.favorites.find((itemId, index) => itemId === id && user.favoritesColors[index] === color)
-    }, [user, color])
+        return !! favorites.find((item) => item.id === id && item.color === color)
+    }, [favorites, color])
+
+    const modalStore = useModalStore()
+
+    const onFavoriteLike: MouseAction = (event) => {
+        if (!user) {
+            modalStore.showModal('sign')
+            event.stopPropagation()
+        }
+    }
 
     return {
-        isCart, onCartEnter, onCartLeave, onCartClick, isPresent, onPresentClick, onPresentLeave, transl, liked
+        isCart, onCartEnter, onCartLeave, onCartClick, isPresent, onPresentClick, onPresentLeave, transl, liked,
+        onFavoriteLike
     }
 }
 

@@ -1,20 +1,7 @@
 import React from 'react'
-import {MapDelivery} from 'utils/component/component.types'
 import {ClientItem} from 'redux/shop-items/shop-items.types'
 import {FilterItems} from 'utils/component/component.types'
 import {CategoryItem} from 'redux/shop-items/shop-items.types'
-
-export const mapDelivery: MapDelivery = (labels) => labels.map(({title, price, duration}) => {
-    return {
-        label: title,
-        node: (
-            <div className="delivery-type">
-                <div className="delivery-type__price">{price}</div>
-                <div className="delivery-type__duration">{duration}</div>
-            </div>
-        )
-    }
-})
 
 export const filterItems: FilterItems = (items, filters) => {
     const {sorting, price, ...otherFilters} = filters

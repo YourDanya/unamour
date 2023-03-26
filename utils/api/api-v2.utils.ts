@@ -1,9 +1,16 @@
-import {baseURL, instance} from 'utils/api/api.utils'
+import {baseURL} from 'utils/api/api.utils'
 import {ApiCall} from 'utils/api/api-v2.types'
+import {UseApiCall} from 'utils/api/api-v2.types'
+import {MapApiError} from 'utils/api/api-v2.types'
 import {useEffect} from 'react'
 import {useState} from 'react'
-import {UseApiCall} from 'utils/api/api-v2.types'
 import {ServerError} from 'redux/store.types'
+import {apiErrorContent} from 'utils/api/api-v2.content'
+import {useRouter} from 'next/router'
+import {Locale} from 'types/types'
+import {UseMapApiError} from 'utils/api/api-v2.types'
+import {MapApiRes} from 'utils/api/api-v2.types'
+import {UseMapApiRes} from 'utils/api/api-v2.types'
 
 export const apiCall: ApiCall = async (url, params) => {
     let body: string | FormData = JSON.stringify(params?.body)
@@ -17,7 +24,7 @@ export const apiCall: ApiCall = async (url, params) => {
         body,
         credentials: 'include',
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             ...params?.headers
         },
         keepalive: params?.keepAlive
@@ -47,14 +54,17 @@ export const useApiCall: UseApiCall = (url, params) => {
     const [success, setSuccess] = useState(false)
     const [data, setData] = useState<any>(null)
     const [error, setError] = useState<ServerError | null>(null)
-    const [body, setBody] = useState<object | undefined>(params?.body)
+    const [body, setBody] = useState<object | undefined>()
 
     useEffect(() => {
         (async () => {
             if (!loading) {
                 return
             }
-            const {data: fetchedData, error} = await apiCall<typeof data>(url, {...otherParams, body})
+            // console.log('body', otherParams.body)
+            const {data: fetchedData, error} = await apiCall<typeof data>(url,
+                {...otherParams, ...body && {body}}
+            )
             if (fetchedData) {
                 setData(fetchedData)
                 setError(null)
@@ -78,4 +88,42 @@ export const useApiCall: UseApiCall = (url, params) => {
     }
 
     return {loading, success, error, data, start, setError, setSuccess}
+}
+
+export const mapApiError: MapApiError = (params) => {
+    const {error, errorFourTransl, locale} = params
+    if (!error) {
+        return ''
+    }
+
+    const {code, message, timer} = error
+    if (code === '5') {
+        return apiErrorContent.translations[locale].general
+    }
+
+    if (typeof errorFourTransl === 'object') {
+        return errorFourTransl[message as keyof typeof errorFourTransl]
+    } else {
+        return errorFourTransl
+    }
+}
+
+export const useMapApiError: UseMapApiError = (params) => {
+    const locale = useRouter().locale as Locale
+    return mapApiError({...params, locale})
+}
+
+export const mapApiRes: MapApiRes = (params) => {
+    const {res, errorFourTransl, successTransl, locale} = params
+    const error = mapApiError({error: res.error, errorFourTransl, locale})
+    let success = ''
+    if (res.success) {
+        success = successTransl
+    }
+    return {error, success, loading: res.loading}
+}
+
+export const useMapApiRes: UseMapApiRes = (params) => {
+    const locale = useRouter().locale as Locale
+    return mapApiRes({...params, locale})
 }

@@ -4,7 +4,7 @@ import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {useLocale} from 'hooks/other/other.hooks'
 import {CategoryItem} from 'redux/shop-items/shop-items.types'
-import useModalStore from 'components/store/modal/modal.store'
+import useModalStore from 'store/modal/modal.store'
 
 const useFavorites = () => {
     const [transl] = useLocale(favoritesContent)

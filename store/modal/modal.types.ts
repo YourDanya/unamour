@@ -1,5 +1,3 @@
-import {MouseAction} from 'types/types'
-
 export type ModalState = {
     hamburger: boolean, search: boolean, shopping: boolean, sign: boolean, modal: boolean
 }

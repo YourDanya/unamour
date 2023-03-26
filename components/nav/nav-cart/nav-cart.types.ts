@@ -1,4 +1,4 @@
-import {ModalState} from 'components/store/modal/modal.types'
+import {ModalState} from 'store/modal/modal.types'
 
 export type NavCartProps = {
     showModal: (param: keyof ModalState) => void,

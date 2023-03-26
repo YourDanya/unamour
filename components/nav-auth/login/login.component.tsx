@@ -7,7 +7,7 @@ import useLogin from 'components/nav-auth/login/login.hook'
 
 const Login: React.FC<SignInProps> = (props) => {
     const {sign, handleSign} = props
-    const {transl, resetPass, handleResetPass} = useLogin()
+    const {transl, resetPass, toggleResetPass} = useLogin()
 
     return (
         <div className={`nav-auth__content ${sign === 'login' ? '' : 'nav-auth__content--hidden'}`}>
@@ -18,9 +18,9 @@ const Login: React.FC<SignInProps> = (props) => {
                 </Button>
             </div>
             {resetPass ? (
-                <ResetPass handleResetPass={handleResetPass}/>
+                <ResetPass handleResetPass={toggleResetPass}/>
             ) : (
-                <LoginForm handleResetPass={handleResetPass}/>
+                <LoginForm handleResetPass={toggleResetPass}/>
             )}
         </div>
     )

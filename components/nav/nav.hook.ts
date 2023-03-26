@@ -1,8 +1,8 @@
 import useNavRoute from 'components/nav/nav-route.hook'
 import {useModal} from 'hooks/component/component.hooks'
-import useModalStore from 'components/store/modal/modal.store'
+import useModalStore from 'store/modal/modal.store'
 import {MouseAction} from 'types/types'
-import {ModalState} from 'components/store/modal/modal.types'
+import {ModalState} from 'store/modal/modal.types'
 
 const useNav = () => {
     // const [modalState, showModal, hideModal, showTopModal, hideTopModal] =

@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import {ModalState, ModalStore} from 'components/store/modal/modal.types'
+import {ModalState, ModalStore} from 'store/modal/modal.types'
 
 const useModalStore = create<ModalStore>((set) => ({
     modalState: {hamburger: false, search: false, shopping: false, sign: false, modal: false},
