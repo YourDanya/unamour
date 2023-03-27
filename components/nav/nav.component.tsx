@@ -7,7 +7,7 @@ import NavCart from 'components/nav/nav-cart/nav-cart.component'
 import Modal from 'components/common/modal/modal.component'
 import NavMenu from 'components/nav/nav-menu/nav-menu.component'
 import Sidebar from 'components/common/sidebar/sidebar.component'
-import SignInUp from 'components/nav-auth/nav-auth.component'
+import NavAuth from 'components/nav-auth/nav-auth.component'
 
 const Nav: FC = () => {
     const {modalState, showModal, hideModal, home, showTopModal, hideTopModal} = useNav()
@@ -20,7 +20,7 @@ const Nav: FC = () => {
                 <NavMenu showTopModal={showTopModal}/>
             </Sidebar>
             <Sidebar left active={modalState.sign} hideTopModal={hideTopModal} name={'sign'}>
-                <SignInUp/>
+                <NavAuth/>
             </Sidebar>
             <Sidebar active={modalState.search} hideModal={hideModal}>
                 <NavSearch/>

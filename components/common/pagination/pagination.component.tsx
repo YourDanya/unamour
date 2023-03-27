@@ -102,13 +102,6 @@ const Pagination: FC<PaginationProps> = (props) => {
                     <Button className={'pagination__elem pagination__forward'} onClick={onForward}>
                         &gt;
                     </Button>
-                    <input
-                        className={'pagination__input'}
-                        type={'number'}
-                        value={currentPage}
-                        onChange={onPageChange}
-                    />
-                    {/*<Picklist active={perPage} values={perPageValues} setValue={setPerPage}/>*/}
                 </div>
             </div>
         </>

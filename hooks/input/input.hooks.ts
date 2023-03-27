@@ -168,6 +168,16 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 }[locale])
                 break
             }
+            case ('isNumberGreaterThanZero') : {
+                // console.log('check isNumberGreaterThanZero')
+                // console.log('value', value)
+                if (!/(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)/.test(value)) errors.push({
+                    ua: 'Введіть число більше нуля.',
+                    eng: 'Enter a number greater than zero.',
+                    ru: 'Введите число больше нуля.'
+                }[locale])
+                break
+            }
             case ('isPhone') : {
                 if (!/\(?(\d{3})\)?([ .-]?)(\d{3})\2(\d{4})/.test(value)) errors.push({
                     ua: 'Введіть вірний номер.',
@@ -187,12 +197,12 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 break
             }
             case ('minLength') : {
-                valValue = valValue as number
-                const end = symbol(valValue, locale)
-                if (length < valValue) errors.push({
-                    ua: `Довжина поля мусить бути більшой за ${valValue} символ${end}.`,
-                    eng: `The field length must be greater than ${valValue} symbol${end}.`,
-                    ru: `Длина поля должна быть больше чем ${valValue} символ${end}.`
+                const minLength = valValue as number
+                const end = symbol(minLength, locale)
+                if (length < minLength) errors.push({
+                    ua: `Довжина поля мусить бути не меншою за ${minLength} символ${end}.`,
+                    eng: `The field length must not be less than ${minLength} symbol${end}.`,
+                    ru: `Длина поля должна быть не меньше чем ${minLength} символ${end}.`
                 }[locale])
                 break
             }
@@ -207,7 +217,7 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
             }
         }
     }
-    return errors.join('\n') ?? null
+    return errors.join('\n') ?? ''
 }
 
 const symbol = (number: number, locale: Locale) => {
