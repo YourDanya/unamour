@@ -21,7 +21,7 @@ const ItemForm: FC<ItemFormProps> = (props) => {
                 <ItemCommon itemIndex={itemIndex}/>
                 <ItemTranslations/>
                 <ItemVariants/>
-                <ItemButtons deleted={deleted}/>
+                <ItemButtons deleted={deleted} itemIndex={itemIndex}/>
             </form>
         </ItemFormContext.Provider>
     )

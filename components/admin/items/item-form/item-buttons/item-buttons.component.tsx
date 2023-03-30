@@ -1,16 +1,14 @@
 import useItemButtons from 'components/admin/items/item-form/item-buttons/item-buttons.hook'
-import FormMessage from 'components/common/form-message/form-message.component'
 import {FC} from 'react'
 import Button from 'components/common/button/button.component'
 import {ItemButtonsProps} from 'components/admin/items/item-form/item-buttons/item-buttons.types'
-import closeRed from 'public/icons/close-red.svg'
 import ItemMessage from 'components/admin/items/item-form/item-buttons/item-message/item-message.component'
 
 const ItemButtons: FC<ItemButtonsProps> = (props) => {
     const {deleted} = props
 
     const {
-        transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, actionsList, actions, loading
+        transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, actions, loading, errorCount
     } = useItemButtons(props)
 
     return (
@@ -34,27 +32,17 @@ const ItemButtons: FC<ItemButtonsProps> = (props) => {
                 </>
             )}
             <div className="item-form__messages">
-                {actionsList.map(([actionName, actionValue]) => (
+                {Object.entries(isMessage).map(([messageName, isMessage]) => (
                     <ItemMessage
-                        key={actionName}
-                        isMessage={isMessage.deleteItemImages}
-                        field={actionName}
-                        success={actionValue.success ? transl.success[actionName] : ''}
-                        error={actionValue.error ? transl.errors[actionName] : ''}
+                        key={messageName}
+                        isMessage={isMessage}
+                        name={messageName}
+                        success={messageName !== 'client' && actions[messageName]?.success ? transl.success[messageName] : ''}
+                        error={messageName !== 'client' && actions[messageName]?.success ? transl.errors[messageName] : errorCount !== 0 ? transl.clientError(errorCount) : ''}
                         onClose={onClose}
                         onTimerExpiration={onTimerExpiration}
                     />
                 ))}
-                {isMessage.client && (
-                    <FormMessage
-                        className={'item-form__message'}
-                        error={0 ? transl.clientError(0) : ''}
-                    >
-                        <Button className={'item-form__message-close'} onClick={onClose} data-value={'client'}>
-                            <img className={'item-form__message-close-img'} src={closeRed.src} alt={'close'}/>
-                        </Button>
-                    </FormMessage>
-                )}
             </div>
         </>
     )

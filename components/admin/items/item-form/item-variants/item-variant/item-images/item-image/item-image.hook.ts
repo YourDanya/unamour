@@ -24,14 +24,12 @@ const useItemImage = (props: ItemImageProps) => {
 
     const [url, setUrl] = useState(props.id)
 
-    // const urlRef = useRef<URL>()
-
     useEffect(() => {
-        if (!file || typeof file === 'string') {
+        if (!file) {
             return
         }
         const objectUrl = URL.createObjectURL(file as File)
-        console.log(objectUrl)
+
         setUrl(objectUrl)
         // free memory when ever this component is unmounted
         return () => {

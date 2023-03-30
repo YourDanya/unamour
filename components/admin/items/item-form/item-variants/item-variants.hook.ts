@@ -8,7 +8,7 @@ const useItemVariants = () => {
     const [transl] = useLocale(itemVariantsContent)
 
     const {
-        itemValue: {common: {variants}}, itemValueRef, setItemValue, errorCountRef, setErrorCount
+        itemValue: {common: {variants}}, itemValueRef, setItemValue, itemImagesValuesRef, setItemImagesValues
     } = useItemFormContext(state => state)
 
     const onAddVariant: MouseAction = (event) => {
@@ -20,6 +20,7 @@ const useItemVariants = () => {
                 variants: [...itemValueRef.current.common.variants, newVariant]
             }
         }
+        itemImagesValuesRef.current.push({})
         setItemValue(itemValueRef.current)
     }
 

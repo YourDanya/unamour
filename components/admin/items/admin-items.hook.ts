@@ -15,7 +15,6 @@ import {useRef} from 'react'
 
 const useAdminItems = () => {
     const test = useRef(performance.now())
-
     test.current = performance.now()
 
     const router = useRouter()
@@ -65,10 +64,6 @@ const useAdminItems = () => {
             setSlugs({...slugs})
         }
     }, [items])
-
-    // useEffect(() => {
-    //     console.log('test', performance.now() - test.current)
-    // })
 
     const testRef = useRef({a: {b: 1}})
 

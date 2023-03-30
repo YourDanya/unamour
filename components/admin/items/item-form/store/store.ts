@@ -6,6 +6,7 @@ import {useContext} from 'react'
 import {useStore} from 'zustand'
 import {useRef} from 'react'
 import {MutableRefObject} from 'react'
+import {ItemImagesValues} from 'components/admin/items/item-form/item-form.types'
 
 export type ItemFormState = {
     errorCount: number,
@@ -13,21 +14,27 @@ export type ItemFormState = {
     setErrorCount: (errorCount: number) => void,
     itemValue: FetchedItem,
     itemValueRef: MutableRefObject<FetchedItem>,
-    setItemValue: (itemValue: FetchedItem) => void
+    setItemValue: (itemValue: FetchedItem) => void,
+    itemImagesValues: ItemImagesValues,
+    setItemImagesValues: (itemImagesValues: ItemImagesValues) => void,
+    itemImagesValuesRef:MutableRefObject<ItemImagesValues>
 }
 
-export type ItemFormInitState = {itemValue: FetchedItem}
+export type ItemFormInitState = {itemValue: FetchedItem, itemImagesValues: ItemImagesValues}
 
 export const ItemFormContext = createContext<StoreApi<ItemFormState>>({} as StoreApi<ItemFormState>)
 
-export const createItemFormStore = ({itemValue}: ItemFormInitState) =>
+export const createItemFormStore = ({itemValue, itemImagesValues}: ItemFormInitState) =>
     create<ItemFormState>((set) => ({
         errorCount: 0,
         errorCountRef: useRef(0),
         setErrorCount: (errorCount) => set({errorCount}),
         itemValue,
         itemValueRef: useRef(JSON.parse(JSON.stringify(itemValue))),
-        setItemValue: (itemValue) => set({itemValue})
+        setItemValue: (itemValue) => set({itemValue}),
+        itemImagesValues,
+        setItemImagesValues: (itemImagesValues) => set({itemImagesValues}),
+        itemImagesValuesRef: useRef(JSON.parse(JSON.stringify(itemImagesValues)))
     }))
 
 export type UseItemFormContext = <T> (
@@ -40,11 +47,11 @@ export const useItemFormContext: UseItemFormContext = (selector, equalityFn) => 
     return useStore(store, selector, equalityFn)
 }
 
-export type ItemFormMain = Omit<ItemFormState, 'itemValue' | 'errorCount'>
+export type ItemFormMain = Omit<ItemFormState, 'itemValue' | 'errorCount' | 'itemImagesValues'>
 
 export type SelectItemFormMain = (state: ItemFormState) => ItemFormMain
 
 export const selectItemFormMain: SelectItemFormMain = (state) => {
-    const {itemValue, errorCount, ...otherState} = state
-    return otherState
+    const {itemImagesValues: _, errorCount: __, itemValue: ___, ...other} = state
+    return other
 }

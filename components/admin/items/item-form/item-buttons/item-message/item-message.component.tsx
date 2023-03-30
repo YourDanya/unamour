@@ -7,7 +7,7 @@ import {FC} from 'react'
 import {ItemMessageProps} from 'components/admin/items/item-form/item-buttons/item-message/item-message.types'
 
 const ItemMessage: FC<ItemMessageProps> = (props) => {
-    const {success, error, onClose, isMessage, field} = props
+    const {success, error, onClose, isMessage, name} = props
     const {timer} = useItemMessage(props)
     
     return (<>
@@ -18,12 +18,12 @@ const ItemMessage: FC<ItemMessageProps> = (props) => {
                 error={error}
             >
                 {success && (
-                    <Button className={'item-form__message-close'} onClick={onClose} data-value={field}>
+                    <Button className={'item-form__message-close'} onClick={onClose} data-value={name}>
                         <img className={'item-form__message-close-img'} src={closeGreen.src} alt={'close'}/>
                     </Button>
                 )}
                 {error && (
-                    <Button className={'item-form__message-close'} onClick={onClose} data-value={field}>
+                    <Button className={'item-form__message-close'} onClick={onClose} data-value={name}>
                         <img className={'item-form__message-close-img'} src={closeRed.src} alt={'close'}/>
                     </Button>
                 )}

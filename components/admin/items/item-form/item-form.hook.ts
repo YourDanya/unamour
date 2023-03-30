@@ -6,27 +6,29 @@ import {StoreApi} from 'zustand/esm'
 import {createItemFormStore} from 'components/admin/items/item-form/store/store'
 import {ItemFormState} from 'components/admin/items/item-form/store/store'
 import {useRef} from 'react'
+import {ItemImagesValues} from 'components/admin/items/item-form/item-form.types'
 
 const useItemForm = (props: ItemFormProps) => {
     const test = useRef(performance.now())
     test.current = performance.now()
 
-    const {item, itemIndex} = props
+    const {item} = props
 
     const [itemValue, setItemValue] = useState(item)
 
     const [errorCount, setErrorCount] = useState(0)
     const [transl] = useLocale(itemFormContent)
 
-    // const imageValues = useRef<ImageFiles>(
-    //     item.common.variants.reduce((imagesObj, variant) => {
-    //         variant.images.forEach(imageId => imagesObj[imageId] = {file: imageId, color: variant.color})
-    //         return imagesObj
-    //     }, {} as ImageFiles)
-    // )
-    //
-    // const initImageValues = useRef<ImageFiles>(JSON.parse(JSON.stringify(imageValues.current)))
+    const [itemImagesValues] = useState<ItemImagesValues>(
+        item.common.variants.map(({ images}) => {
+            const imagesObj = {} as Record<string, File | null>
+            images.forEach((imageId) => imagesObj[imageId] = null)
+            return imagesObj
+        })
+    )
 
+    // const initImageValues = useRef<ImageFiles>(JSON.parse(JSON.stringify(imageValues.current)))
+    //
     // useOmitFirstEffect(() => {
     //     imageValues.current = item.common.variants.reduce((imagesObj, variant) => {
     //         variant.images.forEach(imageId => {
@@ -37,11 +39,11 @@ const useItemForm = (props: ItemFormProps) => {
     //     initImageValues.current = JSON.parse(JSON.stringify(initImageValues.current))
     //     itemValue.current = JSON.parse(JSON.stringify(item))
     // }, [props])
-
+    //
     // const {} = imageValues()
 
     const [store] = useState<StoreApi<ItemFormState>>(
-        {...createItemFormStore({itemValue})}
+        {...createItemFormStore({itemValue, itemImagesValues})}
     )
 
     return {

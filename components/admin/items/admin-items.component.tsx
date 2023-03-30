@@ -16,7 +16,7 @@ const AdminItems: FC = () => {
                 <div className={'admin-items__list container'}>
                     <AdminItemsContext.Provider value={providerValue}>
                         <Pagination className={'admin-items__pagination'}>
-                            {items.map((item, index) => (
+                            {items.map((item, index) => index === 0 && (
                                 <ItemForm
                                     key={index}
                                     className={index === items.length - 1 ? 'admin-items__last-item' : ''}

@@ -36,7 +36,7 @@ const useItemButtons = (props: ItemButtonsProps) => {
 
     const [isMessage, setMessage] = useState({
         client: false, updateItem: false, createItem: false, deleteItem: false,
-        createItemImages: false, deleteItemImages: false, updateItemImages: false
+        createImages: false, deleteImages: false, updateImages: false
     })
 
     const test = useRef(0)
@@ -44,11 +44,11 @@ const useItemButtons = (props: ItemButtonsProps) => {
     const stackActions = useRef<((args: any) => void)[]>([])
     const stackCreateImages = useRef<((args: any) => void)[]>([])
 
-    const clientError = useRef(0)
+    console.log('errorCount', errorCount)
 
     const onSave: MouseAction = (event) => {
         event.preventDefault()
-        if (clientError.current > 0) {
+        if (errorCount > 0) {
             setMessage({...isMessage, client: true})
             return
         }
@@ -111,11 +111,11 @@ const useItemButtons = (props: ItemButtonsProps) => {
 
     const onDelete: MouseAction = (event) => {
         event.preventDefault()
-        if (_id) {
-            actions.deleteItem.start()
-        } else {
-            dispatch(removeAdminDeletedItem())
-        }
+        // if (_id) {
+        //     actions.deleteItem.start()
+        // } else {
+        //     dispatch(removeAdminDeletedItem())
+        // }
     }
 
     const onClose: MouseAction = (event) => {
@@ -156,7 +156,7 @@ const useItemButtons = (props: ItemButtonsProps) => {
     const loading = actionsList.some(([name, value]) => value.loading && name !== 'deleteItem')
 
     return {
-        transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, actions, actionsList, loading
+        transl, onSave, onDelete, isMessage, onClose, onTimerExpiration, actions, actionsList, loading, errorCount
     }
 }
 

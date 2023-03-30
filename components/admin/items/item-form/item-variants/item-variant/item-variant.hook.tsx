@@ -10,6 +10,8 @@ import {useItemFormContext} from 'components/admin/items/item-form/store/store'
 import {useInputChange} from 'hooks/input/input-v2.hooks'
 import {useMapInputs} from 'hooks/input/input-v2.hooks'
 import {useValidateInput} from 'hooks/input/input-v2.hooks'
+import {MouseAction} from 'types/types'
+import {selectItemFormMain} from 'components/admin/items/item-form/store/store'
 
 const useItemVariant = (props: ItemVariantProps) => {
     const [colorsTransl, colorsContent] = useLocale(colorContent)
@@ -17,10 +19,12 @@ const useItemVariant = (props: ItemVariantProps) => {
 
     const {variantIndex} = props
 
-    const {itemValue, itemValueRef, setItemValue, errorCountRef, setErrorCount}
-        = useItemFormContext(state => state)
+    const {itemValueRef, setItemValue, errorCountRef, setErrorCount}
+        = useItemFormContext(selectItemFormMain)
 
-    const {sizes, price, color} = itemValue.common.variants[variantIndex]
+    const itemValue = useItemFormContext(({itemValue}) => itemValue)
+
+    const {sizes, color, price} = itemValue.common.variants[variantIndex]
 
     const {validations, errors: initErrors} = useMapInputs(content.inputs)
     const [errors, setErrors] = useState(initErrors)
@@ -59,7 +63,7 @@ const useItemVariant = (props: ItemVariantProps) => {
         } as { styles: { backgroundColor: string }[], labels: string[], values: string[] })
     }, [])
 
-    const {onChange: onInputsChange, valuesRef} = useInputChange({
+    const {onChange: onInputsChange} = useInputChange({
         values: {color, price},
         changeCallback: ({changeValues, name}) => {
             const {variants} = itemValueRef.current.common
@@ -70,20 +74,31 @@ const useItemVariant = (props: ItemVariantProps) => {
     })
 
     useEffect(() => {
+
+    }, [variantIndex])
+
+    useEffect(() => {
         const beforeCount = errRef.current.count
 
-        Object.entries(valuesRef.current).forEach(([name, value]) => onValidate(name, value))
+        const {color, price} = itemValueRef.current.common.variants[variantIndex]
+        const values = {color, price}
 
-        const isColorNotUnique = itemValueRef.current.common.variants.reduce((count, {color}) => {
-            if (color === valuesRef.current.color) {
-                count++
+        Object.entries(values).forEach(([name, value]) => onValidate(name, value))
+
+        variantIndex === 0 && console.log('validating', values)
+
+        if (!errRef.current.errors.color) {
+            const isColorNotUnique = itemValueRef.current.common.variants.reduce((count, {color}) => {
+                if (color === values.color) {
+                    count++
+                }
+                return count
+            }, 0) > 1
+
+            if (isColorNotUnique) {
+                errRef.current.count++
+                errRef.current.errors.color = transl.colorError
             }
-            return count
-        }, 0) > 1
-
-        if (isColorNotUnique) {
-            errRef.current.count++
-            errRef.current.errors.color = transl.colorError
         }
 
         const beforeSizeError = errRef.current.errors.size
@@ -108,14 +123,25 @@ const useItemVariant = (props: ItemVariantProps) => {
         }
     }, [itemValue.common.variants, sizes])
 
-    const onDeleteVariant = () => {
-        itemValueRef.current.common.variants.splice(variantIndex, 1)
-        setItemValue(itemValueRef.current)
-        if (errRef.current.count !== 0) {
-            errorCountRef.current -= errRef.current.count
-            setErrorCount(errorCountRef.current)
+    const onDeleteVariant:MouseAction = (event) => {
+        event.preventDefault()
+        if (itemValueRef.current.common.variants.length === 1) {
+            return
         }
+        itemValueRef.current.common.variants.splice(variantIndex, 1)
+        itemValueRef.current.common.variants = [...itemValueRef.current.common.variants]
+        setItemValue(itemValueRef.current)
     }
+
+    useEffect(() => {
+        return () => {
+            if (errRef.current.count !== 0) {
+                console.log('error count')
+                errorCountRef.current -= errRef.current.count
+                setErrorCount(errorCountRef.current)
+            }
+        }
+    }, [])
 
     return {
         onSizesChange, onInputsChange, transl, sizeValues, colors, values: {price, color}, errors, onDeleteVariant

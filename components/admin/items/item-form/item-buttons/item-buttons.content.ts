@@ -63,7 +63,7 @@ export const itemButtonsContent = {
                 updateImages: 'Картинки успішно оновлено.\nПовідомлення буде видалено через',
                 deleteImages: 'Картинки успішно видалено.\nПовідомлення буде видалено через',
             },
-            clientError: (count: number) => `Не можна зберегти. Кількість помилок: ${number}.`
+            clientError: (count: number) => `Не можна зберегти. Кількість помилок: ${count}.`
         },
         eng: {
             save: 'save item',
@@ -84,7 +84,7 @@ export const itemButtonsContent = {
                 updateImages: 'Images were successfully updated.\nMessage will be cleared in',
                 deleteImages: 'Images were successfully deleted.\nMessage will be cleared in',
             },
-            clientError: (count: number) => `Can't save. Number of errors: ${number}.`
+            clientError: (count: number) => `Can't save. Number of errors: ${count}.`
         },
         ru: {
             save: 'сохранить товар',
@@ -105,7 +105,7 @@ export const itemButtonsContent = {
                 updateImages: 'Картинки успешно удалены.\nУведомление будет удалено через',
                 deleteImages: 'Картинки успешно удалены.\nУведомление будет удалено через'
             },
-            clientError: (count: number) => `Нельзя сохранить. Количество ошибок: ${number}.`
+            clientError: (count: number) => `Нельзя сохранить. Количество ошибок: ${count}.`
         }
     }
 }

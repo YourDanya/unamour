@@ -10,6 +10,7 @@ import {InputsMap} from 'hooks/input/input-v2.types'
 import {ChangeEvent} from 'react'
 import {UseInputChange} from 'hooks/input/input-v2.types'
 import {OnValidate} from 'hooks/input/input-v2.types'
+import {useEffect} from 'react'
 
 export const useValidateInput: UseValidateInput = (params) => {
     const {errors, validations, validateCallback} = params
@@ -69,6 +70,10 @@ export const useInputChange: UseInputChange = ({values, changeCallback}) => {
         }
         changeCallback({changeValues: valuesRef.current, name})
     }
+
+    useEffect(() => {
+        valuesRef.current = {...values}
+    }, [values])
 
     return {valuesRef, onChange}
 }

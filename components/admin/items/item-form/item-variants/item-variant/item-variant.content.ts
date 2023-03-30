@@ -16,7 +16,6 @@ const ItemVariantContent = {
                 price: 'ціна',
                 newImage: 'введіть адресу'
             },
-            addImage: 'додати картинку',
             variant: 'варіант',
             delete: 'видалити варіант',
             sizeError: 'Список розмірів не повинен бути пустим.',
@@ -31,7 +30,6 @@ const ItemVariantContent = {
                 price: 'price',
                 newImage: 'enter url'
             },
-            addImage: 'add image',
             variant: 'variant',
             delete: 'delete variant',
             sizeError: 'Size list must not be empty.',
@@ -46,7 +44,6 @@ const ItemVariantContent = {
                 price: 'цена',
                 newImage: 'введите адрес'
             },
-            addImage: 'добавить картинку',
             variant: 'вариант',
             delete: 'удалить вариант',
             sizeError: 'Список размеров не должен быть пустым.',

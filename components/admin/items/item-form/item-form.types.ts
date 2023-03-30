@@ -10,4 +10,4 @@ export type ItemFormProps = {
 
 export type ItemVariant = { color: string, sizes: string[], images: string[], price: string, _id: string }
 
-export type ImageFiles = Record<string, { file: File | string, color: string }>
+export type ItemImagesValues = Record<string, File | null> []

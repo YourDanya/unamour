@@ -1,7 +1,7 @@
 .item-form
   padding: 10px 0
   width: 300px
-  grid-template-columns: auto auto
+  grid-template-columns: minmax(0, auto) minmax(0, auto)
   grid-template-rows: repeat(5, auto)
   position: relative
   display: grid
@@ -107,12 +107,16 @@
     border-radius: 50px
     position: absolute
   &__messages
+    width: 300px
+    display: flex
+    flex-direction: column
     z-index: 100
     grid-row: 1
     position: sticky
     top: 60px
     grid-column: 1 / 3
   &__message
+    word-wrap: break-word
     margin-bottom: 20px
     &-close
       position: absolute

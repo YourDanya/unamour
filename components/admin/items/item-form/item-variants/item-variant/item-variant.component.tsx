@@ -8,6 +8,7 @@ import React from 'react'
 import FormMessage from 'components/common/form-message/form-message.component'
 import {ItemVariantProps} from 'components/admin/items/item-form/item-variants/item-variant/item-variant.types'
 import useItemVariant from 'components/admin/items/item-form/item-variants/item-variant/item-variant.hook'
+import ItemImages from 'components/admin/items/item-form/item-variants/item-variant/item-images/item-images.component'
 
 const ItemVariant: FC<ItemVariantProps> = (props) => {
     const {variantIndex} = props
@@ -57,9 +58,9 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 <FormMessage error={errors.size}/>
             </Dropdown>
             {/*images*/}
-            <Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>
-
-            </Dropdown>
+            {/*<Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>*/}
+            {/*    <ItemImages variantIndex={variantIndex}/>*/}
+            {/*</Dropdown>*/}
             <Button className={'item-form__button'} onClick={onDeleteVariant} data-value={variantIndex}>
                 {transl.delete}
             </Button>

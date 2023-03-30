@@ -66,22 +66,21 @@ const useItemCommon = (props: ItemCommonProps) => {
         const beforeCount = errRef.current.count
 
         onValidate('slug', values.slug)
-        if (errRef.current.errors.slug) {
-            setErrors({...errRef.current.errors})
-            return
-        }
 
-        const isSlugNotUnique = Object.values(slugsRef.current).reduce((count, slug) => {
-            if (slug === values.slug) {
-                count++
+        if (!errRef.current.errors.slug) {
+            const isSlugNotUnique = Object.values(slugsRef.current).reduce((count, slug) => {
+                if (slug === values.slug) {
+                    count++
+                }
+                return count
+            }, 0) > 1
+
+            if (isSlugNotUnique) {
+                errRef.current.errors.slug = transl.uniqueSlug
+                errRef.current.count += 1
             }
-            return count
-        }, 0) > 1
-
-        if (isSlugNotUnique) {
-            errRef.current.errors.slug = transl.uniqueSlug
-            errRef.current.count += 1
         }
+
         setErrors({...errRef.current.errors})
 
         const afterCount = errRef.current.count

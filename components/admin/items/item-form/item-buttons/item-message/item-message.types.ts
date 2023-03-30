@@ -6,6 +6,6 @@ export type ItemMessageProps = {
     error: string | null,
     onClose: MouseAction,
     onTimerExpiration: (field: ItemButtonsActionName) => void
-    field: ItemButtonsActionName,
+    name: ItemButtonsActionName | 'client',
     isMessage: boolean
 }

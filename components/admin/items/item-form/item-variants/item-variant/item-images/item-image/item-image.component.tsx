@@ -13,19 +13,17 @@ const ItemImage: FC<ItemImageProps> = (props) => {
 
     return (
         <div className={'item-form__image-wrapper'}>
-            <img className={'item-form__image'} src={url.includes('http') ? url : `${baseURL}/images/${url}`}/>
+            <img
+                className={'item-form__image'}
+                src={url.includes('http') ? url : `${baseURL}/images/${url}`}
+                alt={'preview image'}
+            />
             <Button className={'item-form__button'} onClick={onUpdate}>
                 {transl.updateImage}
             </Button>
             <Button className={'item-form__button'} onClick={onDelete}>
                 {transl.deleteImage}
             </Button>
-            {/*<input*/}
-            {/*    type="file"*/}
-            {/*    onChange={onUpdate}*/}
-            {/*    accept="image/*"*/}
-            {/*    style={{display: 'none'}}*/}
-            {/*/>*/}
         </div>
     )
 }
