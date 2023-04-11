@@ -1,7 +1,7 @@
 import {MutableRefObject} from 'react'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
-import {ImageFiles} from 'components/admin/items/item-form/item-form.types'
+import {DoubleNode} from 'utils/main/main.types'
 
-export type ItemVariantsProps = {
+export type ItemVariantsProps = {}
 
-}
+export type ItemNode = DoubleNode<FetchedItem>

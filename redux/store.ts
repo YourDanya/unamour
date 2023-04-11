@@ -8,8 +8,6 @@ import shopItems from 'redux/shop-items/shop-items.slice'
 import cart from 'redux/cart/cart.slice'
 import user from 'redux/user/user.slice'
 import main from 'redux/main/main.slice'
-import test from 'redux/test/test.slice'
-import admin from 'redux/admin/admin.slice'
 import checkout from 'redux/checkout/checkout.slice'
 import {persistReducer} from 'redux-persist'
 import {persistStore} from 'redux-persist'
@@ -42,7 +40,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unkn
 // })
 
 export const reducers = {
-    shopItems, cart, user, main, test, admin, checkout
+    shopItems, cart, user, main, checkout
 }
 
 export const rootReducer = combineReducers(reducers)

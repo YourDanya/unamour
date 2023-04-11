@@ -1,22 +1,22 @@
 import {FC} from 'react'
 import useItemTranslations from 'components/admin/items/item-form/item-translations/item-translations.hook'
 import ItemTranslation from 'components/admin/items/item-form/item-translations/item-translation/item-translation.component'
-import {Locale} from 'types/types'
-
+import {memo} from 'react'
+import {getKeys} from 'utils/main/main.utils'
 const ItemTranslations: FC = () => {
     const {transl, translations} = useItemTranslations()
 
     return (
         <div className={'item-form__block'}>
             <div className={'item-form__title'}>{transl.title}</div>
-            {Object.entries(translations).map(([locale, values]) => (
+            {getKeys(translations).map((locale) => (
                 <ItemTranslation
                     key={locale}
-                    locale={locale as Locale}
+                    locale={locale}
                 />
             ))}
         </div>
     )
 }
 
-export default ItemTranslations
+export default memo(ItemTranslations)

@@ -6,12 +6,13 @@ import {useEffect} from 'react'
 import {useState} from 'react'
 import {ItemVariantProps} from 'components/admin/items/item-form/item-variants/item-variant/item-variant.types'
 import itemVariantContent from 'components/admin/items/item-form/item-variants/item-variant/item-variant.content'
-import {useItemFormContext} from 'components/admin/items/item-form/store/store'
+import {useItemFormStore} from 'components/admin/items/item-form/store/item-form.store'
 import {useInputChange} from 'hooks/input/input-v2.hooks'
 import {useMapInputs} from 'hooks/input/input-v2.hooks'
 import {useValidateInput} from 'hooks/input/input-v2.hooks'
 import {MouseAction} from 'types/types'
-import {selectItemFormMain} from 'components/admin/items/item-form/store/store'
+import {selectItemFormMain} from 'components/admin/items/item-form/store/item-form.store'
+import {getEntries} from 'utils/main/main.utils'
 
 const useItemVariant = (props: ItemVariantProps) => {
     const [colorsTransl, colorsContent] = useLocale(colorContent)
@@ -20,9 +21,9 @@ const useItemVariant = (props: ItemVariantProps) => {
     const {variantIndex} = props
 
     const {itemValueRef, setItemValue, errorCountRef, setErrorCount}
-        = useItemFormContext(selectItemFormMain)
+        = useItemFormStore(selectItemFormMain)
 
-    const itemValue = useItemFormContext(({itemValue}) => itemValue)
+    const itemValue = useItemFormStore(({itemValue}) => itemValue)
 
     const {sizes, color, price} = itemValue.common.variants[variantIndex]
 
@@ -74,18 +75,12 @@ const useItemVariant = (props: ItemVariantProps) => {
     })
 
     useEffect(() => {
-
-    }, [variantIndex])
-
-    useEffect(() => {
         const beforeCount = errRef.current.count
 
         const {color, price} = itemValueRef.current.common.variants[variantIndex]
         const values = {color, price}
 
-        Object.entries(values).forEach(([name, value]) => onValidate(name, value))
-
-        variantIndex === 0 && console.log('validating', values)
+        getEntries(values).forEach(([name, value]) => onValidate(name, value))
 
         if (!errRef.current.errors.color) {
             const isColorNotUnique = itemValueRef.current.common.variants.reduce((count, {color}) => {

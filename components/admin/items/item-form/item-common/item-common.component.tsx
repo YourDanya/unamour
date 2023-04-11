@@ -5,9 +5,10 @@ import RadioButtons from 'components/common/radio-buttons/radio-buttons.componen
 import useItemCommon from 'components/admin/items/item-form/item-common/item-common.hook'
 import Dropdown from 'components/common/dropdown/dropdown.component'
 import {ItemCommonProps} from 'components/admin/items/item-form/item-common/item-common.types'
+import {memo} from 'react'
 
 const ItemCommon: FC<ItemCommonProps> = (props) => {
-    const {itemIndex} = props
+    const {} = props
     const {transl, values, onChange, categoryTransl, categoryValues, errors} = useItemCommon(props)
 
     return (
@@ -80,14 +81,8 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                     name={'slugCategory'}
                 />
             </Dropdown>
-            {/*<Button className={'item-form__button'} onClick={(event) => {*/}
-            {/*    event.preventDefault()*/}
-            {/*    state.setCount(state.count + 1)*/}
-            {/*}}>*/}
-            {/*    {`count: ${state.count}`}*/}
-            {/*</Button>*/}
         </div>
     )
 }
 
-export default ItemCommon
+export default memo(ItemCommon)

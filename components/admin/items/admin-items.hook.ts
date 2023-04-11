@@ -6,25 +6,31 @@ import {MouseEvent} from 'react'
 import {useState} from 'react'
 import {useLocale} from 'hooks/other/other.hooks'
 import adminItemsContent from 'components/admin/items/admin-items.content'
-import {useDispatch} from 'react-redux'
-import {addAdminItem} from 'redux/admin/admin.slice'
-import {selectAdminItems} from 'redux/admin/admin.selectors'
 import {ItemVariant} from 'components/admin/items/item-form/item-form.types'
 import {useApiCall} from 'utils/api/api-v2.utils'
-import {useRef} from 'react'
+import {FetchedItem} from 'redux/shop-items/shop-items.types'
+import {useAdminItemsStore} from 'components/admin/items/store/admin-items.store'
+import {peek} from 'utils/main/main.utils'
 
 const useAdminItems = () => {
-    const test = useRef(performance.now())
-    test.current = performance.now()
-
     const router = useRouter()
-    const items = useSelector(selectAdminItems)
     const user = useSelector(selectUser)
-
-    const getUser = useApiCall( 'getUser')
-    const getItems = useApiCall( 'getItems')
-
     const [transl] = useLocale(adminItemsContent)
+
+    const getUser = useApiCall('users/user-data')
+
+    const {
+        items, addItem, setItems,
+    } = useAdminItemsStore((state) => {
+        return peek( state, ['items', 'addItem', 'setItems'])
+    })
+
+    const getItems = useApiCall<{ items: FetchedItem[] }>('shop-item/all', {
+        onSuccess: ({items}) => {
+            setItems(items)
+        }
+    })
+
     const [itemError, setItemError] = useState('')
 
     useEffect(() => {
@@ -33,43 +39,57 @@ const useAdminItems = () => {
         }
     }, [getUser])
 
-    const dispatch = useDispatch()
-    const toAddItem = !items[items.length - 1]?._id
+    useEffect(() => {
+        getUser.start()
+        getItems.start()
+    }, [])
+
+    const [canAddItem, setCanAddItem] = useState(true)
 
     const onAddItem = (event: MouseEvent) => {
         event.preventDefault()
-        if (!toAddItem) {
+        if (canAddItem) {
             const item = JSON.parse(JSON.stringify(items[items.length - 1]))
             item.common.variants.forEach((variant: ItemVariant) => {
                 delete (variant as any)._id
                 variant.images = []
             })
             item._id = ''
-            dispatch(addAdminItem(item))
+            setCanAddItem(false)
+            addItem(item)
         } else if (!itemError) {
             setItemError(transl.saveBeforeCreate)
         }
     }
 
-    const [slugs, setSlugs] = useState<Record<string, string>>({})
-    const slugsRef = useRef(slugs)
-
     useEffect(() => {
         if (items.length > 0) {
-            const slugs = items.reduce((slugs, item) => {
-                slugs[item._id] = item.common.slug
-                return slugs
-            }, {} as Record<string, string>)
-            slugsRef.current = slugs
-            setSlugs({...slugs})
+            
         }
     }, [items])
 
-    const testRef = useRef({a: {b: 1}})
-
     return {
-        items, user, getItems, onAddItem, toAddItem, transl, itemError, providerValue: {slugs, setSlugs, slugsRef, testRef}
+        user, getItems, onAddItem, canAddItem, transl, itemError, items
     }
 }
 
 export default useAdminItems
+
+// const lastNode = useRef<ItemNode>()
+//
+// const itemsList = useMemo(() => {
+//     let list: DoubleNode<typeof items[number]> = {} as DoubleNode<typeof items[number]>
+//     let tempNode: DoubleNode<typeof items[number]> = list
+//
+//     items.forEach((elem) => {
+//         tempNode.next = {value: elem, prev: tempNode}
+//         tempNode = tempNode.next
+//         lastNode.current = tempNode
+//     })
+//
+//     delete list?.next?.prev
+//     return list.next as DoubleNode<typeof items[number]>
+// }, [items])
+
+// const initSlugsRef = useRef<Record<string, string>>({})
+// useFirsRender(() => setSlugsRef(initSlugsRef))

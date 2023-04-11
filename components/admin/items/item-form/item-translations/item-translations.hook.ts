@@ -1,11 +1,16 @@
 import {useLocale} from 'hooks/other/other.hooks'
 import itemTranslationContent from 'components/admin/items/item-form/item-translations/item-translations.content'
-import {useItemFormContext} from 'components/admin/items/item-form/store/store'
+import {useItemFormStore} from 'components/admin/items/item-form/store/item-form.store'
+import {usePaginationStore} from 'components/common/pagination/store/pagination.stote'
+import {peek} from 'utils/main/main.utils'
+import {useCallback} from 'react'
 
 const useItemTranslations = () => {
     const [transl] = useLocale(itemTranslationContent)
 
-    const translations = useItemFormContext(state => state.itemValue.translations)
+    const translations = useItemFormStore(useCallback((state) => {
+        return state.itemValue.translations
+    }, []))
 
     return {transl, translations}
 }

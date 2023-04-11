@@ -1,5 +1,6 @@
 import React, {DependencyList, EffectCallback, useEffect, useLayoutEffect, useRef, useState} from "react"
 import {UseModal} from "./component.types";
+import {UseFirstRender} from './component.types'
 
 export const useModal: UseModal = (_initState, attribute = 'name') => {
 
@@ -128,33 +129,11 @@ export const useDebounceEffect = <T extends any[], >(effect: EffectCallback, dep
     }, deps)
 }
 
-// export const useMapForm = (elements, translation) => {
-//     elements.map(({type, className, name, placeholder}, index) => {
-//             if (type === 'input') {
-//                 return (
-//                     <update-input className={className} key={index}>
-//                         <Input
-//                             placeholder={placeholder}
-//                             name={name}
-//                             onChange={onChange}
-//                             value={values[name]}
-//                         />
-//                     </update-input>
-//                 )
-//             } else if (type === 'check') {
-//
-//             } else if (type === 'radio') {
-//
-//             } else if (type === 'button') {
-//                 const {children, error, className} = props
-//
-//             } else {
-//                 return (
-//                     <update-input className={className} key={name}>
-//                         {placeholder}
-//                     </update-input>
-//                 )
-//             }
-//         }
-//     )
-// }
+export const useFirsRender: UseFirstRender = (callback) => {
+    const isFirstRef = useRef(true)
+
+    if (isFirstRef.current) {
+        isFirstRef.current = false
+        callback()
+    }
+}

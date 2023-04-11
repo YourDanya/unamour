@@ -1,33 +1,43 @@
 import {useLocale} from 'hooks/other/other.hooks'
 import {categoriesContent} from 'components/common/content/content'
 import itemCommonContent from 'components/admin/items/item-form/item-common/item-common.content'
-import {useContext} from 'react'
-import {useRef} from 'react'
 import {ItemCommonProps} from 'components/admin/items/item-form/item-common/item-common.types'
 import {useMapInputs} from 'hooks/input/input-v2.hooks'
 import {useInputChange} from 'hooks/input/input-v2.hooks'
 import {useState} from 'react'
 import {useValidateInput} from 'hooks/input/input-v2.hooks'
-import {AdminItemsContext} from 'components/admin/items/admin-items.context'
 import {useEffect} from 'react'
-import {useItemFormContext} from 'components/admin/items/item-form/store/store'
+import {useItemFormStore} from 'components/admin/items/item-form/store/item-form.store'
 import {ChangeCallback} from 'hooks/input/input-v2.types'
-import {shallow} from 'zustand/shallow'
 import {useCallback} from 'react'
+import {getEntries} from 'utils/main/main.utils'
+import {useAdminItemsStore} from 'components/admin/items/store/admin-items.store'
+import {peek} from 'utils/main/main.utils'
+import {shallow} from 'zustand/shallow'
+import {usePaginationStore} from 'components/common/pagination/store/pagination.stote'
 
 const useItemCommon = (props: ItemCommonProps) => {
-    const {itemIndex} = props
     const [transl, content] = useLocale(itemCommonContent)
     const [categoryTransl, categoryValues] = useLocale(categoriesContent)
 
-    const {setItemValue, setErrorCount, errorCountRef, itemValueRef} = useItemFormContext(state => state)
+    const itemIndex = usePaginationStore(state => state.itemIndex)
 
-    const {values} = useItemFormContext(useCallback(( state) => {
+    const {
+        items
+    } = useAdminItemsStore(useCallback((state) => {
+        return peek(state, ['items'])
+    }, []), shallow)
+
+    const {
+        setItemValue, setErrorCount, errorCountRef, itemValueRef, itemValue
+    } = useItemFormStore(useCallback((state) => {
+        return peek(state, ['setItemValue', 'setErrorCount', 'errorCountRef', 'itemValueRef', 'itemValue'])
+    }, []), shallow)
+
+    const {values} = useItemFormStore(useCallback((state) => {
         const {variants: _, ...values} = state.itemValue.common
         return {values}
-    }, []))
-
-    const {setSlugs, slugsRef, slugs} = useContext(AdminItemsContext)
+    }, []), shallow)
 
     const initInputs = useMapInputs(content.inputs)
 
@@ -37,29 +47,22 @@ const useItemCommon = (props: ItemCommonProps) => {
     const changeCallback: ChangeCallback<typeof values> = ({changeValues, name}) => {
         itemValueRef.current.common = {...itemValueRef.current.common, ...changeValues}
         setItemValue(itemValueRef.current)
-        if (name === 'slug') {
-            slugsRef.current[itemValueRef.current._id] = changeValues.slug
-            setSlugs({...slugsRef.current})
-        }
-        lastChangedName.current = name
     }
-
-    const lastChangedName = useRef('')
 
     const {onChange} = useInputChange({values, changeCallback})
 
     useEffect(() => {
-        if (lastChangedName.current === 'slug') {
-            return
-        }
         const beforeCount = errRef.current.count
-        Object.entries(values).forEach(([name, value]) => onValidate(name, value))
+
+        getEntries(values).forEach(([name, value]) => name !== 'slug' && onValidate(name, value))
         setErrors({...errRef.current.errors})
+
         const afterCount = errRef.current.count
         if (beforeCount !== afterCount) {
             errorCountRef.current += afterCount - beforeCount
             setErrorCount(errorCountRef.current)
         }
+
     }, [values])
 
     useEffect(() => {
@@ -68,12 +71,9 @@ const useItemCommon = (props: ItemCommonProps) => {
         onValidate('slug', values.slug)
 
         if (!errRef.current.errors.slug) {
-            const isSlugNotUnique = Object.values(slugsRef.current).reduce((count, slug) => {
-                if (slug === values.slug) {
-                    count++
-                }
-                return count
-            }, 0) > 1
+            const isSlugNotUnique = Object.values(items).some(({common: {slug}}, index) => {
+                return slug === values.slug && itemIndex !== index
+            })
 
             if (isSlugNotUnique) {
                 errRef.current.errors.slug = transl.uniqueSlug
@@ -89,9 +89,20 @@ const useItemCommon = (props: ItemCommonProps) => {
             setErrorCount(errorCountRef.current)
         }
 
-    }, [values.slug, slugs])
+        itemIndex === 6 && console.log('calling useEffect values.slug')
+    }, [values.slug])
 
-    return {transl, values, onChange, categoryTransl, categoryValues, errors, onValidate}
+    return {transl, values, onChange, categoryTransl, categoryValues, errors}
 }
 
 export default useItemCommon
+
+// const {setSlugs, slugsRef, slugs} = useAdminItemsStore((state) => {
+//     const {setSlugs, slugsRef, slugs} = state
+//     return {setSlugs, slugsRef, slugs}
+// })
+
+// if (name === 'slug') {
+//     slugsRef.current[itemValueRef.current._id] = changeValues.slug
+//     setSlugs({...slugsRef.current})
+// }

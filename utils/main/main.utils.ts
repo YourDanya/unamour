@@ -4,32 +4,11 @@ import {MessLocaleError} from 'redux/store.types'
 import {GetError} from 'utils/main/main.types'
 import {NullObj} from 'utils/main/main.types'
 import {GetLocalStorage} from 'utils/main/main.types'
-import {MapWithClientErrField} from 'utils/main/main.types'
-
-// export const sleep= (ms: number) => {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-// }
-//
-// export const removeFromArr = (arr: any[], value: any) => {
-//     const index = arr.indexOf(value)
-//     if (index > -1) {
-//         arr.splice(index, 1)
-//     }
-//     return arr
-// }
-//
-export const debounce = <T extends any [], > (callback: (...args: T) => void, delay = 1000) => {
-    let timeout: NodeJS.Timeout
-
-    return (...args: T) => {
-        clearTimeout(timeout)
-        timeout = setTimeout(() => callback(...args), delay)
-    }
-}
-//
-// export const capitalizeString: CapitalizeString = ((string: string) => {
-//     return string.charAt(0).toUpperCase().concat(string.slice(1))
-// }) as CapitalizeString
+import {CreateDoubleLinkedList} from 'utils/main/main.types'
+import {DoubleNode} from 'utils/main/main.types'
+import {PeekedObject} from 'utils/main/main.types'
+import {Peek} from 'utils/main/main.types'
+import {FromEntriesWithReadOnly} from 'utils/main/main.types'
 
 export const parseTimer = (milliseconds: number) => {
     let seconds = Math.floor(milliseconds / 1000)
@@ -46,18 +25,6 @@ export const mapField: MapField = (field, stateField, locale, contentErrors,
     return {loading, error, success, ...timer && {timer}}
 }
 
-export const mapWithClientErrField: MapWithClientErrField = (params) => {
-    const {field, stateField, locale, contentErrors, contentSuccess, clientErrors} = params
-    const {loading, error} = stateField
-    const server = getError(field, error.server, contentErrors, locale)
-    let client = ''
-    if (typeof clientErrors === 'function' && error.client) {
-        client = clientErrors()
-    }
-    const success = stateField.success ? contentSuccess[field][locale] : ''
-    return {loading, error: {client, server}, success}
-}
-
 export const getError: GetError = (field, serverError, contentErrors, locale) => {
     const code = serverError?.code as '4' | '5'
     const message = serverError?.message as string
@@ -68,10 +35,10 @@ export const getError: GetError = (field, serverError, contentErrors, locale) =>
         let fieldError = contentErrors['4'][field] as LocaleError | MessLocaleError
         if (fieldError.ua) {
             fieldError = fieldError as LocaleError
-            error = fieldError?.[locale]
+            error = fieldError?.[locale] ?? ''
         } else if (message) {
             fieldError = fieldError as MessLocaleError
-            error = fieldError[message]?.[locale]
+            error = fieldError[message]?.[locale] ?? ''
         }
     }
     return error
@@ -103,12 +70,11 @@ export const nullObj: NullObj = (obj) => {
                     for (let i in tempObj[prop]) {
                         stack.push(tempObj[prop][i])
                     }
-                }
-                else {
+                } else {
                     stack.push(tempObj[prop])
                 }
             }
-        }    
+        }
     }
     return obj
 }
@@ -129,8 +95,7 @@ export const checkEqual = (obj1: any, obj2: any) => {
                     stack1[i][key] !== null && stack2[i][key] !== null) {
                     newStack1.push(stack1[i][key])
                     newStack2.push(stack2[i][key])
-                }
-                else if (typeof stack1[i][key] !== typeof stack2[i][key] || stack1[i][key] !== stack2[i][key]) {
+                } else if (typeof stack1[i][key] !== typeof stack2[i][key] || stack1[i][key] !== stack2[i][key]) {
                     // console.log('obj1 !== obj2')
                     return false
                 }
@@ -145,4 +110,40 @@ export const checkEqual = (obj1: any, obj2: any) => {
 
 export const getLocalStorage: GetLocalStorage = (key) => {
     return JSON.parse(JSON.parse(localStorage.getItem('persist:nextjs') as string)[key])
+}
+
+export const getEntries = <ObjT extends object>(obj: ObjT) => {
+    return Object.entries(obj) as { [KeyT in keyof ObjT]: [KeyT, ObjT[KeyT]] }[keyof ObjT][]
+}
+
+export const createFromEntries = <ArrT extends ReadonlyArray<readonly[PropertyKey, any]>>(arr: ArrT) => {
+    return Object.fromEntries(arr) as FromEntriesWithReadOnly<ArrT>
+}
+
+export const getValues = <ObjT extends object>(obj: ObjT) => {
+    return Object.values(obj) as (ObjT[keyof ObjT])[]
+}
+
+export const getKeys = <ObjT extends object>(obj: ObjT) => {
+    return Object.keys(obj) as (keyof ObjT) []
+}
+
+export const createDoubleLinkedList: CreateDoubleLinkedList = (arr) => {
+    let list: DoubleNode<typeof arr[number]> = {} as DoubleNode<typeof arr[number]>
+    let temp: DoubleNode<typeof arr[number]> = list
+
+    arr.forEach((elem) => {
+        temp.next = {value: elem, prev: temp}
+        temp = temp.next
+    })
+
+    delete list?.next?.prev
+    return list.next as DoubleNode<typeof arr[number]>
+}
+
+export const peek: Peek = (object, keys) => {
+    return keys.reduce((newObject, key) => {
+        newObject[key] = object[key]
+        return newObject
+    }, {} as PeekedObject<typeof object, typeof keys>)
 }

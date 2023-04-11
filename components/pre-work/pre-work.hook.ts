@@ -3,14 +3,12 @@ import {getUserAsync} from 'redux/user/user.thunk'
 import {useEffect} from 'react'
 import {selectUser} from 'redux/user/user.selectors'
 import {useSelector} from 'react-redux'
-import {getItemsAsync} from 'redux/admin/admin.thunk'
 import {selectOrderId} from 'redux/cart/cart.selector'
 import {getOrderAsync} from 'redux/checkout/checkout.thunk'
 import {selectOrder} from 'redux/checkout/checkout.selector'
 import {useRef} from 'react'
 import {setOrderId} from 'redux/cart/cart.slice'
 import {setCartItems} from 'redux/cart/cart.slice'
-import {setPaymentData} from 'redux/checkout/checkout.slice'
 
 const usePreWork = () => {
     const user = useSelector(selectUser)
@@ -20,11 +18,9 @@ const usePreWork = () => {
         dispatch(getUserAsync())
     }, [])
 
-    useEffect(() => {
-        if (user?.isAdmin) {
-            dispatch(getItemsAsync())
-        }
-    }, [user])
+    // useEffect(() => {
+    //
+    // }, [user])
 
     const orderId = useSelector(selectOrderId)
 
@@ -55,7 +51,6 @@ const usePreWork = () => {
             dispatch(setCartItems([]))
         }
     }, [order])
-
 }
 
 export default usePreWork

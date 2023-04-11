@@ -74,7 +74,9 @@ export const apiCall: ApiCall = async (apiCall)  => {
         const res = error.response as AxiosResponse
         console.log('error', error.response)
         let code = res?.status?.toString()[0] ?? ''
-        if (code !== '4' && code !== '5') code = '5'
+        if (code !== '4' && code !== '5') {
+            code = '5'
+        }
         const {message} = res?.data || {}
         return {data: {}, error: {code, message}}
     }

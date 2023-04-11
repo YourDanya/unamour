@@ -58,9 +58,9 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 <FormMessage error={errors.size}/>
             </Dropdown>
             {/*images*/}
-            {/*<Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>*/}
-            {/*    <ItemImages variantIndex={variantIndex}/>*/}
-            {/*</Dropdown>*/}
+            <Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>
+                <ItemImages variantIndex={variantIndex}/>
+            </Dropdown>
             <Button className={'item-form__button'} onClick={onDeleteVariant} data-value={variantIndex}>
                 {transl.delete}
             </Button>

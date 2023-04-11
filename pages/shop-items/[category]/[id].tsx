@@ -1,17 +1,13 @@
 import {NextPageWithLayout} from 'types/types'
 import ShopItem from 'components/shop-item/shop-item.component'
 import {ShopItemPageProps} from 'pages/shop-items/shop-items-page.types'
-import {wrapper} from 'redux/store'
 import {api} from 'utils/api/api.utils'
 import {apiCall} from 'utils/api/api.utils'
 import {FetchedItem} from 'redux/shop-items/shop-items.types'
-import {Suspense} from 'react'
 import {categoriesContent} from 'components/common/content/content'
 import {otherCategoriesContent} from 'components/common/content/content'
 import {GetStaticProps} from 'next'
 import {CategoryItem} from 'redux/shop-items/shop-items.types'
-import {filterItems} from 'utils/component/component.utils'
-import axios from 'axios'
 
 // export const getServerSideProps = wrapper.getServerSideProps(store =>
 //     async (context) => {

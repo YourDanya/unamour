@@ -1,10 +1,15 @@
 .test
-  height: 10px
+  padding: 50px
   min-height: 100%
-  &__image-container
-    position: relative
-    width: 30%
-    height: 100%
+  &__images-container
+    width: 40%
     img
-      position: static
+      object-fit: cover
       width: 100%
+      height: 100%
+      display: block
+  //  display: grid
+  //  grid-auto-flow: column
+  //  overflow: hidden
+  //  grid-template-columns: repeat(5, 100%)
+  //  grid-template-rows: 100%

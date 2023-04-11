@@ -1,7 +1,7 @@
 import {useRef} from 'react'
 import {MouseAction} from 'types/types'
 import {ChangeEvent} from 'react'
-import {useItemFormContext} from 'components/admin/items/item-form/store/store'
+import {useItemFormStore} from 'components/admin/items/item-form/store/item-form.store'
 import {useCallback} from 'react'
 import {
     ItemImagesProps
@@ -19,7 +19,7 @@ const useItemImages = (props: ItemImagesProps) => {
     const modeRef = useRef({type: '', id: ''})
 
     const {values, setItemImagesValues, itemImagesValuesRef, errorCountRef, setErrorCount} =
-        useItemFormContext(useCallback((state) => {
+        useItemFormStore(useCallback((state) => {
             const {
                 itemValue: {common: {variants}}, itemImagesValues, setItemImagesValues, itemImagesValuesRef,
                 errorCountRef, setErrorCount

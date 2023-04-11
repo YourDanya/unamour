@@ -7,3 +7,12 @@ export type SliderProps = {
     perSlide?: number,
     className?: string
 }
+
+export type MoveRef = {
+    startX: number,
+    moving: false,
+    current: number,
+    fast: boolean,
+    clientX: number,
+    blocking: boolean
+}
