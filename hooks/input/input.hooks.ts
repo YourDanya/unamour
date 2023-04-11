@@ -68,7 +68,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
     const setReqErrors = useCallback(() => {
         Object.keys(errors).forEach((name) => {
             if (!errRef.current.errors[name] && validations?.[name]?.required) {
-                const error = getError(name)
+                const error = getError(name as string)
                 if (error) {
                     errRef.current.errors[name] = error
                     errRef.current.count += 1

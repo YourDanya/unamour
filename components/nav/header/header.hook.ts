@@ -1,7 +1,11 @@
 import {selectItemsQuantity} from 'redux/cart/cart.selector'
 import {useSelector} from 'react-redux'
+import {MouseAction} from 'types/types'
+import {NavHeaderProps} from 'components/nav/header/header.types'
+import {ModalState} from 'store/modal/modal.types'
 
-const useNavHeader = () => {
+const useNavHeader = (props: NavHeaderProps) => {
+    const {showModal} = props
     const quantity = useSelector(selectItemsQuantity)
 
     // useLayoutEffect(() => {
@@ -13,7 +17,12 @@ const useNavHeader = () => {
     //     setQuantity(quantity)
     // }, [])
 
-    return {quantity}
+    const onShowModal: MouseAction = (event) => {
+        const param = event.currentTarget.getAttribute('name') as keyof ModalState
+        showModal(param)
+    }
+
+    return {quantity, onShowModal}
 }
 
 export default useNavHeader

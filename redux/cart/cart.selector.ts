@@ -8,6 +8,10 @@ export const selectCartItems = createSelector(
     [selectCart], cart => cart.items
 )
 
+export const selectShouldCartOpen = createSelector(
+    [selectCart], cart => cart.shouldOpenNavCart
+)
+
 export const selectTotalPrice = createSelector(
     [selectCartItems],
     (cartItems) => {

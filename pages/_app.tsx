@@ -17,11 +17,12 @@ import 'components/common/input/input.styles.sass'
 import 'components/common/modal/modal.styles.sass'
 import 'components/common/sidebar/sidebar.styles.sass'
 import 'components/common/modal-content/modal-content.styles.sass'
-import 'components/common/map/map.styles.sass'
 import 'components/common/pagination/pagination/pagination.styles.sass'
 import 'components/common/slider/slider-v2.styles.sass'
 
 import 'components/admin/items/item-form/item-form.styles.sass'
+import 'components/favorites/favorite-item/favorite-item.styles.sass'
+import 'components/favorites/favorites.styles.sass'
 import 'components/profile/profile.styles.sass'
 import 'components/profile/profile-menu/profile-menu.styles.sass'
 import 'components/footer/links/links.styles.sass'
@@ -56,6 +57,7 @@ import 'components/footer/footer.styles.sass'
 import 'components/nav-auth/nav-auth.styles.sass'
 import 'components/cookie/cookies.styles.sass'
 import 'components/order/order.styles.sass'
+import 'components/contacts/contacts-map/contacts-map.styles.sass'
 
 import 'pages/test/test.styles.sass'
 import 'pages/order/order-page.styles.sass'
@@ -74,7 +76,6 @@ import 'pages/client-service/return/return.styles.sass'
 import 'pages/client-service/delivery/delivery.styles.sass'
 import 'pages/contacts/contact.styles.sass'
 import 'pages/vacancies/vacancies.styles.sass'
-import 'pages/favorites/favorites.styles.sass'
 import 'pages/search/search.styles.sass'
 import 'pages/cart/cart.styles.sass'
 import 'pages/shop-items/shop-items-page.styles.sass'
@@ -86,18 +87,17 @@ import Footer from 'components/footer/footer.component'
 import {wrapper} from 'redux/store'
 import PreWork from 'components/pre-work/pre-work.component'
 import {useStore} from 'react-redux'
-import {PersistGate} from 'redux-persist/integration/react'
 import {Store} from 'redux'
 
 function App(props: AppPropsWithLayout) {
     const {Component, pageProps} = props
     const {getLayout} = useApp(props)
 
-    const store = useStore() as Store & {__persistor: any}
-
+    // const store = useStore() as Store & {__persistor: any}
+    
     return (
         <>
-            <PersistGate persistor={store.__persistor}>
+            {/*<PersistGate persistor={store.__persistor}>*/}
                 <PreWork/>
                 <Nav/>
                 <div className={'page'}>
@@ -105,7 +105,7 @@ function App(props: AppPropsWithLayout) {
                 </div>
                 <Footer/>
                 {/*<Cookie/>*/}
-            </PersistGate>
+            {/*</PersistGate>*/}
         </>
     )
 }

@@ -4,7 +4,7 @@ import ShopItemPreview from 'components/shop-item-preview/shop-item-preview.comp
 import useShopItemsCollection from 'components/shop-items-collection/shop-items-collection.hook'
 
 const ShopItemsCollection: FC<ItemsCollectionProps> = ({items, title}) => {
-    const {itemRef, width} = useShopItemsCollection()
+    const {elemRef, width, locale} = useShopItemsCollection()
 
     return (
         <div className={'shop-items-collection'}>
@@ -15,11 +15,19 @@ const ShopItemsCollection: FC<ItemsCollectionProps> = ({items, title}) => {
                 {items && items.map((props, index) => (
                     <div className='shop-items-collection__item' key={props.common.slug + index}>
                         <ShopItemPreview
-                            {...props}
+                            {...props.common}
                             width={width}
                             height={width * 4 / 3}
-                            itemRef={index === 0 ? itemRef : undefined}
+                            itemRef={index === 0 ? elemRef : undefined}
                         />
+                        <div className={'shop-items-collection__bottom'}>
+                            <div className="shop-items-collection__name">
+                                {props.translations[locale].name}
+                            </div>
+                            <div className="shop-items-collection__price">
+                                {props.common.price} ₴
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>

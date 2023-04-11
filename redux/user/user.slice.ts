@@ -10,6 +10,7 @@ import {SetUserAction} from 'redux/user/user.types'
 import {ResetUserFieldTimerAction} from 'redux/user/user.types'
 import {ResetUserFieldSuccessAction} from 'redux/user/user.types'
 import {SetUserFieldAction} from 'redux/user/user.types'
+import useFavoritesStore from 'store/favorites/favorites.store'
 
 const initialState: UserState = {
     user : null,
@@ -49,7 +50,9 @@ export const userSlice = createSlice({
             state.fields[action.payload] = {success: true, loading: false, error: null, ...timer!==undefined && {timer}}
         },
         setUser: (state, action: SetUserAction) => {
-            state.user = action.payload.user
+            const {user} = action.payload
+            state.user = user
+            user && useFavoritesStore.getState().setFavoritesFromUser(user)
         },
         resetUserFieldTimer: (state, action: ResetUserFieldTimerAction) => {
             state.fields[action.payload].timer = 0

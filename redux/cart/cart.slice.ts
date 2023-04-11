@@ -8,7 +8,8 @@ import {UserFormData} from 'redux/cart/cart.types'
 const initialState: CartState = {
     items: [],
     orderId: '',
-    userFormData: null
+    userFormData: null,
+    shouldOpenNavCart: false
 }
 
 export const cartSlice = createSlice({
@@ -19,37 +20,36 @@ export const cartSlice = createSlice({
             const itemIndex = state.items.findIndex(item => {
                 return item.common._id === action.payload.common._id
             })
-            if (itemIndex===-1) {
+            if (itemIndex === -1) {
                 state.items.push(action.payload)
             } else {
                 state.items[itemIndex].quantity++
             }
         },
-        removeItem: (state, action: PayloadAction<{_id: string}>) => {
+        removeItem: (state, action: PayloadAction<{ _id: string }>) => {
             const itemIndex = state.items.findIndex(item => {
                 return item.common._id === action.payload._id
             })
-            if (itemIndex!==-1) {
+            if (itemIndex !== -1) {
                 state.items.splice(itemIndex, 1)
             }
         },
-        increaseQuantity: (state, action: PayloadAction<{_id: string}>) => {
+        increaseQuantity: (state, action: PayloadAction<{ _id: string }>) => {
             const itemIndex = state.items.findIndex(item => {
                 return item.common._id === action.payload._id
             })
-            if (itemIndex!==-1) {
+            if (itemIndex !== -1) {
                 state.items[itemIndex].quantity++
             }
         },
-        decreaseQuantity: (state, action: PayloadAction<{_id: string}>) => {
+        decreaseQuantity: (state, action: PayloadAction<{ _id: string }>) => {
             const itemIndex = state.items.findIndex(item => {
                 return item.common._id === action.payload._id
             })
-            if (itemIndex!==-1) {
+            if (itemIndex !== -1) {
                 if (state.items[itemIndex].quantity === 1) {
                     state.items.splice(itemIndex, 1)
-                }
-                else {
+                } else {
                     state.items[itemIndex].quantity--
                 }
             }
@@ -62,6 +62,9 @@ export const cartSlice = createSlice({
         },
         setUserFormData: (state, action: PayloadAction<UserFormData | null>) => {
             state.userFormData = action.payload
+        },
+        setShouldOpenNavCart: (state, action: PayloadAction<boolean>) => {
+            state.shouldOpenNavCart = action.payload
         }
     },
     extraReducers: {
@@ -72,7 +75,7 @@ export const cartSlice = createSlice({
 })
 
 export const {
-    addItem, removeItem, increaseQuantity, decreaseQuantity, setOrderId, setCartItems, setUserFormData
+    addItem, removeItem, increaseQuantity, decreaseQuantity, setOrderId, setCartItems, setUserFormData, setShouldOpenNavCart
 } = cartSlice.actions
 
 export default cartSlice.reducer

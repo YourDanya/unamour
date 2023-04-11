@@ -1,6 +1,3 @@
-const arr = [2,2,1,1]
-
-
 const permuteUnique = (nums) => {
     const res = [nums]
 
@@ -33,10 +30,6 @@ const permuteUnique = (nums) => {
 
     return res
 }
-
-const res = permuteUnique(arr)
-
-console.log('res', res)
 
 /*
 

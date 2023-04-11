@@ -1,12 +1,17 @@
 import loginContent from 'components/nav-auth/login/login.content'
-import {useToggle} from 'hooks/event-handler/event-handler.hooks'
 import {useLocale} from 'hooks/other/other.hooks'
+import {useState} from 'react'
 
 const useLogin = () => {
     const [transl] = useLocale(loginContent)
-    const [resetPass, handleResetPass] = useToggle()
 
-    return {transl, resetPass, handleResetPass}
+    const [resetPass, setResetPass] = useState(false)
+
+    const toggleResetPass = () => {
+        setResetPass(!resetPass)
+    }
+
+    return {transl, resetPass, toggleResetPass}
 }
 
 export default useLogin

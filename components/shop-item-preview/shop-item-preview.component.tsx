@@ -6,11 +6,11 @@ import Image from 'next/image'
 import {baseURL} from 'utils/api/api.utils'
 
 const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
-    const {common: {images, price, slug, slugCategory, color}, itemRef, height, width} = props
-    const {onMouse, hovered, transl} = useShopItemPreview(props)
+    const {images, slug, slugCategory, color, itemRef, height, width, className} = props
+    const {onMouse, hovered} = useShopItemPreview()
 
     return (
-        <div className="shop-item-preview" ref={itemRef}>
+        <div className={`shop-item-preview ${className ? className : ''}`} ref={itemRef}>
             <Link
                 href={`/shop-items/${slugCategory}/${slug}?color=${color}`}
                 className={`shop-item-preview__link`}
@@ -22,6 +22,7 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     alt={'shop item preview image'}
                     width={width}
                     height={height}
+                    quality={100}
                     style={{
                         objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
                         ... hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
@@ -32,20 +33,13 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     alt={'shop item preview image'}
                     width={width}
                     height={height}
+                    quality={100}
                     style={{
                         objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
                         ... !hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
                     }}
                 />
             </Link>
-            <div className={'shop-item-preview__bottom'}>
-                <div className="shop-item-preview__name">
-                    {transl.name}
-                </div>
-                <div className="shop-item-preview__price">
-                    {price} ₴
-                </div>
-            </div>
         </div>
     )
 }

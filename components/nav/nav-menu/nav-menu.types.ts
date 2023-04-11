@@ -1,5 +1,5 @@
-import {MouseEvent} from 'react'
+import {ModalState} from 'store/modal/modal.types'
 
 export type NavMenuProps = {
-    showTopModal: (event: MouseEvent<HTMLElement>) => void
+    showTopModal: (param: keyof ModalState) => void
 }

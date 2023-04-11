@@ -31,7 +31,7 @@ const navMenuContent = {
             ],
             secondLinks: [
                 'обране',
-                'вакансії',
+                'співпраця та вакансії',
                 'контакти'
             ],
             serviceLinks: [
@@ -56,7 +56,7 @@ const navMenuContent = {
             ],
             secondLinks: [
                 'framed',
-                'vacancies',
+                "cooperation and vacancies",
                 'contacts'
             ],
             serviceLinks: [
@@ -81,7 +81,7 @@ const navMenuContent = {
             ],
             secondLinks: [
                 'избранное',
-                'вакансии',
+                'сотрудничество и вакансии',
                 'Контакты'
             ],
             serviceLinks: [

@@ -62,6 +62,7 @@ export type FetchedItem = {
 }
 
 export type CategoryItem = {
+    _id: string,
     common: {
         slug: string,
         slugCategory: string,

@@ -1,7 +1,7 @@
-import React from 'react'
+import {FC} from 'react'
 import useVacancies from 'pages/vacancies/vacancies.hook'
 
-const Vacancies: React.FC = () => {
+const Vacancies: FC = () => {
     const {transl} = useVacancies()
 
     return (
@@ -13,7 +13,7 @@ const Vacancies: React.FC = () => {
             {transl.vacancies.map((vacancy, idx) => (
                 <div className={'vacancies__content'} key={idx}>
                     <div className={'vacancies__position'}>
-                        {transl.required} {vacancy.name}
+                        {vacancy.required} {vacancy.name}
                     </div>
                     {vacancy.elems.map((category, idx) => (
                         <div className={'vacancies__category'} key={idx}>
@@ -30,7 +30,17 @@ const Vacancies: React.FC = () => {
                         </div>
                     ))}
                     <div className={'vacancies__resume'}>
-                        {transl.resume} {vacancy.resume}
+                        {transl.resume(vacancy.name)}
+                    </div>
+                </div>
+            ))}
+            {transl.cooperation.elems.map(({title, text}) => (
+                <div className={'vacancies__coop-block'} key={title}>
+                    <div className={'vacancies__coop-title'}>
+                        {title}
+                    </div>
+                    <div className={'vacancies__coop-text'}>
+                        {text}
                     </div>
                 </div>
             ))}

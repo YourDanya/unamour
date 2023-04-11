@@ -69,12 +69,18 @@ export const useExternalState = <T, K>(state: T | undefined, setState: ((state: 
 export const useResizeObserve = (callback: (() => void), ...elements: HTMLElement []) => {
 
     useEffect(() => {
-        const resizeObserver = new ResizeObserver(callback)
-        elements.length === 0 && elements.push(document.body)
-        elements.forEach(elem => resizeObserver.observe(elem))
-
-        return () => {
-            elements.forEach(elem => resizeObserver.unobserve(elem))
+        if (elements.length > 0) {
+            const resizeObserver = new ResizeObserver(callback)
+            elements.forEach(elem => resizeObserver.observe(elem))
+            return () => {
+                elements.forEach(elem => resizeObserver.unobserve(elem))
+            }
+        }
+        else {
+            window.addEventListener('resize', callback)
+            return () => {
+                window.removeEventListener('resize', callback)
+            }
         }
     }, [])
 
@@ -82,12 +88,18 @@ export const useResizeObserve = (callback: (() => void), ...elements: HTMLElemen
 
 export const useLayoutResizeObserve = (callback: (() => void), ...elements: HTMLElement []) => {
     useLayoutEffect(() => {
-        const resizeObserver = new ResizeObserver(callback)
-        elements.length === 0 && elements.push(document.body)
-        elements.forEach(elem => resizeObserver.observe(elem))
-
-        return () => {
-            elements.forEach(elem => resizeObserver.unobserve(elem))
+        if (elements.length > 0) {
+            const resizeObserver = new ResizeObserver(callback)
+            elements.forEach(elem => resizeObserver.observe(elem))
+            return () => {
+                elements.forEach(elem => resizeObserver.unobserve(elem))
+            }
+        }
+        else {
+            window.addEventListener('resize', callback)
+            return () => {
+                window.removeEventListener('resize', callback)
+            }
         }
     }, [])
 }
@@ -137,3 +149,34 @@ export const useFirsRender: UseFirstRender = (callback) => {
         callback()
     }
 }
+
+// export const useMapForm = (elements, translation) => {
+//     elements.contacts-map(({type, className, name, placeholder}, index) => {
+//             if (type === 'input') {
+//                 return (
+//                     <update-input className={className} key={index}>
+//                         <Input
+//                             placeholder={placeholder}
+//                             name={name}
+//                             onChange={onChange}
+//                             value={values[name]}
+//                         />
+//                     </update-input>
+//                 )
+//             } else if (type === 'check') {
+//
+//             } else if (type === 'radio') {
+//
+//             } else if (type === 'button') {
+//                 const {children, error, className} = props
+//
+//             } else {
+//                 return (
+//                     <update-input className={className} key={name}>
+//                         {placeholder}
+//                     </update-input>
+//                 )
+//             }
+//         }
+//     )
+// }

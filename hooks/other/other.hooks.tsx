@@ -1,15 +1,15 @@
 import {ElementContent, Locale} from 'types/types'
 import {useRouter} from 'next/router'
-import {useState} from 'react'
-import {useLayoutEffect} from 'react'
-import {useRef} from 'react'
-import {useMemo} from 'react'
 import Link from 'next/link'
-import {UseLocale} from 'hooks/other/other.types'
-import {UseMemoizeObject} from 'hooks/other/other.types'
 import {useOmitFirstEffect} from 'hooks/component/component.hooks'
-import {useLayoutResizeObserve} from 'hooks/component/component.hooks'
+import {UseGetParamForImages} from 'hooks/other/other.types'
+import {useState} from 'react'
+import {UseLocale} from 'hooks/other/other.types'
+import {useLayoutEffect} from 'react'
+import {UseMemoizeObject} from 'hooks/other/other.types'
+import {useRef} from 'react'
 import {checkEqual} from 'utils/main/main.utils'
+import {useMemo} from 'react'
 
 export const useServiceMap = <T extends ElementContent, >(content: T) => {
     const arr = Object.entries(content)
@@ -116,21 +116,32 @@ export const useLocale: UseLocale = ((content) => {
     return common? [translations[locale], common] : [translations[locale]]
 }) as UseLocale
 
-export const useGetParamForImages = (ratio = 4 / 3) => {
+export const useGetParamForImages: UseGetParamForImages = (ratio = 4 / 3, ...deps) => {
     const [width, setWidth] = useState(0)
     const [height, setHeight] = useState(0)
     
-    useLayoutResizeObserve(() => {
+    // useLayoutResizeObserve(() => {
+    //     const width = elemRef.current?.getBoundingClientRect().width as number
+    //     setWidth(width)
+    //     setHeight(width * ratio)
+    // })
+
+    const calcParams = () => {
         const width = elemRef.current?.getBoundingClientRect().width as number
         setWidth(width)
         setHeight(width * ratio)
-    })
+    }
 
     useLayoutEffect(() => {
-        const width = elemRef.current?.getBoundingClientRect().width as number
-        setWidth(width)
-        setHeight(width * ratio)
+        window.addEventListener('resize', calcParams)
+        return () => {
+            window.removeEventListener('resize', calcParams)
+        }
     }, [])
+
+    useLayoutEffect(() => {
+        calcParams()
+    }, [deps])
 
     const elemRef = useRef<HTMLDivElement>(null)
 

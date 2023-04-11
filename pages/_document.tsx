@@ -7,6 +7,7 @@ export default function Document() {
             <Head>
                 <title>UNAMOUR</title>
                 <meta name="description" content={'Магазин UNAMOUR'}/>
+                <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
                 <link
                     rel='preload'
                     href='/fonts/SeasonsRegular.ttf'

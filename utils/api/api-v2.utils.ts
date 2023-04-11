@@ -18,7 +18,7 @@ export const apiCall: ApiCall = async (url, params) => {
     if (params?.body instanceof FormData) {
         body = params.body
     } else {
-       body = JSON.stringify(params?.body)
+        body = JSON.stringify(params?.body)
     }
 
     const options = {

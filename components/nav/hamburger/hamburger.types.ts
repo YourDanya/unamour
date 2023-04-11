@@ -1,7 +1,7 @@
-import {MouseAction} from 'types/types'
+import {ModalState} from 'store/modal/modal.types'
 
 export type HamburgerProps = {
     hamburger: boolean,
-    showModal: MouseAction,
-    hideModal: MouseAction
+    showModal: (param: 'hamburger') => void,
+    hideModal: () => void
 }

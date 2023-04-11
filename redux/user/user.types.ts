@@ -78,7 +78,9 @@ export type User = {
     surname: string,
     phone: string,
     birthDate: string,
-    isAdmin: boolean
+    isAdmin: boolean,
+    favorites: string[],
+    favoritesColors: string[]
 }
 
 export type SelectUserField = <TField extends UserField> (field: TField) => ((state: AppState) => CheckTimerField<TField>)
