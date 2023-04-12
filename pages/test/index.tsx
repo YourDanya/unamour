@@ -1,14 +1,47 @@
 import {NextPage} from 'next'
-import {useState} from 'react'
-import {useMemo} from 'react'
-import PaginationArray from 'components/common/pagination/pagination-array/pagination-array.component'
-import {FC} from 'react'
+import {useMapArrToNode} from 'hooks/mappers/mappers.hooks'
 
 const Test: NextPage = () => {
-    const [number, setNumber] = useState(1000000)
+
+    const testObj = {
+        type: 'div',
+        attributes: {
+            className: 'div-1'
+        },
+        children: [
+            {
+                type: 'div',
+                attributes: {
+                    className: 'div-2'
+                },
+                children: [
+                    {
+                        type: 'text',
+                        value: 'baebrge'
+                    },
+                    {
+                        type: 'div',
+                        children: [
+                            {
+                                type: 'text',
+                                value: 'babalaba'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 'text',
+                value: 'gerkgregre'
+            }
+        ]
+    }
+
+    const something = useMapArrToNode(testObj)
 
     return (
         <>
+            {something}
         </>
     )
 }

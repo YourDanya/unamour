@@ -7,7 +7,7 @@ import {FC} from 'react'
 import PaginationArray from 'components/common/pagination/pagination-array/pagination-array.component'
 
 const AdminItems: FC = () => {
-    const {items, user, onAddItem, transl, itemError} = useAdminItems()
+    const {items, user, onAddItem, transl,} = useAdminItems()
 
     return (
         <div className={'admin-items'}>
@@ -21,7 +21,7 @@ const AdminItems: FC = () => {
                     <Button className={'admin-items__button'} onClick={onAddItem}>
                         {transl.create}
                     </Button>
-                    <FormMessage error={itemError}/>
+                    {/*<FormMessage error={itemError}/>*/}
                 </div>
             ) : (
                 <Spinner className={'admin-items__spinner'}/>

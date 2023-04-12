@@ -6,34 +6,11 @@ import useDelivery from 'pages/client-service/delivery/delivary.hook'
 type DeliveryContentProps = {}
 
 const Delivery: NextPageWithLayout<DeliveryContentProps> = () => {
-
-    const {transl} = useDelivery()
+    const {children} = useDelivery()
 
     return (
         <div className={'delivery'}>
-            <div className="service__title">
-                {transl.title1}
-            </div>
-            <div className="service__subtitle service__subtitle--first">
-                {transl.subtitle1}
-            </div>
-            <div className="service__text">
-                {transl.text1}
-                <br/><br/>
-                {transl.text2}
-            </div>
-            <div className="service__subtitle">
-                {transl.subtitle2}
-            </div>
-            <div className="service__text">
-                {transl.text3}
-            </div>
-            <div className="service__subtitle">
-                {transl.subtitle3}
-            </div>
-            <div className="service__text">
-                {transl.text4}
-            </div>
+            {children}
         </div>
     )
 }
@@ -41,3 +18,28 @@ const Delivery: NextPageWithLayout<DeliveryContentProps> = () => {
 Delivery.getLayout = getClientServiceLayout
 
 export default Delivery
+
+
+// <div className="service__title">
+//     {transl.title1}
+// </div>
+// <div className="service__subtitle service__subtitle--first">
+//     {transl.subtitle1}
+// </div>
+// <div className="service__text">
+//     {transl.text1}
+//     <br/><br/>
+//     {transl.text2}
+// </div>
+// <div className="service__subtitle">
+//     {transl.subtitle2}
+// </div>
+// <div className="service__text">
+//     {transl.text3}
+// </div>
+// <div className="service__subtitle">
+//     {transl.subtitle3}
+// </div>
+// <div className="service__text">
+//     {transl.text4}
+// </div>

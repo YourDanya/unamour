@@ -16,7 +16,8 @@ const contactsContent = {
                 '+38 (063) 229-33-61 по всій Україні',
                 'Режим роботи: ПН-ПТ з 9:00 до 22:00',
                 'Наша пошта - unamour@gmail.com',
-                'Ми в Instagram - @UNAMOUR_OFFICIAL'
+                'Ми в Instagram - @UNAMOUR_OFFICIAL',
+                'Контактна інформація: Виробник одягу UNAMOUR, \nІПН 3609710303, юридична адреса: Менделеєва 12, м. Київ,\nтелефон та адреса електронної пошти організації, \n що здійснює продаж товарів і послуг.'
             ],
             submit: 'надіслати',
             consent: 'Натискаючи кнопку Надіслати, я даю згоду на обробку та передачу моїх персональних даних.',
@@ -77,11 +78,12 @@ const contactsContent = {
                 ]
             ],
             onlineInfo: [
-                'интернет магазин',
-                '+38 (063) 229-33-61 по всей Украине',
-                'Режим работы: ПН-ПТ с 9:00 до 22:00',
-                'Наша почта - unamour@gmail.com',
-                'Мы в Instagram - @UNAMOUR_OFFICIAL'
+                'online shop',
+                '+38 (063) 229-33-61 throughout Ukraine',
+                'Working hours: Mon-Fri from 9:00 to 22:00',
+                'Our mail is unamour@gmail.com',
+                'We\'re on Instagram - @UNAMOUR_OFFICIAL',
+                'Contact information: Clothing manufacturer UNAMOUR, \nTIN 3609710303, legal address: Mendeleeva 12, Kyiv,\ntelephone number and email address of the organization, \nwhich sells goods and services.'
             ],
             submit: 'send',
             consent: 'By clicking the Submit button, I consent to the processing and transfer of my personal data.',
@@ -122,11 +124,12 @@ const contactsContent = {
                 ]
             ],
             onlineInfo: [
-                'online store',
-                "+38 (066) 384-78-22 throughout Ukraine",
-                'Working hours: Mon-Fri from 9:00 to 18:00',
-                'Our mail is unamour@gmail.com',
-                'We\'re on Instagram - @UNAMOUR'
+                'интернет магазин',
+                '+38 (063) 229-33-61 по всей Украине',
+                'Режим работы: ПН-ПТ с 9:00 до 22:00',
+                'Наша почта - unamour@gmail.com',
+                'Мы в Instagram - @UNAMOUR_OFFICIAL',
+                'Контактная информация: Производитель одежды UNAMOUR, ИНН 3609710303, юридический адрес: Менделеева 12, г. Киев, телефон и адрес электронной почты организации, осуществляющей продажу товаров и услуг.'
             ],
             submit: 'отправить',
             consent: 'Нажимая кнопку Отправить, я даю согласие на обработку и передачу моих персональных данных.',

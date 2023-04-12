@@ -22,7 +22,7 @@ const useAdminItems = () => {
     const {
         items, addItem, setItems,
     } = useAdminItemsStore((state) => {
-        return peek( state, ['items', 'addItem', 'setItems'])
+        return peek(state, ['items', 'addItem', 'setItems'])
     })
 
     const getItems = useApiCall<{ items: FetchedItem[] }>('shop-item/all', {
@@ -30,8 +30,6 @@ const useAdminItems = () => {
             setItems(items)
         }
     })
-
-    const [itemError, setItemError] = useState('')
 
     useEffect(() => {
         if (getUser.error || (getUser.success && !user?.isAdmin)) {
@@ -44,32 +42,27 @@ const useAdminItems = () => {
         getItems.start()
     }, [])
 
-    const [canAddItem, setCanAddItem] = useState(true)
+    // const [itemError, setItemError] = useState('')
+    // const [canAddItem, setCanAddItem] = useState(true)
 
     const onAddItem = (event: MouseEvent) => {
         event.preventDefault()
-        if (canAddItem) {
-            const item = JSON.parse(JSON.stringify(items[items.length - 1]))
-            item.common.variants.forEach((variant: ItemVariant) => {
-                delete (variant as any)._id
-                variant.images = []
-            })
-            item._id = ''
-            setCanAddItem(false)
-            addItem(item)
-        } else if (!itemError) {
-            setItemError(transl.saveBeforeCreate)
-        }
+        // if (canAddItem) {
+        const item = JSON.parse(JSON.stringify(items[items.length - 1]))
+        item.common.variants.forEach((variant: ItemVariant) => {
+            delete (variant as any)._id
+            variant.images = []
+        })
+        item._id = ''
+        // setCanAddItem(false)
+        addItem(item)
+        // } else if (!itemError) {
+        // setItemError(transl.saveBeforeCreate)
+        // }
     }
 
-    useEffect(() => {
-        if (items.length > 0) {
-            
-        }
-    }, [items])
-
     return {
-        user, getItems, onAddItem, canAddItem, transl, itemError, items
+        user, getItems, onAddItem,  transl, items
     }
 }
 

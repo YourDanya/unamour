@@ -19,7 +19,6 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
     let tempElem: JSX.Element
 
     const ending = useRouter().pathname.split('/').pop()
-
     return arr.map(([key, value], index) => {
         let returnElem
         let className: string = ''
@@ -47,11 +46,26 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
 
             returnElem = (
                 <ul className={className} key={prop}>
-                    {(value as string[]).map((item: string, index) => (
-                        <li className={'list__item'} key={item + index}>
-                            {item}
-                        </li>
-                    ))}
+                    {(value as (string | {type: string, text: string})[]).map((item, index) => {
+                        const list = value as (string | {type: string, text: string})[]
+                        if (typeof item === 'object' && item.type === 'inner') {
+                            return (
+                                <li className={'list__item'} key={item.text + index}>
+                                    <div className={'list__item-inner'}>
+                                        {item.text}
+                                    </div>
+                                    {list[index+1] as string}
+                                </li>
+                            )
+                        } else if (list?.[index-1] !== 'object') {
+                            item = item as string
+                            return (
+                                <li className={'list__item'} key={item + index}>
+                                    {item}
+                                </li>
+                            )
+                        }
+                    })}
                 </ul>
             )
         } else {
@@ -59,8 +73,8 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
             let baseClassName: string = ''
 
             if (prop.startsWith('title')) baseClassName = 'service__title'
-            if (prop.startsWith('numSubtitle' || 'subtitle')) baseClassName = 'service__subtitle'
-            if (prop.startsWith('label')) className = 'service__label'
+            if (prop.startsWith('numSubtitle') || prop.startsWith('subtitle')) baseClassName = 'service__subtitle'
+            if (prop.startsWith('label')) baseClassName = 'service__label'
             if (prop.startsWith('text') || prop.startsWith('numText') || prop.startsWith('numText')) baseClassName = 'service__text'
 
             className=baseClassName

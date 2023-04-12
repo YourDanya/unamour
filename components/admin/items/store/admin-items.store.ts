@@ -9,7 +9,7 @@ export const useAdminItemsStore = create<AdminItemsState>((set) => ({
         return {items}
     }),
     deleteItem: (index) => set(({items}) => {
-        items.splice(index, 0)
+        items.splice(index, 1)
         return {items}
     }),
     setItem: (item, index) => set(({items}) => {

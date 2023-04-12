@@ -89,11 +89,15 @@ const useItemActions = (props: ItemActionsProps) => {
             }
         } else {
             actions.createItem.start({item: itemValueRef.current})
+            const itemImagesMap = createItemImagesMap({
+                itemImagesValues: itemImagesValuesRef.current,
+                itemValue: itemValueRef.current
+            })
             let createData = new FormData()
             let shouldCreate = false
-            for (let imageId in initItemImagesMapRef.current) {
+            for (let imageId in itemImagesMap) {
                 shouldCreate = true
-                const {color, file} = initItemImagesMapRef.current[imageId]
+                const {color, file} = itemImagesMap[imageId]
                 createData.append(`${imageId}_${color}`, file as File)
             }
             if (shouldCreate) {
@@ -119,6 +123,7 @@ const useItemActions = (props: ItemActionsProps) => {
         } else {
             deleteItem(itemIndex)
         }
+        closeModal()
     }
 
     const onClose: MouseAction = (event) => {
@@ -130,6 +135,7 @@ const useItemActions = (props: ItemActionsProps) => {
     const onTimerExpiration = (name: ItemActionName) => {
         setMessages({...messages, [name]: {text: ''}})
         if (name === 'deleteItem') {
+            console.log('deleting item')
             deleteItem(itemIndex)
         }
     }
