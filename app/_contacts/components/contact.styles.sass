@@ -1,0 +1,87 @@
+.contacts
+  padding: 100px 160px
+  font-size: 12px
+  margin-top: 20px
+  color: #4f4f4f
+  &__top
+    display: grid
+    grid-template-columns: 1fr 1fr
+  &__input
+    margin-bottom: 20px
+  &__feedback
+    text-transform: uppercase
+    margin-bottom: 10px
+  &__button
+    width: 100%
+    height: 45px
+    background-color: black
+    color: white
+    text-transform: uppercase
+    margin-top: 15px
+  &__consent
+    margin-top: 10px
+    font-size: 10px
+    color: #828282
+  &__title
+    margin-bottom: 35px
+    font-size: 12px
+    font-weight: 500
+    text-transform: uppercase
+  &__label
+    margin-bottom: 8px
+    white-space: pre-wrap
+    &--main
+      text-transform: uppercase
+      margin-bottom: 20px
+    &--last
+      margin-bottom: 0
+  &__offline-info
+    height: 400px
+    display: grid
+    align-content: space-between
+  &__work-hours
+    margin-bottom: 6px
+  &__number
+    margin-bottom: 6px
+    width: fit-content
+    border-bottom: 1px solid #eee
+  &__city
+    margin-bottom: 20px
+  &__test
+    width: 100%
+    display: flex
+    justify-content: flex-end
+  &__form
+    margin-bottom: 50px
+
+@media(max-width: 1200px)
+  .contacts
+    padding: 100px 130px
+
+@media(max-width: 992px)
+  .contacts
+    padding: 100px 5%
+    &__top
+      grid-template-columns: 1fr
+    &__offline-info
+      margin-bottom: 50px
+    &__text
+      margin-bottom: 50px
+
+//@media(max-width: 768px)
+//  .contacts
+//    padding: 80px 15%
+//    &__top
+//      display: flex
+//      flex-direction: column
+//    &__text
+//      width: 100%
+//    &__form
+//      margin-top: 50px
+//      width: 100%
+//    &__address
+//      margin-top: 50px
+//
+//@media(max-width: 576px)
+//  .contacts
+//    padding: 50px 10%

@@ -1,0 +1,70 @@
+.cart
+  padding: 50px 0
+  max-width: 1150px
+  margin: 0 auto
+  display: flex
+  position: relative
+  &__items
+    margin-bottom: 30px
+  &__content
+    width: calc(70% - 150px)
+    margin-right: 150px
+  &__empty
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    flex-direction: column
+    height: 450px
+    &-img
+      margin-bottom: 30px
+      width: 30px
+    &-title
+      font-size: 12px
+      text-transform: uppercase
+      margin-bottom: 40px
+    &-link
+      width: 250px
+      color: black
+      height: 45px
+      display: flex
+      justify-content: center
+      align-items: center
+      font-size: 12px
+      text-transform: uppercase
+      border: 1px solid #e0e0e0
+
+  &__policy
+    white-space: pre
+    text-align: center
+    font-size: 10px
+    color: #828282
+    line-height: 14px
+    &-link
+      font-size: 10px
+      color: #4f4f4f
+  &__present-img
+    position: relative
+    top: -2px
+    margin-left: 5px
+    height: 16px
+  &__title
+    text-transform: uppercase
+    width: 100%
+    font-size: 12px
+    margin-bottom: 35px
+
+@media (max-width: 1200px)
+  .cart
+    max-width: 950px
+    &__content
+      margin-right: 50px
+      width: calc(65% - 40px)
+
+@media (max-width: 992px)
+  .cart
+    padding: 30px 15px
+    flex-direction: column
+    &__content
+      margin-right: 0
+      width: 100%

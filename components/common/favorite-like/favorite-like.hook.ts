@@ -19,12 +19,12 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
             id,
             color
         },
-        keepAlive: true
+        keepalive: true
     })
 
     const deleteFavorite = useApiCall(`users/favorites/${id}/${color}`, {
         method: 'DELETE',
-        keepAlive: true
+        keepalive: true
     })
 
     const loading = postFavorite.loading || deleteFavorite.loading

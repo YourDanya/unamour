@@ -28,9 +28,9 @@ const menuContent = {
             links: [
                 'clothing care',
                 'payment and delivery',
-                'cart-order tracking',
+                'components-order tracking',
                 'purchase returns',
-                'how to place an cart-order',
+                'how to place an components-order',
                 'privacy policy',
                 'public offer',
                 'guarantee period'

@@ -5,8 +5,10 @@ import {useRouter} from 'next/router'
 import {shopItemsPageContent} from 'pages/shop-items/shop-items-page.content'
 import {filterItems} from 'utils/component/component.utils'
 import {ShopItemsPageProps} from 'pages/shop-items/shop-items-page.types'
+import {useGetParamForImages} from 'hooks/other/other.hooks'
+import {Locale} from 'types/types'
 
-export const useShopItemsPage = (props: ShopItemsPageProps) => {
+export const useShopItems = (props: ShopItemsPageProps) => {
     const [transl] = useLocale(shopItemsPageContent)
     const clothingCategories = useLocale(categoriesContent)
     const otherCategories = useLocale(otherCategoriesContent)
@@ -25,7 +27,11 @@ export const useShopItemsPage = (props: ShopItemsPageProps) => {
     const filters = other as Record<string, string>
     const items = filterItems(props.items, filters)
 
-    return {transl: {...transl, title}, items}
+    const {width, height, elemRef} = useGetParamForImages(4 / 3)
+
+    const locale = useRouter().locale as Locale
+
+    return {transl: {...transl, title}, items, width, elemRef, locale}
 }
 
-export default useShopItemsPage
+export default useShopItems

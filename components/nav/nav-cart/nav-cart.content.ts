@@ -12,8 +12,8 @@ const navCartContent = {
         eng: {
             cart: 'cart',
             total: 'total:',
-            order: 'make an cart-order',
-            empty: 'your shopping cart is empty',
+            order: 'make an components-order',
+            empty: 'your shopping components is empty',
             favorite: 'view favorite',
             continue: 'continue shopping',
             currency: '$'

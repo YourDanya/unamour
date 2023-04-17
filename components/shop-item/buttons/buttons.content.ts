@@ -6,7 +6,7 @@ export const buttonsContent = {
             givePresent: 'подарувати'
         },
         eng: {
-            addToCart: 'add to cart',
+            addToCart: 'add to components',
             selectSize: 'select size',
             givePresent: 'give a present'
         },

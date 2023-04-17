@@ -1,5 +1,6 @@
 import {baseURL} from 'utils/api/api.utils'
 import {ApiCall} from 'utils/api/api-v2.types'
+
 import {UseApiCall} from 'utils/api/api-v2.types'
 import {MapApiError} from 'utils/api/api-v2.types'
 import {useEffect} from 'react'
@@ -29,7 +30,7 @@ export const apiCall: ApiCall = async (url, params) => {
             ...typeof body === 'string' && {'Content-Type': 'application/json'},
             ...params?.headers
         },
-        keepalive: params?.keepAlive
+        keepalive: params?.keepalive
     } as RequestInit
 
     let data
@@ -52,6 +53,8 @@ export const apiCall: ApiCall = async (url, params) => {
         return {data, error: null}
     }
 }
+
+
 
 export const useApiCall: UseApiCall = (url, params) => {
     const {onSuccess, onError, ...otherParams} = params ?? {}

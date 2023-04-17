@@ -34,7 +34,7 @@ export const checkoutSlice = createSlice({
             state.fields[action.payload] = {success: true, loading: false, error: null}
         },
         setPaymentData: (state, action: PayloadAction<PaymentData | null>) => {
-            // action.payload.returnUrl = `${url}/cart`
+            // action.payload.returnUrl = `${url}/components`
             if (action.payload === null) {
                 state.paymentData = action.payload
                 return

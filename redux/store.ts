@@ -21,7 +21,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unkn
 // export const makeStore = () =>
 //     configureStore({
 //         reducer: {
-//             shopItems, cart, user, main, count-time, admin
+//             shopItems, components, user, main, count-time, admin
 //         },
 //         middleware: [thunk],
 //         devTools: true
@@ -36,7 +36,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unkn
 // }
 
 // const persistedReducer = persistReducer(persistConfig, {
-//     shopItems, cart, user, main, count-time, admin
+//     shopItems, components, user, main, count-time, admin
 // })
 
 export const reducers = {

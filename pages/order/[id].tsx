@@ -32,7 +32,7 @@ const OrderPage: NextPage<OrderPageProps> = () => {
                             <div className={'order-page__message'}>
                                 {transl.declined}
                             </div>
-                            <Link className={'order-page__link'} href={'/cart'}>
+                            <Link className={'order-page__link'} href={'/components'}>
                                 {transl.backToCart}
                             </Link>
                         </>

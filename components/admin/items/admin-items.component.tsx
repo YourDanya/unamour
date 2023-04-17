@@ -2,12 +2,11 @@ import useAdminItems from 'components/admin/items/admin-items.hook'
 import ItemForm from 'components/admin/items/item-form/item-form.component'
 import Spinner from 'components/common/spinner/spinner.component'
 import Button from 'components/common/button/button.component'
-import FormMessage from 'components/common/form-message/form-message.component'
 import {FC} from 'react'
 import PaginationArray from 'components/common/pagination/pagination-array/pagination-array.component'
 
 const AdminItems: FC = () => {
-    const {items, user, onAddItem, transl,} = useAdminItems()
+    const {items, user, onAddItem, transl} = useAdminItems()
 
     return (
         <div className={'admin-items'}>

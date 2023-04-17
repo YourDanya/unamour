@@ -27,13 +27,13 @@ const NavCart: FC<NavCartProps> = (props) => {
                 </>
             ) : (
                 <>
-                    <img className="nav-cart__icon" src={shoppingCart.src} alt={'nav-cart-icon'}/>
+                    <img className="nav-cart__icon" src={shoppingCart.src} alt={'nav-components-icon'}/>
                     <div className={'nav-cart__empty'}>
                         {transl.empty}
                     </div>
                 </>
             )}
-            <NavLink className="nav-cart__button nav-cart__link" href={length > 0 ? '/cart' : '/favorite'}>
+            <NavLink className="nav-cart__button nav-cart__link" href={length > 0 ? '/components' : '/favorite'}>
                 {length > 0 ? transl.order : transl.favorite}
             </NavLink>
             <Button className={'nav-cart__button nav-cart__button--white'} onClick={hideModal}>

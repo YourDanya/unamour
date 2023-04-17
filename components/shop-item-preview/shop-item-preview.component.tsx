@@ -1,3 +1,4 @@
+'use client'
 import {FC} from 'react'
 import useShopItemPreview from 'components/shop-item-preview/shop-item-preview.hook'
 import Link from 'next/link'
