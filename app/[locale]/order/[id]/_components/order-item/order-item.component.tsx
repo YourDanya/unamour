@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
-import {OrderItemProps} from 'app/[locale]/order/_components/order-item/order-item.types'
-import useOrderItem from 'app/[locale]/order/_components/order-item/order-item.hook'
+import {OrderItemProps} from 'app/[locale]/order/[id]/_components/order-item/order-item.types'
+import useOrderItem from 'app/[locale]/order/[id]/_components/order-item/order-item.hook'
 
 const OrderItem: FC<OrderItemProps> = (props) => {
     const {images, name, count, size, color} = props

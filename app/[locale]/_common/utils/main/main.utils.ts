@@ -1,13 +1,8 @@
-import {MapField} from 'app/[locale]/_common/utils/main/main.types'
 import {NullObj} from 'app/[locale]/_common/utils/main/main.types'
 import {FromEntriesWithReadOnly} from 'app/[locale]/_common/utils/main/main.types'
 import {PeekedObject} from 'app/[locale]/_common/utils/main/main.types'
 import {CreateDoubleLinkedList} from 'app/[locale]/_common/utils/main/main.types'
 import {DoubleNode} from 'app/[locale]/_common/utils/main/main.types'
-import {GetLocalStorage} from 'app/[locale]/_common/utils/main/main.types'
-import {LocaleError} from 'app/[locale]/_redux/store.types'
-import {MessLocaleError} from 'app/[locale]/_redux/store.types'
-import {GetError} from 'app/[locale]/_common/utils/main/main.types'
 import {Peek} from 'app/[locale]/_common/utils/main/main.types'
 
 export const parseTimer = (milliseconds: number) => {
@@ -15,33 +10,6 @@ export const parseTimer = (milliseconds: number) => {
     let minutes = Math.floor(seconds / 60)
     seconds = seconds % 60
     return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
-}
-
-export const mapField: MapField = (field, stateField, locale, contentErrors,
-                                   contentSuccess) => {
-    const {loading, timer, error: serverError} = stateField
-    const error = getError(field, serverError, contentErrors, locale)
-    const success = stateField.success ? contentSuccess[field][locale] : null
-    return {loading, error, success, ...timer && {timer}}
-}
-
-export const getError: GetError = (field, serverError, contentErrors, locale) => {
-    const code = serverError?.code as '4' | '5'
-    const message = serverError?.message as string
-    let error: string = ''
-    if (code === '5') {
-        error = contentErrors['5'][locale]
-    } else if (code) {
-        let fieldError = contentErrors['4'][field] as LocaleError | MessLocaleError
-        if (fieldError.ua) {
-            fieldError = fieldError as LocaleError
-            error = fieldError?.[locale] ?? ''
-        } else if (message) {
-            fieldError = fieldError as MessLocaleError
-            error = fieldError[message]?.[locale] ?? ''
-        }
-    }
-    return error
 }
 
 export const nullObj: NullObj = (obj) => {
@@ -106,10 +74,6 @@ export const checkEqual = (obj1: any, obj2: any) => {
     }
     // console.log('obj1 === obj2')
     return true
-}
-
-export const getLocalStorage: GetLocalStorage = (key) => {
-    return JSON.parse(JSON.parse(localStorage.getItem('persist:nextjs') as string)[key])
 }
 
 export const getEntries = <ObjT extends object>(obj: ObjT) => {

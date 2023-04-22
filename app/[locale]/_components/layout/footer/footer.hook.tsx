@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useRef} from 'react'
 import {useState} from 'react'
@@ -15,7 +15,7 @@ const useFooter = () => {
     const focusRef = useRef(false)
 
     const onFocus = () => {
-        focusRef.current=!focusRef.current
+        focusRef.current = !focusRef.current
         setFocused(focusRef.current)
     }
 

@@ -2,7 +2,7 @@
 
 import {FC} from 'react'
 import Link from 'next/link'
-import {CartItem} from 'app/[locale]/_redux/cart/cart.types'
+import {CartItem} from 'app/[locale]/_store/cart/cart.types'
 import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
 import useCartItem from 'app/[locale]/_common/components/cart-item/cart-item.hook'
 import LoadImage from 'app/[locale]/_common/components/load-image/load-image.component'

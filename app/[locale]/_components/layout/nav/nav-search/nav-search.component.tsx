@@ -29,7 +29,7 @@ const NavSearch: FC = () => {
             </div>
             {searchItems.loading ? (
                 <Spinner className={'nav-search__spinner'}/>
-            ) : items.length > 0 ? (
+            ) : items && items.length > 0 ? (
                 <div className="nav-search__results">
                     {items.filter((item, index) => index < 4).map((item, index) =>
                         <Link

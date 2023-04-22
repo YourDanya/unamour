@@ -1,28 +1,27 @@
 'use client'
 
 import {useEffect} from 'react'
-import {useApiCall} from 'app/[locale]/_common/utils/api/api-v2.utils'
-import {User} from 'app/[locale]/_redux/user/user.types'
-import {useMapApiRes} from 'app/[locale]/_common/utils/api/api-v2.utils'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useDispatch} from 'react-redux'
 import loginFormContent from 'app/[locale]/_components/layout/nav/nav-auth/login/login-form/login-form.content'
-import {setUser} from 'app/[locale]/_redux/user/user.slice'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
-import {resetUserFieldSuccess} from 'app/[locale]/_redux/user/user.slice'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useRouter} from 'next/navigation'
+import {User} from 'app/[locale]/_store/user/user.types'
+import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
 
 const useLoginForm = () => {
     const [transl, content] = useLocale(loginFormContent)
     const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
 
-    const dispatch = useDispatch()
+    const setUser = useUserStore(state => state.setUser)
 
-    const login = useApiCall('auth/login', {
+    const login = useApiCall<{user: User}>('auth/login', {
         method: 'POST',
         body: inputs.values,
-        onSuccess: (data: {user: User}) => {
-            dispatch(setUser(data))
+        onSuccess: ({user}) => {
+            setUser(user)
         }
     })
 
@@ -37,7 +36,7 @@ const useLoginForm = () => {
             resetValues()
             setTimeout(() => {
                 router.push('/profile/update-user')
-                dispatch(resetUserFieldSuccess('login'))
+                login.setSuccess(false)
             }, 1000)
         }
     }, [login.success])

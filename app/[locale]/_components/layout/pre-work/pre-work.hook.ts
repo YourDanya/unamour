@@ -1,28 +1,39 @@
-import {useDispatch} from 'react-redux'
-import {getUserAsync} from 'app/[locale]/_redux/user/user.thunk'
 import {useEffect} from 'react'
-import {selectUser} from 'app/[locale]/_redux/user/user.selectors'
-import {useSelector} from 'react-redux'
-import {selectOrderId} from 'app/[locale]/_redux/cart/cart.selector'
-import {getOrderAsync} from 'app/[locale]/_redux/checkout/checkout.thunk'
-import {selectOrder} from 'app/[locale]/_redux/checkout/checkout.selector'
 import {useRef} from 'react'
-import {setOrderId} from 'app/[locale]/_redux/cart/cart.slice'
-import {setCartItems} from 'app/[locale]/_redux/cart/cart.slice'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {useCallback} from 'react'
+import {peek} from 'app/[locale]/_common/utils/main/main.utils'
+import {shallow} from 'zustand/shallow'
+import {User} from 'app/[locale]/_store/user/user.types'
+import {useSelector} from 'react-redux'
+import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
+import {Order} from 'app/[locale]/_store/cart/cart.types'
 
 const usePreWork = () => {
-    const user = useSelector(selectUser)
-    const dispatch = useDispatch()
+    const user = useUserStore(state => state.user)
+    const setUser = useUserStore(state => state.setUser)
+
+    const getUser = useApiCall<{user: User}>('users/user-data', {
+        onSuccess: ({user}) => {
+            setUser(user ?? null)
+        }
+    })
 
     useEffect(() => {
-        dispatch(getUserAsync())
+        getUser.start()
     }, [])
 
-    // useEffect(() => {
-    //
-    // }, [user])
+    const orderId = useCartStore(state => state.orderId)
 
-    const orderId = useSelector(selectOrderId)
+    const order = useCartStore(state => state.order)
+    const setOrder = useCartStore(state => state.setOrder)
+
+    const getOrder = useApiCall<Order>(`checkout/order-by-id/${orderId}`, {
+        onSuccess: (order) => {
+            setOrder(order)
+        }
+    })
 
     let intervalRef = useRef<NodeJS.Timer>()
 
@@ -32,23 +43,24 @@ const usePreWork = () => {
             return
         }
         intervalRef.current = setInterval(() => {
-            dispatch(getOrderAsync(orderId))
+            getOrder.start()
         }, 5000)
     }, [orderId])
 
-    const order = useSelector(selectOrder)
+    const setOrderId = useCartStore(state => state.setOrderId)
+    const setCartItems = useCartStore(state => state.setCartItems)
 
     useEffect(() => {
-        if (!order) {
+        if (!order || !orderId) {
             return
         }
         const status = order.payment.status
         if (status !== 'pending') {
-            dispatch(setOrderId(''))
+            setOrderId('')
             clearInterval(intervalRef.current as NodeJS.Timer)
         }
         if (status === 'approved') {
-            dispatch(setCartItems([]))
+            setCartItems([])
         }
     }, [order])
 }

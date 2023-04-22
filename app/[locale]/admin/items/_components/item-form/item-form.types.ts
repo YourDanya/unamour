@@ -1,4 +1,4 @@
-import {FetchedItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
+import {FetchedItem} from 'app/[locale]/_common/types/types'
 import {MutableRefObject} from 'react'
 
 export type ItemFormProps = {

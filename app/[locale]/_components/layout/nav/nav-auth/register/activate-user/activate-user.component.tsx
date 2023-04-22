@@ -9,9 +9,9 @@ import FormMessage from 'app/[locale]/_common/components/form-message/form-messa
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 const ActivateUser: FC<ActivateProps> = (props) => {
-    const {sendRegisterCode} = props
     const {
-        inputs, onChange, onValidate, transl, activateSubmit, sendRegisterCodeSubmit, activateUser, clearInitTimer
+        inputs, onChange, onValidate, transl, onActivateUser, onSendRegisterCode, sendRegisterCode, timer,
+
     } = useActivateUser(props)
 
     return (
@@ -29,20 +29,12 @@ const ActivateUser: FC<ActivateProps> = (props) => {
                 onValidate={onValidate}
             />
             <div className="nav-auth__bottom">
-                <Button className="nav-auth__button" onClick={activateSubmit} loading={activateUser.loading}>
+                <Button className="nav-auth__button" onClick={onActivateUser} loading={activateUser.loading}>
                     {transl.activate}
                 </Button>
-                <Timer
-                    initTimer={sendRegisterCode.timer}
-                    onSubmit={sendRegisterCodeSubmit}
-                    clearInitTimer={clearInitTimer}
-                >
-                    {(timer, onSubmit) => (
-                        <Button className={'nav-auth__resend'} onClick={onSubmit} loading={sendRegisterCode.loading}>
-                            {transl.resend} {transl.in} {timer}
-                        </Button>
-                    )}
-                </Timer>
+                <Button className={'nav-auth__resend'} onClick={onSendRegisterCode} loading={sendRegisterCode.loading}>
+                    {transl.resend} {transl.in} {timer}
+                </Button>
                 <FormMessage success={activateUser.success} error={activateUser.error}/>
             </div>
         </form>
@@ -50,3 +42,12 @@ const ActivateUser: FC<ActivateProps> = (props) => {
 }
 
 export default ActivateUser
+
+{/*<Timer*/}
+{/*    initTimer={sendRegisterCode.timer}*/}
+{/*    onSubmit={onSendRegisterCode}*/}
+{/*    clearInitTimer={clearInitTimer}*/}
+{/*>*/}
+{/*    {(timer, onSubmit) => (*/}
+{/*    )}*/}
+{/*</Timer>*/}

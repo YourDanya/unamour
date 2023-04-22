@@ -11,6 +11,7 @@ import {Locale} from 'app/[locale]/_common/types/types'
 import {Entry} from 'app/[locale]/_common/types/types'
 import {Mapped} from 'app/[locale]/_common/types/types'
 import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
+import {useParams} from 'next/navigation'
 
 export const useInput: UseInput = (inputsObj, translInputs) => {
     type T = typeof inputsObj
@@ -46,7 +47,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
         setValues({...initInputs.values})
     }, [])
 
-    const locale = useRouter().locale as Locale
+    const locale = useParams().locale as Locale
     const errRef = useRef({errors: {...errors}, count: 0})
 
     const getError = useCallback((name: keyof T) => {

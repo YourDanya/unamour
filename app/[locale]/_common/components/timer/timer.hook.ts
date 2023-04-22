@@ -12,7 +12,9 @@ const useTimer = (props: UseTimerParams) => {
     let intervalRef = useRef<number>()
 
     useEffect(() => {
-        if (!initTimer) return
+        if (!initTimer) {
+            return
+        }
         timerRef.current = (initTimer as number)
         setTimer(initTimer)
         window.clearInterval(intervalRef.current)
@@ -31,8 +33,9 @@ const useTimer = (props: UseTimerParams) => {
 
     const onSubmit = (event: MouseEvent<HTMLElement>) => {
         event.preventDefault()
-        if (props.onSubmit && timer<1000)
+        if (props.onSubmit && timer<1000){
             props.onSubmit(event)
+        }
     }
 
     const strTimer = parseTimer(timer)

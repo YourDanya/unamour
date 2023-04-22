@@ -1,17 +1,33 @@
 import {useDispatch} from 'react-redux'
 import registerFormContent from 'app/[locale]/_components/layout/nav/nav-auth/register/register-form/register-form.content'
-import {registerAsync} from 'app/[locale]/_redux/user/user.thunk'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
 
 const useRegisterForm = () => {
     const [transl, content] = useLocale(registerFormContent)
     const {inputs, onChange, onValidate, withSubmit} = useInput(content.inputs, transl.inputs)
-    const dispatch = useDispatch()
-    const handleSubmit = withSubmit(() => {
-        dispatch(registerAsync(inputs.values))
+
+    const setRegister = useUserStore(state => state.setRegister)
+    const register = useApiCall('auth/create-inactive-user', {
+        method: 'POST',
+        body: inputs.values,
+        onSuccess: () => {
+            setRegister({success: true})
+        }
     })
-    return {transl, inputs, onChange, onValidate, handleSubmit}
+
+    const onSubmit = withSubmit(() => {
+        register.start()
+    })
+
+    const mappedRegister = useMapApiRes({
+        res: register, errorFourTransl: transl.error, successTransl: transl.success
+    })
+
+    return {transl, inputs, onChange, onValidate, onSubmit, mappedRegister}
 }
 
 export default useRegisterForm

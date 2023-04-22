@@ -6,6 +6,7 @@ import {Fragment} from 'react'
 import {ElementContent} from 'app/[locale]/_common/types/types'
 import {useRouter} from 'next/navigation'
 import Link from 'next/link'
+import {usePathname} from 'next/navigation'
 
 export const useMapArrToNode: UseMapArrToNode = (nodeArr) => {
     const stack = [nodeArr]
@@ -60,7 +61,7 @@ export const useServiceMap = <T extends ElementContent, >(content: T) => {
     let count2 = 0
     let tempElem: JSX.Element
 
-    const ending = useRouter().pathname.split('/').pop()
+    const ending = usePathname().split('/').pop()
     return arr.map(([key, value], index) => {
         let returnElem
         let className: string = ''

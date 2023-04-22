@@ -1,16 +1,18 @@
 import {MouseAction} from 'app/[locale]/_common/types/types'
-import {setShouldOpenNavCart} from 'app/[locale]/_redux/cart/cart.slice'
 import {ShopItemVariant} from 'app/[locale]/shop-items/[category]/[id]/_components/shop-item.types'
 import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useRef} from 'react'
-import {CartItem} from 'app/[locale]/_redux/cart/cart.types'
-import {addItem} from 'app/[locale]/_redux/cart/cart.slice'
-import {FetchedItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
 import {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {useState} from 'react'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useRouter} from 'next/navigation'
+import useSearch from 'app/[locale]/search/_components/search.hook'
+import {useSearchParams} from 'next/navigation'
+import {FetchedItem} from 'app/[locale]/_common/types/types'
+import {CartItem} from 'app/[locale]/_store/cart/cart.types'
+import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
+import useModalStore from 'app/[locale]/_store/modal/modal.store'
 
 export const useShopItem = (props: FetchedItem) => {
     const [transl] = useLocale(props)
@@ -26,7 +28,7 @@ export const useShopItem = (props: FetchedItem) => {
         }
     }
 
-    const color = useRouter().query.color as string
+    const color = useSearchParams().get('color') as string
 
     const [currentVariant, setCurrentVariant] = useState(() => {
         let currentVariant = props.common.variants.find(variant => variant.color === color)
@@ -50,10 +52,14 @@ export const useShopItem = (props: FetchedItem) => {
     const dispatch = useDispatch()
     const cartItemRef = useRef<CartItem>({} as CartItem)
 
+    const addItem = useCartStore(state => state.addItem)
+
+    const showGlobalModal = useModalStore(state => state.showModal)
+
     const onAddItem = () => {
         const item = JSON.parse(JSON.stringify(cartItemRef.current)) as CartItem
-        dispatch(addItem(item))
-        dispatch(setShouldOpenNavCart(true))
+        addItem(item)
+        showGlobalModal('shopping')
     }
 
     useEffect(() => {

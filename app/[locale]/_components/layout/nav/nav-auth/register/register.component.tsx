@@ -9,7 +9,7 @@ import {RegisterProps} from 'app/[locale]/_components/layout/nav/nav-auth/regist
 
 const Register: FC<RegisterProps> = (props) => {
     const {sign, handleSign} = props
-    const {transl, register, sendRegisterCode} = useSignUp()
+    const {transl, sendRegisterCode} = useSignUp()
 
     return (
         <div className={`nav-auth__content ${sign==='register'? '' : 'nav-auth__content--hidden'}`}>
@@ -20,9 +20,9 @@ const Register: FC<RegisterProps> = (props) => {
                 </Button>
             </div>
             {sendRegisterCode.success || sendRegisterCode.error ? (
-                <ActivateUser sendRegisterCode={sendRegisterCode}/>
+                <ActivateUser/>
             ) : (
-                <RegisterForm register={register}/>
+                <RegisterForm/>
             )}
         </div>
     )

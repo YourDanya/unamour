@@ -1,5 +1,5 @@
 import {MutableRefObject} from 'react'
-import {FetchedItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
+import {FetchedItem} from 'app/[locale]/_common/types/types'
 import {ItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ItemImagesValues} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 

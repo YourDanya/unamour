@@ -8,8 +8,7 @@ import Input from 'app/[locale]/_common/components/input/input.component'
 import {RegisterFormProps} from 'app/[locale]/_components/layout/nav/nav-auth/register/register-form/register-form.types'
 
 const RegisterForm: FC<RegisterFormProps> = (props) => {
-    const {register} = props
-    const {transl, inputs, onChange, onValidate, handleSubmit} = useRegisterForm()
+    const {transl, inputs, onChange, onValidate, onSubmit, mappedRegister} = useRegisterForm()
 
     return (
         <form className={'nav-auth__form'}>
@@ -53,10 +52,14 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
                 type={'password'}
             />
             <div className="nav-auth__bottom">
-                <Button className="nav-auth__button nav-auth__button--up" onClick={handleSubmit} loading={register.loading}>
+                <Button
+                    className="nav-auth__button nav-auth__button--up"
+                    onClick={onSubmit}
+                    loading={mappedRegister.loading}
+                >
                     {transl.signUp}
                 </Button>
-                <FormMessage success={register.success} error={register.error}/>
+                <FormMessage success={mappedRegister.success} error={mappedRegister.error}/>
                 <div className={'nav-auth__consent'}>
                     {transl.consent}
                 </div>

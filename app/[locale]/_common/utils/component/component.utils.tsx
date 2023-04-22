@@ -1,6 +1,6 @@
 import {FilterItems} from 'app/[locale]/_common/utils/component/component.types'
 import {ClientItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
-import {CategoryItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
+import {CategoryItem} from 'app/[locale]/_common/types/types'
 
 export const filterItems: FilterItems = (items, filters) => {
     const {sorting, price, ...otherFilters} = filters

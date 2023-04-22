@@ -5,26 +5,28 @@ import {useDebounce} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
 import navSearchContent from 'app/[locale]/_components/layout/nav/nav-search/nav-search.content'
 import {useDispatch} from 'react-redux'
 import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
-import {selectSearchItems} from 'app/[locale]/_redux/shop-items/shop-items.selector'
-import {searchItemsAsync} from 'app/[locale]/_redux/shop-items/shop-items.thunk'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
-import {selectShopItemsField} from 'app/[locale]/_redux/shop-items/shop-items.selector'
 import {Locale} from 'app/[locale]/_common/types/types'
+import {useParams} from 'next/navigation'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {CategoryItem} from 'app/[locale]/_common/types/types'
 
 const useNavSearch = () => {
     const [transl] = useLocale(navSearchContent)
 
-    const locale = useRouter().locale as Locale
-    const items = useSelector(selectSearchItems)
-    const searchItems = useParamSelector(selectShopItemsField, 'searchItems')
+    const locale = useParams().locale as Locale
 
     const [input, setInput] = useState('')
 
-    const dispatch = useDispatch()
+    const searchItems = useApiCall<{items: CategoryItem[]}>('shop-item/search', {
+        method: 'POST'
+    })
+
+    const items = searchItems?.data?.items
 
     const onSubmit = useDebounce((query: string) => {
         if (query) {
-            dispatch(searchItemsAsync({query, locale}))
+            searchItems.start({locale, query})
         }
     })
 

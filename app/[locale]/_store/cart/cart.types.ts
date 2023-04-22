@@ -1,45 +1,46 @@
-import {StateField} from 'app/[locale]/_redux/store.types'
-import {ContentSuccess} from 'app/[locale]/_redux/store.types'
-import {SelectField} from 'app/[locale]/_redux/store.types'
-import {AppThunk} from 'app/[locale]/_redux/store'
-import {AppState} from 'app/[locale]/_redux/store'
-import {ContentErrors} from 'app/[locale]/_redux/store.types'
-
-export type CheckoutState = {
-    fields: Record<CheckoutField, StateField>,
-    paymentData: null | PaymentData,
-    order: null | Order
-}
-
-export type CheckoutField = 'createOrder' | 'getOrder'
-
-export type CreateOrderAsync = (data: CreateOrderData, type: string) => AppThunk
-
-export type GetOrderAsync = (id: string) => AppThunk
-
-export type CreateOrderData = {
-    email: string,
-    phone: string,
-    name: string,
-    deliveryService: 'novaposhta',
-    'destination': {
-        'RecipientCityName': string,
-        'SettlementType': string,
-        'RecipientArea': string,
-        'RecipientAreaRegions': string,
-        'RecipientAddressName': string,
-        'RecipientHouse': string,
-        'RecipientFlat': string,
-        'ServiceType': string
+export type CartItem = {
+    common: {
+        itemId: string
+        slug: string,
+        slugCategory: string,
+        price: string,
+        images: string[],
+        size: string,
+        color: string,
+        _id: string
     },
-    products: { id: string, color: string, size: string, count: number } []
+    translations: {
+        ua: {
+            name: string,
+        },
+        eng: {
+            name: string
+        },
+        ru: {
+            name: string
+        }
+    },
+    quantity: number
 }
 
-export type SelectCheckoutField = (field: CheckoutField) => ((state: AppState) => SelectField)
-
-export type CheckoutErrors = ContentErrors<CheckoutField>
-
-export type CheckoutSuccess = ContentSuccess<CheckoutField>
+export type UserFormData = {
+    country: string,
+    settlementType: string,
+    city: string,
+    region: string,
+    serviceType: string,
+    paymentType: string,
+    office: string,
+    street: string,
+    house: string,
+    apartment: string,
+    name: string,
+    surname: string,
+    email: string,
+    number: string,
+    comment: string,
+    save: boolean
+}
 
 export type PaymentData = {
     orderId: string,
@@ -111,4 +112,22 @@ export type Order = {
     weight: string,
     volume: string,
     description: string,
+}
+
+export type CartState = {
+    items: CartItem[],
+    orderId: string,
+    userFormData: UserFormData | null,
+    setUserFormData: (useFormData: UserFormData) => void,
+    paymentData: null | PaymentData,
+    order: null | Order,
+    setOrder: (order: null | Order) => void,
+    addItem: (addItem: CartItem) => void,
+    removeItem: (_id: string) => void,
+    increaseQuantity: (_id: string) => void,
+    decreaseQuantity: (_id: string) => void,
+    setOrderId: (orderId: string) => void,
+    setCartItems: (items: CartItem[]) => void,
+    getItemsQuantity: () => number,
+    getTotalPrice: () => number
 }

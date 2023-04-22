@@ -1,8 +1,8 @@
-import {useApiCall} from 'app/[locale]/_common/utils/api/api-v2.utils'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useLayoutResizeObserve} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
-import {CategoryItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
+import {CategoryItem} from 'app/[locale]/_common/types/types'
 import favoritesContent from 'app/[locale]/favorites/_components/favorites.content'
 import useModalStore from 'app/[locale]/_store/modal/modal.store'
 

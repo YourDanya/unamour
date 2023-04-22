@@ -1,6 +1,6 @@
 import {ShopItemsPageProps} from 'app/[locale]/shop-items/[category]/shop-items.types'
 import ShopItems from 'app/[locale]/shop-items/[category]/_components/shop-items.component'
-import {CategoryItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
+import {CategoryItem} from 'app/[locale]/_common/types/types'
 import {apiCall} from 'app/[locale]/_common/utils/api/api-v3.utils'
 
 const ShopItemsPage = async (props: ShopItemsPageProps) => {

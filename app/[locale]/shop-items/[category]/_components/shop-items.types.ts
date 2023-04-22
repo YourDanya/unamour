@@ -1,4 +1,4 @@
-import {CategoryItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
+import {CategoryItem} from 'app/[locale]/_common/types/types'
 
 export type ShopItemsProps = {
     items: CategoryItem[] | undefined

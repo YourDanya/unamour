@@ -7,6 +7,8 @@ import {UseModal} from 'app/[locale]/_common/hooks/component/component.types'
 import {useState} from 'react'
 import {UseFirstRender} from 'app/[locale]/_common/hooks/component/component.types'
 import {MouseEvent} from 'react'
+import {UseTimer} from 'app/[locale]/_common/hooks/component/component.types'
+import {parseTimer} from 'app/[locale]/_common/utils/main/main.utils'
 
 export const useModal: UseModal = (_initState, attribute = 'name') => {
     type ModalProp = keyof typeof _initState & 'modal'
@@ -154,3 +156,21 @@ export const useFirsRender: UseFirstRender = (callback) => {
     }
 }
 
+export const useTimer: UseTimer = (params) => {
+    const {timer, setTimer} = params
+
+    useEffect(() => {
+        if (!timer || timer === '00:00') {
+            return
+        }
+        let [minutes, seconds] = timer.split(':').map((elem) => +elem)
+        const allSeconds = (minutes * 60 + seconds) - 1
+        minutes = Math.floor( allSeconds / 60)
+        seconds = allSeconds % 60
+        const newTimer = `${minutes < 10? `0${minutes}`: `${minutes}`}:${seconds < 10 ? `0${seconds}`: `${seconds}`}`
+
+        setTimeout(() => {
+            setTimer(newTimer)
+        })
+    }, [timer])
+}

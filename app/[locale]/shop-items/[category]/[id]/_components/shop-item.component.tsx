@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import Sizes from 'app/[locale]/shop-items/[category]/[id]/_components/sizes/sizes.component'
-import {FetchedItem} from 'app/[locale]/_redux/shop-items/shop-items.types'
+import {FetchedItem} from 'app/[locale]/_common/types/types'
 import {useShopItem} from 'app/[locale]/shop-items/[category]/[id]/_components/shop-item.hook'
 import Additional from 'app/[locale]/shop-items/[category]/[id]/_components/additional/additional.component'
 import Images from 'app/[locale]/shop-items/[category]/[id]/_components/images/images.component'

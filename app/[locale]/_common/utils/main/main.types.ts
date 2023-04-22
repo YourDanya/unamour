@@ -1,19 +1,6 @@
-import {StateField} from 'app/[locale]/_redux/store.types'
-import {ContentSuccess} from 'app/[locale]/_redux/store.types'
-import {SelectField} from 'app/[locale]/_redux/store.types'
-import {ServerError} from 'app/[locale]/_redux/store.types'
-import {AppState} from 'app/[locale]/_redux/store'
-import {ContentErrors} from 'app/[locale]/_redux/store.types'
 import {Locale} from 'app/[locale]/_common/types/types'
 
-export type MapField = <TField extends string> (field: TField, stateField: StateField, locale: Locale, errors: ContentErrors,
-                        success: ContentSuccess) => SelectField
-
-export type GetError = <TField extends string,> (field: TField,error: ServerError | null, contentErrors: ContentErrors, locale: Locale) => string
-
 export type NullObj = <TObj> (obj: TObj) => TObj
-
-export type GetLocalStorage = <K extends keyof AppState> (key : K) => AppState[K]
 
 export type DoubleNode<T> = {prev?: DoubleNode<T>, value: T, next?: DoubleNode<T>}
 

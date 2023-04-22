@@ -1,16 +1,15 @@
 'use client'
 
 import {NextPage} from 'next'
-import OrderInfo from 'app/[locale]/order/_components/order-info/order-info.component'
-import Link from 'next/link'
 import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
-import useOrderPage from 'app/[locale]/order/_components/order.hook'
+import useOrder from 'app/[locale]/order/[id]/_components/order.hook'
 import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
+import OrderInfo from 'app/[locale]/order/[id]/_components/order-info/order-info.component'
 import Modal from 'app/[locale]/_common/components/modal/modal.component'
-import 'app/[locale]/order/_components/order.styles.sass'
+import Link from 'next/link'
 
 const Order: NextPage = () => {
-    const {order, transl, method, status} = useOrderPage()
+    const {order, transl, method, status} = useOrder()
 
     return (
         <>

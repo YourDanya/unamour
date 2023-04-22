@@ -5,3 +5,5 @@ export type UseModal = <K extends string> (initState: Record<K, boolean>, attrib
         showTopModal: (event: MouseEvent<HTMLElement>) => void, hideTopModal: (event: MouseEvent<HTMLElement>) => void,]
 
 export type UseFirstRender = (callback: () => void) => void
+
+export type UseTimer = (params: {timer: string, setTimer: (timer: string) => void}) => void
