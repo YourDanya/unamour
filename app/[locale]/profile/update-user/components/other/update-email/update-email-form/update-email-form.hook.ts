@@ -1,24 +1,34 @@
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
-import {selectUserField} from 'app/[locale]/_redux/user/user.selectors'
-import {useDispatch} from 'react-redux'
-import {updateEmailAsync} from 'app/[locale]/_redux/user/user.thunk'
 import updateEmailFormContent
     from 'app/[locale]/profile/update-user/components/other/update-email/update-email-form/update-email-form.content'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
 
 const useUpdateEmailForm = () => {
     const [transl, content] = useLocale(updateEmailFormContent)
     const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
 
-    const updateEmail = useParamSelector(selectUserField, 'updateEmail')
+    const setUpdateEmail = useUserStore(state => state.setUpdateEmail)
 
-    const dispatch = useDispatch()
-    const handleSubmit = withSubmit(() => {
-        dispatch(updateEmailAsync(inputs.values))
+    const updateEmail = useApiCall('auth/update-email', {
+        method: 'POST',
+        body: inputs.values,
+        onSuccess: () => {
+            setUpdateEmail( {success: true})
+        }
     })
 
-    return {transl, onChange, onValidate, inputs, handleSubmit, updateEmail}
+    const onSubmit = withSubmit(() => {
+        updateEmail.start()
+    })
+
+    const mappedUpdateEmail = useMapApiRes({
+        res: updateEmail, successTransl: transl.success, errorFourTransl: transl.error
+    })
+
+    return {transl, onChange, onValidate, inputs, onSubmit, mappedUpdateEmail}
 }
 
 export default useUpdateEmailForm

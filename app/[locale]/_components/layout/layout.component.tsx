@@ -16,14 +16,14 @@ const Layout = (props: LayoutProps) => {
         <html>
         <head/>
         <body>
-        <PreWork/>
-        <Nav/>
-        <div className={'page'}>
-            <UrlContext.Provider value={storeRef.current}>
+        <UrlContext.Provider value={storeRef.current}>
+            <PreWork/>
+            <Nav/>
+            <div className={'page'}>
                 {children}
-            </UrlContext.Provider>
-        </div>
-        <Footer/>
+            </div>
+            <Footer/>
+        </UrlContext.Provider>
         </body>
         </html>
     )

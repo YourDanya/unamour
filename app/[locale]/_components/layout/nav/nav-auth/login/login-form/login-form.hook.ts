@@ -2,7 +2,6 @@
 
 import {useEffect} from 'react'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useDispatch} from 'react-redux'
 import loginFormContent from 'app/[locale]/_components/layout/nav/nav-auth/login/login-form/login-form.content'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'

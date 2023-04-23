@@ -8,13 +8,14 @@ import 'app/[locale]/_common/components/nav-link/nav-link.styles.sass'
 
 const NavLink: FC<NavLinkProps> = (props) => {
     const {href, activeClassName, className, children} = props
-    const {path, handleClick} = useNavLink(props)
+    const {path, onClick} = useNavLink(props)
 
     return (
         <Link
             href={href}
             className={`nav-link ${className} ${path===href ? `nav-link--active ${activeClassName}` : ''}`}
-            onClick={handleClick}>
+            onClick={onClick}
+        >
             {children}
         </Link>
     )

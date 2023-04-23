@@ -114,12 +114,36 @@ export type Order = {
     description: string,
 }
 
+export type CreateOrderData = {
+    email: string,
+    phone: string,
+    name: string,
+    deliveryService: 'novaposhta',
+    'destination': {
+        'RecipientCityName': string,
+        'SettlementType': string,
+        'RecipientArea': string,
+        'RecipientAreaRegions': string,
+        'RecipientAddressName': string,
+        'RecipientHouse': string,
+        'RecipientFlat': string,
+        'ServiceType': string
+    },
+    products: {
+        id: string,
+        color: string,
+        size: string,
+        count: number
+    } []
+}
+
 export type CartState = {
     items: CartItem[],
     orderId: string,
     userFormData: UserFormData | null,
     setUserFormData: (useFormData: UserFormData) => void,
     paymentData: null | PaymentData,
+    setPaymentData: (paymentData: PaymentData | null) => void,
     order: null | Order,
     setOrder: (order: null | Order) => void,
     addItem: (addItem: CartItem) => void,

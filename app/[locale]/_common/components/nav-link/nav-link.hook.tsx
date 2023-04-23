@@ -1,18 +1,19 @@
-import {useRouter} from "next/router"
 import {MouseEvent} from "react"
 import {NavLinkProps} from 'app/[locale]/_common/components/nav-link/nav-link.types'
+import {usePathname} from 'next/navigation'
 
 const useNavLink = (props: NavLinkProps) => {
     const {href} = props
 
-    const router = useRouter()
-    const path = router.asPath
+    const path = usePathname()
 
-    const handleClick = (event: MouseEvent) => {
-        if (href === path) event.preventDefault()
+    const onClick = (event: MouseEvent) => {
+        if (href === path) {
+            event.preventDefault()
+        }
     }
 
-    return {path, handleClick}
+    return {path, onClick}
 }
 
 export default useNavLink

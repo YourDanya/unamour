@@ -1,5 +1,4 @@
 import {useRouter} from 'next/navigation'
-import {useSelector} from 'react-redux'
 import {useEffect, useState} from 'react'
 import {usePathname} from 'next/navigation'
 import {useOmitFirstEffect} from 'app/[locale]/_common/hooks/component/component.hooks'

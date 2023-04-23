@@ -1,9 +1,8 @@
 import {useMemo, useRef, useState} from 'react'
-import {useSelector} from 'react-redux'
 
 const useAdditional = () => {
 
-    // let items: ClientItem[] = useSelector(selectClientItems)
+    // let items: ClientItem[] = (selectClientItems)
     //
     // const similarItems: ClientItem[] = useMemo(() => {
     //     const arr = []

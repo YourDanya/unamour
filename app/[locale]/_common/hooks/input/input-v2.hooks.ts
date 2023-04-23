@@ -12,11 +12,12 @@ import {InputsMap} from 'app/[locale]/_common/hooks/input/input-v2.types'
 import {Locale} from 'app/[locale]/_common/types/types'
 import {validate} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import {useParams} from 'next/navigation'
 
 export const useValidateInput: UseValidateInput = (params) => {
     const {errors, validations, validateCallback} = params
 
-    const locale = useRouter().locale as Locale
+    const locale = useParams().locale as Locale
 
     const errRef = useRef({errors: {...errors}, count: 0})
 

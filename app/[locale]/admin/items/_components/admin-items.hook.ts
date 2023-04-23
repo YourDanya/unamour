@@ -1,19 +1,18 @@
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {ItemVariant} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {FetchedItem} from 'app/[locale]/_common/types/types'
-import {useSelector} from 'react-redux'
 import {useEffect} from 'react'
-import {selectUser} from 'app/[locale]/_redux/user/user.selectors'
 import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
 import adminItemsContent from 'app/[locale]/admin/items/_components/admin-items.content'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {peek} from 'app/[locale]/_common/utils/main/main.utils'
 import {useRouter} from 'next/navigation'
 import {MouseAction} from 'app/[locale]/_common/types/types'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
 
 const useAdminItems = () => {
     const router = useRouter()
-    const user = useSelector(selectUser)
+    const user = useUserStore(user => user.user)
     const [transl] = useLocale(adminItemsContent)
 
     const getUser = useApiCall('users/user-data')

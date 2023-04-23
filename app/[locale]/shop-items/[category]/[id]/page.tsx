@@ -1,7 +1,7 @@
 import {ShopItemPageProps} from 'app/[locale]/shop-items/[category]/[id]/shop-item.types'
 import {FetchedItem} from 'app/[locale]/_common/types/types'
-import {apiCall} from 'app/[locale]/_common/utils/api/api-v3.utils'
 import ShopItem from 'app/[locale]/shop-items/[category]/[id]/_components/shop-item.component'
+import {apiCall} from 'app/[locale]/_common/utils/api/api-v2.utils'
 
 const ShopItemPage = async (props: ShopItemPageProps) => {
     let query = props.searchParams

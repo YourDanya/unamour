@@ -9,14 +9,14 @@ import useLayout from 'app/[locale]/profile/_components/_layout/layout.hook'
 
 const Layout: FC<LayoutProps> = (props) => {
     const {children} = props
-    const {user, transl, content, modalState, hideModal, showModal, handleLogout, logout} = useLayout()
+    const {user, transl, content, modalState, hideModal, showModal, onLogout, logout} = useLayout()
 
     return (
         <>
             <div className={`profile ${!user ? 'profile--hidden' : ''}`}>
                 <div className={'profile__top'}>
                     <div className={'profile__sign-out'}>
-                        <Button className={'profile__sign-out-btn'} onClick={handleLogout} loading={logout.loading}>
+                        <Button className={'profile__sign-out-btn'} onClick={onLogout} loading={logout.loading}>
                             {transl.logout}
                         </Button>
                     </div>
@@ -46,7 +46,7 @@ const Layout: FC<LayoutProps> = (props) => {
                     {children}
                 </div>
             </div>
-            <Spinner className={`profile-spinner ${user? 'profile-spinner--hidden' : ''}`}/>
+            {!user && (<Spinner className={`profile-spinner`}/>)}
         </>
     )
 }

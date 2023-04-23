@@ -5,14 +5,15 @@ import {
 import Timer from 'app/[locale]/_common/components/timer/timer.component'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
-import useActivateEmail from 'app/[locale]/profile/update-user/components/other/update-email/activate-email/activate-email.hook'
+import useActivateEmail
+    from 'app/[locale]/profile/update-user/components/other/update-email/activate-email/activate-email.hook'
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 
 const ActivateEmail: FC<ActivateEmailProps> = (props) => {
-    const {sendUpdateEmailCode} = props
-    const {inputs, onChange, onValidate, transl, activateEmailSubmit, sendUpdateEmailCodeSubmit, activateEmail,
-        clearInitTimer} = useActivateEmail(props)
+    const {
+        inputs, onChange, onValidate, transl, onActivateEmail, mappedActivateEmail, timer, onSendCode, sendCode
+    } = useActivateEmail(props)
 
     return (
         <form className={'nav-auth__form'}>
@@ -29,21 +30,21 @@ const ActivateEmail: FC<ActivateEmailProps> = (props) => {
                 onValidate={onValidate}
             />
             <div className="nav-auth__bottom">
-                <Button className="nav-auth__button" onClick={activateEmailSubmit} loading={activateEmail.loading}>
+                <Button
+                    className="nav-auth__button"
+                    onClick={onActivateEmail}
+                    loading={mappedActivateEmail.loading}
+                >
                     {transl.activate}
                 </Button>
-                <Timer
-                    initTimer={sendUpdateEmailCode.timer}
-                    onSubmit={sendUpdateEmailCodeSubmit}
-                    clearInitTimer={clearInitTimer}
+                <Button
+                    className={'nav-auth__resend'}
+                    onClick={onSendCode}
+                    loading={sendCode.loading}
                 >
-                    {(timer, onSubmit) => (
-                        <Button className={'nav-auth__resend'} onClick={onSubmit} loading={sendUpdateEmailCode.loading}>
-                            {transl.resend} {transl.in} {timer}
-                        </Button>
-                    )}
-                </Timer>
-                <FormMessage success={activateEmail.success} error={activateEmail.error}/>
+                    {transl.resend} {transl.in} {timer}
+                </Button>
+                <FormMessage success={mappedActivateEmail.success} error={mappedActivateEmail.error}/>
             </div>
         </form>
     )

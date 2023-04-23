@@ -1,2 +1,1 @@
-export type ActivateProps = {
-}
+export type ActivateProps = {}

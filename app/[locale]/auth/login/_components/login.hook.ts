@@ -1,21 +1,27 @@
-import {selectUserField} from 'app/[locale]/_redux/user/user.selectors'
-import {useDispatch} from 'react-redux'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import loginContent from 'app/[locale]/auth/login/_components/login.content'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
 
-const useSignIn = () => {
+const useLogin = () => {
     const [transl, content] = useLocale(loginContent)
     const {inputs, onChange, onValidate, withSubmit} = useInput(content.inputs)
 
-    const login = useParamSelector(selectUserField,'login')
-
-    const handleSubmit = withSubmit(() => {
-        console.log('resetting password')
+    const login = useApiCall('auth/login', {
+        method: 'POST',
+        body: inputs.values
     })
 
-    return {content, transl, inputs, onChange, onValidate, handleSubmit, login}
+    const onSubmit = withSubmit(() => {
+        login.start()
+    })
+
+    const mappedLogin = useMapApiRes({
+        res: login, errorFourTransl: transl.error, successTransl: transl.success
+    })
+
+    return {content, transl, inputs, onChange, onValidate, onSubmit, mappedLogin}
 }
 
-export default useSignIn
+export default useLogin

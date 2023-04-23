@@ -13,6 +13,8 @@ const updateEmailFormContent = {
             activate: 'активувати',
             resend: 'відправити код повторно',
             in: 'через',
+            success: 'Пошту успішно змінено.',
+            error: 'Невірний код.'
         },
         eng: {
             title: 'change email',
@@ -21,7 +23,9 @@ const updateEmailFormContent = {
             },
             activate: 'activate',
             resend: 'resend the code',
-            in: 'in'
+            in: 'in',
+            success: 'Email was successfully updated.',
+            error: 'Wrong code.'
         },
         ru: {
             title: 'изменение почты',
@@ -30,7 +34,9 @@ const updateEmailFormContent = {
             },
             activate: 'активувати',
             resend: 'отправить код повторно',
-            in: 'через'
+            in: 'через',
+            success: 'Почта успешно изменена.',
+            error: 'Неверный код.'
         }
     }
 }

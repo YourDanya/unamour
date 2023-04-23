@@ -8,14 +8,14 @@ import UpdateEmailForm
 
 const UpdateEmail : FC<UpdateEmailProps> = (props) => {
     const {hideModal} = props
-    const {updateEmail, sendUpdateEmailCode} = useUpdateEmail(props)
+    const {updateEmail} = useUpdateEmail(props)
 
     return (
         <>
-            {0 ? (
-                <ActivateEmail sendUpdateEmailCode={sendUpdateEmailCode} hideModal={hideModal}/>
+            {updateEmail.success? (
+                <ActivateEmail hideModal={hideModal}/>
             ) : (
-                <UpdateEmailForm updateEmail={updateEmail}/>
+                <UpdateEmailForm/>
             )}
         </>
     )

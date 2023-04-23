@@ -13,7 +13,7 @@ import CartOrder from 'app/[locale]/cart/_components/cart-order/cart-order.compo
 import 'app/[locale]/cart/_components/cart.styles.sass'
 
 const Cart: NextPage = () => {
-    const {cartItems, total, onSubmit, createOrder, formRef, transl, ...otherProps} = useCart()
+    const {cartItems, total, onSubmit, loading, formRef, transl, ...otherProps} = useCart()
 
     return (
         <div className="cart">
@@ -38,7 +38,7 @@ const Cart: NextPage = () => {
                         <Discount/>
                         <CartForm {...otherProps} transl={transl}/>
                     </div>
-                    <CartOrder total={total} onSubmit={onSubmit} createOrder={createOrder}/>
+                    <CartOrder total={total} onSubmit={onSubmit} loading={loading}/>
                     <form
                         className={'cart__payment-form'}
                         method="post"

@@ -12,4 +12,8 @@ export const useUserStore = create<UserState>((set) => ({
     setSendRegisterCode: (newSendRegisterCode) => set((state) => {
         return {sendRegisterCode: {...state.sendRegisterCode, ...newSendRegisterCode}}
     }),
+    updateEmail: {error: null, loading: false, success: false},
+    setUpdateEmail: (newUpdateEmail) => set((state) => {
+        return {updateEmail: {...state.updateEmail, ...newUpdateEmail}}
+    })
 }))

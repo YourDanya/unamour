@@ -17,5 +17,7 @@ export type UserState = {
     register: ApiCallRes,
     setRegister: (params: Partial<ApiCallRes>) => void,
     sendRegisterCode: ApiCallRes,
-    setSendRegisterCode: (params: Partial<ApiCallRes>) => void
+    setSendRegisterCode: (params: Partial<ApiCallRes>) => void,
+    updateEmail: ApiCallRes,
+    setUpdateEmail: (params: Partial<ApiCallRes>) => void
 }

@@ -1,13 +1,10 @@
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
-import {useDispatch} from 'react-redux'
-import {selectUserField} from 'app/[locale]/_redux/user/user.selectors'
-import {updatePassAsync} from 'app/[locale]/_redux/user/user.thunk'
 import {useEffect} from 'react'
-import {resetUserFieldSuccess} from 'app/[locale]/_redux/user/user.slice'
 import {UpdatePassProps} from 'app/[locale]/profile/update-user/components/other/update-pass/update-pass.types'
 import updatePassContent from 'app/[locale]/profile/update-user/components/other/update-pass/update-pass.content'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
 
 const useUpdatePass = (props: UpdatePassProps) => {
     const {hideModal} = props
@@ -15,24 +12,28 @@ const useUpdatePass = (props: UpdatePassProps) => {
     const [transl, content] = useLocale(updatePassContent)
     const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs, transl.inputs)
 
-    const updatePass = useParamSelector(selectUserField, 'updatePass')
-    
-    const dispatch = useDispatch()
-    const handleSubmit = withSubmit(() => {
-        dispatch(updatePassAsync(inputs.values))
+    const updatePass = useApiCall( 'auth/update-password', {
+        method: 'POST'
+    })
+
+    const onSubmit = withSubmit(() => {
+        updatePass.start()
     })
 
     useEffect(() => {
         if (updatePass.success) {
             resetValues()
             setTimeout(() => {
-                dispatch(resetUserFieldSuccess('updatePass'))
                 hideModal()
             }, 3000)
         }
     }, [updatePass.success])
 
-    return {transl, onChange, onValidate, inputs, handleSubmit, updatePass}
+    const mappedUpdatePass = useMapApiRes({
+        res: updatePass, errorFourTransl: transl.error, successTransl: transl.success
+    })
+
+    return {transl, onChange, onValidate, inputs, onSubmit, mappedUpdatePass}
 }
 
 export default useUpdatePass

@@ -3,7 +3,6 @@ import {ShopItemVariant} from 'app/[locale]/shop-items/[category]/[id]/_componen
 import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useRef} from 'react'
 import {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
 import {useState} from 'react'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useRouter} from 'next/navigation'
@@ -49,7 +48,6 @@ export const useShopItem = (props: FetchedItem) => {
 
     const [modalState, showModal, hideModal] = useModal({ size: false, present: false})
 
-    const dispatch = useDispatch()
     const cartItemRef = useRef<CartItem>({} as CartItem)
 
     const addItem = useCartStore(state => state.addItem)

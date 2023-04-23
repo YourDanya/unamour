@@ -7,7 +7,7 @@ import useCartOrder from 'app/[locale]/cart/_components/cart-order/cart-order.ho
 import 'app/[locale]/cart/_components/cart-order/cart-order.styles.sass'
 
 const CartOrder: FC<CartOrderProps> = (props) => {
-    const {total, onSubmit, createOrder} = props
+    const {total, onSubmit, loading} = props
     const {transl} = useCartOrder()
 
     return (
@@ -31,7 +31,7 @@ const CartOrder: FC<CartOrderProps> = (props) => {
                     <div className="cart-order__value">{total} {transl.currency}</div>
                 </div>
             </div>
-            <Button className={'_components-order__button'} onClick={onSubmit} loading={createOrder.loading}>
+            <Button className={'_components-order__button'} onClick={onSubmit} loading={loading}>
                 {transl.makeOrder}
             </Button>
             <Button className={'_components-order__button _components-order__button--present'} onClick={() => {}}>

@@ -2,14 +2,14 @@
 
 import {NextPage} from 'next'
 import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component'
-import useSignIn from 'app/[locale]/auth/login/_components/login.hook'
+import useLogin from 'app/[locale]/auth/login/_components/login.hook'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
 import Input from 'app/[locale]/_common/components/input/input.component'
 import 'app/[locale]/auth/auth.styles.sass'
 
 const Login: NextPage = () => {
-    const {transl, login, inputs, onChange, onValidate, handleSubmit} = useSignIn()
+    const {transl, inputs, onChange, onValidate, onSubmit, mappedLogin} = useLogin()
 
     return (
         <div className={'auth'}>
@@ -34,13 +34,13 @@ const Login: NextPage = () => {
                     onValidate={onValidate}
                     type={'password'}
                 />
-                <Button className='auth__button' onClick={handleSubmit} loading={login.loading}>
+                <Button className='auth__button' onClick={onSubmit} loading={mappedLogin.loading}>
                     {transl.signIn}
                 </Button>
                 <NavLink className='auth__button' href={'auth/forget-password'}>
                     {transl.forget}
                 </NavLink>
-                <FormMessage error={login.error} success={login.success}/>
+                <FormMessage error={mappedLogin.error} success={mappedLogin.success}/>
             </form>
         </div>
     )

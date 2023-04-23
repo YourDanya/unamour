@@ -1,12 +1,10 @@
-import {create} from 'zustand'
 import {ModalStore} from 'app/[locale]/_store/modal/modal.types'
 import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
 import {ModalState} from 'app/[locale]/_store/modal/modal.types'
-import {PayloadAction} from '@reduxjs/toolkit'
 import {CartState} from 'app/[locale]/_store/cart/cart.types'
-import {persist} from 'zustand/middleware'
-import {createJSONStorage} from 'zustand/middleware'
 import {peek} from 'app/[locale]/_common/utils/main/main.utils'
+import {persist} from 'zustand/middleware'
+import {create} from 'zustand'
 
 export const useCartStore = create<CartState>()(
     persist(
@@ -20,6 +18,7 @@ export const useCartStore = create<CartState>()(
             order: null,
             setOrder: (order) => set({order}),
             paymentData: null,
+            setPaymentData: (paymentData) =>set({paymentData}),
             addItem: (addItem) => set(({items}) => {
                 const itemIndex = items.findIndex(item => {
                     return item.common._id === addItem.common._id

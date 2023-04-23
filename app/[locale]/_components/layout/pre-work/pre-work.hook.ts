@@ -6,7 +6,6 @@ import {useCallback} from 'react'
 import {peek} from 'app/[locale]/_common/utils/main/main.utils'
 import {shallow} from 'zustand/shallow'
 import {User} from 'app/[locale]/_store/user/user.types'
-import {useSelector} from 'react-redux'
 import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
 import {Order} from 'app/[locale]/_store/cart/cart.types'
 

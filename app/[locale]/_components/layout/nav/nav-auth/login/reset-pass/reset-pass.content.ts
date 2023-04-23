@@ -11,7 +11,9 @@ export const resetPassContent = {
             explanation: 'Вкажіть email, і ми надішлемо вам посилання на\nвідновлення пароля',
             inputs: {
                 email: 'Ваш email'
-            }
+            },
+            success: 'Успішно оновлено дані юзера.',
+            error: 'Невірний email.'
         },
         eng: {
             title: 'reset',
@@ -19,7 +21,9 @@ export const resetPassContent = {
             explanation: 'Enter your email and we will send you a link to reset-pass your password',
             inputs: {
                 email: 'Your email'
-            }
+            },
+            success: 'User data has been updated successfully.',
+            error: 'Invalid email.'
         },
         ru: {
             title: 'сбросить',
@@ -27,7 +31,9 @@ export const resetPassContent = {
             explanation: 'Укажите email, и мы отправим вам ссылку на восстановление пароля',
             inputs: {
                 email: 'Ваш email'
-            }
+            },
+            success: 'Успешно обновлены данные пользователя.',
+            error: 'Неверный email.'
         }
     }
 }

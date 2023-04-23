@@ -27,8 +27,8 @@ const Search: NextPage = () => {
             </div>
             {searchItems.loading || first ? (
                     <Spinner className={'search__spinner'}/>
-                ) :
-                (items.length > 0 ? (
+                ) : (
+                    items && items.length > 0 ? (
                         <div className="search__results">
                             {items.map((item, index) => (
                                 <ShopItemPreview

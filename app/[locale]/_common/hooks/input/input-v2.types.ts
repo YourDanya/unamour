@@ -12,6 +12,8 @@ export type UseValidateInput = <T extends string>( params: {
     errRef: MutableRefObject<{ errors: Record<T, string>, count: number }>
 }
 
+export type Errors<T extends object> = {[key in keyof T]: boolean}
+
 export type OnValidate<NameT extends string> = (name: NameT, value: InputValue) => void
 
 export type UseMapInputs = <T extends InputsObj> (inputsObj: T) => InputsMap<T>

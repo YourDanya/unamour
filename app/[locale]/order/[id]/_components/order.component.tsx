@@ -8,7 +8,7 @@ import OrderInfo from 'app/[locale]/order/[id]/_components/order-info/order-info
 import Modal from 'app/[locale]/_common/components/modal/modal.component'
 import Link from 'next/link'
 
-const Order: NextPage = () => {
+const Order = () => {
     const {order, transl, method, status} = useOrder()
 
     return (

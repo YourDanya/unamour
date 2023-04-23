@@ -10,15 +10,17 @@ import {FilterContent} from 'app/[locale]/shop-items/[category]/_components/_lay
 import {HandleFilter} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 import {PriceState} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 import {UseFilter} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
+import {usePathname} from 'next/navigation'
+import {useSearchParams} from 'next/navigation'
 
 export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) => {
     const router = useRouter()
-    const path = router.asPath
+    const path = usePathname()
     const pathArr = path.split('?')
     const mainPath = pathArr[0]
 
     useEffect(() => {
-        if ('reset' in router.query) {
+        if (useSearchParams().get('reset')) {
             toUpdate.current = false
             if (filter === 'sorting') {
                 setState('')
@@ -38,14 +40,13 @@ export const useResetFilter: ResetFilter = (filter, setState, toUpdate, state) =
 
 export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=> {
     const router = useRouter()
-    const path = router.asPath
-    const query = router.query
+    const path = usePathname()
+    const query = useSearchParams()
     const mainPath = path.split('?')[0]
     const reset = !('reset' in query)
     const pathRef = useRef({query, mainPath, reset})
 
     useEffect(() => {
-        const query = router.query
         const mainPath = path.split('?')[0]
         const reset = !('reset' in query)
         pathRef.current = {query, mainPath, reset}
@@ -79,7 +80,7 @@ export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=
                         param = value ? `${filter}=${value}` : ''
                     }
                 } else if (elem in pathRef.current.query) {
-                    param = `${elem}=${pathRef.current.query[elem]}`
+                    param = `${elem}=${query.get(elem)}`
                 }
                 return param
             })
@@ -98,8 +99,8 @@ export const useHandleFilter: HandleFilter = (toUpdate, filters, filter, state)=
 
 export const useGetFilterState = (filter: string, filterContent: FilterContent) => {
     const router = useRouter()
-    const query = router.query
-    const pathParam = query[filter] as string ?? ''
+    const query = useSearchParams()
+    const pathParam = query.get(filter) as string ?? ''
 
     return useMemo(() => {
         if (filter === 'sorting') {

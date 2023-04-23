@@ -5,7 +5,9 @@ import FormMessage from 'app/[locale]/_common/components/form-message/form-messa
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 const UpdateUserForm: FC = () => {
-    const {transl, onChange, onValidate, inputs, handleSubmit, updateUser} = useUpdateUserForm()
+    const {
+        transl, onChange, onValidate, onSubmit, values, errors, mappedUpdateUser
+    } = useUpdateUserForm()
 
     return (
         <form className={'update-user__form'}>
@@ -15,41 +17,41 @@ const UpdateUserForm: FC = () => {
                 name={'name'}
                 onChange={onChange}
                 placeholder={transl.inputs.name}
-                value={inputs.values.name}
-                error={inputs.errors.name}
-                onValidate={onValidate}
+                value={values.name}
+                error={errors.name}
             />
             <Input
                 className={'update-user__input update-user__surname'}
                 name={'surname'}
                 onChange={onChange}
                 placeholder={transl.inputs.surname}
-                value={inputs.values.surname}
-                error={inputs.errors.surname}
-                onValidate={onValidate}
+                value={values.surname}
+                error={errors.surname}
             />
             <Input
                 className={'update-user__input update-user__phone'}
                 name={'phone'}
                 onChange={onChange}
                 placeholder={transl.inputs.phone}
-                value={inputs.values.phone}
-                error={inputs.errors.phone}
-                onValidate={onValidate}
+                value={values.phone}
+                error={errors.phone}
             />
             <Input
                 className={'update-user__input update-user__birthDate'}
                 name={'birthDate'}
                 placeholder={transl.inputs.birthDate}
                 onChange={onChange}
-                value={inputs.values.birthDate}
-                error={inputs.errors.birthDate}
-                onValidate={onValidate}
+                value={values.birthDate}
+                error={errors.birthDate}
             />
-            <Button className={'update-user__button'} onClick={handleSubmit} loading={updateUser.loading}>
+            <Button 
+                className={'update-user__button'} 
+                onClick={onSubmit} 
+                loading={mappedUpdateUser.loading}
+            >
                 {transl.save}
             </Button>
-            <FormMessage error={updateUser.error} success={updateUser.success}/>
+            <FormMessage error={mappedUpdateUser.error} success={mappedUpdateUser.success}/>
         </form>
     )
 }

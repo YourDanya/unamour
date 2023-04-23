@@ -5,8 +5,6 @@ import activateUserContent
     from 'app/[locale]/_components/layout/nav/nav-auth/register/activate-user/activate-user.content'
 import {ActivateProps} from 'app/[locale]/_components/layout/nav/nav-auth/register/activate-user/activate-user.types'
 import {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
@@ -51,11 +49,13 @@ const useActivateUser = (props: ActivateProps) => {
 
     useTimer({timer, setTimer})
 
-    const mappedActivateUser = useMapApiRes({res, errorFourTransl, successTransl})
+    const mappedActivateUser = useMapApiRes({
+        res: activateUser, errorFourTransl: transl.error, successTransl: transl.success
+    })
 
     return {
         inputs, onChange, onValidate, transl, activateUser, onActivateUser, onSendRegisterCode, sendRegisterCode,
-        timer
+        timer, mappedActivateUser
     }
 }
 

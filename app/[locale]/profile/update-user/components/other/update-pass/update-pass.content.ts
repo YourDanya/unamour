@@ -14,7 +14,9 @@ const updatePassContent = {
                 newPassword: 'Придумайте новий пароль',
                 passwordConfirm: 'Повторіть новий пароль'
             },
-            save: 'зберегти'
+            save: 'зберегти',
+            success: 'Пароль успішно змінено.',
+            error: 'Старий пароль невірний.'
         },
         eng: {
             title: 'change password',
@@ -23,7 +25,9 @@ const updatePassContent = {
                 newPassword: 'Create new password',
                 passwordConfirm: 'Repeat new password'
             },
-            save: 'save'
+            save: 'save',
+            success: 'Password changed successfully.',
+            error: 'Old password is wrong.'
         },
         ru: {
             title: 'изменение пароля',
@@ -32,7 +36,9 @@ const updatePassContent = {
                newPassword: 'Придумайте новый пароль',
                passwordConfirm: 'Повторите новый пароль'
             },
-            save: 'сохранить'
+            save: 'сохранить',
+            success: 'Пароль успешно изменен.',
+            error: 'Старый пароль неверный.'
         }
     }
 }

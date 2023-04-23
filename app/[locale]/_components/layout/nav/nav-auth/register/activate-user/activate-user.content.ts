@@ -12,7 +12,9 @@ const activateUserContent = {
             },
             activate: 'активувати',
             resend: 'відправити код повторно',
-            in: 'через'
+            in: 'через',
+            success: 'Юзера активовано.',
+            error: 'Невірний код.'
         },
         eng: {
             title: 'An account activation code has been sent to your email.',
@@ -21,7 +23,9 @@ const activateUserContent = {
             },
             activate: 'activate',
             resend: 'resend the code',
-            in: 'in'
+            in: 'in',
+            success: 'User activated.',
+            error: 'Wrong code.'
         },
         ru: {
             title: 'Вам на почту был выслан код активации аккаунта.',
@@ -30,7 +34,9 @@ const activateUserContent = {
             },
             activate: 'активировать',
             resend: 'отправить код повторно',
-            in: 'через'
+            in: 'через',
+            success: 'Пользоватеь активирован.',
+            error: 'Неверный код.'
         }
     }
 }

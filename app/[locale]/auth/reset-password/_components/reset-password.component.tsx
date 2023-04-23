@@ -5,7 +5,7 @@ import useResetPass from 'app/[locale]/auth/reset-password/_components/reset-pas
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 const ResetPass: NextPage = () => {
-    const {transl, resetPass, inputs, onChange, onValidate, handleSubmit} = useResetPass()
+    const {transl, mappedResetPass, inputs, onChange, onValidate, onSubmit} = useResetPass()
 
     return (
         <div className={'auth'}>
@@ -31,10 +31,10 @@ const ResetPass: NextPage = () => {
                     onValidate={onValidate}
                     type={'password'}
                 />
-                <Button className='auth__button' onClick={handleSubmit} loading={resetPass.loading}>
+                <Button className='auth__button' onClick={onSubmit} loading={mappedResetPass.loading}>
                     {transl.save}
                 </Button>
-                <FormMessage error={resetPass.error} success={resetPass.success}/>
+                <FormMessage error={mappedResetPass.error} success={mappedResetPass.success}/>
             </form>
         </div>
     );

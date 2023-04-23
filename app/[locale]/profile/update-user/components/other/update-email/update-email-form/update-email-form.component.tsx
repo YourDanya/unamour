@@ -10,8 +10,7 @@ import FormMessage from 'app/[locale]/_common/components/form-message/form-messa
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
-    const {updateEmail} = props
-    const {transl, onChange, onValidate, inputs, handleSubmit} = useUpdateEmailForm()
+    const {transl, onChange, onValidate, inputs, onSubmit, mappedUpdateEmail} = useUpdateEmailForm()
 
     return (
         <form className={'update-user__form update-user__modal-form'}>
@@ -37,12 +36,12 @@ const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
             />
             <Button
                 className={'update-user__button update-user__modal-btn'}
-                onClick={handleSubmit}
-                loading={updateEmail.loading}
+                onClick={onSubmit}
+                loading={mappedUpdateEmail.loading}
             >
                 {transl.save}
             </Button>
-            <FormMessage success={updateEmail.success} error={updateEmail.error}/>
+            <FormMessage success={mappedUpdateEmail.success} error={mappedUpdateEmail.error}/>
         </form>
     )
 }

@@ -10,21 +10,27 @@ const deleteUserContent = {
             inputs: {
                password: 'Ваш пароль'
             },
-            delete: 'видалити'
+            delete: 'видалити',
+            success: 'Ваш акаунт успішно видалено.',
+            error: 'Невірний пароль.'
         },
         eng: {
             title: 'deleting account',
             inputs: {
                password: 'Your password',
             },
-            delete: 'delete'
+            delete: 'delete',
+            success: 'Your account was successfully deleted.',
+            error: 'Wrong password.'
         },
         ru: {
             title: 'удаление аккаунта',
             inputs: {
                password: 'Старый пароль',
             },
-            delete: 'удалить'
+            delete: 'удалить',
+            success: 'Ваш акаунт успешно удален.',
+            error: 'Неверный пароль.'
         }
     }
 }

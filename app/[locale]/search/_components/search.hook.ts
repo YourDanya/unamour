@@ -1,32 +1,32 @@
-import {useSelector} from 'react-redux'
-import {selectSearchItems} from 'app/[locale]/_redux/shop-items/shop-items.selector'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useRouter} from 'next/navigation'
-import {Locale} from 'app/[locale]/_redux/main/main.types'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
-import {selectShopItemsField} from 'app/[locale]/_redux/shop-items/shop-items.selector'
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
 import {ChangeEvent} from 'react'
-import {searchItemsAsync} from 'app/[locale]/_redux/shop-items/shop-items.thunk'
 import {useEffect} from 'react'
 import {useGetParamForImages} from 'app/[locale]/_common/hooks/other/other.hooks'
 import searchContent from 'app/[locale]/search/_components/search.content'
+import {useParams} from 'next/navigation'
+import {Locale} from 'app/[locale]/_common/types/types'
+import {useSearchParams} from 'next/navigation'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {CategoryItem} from 'app/[locale]/_common/types/types'
 
 const useSearch = () => {
     const [transl] = useLocale(searchContent)
 
     const router = useRouter()
-    const locale = router.locale as Locale
-    const query = router.query.query as string
+    const locale = useParams().locale as Locale
+    const query = useSearchParams().get('query') as string
 
-    const items = useSelector(selectSearchItems)
-    const searchItems = useParamSelector(selectShopItemsField, 'searchItems')
     const [first, setFirst] = useState(true)
-
     const [input, setInput] = useState('')
 
-    const dispatch = useDispatch()
+    const searchItems = useApiCall<{items: CategoryItem[]}>('shop-item/search', {
+        method: 'POST',
+        body: {query, locale}
+    })
+
+    const items = searchItems?.data?.items
 
     const onSubmit = () => {
         router.push(`/search/?query=${input}`)
@@ -34,7 +34,7 @@ const useSearch = () => {
 
     useEffect(() => {
         if (query) {
-            dispatch(searchItemsAsync({query, locale}))
+            searchItems.start()
         }
     }, [query])
 
@@ -50,7 +50,7 @@ const useSearch = () => {
 
     const {width, height, elemRef} = useGetParamForImages()
 
-    return {items, input, onChange, transl, locale, searchItems, onSubmit, first, width, height, elemRef}
+    return {items, input, onChange, transl, locale, onSubmit, first, width, height, elemRef, searchItems}
 }
 
 export default useSearch

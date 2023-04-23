@@ -1,4 +1,3 @@
-import {useDispatch} from 'react-redux'
 import registerFormContent from 'app/[locale]/_components/layout/nav/nav-auth/register/register-form/register-form.content'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'

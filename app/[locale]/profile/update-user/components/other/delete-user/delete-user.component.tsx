@@ -6,7 +6,7 @@ import FormMessage from 'app/[locale]/_common/components/form-message/form-messa
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 const DeleteUser: FC<DeleteUserProps> = (props) => {
-    const {transl, onChange, onValidate, inputs, handleSubmit, deleteUser} = useDeleteUser(props)
+    const {transl, onChange, onValidate, inputs, onSubmit, mappedDeleteUser} = useDeleteUser(props)
 
     return (
         <form className='update-user__modal-form'>
@@ -25,12 +25,12 @@ const DeleteUser: FC<DeleteUserProps> = (props) => {
             />
             <Button
                 className={'update-user__button update-user__modal-btn'}
-                onClick={handleSubmit}
-                loading={deleteUser.loading}
+                onClick={onSubmit}
+                loading={mappedDeleteUser.loading}
             >
                 {transl.delete}
             </Button>
-            <FormMessage success={deleteUser.success} error={deleteUser.error}/>
+            <FormMessage success={mappedDeleteUser.success} error={mappedDeleteUser.error}/>
         </form>
     )
 }

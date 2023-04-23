@@ -11,7 +11,7 @@ import Input from 'app/[locale]/_common/components/input/input.component'
 const ActivateUser: FC<ActivateProps> = (props) => {
     const {
         inputs, onChange, onValidate, transl, onActivateUser, onSendRegisterCode, sendRegisterCode, timer,
-
+        mappedActivateUser
     } = useActivateUser(props)
 
     return (
@@ -29,13 +29,13 @@ const ActivateUser: FC<ActivateProps> = (props) => {
                 onValidate={onValidate}
             />
             <div className="nav-auth__bottom">
-                <Button className="nav-auth__button" onClick={onActivateUser} loading={activateUser.loading}>
+                <Button className="nav-auth__button" onClick={onActivateUser} loading={mappedActivateUser.loading}>
                     {transl.activate}
                 </Button>
                 <Button className={'nav-auth__resend'} onClick={onSendRegisterCode} loading={sendRegisterCode.loading}>
                     {transl.resend} {transl.in} {timer}
                 </Button>
-                <FormMessage success={activateUser.success} error={activateUser.error}/>
+                <FormMessage success={mappedActivateUser.success} error={mappedActivateUser.error}/>
             </div>
         </form>
     )

@@ -1,37 +1,28 @@
-import {useSelector} from 'react-redux'
-import {selectTotalPrice} from 'app/[locale]/_redux/cart/cart.selector'
-import {PaymentData} from 'app/[locale]/_redux/checkout/checkout.types'
 import {MouseAction} from 'app/[locale]/_common/types/types'
-import {setCartItems} from 'app/[locale]/_redux/cart/cart.slice'
 import {useRef} from 'react'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
-import {selectCheckoutField} from 'app/[locale]/_redux/checkout/checkout.selector'
-import {setPaymentData} from 'app/[locale]/_redux/checkout/checkout.slice'
 import cartContent from 'app/[locale]/cart/_components/cart.content'
-import {selectUserFormData} from 'app/[locale]/_redux/cart/cart.selector'
-import {selectCartItems} from 'app/[locale]/_redux/cart/cart.selector'
-import {createOrderAsync} from 'app/[locale]/_redux/checkout/checkout.thunk'
 import {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
-import {selectPaymentData} from 'app/[locale]/_redux/checkout/checkout.selector'
-import {CreateOrderData} from 'app/[locale]/_redux/checkout/checkout.types'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useRouter} from 'next/navigation'
+import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {PaymentData} from 'app/[locale]/_store/cart/cart.types'
+import {CreateOrderData} from 'app/[locale]/_store/cart/cart.types'
 
 const useCart = () => {
-    const cartItems = useSelector(selectCartItems)
-    const total = useSelector(selectTotalPrice)
-    const createOrder = useParamSelector(selectCheckoutField, 'createOrder')
-    const paymentData = useSelector(selectPaymentData)
-    const userFormData = useSelector(selectUserFormData)
+    const cartItems = useCartStore(state => state.items)
+    const total = useCartStore(state => state.getTotalPrice())
+
+    const createOnlineOrder = useApiCall('checkout/create-online-payment-order', {method: 'POST'})
+    const createAfterOrder = useApiCall('checkout/create-after-payment-order', {method: 'POST'})
+
+    const paymentData = useCartStore(state => state.paymentData)
+    const userFormData = useCartStore(state => state.userFormData)
 
     const [transl, content] = useLocale(cartContent)
 
     const {inputs, onChange, onValidate, errRef, setOuterValues} = useInput(content.inputs)
-
-    const dispatch = useDispatch()
-
 
     const onSubmit: MouseAction = (event) => {
         event.preventDefault()
@@ -87,13 +78,11 @@ const useCart = () => {
                 count: cartItem.quantity
             }))
         }
-        dispatch(createOrderAsync(createOrderData, inputs.values.paymentType))
-
-        // if (inputs.values.save) {
-        //     dispatch(setUserFormData({...inputs.values}))
-        // } else {
-        //     dispatch(setUserFormData(null))
-        // }
+        if (inputs.values.paymentType === 'after') {
+            createAfterOrder.start(createOrderData)
+        } else {
+            createOnlineOrder.start(createOrderData)
+        }
     }
 
     useEffect(() => {
@@ -106,6 +95,9 @@ const useCart = () => {
 
     const router = useRouter()
 
+    const setCartItems = useCartStore(state => state.setCartItems)
+    const setPaymentData = useCartStore(state => state.setPaymentData)
+
     useEffect(() => {
         if (!paymentData) {
             return
@@ -113,8 +105,8 @@ const useCart = () => {
 
         if (paymentData.orderId) {
             router.push(paymentData.returnUrl)
-            dispatch(setCartItems([]))
-            dispatch(setPaymentData(null))
+            setCartItems([])
+            setPaymentData(null)
             return
         }
 
@@ -155,9 +147,10 @@ const useCart = () => {
         formRef.current.submit()
     }, [paymentData])
 
+    const loading = createOnlineOrder.loading || createAfterOrder.loading
 
     return {
-        inputs, onChange, onValidate, transl, onSubmit, content, cartItems, total, createOrder, formRef
+        inputs, onChange, onValidate, transl, onSubmit, content, cartItems, total, loading, formRef
     }
 }
 

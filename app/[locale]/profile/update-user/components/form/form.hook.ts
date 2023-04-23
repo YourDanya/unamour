@@ -1,63 +1,62 @@
-import {selectUserField} from 'app/[locale]/_redux/user/user.selectors'
 import formContent from 'app/[locale]/profile/update-user/components/form/form.content'
-import {useSelector} from 'react-redux'
 import {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
-import {updateUserAsync} from 'app/[locale]/_redux/user/user.thunk'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
-import {selectUser} from 'app/[locale]/_redux/user/user.selectors'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
 import {MouseEvent} from 'react'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {useState} from 'react'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {User} from 'app/[locale]/_store/user/user.types'
+import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useValidateInput} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
+import {useInputChange} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
+import {useMapInputs} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
 
 const useUpdateUserForm = () => {
     const [transl, content] = useLocale(formContent)
-    const {inputs, onChange, onValidate: _onValidate, setOuterValues, errRef, setOuterErrors
-    } = useInput(content.inputs)
 
-    const dispatch = useDispatch()
-    const handleSubmit = (event: MouseEvent<HTMLElement>) => {
+    const initInputs = useMapInputs(formContent.common.inputs)
+    const [values, setValues] = useState(initInputs.values)
+    const [errors, setErrors] = useState(initInputs.errors)
+
+    const {errRef, onValidate} = useValidateInput({errors, validations: initInputs.validations})
+
+    const {onChange, valuesRef} = useInputChange({
+        values,
+        changeCallback: ({changeValues, name}) => {
+            setValues(changeValues)
+            onValidate(name, changeValues[name])
+        }
+    })
+
+    const onSubmit = (event: MouseEvent<HTMLElement>) => {
         event.preventDefault()
-        getEntries(inputs.values).forEach(( entry) => {
-            const [key, value] =  entry
-            if (value) _onValidate(key)
-        }, <typeof inputs.values> {})
-        let allowSend = true
-        const sendData = getEntries(inputs.values).reduce((accum, entry) => {
-            const [key, value] = entry
-            if (inputs.values[key]) {
-                if (!errRef.current.errors[key]) accum[key] = value
-                else allowSend = false
-            }
-            return accum
-        }, <typeof inputs.values> {})
-        if (allowSend) dispatch(updateUserAsync(sendData))
-    }
-
-    const onValidate = (name: string) => {
-        const key = <keyof typeof inputs.values> name
-        if (errRef.current.errors[key]) {
-            if (inputs.values[key] === '') {
-                errRef.current.count -= 1
-                errRef.current.errors[key] = null
-                setOuterErrors({...errRef.current.errors})
-            } else {
-                _onValidate(key)
-            }
+        if (errRef.current.count < 0) {
+            updateUser.start()
         }
     }
 
-    const user = useSelector(selectUser)
-    const updateUser = useParamSelector(selectUserField, 'updateUser')
+    const user = useUserStore(state => state.user)
+
+    const updateUser = useApiCall<{user: User}>( 'auth/update-user', {
+        method: 'POST',
+        onSuccess: ({user}) => {
+            setValues(user)
+        }
+    })
 
     useEffect(() => {
         if (user) {
-            setOuterValues(user)
+            setValues(user)
         }
     }, [user])
 
-    return {transl, inputs, onChange, onValidate, handleSubmit, updateUser}
+    const mappedUpdateUser = useMapApiRes({
+        res: updateUser, errorFourTransl: transl.error, successTransl: transl.success
+    })
+
+    return {transl, values, errors, onChange, onValidate, onSubmit, mappedUpdateUser}
 }
 
 export default useUpdateUserForm

@@ -13,7 +13,8 @@ const resetPasswordContent = {
                 passwordConfirm: 'Підтверждення пароля'
             },
             save: 'зберегти',
-            success: 'Ваш пароль успішно змінено.'
+            success: 'Ваш пароль успішно змінено.',
+            error: 'Невірні дані. Спробуйте ще раз.'
         },
         eng: {
             title: 'password confirm',
@@ -22,7 +23,8 @@ const resetPasswordContent = {
                 passwordConfirm: 'Password confirm'
             },
             save: 'save',
-            success: 'Your password was successfully updated.'
+            success: 'Your password was successfully updated.',
+            error: 'Wrong data. Try again.'
         },
         ru: {
             title: 'восстановление пароля',
@@ -31,7 +33,8 @@ const resetPasswordContent = {
                 passwordConfirm: 'Подтверждение пароля'
             },
             save: 'сохранить',
-            success: 'Ваш пароль успешно изменен.'
+            success: 'Ваш пароль успешно изменен.',
+            error: 'Неверные данные. Попробуйте еще раз.'
         }
     }
 }

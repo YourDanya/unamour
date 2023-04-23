@@ -9,11 +9,13 @@ import Input from 'app/[locale]/_common/components/input/input.component'
 
 const ResetPass: FC<ResetProps> = (props) => {
     const {handleResetPass} = props
-    const {transl, inputs, onChange, onValidate, forgetSubmit, forgetPass} = useResetPass()
+    const {
+        transl, inputs, onChange, onValidate, forgetSubmit, mappedForgetPass
+    } = useResetPass()
 
     return (
         <>
-            {!forgetPass.success? (
+            {!mappedForgetPass.success? (
                 <form className={'nav-auth__reset'}>
                     <div className={'nav-auth__explanation'}>
                         {transl.explanation}
@@ -28,7 +30,10 @@ const ResetPass: FC<ResetProps> = (props) => {
                         onValidate={onValidate}
                     />
                     <div className="nav-auth__bottom">
-                        <Button className="nav-auth__button nav-auth__button--reset" onClick={forgetSubmit} loading={forgetPass.loading}>
+                        <Button
+                            className="nav-auth__button nav-auth__button--reset"
+                            onClick={forgetSubmit} loading={mappedForgetPass.loading}
+                        >
                             {transl.title}
                         </Button>
                         <Button className="nav-auth__forget" onClick={handleResetPass}>
@@ -37,7 +42,7 @@ const ResetPass: FC<ResetProps> = (props) => {
                     </div>
                 </form>
             ) : (
-                <FormMessage success={forgetPass.success} error={forgetPass.error}/>
+                <FormMessage success={mappedForgetPass.success} error={mappedForgetPass.error}/>
             )}
         </>
     )

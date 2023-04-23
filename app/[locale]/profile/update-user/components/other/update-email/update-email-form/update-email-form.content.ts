@@ -12,7 +12,12 @@ const updateEmailFormContent = {
                 password: 'Ваш пароль',
                 newEmail: 'Новий email',
             },
-            save: 'зберегти'
+            save: 'зберегти',
+            success: 'Створено запит для зміни пошти.',
+            error: {
+                'Wrong password' : 'Невірний пароль.',
+                'Email is already in use' : 'Наданий email використовується іншим юзером.'
+            }
         },
         eng: {
             title: 'change email',
@@ -20,7 +25,12 @@ const updateEmailFormContent = {
                 password: 'Your password',
                 newEmail: 'New email',
             },
-            save: 'save'
+            save: 'save',
+            success: 'The email change request was created.',
+            error: {
+                'Wrong password' : 'Wrong password.',
+                'Email is already in use' : 'Provided email is in use by another user.'
+            }
         },
         ru: {
             title: 'изменение почты',
@@ -28,7 +38,12 @@ const updateEmailFormContent = {
                 password: 'Ваш пароль',
                 newEmail: 'Новый email',
             },
-            save: 'сохранить'
+            save: 'сохранить',
+            success: 'Создано запрос для изменения почты.',
+            error: {
+                'Wrong password' : 'Неверный пароль',
+                'Email is already in use' : 'Provided email is in use by another user.'
+            }
         }
     }
 }

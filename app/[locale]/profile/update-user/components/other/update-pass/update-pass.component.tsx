@@ -6,7 +6,7 @@ import FormMessage from 'app/[locale]/_common/components/form-message/form-messa
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 const UpdatePass : FC<UpdatePassProps> = (props) => {
-    const {transl, onChange, onValidate, inputs, handleSubmit, updatePass} = useUpdatePass(props)
+    const {transl, onChange, onValidate, inputs, onSubmit, mappedUpdatePass} = useUpdatePass(props)
 
     return (
         <form className='update-user__modal-form'>
@@ -46,12 +46,12 @@ const UpdatePass : FC<UpdatePassProps> = (props) => {
             />
             <Button
                 className={'update-user__button update-user__modal-btn'}
-                onClick={handleSubmit}
-                loading={updatePass.loading}
+                onClick={onSubmit}
+                loading={mappedUpdatePass.loading}
             >
                 {transl.save}
             </Button>
-            <FormMessage success={updatePass.success} error={updatePass.error}/>
+            <FormMessage success={mappedUpdatePass.success} error={mappedUpdatePass.error}/>
         </form>
     )
 }

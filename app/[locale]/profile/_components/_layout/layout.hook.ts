@@ -1,44 +1,39 @@
 import {useRouter} from 'next/navigation'
-import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
-import {logoutAsync} from 'app/[locale]/_redux/user/user.thunk'
-import {User} from 'app/[locale]/_redux/user/user.types'
-import {selectUserField} from 'app/[locale]/_redux/user/user.selectors'
 import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
-import {useParamSelector} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
-import {selectUser} from 'app/[locale]/_redux/user/user.selectors'
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
-import {resetUserFieldSuccess} from 'app/[locale]/_redux/user/user.slice'
 import layoutContent from 'app/[locale]/profile/_components/_layout/layout.content'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {MouseAction} from 'app/[locale]/_common/types/types'
 
 const useLayout = () => {
-    const user = <User> useSelector(selectUser)
+    const user = useUserStore(state => state.user)
+    const setUser = useUserStore(state => state.setUser)
     const router = useRouter()
 
     const [transl, content] = useLocale(layoutContent)
     const [modalState, showModal, hideModal] = useModal({menu: false})
 
-    const logout = useParamSelector(selectUserField, 'logout')
-    const getUser = useParamSelector(selectUserField, 'getUser')
+    const logout = useApiCall('auth/logout', {
+        method: 'POST',
+        onSuccess: () => {
+            setUser(null)
+        }
+    })
 
-    const dispatch = useDispatch()
-    const handleLogout = () => {
-        if (!logout.loading) dispatch(logoutAsync())
+    const onLogout: MouseAction = (event) => {
+        event.preventDefault()
+        logout.start()
     }
-    useEffect(() => {
-        if (logout.success) {
-            router.push('/')
-            dispatch(resetUserFieldSuccess('logout'))
-        }
-    }, [logout.success])
 
     useEffect(() => {
-        if (!user && getUser.error) {
+        if (user === null) {
             router.push('/')
         }
-    }, [user, getUser])
+    }, [user])
 
-    return {user, transl, content, modalState, showModal, hideModal, handleLogout, logout}
+    return {user, transl, content, modalState, showModal, hideModal, onLogout, logout}
 }
 
 export default useLayout
