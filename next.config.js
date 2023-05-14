@@ -15,7 +15,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'unamour-server.onrender.com',
+                hostname: 'unamour.com.ua',
                 port: '',
                 pathname: '/**'
             }
