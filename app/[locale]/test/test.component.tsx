@@ -4,8 +4,6 @@ import {useSearchParams} from 'next/navigation'
 import {useUrlStore} from 'app/[locale]/_store/url/url.store'
 import Slider from 'app/[locale]/_common/components/slider/slider-v2.component'
 import 'app/[locale]/test/test.styles.sass'
-import {useFormik} from 'formik'
-import {FormikProps} from 'formik'
 import {ChangeEvent} from 'react'
 import Input from 'app/[locale]/_common/components/input/input.component'
 import Textarea from 'app/[locale]/_common/components/textarea/textarea.component'
@@ -155,66 +153,9 @@ function todo<T>(arg: T): DataOrCar<T> {
 }
 
 const Test = () => {
-    const formik = useFormik<ITodoCreate>({
-        initialValues: {
-            name: '',
-            description: '',
-            isCompleted: false,
-            isPrivate: false
-        },
-        validateOnChange: true,
-        validate: (values) => {
-            const errors = validateAll(values, validations)
-            console.log('errors', errors)
-            return errors
-        },
-        onSubmit: async (todo: ITodoCreate) => {
-        },
-    })
 
     return (
-        <div className={'test'}>
-            <Input
-                name={'name'}
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                error={formik.errors.name}
-                placeholder={''}
-            />
-            <Input
-                name={'description'}
-                value={formik.values.description}
-                onChange={formik.handleChange}
-                error={formik.errors.description}
-                placeholder={''}
-            />
-            {/*<Input*/}
-            {/*    name={'email'}*/}
-            {/*    value={formik.values.description}*/}
-            {/*    onChange={formik.handleChange}*/}
-            {/*    error={formik.errors.description}*/}
-            {/*    placeholder={''}*/}
-            {/*/>*/}
-            {/*<Input*/}
-            {/*    name={'number'}*/}
-            {/*    value={formik.values.description}*/}
-            {/*    onChange={formik.handleChange}*/}
-            {/*    error={formik.errors.description}*/}
-            {/*    placeholder={''}*/}
-            {/*/>*/}
-            <Checkbox
-                name={'isCompleted'}
-                value={formik.values.isCompleted}
-                onChange={formik.handleChange}
-                label={'isCompleted'}
-            />
-            <Checkbox
-                name={'isPrivate'}
-                value={formik.values.isPrivate}
-                onChange={formik.handleChange}
-                label={'isPrivate'}
-            />
-        </div>
+        <div className={'test'}/>
     )
 }
 

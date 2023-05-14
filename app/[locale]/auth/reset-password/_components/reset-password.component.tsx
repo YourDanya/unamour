@@ -1,3 +1,5 @@
+'use client'
+
 import Button from 'app/[locale]/_common/components/button/button.component'
 import {NextPage} from 'next'
 import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'

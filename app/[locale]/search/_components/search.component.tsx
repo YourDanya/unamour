@@ -1,3 +1,5 @@
+'use client'
+
 import {NextPage} from 'next'
 import search from 'public/icons/search.svg'
 import ShopItemPreview from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.component'
