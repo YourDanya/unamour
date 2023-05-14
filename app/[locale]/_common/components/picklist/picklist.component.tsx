@@ -4,7 +4,6 @@ import {FC} from 'react'
 import usePicklist from 'app/[locale]/_common/components/picklist/picklist.hook'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import {PicklistProps} from 'app/[locale]/_common/components/picklist/picklist.types'
-import 'app/[locale]/_common/components/picklist/picklist.styles.sass'
 
 const Picklist: FC<PicklistProps> = (props) => {
     const {values, active} = props

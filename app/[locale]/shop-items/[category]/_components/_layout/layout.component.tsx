@@ -1,3 +1,5 @@
+'use client'
+
 import {FC} from 'react'
 import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component'
 import PriceFilter from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.component'

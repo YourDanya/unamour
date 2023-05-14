@@ -38,7 +38,7 @@ export const useLocale: UseLocale = ((content) => {
 export const useGetParamForImages: UseGetParamForImages = (ratio = 4 / 3, ...deps) => {
     const [width, setWidth] = useState(0)
     const [height, setHeight] = useState(0)
-    
+
     // useLayoutResizeObserve(() => {
     //     const width = elemRef.current?.getBoundingClientRect().width as number
     //     setWidth(width)

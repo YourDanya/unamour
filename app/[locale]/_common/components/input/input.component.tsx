@@ -3,7 +3,7 @@
 import {FC, memo} from 'react'
 import {InputProps} from 'app/[locale]/_common/components/input/input.types'
 import useInput from 'app/[locale]/_common/components/input/input.hook'
-import 'app/[locale]/_common/components/input/input.styles.sass'
+import {ChangeEvent} from 'react'
 
 const Input: FC<InputProps> = (props) => {
     const {value, name, onChange, placeholder, className, error, type} = props

@@ -1,3 +1,4 @@
+'use client'
 import usePolicy from 'app/[locale]/client-service/policy/_components/policy.hook'
 
 const Policy = () => {

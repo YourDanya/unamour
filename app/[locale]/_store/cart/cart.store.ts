@@ -53,7 +53,10 @@ export const useCartStore = create<CartState>()(
                     return item.common._id === _id
                 })
                 if (itemIndex !== -1) {
-                    items[itemIndex].quantity++
+                    items[itemIndex].quantity--
+                }
+                if (items[itemIndex].quantity === 0) {
+                    items.splice(itemIndex, 1)
                 }
                 return {items}
             }),

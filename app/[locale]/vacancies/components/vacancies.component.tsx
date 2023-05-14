@@ -2,7 +2,6 @@
 
 import {FC} from 'react'
 import useVacancies from 'app/[locale]/vacancies/components/vacancies.hook'
-import 'app/[locale]/vacancies/components/vacancies.styles.sass'
 
 const Vacancies: FC = () => {
     const {transl} = useVacancies()

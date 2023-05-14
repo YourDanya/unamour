@@ -76,20 +76,8 @@ export const checkEqual = (obj1: any, obj2: any) => {
     return true
 }
 
-export const getEntries = <ObjT extends object>(obj: ObjT) => {
-    return Object.entries(obj) as { [KeyT in keyof ObjT]: [KeyT, ObjT[KeyT]] }[keyof ObjT][]
-}
-
 export const createFromEntries = <ArrT extends ReadonlyArray<readonly[PropertyKey, any]>>(arr: ArrT) => {
     return Object.fromEntries(arr) as FromEntriesWithReadOnly<ArrT>
-}
-
-export const getValues = <ObjT extends object>(obj: ObjT) => {
-    return Object.values(obj) as (ObjT[keyof ObjT])[]
-}
-
-export const getKeys = <ObjT extends object>(obj: ObjT) => {
-    return Object.keys(obj) as (keyof ObjT) []
 }
 
 export const createDoubleLinkedList: CreateDoubleLinkedList = (arr) => {
@@ -110,4 +98,16 @@ export const peek: Peek = (object, keys) => {
         newObject[key] = object[key]
         return newObject
     }, {} as PeekedObject<typeof object, typeof keys>)
+}
+
+export const getEntries = <ObjT extends object>(obj: ObjT) => {
+    return Object.entries(obj) as { [KeyT in keyof ObjT]: [KeyT, ObjT[KeyT]] }[keyof ObjT][]
+}
+
+export const getValues = <ObjT extends object>(obj: ObjT) => {
+    return Object.values(obj) as (ObjT[keyof ObjT])[]
+}
+
+export const getKeys = <ObjT extends object>(obj: ObjT) => {
+    return Object.keys(obj) as (keyof ObjT) []
 }

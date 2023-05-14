@@ -6,7 +6,6 @@ import useLogin from 'app/[locale]/auth/login/_components/login.hook'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
 import Input from 'app/[locale]/_common/components/input/input.component'
-import 'app/[locale]/auth/auth.styles.sass'
 
 const Login: NextPage = () => {
     const {transl, inputs, onChange, onValidate, onSubmit, mappedLogin} = useLogin()

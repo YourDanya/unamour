@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import {NextPageWithLayout} from 'app/[locale]/_common/types/types'
 import useWarrantyPeriod from 'app/[locale]/client-service/warranty-period/_components/warranty-period.hook'

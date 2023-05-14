@@ -7,7 +7,6 @@ import Button from 'app/[locale]/_common/components/button/button.component'
 import CartItem from 'app/[locale]/_common/components/cart-item/cart-item.component'
 import useNavCart from 'app/[locale]/_components/layout/nav/nav-cart/nav-cart.hook'
 import {NavCartProps} from 'app/[locale]/_components/layout/nav/nav-cart/nav-cart.types'
-import 'app/[locale]/_components/layout/nav/nav-cart/nav-cart.styles.sass'
 
 const NavCart: FC<NavCartProps> = (props) => {
     const {hideModal} = props
@@ -36,7 +35,7 @@ const NavCart: FC<NavCartProps> = (props) => {
                     </div>
                 </>
             )}
-            <NavLink className="nav-cart__button nav-cart__link" href={length > 0 ? '/_components' : '/favorite'}>
+            <NavLink className="nav-cart__button nav-cart__link" href={length > 0 ? '/cart' : '/favorite'}>
                 {length > 0 ? transl.order : transl.favorite}
             </NavLink>
             <Button className={'nav-cart__button nav-cart__button--white'} onClick={hideModal}>

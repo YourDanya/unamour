@@ -3,7 +3,6 @@
 import {FC} from 'react'
 import useRadioButtons from 'app/[locale]/_common/components/radio-buttons/radio-buttons.hook'
 import {RadioButtonProps} from 'app/[locale]/_common/components/radio-buttons/radio-buttons.types'
-import 'app/[locale]/_common/components/radio-buttons/radio-buttons.styles.sass'
 
 const RadioButtons: FC<RadioButtonProps> = (props) => {
     const {values, onChange, active, name, className, labels, styles, title, error} = props

@@ -9,7 +9,6 @@ import ItemTranslations from 'app/[locale]/admin/items/_components/item-form/ite
 import ItemActions from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.component'
 import {ItemFormProps} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ItemFormContext} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import 'app/[locale]/admin/items/_components/item-form/item-form.styles.sass'
 
 const ItemForm: FC<ItemFormProps> = (props) => {
     const {className} = props

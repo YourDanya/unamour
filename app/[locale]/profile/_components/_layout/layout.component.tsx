@@ -1,3 +1,5 @@
+'use client'
+
 import Button from 'app/[locale]/_common/components/button/button.component'
 import ProfileMenu from 'app/[locale]/profile/_components/_layout/profile-menu/profile-menu.component'
 import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
@@ -6,15 +8,27 @@ import Modal from 'app/[locale]/_common/components/modal/modal.component'
 import {FC} from 'react'
 import {LayoutProps} from 'app/[locale]/profile/_components/_layout/layout.types'
 import useLayout from 'app/[locale]/profile/_components/_layout/layout.hook'
+import profileBg from 'public/images/profile/profile-bg.jpg'
+import Image from 'next/image'
 
 const Layout: FC<LayoutProps> = (props) => {
     const {children} = props
-    const {user, transl, content, modalState, hideModal, showModal, onLogout, logout} = useLayout()
+    const {
+        user, transl, content, modalState, hideModal, showModal, onLogout, logout, width, height, elemRef
+    } = useLayout()
 
     return (
         <>
             <div className={`profile ${!user ? 'profile--hidden' : ''}`}>
-                <div className={'profile__top'}>
+                <div className={'profile__top'} ref={elemRef}>
+                    <Image
+                        src={profileBg.src}
+                        width={width}
+                        height={elemRef.current?.getBoundingClientRect().height ?? 0}
+                        className={'profile__bg'}
+                        alt={'profile bg'}
+                        quality={100}
+                    />
                     <div className={'profile__sign-out'}>
                         <Button className={'profile__sign-out-btn'} onClick={onLogout} loading={logout.loading}>
                             {transl.logout}

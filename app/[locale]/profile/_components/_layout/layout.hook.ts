@@ -6,6 +6,7 @@ import layoutContent from 'app/[locale]/profile/_components/_layout/layout.conte
 import {useUserStore} from 'app/[locale]/_store/user/user.store'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {MouseAction} from 'app/[locale]/_common/types/types'
+import {useGetParamForImages} from 'app/[locale]/_common/hooks/other/other.hooks'
 
 const useLayout = () => {
     const user = useUserStore(state => state.user)
@@ -18,6 +19,7 @@ const useLayout = () => {
     const logout = useApiCall('auth/logout', {
         method: 'POST',
         onSuccess: () => {
+            console.log('success logout')
             setUser(null)
         }
     })
@@ -33,7 +35,9 @@ const useLayout = () => {
         }
     }, [user])
 
-    return {user, transl, content, modalState, showModal, hideModal, onLogout, logout}
+    const {elemRef, width, height} = useGetParamForImages( 1600 / 7757)
+
+    return {user, transl, content, modalState, showModal, hideModal, onLogout, logout, elemRef, width, height}
 }
 
 export default useLayout

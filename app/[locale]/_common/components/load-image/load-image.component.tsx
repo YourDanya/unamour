@@ -3,27 +3,24 @@
 import {FC} from 'react'
 import {LoadImageProps} from 'app/[locale]/_common/components/load-image/load-image.types'
 import useLoadImage from 'app/[locale]/_common/components/load-image/load-image.hook'
-import 'app/[locale]/_common/components/load-image/load-image.styles.sass'
+import Image, {ImageProps} from 'next/image'
 
 const LoadImage: FC<LoadImageProps> = (props) => {
-
-    const {src, alt, className, dataAttr} = props
-    const {loaded, ref, height, handleLoaded, imgRef} = useLoadImage(props)
+    const {className, elemRef, height, width, ...otherProps} = props
+    const {loaded, onLoaded} = useLoadImage(props)
 
     return (
         <div
-            className={`load-image ${loaded? 'load-image--loaded' : ''} ${className}`}
-            ref={ref}
-            style={{height: `${height}px`}}
+            className={`load-image ${loaded ? 'load-image--loaded' : ''} ${className}`}
+            style={{height: `${height}px`, width: `${width}px`}}
         >
-            <img
-                ref={imgRef}
+            <Image
+                ref={elemRef}
                 className={`load-image__image`}
-                src={src}
-                alt={alt}
-                onLoad={handleLoaded}
-                onError={() => console.log('error')}
-                data-attr={dataAttr?? ''}
+                width={width}
+                height={height}
+                {...otherProps}
+                onLoadingComplete={onLoaded}
             />
         </div>
     )

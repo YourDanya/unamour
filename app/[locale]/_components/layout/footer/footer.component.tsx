@@ -9,7 +9,6 @@ import Links from 'app/[locale]/_components/layout/footer/links/links.component'
 import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
 import Link from 'next/link'
 import Input from 'app/[locale]/_common/components/input/input.component'
-import 'app/[locale]/_components/layout/footer/footer.styles.sass'
 
 const Footer: FC = () => {
     const {onChange, modal, showModal, hideModal, content, inputs, transl, onFocus, focused} = useFooter()

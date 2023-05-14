@@ -7,16 +7,12 @@ import {useCallback} from 'react'
 const useNavHeader = (props: NavHeaderProps) => {
     const {showModal} = props
 
-    const quantity = useCartStore(useCallback((state) => {
-        return state.getItemsQuantity()
-    }, []))
-
     const onShowModal: MouseAction = (event) => {
         const param = event.currentTarget.getAttribute('name') as keyof ModalState
         showModal(param)
     }
 
-    return {quantity, onShowModal}
+    return {onShowModal}
 }
 
 export default useNavHeader

@@ -6,7 +6,6 @@ import useShopItemPreview from 'app/[locale]/_common/components/shop-item-previe
 import {FC} from 'react'
 import {ShopItemPreviewProps} from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.types'
 import Link from 'next/link'
-import 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.styles.sass'
 
 const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
     const {images, slug, slugCategory, color, itemRef, height, width, className} = props
@@ -26,6 +25,7 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     width={width}
                     height={height}
                     quality={100}
+                    className={'shop-item-preview_img'}
                     style={{
                         objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
                         ... hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}

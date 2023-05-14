@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import useDelivery from 'app/[locale]/client-service/delivery/_components/delivery.hook'
 

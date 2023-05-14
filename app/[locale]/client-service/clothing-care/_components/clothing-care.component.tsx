@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import useClothingCare from 'app/[locale]/client-service/clothing-care/_components/clothing-cart.hook'
 

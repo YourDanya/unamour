@@ -7,7 +7,6 @@ import useNavSearch from 'app/[locale]/_components/layout/nav/nav-search/nav-sea
 import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
 import Link from 'next/link'
 import Input from 'app/[locale]/_common/components/input/input.component'
-import 'app/[locale]/_components/layout/nav/nav-search/nav-search.styles.sass'
 
 const NavSearch: FC = () => {
     const {items, input, onChange, transl, locale, searchItems} = useNavSearch()
@@ -59,7 +58,7 @@ const NavSearch: FC = () => {
                 </div>
             )}
         </div>
-    );
+    )
 }
 
 export default NavSearch

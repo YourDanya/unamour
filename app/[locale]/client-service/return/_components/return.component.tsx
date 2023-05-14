@@ -1,3 +1,5 @@
+'use client'
+
 import useReturn from 'app/[locale]/client-service/return/_components/return.hook'
 import {FC} from 'react'
 import Link from 'next/link'

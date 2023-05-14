@@ -8,7 +8,7 @@ const useNavRoute = (hideModal: () => void) => {
     const [home, setHome] = useState(path === '/')
 
     useEffect(() => {
-        if (path === '/') {
+        if (path === '/ua' || path === '/eng' || path === '/ru') {
             if (!home) setHome(true)
         } else {
             if (home) setHome(false)

@@ -10,7 +10,7 @@ export type SliderProps = {
 
 export type MoveRef = {
     startX: number,
-    moving: false,
+    moving: boolean,
     current: number,
     fast: boolean,
     clientX: number,

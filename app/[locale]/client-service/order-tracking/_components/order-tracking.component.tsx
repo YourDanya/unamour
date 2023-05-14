@@ -1,3 +1,4 @@
+'use client'
 import useOrderTracking from 'app/[locale]/client-service/order-tracking/_components/order-tracking.hook'
 
 const OrderTracking  = () => {

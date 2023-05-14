@@ -5,7 +5,6 @@ import useSignInUp from 'app/[locale]/_components/layout/nav/nav-auth/nav-auth.h
 import {FC} from 'react'
 import Login from 'app/[locale]/_components/layout/nav/nav-auth/login/login.component'
 import Register from 'app/[locale]/_components/layout/nav/nav-auth/register/register.component'
-import 'app/[locale]/_components/layout/nav/nav-auth/nav-auth.styles.sass'
 
 const NavAuth: FC = () => {
     const {sign, onSetSign} = useSignInUp()

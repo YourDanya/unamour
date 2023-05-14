@@ -3,7 +3,6 @@
 import {FC} from 'react'
 import {SliderProps} from 'app/[locale]/_common/components/slider/slider.types'
 import useSlider from 'app/[locale]/_common/components/slider/slider.hook'
-import 'app/[locale]/_common/components/slider/slider.styles.sass'
 
 const Slider: FC<SliderProps> = (props) => {
     const {

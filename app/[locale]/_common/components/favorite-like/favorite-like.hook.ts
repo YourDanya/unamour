@@ -51,7 +51,6 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
     const onToggleFavorite = useDebounce(toggleFavorite)
 
     const onAction = () => {
-        console.log('action')
         debouncingRef.current = true
         likedRef.current = !likedRef.current
         setLiked(likedRef.current)
@@ -62,9 +61,9 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
 
     useEffect(() => {
         window.addEventListener('beforeunload', toggleFavorite)
-        router.events.on('routeChangeStart', toggleFavorite)
+        // router.events.on('routeChangeStart', toggleFavorite)
         return () => {
-            router.events.off('routeChangeStart', toggleFavorite)
+            // router.events.off('routeChangeStart', toggleFavorite)
             window.removeEventListener('beforeunload', toggleFavorite)
         }
     },[])

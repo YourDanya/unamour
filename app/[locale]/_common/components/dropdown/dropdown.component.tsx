@@ -3,7 +3,6 @@
 import {FC} from 'react'
 import useDropdown from 'app/[locale]/_common/components/dropdown/dropdown.hook'
 import {DropdownProps} from 'app/[locale]/_common/components/dropdown/dropdown.types'
-import 'app/[locale]/_common/components/dropdown/dropdown.styles.sass'
 
 const Dropdown: FC<DropdownProps> = (props) => {
     const {name, plus, children, className} = props

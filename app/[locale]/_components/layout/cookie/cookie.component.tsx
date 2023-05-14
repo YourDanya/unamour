@@ -3,7 +3,6 @@
 import {FC} from 'react'
 import close from 'public/icons/close.svg'
 import useCookie from 'app/[locale]/_components/layout/cookie/cookie.hook'
-import 'app/[locale]/_components/layout/cookie/cookies.styles.sass'
 
 const Cookie: FC = () => {
     const {hidden, onHide} = useCookie()

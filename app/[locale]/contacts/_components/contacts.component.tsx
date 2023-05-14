@@ -7,7 +7,6 @@ import Button from 'app/[locale]/_common/components/button/button.component'
 import useContact from 'app/[locale]/contacts/_components/contact.hook'
 import Input from 'app/[locale]/_common/components/input/input.component'
 const ContactsMap = dynamic(() => import('app/[locale]/contacts/_components/contacts-map/contacts-map.component'), {ssr: false})
-import 'app/[locale]/contacts/_components/contact.styles.sass'
 
 const Contacts: FC = () => {
     const {onChange, handleSubmit, onValidate, transl, inputs} = useContact()

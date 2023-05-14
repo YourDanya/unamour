@@ -4,7 +4,6 @@ import {memo} from 'react'
 import useCheckBox from 'app/[locale]/_common/components/checkbox/checkbox.hook'
 import {CheckboxProps} from 'app/[locale]/_common/components/checkbox/checkbox.types'
 import {FC} from 'react'
-import 'app/[locale]/_common/components/checkbox/checkbox.styles.sass'
 
 const Checkbox: FC<CheckboxProps> = (props) => {
     const {label, className, value, onChange, name, styles, ...otherProps} = props

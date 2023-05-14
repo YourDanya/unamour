@@ -3,7 +3,6 @@
 import useRangeSlider from './range-slider.hook'
 import {RangeSliderProps} from 'app/[locale]/_common/components/range-slider/range-slider.types'
 import {FC} from 'react'
-import 'app/[locale]/_common/components/range-slider/range-slider.styles.sass'
 
 const RangeSlider: FC<RangeSliderProps> = (props) => {
     const {elemsRef, handleTrackDown, handleThumbDown, state} = useRangeSlider(props)

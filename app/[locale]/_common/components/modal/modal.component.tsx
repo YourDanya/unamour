@@ -3,7 +3,6 @@
 import {FC} from 'react'
 import {ModalProps} from 'app/[locale]/_common/components/modal/modal.types'
 import {memo} from 'react'
-import 'app/[locale]/_common/components/modal/modal.styles.sass'
 
 const Modal: FC<ModalProps> = ({active, hideModal}) => {
 

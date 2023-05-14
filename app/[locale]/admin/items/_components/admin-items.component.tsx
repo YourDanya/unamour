@@ -6,7 +6,6 @@ import Button from 'app/[locale]/_common/components/button/button.component'
 import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
 import PaginationArray from 'app/[locale]/_common/components/pagination/pagination-array/pagination-array.component'
 import {FC} from 'react'
-import 'app/[locale]/admin/items/_components/admin-items.styles.sass'
 
 const AdminItems: FC = () => {
     const {items, user, onAddItem, transl} = useAdminItems()

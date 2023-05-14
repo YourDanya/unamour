@@ -7,7 +7,9 @@ const ShopItemsPage = async (props: ShopItemsPageProps) => {
     const {params} = props
 
     let {category} = params as Record<string, string>
-    const {data} = await apiCall<{ items: CategoryItem[]}>(`shop-item/category/${category}`)
+    const {data} = await apiCall<{ items: CategoryItem[]}>(`shop-item/category/${category}`, {
+        headers: {cache: 'no-cache'}
+    })
     let items = data?.items
 
     return (<ShopItems items={items}/>)

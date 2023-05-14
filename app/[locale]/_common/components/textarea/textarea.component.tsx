@@ -4,7 +4,6 @@ import {FC} from 'react'
 import useTextArea from 'app/[locale]/_common/components/textarea/textares.hook'
 import {TextareaProps} from 'app/[locale]/_common/components/textarea/textarea.types'
 import {memo} from 'react'
-import 'app/[locale]/_common/components/textarea/textarea.styles.sass'
 
 const Textarea: FC<TextareaProps> = (props) => {
     const {name, placeholder, onChange, error, className, value} = props

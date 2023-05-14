@@ -8,7 +8,6 @@ import Button from 'app/[locale]/_common/components/button/button.component'
 import PaginationNumber
     from 'app/[locale]/_common/components/pagination/pagination/pagination-number/pagination-number.component'
 import {PaginationProps} from 'app/[locale]/_common/components/pagination/pagination/pagination.types'
-import 'app/[locale]/_common/components/pagination/pagination/pagination.styles.sass'
 
 const Pagination: FC<PaginationProps> = (props) => {
     const {className, children} = props

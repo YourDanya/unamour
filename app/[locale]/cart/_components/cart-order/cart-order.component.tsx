@@ -4,7 +4,6 @@ import Button from 'app/[locale]/_common/components/button/button.component'
 import {FC} from 'react'
 import Link from 'next/link'
 import useCartOrder from 'app/[locale]/cart/_components/cart-order/cart-order.hook'
-import 'app/[locale]/cart/_components/cart-order/cart-order.styles.sass'
 
 const CartOrder: FC<CartOrderProps> = (props) => {
     const {total, onSubmit, loading} = props
@@ -31,10 +30,10 @@ const CartOrder: FC<CartOrderProps> = (props) => {
                     <div className="cart-order__value">{total} {transl.currency}</div>
                 </div>
             </div>
-            <Button className={'_components-order__button'} onClick={onSubmit} loading={loading}>
+            <Button className={'cart-order__button'} onClick={onSubmit} loading={loading}>
                 {transl.makeOrder}
             </Button>
-            <Button className={'_components-order__button _components-order__button--present'} onClick={() => {}}>
+            <Button className={'cart-order__button cart-order__button--present'} onClick={() => {}}>
                 <>
                     {transl.hint}
                     <img className="cart-order__present-img" src={presentImg.src} alt={'present'}/>

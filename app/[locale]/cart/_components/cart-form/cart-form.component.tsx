@@ -3,7 +3,6 @@ import Checkbox from 'app/[locale]/_common/components/checkbox/checkbox.componen
 import RadioButtons from 'app/[locale]/_common/components/radio-buttons/radio-buttons.component'
 import {CartFormProps} from 'app/[locale]/cart/_components/cart-form/cart-form.types'
 import Input from 'app/[locale]/_common/components/input/input.component'
-import 'app/[locale]/cart/_components/cart-form/cart-form.styles.sass'
 
 const CartForm: FC<CartFormProps> = (props) => {
     const {transl, inputs, onChange, onValidate, content} = props
@@ -12,7 +11,7 @@ const CartForm: FC<CartFormProps> = (props) => {
         <form className="cart-form__form">
             <div className="cart-form__title">{transl.delivery}</div>
             <Input
-                className={'_components-form__input _components-form__country'}
+                className={'cart-form__input cart-form__country'}
                 name={'country'}
                 placeholder={transl.inputs.country}
                 value={inputs.values.country}
@@ -21,7 +20,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <Input
-                className={'_components-form__input _components-form__region'}
+                className={'cart-form__input cart-form__region'}
                 name={'region'}
                 placeholder={transl.inputs.region}
                 value={inputs.values.region}
@@ -30,7 +29,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <RadioButtons
-                className={'_components-form__settlementType'}
+                className={'cart-form__settlementType'}
                 title={transl.inputs.settlementType.title}
                 name={'settlementType'}
                 labels={transl.inputs.settlementType.labels}
@@ -39,7 +38,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 active={inputs.values.settlementType}
             />
             <RadioButtons
-                className={'_components-form__paymentType'}
+                className={'cart-form__paymentType'}
                 title={transl.inputs.paymentType.title}
                 name={'paymentType'}
                 labels={transl.inputs.paymentType.labels}
@@ -48,7 +47,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 active={inputs.values.paymentType}
             />
             <RadioButtons
-                className={'_components-form__serviceType'}
+                className={'cart-form__serviceType'}
                 title={transl.inputs.serviceType.title}
                 name={'serviceType'}
                 labels={transl.inputs.serviceType.labels}
@@ -58,7 +57,7 @@ const CartForm: FC<CartFormProps> = (props) => {
             />
             <Input
                 className={`cart-form__input cart-form__city ${inputs.values.serviceType === 'DoorsWarehouse' ?
-                    '_components-form__city--office' : ''}`}
+                    'cart-form__city--office' : ''}`}
                 name={'city'}
                 placeholder={transl.inputs.city}
                 value={inputs.values.city}
@@ -69,7 +68,7 @@ const CartForm: FC<CartFormProps> = (props) => {
             {inputs.values.serviceType === 'DoorsDoors' ? (
                 <>
                     <Input
-                        className={'_components-form__input _components-form__street'}
+                        className={'cart-form__input cart-form__street'}
                         placeholder={transl.inputs.street}
                         name={'street'}
                         value={inputs.values.street}
@@ -78,7 +77,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                         onValidate={onValidate}
                     />
                     <Input
-                        className={'_components-form__input _components-form__house'}
+                        className={'cart-form__input cart-form__house'}
                         placeholder={transl.inputs.house}
                         name={'house'}
                         value={inputs.values.house}
@@ -87,7 +86,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                         onValidate={onValidate}
                     />
                     <Input
-                        className={'_components-form__input _components-form__apartment'}
+                        className={'cart-form__input cart-form__apartment'}
                         placeholder={transl.inputs.apartment}
                         name={'apartment'}
                         value={inputs.values.apartment}
@@ -98,7 +97,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 </>
             ) : (
                 <Input
-                    className={'_components-form__input _components-form__office'}
+                    className={'cart-form__input cart-form__office'}
                     placeholder={transl.inputs.office}
                     name={'office'}
                     value={inputs.values.office}
@@ -109,7 +108,7 @@ const CartForm: FC<CartFormProps> = (props) => {
             )}
             <div className="cart-form__title">{transl.receiverData}</div>
             <Input
-                className={'_components-form__input _components-form__name'}
+                className={'cart-form__input cart-form__name'}
                 placeholder={transl.inputs.name}
                 name={'name'}
                 value={inputs.values.name}
@@ -118,7 +117,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <Input
-                className={'_components-form__input _components-form__surname'}
+                className={'cart-form__input cart-form__surname'}
                 placeholder={transl.inputs.surname}
                 name={'surname'}
                 value={inputs.values.surname}
@@ -127,7 +126,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <Input
-                className={'_components-form__input _components-form__email'}
+                className={'cart-form__input cart-form__email'}
                 placeholder={transl.inputs.email}
                 name={'email'}
                 value={inputs.values.email}
@@ -136,7 +135,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <Input
-                className={'_components-form__input _components-form__number'}
+                className={'cart-form__input cart-form__number'}
                 placeholder={transl.inputs.number}
                 name={'number'}
                 value={inputs.values.number}
@@ -145,7 +144,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <Input
-                className={'_components-form__input _components-form__comment'}
+                className={'cart-form__input cart-form__comment'}
                 placeholder={transl.inputs.comment}
                 name={'comment'}
                 value={inputs.values.comment}
@@ -154,7 +153,7 @@ const CartForm: FC<CartFormProps> = (props) => {
                 onValidate={onValidate}
             />
             <Checkbox
-                className={'_components-form__checkbox'}
+                className={'cart-form__checkbox'}
                 label={transl.inputs.save}
                 name={'save'}
                 value={inputs.values.save}

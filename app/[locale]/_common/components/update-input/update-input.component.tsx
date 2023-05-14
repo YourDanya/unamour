@@ -5,7 +5,6 @@ import {UpdateInputProps} from 'app/[locale]/_common/components/update-input/upd
 import Button from 'app/[locale]/_common/components/button/button.component'
 import useUpdateInput from 'app/[locale]/_common/components/update-input/update-input.hook'
 import Input from 'app/[locale]/_common/components/input/input.component'
-import 'app/[locale]/_common/components/update-input/update-input.styles.sass'
 
 const UpdateInput: FC<UpdateInputProps> = (props) => {
     const {onSave: _, onDelete: __, ...other} = props

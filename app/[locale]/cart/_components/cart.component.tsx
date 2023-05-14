@@ -4,13 +4,11 @@ import React from 'react'
 import {NextPage} from 'next'
 import Link from 'next/link'
 import shoppingCart from '/public/icons/big-shopping-cart.svg'
-import 'app/[locale]/_cart/components/cart.styles'
 import useCart from 'app/[locale]/cart/_components/cart.hook'
 import Discount from 'app/[locale]/cart/_components/discount/discount.component'
 import CartForm from 'app/[locale]/cart/_components/cart-form/cart-form.component'
 import CartItem from 'app/[locale]/_common/components/cart-item/cart-item.component'
 import CartOrder from 'app/[locale]/cart/_components/cart-order/cart-order.component'
-import 'app/[locale]/cart/_components/cart.styles.sass'
 
 const Cart: NextPage = () => {
     const {cartItems, total, onSubmit, loading, formRef, transl, ...otherProps} = useCart()

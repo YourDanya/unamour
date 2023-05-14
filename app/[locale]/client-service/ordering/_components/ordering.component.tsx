@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import useOrdering from 'app/[locale]/client-service/ordering/_components/ordering.hook'
 

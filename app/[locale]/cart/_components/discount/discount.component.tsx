@@ -1,10 +1,8 @@
-import 'app/[locale]/_cart/components/discount/discount.styles.sass'
 import {DiscountProps} from 'app/[locale]/cart/_components/discount/discount.types'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import {FC} from 'react'
 import useDiscount from 'app/[locale]/cart/_components/discount/discount.hook'
 import Input from 'app/[locale]/_common/components/input/input.component'
-import 'app/[locale]/cart/_components/discount/discount.styles.sass'
 
 const Discount: FC<DiscountProps> = (props) => {
     const {active, onActive, found, onFound, inputs, onChange, onValidate, transl} = useDiscount(props)

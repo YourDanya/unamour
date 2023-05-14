@@ -7,7 +7,6 @@ import bestLinkImg from 'public/images/home/best-link.jpg'
 import logo from 'public/logo/unamour-white.jpg'
 import Image from 'next/image'
 import useHome from 'app/[locale]/_components/home.hook'
-import 'app/[locale]/_components/home.styles.sass'
 
 const Home: NextPage = () => {
     const {allLinkRef, allLinkWidth, containerRef, bestLinkWidth, logoWidth, allLinkHeight} = useHome()

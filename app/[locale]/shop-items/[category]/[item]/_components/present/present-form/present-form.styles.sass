@@ -1,0 +1,97 @@
+.present
+  &__form
+    width: 56%
+    padding: 40px 100px
+    position: relative
+    overflow-y: auto
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar
+      display: none
+  &__label
+    text-transform: uppercase
+    margin-bottom: 25px
+    font-size: 12px
+  &__input
+    margin-bottom: 30px
+    .input__state
+      padding-bottom: 15px
+      &--focused
+        border-color: black
+        .input__placeholder
+          opacity: 1
+      &--full
+        .input__placeholder
+          opacity: 0
+  &__index
+    margin-bottom: 10px
+    &-label
+      margin-bottom: 22px
+  &__delivery
+    margin-bottom: 25px
+    &-type
+      margin-bottom: 10px
+      display: flex
+      align-items: center
+    &-label
+      margin-left: 10px
+    &-check
+      cursor: pointer
+      width: 16px
+      height: 16px
+      border-radius: 100px
+      outline: 1px solid #d2d2d2
+      position: relative
+      &:after
+        content: ''
+        position: absolute
+        border-radius: 100px
+        left: 50%
+        top: 50%
+        width: 0
+        height: 0
+        transform: translateY(-50%) translateX(-50%)
+        background-color: #4f4f4f
+        transition: 0.4s all
+      &--active
+        &:after
+          width: 9px
+          height: 9px
+  &__total
+    margin-bottom: 32px
+    &-label
+      font-size: 12px
+      color: #828282
+      margin-bottom: 10px
+  &__button
+    height: 40px
+    background-color: black
+    width: 100%
+    color: white
+    text-transform: uppercase
+  &__checkbox
+    margin-bottom: 15px
+    .checkbox__label
+      text-transform: uppercase
+    .checkbox__check
+      height: 16px
+      width: 16px
+      border: 1px solid #bdbdbd
+      &:before
+        background: url("/icons/check-mark.svg") no-repeat
+  &__recipient-phone, &__sender-email, &__apartment
+    margin-bottom: 50px
+  &__surprise
+    margin-bottom: 40px
+
+@media(max-width: 992px)
+  .present
+    &__form
+      width: 100%
+      overflow-y: initial
+      padding: 40px 30px
+
+@media(max-width: 576px)
+  .present
+    &__form
+      padding: 40px 15px

@@ -6,7 +6,6 @@ import {CartItem} from 'app/[locale]/_store/cart/cart.types'
 import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
 import useCartItem from 'app/[locale]/_common/components/cart-item/cart-item.hook'
 import LoadImage from 'app/[locale]/_common/components/load-image/load-image.component'
-import 'app/[locale]/_common/components/cart-item/cart-item.styles.sass'
 
 const CartItem: FC<CartItem> = (props) => {
     const {common: {slug, slugCategory, price, images, size, color}, quantity} = props
@@ -16,7 +15,13 @@ const CartItem: FC<CartItem> = (props) => {
         <div className={'cart-item'}>
             <div className='close cart-item__close' onClick={onRemove}/>
             <Link href={`shop-items/${slugCategory}/${slug}?color=${color}`} className='cart-item__link'>
-                <LoadImage className='cart-item__img' src={`${baseURL}/images/${images[0]}`} alt={'item image'}/>
+                <LoadImage
+                    className='cart-item__img'
+                    src={`${baseURL}/images/${images[0]}`}
+                    alt={'item image'}
+                    width={85}
+                    height={85 * 4 / 3}
+                />
             </Link>
             <div className='cart-item__name'>{name}</div>
             <div className='cart-item__price-block'>

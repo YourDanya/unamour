@@ -4,5 +4,5 @@ export type MenuProps = {
     className?: string,
     menu: string[],
     translMenu: string[],
-    user: User | null
+    user: User | null | undefined
 }

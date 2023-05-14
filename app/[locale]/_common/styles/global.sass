@@ -1,12 +1,12 @@
-@font-face
-  font-family: 'SeasonsLight'
-  src: url(/public/fonts/SeasonsLight.ttf) format('truetype')
-@font-face
-  font-family: 'SeasonsRegular'
-  src: url(/public/fonts/SeasonsRegular.ttf) format('truetype')
-@font-face
-  font-family: 'SeasonsBold'
-  src: url(/public/fonts/SeasonsBold.ttf) format('truetype')
+//@font-face
+//  font-family: 'SeasonsLight'
+//  src: url(/public/fonts/SeasonsLight.ttf) format('truetype')
+//@font-face
+//  font-family: 'SeasonsRegular'
+//  src: url(/public/fonts/SeasonsRegular.ttf) format('truetype')
+//@font-face
+//  font-family: 'SeasonsBold'
+//  src: url(/public/fonts/SeasonsBold.ttf) format('truetype')
 
 html, body, p, ul, h1, h2, h2
   padding: 0
@@ -186,6 +186,27 @@ p
   &:after
     left: 1px
     border-right-color: white
+
+.arrow-forward
+  position: relative
+  background-color: transparent
+  width: 11px
+  height: 14px
+  &:before, &:after
+    content: ''
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    width: 0
+    height: 0
+    border-top: 7px solid transparent
+    border-bottom: 7px solid transparent
+    border-left: 10px solid black
+  &:before
+    right: 0
+  &:after
+    right: 1px
+    border-left-color: white
 
 .container
   padding-left: 40px!important

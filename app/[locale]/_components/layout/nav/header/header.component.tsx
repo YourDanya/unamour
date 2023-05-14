@@ -11,15 +11,16 @@ import useNavHeader from 'app/[locale]/_components/layout/nav/header/header.hook
 import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component'
 import {NavHeaderProps} from 'app/[locale]/_components/layout/nav/header/header.types'
 import Button from 'app/[locale]/_common/components/button/button.component'
-import 'app/[locale]/_components/layout/nav/header/header.styles.sass'
+import dynamic from 'next/dynamic'
+const Quantity = dynamic(() => import('app/[locale]/_components/layout/nav/header/quantity/quantity.component'), {ssr: false})
 
 const NavHeader: FC<NavHeaderProps> = (props) => {
     const {home} = props
-    const {quantity, onShowModal} = useNavHeader(props)
+    const {onShowModal} = useNavHeader(props)
     
     return (
         <div className="container nav__header">
-            <NavLink href={'/'} className="nav__title">
+            <NavLink href={'/'} className={`nav__title`}>
                 UNAMOUR
             </NavLink>
             <div className="nav__icons">
@@ -38,9 +39,7 @@ const NavHeader: FC<NavHeaderProps> = (props) => {
                     />
                 </NavLink>
                 <Button className={'nav__cart-btn'} name="shopping" onClick={onShowModal}>
-                    <div className={`nav__cart-quantity ${home? 'nav__cart-quantity--home' : ''}`}>
-                        {quantity !==0 && quantity}
-                    </div>
+                    <Quantity home={home}/>
                     <img
                         className="nav__icon nav__icon--last"
                         src={home ? shoppingCartWhite.src : shoppingCart.src}

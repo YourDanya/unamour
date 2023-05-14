@@ -2,12 +2,15 @@
   width: 100%
   display: flex
   flex-direction: column
+  position: relative
   &__link
     display: block
     position: relative
   &__img
     cursor: pointer
     transition: 0.4s opacity
+    object-fit: cover
+    object-position: center
     &--hidden
       position: absolute
       top: 0

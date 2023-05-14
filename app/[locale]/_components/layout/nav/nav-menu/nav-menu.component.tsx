@@ -6,7 +6,6 @@ import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component
 import Button from 'app/[locale]/_common/components/button/button.component'
 import useNavMenu from 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.hook'
 import {Fragment} from 'react'
-import 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.styles.sass'
 
 const NavMenu: FC<NavMenuProps> = (props) => {
     const {showTopModal} = props

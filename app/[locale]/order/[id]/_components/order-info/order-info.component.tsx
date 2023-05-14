@@ -1,5 +1,4 @@
 import {FC} from 'react'
-import 'app/[locale]/order/_components/order-info/order-info.styles.sass'
 import OrderItem from 'app/[locale]/order/[id]/_components/order-item/order-item.component'
 import useOrderInfo from 'app/[locale]/order/[id]/_components/order-info/order-info.hook'
 import {Order} from 'app/[locale]/_store/cart/cart.types'

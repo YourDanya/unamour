@@ -13,9 +13,22 @@ import {CreateOrderData} from 'app/[locale]/_store/cart/cart.types'
 const useCart = () => {
     const cartItems = useCartStore(state => state.items)
     const total = useCartStore(state => state.getTotalPrice())
+    const setCartItems = useCartStore(state => state.setCartItems)
+    const setPaymentData = useCartStore(state => state.setPaymentData)
 
-    const createOnlineOrder = useApiCall('checkout/create-online-payment-order', {method: 'POST'})
-    const createAfterOrder = useApiCall('checkout/create-after-payment-order', {method: 'POST'})
+    const createOnlineOrder = useApiCall('checkout/create-online-payment-order', {
+        method: 'POST',
+        onSuccess: (paymentData: PaymentData) => {
+            setPaymentData(paymentData)
+        }
+    })
+    const createAfterOrder = useApiCall('checkout/create-after-payment-order', {
+        method: 'POST',
+        onSuccess: (paymentData: PaymentData) => {
+            setPaymentData(paymentData)
+            console.log('paymentData', paymentData)
+        }
+    })
 
     const paymentData = useCartStore(state => state.paymentData)
     const userFormData = useCartStore(state => state.userFormData)
@@ -81,6 +94,7 @@ const useCart = () => {
         if (inputs.values.paymentType === 'after') {
             createAfterOrder.start(createOrderData)
         } else {
+            console.log('create online order payment')
             createOnlineOrder.start(createOrderData)
         }
     }
@@ -95,13 +109,12 @@ const useCart = () => {
 
     const router = useRouter()
 
-    const setCartItems = useCartStore(state => state.setCartItems)
-    const setPaymentData = useCartStore(state => state.setPaymentData)
-
     useEffect(() => {
         if (!paymentData) {
             return
         }
+
+        console.log('paymentData', paymentData)
 
         if (paymentData.orderId) {
             router.push(paymentData.returnUrl)

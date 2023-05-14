@@ -3,7 +3,6 @@
 import {FC, memo} from 'react'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import {SidebarProps} from 'app/[locale]/_common/components/sidebar/sidebar.types'
-import 'app/[locale]/_common/components/sidebar/sidebar.styles.sass'
 
 const Sidebar: FC<SidebarProps> = (props) => {
     const {left, active, hideModal, hideTopModal, name, children} = props
