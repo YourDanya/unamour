@@ -15,7 +15,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'unamour.com.ua',
+                hostname: 'api.unamour.com.ua',
                 port: '',
                 pathname: '/**'
             }
