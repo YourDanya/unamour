@@ -32,7 +32,7 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     }}
                 />
                 <Image
-                    src={`${baseURL}/images/${images[1]}`}
+                    src={`${baseURL}/images/${images[1] ?? images[0]}`}
                     alt={'shop item preview image'}
                     width={width}
                     height={height}

@@ -9,7 +9,7 @@ const ShopItemPage = async (props: ShopItemPageProps) => {
     let {item: slug} = props.params
 
     const {data} = await apiCall<{ item: FetchedItem }>(`shop-item/${slug}?color=${color}`,{
-        headers: {cache: 'no-cache'}
+        headers: {cache: 'no-store'}
     })
     const item = data?.item
 
