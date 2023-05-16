@@ -89,20 +89,9 @@ const useItemCommon = (props: ItemCommonProps) => {
             setErrorCount(errorCountRef.current)
         }
 
-        itemIndex === 6 && console.log('calling useEffect values.slug')
     }, [values.slug])
 
     return {transl, values, onChange, categoryTransl, categoryValues, errors}
 }
 
 export default useItemCommon
-
-// const {setSlugs, slugsRef, slugs} = useAdminItemsStore((state) => {
-//     const {setSlugs, slugsRef, slugs} = state
-//     return {setSlugs, slugsRef, slugs}
-// })
-
-// if (name === 'slug') {
-//     slugsRef.current[itemValueRef.current._id] = changeValues.slug
-//     setSlugs({...slugsRef.current})
-// }

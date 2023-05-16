@@ -9,17 +9,14 @@ const ShopItemPage = async (props: ShopItemPageProps) => {
     let {item: slug} = props.params
 
     const {data} = await apiCall<{ item: FetchedItem }>(`shop-item/${slug}?color=${color}`,{
-        headers: {cache: 'no-store'}
+        cache: 'no-cache'
     })
     const item = data?.item
-
     if (!item) {
         return notFound()
     }
 
-    return (
-        <ShopItem {...item}/>
-    )
+    return (<ShopItem {...item}/>)
 }
 
 export default ShopItemPage

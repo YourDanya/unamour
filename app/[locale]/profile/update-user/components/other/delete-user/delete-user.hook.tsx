@@ -6,15 +6,21 @@ import {DeleteUserProps} from 'app/[locale]/profile/update-user/components/other
 import deleteUserContent from 'app/[locale]/profile/update-user/components/other/delete-user/delete-user.content'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
 
 const useDeleteUser = (props: DeleteUserProps) => {
     const {hideModal} = props
     const [transl, content] = useLocale(deleteUserContent)
     const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs)
 
+    const setUser = useUserStore(state => state.setUser)
+
     const deleteUser = useApiCall( 'auth/delete-me', {
         method: 'POST',
-        body: inputs.values
+        body: inputs.values,
+        onSuccess: () => {
+            setUser(null)
+        }
     })
 
     const onSubmit = withSubmit(() => {

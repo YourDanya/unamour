@@ -19,15 +19,28 @@ export const apiCall: ApiCall = async (url, params) => {
         body = JSON.stringify(params?.body)
     }
 
+    // const options = {
+    //     method: params?.method,
+    //     body,
+    //     credentials: 'include',
+    //     headers: {
+    //         ...typeof body === 'string' && {'Content-Type': 'application/json'},
+    //         ...params?.headers
+    //     },
+    //     keepalive: true
+    // } as RequestInit
+
+    const {headers: _, body: __, ...otherParams} = params ?? {}
+
     const options = {
-        method: params?.method,
         body,
         credentials: 'include',
         headers: {
             ...typeof body === 'string' && {'Content-Type': 'application/json'},
             ...params?.headers
         },
-        keepalive: params?.keepalive
+        keepalive: true,
+        ...otherParams
     } as RequestInit
 
     let data
@@ -37,7 +50,7 @@ export const apiCall: ApiCall = async (url, params) => {
         // console.log('response', response)
         data = await response?.json()
         code = response?.status?.toString()[0] ?? '5'
-    } catch(err) {
+    } catch (err) {
         code = '5'
         data = err
     }

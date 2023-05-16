@@ -8,7 +8,7 @@ const ProfileMenu: FC<MenuProps> = (props) => {
 
     return (
         <div className={`profile__menu ${className ?? ''}`}>
-            {menu.map((item, index) => (index !== 4 || user?.isAdmin) && (
+            {menu.map((item, index) => (index !== 3 || user?.isAdmin) && (
                 <NavLink
                     href={item}
                     key={index}

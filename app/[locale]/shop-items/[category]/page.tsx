@@ -8,7 +8,7 @@ const ShopItemsPage = async (props: ShopItemsPageProps) => {
 
     let {category} = params as Record<string, string>
     const {data} = await apiCall<{ items: CategoryItem[]}>(`shop-item/category/${category}`, {
-        headers: {cache: 'no-store'}
+        cache: 'no-cache'
     })
     let items = data?.items
 
@@ -16,42 +16,3 @@ const ShopItemsPage = async (props: ShopItemsPageProps) => {
 }
 
 export default ShopItemsPage
-
-// export const getServerSideProps =
-//     wrapper.getServerSideProps(store =>
-//     async (context) => {
-//         let query = context.query
-//         let {category, reset: _, ...other} = query as Record<string, string>
-//         let param = ''
-//         if (otherCategoriesContent.common.includes(category) && category !== 'all') {
-//             param = `?${category}=true`
-//         }
-//         const {data} = await apiCall<{ items: CategoryItem[] }>(() =>
-//             api.get(`shop-item/category/${category}${param}`)
-//         )
-//         let {items} = data as { items: CategoryItem[] }
-//
-//         const filters = other as Record<string, string>
-//         items = filterItems(items, filters)
-//
-//         return {props: {items}}
-//     }
-// )
-
-// export async function getStaticPaths() {
-//     const paths = [...categoriesContent.common, ...otherCategoriesContent.common].map((category) => ({
-//         params: {category}
-//     }))
-//
-//     return { paths, fallback: true }
-// }
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//     let {category} = context.params as Record<string, string>
-//     const {data} = await apiCall<{ items: CategoryItem[]}>(() =>
-//         api.get(`shop-item/category/${category}`)
-//     )
-//     let {items} = data as {items: CategoryItem[]}
-//
-//     return {props: {items}}
-// }

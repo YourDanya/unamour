@@ -8,7 +8,7 @@
   &--hidden
     display: none
   &__bg
-    z-index: 0
+    z-index: -1
     object-fit: cover
     position: absolute
   &__top
@@ -49,6 +49,7 @@
       &--active
         color: #bdbdbd
     &-btn
+      z-index: 10
       display: none
       color: white
       text-transform: uppercase

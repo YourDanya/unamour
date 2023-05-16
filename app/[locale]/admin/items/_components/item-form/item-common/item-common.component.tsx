@@ -71,6 +71,13 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 value={values.coming}
                 onChange={onChange}
             />
+            <Checkbox
+                className={`item-form__check`}
+                name={'wedding'}
+                label={transl.inputs.wedding}
+                value={values.wedding}
+                onChange={onChange}
+            />
             <Dropdown className={'item-form__dropdown'} name={transl.category}>
                 <RadioButtons
                     className={'item-form__radio'}

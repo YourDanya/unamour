@@ -9,7 +9,7 @@ import {RegisterFormProps} from 'app/[locale]/_components/layout/nav/nav-auth/re
 
 const RegisterForm: FC<RegisterFormProps> = (props) => {
     const {transl, inputs, onChange, onValidate, onSubmit, mappedRegister} = useRegisterForm()
-
+    
     return (
         <form className={'nav-auth__form'}>
             <Input

@@ -8,9 +8,9 @@ import {useUserStore} from 'app/[locale]/_store/user/user.store'
 
 const useRegister = () => {
     const [transl] = useLocale(registerContent)
-    const sendRegisterCode = useUserStore(state => state.sendRegisterCode)
+    const register = useUserStore(state => state.register)
 
-    return {transl, sendRegisterCode}
+    return {transl, register}
 }
 
 export default useRegister

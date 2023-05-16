@@ -14,7 +14,6 @@ import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {shallow} from 'zustand/shallow'
 import {Entry} from 'app/[locale]/_common/types/types'
 
-
 const useItemActions = (props: ItemActionsProps) => {
     const [transl] = useLocale(itemActionsContent)
 
@@ -48,7 +47,7 @@ const useItemActions = (props: ItemActionsProps) => {
         }
         if (_id) {
             actions.updateItem.start({item: itemValueRef.current})
-            let updateData = {data: new FormData(), _id}
+            let updateData = new FormData()
             let createData = new FormData()
             createData.append('_id', _id)
             let deleteData: DeleteItemImagesData = {_id, images: []}
@@ -67,7 +66,7 @@ const useItemActions = (props: ItemActionsProps) => {
                     createData.append(`${imageId}_${itemImagesMap[imageId].color}`, itemImagesMap[imageId].file as File)
                 } else if (itemImagesMap[imageId].file !== null) {
                     shouldUpdate = true
-                    updateData.data.append(imageId, itemImagesMap[imageId].file as File)
+                    updateData.append(imageId, itemImagesMap[imageId].file as File)
                 }
             }
             for (let imageId in initItemImagesMapRef.current) {

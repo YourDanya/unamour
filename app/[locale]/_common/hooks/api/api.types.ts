@@ -2,7 +2,7 @@ import {ServerError} from 'app/[locale]/_common/types/types'
 import {ApiCallParams} from 'app/[locale]/_common/utils/api/api-v2.types'
 
 export type UseApiCall = <DataT,> (url: string, params?: ApiCallParams &
-    {onSuccess?: (data: DataT) => void, onError?: (params: unknown) => void}) =>
+    {onSuccess?: (data: DataT) => void, onError?: (params: any) => void}) =>
     {loading: boolean, success: boolean, data: DataT | null, error: ServerError | null,
         start: (body?: object) => void, setError: (error: ServerError | null) => void,
         setSuccess: (success: boolean) => void}

@@ -37,7 +37,7 @@ const ShopItems: FC<ShopItemsProps> = (props) => {
                     </div>
                 </div>
             ) : (
-                <div className={'shop-items__not-found'}>
+                <div className={'container shop-items__not-found'}>
                     {transl.notFound}
                 </div>
             )}

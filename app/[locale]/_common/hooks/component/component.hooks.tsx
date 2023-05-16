@@ -159,6 +159,8 @@ export const useFirsRender: UseFirstRender = (callback) => {
 export const useTimer: UseTimer = (params) => {
     const {timer, setTimer} = params
 
+    const check = useRef<symbol>()
+
     useEffect(() => {
         if (!timer || timer === '00:00') {
             return
@@ -169,8 +171,14 @@ export const useTimer: UseTimer = (params) => {
         seconds = allSeconds % 60
         const newTimer = `${minutes < 10? `0${minutes}`: `${minutes}`}:${seconds < 10 ? `0${seconds}`: `${seconds}`}`
 
+        const symbol = Symbol('id')
+        check.current = symbol
+
         setTimeout(() => {
+            if (check.current !== symbol) {
+                return
+            }
             setTimer(newTimer)
-        })
+        }, 1000)
     }, [timer])
 }

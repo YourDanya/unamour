@@ -53,6 +53,7 @@ export type FetchedItem = {
         slugCategory: string,
         best: boolean,
         special: boolean,
+        wedding: boolean,
         coming: boolean,
         oldPrice: string,
         variants: {
