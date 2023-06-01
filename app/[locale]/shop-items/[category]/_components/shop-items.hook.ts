@@ -9,8 +9,16 @@ import {useRouter} from 'next/navigation'
 import {Locale} from 'app/[locale]/_common/types/types'
 import {useSearchParams} from 'next/navigation'
 import {useParams} from 'next/navigation'
+import {useRef} from 'react'
+import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
+import {useState} from 'react'
+import {useExternalState} from 'app/[locale]/_common/hooks/component/component.hooks'
+import {useEffect} from 'react'
+import {useLayoutEffect} from 'react'
 
 export const useShopItems = (props: ShopItemsProps) => {
+    const test = useRef(performance.now())
+
     const [transl] = useLocale(shopItemsContent)
     const clothingCategories = useLocale(categoriesContent)
     const otherCategories = useLocale(otherCategoriesContent)
@@ -23,21 +31,26 @@ export const useShopItems = (props: ShopItemsProps) => {
     let title: string
     if (index !== -1) {
         title = clothingCategories[0][index]
-    }
-    else {
+    } else {
         index = otherCategories[1].findIndex(category => category === queryCategory)
         title = otherCategories[0][index]
     }
 
-    // const {category: _, reset: __, ...other} = searchParams.forEach()
     const filters = {} as Record<string, string>
     const items = props.items ? filterItems(props.items, filters) : []
 
-    const {width, height, elemRef} = useGetParamForImages(4 / 3)
-
     const locale = useParams().locale as Locale
 
-    return {transl: {...transl, title}, items, width, elemRef, locale}
+    const [height, setHeight] = useState(0)
+
+    const elemRef = useRef<HTMLDivElement | null>(null)
+
+    useResize(() => {
+        const width = elemRef.current?.getBoundingClientRect().width as number
+        setHeight(width * 4 / 3)
+    })
+
+    return {transl: {...transl, title}, items, elemRef, locale, height}
 }
 
 export default useShopItems

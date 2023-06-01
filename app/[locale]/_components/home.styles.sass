@@ -1,8 +1,8 @@
 .home
   position: relative
-  &__all-link
+  .home__all-link
     position: relative
-    display: flex
+    display: block
     &:after
       opacity: 0.4
       content: ''
@@ -12,35 +12,39 @@
       width: 100%
       height: 100%
       position: absolute
-    &-img
-      object-fit: cover
-      object-position: center 55%
-  &__bottom
-    display: flex
+  .home__all-link-img
+    object-fit: cover
+    object-position: center 55%
+  .home__bottom
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 50px
     align-items: center
-    justify-content: space-between
+    //justify-content: space-between
     margin: 60px
-  &__logo
-    &-wrapper
-      flex-grow: 1
-      display: flex
-      justify-content: center
-
 
 @media (max-width: 992px)
   .home
-    &__bottom
-      display: flex
-      flex-direction: column
-    &__logo
-      margin-bottom: 100px
+    .home__bottom
+      grid-template-columns: auto
+      grid-gap: 0
+    .home__logo
+      justify-self: center
+      width: 50%
+    .home__best
+      justify-self: center
+      width: 60%
 
 @media (max-width: 768px)
   .home
-    &__bottom
+    .home__bottom
       margin: 60px 40px
 
 @media (max-width: 576px)
   .home
-    &__bottom
+    .home__bottom
       margin: 60px 0
+    .home__logo
+      width: 100%
+    .home__best
+      width: 100%

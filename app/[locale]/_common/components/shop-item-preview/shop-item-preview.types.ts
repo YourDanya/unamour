@@ -6,7 +6,7 @@ export type ShopItemPreviewProps = {
     slug: string,
     slugCategory: string,
     color: string,
-    width: number,
+    width?: number,
     height: number,
     itemRef?: MutableRefObject<HTMLDivElement | null>,
     className?: string

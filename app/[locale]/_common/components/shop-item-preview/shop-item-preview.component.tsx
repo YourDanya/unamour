@@ -6,6 +6,7 @@ import useShopItemPreview from 'app/[locale]/_common/components/shop-item-previe
 import {FC} from 'react'
 import {ShopItemPreviewProps} from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.types'
 import Link from 'next/link'
+import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.component'
 
 const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
     const {images, slug, slugCategory, color, itemRef, height, width, className} = props
@@ -18,29 +19,23 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                 className={`shop-item-preview__link`}
                 onMouseLeave={onMouse}
                 onMouseEnter={onMouse}
+                prefetch={false}
             >
-                <Image
+                <LoadImage
                     src={`${baseURL}/images/${images[0]}`}
+                    className={`shop-item-preview__img ${hovered? 'shop-item-preview__img--hidden' : ''}`}
                     alt={'shop item preview image'}
-                    width={width}
                     height={height}
                     quality={100}
-                    className={'shop-item-preview_img'}
-                    style={{
-                        objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
-                        ... hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
-                    }}
+                    ratio={4 / 3}
                 />
-                <Image
+                <LoadImage
                     src={`${baseURL}/images/${images[1] ?? images[0]}`}
+                    className={`shop-item-preview__img ${!hovered? 'shop-item-preview__img--hidden' : ''}`}
+                    ratio={4 / 3}
                     alt={'shop item preview image'}
-                    width={width}
                     height={height}
                     quality={100}
-                    style={{
-                        objectFit: 'cover', objectPosition: 'center', cursor: 'pointer', transition: '0.4s opacity',
-                        ... !hovered && {position: 'absolute', top: 0, left: 0, opacity: 0}
-                    }}
                 />
             </Link>
         </div>

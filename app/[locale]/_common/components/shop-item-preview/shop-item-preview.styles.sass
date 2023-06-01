@@ -3,19 +3,19 @@
   display: flex
   flex-direction: column
   position: relative
-  &__link
+  .shop-item-preview__link
     display: block
     position: relative
-  &__img
+  .shop-item-preview__img
     cursor: pointer
     transition: 0.4s opacity
     object-fit: cover
     object-position: center
-    &--hidden
-      position: absolute
-      top: 0
-      left: 0
-      opacity: 0
+  .shop-item-preview__img--hidden
+    position: absolute
+    top: 0
+    left: 0
+    opacity: 0
 
 @media (max-width: 768px)
   .shop-item-preview

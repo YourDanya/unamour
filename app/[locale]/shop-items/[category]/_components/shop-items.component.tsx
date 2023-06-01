@@ -6,7 +6,7 @@ import {ShopItemsProps} from 'app/[locale]/shop-items/[category]/_components/sho
 import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-items.hook'
 
 const ShopItems: FC<ShopItemsProps> = (props) => {
-    const {transl, items, width, locale, elemRef} = useShopItems(props)
+    const {transl, items, locale, elemRef, height} = useShopItems(props)
 
     return (
         <div className={'shop-items'}>
@@ -20,8 +20,7 @@ const ShopItems: FC<ShopItemsProps> = (props) => {
                             <div className='shop-items__item' key={props.common.slug + index}>
                                 <ShopItemPreview
                                     {...props.common}
-                                    width={width}
-                                    height={width * 4 / 3}
+                                    height={height}
                                     itemRef={index === 0 ? elemRef : undefined}
                                 />
                                 <div className={'shop-items__bottom'}>

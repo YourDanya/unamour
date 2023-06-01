@@ -7,3 +7,5 @@ export type UseModal = <K extends string> (initState: Record<K, boolean>, attrib
 export type UseFirstRender = (callback: () => void) => void
 
 export type UseTimer = (params: {timer: string, setTimer: (timer: string) => void}) => void
+
+export type Device = 'large' | 'medium' | 'small' | 'tiny' | ''

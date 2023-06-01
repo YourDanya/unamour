@@ -82,11 +82,14 @@ import 'app/[locale]/shop-items/[category]/[item]/_components/present/present-fo
 import 'app/[locale]/shop-items/[category]/[item]/_components/present/present-item/present-item.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/present/present.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/sizes/sizes.styles.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.styles.sass'
 //shop-items
 import 'app/[locale]/shop-items/[category]/_components/shop-items.styles.sass'
 import 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.styles.sass'
 //vacancies
 import 'app/[locale]/vacancies/components/vacancies.styles.sass'
+// shop-item-preview
+import 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.styles.sass'
 
 import {ReactNode} from 'react'
 import {Metadata} from 'next/dist/lib/metadata/types/metadata-interface'
@@ -94,19 +97,16 @@ import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
 import RootLayout from 'app/[locale]/_components/layout/layout.component'
 import {LayoutProps} from 'app/[locale]/layout.types'
 import localFont from '@next/font/local'
-// shop-item-preview
-import 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.styles.sass'
 
-export const metadata: Metadata = {
-    title: 'UNAMOUR',
-    metadataBase: new URL(`${baseURL}`),
-    description: 'Магазин UNAMOUR',
-    viewport: 'width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
-}
+// export const metadata: Metadata = {
+//     title: 'UNAMOUR',
+//     metadataBase: new URL(`${baseURL}`),
+//     description: 'Магазин UNAMOUR',
+//     viewport: 'width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
+// }
 
 const Layout = (props: LayoutProps) => {
     const {children, params: {locale}} = props
-
     return (
         <RootLayout locale={locale}>
             {children}

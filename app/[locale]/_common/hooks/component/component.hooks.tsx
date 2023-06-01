@@ -9,6 +9,8 @@ import {UseFirstRender} from 'app/[locale]/_common/hooks/component/component.typ
 import {MouseEvent} from 'react'
 import {UseTimer} from 'app/[locale]/_common/hooks/component/component.types'
 import {parseTimer} from 'app/[locale]/_common/utils/main/main.utils'
+import {Device} from 'app/[locale]/_common/hooks/component/component.types'
+import useThrottle from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
 
 export const useModal: UseModal = (_initState, attribute = 'name') => {
     type ModalProp = keyof typeof _initState & 'modal'
@@ -182,3 +184,52 @@ export const useTimer: UseTimer = (params) => {
         }, 1000)
     }, [timer])
 }
+
+export const useResponsive = () => {
+    const [device, setDevice] = useState<Device>('')
+    const deviceRef = useRef<Device>('')
+
+    const resize = () => {
+        const width = window.innerWidth
+        if (width > 991 && deviceRef.current !== 'large') {
+            deviceRef.current = 'large'
+            setDevice('large')
+        } else if (width <= 991 && width > 768 && deviceRef.current !== 'medium') {
+            deviceRef.current = 'medium'
+            setDevice('medium')
+        } else if (width <= 768 && width > 576 && deviceRef.current !== 'small') {
+            deviceRef.current = 'small'
+            setDevice('small')
+        } else if (width <= 576 && deviceRef.current !== 'tiny') {
+            deviceRef.current = 'tiny'
+            setDevice('tiny')
+        }
+    }
+
+    useLayoutEffect(() => {
+        resize()
+    }, [])
+
+    useLayoutEffect(() => {
+        window.addEventListener('resize', resize)
+        return () => {
+            window.removeEventListener('resize', resize)
+        }
+    }, [])
+
+    return {device}
+}
+
+const useResize = (callback: () => void) => {
+    const onResize = useThrottle(callback, 500)
+
+    useLayoutEffect(() => {
+        onResize()
+        window.addEventListener('resize', onResize)
+        return () => {
+            window.removeEventListener('resize', onResize)
+        }
+    }, [])
+}
+
+export default useResize

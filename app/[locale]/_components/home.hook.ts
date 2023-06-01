@@ -1,48 +1,76 @@
 import {useRef, useState} from 'react'
 import {useLayoutEffect} from 'react'
 import {useLayoutResizeObserve} from 'app/[locale]/_common/hooks/component/component.hooks'
+import {useResponsive} from 'app/[locale]/_common/hooks/component/component.hooks'
+import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
 
 const useHome = () => {
-    const containerRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement)
-    const allLinkRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement)
-    const [allLinkWidth, setAllLinkWidth] = useState(0)
-    const [bestLinkWidth, setBestLinkWidth] = useState(0)
-    const [logoWidth, setLogoWidth] = useState(0)
+    const containerRef = useRef<HTMLDivElement | null>(null)
+    const allLinkRef = useRef<HTMLDivElement | null>(null)
+
+    const [bestLinkHeight, setBestLinkHeight] = useState(0)
+    const [logoHeight, setLogoHeight] = useState(0)
     const [allLinkHeight, setAllLinkHeight] = useState(0)
 
     const calc = () => {
-        const {width: allLinkWidth} = allLinkRef.current.getBoundingClientRect()
-        const {width: containerWidth} = containerRef.current.getBoundingClientRect()
+        const allLinkWidth = allLinkRef.current?.getBoundingClientRect().width ?? 0
+        const containerWidth = containerRef.current?.getBoundingClientRect().width ?? 0
+        const width = window.innerWidth
 
-        setAllLinkWidth(allLinkWidth)
-        if (window.innerWidth > 992) {
-            setAllLinkHeight(allLinkWidth * 0.85)
-            setBestLinkWidth(containerWidth * 0.4)
-            setLogoWidth(0.3 * containerWidth)
-        } else if (window.innerWidth > 768) {
-            setBestLinkWidth(containerWidth)
-            setAllLinkHeight(allLinkWidth)
-            setLogoWidth(0.5 * containerWidth)
-        } else if (window.innerWidth > 576) {
-            setBestLinkWidth(containerWidth)
-            setAllLinkHeight(allLinkWidth * 1.2)
-            setLogoWidth(0.8 * containerWidth)
-        } else {
-            setBestLinkWidth(containerWidth)
-            setAllLinkHeight(allLinkWidth * 1.3)
-            setLogoWidth(containerWidth)
+        if (width > 991) {
+            setAllLinkHeight(0.85 * allLinkWidth)
+            setLogoHeight(0.3 * containerWidth)
+            setBestLinkHeight(0.6 * containerWidth)
+        } else if (width > 576 && width <= 991) {
+            setAllLinkHeight(1.2 * allLinkWidth)
+            setLogoHeight(0.6 * containerWidth)
+            setBestLinkHeight(0.6 * containerWidth)
+        } else if (width <= 575) {
+            setAllLinkHeight(1.5 * allLinkWidth)
+            setLogoHeight(0.6 * containerWidth)
+            setBestLinkHeight(0.9 * containerWidth)
         }
     }
 
-    useLayoutEffect(() => {
-        calc()
-    }, [])
+    useResize(calc)
 
-    useLayoutResizeObserve(() => {
-        calc()
-    })
-
-    return {allLinkWidth, allLinkRef, containerRef, bestLinkWidth, logoWidth, allLinkHeight}
+    return {allLinkRef, containerRef, bestLinkHeight, logoHeight, allLinkHeight}
 }
 
 export default useHome
+
+
+// let allLinkHeight = 0, bestLinkWidth = 0, logoWidth = 0
+//
+// const allLinkWidth = allLinkRef.current?.getBoundingClientRect().width ?? 0
+// const containerWidth = containerRef.current?.getBoundingClientRect().width ?? 0
+//
+// if (device === 'large') {
+//     allLinkHeight = allLinkWidth * 0.85
+//     bestLinkWidth = containerWidth * 0.4
+//     logoWidth = 0.3 * containerWidth
+// }
+// if (device === 'medium') {
+//     bestLinkWidth = containerWidth
+//     allLinkHeight = allLinkWidth
+//     logoWidth = 0.5 * containerWidth
+// }
+// if (device === 'small') {
+//     bestLinkWidth = containerWidth
+//     allLinkHeight = allLinkWidth * 1.2
+//     logoWidth = 0.8 * containerWidth
+// }
+// if (device === 'tiny') {
+//     bestLinkWidth = containerWidth
+//     allLinkHeight = allLinkWidth * 1.3
+//     logoWidth = containerWidth
+// }
+
+//
+// useLayoutEffect(() => {
+//     calc()
+// }, [])
+//
+// useLayoutResizeObserve(() => {
+//     calc()
+// })

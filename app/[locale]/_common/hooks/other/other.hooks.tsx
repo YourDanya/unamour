@@ -52,15 +52,15 @@ export const useGetParamForImages: UseGetParamForImages = (ratio = 4 / 3, ...dep
     }
 
     useLayoutEffect(() => {
+        calcParams()
         window.addEventListener('resize', calcParams)
         return () => {
             window.removeEventListener('resize', calcParams)
         }
     }, [])
 
-    useLayoutEffect(() => {
-        calcParams()
-    }, [deps])
+    // useLayoutEffect(() => {
+    // }, [deps])
 
     const elemRef = useRef<HTMLDivElement>(null)
 

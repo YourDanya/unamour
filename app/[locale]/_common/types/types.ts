@@ -120,3 +120,14 @@ export type CategoryItem = {
 }
 
 export type ApiCallRes = {loading: boolean, error: ServerError | null, success: boolean}
+
+export type Review = {
+    color: string,
+    itemId: string,
+    title: string,
+    description: string,
+    date: string,
+    images: string[],
+    status: 'pending' | 'confirmed',
+    rating: number
+}

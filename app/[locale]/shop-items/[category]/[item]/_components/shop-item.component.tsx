@@ -58,6 +58,7 @@ const ShopItem: FC<FetchedItem> = (props) => {
                 </div>
             </div>
             <Additional/>
+            {/*<Reviews/>*/}
             <ModalContent className={'shop-item__present-modal'} active={modalState.present} hideModal={hideModal}>
                 <Present
                     price={price}

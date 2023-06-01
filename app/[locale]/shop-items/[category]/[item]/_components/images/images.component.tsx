@@ -4,7 +4,7 @@ import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
 import Slider from 'app/[locale]/_common/components/slider/slider.component'
 import {ImagesProps} from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.types'
 import useImages from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.hook'
-import LoadImage from 'app/[locale]/_common/components/load-image/load-image.component'
+import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.component'
 
 const Images: FC<ImagesProps> = (props) => {
     const {images} = props
@@ -27,7 +27,6 @@ const Images: FC<ImagesProps> = (props) => {
                             className='shop-item__tab-img'
                             src={`${baseURL}/images/${url}`}
                             alt={`tab image ${index}`}
-                            style={{objectFit: 'cover'}}
                         />
                     </button>
                 )}
@@ -35,15 +34,13 @@ const Images: FC<ImagesProps> = (props) => {
             <div className="shop-item__slider" ref={elemRef}>
                 <Slider current={current} setCurrent={setCurrent}>
                     {images.map((url, index) => (
-                        <Image
-                            width={width}
+                        <LoadImage
                             height={height}
-                            quality={90}
                             src={`${baseURL}/images/${url}`}
                             alt={`slide image ${index}`}
                             key={url + index}
-                            style={{objectFit: 'cover'}}
                             loading={'eager'}
+                            ratio={4 / 3}
                         />
                     ))}
                 </Slider>

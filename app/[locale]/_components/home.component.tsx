@@ -7,37 +7,32 @@ import bestLinkImg from 'public/images/home/best-link.jpg'
 import logo from 'public/logo/unamour-white.jpg'
 import Image from 'next/image'
 import useHome from 'app/[locale]/_components/home.hook'
+import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.component'
 
 const Home: NextPage = () => {
-    const {allLinkRef, allLinkWidth, containerRef, bestLinkWidth, logoWidth, allLinkHeight} = useHome()
+    const {allLinkRef, containerRef, bestLinkHeight, logoHeight, allLinkHeight} = useHome()
 
     return (
-        <div className='home' ref={allLinkRef}>
+        <div className="home" ref={allLinkRef}>
             <Link href={'/shop-items/all'} className={'home__all-link'}>
-                <Image
+                <LoadImage
                     className={'home__all-link-img'}
                     height={allLinkHeight}
-                    width={allLinkWidth}
                     alt={'home bg'}
                     src={allLinkImg.src}
-                    quality={100}
                 />
             </Link>
             <div className={'home__bottom'} ref={containerRef}>
-                <div className={'home__logo-wrapper'}>
-                    <Image
-                        height={logoWidth}
-                        width={logoWidth}
-                        className={'home__logo'}
-                        alt={'logo img'}
-                        src={logo.src}
-                        quality={100}
-                    />
-                </div>
-                <Link href={'/shop-items/best'} className={'home__best-link'}>
-                    <Image
-                        height={bestLinkWidth * 4 / 3}
-                        width={bestLinkWidth}
+                <LoadImage
+                    height={logoHeight}
+                    className={'home__logo'}
+                    alt={'logo img'}
+                    src={logo.src}
+                    quality={100}
+                />
+                <Link href={'/shop-items/best'} className={'home__best'}>
+                    <LoadImage
+                        height={bestLinkHeight}
                         style={{objectFit: 'cover'}}
                         alt={'best link img'}
                         src={bestLinkImg.src}
