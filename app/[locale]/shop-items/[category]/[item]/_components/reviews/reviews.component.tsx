@@ -24,5 +24,5 @@ const ReviewsComponent: FC<ReviewsProps> = (props) => {
         </div>
     )
 }
-
+//
 export default ReviewsComponent
