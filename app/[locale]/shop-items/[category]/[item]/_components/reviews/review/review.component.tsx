@@ -9,7 +9,7 @@ const Review = (props: ReviewType) => {
             <div className={'review__rating'}>
                 {Array.from({length: 5}, (_, index) => index)
                     .map(elem => (
-                        <Star rating={Math.max(Math.min(rating - elem, 1), 0)}/>
+                        <Star key={elem} rating={Math.max(Math.min(rating - elem, 1), 0)}/>
                     ))
                 }
             </div>

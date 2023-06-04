@@ -15,7 +15,7 @@ const ReviewsComponent: FC<ReviewsProps> = (props) => {
             {reviews ? (
                 <div className={'reviews__items'}>
                     {reviews.map(review => (
-                        <Review {...review}/>
+                        <Review key={review.title} {...review}/>
                     ))}
                 </div>
             ) : (
