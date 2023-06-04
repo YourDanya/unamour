@@ -59,7 +59,7 @@ export type FetchedItem = {
         variants: {
             color: string,
             sizes: string[],
-            images: string[],
+            images: {path: string, url: string}[],
             price: string,
             _id: string
         }[]
@@ -100,7 +100,7 @@ export type CategoryItem = {
     common: {
         slug: string,
         slugCategory: string,
-        images: string[],
+        images: {path: string, url: string}[],
         sizes: string[]
         price: string,
         oldPrice: string

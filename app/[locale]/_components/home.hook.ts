@@ -3,6 +3,8 @@ import {useLayoutEffect} from 'react'
 import {useLayoutResizeObserve} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useResponsive} from 'app/[locale]/_common/hooks/component/component.hooks'
 import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
+import {useEffect} from 'react'
+import useNavStore from 'app/[locale]/_store/nav/nav.store'
 
 const useHome = () => {
     const containerRef = useRef<HTMLDivElement | null>(null)
@@ -33,6 +35,12 @@ const useHome = () => {
     }
 
     useResize(calc)
+
+    const setSecondBlockRef = useNavStore(state => state.setSecondBlockRef)
+
+    useEffect(() => {
+        setSecondBlockRef(containerRef)
+    },[])
 
     return {allLinkRef, containerRef, bestLinkHeight, logoHeight, allLinkHeight}
 }

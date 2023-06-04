@@ -1,3 +1,3 @@
 export type ImagesProps = {
-    images: string[]
+    images: {url: string, path: string}[]
 }

@@ -1,7 +1,7 @@
 export type PresentProps = {
     price: string,
     name: string,
-    images: string[],
+    images: {path: string, url: string}[],
     activeSize: string,
     color: string
 }

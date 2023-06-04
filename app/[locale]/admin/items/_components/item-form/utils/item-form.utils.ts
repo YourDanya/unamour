@@ -6,7 +6,7 @@ export const createItemImagesMap: CreateItemImagesMap = (params) => {
     const {itemImagesValues, itemValue} = params
 
     return itemImagesValues.reduce((itemImagesMap, imagesValue, index) => {
-        Object.entries(imagesValue).forEach(([imageId, file]) => {
+        Object.entries(imagesValue).forEach(([imageId, {file}]) => {
             itemImagesMap[imageId] = {file, color: itemValue.common.variants[index].color}
         })
         return itemImagesMap
@@ -15,8 +15,8 @@ export const createItemImagesMap: CreateItemImagesMap = (params) => {
 
 export const createItemImagesValues: CreateItemImagesValues = ({itemValue}) => {
     return itemValue.common.variants.map(({ images}) => {
-        const imagesObj = {} as Record<string, File | null>
-        images.forEach((imageId) => imagesObj[imageId] = null)
+        const imagesObj = {} as Record<string, {file: File | null, url: string}>
+        images.forEach(({url, path}) => imagesObj[path] = {file: null, url})
         return imagesObj
     })
 }

@@ -10,14 +10,15 @@ import NavMenu from 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.compo
 import Sidebar from 'app/[locale]/_common/components/sidebar/sidebar.component'
 import dynamic from 'next/dynamic'
 import NavAuth from 'app/[locale]/_components/layout/nav/nav-auth/nav-auth.component'
+
 const NavCart = dynamic(() => import('app/[locale]/_components/layout/nav/nav-cart/nav-cart.component'), {ssr: false})
 // import NavCart from 'app/[locale]/_components/layout/nav/nav-cart/nav-cart.component'
 
 const Nav: FC = () => {
-    const {modalState, showModal, hideModal, home, onHideTopModal} = useNav()
+    const {modalState, showModal, hideModal, home, onHideTopModal, isIntersecting, navRef} = useNav()
 
     return (
-        <nav className={`nav ${home ? 'nav--home' : ''}`}>
+        <nav className={`nav ${home && !isIntersecting ? 'nav--home' : ''}`} ref={navRef}>
             <Hamburger hamburger={modalState.hamburger} showModal={showModal} hideModal={hideModal}/>
             <NavHeader home={home} showModal={showModal}/>
             <Sidebar left active={modalState.hamburger}>

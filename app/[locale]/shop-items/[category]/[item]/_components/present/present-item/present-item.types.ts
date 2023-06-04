@@ -1,5 +1,5 @@
 export type PresentItemProps = {
-    images: string[],
+    images: {path: string, url: string}[],
     name: string,
     color: string,
     activeSize: string,

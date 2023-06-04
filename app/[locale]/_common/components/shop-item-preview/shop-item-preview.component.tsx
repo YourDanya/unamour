@@ -22,7 +22,7 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                 prefetch={false}
             >
                 <LoadImage
-                    src={`${baseURL}/images/${images[0]}`}
+                    src={`${images[0].url}`}
                     className={`shop-item-preview__img ${hovered? 'shop-item-preview__img--hidden' : ''}`}
                     alt={'shop item preview image'}
                     height={height}
@@ -30,7 +30,7 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     ratio={4 / 3}
                 />
                 <LoadImage
-                    src={`${baseURL}/images/${images[1] ?? images[0]}`}
+                    src={`${images[1].url}`}
                     className={`shop-item-preview__img ${!hovered? 'shop-item-preview__img--hidden' : ''}`}
                     ratio={4 / 3}
                     alt={'shop item preview image'}

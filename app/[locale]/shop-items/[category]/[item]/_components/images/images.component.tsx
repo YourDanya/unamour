@@ -13,7 +13,7 @@ const Images: FC<ImagesProps> = (props) => {
     return (
         <div className="shop-item__images">
             <div className="shop-item__tabs">
-                {images.map((url, index) =>
+                {images.map(({url}, index) =>
                     <button
                         className={`shop-item__tab ${current===index? 'shop-item__tab--current' : ''}`}
                         key={url + index}
@@ -25,7 +25,7 @@ const Images: FC<ImagesProps> = (props) => {
                             width={90 * 3 / 4}
                             quality={100}
                             className='shop-item__tab-img'
-                            src={`${baseURL}/images/${url}`}
+                            src={url}
                             alt={`tab image ${index}`}
                         />
                     </button>
@@ -33,10 +33,10 @@ const Images: FC<ImagesProps> = (props) => {
             </div>
             <div className="shop-item__slider" ref={elemRef}>
                 <Slider current={current} setCurrent={setCurrent}>
-                    {images.map((url, index) => (
+                    {images.map(({url}, index) => (
                         <LoadImage
                             height={height}
-                            src={`${baseURL}/images/${url}`}
+                            src={url}
                             alt={`slide image ${index}`}
                             key={url + index}
                             loading={'eager'}

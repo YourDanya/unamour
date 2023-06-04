@@ -98,12 +98,12 @@ import RootLayout from 'app/[locale]/_components/layout/layout.component'
 import {LayoutProps} from 'app/[locale]/layout.types'
 import localFont from '@next/font/local'
 
-// export const metadata: Metadata = {
-//     title: 'UNAMOUR',
-//     metadataBase: new URL(`${baseURL}`),
-//     description: 'Магазин UNAMOUR',
-//     viewport: 'width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
-// }
+export const metadata: Metadata = {
+    title: 'UNAMOUR',
+    metadataBase: new URL(`${baseURL}`),
+    description: 'Магазин UNAMOUR',
+    viewport: 'width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
+}
 
 const Layout = (props: LayoutProps) => {
     const {children, params: {locale}} = props

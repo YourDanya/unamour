@@ -16,11 +16,12 @@ const ItemImages:FC<ItemImagesProps> = (props) => {
 
     return (
         <>
-            {values && Object.entries(values).map(([id, file]) => (
+            {values && Object.entries(values).map(([id, {file, url}]) => (
                 <ItemImage
                     key={id}
                     id={id}
                     file={file}
+                    url={url}
                     onUpdateImage={onUpdateImage}
                     onDeleteImage={onDeleteImage}
                 />

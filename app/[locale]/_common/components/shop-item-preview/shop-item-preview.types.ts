@@ -2,7 +2,7 @@ import {CategoryItem} from 'app/[locale]/_common/types/types'
 import {MutableRefObject} from 'react'
 
 export type ShopItemPreviewProps = {
-    images: string [],
+    images: {path: string, url: string} [],
     slug: string,
     slugCategory: string,
     color: string,

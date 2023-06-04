@@ -3,6 +3,7 @@ import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
 import {PresentItemProps} from 'app/[locale]/shop-items/[category]/[item]/_components/present/present-item/present-item.types'
 import usePresentItem from 'app/[locale]/shop-items/[category]/[item]/_components/present/present-item/present-item.hook'
 import {FC} from 'react'
+import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.component'
 
 const PresentItem: FC<PresentItemProps> = (props) => {
     const {images, name, activeSize, price} = props
@@ -10,11 +11,10 @@ const PresentItem: FC<PresentItemProps> = (props) => {
 
     return (
         <div className="present__item" ref={elemRef}>
-            <Image
-                width={width}
+            <LoadImage
                 height={height}
                 className={'present__img'}
-                src={`${baseURL}/images/${images[0]}`}
+                src={`${images[0].url}`}
                 alt={'present img'}
             />
             <div className={'present__info'}>

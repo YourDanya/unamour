@@ -22,7 +22,7 @@ const useItemImage = (props: ItemImageProps) => {
         onDeleteImage(id)
     }
 
-    const [url, setUrl] = useState(props.id)
+    const [url, setUrl] = useState(props.url ?? '')
 
     useEffect(() => {
         if (!file) {
@@ -31,9 +31,7 @@ const useItemImage = (props: ItemImageProps) => {
         const objectUrl = URL.createObjectURL(file as File)
 
         setUrl(objectUrl)
-        // free memory when ever this component is unmounted
         return () => {
-            console.log('unmount')
             URL.revokeObjectURL(objectUrl)
         }
     }, [file])

@@ -7,7 +7,7 @@ import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-it
 
 const ShopItems: FC<ShopItemsProps> = (props) => {
     const {transl, items, locale, elemRef, height} = useShopItems(props)
-
+    
     return (
         <div className={'shop-items'}>
             {items && items.length > 0 ? (

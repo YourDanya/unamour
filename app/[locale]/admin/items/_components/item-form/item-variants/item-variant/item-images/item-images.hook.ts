@@ -53,11 +53,15 @@ const useItemImages = (props: ItemImagesProps) => {
         if (!file) {
             return
         }
-        // console.log('btnRef.current.value', btnRef.current?.value)
 
         let {id} = modeRef.current
-        itemImagesValuesRef.current[variantIndex] = {...itemImagesValuesRef.current[variantIndex], [id]: file}
-        setItemImagesValues(itemImagesValuesRef.current)
+
+        if (modeRef.current.type === 'create') {
+            itemImagesValuesRef.current[variantIndex][id] = {file : null, url: ''}
+        }
+
+        itemImagesValuesRef.current[variantIndex][id].file = file
+        setItemImagesValues({...itemImagesValuesRef.current})
 
         modeRef.current = {type: '', id: ''}
     }

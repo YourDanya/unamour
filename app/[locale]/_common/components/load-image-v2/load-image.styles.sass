@@ -10,9 +10,13 @@
     background: linear-gradient(90deg, #F6F7F8, #EDEFF1, #F6F7F8)
     animation: loading 1.5s ease infinite
     background-size: 200%
+  .load-image__image
+    opacity: 0
 .load-image--loaded
   &:before
     display: none
+  .load-image__image
+    opacity: 1
 
 
 @keyframes loading
