@@ -23,7 +23,7 @@ const Search: NextPage = () => {
                         onChange={onChange}
                     />
                     <Button onClick={onSubmit}>
-                        <img className={'search__icon'} src={search.src} alt={'search icon'}/>
+                        <img className={'search__icon'} src={search.src} alt={'search i-description'}/>
                     </Button>
                 </div>
             </div>

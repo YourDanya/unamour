@@ -15,6 +15,7 @@ import 'app/[locale]/_common/components/radio-buttons/radio-buttons.styles.sass'
 import 'app/[locale]/_common/components/button/button.styles.sass'
 import 'app/[locale]/_common/components/textarea/textarea.styles.sass'
 import 'app/[locale]/_common/components/input/input.styles.sass'
+import 'app/[locale]/_common/components/input-v2/input.styles.sass'
 import 'app/[locale]/_common/components/modal/modal.styles.sass'
 import 'app/[locale]/_common/components/sidebar/sidebar.styles.sass'
 import 'app/[locale]/_common/components/modal-content/modal-content.styles.sass'
@@ -90,6 +91,10 @@ import 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/pric
 import 'app/[locale]/vacancies/components/vacancies.styles.sass'
 // shop-item-preview
 import 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.styles.sass'
+// reviews
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.styles.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.styles.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.styles.sass'
 
 import {ReactNode} from 'react'
 import {Metadata} from 'next/dist/lib/metadata/types/metadata-interface'
@@ -97,6 +102,7 @@ import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
 import RootLayout from 'app/[locale]/_components/layout/layout.component'
 import {LayoutProps} from 'app/[locale]/layout.types'
 import localFont from '@next/font/local'
+
 
 export const metadata: Metadata = {
     title: 'UNAMOUR',

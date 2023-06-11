@@ -1,0 +1,28 @@
+.input-v2.input
+  .input__placeholder-wrapper
+    position: relative
+    height: 100%
+  .input__placeholder
+    position: absolute
+    top: 50%
+    pointer-events: none
+    transform: translateY(-50%)
+    font-size: 16px
+  .input__field, .input__textarea
+    height: 100%
+    font-size: 16px
+    width: 100%
+    border: none
+    outline: none
+    background-color: transparent
+  .input__label
+    display: block
+  .input__textarea
+    resize: none
+.input-v2.input.input--focused, .input-v2.input.input--filled
+  .input__placeholder
+    display: none
+.input-v2.input--textarea
+  .input__placeholder
+    top: 0
+    transform: unset

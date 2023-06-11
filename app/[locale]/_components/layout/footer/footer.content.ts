@@ -19,7 +19,7 @@ const footerContent = {
         },
         eng: {
             news: 'UNAMOUR NEWS,',
-            policy: 'By clicking on the icon, you agree to',
+            policy: 'By clicking on the i-description, you agree to',
             policyLink: 'privacy policy',
             contact: 'Contact us',
             logo: 'Made in',

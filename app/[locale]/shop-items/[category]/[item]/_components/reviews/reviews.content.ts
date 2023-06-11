@@ -1,13 +1,16 @@
 export const reviewsContent = {
     translations: {
         ua: {
-            title: 'відгуки'
+            title: 'відгуки',
+            leave: 'Залишити відгук'
         },
         eng: {
-            title: 'reviews'
+            title: 'reviews',
+            leave: 'Leave comment'
         },
         ru: {
-            title: 'отзывы'
+            title: 'отзывы',
+            leave: 'Оставить отзыв'
         }
     }
 }

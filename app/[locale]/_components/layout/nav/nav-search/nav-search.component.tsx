@@ -24,7 +24,7 @@ const NavSearch: FC = () => {
                     value={input}
                     onChange={onChange}
                 />
-                <img className={'nav-search__icon'} src={search.src} alt={'search icon'}/>
+                <img className={'nav-search__icon'} src={search.src} alt={'search i-description'}/>
             </div>
             {searchItems.loading ? (
                 <Spinner className={'nav-search__spinner'}/>

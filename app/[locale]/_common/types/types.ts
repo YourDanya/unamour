@@ -25,7 +25,7 @@ export type Locale = 'ua' | 'eng' | 'ru'
 export type RequireAllIfOne<TRequiredAlways, TRequiredIfOne> =
     (TRequiredAlways & TRequiredIfOne) | (Partial<Record<keyof TRequiredIfOne, never>> & TRequiredAlways)
 
-export type MouseAction = (event: MouseEvent<HTMLElement>) => void
+export type MouseAction = (event: MouseEvent<HTMLElement | SVGSVGElement>) => void
 
 export type Mapped<T> = {[key in keyof T]: T[key]}
 

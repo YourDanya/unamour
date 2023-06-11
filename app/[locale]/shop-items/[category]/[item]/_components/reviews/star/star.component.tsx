@@ -2,10 +2,15 @@ import {FC} from 'react'
 import {StarProps} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.types'
 
 const Star: FC<StarProps> = (props) => {
-    const {rating} = props
+    const {rating, onClick, className} = props
 
     return (
-        <svg className="star" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+        <svg
+            className={`star ${className ?? ''}`}
+            viewBox="0 0 15 15"
+            xmlns="http://www.w3.org/2000/svg"
+            onClick={onClick}
+        >
             <path
                 className="star__outline"
                 fill={`url(#gradient${rating})`}

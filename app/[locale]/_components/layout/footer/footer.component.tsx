@@ -30,7 +30,7 @@ const Footer: FC = () => {
                         />
                         <div className={`footer__form-add ${focused? 'footer__form-add--focused' : ''}`}>
                             <button className='footer__submit'>
-                                <img src={telegram.src} alt={'footer icon'}/>
+                                <img src={telegram.src} alt={'footer i-description'}/>
                             </button>
                             <div className='footer__policy'>
                                 {transl.policy}
@@ -53,7 +53,7 @@ const Footer: FC = () => {
                 <div className="footer__logo">
                     {transl.logo}
                     <Link href={'https://nextjs.org/'}>
-                        <img src={react.src} className={'footer__logo-img'} alt={'footer icon'}/>
+                        <img src={react.src} className={'footer__logo-img'} alt={'footer i-description'}/>
                     </Link>
                 </div>
             </div>

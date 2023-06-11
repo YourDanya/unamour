@@ -1,7 +1,7 @@
-.input
+.input-v1.input
   flex-grow: 1
   position: relative
-  &__input
+  .input__input
     padding: 0 20px 0 0
     box-sizing: border-box
     font-size: 11px
@@ -16,7 +16,7 @@
       padding-right: 100px
       background-color: white
       font-size: 11px
-  &__placeholder
+  .input__placeholder
     position: absolute
     top: 50%
     left: 0
@@ -25,40 +25,20 @@
     transition: font-size 0.4s, transform 0.4s
     color: #a1a1a1
     font-size: 11px
-  &__main
+  .input__main
     position: relative
     z-index: 10
-  &__error
+  .input__error
     margin-top: 5px
     font-size: 10px
     color: red
-  &__state
+  .input__state
     border-bottom: 1px solid #e0e0e0
     padding: 10px 0
-    &--focused
-      .input__placeholder
-        opacity: 0
-    &--full
-      .input__placeholder
-        opacity: 0
+  .input__state--focused
+    .input__placeholder
+      opacity: 0
+  .input__state--full
+    .input__placeholder
+      opacity: 0
 
-  //&--login-form
-  //  margin-top: 25px
-  //  .input__input
-  //    &:focus + .input__placeholder
-  //      visibility: visible
-  //      font-size: 10px
-  //      transform: translateY(-20px)
-  //&--present, &--_components
-  //  .input__input
-  //    &:focus + .input__placeholder
-  //      visibility: visible
-  //    &:focus + .input__input
-  //      border-color: black
-  //&--contact
-  //  margin-top: 15px
-  //&--contact, &--login-form
-  //  padding-bottom: 15px
-  //  .input__input
-  //    &:focus + .input
-  //      border-color: black

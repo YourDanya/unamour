@@ -10,9 +10,11 @@ const Input: FC<InputProps> = (props) => {
     const {focused, onFocus, onBlur, autoComplete} = useInput(props)
 
     return (
-        <div className={`input ${className ?? ''}`}>
+        <div className={`input-v1 input ${className ?? ''}`}>
             <div
-                className={`input__state ${focused ? 'input__state--focused' : ''} ${value !== '' ? 'input__state--full' : ''}`}>
+                className={`input__state ${focused ? 'input__state--focused' : ''} 
+                ${value !== '' && value !==undefined ? 'input__state--full' : ''}`}
+            >
                 <div className={'input__main'}>
                     <input
                         onBlur={onBlur}

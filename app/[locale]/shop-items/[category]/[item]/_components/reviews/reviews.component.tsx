@@ -3,14 +3,37 @@ import {FC} from 'react'
 import useReviews from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.hook'
 import Review from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.component'
 import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
+import {getStarsArr} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.utils'
+import Button from 'app/[locale]/_common/components/button/button.component'
+import Modal from 'app/[locale]/_common/components/modal/modal.component'
+import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
+import ReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.component'
+import Star from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.component'
 
-const ReviewsComponent: FC<ReviewsProps> = (props) => {
-    const {reviews, transl} = useReviews(props)
+const Reviews: FC<ReviewsProps> = (props) => {
+    const {reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm} = useReviews(props)
 
     return (
         <div className={'reviews'}>
-            <div className={'reviews__title'}>
-                {transl.title}
+            <div className={'reviews__top'}>
+                <div className={'reviews__title'}>
+                    {transl.title} ({reviewsNum ?? 0})
+                </div>
+                {rating && (
+                    <div className={'reviews__rating'}>
+                        <div className={'reviews__rating-num'}>
+                            {rating}
+                        </div>
+                        <div className={'reviews__stars'}>
+                            {getStarsArr(rating).map(elem => (
+                                <Star rating={elem}/>
+                            ))}
+                        </div>
+                    </div>
+                )}
+                <Button className={'reviews__leave'} onClick={onAddReview}>
+                    {transl.leave}
+                </Button>
             </div>
             {reviews ? (
                 <div className={'reviews__items'}>
@@ -21,8 +44,12 @@ const ReviewsComponent: FC<ReviewsProps> = (props) => {
             ) : (
                 <Spinner className={'reviews__spinner'}/>
             )}
+            <ModalContent className={'reviews__modal'} active={showForm} hideModal={onHideModal}>
+                <ReviewForm/>
+            </ModalContent>
+            <Modal active={showForm} hideModal={onHideModal}/>
         </div>
     )
 }
-//
-export default ReviewsComponent
+
+export default Reviews

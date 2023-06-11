@@ -1,1 +1,1 @@
-console.log('dffd', 0 === -0)
+console.log(null == undefined)

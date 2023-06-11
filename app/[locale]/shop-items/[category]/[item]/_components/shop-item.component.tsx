@@ -14,6 +14,7 @@ import Modal from 'app/[locale]/_common/components/modal/modal.component'
 import Links from 'app/[locale]/shop-items/[category]/[item]/_components/links/links.component'
 import Parameters from 'app/[locale]/shop-items/[category]/[item]/_components/parameters/parameters.component'
 import 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.styles.sass'
+import Reviews from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.component'
 
 const ShopItem: FC<FetchedItem> = (props) => {
     const {common: {variants, slugCategory, oldPrice}, _id} = props
@@ -58,7 +59,7 @@ const ShopItem: FC<FetchedItem> = (props) => {
                 </div>
             </div>
             <Additional/>
-            {/*<Reviews/>*/}
+            <Reviews color={color} _id={_id}/>
             <ModalContent className={'shop-item__present-modal'} active={modalState.present} hideModal={hideModal}>
                 <Present
                     price={price}

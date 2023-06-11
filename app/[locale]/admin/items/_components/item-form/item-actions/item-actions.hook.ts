@@ -13,6 +13,8 @@ import {usePaginationStore} from 'app/[locale]/_common/components/pagination/sto
 import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {shallow} from 'zustand/shallow'
 import {Entry} from 'app/[locale]/_common/types/types'
+import {ItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+import {MutableRefObject} from 'react'
 
 const useItemActions = (props: ItemActionsProps) => {
     const [transl] = useLocale(itemActionsContent)
@@ -36,13 +38,15 @@ const useItemActions = (props: ItemActionsProps) => {
     }, []), shallow)
 
     const {actions, messages, setMessages, stackActions, stackCreateImages} = useItemActionsApi()
-    
+
     const onSave: MouseAction = (event) => {
         event.preventDefault()
         if (errorCount > 0) {
-            setMessages({...messages, client: {
-                text: transl.clientError(errorCount), isError: true
-            }})
+            setMessages({
+                ...messages, client: {
+                    text: transl.clientError(errorCount), isError: true
+                }
+            })
             return
         }
         if (_id) {
@@ -139,7 +143,7 @@ const useItemActions = (props: ItemActionsProps) => {
             deleteItem(itemIndex)
         }
     }
-    
+
     const actionsList = Object.entries(actions) as Entry<typeof actions> []
     const loading = actionsList.some(([name, value]) => value.loading && name !== 'deleteItem')
 
@@ -155,3 +159,31 @@ const useItemActions = (props: ItemActionsProps) => {
 }
 
 export default useItemActions
+
+const useCheckActions = (params: {
+    itemImagesMap: ItemImagesMap, initItemImagesMapRef: MutableRefObject<ItemImagesMap>, createData: FormData, updateData: FormData, deleteData: DeleteItemImagesData
+}) => {
+
+    const {itemImagesMap, initItemImagesMapRef, createData, updateData, deleteData} = params
+    let shouldCreate = false
+    let shouldUpdate = false
+    let shouldDelete = false
+
+    for (let imageId in itemImagesMap) {
+        if (!(imageId in initItemImagesMapRef.current)) {
+            shouldCreate = true
+            createData.append(`${imageId}_${itemImagesMap[imageId].color}`, itemImagesMap[imageId].file as File)
+        } else if (itemImagesMap[imageId].file !== null) {
+            shouldUpdate = true
+            updateData.append(imageId, itemImagesMap[imageId].file as File)
+        }
+    }
+    for (let imageId in initItemImagesMapRef.current) {
+        if (!(imageId in itemImagesMap)) {
+            shouldDelete = true
+            deleteData.images.push({id: imageId, color: initItemImagesMapRef.current[imageId].color})
+        }
+    }
+
+    return {shouldDelete, shouldCreate, shouldUpdate}
+}

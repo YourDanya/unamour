@@ -29,7 +29,7 @@ const NavCart: FC<NavCartProps> = (props) => {
                 </>
             ) : (
                 <>
-                    <img className="nav-cart__icon" src={shoppingCart.src} alt={'nav-_components-icon'}/>
+                    <img className="nav-cart__icon" src={shoppingCart.src} alt={'nav-_components-i-description'}/>
                     <div className={'nav-cart__empty'}>
                         {transl.empty}
                     </div>
