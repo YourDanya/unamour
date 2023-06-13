@@ -1,9 +1,49 @@
 .review-form-photos.photos
+  grid-column: 1 / 3
+  display: flex
+  justify-content: start
+  margin-top: 20px
+  margin-bottom: 15px
   .photos__input
-    visibility: hidden
+    width: 0
+    height: 0
   .photos__preview
+    background-color: rgba(0,0,0,.06)
+    padding: 4px
+    display: flex
+    align-items: start
+    margin-right: 10px
   .photos__preview-img
-    width: 40px
-    height: 40px
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,.15)
+    width: 45px
+    height: 45px
+    margin-right: 5px
+    object-fit: cover
   .photos__remove-btn
+    position: relative
+    background-color: black
+    width: 16px
+    height: 16px
+    border-radius: 50px
+    &:before
+      position: absolute
+      content: ''
+      top: 50%
+      width: 18px
+      height: 18px
+      border-radius: 50px
+      left: 50%
+      transform: translateY(-50%) translateX(-50%)
   .photos__remove-close
+    position: relative
+    height: 12px
+    width: 12px
+    &:before, &:after
+      background-color: white
+.review-form-photos.photos.photos--hidden
+  display: none
+
+@media (max-width: 576px)
+  .review-form-photos.photos
+    grid-column: 1 / 2
+    margin-top: 0

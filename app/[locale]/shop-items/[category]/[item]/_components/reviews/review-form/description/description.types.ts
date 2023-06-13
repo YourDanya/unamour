@@ -1,5 +1,6 @@
 import {ReactNode} from 'react'
 
 export type IconProps = {
-    children? : ReactNode
+    children? : ReactNode,
+    className?: string
 }

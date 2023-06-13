@@ -95,6 +95,9 @@ import 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.styl
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.styles.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.style.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/main/main.styles.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/admin/admin.styles.sass'
 
 import {ReactNode} from 'react'
 import {Metadata} from 'next/dist/lib/metadata/types/metadata-interface'
@@ -102,7 +105,6 @@ import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
 import RootLayout from 'app/[locale]/_components/layout/layout.component'
 import {LayoutProps} from 'app/[locale]/layout.types'
 import localFont from '@next/font/local'
-
 
 export const metadata: Metadata = {
     title: 'UNAMOUR',
@@ -113,6 +115,7 @@ export const metadata: Metadata = {
 
 const Layout = (props: LayoutProps) => {
     const {children, params: {locale}} = props
+
     return (
         <RootLayout locale={locale}>
             {children}

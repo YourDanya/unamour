@@ -1,15 +1,14 @@
 
-export type InputProps<T extends InputValues> = {
-    name: string,
+export type InputProps<N extends string, V extends string | number> = {
+    name: N,
     error?: string,
     placeholder?: string,
     label?: string,
     type?: string,
     className: string,
-    value: string | number,
-    onChange: (value: ChangeValue<T>) => void
+    value: V,
+    onChange: (value: ChangeValue<Record<N, V>>) => void
 }
-
 
 export type InputEvent = {
     target: {name: string, value: string}

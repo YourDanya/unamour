@@ -13,12 +13,12 @@ export const dictionary = {
                 descr: 'Зробіть свій відгук чудовим: опишіть, що вам сподобалося, що вам не сподобалося, та інші ключові речі, які повинні знати покупці (мінімум 5 символів)'
             },
             photos: {
-                label: 'фото',
+                label: 'Фото',
                 descr: 'Ви можете додати до 5 фотографій',
             },
         },
         addPhoto: 'Додати фото',
-        submit: 'Отправить'
+        submit: 'Відправити'
     },
     eng: {
         title: 'write a review',
@@ -34,7 +34,7 @@ export const dictionary = {
                 descr: 'Make your review great: describe what you liked, what you didn\'t like, and other key things buyers should know (minimum 5 characters)'
             },
             photos: {
-                label: 'photo',
+                label: 'Photo',
                 descr: 'You can add up to 5 photos',
             },
         },
@@ -55,7 +55,7 @@ export const dictionary = {
                 descr: 'Сделайте свой отзыв отличным: опишите, что вам понравилось, что вам не понравилось, и другие ключевые вещи, которые должны знать покупатели (минимум 5 символов)'
             },
             photos: {
-                label: 'фото',
+                label: 'Фото',
                 descr: 'Вы можете добавить до 5 фотографий',
             },
         },

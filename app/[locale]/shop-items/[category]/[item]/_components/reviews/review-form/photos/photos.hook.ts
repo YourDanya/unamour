@@ -13,17 +13,21 @@ const usePhotos = (props: PhotosProps) => {
 
     const onSelect = (event: ChangeEvent<HTMLInputElement>) => {
         const newFiles = event.currentTarget.files ?? []
+        const newUrls: string[] = []
         setPhotos(files => {
             const leftToAdd = 5 - files.length
             let num = Math.min(newFiles.length, leftToAdd)
             for (let i = 0; i < num; i++) {
                 files.push(newFiles[i])
+                newUrls.push(URL.createObjectURL(newFiles[i]))
             }
             if (num === 5) {
                 return files
             }
             return [...files]
         })
+
+        setUrls(urls => [...urls, ...newUrls])
     }
 
     const onRemove = (event: MouseEvent) => {
@@ -31,11 +35,11 @@ const usePhotos = (props: PhotosProps) => {
         const index = +event.currentTarget.getAttribute('data-index')!
         URL.revokeObjectURL(urls[index])
         setUrls(urls => {
-            urls.splice(index, 0)
+            urls.splice(index, 1)
             return [...urls]
         })
         setPhotos(photos => {
-            photos.splice(index, 0)
+            photos.splice(index, 1)
             return [...photos]
         })
     }

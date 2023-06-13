@@ -3,10 +3,10 @@ import {IconProps} from 'app/[locale]/shop-items/[category]/[item]/_components/r
 import {FC} from 'react'
 
 const Description: FC<IconProps> = (props) => {
-    const {children} = props
+    const {children, className} = props
 
     return (
-        <div className={'review-form-descr descr'}>
+        <div className={`review-form-descr descr ${className ?? ''}`}>
             <IIcon className={'descr__icon'}/>
             {children}
         </div>

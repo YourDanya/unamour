@@ -5,6 +5,7 @@ import {initValues} from 'app/[locale]/shop-items/[category]/[item]/_components/
 import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
 import {MouseAction} from 'app/[locale]/_common/types/types'
+import {useUserStore} from 'app/[locale]/_store/user/user.store'
 
 const useReviewForm = () => {
     const [values, setValues] = useState(initValues)
@@ -12,6 +13,8 @@ const useReviewForm = () => {
     const transl = useLocale(dictionary)
     const valuesRef = useRef(initValues)
     const inputRef = useRef<HTMLInputElement | null>(null)
+
+    const isAdmin = useUserStore(state => state.user?.isAdmin ?? false)
 
     const [rating, setRating] = useState(5)
     const [photos, setPhotos] = useState<File[]>([])
@@ -32,11 +35,11 @@ const useReviewForm = () => {
 
     const onAddPhoto: MouseAction = (event) => {
         event.preventDefault()
-        inputRef
+        inputRef.current?.click()
     }
 
     return {
-        values, errors, onChange, transl, rating, onRating, onSubmit, onAddPhoto, inputRef, setPhotos
+        values, errors, onChange, transl, rating, onRating, onSubmit, onAddPhoto, inputRef, setPhotos, photos, isAdmin
     }
 }
 

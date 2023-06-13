@@ -1,5 +1,4 @@
 .reviews
-  padding: 0 100px
   .reviews__title
     text-transform: uppercase
     font-size: 14px
@@ -8,17 +7,30 @@
   .reviews__leave
     text-decoration: underline
   .reviews__modal
-    height: auto
-    padding: 24px
-    width: 900px
+    height: 95%
+    overflow-y: scroll
+    padding: 0
+    width: auto
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar
+      display: none
     .modal-content__close
       top: 5px
       right: 5px
       width: 20px
       height: 20px
 
-@media (max-width: 1200px)
-  .reviews
-
 @media (max-width: 991px)
   .reviews
+    padding: 0 40px
+
+
+@media (max-width: 768px)
+  .reviews
+    .reviews__modal
+      width: 95%
+
+@media (max-width: 576px)
+  .reviews
+    padding: 0 20px
