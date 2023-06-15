@@ -9,7 +9,7 @@ export type UseApiCall = <DataT,> (url: string, params?: ApiCallParams &
 
 export type UseMapApiRes = (params: {
     res: {loading: boolean, success: boolean, error: ServerError | null},
-    errorFourTransl: string | object,
+    errorFourTransl?: string | object,
     successTransl: string
 }) => {success: string, error: string, loading: boolean}
 

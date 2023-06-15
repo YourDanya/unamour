@@ -1,26 +1,23 @@
-export const adminDictionary = {
+export const dictionry = {
     ua: {
-        subtitle: 'Налаштування адміна',
         getUsers: 'Отримати юзерів',
-        createUser: 'Створити юзера',
         name: {
             label: 'Ім\'я',
-            descr: 'Ви можете знайти юзера по імені'
-        }
+            descr: 'Ви можете знайти юзера по імені, або залишити поле пустим'
+        },
+        success: 'Отримано юзерів'
     },
     eng: {
-        subtitle: 'Admin settings',
         getUsers: 'Get users',
-        createUser: 'Create user',
         name: {
             label: 'Name',
             descr: 'You can find user by nanme'
-        }
+        },
+        success: 'Users received',
     },
     ru: {
-        subtitle: 'Настройки админа',
         getUsers: 'Отримати користувачів',
-        createUser: 'Создать пользователя',
+        success: 'Получены пользователи',
         name: {
             label : 'Имя',
             descr: 'Вы можете найти юзера по имени'

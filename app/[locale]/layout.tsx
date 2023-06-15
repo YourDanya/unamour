@@ -97,7 +97,7 @@ import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-for
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.style.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/main/main.styles.sass'
-import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/admin/admin.styles.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/get-users/get-users.styles.sass'
 
 import {ReactNode} from 'react'
 import {Metadata} from 'next/dist/lib/metadata/types/metadata-interface'

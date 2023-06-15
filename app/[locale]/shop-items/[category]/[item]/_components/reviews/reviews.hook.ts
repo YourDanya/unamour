@@ -41,8 +41,10 @@ const useReviews = (props: ReviewsProps) => {
         setShowForm(false)
     }
 
+    const isAdmin = useUserStore(state => state.user?.isAdmin ?? false)
+
     return {
-        reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm
+        reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm, isAdmin
     }
 }
 

@@ -79,7 +79,7 @@ export const mapApiError: MapApiError = (params) => {
     if (typeof errorFourTransl === 'object') {
         return errorFourTransl[message as keyof typeof errorFourTransl]
     } else {
-        return errorFourTransl
+        return errorFourTransl ?? ''
     }
 }
 

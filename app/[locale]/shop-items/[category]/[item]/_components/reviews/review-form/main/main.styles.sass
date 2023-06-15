@@ -2,27 +2,6 @@
   display: grid
   grid-template-columns: 300px 1fr
   align-items: start
-  .main__title
-    grid-column: 1 / 3
-    font-size: 20px
-    text-align: center
-    font-weight: 700
-    text-transform: uppercase
-    margin-bottom: 10px
-  .main__subtitle
-    font-size: 14px
-    grid-column: 1 / 3
-    text-align: center
-    margin-bottom: 30px
-  .main__input
-    margin-bottom: 10px
-    .input__container
-      padding: 5px 0
-      border: 1px solid #e6e7e8
-    .input__textarea
-      height: 130px
-  .main__input.input--focused
-    background-color: red
   .main__star
     width: 16px
     height: 16px
@@ -30,14 +9,6 @@
     margin-right: 5px
   .main__rating-stars
     margin-bottom: 30px
-  .main__label, .main__input .input__label
-    grid-column: 1 / 2
-    font-size: 12px
-  .main__label--required
-    &:after
-      margin-left: 2px
-      color: red
-      content: '*'
   .main__photo-btn
     width: 140px
     height: 40px
@@ -50,25 +21,3 @@
   .main__photo-descr
     grid-column: 1 / 3
     margin-bottom: 15px
-  .main__button
-    height: 40px
-    background-color: black
-    color: white
-    text-transform: uppercase
-    grid-column: 1 / 3
-    
-@media (max-width: 991px)
-  .review-form-main.main
-    grid-template-columns: 150px 1fr
-    
-@media (max-width: 768px)
-  .review-form-main.main
-    grid-template-columns: 125px 1fr
-    
-@media (max-width: 576px)
-  .review-form-main.main
-    grid-template-columns: 1fr
-    .main__title, .main__subtitle ,.main__label, .main__input .input__label, .main__photo-descr, .main__button
-      grid-column: 1 / 2
-    .main__label
-      margin-bottom: 20px

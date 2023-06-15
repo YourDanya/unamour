@@ -10,34 +10,40 @@ import useReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components
 import {FC} from 'react'
 
 const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
-    const {transl, values, inputRef, setPhotos, onChange, onAddPhoto, onRating, photos} = props
-    
+    const {
+        transl, values, inputRef, setPhotos, onChange, onAddPhoto, onRating, photos, isAdmin
+    } = props
+
     return (
-        <div className={'review-form-main main'}>
-            <div className={'main__title'}>
-                {transl.title}
-            </div>
-            <div className={'main__subtitle'}>
-                {transl.subtitle}
-            </div>
-            <div className={'main__label main__label--required'}>
+        <div className={'review-form-block form review-form-main main'}>
+            {!isAdmin && (
+                <>
+                    <div className={'form__title'}>
+                        {transl.title}
+                    </div>
+                    <div className={'form__subtitle'}>
+                        {transl.subtitle}
+                    </div>
+                </>
+            )}
+            <div className={'form__label form__label--required'}>
                 {transl.rating}
             </div>
-            <div className={'main__rating-stars'}>
+            <div className={'form__rating-stars'}>
                 {getStarsArr(5).map((elem, index) => (
                     <Star
                         key={index}
-                        className={'main__star'}
+                        className={'form__star'}
                         rating={elem}
                         onClick={onRating}
                     />
                 ))}
             </div>
-            <label className={'main__label main__label--required'} htmlFor={'title'}>
+            <label className={'form__label form__label--required'} htmlFor={'title'}>
                 {transl.inputs.title.label}
             </label>
             <Input
-                className={'main__input'}
+                className={'form__input'}
                 name={'title'}
                 value={values.title}
                 onChange={onChange}
@@ -45,11 +51,11 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
             <Description>
                 {transl.inputs.title.descr}
             </Description>
-            <label className={'main__label main__label--required'} htmlFor={'review'}>
+            <label className={'form__label form__label--required'} htmlFor={'review'}>
                 {transl.inputs.review.label}
             </label>
             <Input
-                className={'main__input'}
+                className={'form__input'}
                 type={'textarea'}
                 name={'review'}
                 value={values.review}
@@ -58,7 +64,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
             <Description>
                 {transl.inputs.review.descr}
             </Description>
-            <div className={'main__label'}>
+            <div className={'form__label'}>
                 {transl.inputs.photos.label}
             </div>
             <Photos

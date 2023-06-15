@@ -9,8 +9,13 @@ import Button from 'app/[locale]/_common/components/button/button.component'
 import Images from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.component'
 import Photo from 'app/[locale]/_common/svg/photo/photo.component'
 import Photos from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.component'
-import Admin from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/admin/admin.component'
 import Main from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/main/main.component'
+import GetUsers
+    from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/get-users/get-users.component'
+import CreateUser
+    from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.component'
+import AttachUser
+    from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/attach-user/attach-user.component'
 
 const ReviewForm = () => {
     const state = useReviewForm()
@@ -18,8 +23,14 @@ const ReviewForm = () => {
 
     return (
         <form className={'review-form form'}>
+            {isAdmin && (
+                <>
+                    <GetUsers/>
+                    <CreateUser/>
+                    <AttachUser/>
+                </>
+            )}
             <Main {...state}/>
-            {isAdmin && <Admin {...state}/>}
             <Button
                 className={'form__button'}
                 onClick={onSubmit}

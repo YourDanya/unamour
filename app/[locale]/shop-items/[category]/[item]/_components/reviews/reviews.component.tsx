@@ -11,7 +11,9 @@ import ReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/re
 import Star from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.component'
 
 const Reviews: FC<ReviewsProps> = (props) => {
-    const {reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm} = useReviews(props)
+    const {
+        reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm, isAdmin
+    } = useReviews(props)
 
     return (
         <div className={'reviews'}>
@@ -44,7 +46,11 @@ const Reviews: FC<ReviewsProps> = (props) => {
             ) : (
                 <Spinner className={'reviews__spinner'}/>
             )}
-            <ModalContent className={'reviews__modal'} active={showForm} hideModal={onHideModal}>
+            <ModalContent
+                className={`reviews__modal`}
+                active={showForm}
+                hideModal={onHideModal}
+            >
                 <ReviewForm/>
             </ModalContent>
             <Modal active={showForm} hideModal={onHideModal}/>

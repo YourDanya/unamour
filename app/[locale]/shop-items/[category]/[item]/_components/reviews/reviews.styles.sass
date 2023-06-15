@@ -1,4 +1,5 @@
 .reviews
+  padding: 0 100px
   .reviews__title
     text-transform: uppercase
     font-size: 14px
@@ -7,7 +8,8 @@
   .reviews__leave
     text-decoration: underline
   .reviews__modal
-    height: 95%
+    max-height: 95%
+    height: auto
     overflow-y: scroll
     padding: 0
     width: auto
@@ -20,6 +22,8 @@
       right: 5px
       width: 20px
       height: 20px
+  .reviews__modal--admin
+    height: 95%
 
 @media (max-width: 991px)
   .reviews
