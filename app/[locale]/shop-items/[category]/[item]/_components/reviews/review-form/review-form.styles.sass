@@ -7,21 +7,22 @@
     background-color: black
     color: white
     text-transform: uppercase
-    grid-column: 1 / 3
-      
-.review-form-block.form
-  padding: 0
-  display: grid
-  grid-template-columns: 300px 1fr
-  align-items: start
   .form__title
-    grid-column: 1 / 3
     font-size: 20px
     text-transform: uppercase
     text-align: center
     font-weight: 700
     color: black
     margin-bottom: 10px
+  .form__descr
+    margin-bottom: 20px
+
+.review-form-block.form
+  padding: 0
+  display: grid
+  grid-template-columns: 300px 1fr
+  align-items: start
+  margin-bottom: 30px
   .form__subtitle
     grid-column: 1 / 3
     font-size: 14px
@@ -35,10 +36,18 @@
     color: white
     text-transform: uppercase
   .form__input
-    margin-bottom: 20px
+    margin-bottom: 10px
     .input__container
       padding: 5px 0
       border: 1px solid #e6e7e8
+  .form__label
+    grid-column: 1 / 2
+  .form__label--required
+    &:after
+      margin-left: 2px
+      content: '*'
+      color: red
+
 
 @media (max-width: 991px)
   .review-form.form
@@ -53,7 +62,13 @@
   .review-form-block.form
     grid-template-columns: 125px 1fr
 
+
 @media (max-width: 576px)
   .review-form-block.form
     grid-template-columns: 1fr
-
+    .form__subtitle, .form__button, .form__input, .form__label
+      grid-column: 1 / 2
+    .form__label
+      margin-bottom: 10px
+    .form__descr
+      margin-bottom: 20px

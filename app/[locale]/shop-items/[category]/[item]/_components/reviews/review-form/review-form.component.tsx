@@ -23,6 +23,9 @@ const ReviewForm = () => {
 
     return (
         <form className={'review-form form'}>
+            <div className={'form__title'}>
+                {transl.title}
+            </div>
             {isAdmin && (
                 <>
                     <GetUsers/>

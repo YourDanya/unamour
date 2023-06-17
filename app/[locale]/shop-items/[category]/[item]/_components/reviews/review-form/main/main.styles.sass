@@ -1,7 +1,4 @@
 .review-form-main.main
-  display: grid
-  grid-template-columns: 300px 1fr
-  align-items: start
   .main__star
     width: 16px
     height: 16px
@@ -21,3 +18,8 @@
   .main__photo-descr
     grid-column: 1 / 3
     margin-bottom: 15px
+
+@media (max-width: 576px)
+  .review-form-main.main
+    //.main__photo-descr, .main__rating-stars, .main__photo-btn
+    //  grid-column: 1 / 2

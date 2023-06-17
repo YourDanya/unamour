@@ -31,8 +31,8 @@ export const useValidateInput: UseValidateInput = (params) => {
             errRef.current.count += 1
         }
         errRef.current.errors[name] = error
-        if (beforeError !== error) {
-           validateCallback && validateCallback(errRef.current.errors)
+        if (beforeError !== error && validateCallback) {
+            validateCallback(errRef.current.errors)
         }
     }, [])
 

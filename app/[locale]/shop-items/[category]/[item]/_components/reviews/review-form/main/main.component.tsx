@@ -18,9 +18,6 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
         <div className={'review-form-block form review-form-main main'}>
             {!isAdmin && (
                 <>
-                    <div className={'form__title'}>
-                        {transl.title}
-                    </div>
                     <div className={'form__subtitle'}>
                         {transl.subtitle}
                     </div>
@@ -29,11 +26,11 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
             <div className={'form__label form__label--required'}>
                 {transl.rating}
             </div>
-            <div className={'form__rating-stars'}>
+            <div className={'main__rating-stars'}>
                 {getStarsArr(5).map((elem, index) => (
                     <Star
                         key={index}
-                        className={'form__star'}
+                        className={'main__star'}
                         rating={elem}
                         onClick={onRating}
                     />
@@ -48,7 +45,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 value={values.title}
                 onChange={onChange}
             />
-            <Description>
+            <Description className={'form__descr'}>
                 {transl.inputs.title.descr}
             </Description>
             <label className={'form__label form__label--required'} htmlFor={'review'}>
@@ -61,7 +58,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 value={values.review}
                 onChange={onChange}
             />
-            <Description>
+            <Description className={'form__descr'}>
                 {transl.inputs.review.descr}
             </Description>
             <div className={'form__label'}>
@@ -74,7 +71,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 <Photo className={'main__photo-icon'}/>
                 {transl.addPhoto}
             </Button>
-            <Description className={`${photos.length !== 0 ? 'main__photo-descr' : ''}`}>
+            <Description className={`${photos.length !== 0 ? 'main__photo-descr' : 'main__descr'}`}>
                 {transl.inputs.photos.descr}
             </Description>
         </div>
