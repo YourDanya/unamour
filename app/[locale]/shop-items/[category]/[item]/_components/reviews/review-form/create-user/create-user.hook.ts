@@ -18,19 +18,42 @@ import {
 import {
     initErrors
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.content'
+import {useEffect} from 'react'
+import {MutableRefObject} from 'react'
 
 const useCreateUser = () => {
+    const state = useGetState()
+    const {errors, valuesRef, values, setValues, onValidate} = state
+
+    const onChange = ({value, name}: ChangeValue<typeof values>) => {
+        valuesRef.current[name] = value
+        setValues({...valuesRef.current})
+        onValidate(name, value)
+        validatePasswordConfirm(state)
+    }
+
+    return {...state, onChange}
+}
+
+export default useCreateUser
+
+const useGetState = () => {
     const transl = useLocale(dictionary)
 
-    const createUser = useApiCall('users/create')
+    const [values, setValues] = useState({...initValues})
+    const valuesRef = useRef(values)
+
+    const createUser = useApiCall('users', {
+        method: 'POST', body: values, onSuccess: () => {
+            valuesRef.current = {...initValues}
+            setValues(valuesRef.current)
+        }
+    })
 
     const onCreateUser: MouseAction = (event) => {
         event.preventDefault()
         createUser.start()
     }
-
-    const [values, setValues] = useState({...initValues})
-    const valuesRef = useRef(values)
 
     const [errors, setErrors] = useState({...initErrors})
 
@@ -42,16 +65,29 @@ const useCreateUser = () => {
         errors, validations, validateCallback
     })
 
-    const onChange = ({value, name}: ChangeValue<typeof values>) => {
-        valuesRef.current[name] = value
-        setValues({...valuesRef.current})
-    }
-
     const mappedCreateUser = useMapApiRes({res: createUser, successTransl: transl.success})
 
     return {
-        createUser, onCreateUser, mappedCreateUser, transl, onChange, values, errors
+        transl, createUser, onCreateUser, values, setValues, valuesRef, errors, setErrors, errRef, onValidate,
+        mappedCreateUser
     }
 }
 
-export default useCreateUser
+const validatePasswordConfirm = (state: ReturnType<typeof useGetState>) => {
+    const {valuesRef, errRef, transl, setErrors} = state
+    const beforeErr = errRef.current.errors.passwordConfirm
+    if (beforeErr) {
+        return
+    }
+    if (valuesRef.current.passwordConfirm !== valuesRef.current.password) {
+        errRef.current.errors.passwordConfirm = transl.passMatchErr
+    }
+    const afterRrr = errRef.current.errors.name
+    if (!beforeErr && afterRrr) {
+        errRef.current.count++
+    }
+    if (beforeErr && !afterRrr) {
+        errRef.current.count--
+    }
+    setErrors({...valuesRef.current})
+}

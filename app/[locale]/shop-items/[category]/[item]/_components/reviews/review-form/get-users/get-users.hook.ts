@@ -10,7 +10,7 @@ const useGetUsers = () => {
     const transl = useLocale(dictionry)
 
     const [searchName, setSearchName] = useState('')
-    const getUsers = useApiCall('users/get')
+    const getUsers = useApiCall('users')
 
     const onGetUsers: MouseAction = (event) => {
         event.preventDefault()

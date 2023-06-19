@@ -16,6 +16,10 @@ export const dictionary = {
                 label: 'Фото',
                 descr: 'Ви можете додати до 5 фотографій',
             },
+            email: {
+                label: 'Email юзера',
+                descr: 'Ви можете ввести email того юзера, від імені якого буде відправлено коментар'
+            }
         },
         addPhoto: 'Додати фото',
         submit: 'Відправити'
@@ -37,6 +41,10 @@ export const dictionary = {
                 label: 'Photo',
                 descr: 'You can add up to 5 photos',
             },
+            email: {
+                label: 'User email',
+                descr: 'You can enter the email of the user on whose behalf the comment will be sent'
+            }
         },
         addPhoto: 'Add photo',
         submit: 'Submit'
@@ -58,6 +66,10 @@ export const dictionary = {
                 label: 'Фото',
                 descr: 'Вы можете добавить до 5 фотографий',
             },
+            email: {
+                label: 'Email юзера',
+                descr: 'Вы можете ввести email того юзера, от имени которого будет отправлен комментарий'
+            }
         },
         addPhoto: 'Добавить фото',
         submit: 'отправить'
@@ -66,10 +78,18 @@ export const dictionary = {
 
 export const validations = {
     title: {required: true},
-    review: {required: true}
+    review: {required: true},
 }
 
 export const initValues = {
     title: '',
-    review: ''
+    review: '',
+}
+
+export const adminValidations = {
+    email: {required: true, isEmail: true}
+}
+
+export const adminInitValues = {
+    email : ''
 }

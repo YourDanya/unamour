@@ -30,7 +30,7 @@ const ReviewForm = () => {
                 <>
                     <GetUsers/>
                     <CreateUser/>
-                    <AttachUser/>
+                    <AttachUser {...state}/>
                 </>
             )}
             <Main {...state}/>

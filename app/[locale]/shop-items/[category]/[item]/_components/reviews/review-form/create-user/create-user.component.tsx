@@ -12,7 +12,7 @@ const CreateUser = () => {
     } = useCreateUser()
 
     return (
-        <div className={'review-form-block review-form-create-user form'}>
+        <div className={'review-form-block form review-form-create-user create-user'}>
             <div className={'form__subtitle'}>
                 {transl.createUser}
             </div>
@@ -51,16 +51,12 @@ const CreateUser = () => {
                 {transl.inputs.passwordConfirm.label}
             </label>
             <Input
-                className={'form__input'}
+                className={'form__input create-user__input--last'}
                 onChange={onChange}
                 value={values.passwordConfirm}
                 error={errors.passwordConfirm}
                 name={'passwordConfirm'}
                 type={'password'}
-            />
-            <FormMessage
-                success={mappedCreateUser.success}
-                error={mappedCreateUser.error}
             />
             <Description className={'form__descr'}>
                 {transl.descr}
@@ -68,6 +64,11 @@ const CreateUser = () => {
             <Button onClick={onCreateUser} className={'form__button'}>
                 {transl.createUser}
             </Button>
+            <FormMessage
+                className={'form__message'}
+                success={mappedCreateUser.success}
+                error={mappedCreateUser.error}
+            />
         </div>
     )
 }

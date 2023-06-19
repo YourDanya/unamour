@@ -8,7 +8,8 @@ export const dictionary = {
             email: {label: 'Email'},
             password: {label: 'Пароль'},
             passwordConfirm: {label: 'Підтвердження пароля'}
-        }
+        },
+        passMatchErr: 'пароль і підвтерждення пароля не співпадають'
     },
     eng: {
         createUser: 'Create user',
@@ -19,7 +20,8 @@ export const dictionary = {
             email: {label: 'Email'},
             password: {label: 'Password'},
             passwordConfirm: {label: 'Password confirmation'}
-        }
+        },
+        passMatchErr: 'password and password confirm do not match'
     },
     ru: {
         createUser: 'Создать пользователя',
@@ -30,7 +32,8 @@ export const dictionary = {
             email: {label: 'Email'},
             password: {label: 'Пароль'},
             passwordConfirm: {label: 'Подтверждение пароля'}
-        }
+        },
+        passMatchErr: 'Пароль и подтвреждение пароля не совпадают'
     }
 }
 

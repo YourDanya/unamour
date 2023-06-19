@@ -6,6 +6,9 @@ import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
 import {MouseAction} from 'app/[locale]/_common/types/types'
 import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {
+    adminInitValues
+} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
 
 const useReviewForm = () => {
     const [values, setValues] = useState(initValues)
@@ -24,6 +27,14 @@ const useReviewForm = () => {
         setValues({...valuesRef.current})
     }
 
+    const [adminValues, setAdminValues] = useState({...adminInitValues})
+    const adminValeusRef = useRef({...adminInitValues})
+
+    const onAdminChange = ({value, name}: ChangeValue<typeof adminValues>) => {
+        adminValeusRef.current[name] = value
+        setAdminValues({...adminValeusRef.current})
+    }
+
     const onRating: MouseAction = (event) => {
         const rating = +(event.currentTarget.getAttribute('data-value') as string)
         setRating(rating)
@@ -37,9 +48,10 @@ const useReviewForm = () => {
         event.preventDefault()
         inputRef.current?.click()
     }
-
+    
     return {
-        values, errors, onChange, transl, rating, onRating, onSubmit, onAddPhoto, inputRef, setPhotos, photos, isAdmin
+        values, errors, onChange, transl, rating, onRating, onSubmit, onAddPhoto, inputRef, setPhotos, photos, isAdmin,
+        onAdminChange, adminValues
     }
 }
 
