@@ -20,10 +20,11 @@ import {
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.content'
 import {useEffect} from 'react'
 import {MutableRefObject} from 'react'
+import {FocusEvent} from 'react'
 
 const useCreateUser = () => {
     const state = useGetState()
-    const {errors, valuesRef, values, setValues, onValidate} = state
+    const {errors, valuesRef, values, setValues, onValidate, errRef, createUser} = state
 
     const onChange = ({value, name}: ChangeValue<typeof values>) => {
         valuesRef.current[name] = value
@@ -32,7 +33,20 @@ const useCreateUser = () => {
         validatePasswordConfirm(state)
     }
 
-    return {...state, onChange}
+    const onBlur = ({name}: { name: keyof typeof values }) => {
+        onValidate(name, valuesRef.current[name])
+        validatePasswordConfirm(state)
+    }
+
+    const onCreateUser: MouseAction = (event) => {
+        event.preventDefault()
+        if (errRef.current.count !== 0) {
+            return
+        }
+        createUser.start()
+    }
+
+    return {...state, onChange, onBlur, onCreateUser}
 }
 
 export default useCreateUser
@@ -42,18 +56,6 @@ const useGetState = () => {
 
     const [values, setValues] = useState({...initValues})
     const valuesRef = useRef(values)
-
-    const createUser = useApiCall('users', {
-        method: 'POST', body: values, onSuccess: () => {
-            valuesRef.current = {...initValues}
-            setValues(valuesRef.current)
-        }
-    })
-
-    const onCreateUser: MouseAction = (event) => {
-        event.preventDefault()
-        createUser.start()
-    }
 
     const [errors, setErrors] = useState({...initErrors})
 
@@ -65,10 +67,19 @@ const useGetState = () => {
         errors, validations, validateCallback
     })
 
-    const mappedCreateUser = useMapApiRes({res: createUser, successTransl: transl.success})
+    const createUser = useApiCall('users', {
+        method: 'POST', body: values, onSuccess: () => {
+            valuesRef.current = {...initValues}
+            setValues(valuesRef.current)
+        }
+    })
+
+    const mappedCreateUser = useMapApiRes({
+        res: createUser, successTransl: transl.success, errorFourTransl: transl.errorFour
+    })
 
     return {
-        transl, createUser, onCreateUser, values, setValues, valuesRef, errors, setErrors, errRef, onValidate,
+        transl, createUser, values, setValues, valuesRef, errors, setErrors, errRef, onValidate,
         mappedCreateUser
     }
 }
@@ -76,18 +87,26 @@ const useGetState = () => {
 const validatePasswordConfirm = (state: ReturnType<typeof useGetState>) => {
     const {valuesRef, errRef, transl, setErrors} = state
     const beforeErr = errRef.current.errors.passwordConfirm
-    if (beforeErr) {
+
+    const isMatchErr = errRef.current.errors.passwordConfirm === transl.passMatchErr
+
+    if (beforeErr && !isMatchErr) {
         return
     }
-    if (valuesRef.current.passwordConfirm !== valuesRef.current.password) {
+
+    const arePassEqual = valuesRef.current.passwordConfirm === valuesRef.current.password
+
+    if (!arePassEqual && !isMatchErr) {
         errRef.current.errors.passwordConfirm = transl.passMatchErr
-    }
-    const afterRrr = errRef.current.errors.name
-    if (!beforeErr && afterRrr) {
         errRef.current.count++
     }
-    if (beforeErr && !afterRrr) {
+
+    if(arePassEqual && isMatchErr) {
+        errRef.current.errors.passwordConfirm = ''
         errRef.current.count--
     }
-    setErrors({...valuesRef.current})
+
+    if (beforeErr !== errRef.current.errors.passwordConfirm) {
+        setErrors({...errRef.current.errors})
+    }
 }

@@ -4,11 +4,12 @@ import {InputProps} from 'app/[locale]/_common/components/input-v2/input.types'
 import {InputEvent} from 'app/[locale]/_common/components/input-v2/input.types'
 import {InputValues} from 'app/[locale]/_common/components/input-v2/input.types'
 import {ChangeValue} from 'app/[locale]/_common/components/input-v2/input.types'
+import {ChangeEvent} from 'react'
 
 const useInput = <N extends string, V extends string | number> (props: InputProps<N, V>) => {
 
-    const onChange = (event: InputEvent) => {
-        let {value, name}: {value: string | number, name: string} = event.target
+    const onChange = (event: {currentTarget: {value: string, name: string}}) => {
+        let {value, name}: {value: string | number, name: string} = event.currentTarget
         if (typeof props.value === 'number') {
             value = +value
         }
@@ -18,10 +19,20 @@ const useInput = <N extends string, V extends string | number> (props: InputProp
     const [focused, setFocused] = useState(false)
 
     const onFocus = () => {
-        setFocused(!focused)
+        setFocused(true)
+        if (props.onFocus) {
+            props.onFocus({name: props.name})
+        }
     }
 
-    return {onChange, focused, onFocus}
+    const onBlur = () => {
+        setFocused(false)
+        if (props.onBlur) {
+            props.onBlur({name: props.name})
+        }
+    }
+
+    return {onChange, focused, onFocus, onBlur}
 }
 
 export default useInput

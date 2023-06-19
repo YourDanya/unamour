@@ -11,28 +11,28 @@ import {FC} from 'react'
 
 const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
     const {
-        transl, values, inputRef, setPhotos, onChange, onAddPhoto, onRating, photos, isAdmin
+        transl, values, inputRef, setPhotos, onChange, onAddPhoto, onRating, photos, isAdmin, rating, errors
     } = props
 
     return (
         <div className={'review-form-block form review-form-main main'}>
             {!isAdmin && (
-                <>
-                    <div className={'form__subtitle'}>
-                        {transl.subtitle}
-                    </div>
-                </>
+                <div className={'form__subtitle'}>
+                    {transl.subtitle}
+                </div>
             )}
             <div className={'form__label form__label--required'}>
                 {transl.rating}
             </div>
             <div className={'main__rating-stars'}>
-                {getStarsArr(5).map((elem, index) => (
+                {getStarsArr(rating).map((elem, index) => (
                     <Star
                         key={index}
                         className={'main__star'}
                         rating={elem}
+                        data-value={index + 1}
                         onClick={onRating}
+                        onMouseEnter={onRating}
                     />
                 ))}
             </div>
@@ -44,6 +44,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 name={'title'}
                 value={values.title}
                 onChange={onChange}
+                error={errors.title}
             />
             <Description className={'form__descr'}>
                 {transl.inputs.title.descr}
@@ -52,10 +53,11 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 {transl.inputs.review.label}
             </label>
             <Input
-                className={'form__input'}
+                className={'form__input form__textarea'}
                 type={'textarea'}
                 name={'review'}
                 value={values.review}
+                error={errors.review}
                 onChange={onChange}
             />
             <Description className={'form__descr'}>

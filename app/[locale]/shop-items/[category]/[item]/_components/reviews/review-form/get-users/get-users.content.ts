@@ -5,7 +5,9 @@ export const dictionry = {
             label: 'Ім\'я',
             descr: 'Ви можете знайти юзера по імені, або залишити поле пустим'
         },
-        success: 'Отримано юзерів'
+        success: 'Отримано юзерів',
+        userName: 'Ім\'я',
+        userEmail: 'Email'
     },
     eng: {
         getUsers: 'Get users',
@@ -14,6 +16,8 @@ export const dictionry = {
             descr: 'You can find user by nanme'
         },
         success: 'Users received',
+        userName: 'Name',
+        userEmail: 'Email',
     },
     ru: {
         getUsers: 'Отримати користувачів',
@@ -21,6 +25,8 @@ export const dictionry = {
         name: {
             label : 'Имя',
             descr: 'Вы можете найти юзера по имени'
-        }
+        },
+        userName: 'Имя',
+        userEmail: 'Email'
     }
 }

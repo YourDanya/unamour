@@ -2,14 +2,14 @@ import {FC} from 'react'
 import {StarProps} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.types'
 
 const Star: FC<StarProps> = (props) => {
-    const {rating, onClick, className} = props
+    const {rating, className, ...otherProps} = props
 
     return (
         <svg
             className={`star ${className ?? ''}`}
             viewBox="0 0 15 15"
             xmlns="http://www.w3.org/2000/svg"
-            onClick={onClick}
+            {...otherProps}
         >
             <path
                 className="star__outline"

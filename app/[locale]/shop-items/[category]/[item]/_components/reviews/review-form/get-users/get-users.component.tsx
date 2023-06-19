@@ -5,9 +5,11 @@ import useGetUsers
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/get-users/get-users.hook'
 import Description
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.component'
+import {User} from 'app/[locale]/_store/user/user.types'
 
 const GetUsers = () => {
-    const {transl, onGetUsers, getUsers, searchName, mappedGetUsers, onChange} = useGetUsers()
+    const state = useGetUsers()
+    const {transl, onGetUsers, getUsers, searchName, mappedGetUsers, onChange, users} = state
 
     return (
         <div className={'review-form-block form review-form-get-users get-users'}>
@@ -34,8 +36,40 @@ const GetUsers = () => {
                 error={mappedGetUsers.error}
                 success={mappedGetUsers.success}
             />
+            <Users {...state}/>
         </div>
     )
 }
 
 export default GetUsers
+
+const Users = (props: ReturnType<typeof useGetUsers>) => {
+    const {users, transl} = props
+
+    return (
+        <>
+            {users && (
+                <div className={'review-form-users users'}>
+                    <div className={'users__row'}>
+                        <div className={'users__cell users__cell--names users__name'}>
+                            {transl.userName}
+                        </div>
+                        <div className={'users__cell users__cell--names users__email'}>
+                            {transl.userEmail}
+                        </div>
+                    </div>
+                    {users.map(user => (
+                        <div className={'users__row'} key={user.email}>
+                            <div className={'users__cell users__name'}>
+                                {user.name}
+                            </div>
+                            <div className={'users__cell users__email'}>
+                                {user.email}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </>
+    )
+}

@@ -24,16 +24,17 @@ export const useValidateInput: UseValidateInput = (params) => {
     const onValidate: OnValidate<keyof typeof errors> = useCallback((name, value) => {
         const beforeError = errRef.current.errors[name]
         const error = validate({value, name, validations: validations[name]}, locale)
-        if (errRef.current.errors[name] && !error) {
+        if (beforeError && !error) {
             errRef.current.count -= 1
         }
-        if (!errRef.current.errors[name] && error) {
+        if (!beforeError && error) {
             errRef.current.count += 1
         }
         errRef.current.errors[name] = error
         if (beforeError !== error && validateCallback) {
             validateCallback(errRef.current.errors)
         }
+        console.log('errRef.current.errors')
     }, [])
 
     return {onValidate, errRef}

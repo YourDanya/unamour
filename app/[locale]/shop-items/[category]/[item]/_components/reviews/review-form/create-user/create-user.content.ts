@@ -9,7 +9,10 @@ export const dictionary = {
             password: {label: 'Пароль'},
             passwordConfirm: {label: 'Підтвердження пароля'}
         },
-        passMatchErr: 'пароль і підвтерждення пароля не співпадають'
+        passMatchErr: 'пароль і підвтерждення пароля не співпадають',
+        errorFour: {
+            'User with provided email already exists': 'Користувач із вказаною електронною адресою вже існує'
+        }
     },
     eng: {
         createUser: 'Create user',
@@ -21,7 +24,10 @@ export const dictionary = {
             password: {label: 'Password'},
             passwordConfirm: {label: 'Password confirmation'}
         },
-        passMatchErr: 'password and password confirm do not match'
+        passMatchErr: 'password and password confirm do not match',
+        errorFour: {
+            'User with provided email already exists': 'User with provided email already exists'
+        }
     },
     ru: {
         createUser: 'Создать пользователя',
@@ -33,7 +39,10 @@ export const dictionary = {
             password: {label: 'Пароль'},
             passwordConfirm: {label: 'Подтверждение пароля'}
         },
-        passMatchErr: 'Пароль и подтвреждение пароля не совпадают'
+        passMatchErr: 'Пароль и подтвреждение пароля не совпадают',
+        errorFour: {
+            'User with provided email already exists': 'Пользователь с указанным адресом электронной почты уже существует'
+        }
     }
 }
 

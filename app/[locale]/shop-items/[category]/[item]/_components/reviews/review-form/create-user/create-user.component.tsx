@@ -8,7 +8,7 @@ import Input from 'app/[locale]/_common/components/input-v2/input.component'
 
 const CreateUser = () => {
     const {
-        onCreateUser, transl, mappedCreateUser, createUser, onChange, errors, values
+        onCreateUser, transl, mappedCreateUser, createUser, onChange, errors, values, onBlur
     } = useCreateUser()
 
     return (
@@ -24,6 +24,7 @@ const CreateUser = () => {
                 onChange={onChange}
                 value={values.name}
                 error={errors.name}
+                onBlur={onBlur}
                 name={'name'}
             />
             <label className={'form__label form__label--required'} htmlFor={'email'}>
@@ -34,6 +35,7 @@ const CreateUser = () => {
                 onChange={onChange}
                 value={values.email}
                 error={errors.email}
+                onBlur={onBlur}
                 name={'email'}
             />
             <label className={'form__label form__label--required'} htmlFor={'password'}>
@@ -44,6 +46,7 @@ const CreateUser = () => {
                 onChange={onChange}
                 value={values.password}
                 error={errors.password}
+                onBlur={onBlur}
                 name={'password'}
                 type={'password'}
             />
@@ -55,6 +58,7 @@ const CreateUser = () => {
                 onChange={onChange}
                 value={values.passwordConfirm}
                 error={errors.passwordConfirm}
+                onBlur={onBlur}
                 name={'passwordConfirm'}
                 type={'password'}
             />

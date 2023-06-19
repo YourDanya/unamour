@@ -5,12 +5,14 @@ import {useState} from 'react'
 import {dictionry} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/get-users/get-users.content'
 import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
 import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useEffect} from 'react'
+import {User} from 'app/[locale]/_store/user/user.types'
 
 const useGetUsers = () => {
     const transl = useLocale(dictionry)
 
     const [searchName, setSearchName] = useState('')
-    const getUsers = useApiCall('users')
+    const getUsers = useApiCall<{users: User[]}>('users')
 
     const onGetUsers: MouseAction = (event) => {
         event.preventDefault()
@@ -23,7 +25,9 @@ const useGetUsers = () => {
 
     const mappedGetUsers = useMapApiRes({res: getUsers, successTransl: transl.success})
 
-    return {getUsers, onGetUsers, searchName, transl, mappedGetUsers, onChange}
+    const users = getUsers.data?.users
+
+    return {getUsers, onGetUsers, searchName, transl, mappedGetUsers, onChange, users}
 }
 
 export default useGetUsers

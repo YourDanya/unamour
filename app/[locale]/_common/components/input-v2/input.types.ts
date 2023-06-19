@@ -7,8 +7,11 @@ export type InputProps<N extends string, V extends string | number> = {
     type?: string,
     className: string,
     value: V,
-    onChange: (value: ChangeValue<Record<N, V>>) => void
+    onChange: (value: ChangeValue<Record<N, V>>) => void,
+    onFocus?: (params: {name: N}) => void,
+    onBlur?: (params: {name: N}) => void
 }
+
 
 export type InputEvent = {
     target: {name: string, value: string}
