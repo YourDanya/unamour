@@ -16,10 +16,14 @@ import CreateUser
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.component'
 import AttachUser
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/attach-user/attach-user.component'
+import {FC} from 'react'
+import {
+    ReviewFormProps
+} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.types'
 
-const ReviewForm = () => {
-    const state = useReviewForm()
-    const {transl, isAdmin, onSubmit} = state
+const ReviewForm: FC<ReviewFormProps> = (props) => {
+    const state = useReviewForm(props)
+    const {main: {transl}, admin: {isAdmin}, global: {onSubmit}} = state
 
     return (
         <form className={'review-form form'}>

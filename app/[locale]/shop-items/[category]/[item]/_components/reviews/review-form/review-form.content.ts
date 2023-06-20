@@ -21,6 +21,7 @@ export const dictionary = {
                 descr: 'Ви можете ввести email того юзера, від імені якого буде відправлено коментар'
             }
         },
+        success: 'Відгук створено',
         addPhoto: 'Додати фото',
         submit: 'Відправити'
     },
@@ -46,6 +47,7 @@ export const dictionary = {
                 descr: 'You can enter the email of the user on whose behalf the comment will be sent'
             }
         },
+        success: 'Review created',
         addPhoto: 'Add photo',
         submit: 'Submit'
     },
@@ -71,6 +73,7 @@ export const dictionary = {
                 descr: 'Вы можете ввести email того юзера, от имени которого будет отправлен комментарий'
             }
         },
+        success: 'Отзыв создано',
         addPhoto: 'Добавить фото',
         submit: 'отправить'
     }

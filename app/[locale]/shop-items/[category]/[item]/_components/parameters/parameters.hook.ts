@@ -6,7 +6,7 @@ import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
 import {Color} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 
 const useParameters = (props: ParametersProps) => {
-    const {variants, color} = props
+    const {variants, color, showModal} = props
     const [transl] = useLocale(parametersContent)
     const colors = useLocale(colorContent)
 
@@ -21,7 +21,11 @@ const useParameters = (props: ParametersProps) => {
         return {code: colors[1][index].code, transl: colors[0][index]}
     }, [color])
 
-    return {transl, colorCodes, currentColor}
+    const onShowModal = () => {
+        showModal('size')
+    }
+
+    return {transl, colorCodes, currentColor, onShowModal}
 }
 
 export default useParameters

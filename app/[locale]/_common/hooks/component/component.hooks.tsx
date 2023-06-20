@@ -33,7 +33,7 @@ export const useModal: UseModal = (_initState, attribute = 'name') => {
         setModalState(newState)
     }
 
-    const showModal = (event: React.MouseEvent<HTMLElement> | string) => {
+    const showModal = (event: MouseEvent<HTMLElement> | string) => {
         const newState: typeof modalState = {} as typeof modalState
 
         for (let prop in modalState) {

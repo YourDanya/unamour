@@ -46,7 +46,15 @@ export const useShopItem = (props: FetchedItem) => {
         setCurrentVariant(variant)
     }
 
-    const [modalState, showModal, hideModal] = useModal({ size: false, present: false})
+    const [modalState, setModalState] = useState({size: false, present: false, modal: false})
+
+    const showModal = (prop: string) => {
+        setModalState({...modalState, [prop]: true})
+    }
+
+    const hideModal = () => {
+        setModalState({size: false, present: false, modal: false})
+    }
 
     const cartItemRef = useRef<CartItem>({} as CartItem)
 

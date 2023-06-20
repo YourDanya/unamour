@@ -11,8 +11,9 @@ import ReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/re
 import Star from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.component'
 
 const Reviews: FC<ReviewsProps> = (props) => {
+    const {color, _id} = props
     const {
-        reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm, isAdmin
+        reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm, isAdmin,
     } = useReviews(props)
 
     return (
@@ -51,7 +52,7 @@ const Reviews: FC<ReviewsProps> = (props) => {
                 active={showForm}
                 hideModal={onHideModal}
             >
-                <ReviewForm/>
+                <ReviewForm color={color} shopItemId={_id}/>
             </ModalContent>
             <Modal active={showForm} hideModal={onHideModal}/>
         </div>

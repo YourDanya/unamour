@@ -10,8 +10,11 @@ import useReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components
 import {FC} from 'react'
 
 const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
+
     const {
-        transl, values, inputRef, setPhotos, onChange, onAddPhoto, onRating, photos, isAdmin, rating, errors
+        main: {transl, values, inputRef, setPhotos, onChange, photos, rating, errors},
+        global: {onAddPhoto, onRating},
+        admin: {isAdmin}
     } = props
 
     return (

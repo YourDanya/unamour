@@ -34,7 +34,6 @@ export const useValidateInput: UseValidateInput = (params) => {
         if (beforeError !== error && validateCallback) {
             validateCallback(errRef.current.errors)
         }
-        console.log('errRef.current.errors')
     }, [])
 
     return {onValidate, errRef}

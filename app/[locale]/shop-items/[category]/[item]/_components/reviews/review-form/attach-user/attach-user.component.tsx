@@ -6,7 +6,7 @@ import Description
 import Input from 'app/[locale]/_common/components/input-v2/input.component'
 
 const AttachUser = (props: ReturnType<typeof useReviewForm>) => {
-    const {onAdminChange, adminValues, transl} = props
+    const {admin: { onAdminChange, adminValues, adminErrors}, main: {transl}} = props
 
     return (
         <div className={'review-form-block form attach-user'}>
@@ -18,6 +18,7 @@ const AttachUser = (props: ReturnType<typeof useReviewForm>) => {
                 name={'email'}
                 value={adminValues.email}
                 onChange={onAdminChange}
+                error={adminErrors.email}
             />
             <Description className={'attach-user__descr'}>
                 {transl.inputs.email.descr}

@@ -11,30 +11,38 @@ import {
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useValidateInput} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
-import {validations} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
-import {adminValidations} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
+import {
+    validations
+} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
+import {
+    adminValidations
+} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
 import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {
+    ReviewFormProps
+} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.types'
 
-const useReviewForm = () => {
-    const mainState = useGetState()
+const useReviewForm = (props: ReviewFormProps) => {
+    const mainState = useMainState(props)
+    const {main: { inputRef, setRating, validateAll}} = mainState
 
-    const {valuesRef, setValues, values, inputRef, setRating} = mainState
+    const adminState = useAdminState(mainState)
+    const {admin: {validateAll: adminValidateAll}} = adminState
 
-    const adminState = useGetAdminState()
-    const {adminValues, adminValuesRef, setAdminValues} = adminState
-
-    const {createReview} = useApiState({...mainState, ...adminState})
+    const apiState = useApiState(adminState)
 
     const onRating: MouseAction = (event) => {
         const rating = +(event.currentTarget.getAttribute('data-value') as string)
         setRating(rating)
     }
-
+    
     const onSubmit: MouseAction = (event) => {
         event.preventDefault()
-        const valid = validate({...mainState, ...adminState})
-        if (valid) {
-            createReview.start()
+        const validMain = validateAll()
+        const validAdmin = adminValidateAll()
+        if (validMain && validAdmin) {
+            createBodyAndSend(apiState)
         }
     }
 
@@ -44,28 +52,27 @@ const useReviewForm = () => {
     }
 
     return {
-       ...mainState, ...adminState, onRating, onSubmit, onAddPhoto
+        ...apiState, global: {onRating, onSubmit, onAddPhoto}
     }
 }
 
 export default useReviewForm
 
-const useGetState = () => {
+const useMainState = (props: ReviewFormProps) => {
     const [values, setValues] = useState({...initValues})
     const [errors, setErrors] = useState({...initValues})
     const transl = useLocale(dictionary)
     const valuesRef = useRef(values)
     const inputRef = useRef<HTMLInputElement | null>(null)
 
-    const isAdmin = useUserStore(state => state.user?.isAdmin ?? false)
-
     const [rating, setRating] = useState(5)
     const [photos, setPhotos] = useState<File[]>([])
 
     const {onValidate, errRef} = useValidateInput({
-        validations, errors, validateCallback: (errors) => {
-            setErrors(errors)
-        }}
+            validations, errors, validateCallback: (errors) => {
+                setErrors(errors)
+            }
+        }
     )
 
     const onChange = ({value, name}: ChangeValue<typeof values>) => {
@@ -74,13 +81,25 @@ const useGetState = () => {
         onValidate(name, value)
     }
 
-    return {
-        values, setValues, errors, setErrors, transl, valuesRef, inputRef, isAdmin, rating, setRating, photos,
-        setPhotos, errRef, onValidate, onChange
+    const validateAll = () => {
+        getEntries(values).forEach(([key, value]) => {
+            onValidate(key, value)
+        })
+        return errRef.current.count === 0
     }
+
+    const main = {
+        values, setValues, errors, setErrors, transl, valuesRef, inputRef, rating, setRating, photos,
+        setPhotos, onChange, validateAll
+    }
+
+    return {props, main}
 }
 
-const useGetAdminState = () => {
+const useAdminState = (state: ReturnType<typeof useMainState>) => {
+
+    const isAdmin = useUserStore(state => state.user?.isAdmin ?? false)
+
     const [adminValues, setAdminValues] = useState({...adminInitValues})
     const adminValuesRef = useRef(adminValues)
     const [adminErrors, setAdminErrors] = useState({...adminInitValues})
@@ -97,46 +116,68 @@ const useGetAdminState = () => {
         onAdminValidate(name, value)
     }
 
-    return {
-        adminValues, setAdminValues, adminValuesRef, onAdminChange, adminErrRef, onAdminValidate
+    const validateAll = () => {
+        if (!isAdmin) {
+            return true
+        }
+        getEntries(adminValues).forEach(([key, value]) => {
+            onAdminValidate(key, value)
+        })
+        return adminErrRef.current.count === 0
     }
+
+    const admin = {
+        adminValues, setAdminValues, adminValuesRef, validateAll, isAdmin, onAdminChange, adminErrors
+    }
+
+    return {...state, admin}
 }
 
-const useApiState = (params: ReturnType<typeof useGetState> & ReturnType<typeof useGetAdminState>) => {
-    const {values, isAdmin, adminValues, setValues, setAdminValues} = params
-
-    let body = {...values}
-
-    if (isAdmin) {
-        body = {...body, ...adminValues}
-    }
-
-    const createReview = useApiCall('users/review', {
+const useApiState = (state: ReturnType<typeof useAdminState>) => {
+    const {
+        main: {values, setValues, transl},
+        admin: {setAdminValues, isAdmin, adminValues},
+        props: {shopItemId, color}
+    } = state
+    
+    const createReview = useApiCall(`review/${shopItemId}/${color}`, {
         method: 'POST',
-        body,
         onSuccess: () => {
             setValues({...initValues})
             setAdminValues({...adminInitValues})
         }
     })
 
-    return {createReview}
+    const mappedCreateReview = useMapApiRes({
+        res: createReview, successTransl: transl.success
+    })
+
+    return {...state, api: {createReview}}
 }
 
-const validate = (state: ReturnType<typeof useGetState> & ReturnType<typeof useGetAdminState>) => {
-    const {values, onValidate, onAdminValidate, isAdmin, errRef, adminValues, adminErrRef} = state
+const createBodyAndSend = (state: ReturnType<typeof useApiState>) => {
 
-    getEntries(values).forEach(([key, value]) => {
-        onValidate(key, value)
-    })
+    const {
+        main: {values, rating, photos}, 
+        admin: {isAdmin,  adminValues},
+        api: {createReview}
+    } = state
 
-    if (!isAdmin) {
-        return errRef.current.count === 0
+    let body = {...values, rating}
+
+    if (isAdmin) {
+        body = {...body, ...adminValues}
     }
 
-    getEntries(adminValues).forEach(([key, value]) => {
-        onAdminValidate(key, value)
+    const data = new FormData()
+
+    Object.entries({...body, ...photos}).forEach(([key, value]) => {
+        if (typeof value === 'string' || typeof value === 'object') {
+            data.append(key, value)
+        } else {
+            data.append(key, value.toString())
+        }
     })
 
-    return errRef.current.count === 0
+    createReview.start(data)
 }

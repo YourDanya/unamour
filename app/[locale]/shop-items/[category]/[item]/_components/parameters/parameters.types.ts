@@ -6,7 +6,7 @@ export type ParametersProps = {
     price: string,
     sizes: string[],
     activeSize: string | null,
-    showModal: MouseAction,
+    showModal: (param: string) => void,
     onActiveSize: MouseAction,
     onActiveColor: MouseAction,
     color: string,

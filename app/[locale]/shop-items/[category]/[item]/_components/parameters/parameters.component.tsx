@@ -3,8 +3,8 @@ import {ParametersProps} from 'app/[locale]/shop-items/[category]/[item]/_compon
 import useParameters from 'app/[locale]/shop-items/[category]/[item]/_components/parameters/parameters.hook'
 
 const Parameters: FC<ParametersProps> = (props) => {
-    const {name, oldPrice, price, sizes, showModal, activeSize, onActiveSize, color, onActiveColor} = props
-    const {transl, colorCodes, currentColor} = useParameters(props)
+    const {name, oldPrice, price, sizes, activeSize, onActiveSize, color, onActiveColor} = props
+    const {transl, colorCodes, currentColor, onShowModal} = useParameters(props)
 
     return (
         <>
@@ -21,7 +21,7 @@ const Parameters: FC<ParametersProps> = (props) => {
             <div className="shop-item__sizes">
                 <div className="shop-item__sizes-top">
                     <div className="shop-item__sizes-label">{transl.sizes}</div>
-                    <button className="shop-item__sizes-choose" name={'size'} onClick={showModal}>
+                    <button className="shop-item__sizes-choose" name={'size'} onClick={onShowModal}>
                         {transl.chooseSize}
                     </button>
                 </div>

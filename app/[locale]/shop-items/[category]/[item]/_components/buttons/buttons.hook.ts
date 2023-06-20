@@ -36,7 +36,7 @@ const useButtons = (props: ButtonsProps) => {
 
     const onPresentClick: MouseAction = (event) => {
         if (activeSize) {
-            showModal(event)
+            showModal('present')
         } else {
             setIsPresent(false)
         }
