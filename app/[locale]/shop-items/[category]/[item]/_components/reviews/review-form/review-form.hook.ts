@@ -67,6 +67,7 @@ const useMainState = (props: ReviewFormProps) => {
 
     const [rating, setRating] = useState(5)
     const [photos, setPhotos] = useState<File[]>([])
+    const [reset, setReset] = useState(false)
 
     const {onValidate, errRef} = useValidateInput({
             validations, errors, validateCallback: (errors) => {
@@ -88,16 +89,20 @@ const useMainState = (props: ReviewFormProps) => {
         return errRef.current.count === 0
     }
 
+    const onBlur = ({name}: {name: keyof typeof values}) => {
+        onValidate(name, valuesRef.current[name])
+        setErrors({...errRef.current.errors})
+    }
+
     const main = {
         values, setValues, errors, setErrors, transl, valuesRef, inputRef, rating, setRating, photos,
-        setPhotos, onChange, validateAll
+        setPhotos, onChange, validateAll, onBlur, reset, setReset
     }
 
     return {props, main}
 }
 
 const useAdminState = (state: ReturnType<typeof useMainState>) => {
-
     const isAdmin = useUserStore(state => state.user?.isAdmin ?? false)
 
     const [adminValues, setAdminValues] = useState({...adminInitValues})
@@ -126,8 +131,13 @@ const useAdminState = (state: ReturnType<typeof useMainState>) => {
         return adminErrRef.current.count === 0
     }
 
+    const onAdminBlur = ({name}: {name: keyof typeof adminValues}) => {
+        onAdminValidate(name, adminValuesRef.current[name])
+        setAdminErrors({...adminErrRef.current.errors})
+    }
+
     const admin = {
-        adminValues, setAdminValues, adminValuesRef, validateAll, isAdmin, onAdminChange, adminErrors
+        adminValues, setAdminValues, adminValuesRef, validateAll, isAdmin, onAdminChange, adminErrors, onAdminBlur
     }
 
     return {...state, admin}
@@ -135,16 +145,21 @@ const useAdminState = (state: ReturnType<typeof useMainState>) => {
 
 const useApiState = (state: ReturnType<typeof useAdminState>) => {
     const {
-        main: {values, setValues, transl},
-        admin: {setAdminValues, isAdmin, adminValues},
+        main: {values, setValues, transl, valuesRef, setRating, setPhotos, setReset},
+        admin: {setAdminValues, isAdmin, adminValues, adminValuesRef},
         props: {shopItemId, color}
     } = state
-    
+
     const createReview = useApiCall(`review/${shopItemId}/${color}`, {
         method: 'POST',
         onSuccess: () => {
-            setValues({...initValues})
-            setAdminValues({...adminInitValues})
+            valuesRef.current = {...initValues}
+            setValues(valuesRef.current)
+            adminValuesRef.current = {...adminInitValues}
+            setAdminValues(adminValuesRef.current)
+            setRating(5)
+            setPhotos([])
+            setReset(true)
         }
     })
 
@@ -152,11 +167,10 @@ const useApiState = (state: ReturnType<typeof useAdminState>) => {
         res: createReview, successTransl: transl.success
     })
 
-    return {...state, api: {createReview}}
+    return {...state, api: {createReview, mappedCreateReview}}
 }
 
 const createBodyAndSend = (state: ReturnType<typeof useApiState>) => {
-
     const {
         main: {values, rating, photos}, 
         admin: {isAdmin,  adminValues},

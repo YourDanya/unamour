@@ -12,7 +12,7 @@ import {FC} from 'react'
 const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
 
     const {
-        main: {transl, values, inputRef, setPhotos, onChange, photos, rating, errors},
+        main: {transl, values, onChange, photos, rating, errors, onBlur},
         global: {onAddPhoto, onRating},
         admin: {isAdmin}
     } = props
@@ -47,6 +47,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 name={'title'}
                 value={values.title}
                 onChange={onChange}
+                onBlur={onBlur}
                 error={errors.title}
             />
             <Description className={'form__descr'}>
@@ -60,6 +61,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 type={'textarea'}
                 name={'review'}
                 value={values.review}
+                onBlur={onBlur}
                 error={errors.review}
                 onChange={onChange}
             />
@@ -70,7 +72,7 @@ const Main: FC<ReturnType<typeof useReviewForm>> = (props) => {
                 {transl.inputs.photos.label}
             </div>
             <Photos
-                inputRef={inputRef} setPhotos={setPhotos}
+                {...props}
             />
             <Button className={'main__photo-btn'} onClick={onAddPhoto}>
                 <Photo className={'main__photo-icon'}/>

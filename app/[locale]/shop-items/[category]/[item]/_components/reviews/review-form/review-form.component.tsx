@@ -20,10 +20,16 @@ import {FC} from 'react'
 import {
     ReviewFormProps
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.types'
+import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
 
 const ReviewForm: FC<ReviewFormProps> = (props) => {
     const state = useReviewForm(props)
-    const {main: {transl}, admin: {isAdmin}, global: {onSubmit}} = state
+    const {
+        main: {transl},
+        admin: {isAdmin},
+        global: {onSubmit},
+        api: {mappedCreateReview}
+    } = state
 
     return (
         <form className={'review-form form'}>
@@ -41,9 +47,15 @@ const ReviewForm: FC<ReviewFormProps> = (props) => {
             <Button
                 className={'form__button'}
                 onClick={onSubmit}
+                loading={mappedCreateReview.loading}
             >
                 {transl.submit}
             </Button>
+            <FormMessage
+                className={'form__message'}
+                success={mappedCreateReview.success}
+                error={mappedCreateReview.error}
+            />
         </form>
     )
 }

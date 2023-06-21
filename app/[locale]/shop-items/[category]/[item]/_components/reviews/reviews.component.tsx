@@ -20,7 +20,7 @@ const Reviews: FC<ReviewsProps> = (props) => {
         <div className={'reviews'}>
             <div className={'reviews__top'}>
                 <div className={'reviews__title'}>
-                    {transl.title} ({reviewsNum ?? 0})
+                    {transl.title} ({reviews?.length ?? 0})
                 </div>
                 {rating && (
                     <div className={'reviews__rating'}>

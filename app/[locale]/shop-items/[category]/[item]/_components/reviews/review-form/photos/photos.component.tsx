@@ -8,9 +8,10 @@ import usePhotos from 'app/[locale]/shop-items/[category]/[item]/_components/rev
 import {
     PhotosProps
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.types'
+import useReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.hook'
 
-const Photos: FC<PhotosProps> = (props) => {
-    const {inputRef} = props
+const Photos: FC<ReturnType<typeof useReviewForm>> = (props) => {
+    const {main: {inputRef}} = props
     const {onSelect, urls, onRemove} = usePhotos(props)
 
     return (

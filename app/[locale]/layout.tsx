@@ -100,6 +100,7 @@ import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-for
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/get-users/get-users.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/attach-user/attach-user.styles.sass'
+import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.styles.sass'
 
 import {ReactNode} from 'react'
 import {Metadata} from 'next/dist/lib/metadata/types/metadata-interface'

@@ -6,28 +6,27 @@ import {ChangeEvent} from 'react'
 import {useEffect} from 'react'
 import {MouseAction} from 'app/[locale]/_common/types/types'
 import {MouseEvent} from 'react'
+import useReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.hook'
 
-const usePhotos = (props: PhotosProps) => {
-    const {setPhotos} = props
+const usePhotos = (props: ReturnType<typeof useReviewForm>) => {
+    const {main: {setPhotos, photos, reset, setReset}} = props
     const [urls, setUrls] = useState<string[]>([])
 
     const onSelect = (event: ChangeEvent<HTMLInputElement>) => {
-        const newFiles = event.currentTarget.files ?? []
+        const newPhotos = event.currentTarget.files ?? []
         const newUrls: string[] = []
-        setPhotos(files => {
-            const leftToAdd = 5 - files.length
-            let num = Math.min(newFiles.length, leftToAdd)
-            for (let i = 0; i < num; i++) {
-                files.push(newFiles[i])
-                newUrls.push(URL.createObjectURL(newFiles[i]))
-            }
-            if (num === 5) {
-                return files
-            }
-            return [...files]
-        })
 
-        setUrls(urls => [...urls, ...newUrls])
+        let num = 0
+        const leftToAdd = 5 - photos.length
+        num = Math.min(newPhotos.length, leftToAdd)
+        
+        for (let i = 0; i < num; i++) {
+            photos.push(newPhotos[i])
+            urls.push(URL.createObjectURL(newPhotos[i]))
+        }
+
+        setPhotos([...photos])
+        setUrls([...urls])
     }
 
     const onRemove = (event: MouseEvent) => {
@@ -51,6 +50,17 @@ const usePhotos = (props: PhotosProps) => {
             })
         }
     }, [])
+
+    useEffect(() => {
+        if (!reset) {
+            return
+        }
+        urls.forEach(url => {
+            URL.revokeObjectURL(url)
+        })
+        setUrls([])
+        setReset(false)
+    }, [reset])
 
     return {onSelect, urls, onRemove}
 }

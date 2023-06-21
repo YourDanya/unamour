@@ -12,7 +12,7 @@ import {useReviewsStore} from 'app/[locale]/shop-items/[category]/[item]/_compon
 const useReviews = (props: ReviewsProps) => {
     const {color, _id} = props
     const [transl] = useLocale(reviewsContent)
-    const {data, start} = useApiCall<{reviews: Review[], reviewsNum: number, rating: number}>(`reviews/${_id}/${color}`)
+    const {data, start} = useApiCall<{reviews: Review[], reviewsNum: number, rating: number}>(`review/${_id}/${color}`)
     const {reviews, reviewsNum, rating} = data ?? {}
 
     useEffect(() => {
@@ -42,6 +42,8 @@ const useReviews = (props: ReviewsProps) => {
     }
 
     const isAdmin = useUserStore(state => state.user?.isAdmin ?? false)
+
+    console.log('data', data)
 
     return {
         reviews, transl, reviewsNum, rating, onAddReview, onHideModal, showModal, showForm, isAdmin
