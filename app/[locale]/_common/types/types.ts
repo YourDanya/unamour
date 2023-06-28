@@ -128,7 +128,10 @@ export type Review = {
     title: string,
     review: string,
     date: string,
-    images: string[],
+    images: {
+        path: string,
+        url: string
+    }[],
     status: 'pending' | 'confirmed',
     rating: number,
     user: {

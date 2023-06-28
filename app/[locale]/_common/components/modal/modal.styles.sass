@@ -6,10 +6,24 @@
   top: 0
   z-index: 20
   background-color: black
-  visibility: hidden
   opacity: 0
-  transition: 0.8s all
-  &--active
-    opacity: .6
-    visibility: visible
+  transition: 0.6s opacity
+  visibility: hidden
 
+.modal--active
+  cursor: pointer
+  opacity: .6
+  .modal__button
+    width: 140px
+    height: 40px
+    opacity: 1
+    background-color: black
+    color: white
+    position: absolute
+    z-index: 100
+    top: 50%
+    left: 50%
+    transform: translateY(-50%) translateX(-50%)
+
+.modal--visible
+  visibility: visible

@@ -1,7 +1,9 @@
 .review
+  margin-bottom: 20px
   .review__top
     display: flex
     align-items: center
+    margin-bottom: 10px
   .review__rating
     margin-right: 16px
     .star
@@ -10,4 +12,55 @@
       height: 13px
   .review__info
     color: #707072
+    font-size: 14px
+  .review__title
+    font-weight: 700
+    margin-bottom: 5px
+    font-size: 13px
   .review__text
+    margin-bottom: 10px
+
+.review-images.images
+  display: flex
+  .images__preview
+    width: 64px
+    height: 64px
+    object-fit: cover
+    margin-right: 10px
+
+.review-img-modal.modal
+  transition: unset
+  padding: 0
+  width: 0
+  height: 0
+  display: flex
+  .modal__img
+    object-fit: cover
+    width: 100%
+    height: 100%
+  .modal-content__close
+    width: 25px
+    height: 25px
+    top: -27px
+    right: -27px
+    &:before, &:after
+      width: 80%
+      border-radius: 5px
+      height: 2px
+      background-color: white
+
+.review-img-modal--album.modal
+  height: auto
+  width: 70%
+
+@media (max-width: 991px)
+  .review-img-modal--album.modal
+    width: 80%
+
+@media (max-width: 576px)
+  .review-img-modal.modal
+    .modal-content__close
+      right: -5px
+
+  .review-img-modal--album.modal
+    width: 95%
