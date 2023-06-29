@@ -5,7 +5,7 @@ import {SpinnerProps} from 'app/[locale]/_common/components/spinner/spinner.type
 
 const Spinner: FC<SpinnerProps> = ({className}) => {
     return (
-        <div className={`spinner ${className?? ''}`}>
+        <div className={`spinner-v1 spinner ${className?? ''}`}>
             <div className={'spinner__content'}/>
         </div>
     )

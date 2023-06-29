@@ -1,10 +1,10 @@
-.spinner
+.spinner-v1.spinner
   height: 100%
   width: 100%
   display: flex
   justify-content: center
   align-items: center
-  &__content
+  .spinner__content
     width: 25px
     height: 25px
     border: 3px solid white
@@ -12,9 +12,10 @@
     border-top-color: transparent
     animation: spin 1s infinite
     -webkit-animation: spin 1s infinite
-    @keyframes spin
-      to
-        transform: rotate(360deg)
-    @-webkit-keyframes spin
-      to
-        -webkit-transform: rotate(360deg)
+
+@keyframes spin
+  to
+    transform: rotate(360deg)
+@-webkit-keyframes spin
+  to
+    -webkit-transform: rotate(360deg)

@@ -22,6 +22,7 @@ import 'app/[locale]/_common/components/modal-content/modal-content.styles.sass'
 import 'app/[locale]/_common/components/pagination/pagination/pagination.styles.sass'
 import 'app/[locale]/_common/components/slider/slider-v2.styles.sass'
 import 'app/[locale]/_common/components/cart-item/cart-item.styles.sass'
+import 'app/[locale]/_common/components/spinner-v2/spinner.styles.sass'
 //home
 import 'app/[locale]/_components/home.styles.sass'
 //nav layout

@@ -8,7 +8,8 @@ export type User = {
     birthDate: string,
     isAdmin: boolean,
     favorites: string[],
-    favoritesColors: string[]
+    favoritesColors: string[],
+    _id: string
 }
 
 export type UserState = {

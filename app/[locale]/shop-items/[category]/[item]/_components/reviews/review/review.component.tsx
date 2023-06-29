@@ -22,8 +22,8 @@ const Review = (props: ReviewType) => {
         <div className={'review'}>
             <div className={'review__top'}>
                 <div className={'review__rating'}>
-                    {getStarsArr(rating).map(elem => (
-                        <Star key={elem} rating={elem}/>
+                    {getStarsArr(rating).map((elem, index) => (
+                        <Star key={index} rating={elem}/>
                     ))}
                 </div>
                 <div className={'review__info'}>
@@ -51,7 +51,7 @@ const Images = (props: ReturnType<typeof useReview>) => {
     return (
         <div className={'review-images images'}>
             {images.map((image => (
-                <Button onClick={onActiveUrl} data-value={image.url}>
+                <Button onClick={onActiveUrl} data-value={image.url} key={image.url}>
                     <img
                         className={'images__preview'}
                         src={image.url}

@@ -135,6 +135,7 @@ export type Review = {
     status: 'pending' | 'confirmed',
     rating: number,
     user: {
-        name: string
+        name: string,
+        _id: string
     }
 }
