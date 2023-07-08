@@ -24,6 +24,7 @@ import FormMessage from 'app/[locale]/_common/components/form-message/form-messa
 
 const ReviewForm: FC<ReviewFormProps> = (props) => {
     const state = useReviewForm(props)
+
     const {
         main: {transl},
         admin: {isAdmin},

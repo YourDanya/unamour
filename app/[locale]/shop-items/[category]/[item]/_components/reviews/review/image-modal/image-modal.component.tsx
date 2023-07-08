@@ -3,7 +3,7 @@ import ModalContent from 'app/[locale]/_common/components/modal-content/modal-co
 import useImageModal from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/image-modal/image-modal.hook'
 
 const ImageModal = (props: ReturnType<typeof useReview>) => {
-    const {main: {activeUrl, onActiveUrl, onHideModal}} = props
+    const {activeUrl, onActiveUrl, onHideModal} = props
     const {style} = useImageModal(props)
 
     return (

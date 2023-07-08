@@ -31,6 +31,6 @@ export type SliderState = {
 export type RangeSliderProps = {
     setValues: (values: {min: string, max: string}) => void,
     values: {min: string, max: string},
-    defMin: number,
-    defMax: number
+    defMin?: number,
+    defMax?: number
 }

@@ -17,8 +17,6 @@ import {useEffect} from 'react'
 import {useLayoutEffect} from 'react'
 
 export const useShopItems = (props: ShopItemsProps) => {
-    const test = useRef(performance.now())
-
     const [transl] = useLocale(shopItemsContent)
     const clothingCategories = useLocale(categoriesContent)
     const otherCategories = useLocale(otherCategoriesContent)

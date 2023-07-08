@@ -147,20 +147,31 @@ const useApiState = (state: ReturnType<typeof useAdminState>) => {
     const {
         main: {values, setValues, transl, valuesRef, setRating, setPhotos, setReset},
         admin: {setAdminValues, isAdmin, adminValues, adminValuesRef},
-        props: {shopItemId, color}
+        props: {shopItemId, color, getReviews, onHideModal, setIsAdded}
     } = state
+
+    const onSuccess = () => {
+        valuesRef.current = {...initValues}
+        setValues(valuesRef.current)
+        adminValuesRef.current = {...adminInitValues}
+        setAdminValues(adminValuesRef.current)
+        setRating(5)
+        setPhotos([])
+        setReset(true)
+        getReviews.start()
+
+        setTimeout(() => {
+            onHideModal()
+        }, 3000)
+
+        setTimeout(() => {
+            setIsAdded(true)
+        }, 3600)
+    }
 
     const createReview = useApiCall(`review/${shopItemId}/${color}`, {
         method: 'POST',
-        onSuccess: () => {
-            valuesRef.current = {...initValues}
-            setValues(valuesRef.current)
-            adminValuesRef.current = {...adminInitValues}
-            setAdminValues(adminValuesRef.current)
-            setRating(5)
-            setPhotos([])
-            setReset(true)
-        }
+        onSuccess
     })
 
     const mappedCreateReview = useMapApiRes({

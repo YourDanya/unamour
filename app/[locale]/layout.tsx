@@ -87,7 +87,11 @@ import 'app/[locale]/shop-items/[category]/[item]/_components/sizes/sizes.styles
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.styles.sass'
 //shop-items
 import 'app/[locale]/shop-items/[category]/_components/shop-items.styles.sass'
+import 'app/[locale]/shop-items/[category]/_components/_layout/layout.styles.sass'
+import 'app/[locale]/shop-items/[category]/_components/_layout/color-filter/color-filter.styles.sass'
 import 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.styles.sass'
+import 'app/[locale]/shop-items/[category]/_components/_layout/size-filter/size-filter.styles.sass'
+import 'app/[locale]/shop-items/[category]/_components/_layout/sort-filter/sort-filter.styles.sass'
 //vacancies
 import 'app/[locale]/vacancies/components/vacancies.styles.sass'
 // shop-item-preview

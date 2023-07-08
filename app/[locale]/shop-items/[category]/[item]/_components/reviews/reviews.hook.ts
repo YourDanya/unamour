@@ -9,6 +9,7 @@ import useModalStore from 'app/[locale]/_store/modal/modal.store'
 import {useState} from 'react'
 import {useReviewsStore} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/_store/reviews.store'
 import {GetReviews} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.types'
+import {useRef} from 'react'
 
 const useReviews = (props: ReviewsProps) => {
     const mainState = useGetState(props)
@@ -31,7 +32,7 @@ const useGetState = (props: ReviewsProps) => {
 
     const isAdmin = useUserStore(state => state.user?.isAdmin ?? false)
 
-    return {color, _id, transl, user, showModal, setShowForm, showForm, isAdmin, props}
+    return {color, shopItemId: _id, transl, user, showModal, setShowForm, showForm, isAdmin, props}
 }
 
 const useActions = (state: ReturnType<typeof useGetState>) => {
@@ -56,24 +57,31 @@ const useActions = (state: ReturnType<typeof useGetState>) => {
 }
 
 const useApi = (state: ReturnType<typeof useActions>) => {
-    const {_id, color, user} = state
+    const {shopItemId, color, user} = state
 
-    const {data, start} = useApiCall<GetReviews>(`review/${_id}/${color}`)
-    const {reviews, reviewsNum, rating} = data ?? {}
+    const getReviews = useApiCall<GetReviews>(`review/${shopItemId}/${color}`)
+    const {reviews, reviewsNum, rating} = getReviews.data ?? {}
 
     useEffect(() => {
-        start()
+        getReviews.start()
     }, [])
 
-    let isAdded = false
+    const [isAdded, setIsAdded] = useState(false)
+    const flagRef = useRef(false)
 
-    if (reviews && user) {
+    useEffect(() => {
+        if (!reviews || !user || flagRef.current) {
+            return
+        }
+
+        flagRef.current = true
+
         reviews.forEach(review => {
             if (review.user._id === user._id) {
-                isAdded = true
+                setIsAdded(true)
             }
         })
-    }
+    }, [user, reviews])
 
-    return {...state, data, start, reviews, reviewsNum, rating, isAdded}
+    return {...state, getReviews, reviews, reviewsNum, rating, isAdded, setIsAdded}
 }

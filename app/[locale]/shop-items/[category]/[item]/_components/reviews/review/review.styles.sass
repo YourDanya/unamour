@@ -22,6 +22,7 @@
 
 .review-images.images
   display: flex
+  margin-bottom: 5px
   .images__preview
     width: 64px
     height: 64px
@@ -52,6 +53,25 @@
 .review-img-modal--album.modal
   height: auto
   width: 70%
+
+
+.review-status.status
+  display: flex
+  margin-bottom: 5px
+  .status__label
+    margin-right: 10px
+
+.review-admin.admin
+  .admin__button
+    text-decoration: underline
+    .spinner__content
+      border-color: black
+      border-top-color: transparent
+      width: 16px
+      height: 16px
+  .admin__button--delete
+    margin-bottom: 5px
+
 
 @media (max-width: 991px)
   .review-img-modal--album.modal

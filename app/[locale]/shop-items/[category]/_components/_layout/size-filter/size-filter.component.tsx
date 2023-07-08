@@ -1,31 +1,25 @@
-import React from 'react'
+import {FC} from 'react'
 import useSizesFilter from 'app/[locale]/shop-items/[category]/_components/_layout/size-filter/size-filter.hook'
 import Checkbox from 'app/[locale]/_common/components/checkbox/checkbox.component'
+import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
+import {sizes} from 'app/[locale]/_content/size/size.content'
 
-export type SizesFilterProps = {
-    content: string[],
-    filter: string,
-    filters: string[],
-}
-
-const SizesFilter: React.FC<SizesFilterProps> = (props) => {
-
-    const {content: sizes} = props
-    const {sizeValues, onChange} = useSizesFilter(props)
+const SizesFilter: FC<FilterProps> = (props) => {
+    const {onChange, values} = useSizesFilter(props)
 
     return (
-        <>
+        <div className={'shop-items-size-filter size'}>
             {sizes.map((size, index) => (
                 <Checkbox
-                    className={`shop-items__size ${index=== sizes.length-1? 'shop-items__size--last' : ''}`}
+                    className={`size__item ${index=== sizes.length-1? 'size__item--last' : ''}`}
                     key={size}
                     name={size}
                     label={sizes[index]}
-                    value={sizeValues[size]}
+                    value={values[size]}
                     onChange={onChange}
                 />
             ))}
-        </>
+        </div>
     )
 }
 

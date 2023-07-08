@@ -12,39 +12,39 @@ const Images: FC<ImagesProps> = (props) => {
 
     return (
         <div className="shop-item__images">
-            {/*<div className="shop-item__tabs">*/}
-            {/*    {images.map(({url}, index) =>*/}
-            {/*        <button*/}
-            {/*            className={`shop-item__tab ${current===index? 'shop-item__tab--current' : ''}`}*/}
-            {/*            key={url + index}*/}
-            {/*            data-index={index}*/}
-            {/*            onClick={onTab}*/}
-            {/*        >*/}
-            {/*            <LoadImage*/}
-            {/*                height={90}*/}
-            {/*                width={90 * 3 / 4}*/}
-            {/*                quality={100}*/}
-            {/*                className='shop-item__tab-img'*/}
-            {/*                src={url}*/}
-            {/*                alt={`tab image ${index}`}*/}
-            {/*            />*/}
-            {/*        </button>*/}
-            {/*    )}*/}
-            {/*</div>*/}
-            {/*<div className="shop-item__slider" ref={elemRef}>*/}
-            {/*    <Slider current={current} setCurrent={setCurrent}>*/}
-            {/*        {images.map(({url}, index) => (*/}
-            {/*            <LoadImage*/}
-            {/*                height={height}*/}
-            {/*                src={url}*/}
-            {/*                alt={`slide image ${index}`}*/}
-            {/*                key={url + index}*/}
-            {/*                loading={'eager'}*/}
-            {/*                ratio={4 / 3}*/}
-            {/*            />*/}
-            {/*        ))}*/}
-            {/*    </Slider>*/}
-            {/*</div>*/}
+            <div className="shop-item__tabs">
+                {images.map(({url}, index) =>
+                    <button
+                        className={`shop-item__tab ${current===index? 'shop-item__tab--current' : ''}`}
+                        key={url + index}
+                        data-index={index}
+                        onClick={onTab}
+                    >
+                        <LoadImage
+                            height={90}
+                            width={90 * 3 / 4}
+                            quality={100}
+                            className='shop-item__tab-img'
+                            src={url}
+                            alt={`tab image ${index}`}
+                        />
+                    </button>
+                )}
+            </div>
+            <div className="shop-item__slider" ref={elemRef}>
+                <Slider current={current} setCurrent={setCurrent}>
+                    {images.map(({url}, index) => (
+                        <LoadImage
+                            height={height}
+                            src={url}
+                            alt={`slide image ${index}`}
+                            key={url + index}
+                            loading={'eager'}
+                            ratio={4 / 3}
+                        />
+                    ))}
+                </Slider>
+            </div>
         </div>
     )
 }

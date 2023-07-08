@@ -132,10 +132,11 @@ export type Review = {
         path: string,
         url: string
     }[],
-    status: 'pending' | 'confirmed',
+    status: 'pending' | 'accepted',
     rating: number,
     user: {
         name: string,
         _id: string
-    }
+    },
+    _id: string
 }

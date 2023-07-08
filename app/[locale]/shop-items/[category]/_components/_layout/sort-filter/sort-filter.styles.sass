@@ -1,0 +1,27 @@
+.shop-items-sort-filter.sort
+  .sort__item
+    width: 100%
+    display: flex
+    justify-content: flex-start
+    background-color: white
+    border: none
+    font-size: 10px
+    cursor: pointer
+    padding: 15px 0
+    border-bottom: 1px solid rgba(224, 224, 224, .4)
+    margin-bottom: 1px
+    position: relative
+    &:before
+      position: absolute
+      width: 10px
+      height: 10px
+      top: 50%
+      transform: translateY(-50%)
+      right: 15px
+      content: ""
+      background: url('../../../../../../../public/icons/sort-active.svg')
+      opacity: 0
+      transition: 0.4s opacity
+  .sort__item--active
+    &:before
+      opacity: 1

@@ -5,7 +5,7 @@ import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useEffect} from 'react'
 
 const useImageModal = (props: ReturnType<typeof useReview>) => {
-    const {main: {activeUrl}} = props
+    const {activeUrl} = props
 
     const state = useGetState(props)
     const {imgSizeRef} = state
@@ -20,7 +20,7 @@ const useImageModal = (props: ReturnType<typeof useReview>) => {
 export default useImageModal
 
 const useGetState = (props: ReturnType<typeof useReview>) => {
-    const {main: {activeUrl}} = props
+    const {activeUrl} = props
     const [ratioClass, setRatioClass] = useState('')
     const imgSizeRef = useRef({naturalWidth: 0, naturalHeight: 0})
     const [style, setStyle] = useState({width: '0px', height: '0px'})

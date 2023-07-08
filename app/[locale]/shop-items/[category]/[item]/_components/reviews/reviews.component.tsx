@@ -11,6 +11,7 @@ import Star from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/
 import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
 import {Review as ReviewType} from 'app/[locale]/_common/types/types'
 import {useReviewsStore} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/_store/reviews.store'
+import useReview from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.hook'
 
 const Reviews: FC<ReviewsProps> = (props) => {
     const {color, _id} = props
@@ -30,13 +31,13 @@ const Reviews: FC<ReviewsProps> = (props) => {
 
 export default Reviews
 
-const ReviewsMain = (state: ReturnType<typeof useReviews> & {reviews: ReviewType[]}) => {
-    const {isAdded, reviews, showForm, onHideModal, color, _id, transl} = state
+const ReviewsMain = (state: ReturnType<typeof useReviews> & { reviews: ReviewType[] }) => {
+    const {isAdded, reviews, showForm, onHideModal, color, transl, getReviews} = state
 
     return (
         <>
             <ReviewsTop {...state}/>
-            <ReviewsItems reviews={reviews}/>
+            <ReviewsItems {...state}/>
             {!isAdded ? (
                 <ModalContent
                     className={`reviews__modal`}
@@ -44,8 +45,7 @@ const ReviewsMain = (state: ReturnType<typeof useReviews> & {reviews: ReviewType
                     hideModal={onHideModal}
                 >
                     <ReviewForm
-                        color={color}
-                        shopItemId={_id}
+                        {...state}
                     />
                 </ModalContent>
             ) : (
@@ -89,13 +89,17 @@ const ReviewsTop = (props: ReturnType<typeof useReviews>) => {
     )
 }
 
-const ReviewsItems = (props: { reviews: ReviewType[] }) => {
-    const {reviews} = props
+const ReviewsItems = (props: ReturnType<typeof useReviews> & { reviews: ReviewType[] }) => {
+    const {reviews, getReviews} = props
 
     return (
         <div className={'reviews__items'}>
             {reviews.map(review => (
-                <Review key={review.title} {...review}/>
+                <Review
+                    key={review.title}
+                    {...review}
+                    getReviews={getReviews}
+                />
             ))}
         </div>
     )
