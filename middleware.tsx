@@ -6,6 +6,8 @@ const locales = ['ua', 'eng', 'ru']
 
 export function middleware (request: NextRequest) {
     const pathname = request.nextUrl.pathname
+    const searchUrl = request.nextUrl.search.replaceAll('%2C', ',')
+
     const shouldRedirect = locales.every(
         (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
     )
@@ -21,7 +23,7 @@ export function middleware (request: NextRequest) {
         }
 
         return NextResponse.redirect(
-            new URL(`/${locale}/${pathname}`, request.url)
+            new URL(`/${locale}/${pathname}${searchUrl}`, request.url)
         )
     }
 }

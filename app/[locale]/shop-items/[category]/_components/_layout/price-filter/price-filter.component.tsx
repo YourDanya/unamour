@@ -3,10 +3,11 @@ import usePriceFilter from 'app/[locale]/shop-items/[category]/_components/_layo
 import RangeSlider from 'app/[locale]/_common/components/range-slider/range-slider.component'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 import Input from 'app/[locale]/_common/components/input-v2/input.component'
+import {priceParams} from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.content'
 
 const PriceFilter: FC<FilterProps> = (props) => {
-    const {values, setValues, onChange, transl} = usePriceFilter(props)
-    
+    const {values, setValues, onChange, transl, onRangeChange, valuesRef} = usePriceFilter(props)
+
     return (
         <div className={'shop-items-price-filter price'}>
             <div className='price__block'>
@@ -31,7 +32,13 @@ const PriceFilter: FC<FilterProps> = (props) => {
                 />
                 <div className={'price__currency'}>₴</div>
             </div>
-            <RangeSlider setValues={setValues} values={values}/>
+            <RangeSlider
+                onChange={onRangeChange}
+                valuesRef={valuesRef}
+                values={values}
+                defMin={+priceParams.min}
+                defMax={+priceParams.max}
+            />
         </div>
     )
 }

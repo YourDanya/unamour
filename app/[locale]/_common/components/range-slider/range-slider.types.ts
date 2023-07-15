@@ -1,19 +1,22 @@
+import {MutableRefObject} from 'react'
+
 export type SliderStateRef = {
-    left: {
+    min: {
         x: number,
         translate: number,
         limit: boolean,
         diff: number,
         // zIndex: number
     },
-    right: {
+    max: {
         x: number,
         translate: number,
         limit: boolean,
         diff: number,
         // zIndex: number
     },
-    active: 'left' | 'right' | 'none'
+    active: 'min' | 'max' | 'none',
+    limit: {left: boolean, right: boolean}
 }
 
 export type SliderState = {
@@ -25,12 +28,13 @@ export type SliderState = {
         translate: number
         zIndex: number
     },
-    gradient: string
+    // gradient: string
 }
 
 export type RangeSliderProps = {
-    setValues: (values: {min: string, max: string}) => void,
+    onChange: (values: {min: string, max: string}) => void,
     values: {min: string, max: string},
-    defMin?: number,
-    defMax?: number
+    valuesRef: MutableRefObject<{ min: string, max: string}>
+    defMin: number,
+    defMax: number
 }

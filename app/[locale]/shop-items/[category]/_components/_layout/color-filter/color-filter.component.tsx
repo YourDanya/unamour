@@ -6,7 +6,7 @@ import {colorValues} from 'app/[locale]/_content/color/color.content'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 
 const ColorFilter: FC<FilterProps> = (props) => {
-    const {values, onChange, colorTransl} = useColorFilter(props)
+    const {values, onChange, transl} = useColorFilter(props)
 
     return (
         <div className={'shop-items-color-filter color'}>
@@ -16,7 +16,7 @@ const ColorFilter: FC<FilterProps> = (props) => {
                     styles={{backgroundColor: code}}
                     key={code}
                     name={slug}
-                    label={colorTransl[index]}
+                    label={transl[index]}
                     value={values[slug]}
                     onChange={onChange}
                 />

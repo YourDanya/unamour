@@ -7,41 +7,18 @@ import {boolean} from 'zod'
 import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
 import {useDebounce} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
+import useCheckFilter from 'app/[locale]/shop-items/[category]/_components/_layout/check-filter/check-filter.hook'
 
 const useSizesFilter = (props: FilterProps) => {
-    const initValues = useMemo(getInitValues, [])
-    const [values, setValues] = useState(initValues)
-    const ref = useRef(values)
     const {createFilter} = props
 
-    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const name = event.currentTarget.name
-        ref.current[name] = !ref.current[name]
-        const newValues = {...ref.current}
-        setValues(newValues)
+    const checkState = useCheckFilter({
+        props, name: 'size', initArrValues: sizes
+    })
 
-        const value = createFilterValue({values})
-        createFilter({value, name: 'size'})
-    }
+    const {values} = checkState
 
-    return {onChange, values}
+    return {...checkState}
 }
 
 export default useSizesFilter
-
-const getInitValues = () => {
-    return sizes.reduce((values, size) => {
-        values[size] = false
-        return values
-    }, {} as Record<string, boolean>)
-}
-
-const createFilterValue = ({values}: { values: Record<string, boolean> }) => {
-    const entries = getEntries(values)
-    return entries.reduce((filterValue, [name, value]) => {
-        if (value) {
-            filterValue += `${name},`
-        }
-        return filterValue
-    }, '').slice(0, -1)
-}

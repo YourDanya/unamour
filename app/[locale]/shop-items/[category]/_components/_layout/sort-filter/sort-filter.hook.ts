@@ -10,21 +10,28 @@ import {useDebounce} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 
 const useSortFilter = (props: FilterProps) => {
-    const {createFilter} = props
+    const {createFilter, params} = props
 
     const transl = useLocale(dictionary)
-    const [sortValue, setSortValue] = useState('')
+
+    const paramValue = params.get('sort')
+    const [sortValue, setSortValue] = useState(paramValue)
 
     const onClick: MouseAction = (event) => {
         const name = event.currentTarget.getAttribute('name')!
-        let newSortvalue = ''
+        let value = ''
         if (sortValue !== name) {
-            newSortvalue = name
+            value = name
         }
-        setSortValue(newSortvalue)
-
-        createFilter({value: sortValue, name: 'sort'})
+        setSortValue(value)
+        createFilter({value, name: 'sort'})
     }
+
+    useEffect(() => {
+        if (paramValue !== sortValue) {
+            setSortValue(paramValue)
+        }
+    }, [paramValue])
 
     return {onClick, sortValue, transl}
 }

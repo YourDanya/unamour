@@ -5,37 +5,37 @@ import {RangeSliderProps} from 'app/[locale]/_common/components/range-slider/ran
 import {FC} from 'react'
 
 const RangeSlider: FC<RangeSliderProps> = (props) => {
-    const {elemsRef, handleTrackDown, handleThumbDown, state} = useRangeSlider(props)
+    const {elemsRef, handleTrackDown, handleThumbDown, gradient, leftWidth, rightWidth} = useRangeSlider(props)
 
     return (
-        <div className='range-slider'>
+        <div className="range-slider">
             <div
                 className="range-slider__track"
                 ref={elem => elemsRef.current.track = elem}
                 onMouseDown={handleTrackDown}
                 onTouchStart={handleTrackDown}
-                style={{background: `linear-gradient(${state.gradient})`}}
+                style={{background: gradient}}
             />
             <button
                 className="range-slider__thumb"
-                name={'left'}
+                name={'min'}
                 onMouseDown={handleThumbDown}
                 onTouchStart={handleThumbDown}
-                ref={elem => elemsRef.current.left = elem}
+                ref={elem => elemsRef.current.min = elem}
                 style={{
-                    zIndex: state.left.zIndex,
-                    transform: `translateY(-50%) translateX(${state.left.translate}px)`
+                    left: leftWidth
+                    // zIndex: state.left.zIndex
                 }}
             />
             <button
                 className="range-slider__thumb"
-                name={'right'}
+                name={'max'}
                 onMouseDown={handleThumbDown}
                 onTouchStart={handleThumbDown}
-                ref={elem => elemsRef.current.right = elem}
+                ref={elem => elemsRef.current.max = elem}
                 style={{
-                    zIndex: state.right.zIndex,
-                    transform: `translateY(-50%) translateX(${state.right.translate}px)`
+                    left: rightWidth
+                    // zIndex: state.right.zIndex,
                 }}
             />
         </div>

@@ -35,12 +35,12 @@ const Layout: FC<LayoutProps> = (props) => {
 export default Layout
 
 const Categories = (props: ReturnType<typeof useLayout>) => {
-    const {transl, categories, paramsUrl} = props
+    const {transl, categories, paramsUrl, locale} = props
 
     return (
         <div className='shop-items-categories categories'>
             <NavLink
-                href={`/shop-items/all`}
+                href={`/${locale}/shop-items/all/${paramsUrl ? `?${paramsUrl}` : ''}`}
                 className={'categories__link'}
                 activeClassName={'categories__link--active'}
             >
@@ -48,7 +48,7 @@ const Categories = (props: ReturnType<typeof useLayout>) => {
             </NavLink>
             {categories[1].map((ref, index) => (
                 <NavLink
-                    href={`/shop-items/${ref}${paramsUrl ? `?${paramsUrl}` : ''}`}
+                    href={`/${locale}/shop-items/${ref}${paramsUrl ? `?${paramsUrl}` : ''}`}
                     className={'categories__link'}
                     activeClassName={'categories__link--active'}
                     key={ref}
