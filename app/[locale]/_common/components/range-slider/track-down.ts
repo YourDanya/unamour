@@ -2,8 +2,8 @@ import {MouseEvent, TouchEvent} from 'react'
 import {useGetState} from 'app/[locale]/_common/components/range-slider/range-slider.hook'
 
 export const trackDown = (state: ReturnType<typeof useGetState> & {event: MouseEvent | TouchEvent}) => {
-    const {elemsRef, setState, props, event} = state
-    const {onChange, defMin, defMax, valuesRef} = props
+    const {elemsRef, props, event, stateRef} = state
+    const {onChange, defMin, defMax, valuesRef, onMouseDown} = props
 
     event.preventDefault()
 
@@ -24,10 +24,16 @@ export const trackDown = (state: ReturnType<typeof useGetState> & {event: MouseE
         deviation = thumbHalfWidth
     }
 
-    const newValue = (defMin + (clickX - trackX + deviation) / trackWidth * (defMax - defMin)).toString()
+    const newValue = (defMin + (clickX - trackX + deviation) / trackWidth * (defMax - defMin))
 
     valuesRef.current[active] = newValue
+    stateRef.current.active = active
+
     onChange({...valuesRef.current})
+
+    if (onMouseDown) {
+        onMouseDown()
+    }
 }
 
 const getValues = (state: ReturnType<typeof useGetState> & {event: MouseEvent | TouchEvent}) => {

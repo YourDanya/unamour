@@ -6,7 +6,7 @@ import Input from 'app/[locale]/_common/components/input-v2/input.component'
 import {priceParams} from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.content'
 
 const PriceFilter: FC<FilterProps> = (props) => {
-    const {values, setValues, onChange, transl, onRangeChange, valuesRef} = usePriceFilter(props)
+    const {values, setValues, onChange, transl, onRangeChange, valuesRef, onMouseUp, onMouseDown} = usePriceFilter(props)
 
     return (
         <div className={'shop-items-price-filter price'}>
@@ -35,6 +35,8 @@ const PriceFilter: FC<FilterProps> = (props) => {
             <RangeSlider
                 onChange={onRangeChange}
                 valuesRef={valuesRef}
+                onMouseUp={onMouseUp}
+                onMouseDown={onMouseDown}
                 values={values}
                 defMin={+priceParams.min}
                 defMax={+priceParams.max}

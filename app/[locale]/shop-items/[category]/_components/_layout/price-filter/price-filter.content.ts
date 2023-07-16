@@ -14,8 +14,8 @@ export const dictionary = {
 }
 
 export const priceParams = {
-    min: '1000',
-    max: '16000',
+    min: 1000,
+    max: 16000,
     coefficients: {
         ua: 1,
         eng: 0.025,

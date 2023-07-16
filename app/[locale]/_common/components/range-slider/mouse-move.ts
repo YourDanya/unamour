@@ -2,7 +2,7 @@ import {useGetState} from 'app/[locale]/_common/components/range-slider/range-sl
 import {calcValue} from 'app/[locale]/_common/components/range-slider/range-slider.hook'
 
 export const thumbMove = (state: ReturnType<typeof useGetState> & { event: MouseEvent | TouchEvent }) => {
-    const {stateRef, elemsRef, event, setState, props:{valuesRef, onChange}} = state
+    const {stateRef, elemsRef, event, props:{valuesRef, onChange}} = state
 
     const stateValues = getValues(state)
     const {active} = stateValues
@@ -18,7 +18,7 @@ export const thumbMove = (state: ReturnType<typeof useGetState> & { event: Mouse
     const {limit, newValue} = values
 
     if (!limit) {
-        valuesRef.current[active] = newValue.toString()
+        valuesRef.current[active] = newValue
         onChange({...valuesRef.current})
     }
 }
@@ -44,17 +44,17 @@ const getValues = (state: ReturnType<typeof useGetState> & { event: MouseEvent |
 
     const diff = stateRef.current[active].diff
 
-    const calcValues = {defMin, defMax, trackWidth, startX}
-    const newValue = calcValue({...calcValues, targetX: clickX - diff})
+    const calcValues = {defMin, defMax, trackWidth, startX, thumbWidth}
 
-    return {...state, clickX, active, newValue, thumbWidth, diff, calcValues, startX}
+    return {...state, clickX, active, thumbWidth, diff, calcValues, startX}
 }
 
 const leftThumb = (state: ReturnType<typeof getValues>) => {
-    let {stateRef, newValue, props, clickX, diff, calcValues, startX} = state
+    const {stateRef, props, clickX, diff, calcValues, startX} = state
     const {valuesRef, defMin, defMax} = props
 
     const limit = stateRef.current.limit.left || stateRef.current.limit.right
+    let newValue = calcValue({...calcValues, targetX: clickX - diff})
 
     if (newValue < defMin) {
         stateRef.current.limit.left = true
@@ -63,36 +63,37 @@ const leftThumb = (state: ReturnType<typeof getValues>) => {
         stateRef.current.limit.left = false
     }
 
-    if (newValue > +valuesRef.current.max) {
+    if (newValue > valuesRef.current.max) {
         stateRef.current.limit.right = true
-        newValue = +valuesRef.current.max
-    } else if (stateRef.current.limit.right && newValue < +valuesRef.current.max) {
+        newValue = valuesRef.current.max
+    } else if (stateRef.current.limit.right && newValue < valuesRef.current.max) {
         stateRef.current.limit.right = false
     }
-    
+
     return {limit, newValue}
 }
 
 
 const rightThumb = (state: ReturnType<typeof getValues>) => {
-    const {stateRef, newValue, props, clickX, thumbWidth, calcValues, diff} = state
+    const {stateRef, props, clickX, thumbWidth, calcValues, diff} = state
     const {valuesRef, defMin, defMax} = props
 
-    const rightDiffValue = calcValue({...calcValues, targetX: clickX + thumbWidth - diff})
+    const limit = stateRef.current.limit.left && stateRef.current.limit.right
+    let newValue = calcValue({...calcValues, targetX: clickX - diff})
 
-    if (newValue < +valuesRef.current.min) {
+    if (newValue < valuesRef.current.min) {
         stateRef.current.limit.right = true
-    } else if (stateRef.current.limit.left && newValue > +valuesRef.current.min) {
+        newValue = valuesRef.current.min
+    } else if (stateRef.current.limit.left && newValue > valuesRef.current.min) {
         stateRef.current.limit.left = false
     }
 
     if (newValue > defMax) {
         stateRef.current.limit.right = true
-    } else if (stateRef.current.limit.right && rightDiffValue < defMax) {
+        newValue = defMax
+    } else if (stateRef.current.limit.right && newValue < defMax) {
         stateRef.current.limit.right = false
     }
-
-    const limit = stateRef.current.limit.left && stateRef.current.limit.right
 
     return {limit, newValue}
 }

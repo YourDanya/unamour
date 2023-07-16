@@ -5,22 +5,22 @@ import {RangeSliderProps} from 'app/[locale]/_common/components/range-slider/ran
 import {FC} from 'react'
 
 const RangeSlider: FC<RangeSliderProps> = (props) => {
-    const {elemsRef, handleTrackDown, handleThumbDown, gradient, leftWidth, rightWidth} = useRangeSlider(props)
+    const {elemsRef, onTrackDown, onThumbDown, gradient, leftWidth, rightWidth} = useRangeSlider(props)
 
     return (
         <div className="range-slider">
             <div
                 className="range-slider__track"
                 ref={elem => elemsRef.current.track = elem}
-                onMouseDown={handleTrackDown}
-                onTouchStart={handleTrackDown}
+                onMouseDown={onTrackDown}
+                onTouchStart={onTrackDown}
                 style={{background: gradient}}
             />
             <button
                 className="range-slider__thumb"
                 name={'min'}
-                onMouseDown={handleThumbDown}
-                onTouchStart={handleThumbDown}
+                onMouseDown={onThumbDown}
+                onTouchStart={onThumbDown}
                 ref={elem => elemsRef.current.min = elem}
                 style={{
                     left: leftWidth
@@ -30,8 +30,8 @@ const RangeSlider: FC<RangeSliderProps> = (props) => {
             <button
                 className="range-slider__thumb"
                 name={'max'}
-                onMouseDown={handleThumbDown}
-                onTouchStart={handleThumbDown}
+                onMouseDown={onThumbDown}
+                onTouchStart={onThumbDown}
                 ref={elem => elemsRef.current.max = elem}
                 style={{
                     left: rightWidth

@@ -62,20 +62,29 @@ const useCreateFilter = () => {
     const state = useCreateFilterState()
     const {paramValuesRef} = state
 
-    const createFilterDebounced = useDebounce( (valParams) => {
-        createFilter(state)
+    const createFilterDebounced = useDebounce( ({suspend}: {suspend?: boolean}) => {
+        createFilter({...state, suspend})
     })
 
-    const doCreateFilter = ({value, name}: {value: string, name: string}) => {
-        paramValuesRef.current[name] = value
-        createFilterDebounced(state)
+    const doCreateFilter = (state: {value?: string, name?: string, suspend?: boolean}) => {
+        const {suspend} = state
+        if (!suspend) {
+            const {name, value} = state as {value: string, name: string}
+            paramValuesRef.current[name] = value
+        }
+
+        createFilterDebounced({suspend})
     }
 
     return {...state, createFilter: doCreateFilter, paramValuesRef}
 }
 
-const createFilter = (state: ReturnType<typeof useCreateFilterState>) => {
-    const {params, router, paramValuesRef, pathname, setParamsUrl} = state
+const createFilter = (state: ReturnType<typeof useCreateFilterState> & {suspend?: boolean}) => {
+    const {params, router, paramValuesRef, pathname, setParamsUrl, suspend} = state
+
+    if (suspend) {
+        return
+    }
 
     const paramsUrl = filterNames.reduce((url, filterName) => {
         let filterValue = paramValuesRef.current[filterName]
@@ -95,7 +104,6 @@ const createFilter = (state: ReturnType<typeof useCreateFilterState>) => {
 }
 
 const getInitParamsUrl = (paramValues: Record<string, string>) => {
-    debugger
     return getEntries(paramValues).reduce((paramUrl, [name, value]) => {
         const paramValue = `${name}=${value}`
         paramUrl = addValueToUrl({ url: paramUrl, value: paramValue})

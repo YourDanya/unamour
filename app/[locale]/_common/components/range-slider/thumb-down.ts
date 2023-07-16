@@ -2,7 +2,7 @@ import {MouseEvent, TouchEvent} from 'react'
 import {useGetState} from 'app/[locale]/_common/components/range-slider/range-slider.hook'
 
 export const thumbDowmn = (state: ReturnType<typeof useGetState> & {event: MouseEvent | TouchEvent}) => {
-    const {stateRef, event, elemsRef} = state
+    const {stateRef, event, elemsRef, props: {onMouseDown}} = state
     const {name} = event.target as HTMLButtonElement
 
     const active = name as 'min' | 'max'
@@ -22,6 +22,9 @@ export const thumbDowmn = (state: ReturnType<typeof useGetState> & {event: Mouse
     const thumbX = elemsRef.current[active]?.getBoundingClientRect().x as number
 
     stateRef.current[active].diff = clientX - thumbX
-    stateRef.current[active].x = clientX
+
+    if (onMouseDown) {
+        onMouseDown()
+    }
 }
 
