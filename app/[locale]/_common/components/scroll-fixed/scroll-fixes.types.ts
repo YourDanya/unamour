@@ -9,6 +9,8 @@ export type State = {
     bottom?: number | string,
 }
 
+export type NewStateValues = State & {toUpdate: boolean}
+
 export type StateRef = {
     position: Position,
     toParentTop: number,

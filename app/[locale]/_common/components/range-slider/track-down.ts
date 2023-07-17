@@ -1,5 +1,6 @@
 import {MouseEvent, TouchEvent} from 'react'
 import {useGetState} from 'app/[locale]/_common/components/range-slider/range-slider.hook'
+import {calcValue} from 'app/[locale]/_common/components/range-slider/range-slider.hook'
 
 export const trackDown = (state: ReturnType<typeof useGetState> & {event: MouseEvent | TouchEvent}) => {
     const {elemsRef, props, event, stateRef} = state
@@ -7,7 +8,7 @@ export const trackDown = (state: ReturnType<typeof useGetState> & {event: MouseE
 
     event.preventDefault()
 
-    const {clickX, leftThumbX, rightThumbX, trackWidth, trackX, thumbHalfWidth} = getValues(state)
+    const {clickX, leftThumbX, rightThumbX, thumbHalfWidth, calcValues} = getValues(state)
 
     let active: 'min' | 'max'
 
@@ -18,16 +19,15 @@ export const trackDown = (state: ReturnType<typeof useGetState> & {event: MouseE
 
     if (leftDistance < rigtDistance) {
         active = 'min'
-        deviation = - thumbHalfWidth
     } else {
         active = 'max'
-        deviation = thumbHalfWidth
     }
 
-    const newValue = (defMin + (clickX - trackX + deviation) / trackWidth * (defMax - defMin))
+    const newValue = calcValue({...calcValues, targetX: clickX - thumbHalfWidth})
 
     valuesRef.current[active] = newValue
     stateRef.current.active = active
+    stateRef.current[active].diff = thumbHalfWidth
 
     onChange({...valuesRef.current})
 
@@ -37,14 +37,15 @@ export const trackDown = (state: ReturnType<typeof useGetState> & {event: MouseE
 }
 
 const getValues = (state: ReturnType<typeof useGetState> & {event: MouseEvent | TouchEvent}) => {
-    const {elemsRef, event} = state
+    const {elemsRef, event, props: {defMin, defMax}} = state
 
     const trackRect = elemsRef.current.track?.getBoundingClientRect()
-    const trackX = trackRect?.x as number
+    const startX = trackRect?.x as number
     const trackWidth = trackRect?.width as number
 
     const leftRect = elemsRef.current.min?.getBoundingClientRect()
-    const thumbHalfWidth = leftRect?.width as number / 2
+    const thumbWidth = leftRect?.width as number
+    const thumbHalfWidth = thumbWidth / 2
     const leftThumbX = leftRect?.x as number
 
     const rightThumbX = elemsRef.current.max?.getBoundingClientRect().x as number
@@ -59,5 +60,7 @@ const getValues = (state: ReturnType<typeof useGetState> & {event: MouseEvent | 
         clickX = descEvent.clientX
     }
 
-    return {clickX, leftThumbX, rightThumbX, trackWidth, trackX, thumbHalfWidth}
+    const calcValues = {defMin, defMax, startX, trackWidth, thumbWidth}
+
+    return {clickX, leftThumbX, rightThumbX, thumbHalfWidth, calcValues}
 }

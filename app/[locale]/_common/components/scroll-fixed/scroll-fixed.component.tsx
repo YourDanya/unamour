@@ -5,7 +5,8 @@ import {ScrollFixedProps} from 'app/[locale]/_common/components/scroll-fixed/scr
 import useScrollHook from 'app/[locale]/_common/components/scroll-fixed/scroll-fixed.hook'
 
 const ScrollFixed: FC<ScrollFixedProps> = (props) => {
-    const {state, elemRef, children, transition} = useScrollHook(props)
+    const {children} = props
+    const {state, elemRef, transition} = useScrollHook(props)
 
     return (
         <div
