@@ -11,10 +11,10 @@ export const scrollUp = (state: ReturnType<typeof getValues>) => {
 }
 
 const upTop = (state: ReturnType<typeof getValues>) => {
-    const {stateRef, rect, newStateValues, scrollY, props: {topOffset}} = state
-    let {bottom, position, toUpdate, top, translateY} = newStateValues
+    const {stateRef, rect, newStateValues, scrollY, props: {topOffset}, parentRect} = state
+    let {bottom, position, toUpdate, top, marginTop} = newStateValues
 
-    stateRef.current.toParentTop = scrollY + rect.top - stateRef.current.parentToPageTop
+    stateRef.current.toParentTop = rect.top - parentRect.top
 
     if (stateRef.current.position !== 'fixed') {
         bottom = 'unset'
@@ -27,22 +27,22 @@ const upTop = (state: ReturnType<typeof getValues>) => {
         toUpdate = false
     }
 
-    return {bottom, position, toUpdate, top, translateY}
+    return {bottom, position, toUpdate, top, marginTop}
 }
 
 const upNotTop = (state: ReturnType<typeof getValues>) => {
     const {stateRef, newStateValues} = state
-    let {top, bottom, translateY, toUpdate, position} = newStateValues
+    let {top, bottom, marginTop, toUpdate, position} = newStateValues
 
     if (stateRef.current.position !== 'static') {
         position = 'static'
         bottom = 'unset'
         top = 'unset'
-        translateY = stateRef.current.toParentTop
+        marginTop = stateRef.current.toParentTop
         stateRef.current.toBottom = false
     } else {
         toUpdate = false
     }
 
-    return {top, bottom, translateY, toUpdate, position}
+    return {top, bottom, marginTop, toUpdate, position}
 }

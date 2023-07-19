@@ -6,7 +6,7 @@ import useScrollHook from 'app/[locale]/_common/components/scroll-fixed/scroll-f
 
 const ScrollFixed: FC<ScrollFixedProps> = (props) => {
     const {children} = props
-    const {state, elemRef, transition} = useScrollHook(props)
+    const {state, elemRef} = useScrollHook(props)
 
     return (
         <div
@@ -15,10 +15,10 @@ const ScrollFixed: FC<ScrollFixedProps> = (props) => {
                 position: state.position,
                 top: state.top,
                 bottom: state.bottom,
-                transform: `translateY(${state.translateY}px)`,
-                transition: transition
+                marginTop: `${state.marginTop}px`
             }}
-            ref={elemRef}>
+            ref={elemRef}
+        >
             {children}
         </div>
     )

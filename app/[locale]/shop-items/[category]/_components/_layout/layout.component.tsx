@@ -16,11 +16,17 @@ import useLayout from 'app/[locale]/shop-items/[category]/_components/_layout/la
 const Layout: FC<LayoutProps> = (props) => {
     const {children} = props
     const state = useLayout(props)
+    const {resize, setResize} = state
 
     return (
         <div className='shop-items-layout layout'>
             <div className='layout__menu'>
-                <ScrollFixed topOffset={120} bottomOffset={20}>
+                <ScrollFixed
+                    topOffset={120}
+                    bottomOffset={20}
+                    resize={resize}
+                    setResize={setResize}
+                >
                     <Categories {...state}/>
                     <Filters {...state}/>
                 </ScrollFixed>
@@ -61,20 +67,20 @@ const Categories = (props: ReturnType<typeof useLayout>) => {
 }
 
 const Filters = (props: ReturnType<typeof useLayout>) => {
-    const {transl, onReset} = props
+    const {transl, onReset, onDropdown} = props
 
     return (
         <div className='shop-items-filters filters'>
-            <Dropdown name={transl.sort} className={'filters__sort'}>
+            <Dropdown name={transl.sort} className={'filters__sort'} onClick={onDropdown}>
                 <SortFilter {...props}/>
             </Dropdown>
-            <Dropdown name={transl.price} className={'filters__price'}>
+            <Dropdown name={transl.price} className={'filters__price'} onClick={onDropdown}>
                 <PriceFilter {...props}/>
             </Dropdown>
-            <Dropdown name={transl.size} className='filters__size'>
+            <Dropdown name={transl.size} className='filters__size' onClick={onDropdown}>
                 <SizesFilter {...props}/>
             </Dropdown>
-            <Dropdown name={transl.color} className={'filters__color'}>
+            <Dropdown name={transl.color} className={'filters__color'} onClick={onDropdown}>
                 <ColorsFilter {...props}/>
             </Dropdown>
             <Button className={'filters__reset'} onClick={onReset}>

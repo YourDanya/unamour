@@ -8,13 +8,14 @@ import {scrollUp} from 'app/[locale]/_common/components/scroll-fixed/scroll-up'
 export const scroll = (state: ReturnType<typeof useGetState>) => {
     const {stateRef, elemRef, setState} = state
 
-    if (stateRef.current.self) {
-        stateRef.current.self = false
-        return
-    }
-
     const stateValues = getValues(state)
     const {scrollY} = stateValues
+
+    if (stateRef.current.self) {
+        stateRef.current.self = false
+        window.scroll(0, stateRef.current.scrollY)
+        return
+    }
 
     let scrollState: NewStateValues
 
@@ -24,13 +25,13 @@ export const scroll = (state: ReturnType<typeof useGetState>) => {
         scrollState = scrollUp(stateValues)
     }
 
-    const {position, top, bottom, translateY, toUpdate} = scrollState
+    const {position, top, bottom, marginTop, toUpdate} = scrollState
 
     stateRef.current.scrollY = scrollY
 
     if (toUpdate) {
         stateRef.current.position = position
-        setState({position, top, bottom, translateY})
+        setState({position, top, bottom, marginTop})
     }
 }
 
@@ -48,9 +49,9 @@ export const getValues = (state: ReturnType<typeof useGetState>) => {
     let top = 'unset'
     let bottom = 'unset'
     let toUpdate = true
-    let translateY = 0
+    let marginTop = 0
 
-    const newStateValues: NewStateValues = {position, top, bottom, toUpdate, translateY}
+    const newStateValues: NewStateValues = {position, top, bottom, toUpdate, marginTop}
 
     return {...state, scrollY, rect, viewPort, menuHeight, parentElement, parentRect, newStateValues}
 }

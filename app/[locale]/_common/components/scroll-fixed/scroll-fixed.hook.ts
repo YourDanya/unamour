@@ -8,9 +8,10 @@ import {useRoute} from 'app/[locale]/_common/components/scroll-fixed/route.hook'
 import {State} from 'app/[locale]/_common/components/scroll-fixed/scroll-fixes.types'
 import {scroll} from 'app/[locale]/_common/components/scroll-fixed/scroll'
 import {onResize} from 'app/[locale]/_common/components/scroll-fixed/resize'
+import {useLayoutEffect} from 'react'
 
 const useScrollHook = (props: ScrollFixedProps) => {
-    const {topOffset, bottomOffset} = props
+    const {topOffset, bottomOffset, resize} = props
 
     const state = useGetState(props)
     const {stateRef, elemRef} = state
@@ -20,25 +21,16 @@ const useScrollHook = (props: ScrollFixedProps) => {
     }, [])
 
     useEffect(() => {
-        const resizeObserver = new ResizeObserver(() => onResize(state))
-
-        const elem = elemRef.current as Element
-        resizeObserver.observe(elem)
-
         window.addEventListener('scroll', onScroll)
 
         return () => {
-            resizeObserver.unobserve(elem)
             window.removeEventListener('scroll', onScroll)
         }
     }, [])
 
-    // const calcParentToPageTop = () => {
-    //     const parentRect = elemRef.current?.parentElement?.getBoundingClientRect() as DOMRect
-    //
-    //     stateRef.current.parentToPageTop = parentRect.top + window.scrollY
-    // }
-    // useLayoutResizeObserve(calcParentToPageTop)
+    useLayoutEffect(() => {
+        onResize(state)
+    }, [resize])
 
     useRoute(state)
 
@@ -50,10 +42,9 @@ export default useScrollHook
 export const useGetState = (props: ScrollFixedProps) => {
     const {topOffset, bottomOffset, children} = props
 
-    const [state, setState] = useState<State>({position: 'static', top: 0, bottom: 'unset', translateY: 0})
+    const [state, setState] = useState<State>({position: 'static', top: 0, bottom: 'unset', marginTop: 0})
     const stateRef = useRef<StateRef>({
-        position: 'static', toParentTop: 0, scrollY: 0, height: 0, toBottom: false, first: true,
-        parentToPageTop: topOffset, self: false
+        position: 'static', toParentTop: 0, scrollY: 0, height: 0, toBottom: false, first: true, self: false
     })
 
     const elemRef = useRef<HTMLDivElement | null>(null)

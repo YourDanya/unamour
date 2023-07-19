@@ -37,7 +37,13 @@ const useLayout = (props: LayoutProps) => {
         }
     }
 
-    return {...state, transl, onReset, categories, locale}
+    const [resize, setResize] = useState(false)
+
+    const onDropdown = () => {
+        setResize(true)
+    }
+
+    return {...state, transl, onReset, categories, locale, resize, setResize, onDropdown}
 }
 
 export default useLayout

@@ -17,6 +17,9 @@ const useDropdown = (props: DropdownProps) => {
     const onClick: MouseAction = (event) => {
         event.preventDefault()
         setShow(!show)
+        if (props.onClick) {
+            props.onClick()
+        }
         // if (transitionRef.current) return
         // showRef.current = !showRef.current
     }
@@ -41,6 +44,7 @@ const useDropdown = (props: DropdownProps) => {
 
     useLayoutEffect(() => {
         // const y = elemRef?.current?.firstElementChild?.getBoundingClientRect().y
+
     }, [])
 
     useEffect(() => {

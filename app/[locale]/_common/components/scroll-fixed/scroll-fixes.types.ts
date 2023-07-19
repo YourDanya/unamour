@@ -1,10 +1,12 @@
 import {Property} from "csstype"
 import Position = Property.Position
 import React from 'react'
+import {SetStateAction} from 'react'
+import {Dispatch} from 'react'
 
 export type State = {
     position: Position,
-    translateY?: number | string,
+    marginTop?: number | string,
     top?: number | string,
     bottom?: number | string,
 }
@@ -18,12 +20,13 @@ export type StateRef = {
     height: number,
     toBottom: boolean,
     first: boolean,
-    parentToPageTop: number,
     self: boolean
 }
 
 export type ScrollFixedProps = {
     children: React.ReactNode,
     topOffset: number,
-    bottomOffset: number
+    bottomOffset: number,
+    resize?: boolean,
+    setResize?: Dispatch<SetStateAction<boolean>>
 }

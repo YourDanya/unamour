@@ -10,22 +10,6 @@ export const scrollDown = (state: ReturnType<typeof getValues>) => {
     }
 }
 
-const downNotEnd = (state: ReturnType<typeof getValues>) => {
-    const {stateRef, newStateValues} = state
-    let {position, top, bottom, translateY, toUpdate} = newStateValues
-
-    if (stateRef.current.position !== 'static') {
-        position = 'static'
-        top = 'unset'
-        bottom = 'unset'
-        translateY = stateRef.current.toParentTop
-    } else {
-        toUpdate = false
-    }
-
-    return {position, top, bottom, translateY, toUpdate}
-}
-
 const downEnd = (state: ReturnType<typeof getValues>) => {
     const {parentRect, viewPort, props: {bottomOffset}} = state
 
@@ -38,26 +22,26 @@ const downEnd = (state: ReturnType<typeof getValues>) => {
 
 const downParentEnd = (state: ReturnType<typeof getValues>) => {
     const {stateRef, newStateValues, parentRect, rect, props: {bottomOffset}} = state
-    let {bottom, translateY, toUpdate, top, position} = newStateValues
+    let {bottom, marginTop, toUpdate, top, position} = newStateValues
 
     if (stateRef.current.position !== 'static') {
         position = 'static'
         bottom = 'unset'
         top = 'unset'
-        translateY = parentRect.height - rect.height - bottomOffset
+        marginTop = parentRect.height - rect.height - bottomOffset
         toUpdate = true
     } else {
         toUpdate = false
     }
 
-    return {bottom, translateY, toUpdate, top, position}
+    return {bottom, marginTop, toUpdate, top, position}
 }
 
 const downNotParentEnd = (state: ReturnType<typeof getValues>) => {
-    const {stateRef, newStateValues, rect, scrollY, props: {bottomOffset}} = state
-    let {bottom, translateY, toUpdate, top, position} = newStateValues
+    const {stateRef, newStateValues, rect, scrollY, props: {bottomOffset}, parentRect} = state
+    let {bottom, marginTop, toUpdate, top, position} = newStateValues
 
-    stateRef.current.toParentTop = scrollY + rect.top - stateRef.current.parentToPageTop
+    stateRef.current.toParentTop = rect.top - parentRect.top
 
     if (stateRef.current.position !== 'fixed') {
         position = 'fixed'
@@ -68,6 +52,21 @@ const downNotParentEnd = (state: ReturnType<typeof getValues>) => {
         toUpdate = false
     }
 
-    return {bottom, translateY, toUpdate, top, position}
+    return {bottom, marginTop, toUpdate, top, position}
 }
 
+const downNotEnd = (state: ReturnType<typeof getValues>) => {
+    const {stateRef, newStateValues} = state
+    let {position, top, bottom, marginTop, toUpdate} = newStateValues
+
+    if (stateRef.current.position !== 'static') {
+        position = 'static'
+        top = 'unset'
+        bottom = 'unset'
+        marginTop = stateRef.current.toParentTop
+    } else {
+        toUpdate = false
+    }
+
+    return {position, top, bottom, marginTop, toUpdate}
+}

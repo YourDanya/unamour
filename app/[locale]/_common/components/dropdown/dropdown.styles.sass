@@ -2,7 +2,7 @@
   width: 100%
   overflow: hidden
   position: relative
-  &__top
+  .dropdown__top
     position: relative
     width: 100%
     background-color: white
@@ -13,9 +13,9 @@
     padding: 20px 0
     border-bottom: 1.5px solid #e0e0e0
     margin: 1px 0
-  &__name
+  .dropdown__name
     text-transform: uppercase
-  &__sign
+  .dropdown__sign
     width: 14px
     height: 10px
     display: flex
@@ -30,16 +30,18 @@
       transform: rotate(45deg)
     &:after
       transform: translateX(-2.2px) rotate(-45deg)
-  &__name
+  .dropdown__name
     margin-left: 12px
-  &__content
+  .dropdown__content
     position: relative
-    transition: 0.4s max-height
-    max-height: 0
-    &--show
-      height: auto
-      max-height: 1000px
-  &--show
+    transition: 0.4s grid-template-rows
+    display: grid
+    grid-template-rows: 0fr
+  .dropdown__content--show
+    grid-template-rows: 1fr
+  .dropdown__children
+    overflow: hidden
+  .dropdown--show
     .dropdown__sign
       &:after, &:before
         transform: rotate(0)

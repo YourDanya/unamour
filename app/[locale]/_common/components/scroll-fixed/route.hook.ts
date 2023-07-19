@@ -7,6 +7,7 @@ import {useRouter} from 'next/navigation'
 import {useGetState} from 'app/[locale]/_common/components/scroll-fixed/scroll-fixed.hook'
 import {usePathname} from 'next/navigation'
 import {useSearchParams} from 'next/navigation'
+import {useEffect} from 'react'
 
 export const useRoute = (values: ReturnType<typeof useGetState>) => {
     const ref = useRef(false)
@@ -19,14 +20,11 @@ export const useRoute = (values: ReturnType<typeof useGetState>) => {
         const elemRect = elemRef.current?.getBoundingClientRect() as DOMRect
         const toScroll = stateRef.current.scrollY - stateRef.current.toParentTop
 
-        setState({...state, translateY: 0})
+        setState({...state, marginTop: 0})
 
         stateRef.current = {
             toParentTop: 0, position: state.position, scrollY: toScroll, first: false, toBottom: false,
-            height: 0, parentToPageTop: stateRef.current.parentToPageTop, self: true
+            height: 0, self: true
         }
-
-        scroll(0, toScroll)
     }, [path])
-
 }

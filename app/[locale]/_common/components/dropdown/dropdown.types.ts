@@ -5,5 +5,6 @@ export type DropdownProps = {
     plus?: boolean,
     className?: string,
     children?: ReactNode,
-    parentName?: string
+    parentName?: string,
+    onClick?: () => void
 }
