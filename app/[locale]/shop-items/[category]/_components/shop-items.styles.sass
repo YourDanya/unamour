@@ -1,55 +1,47 @@
-.shop-items
-  &__not-found
+.shop-items.items
+  .items__not-found
     text-transform: uppercase
     margin-top: 20px
-  &__collection
-    width: 100%
-    position: relative
-  &__title
+
+.shop-items-collection.collection
+  width: 100%
+  position: relative
+  .collection__title
     font-size: 12px
     top: -50px
     position: absolute
     text-transform: uppercase
-  &__items
-    display: flex
-    justify-content: space-between
-    flex-wrap: wrap
-  &__item
-    margin-bottom: 50px
-    width: 33%
-  &__bottom
+  .collection__items
+    display: grid
+    grid-gap: 50px 5px
+    grid-template-columns: 1fr 1fr 1fr
+
+.shop-items-item.item
+  .item__bottom
     padding: 20px
-  &__price
+  .item__price
     font-size: 12px
     margin-top: 10px
     color: #828282
-  &-spinner
-    .spinner__content
-      border-color: black
-      border-top-color: transparent
 
 @media (max-width: 992px)
-  .shop-items
-    &__title
+  .shop-items-collection.collection
+    .collection__title
       top: -40px
-    &__item
-      margin-bottom: 30px
-      width: 49.5%
+    .collection__items
+      grid-template-columns: 1fr 1fr
 
 @media (max-width: 768px)
-  .shop-items
-    &__item
-      margin-bottom: 20px
-    &__title
+  .shop-items-collection.collection
+    .collection__title
       right: 0
       font-size: 11px
       top: -25px
-    &__bottom
+  .shop-items-item.item
+    .item__bottom
       padding: 10px 20px
-    &__price
+    .item__price
       margin-top: 7px
 
 @media (max-width: 576px)
-  .shop-items
-    &-item
-      margin-bottom: 10px
+  .shop-items-item.item

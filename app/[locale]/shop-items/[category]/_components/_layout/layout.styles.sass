@@ -1,14 +1,32 @@
 .shop-items-layout.layout
   padding: 60px 40px
   font-size: 11px
-  display: flex
+  position: relative
+  display: grid
+  grid-template-columns: auto 1fr
   .layout__page
-    width: calc(100% - 230px)
-    min-height: 5000px
-  .layout__menu
-    position: relative
-    width: 200px
-    margin-right: 30px
+    grid-column: 2 / 3
+
+.shop-items-layout-top.layout
+  grid-column: 2 / 3
+  font-size: 12px
+  text-transform: uppercase
+  margin-bottom: 30px
+
+.shop-items-layout-main.layout
+  position: relative
+  width: 200px
+  margin-right: 30px
+  .layout__top
+    position: absolute
+    top: -50px
+    font-size: 12px
+    z-index: 10
+    white-space: nowrap
+    text-transform: uppercase
+
+.shop-items-layout-main--mobile.layout
+  display: none
 
 .shop-items-categories.categories
   margin-bottom: 50px
@@ -18,7 +36,8 @@
     cursor: pointer
     margin-bottom: 25px
   .categories__link--active
-      color: #bdbdbd
+    color: #bdbdbd
+
 
 .shop-items-filters.filters
   .filters__reset
@@ -34,16 +53,31 @@
       width: 14px
       height: 14px
       position: relative
+
       &:after, &:before
         background-color: #828282
 
-@media (max-width: 768px)
+@media (max-width: 992px)
   .shop-items-layout.layout
     padding: 60px 20px
-    .layout__menu
-      display: none
     .layout__page
       width: 100%
+
+  .shop-items-layout-main.layout
+    display: none
+
+  .shop-items-layout-main--mobile.layout
+    width: auto
+    margin: 0
+    display: block
+
+  .shop-items-filters.filters
+    .filters__reset
+      padding: 0
+
+  .shop-items-categories.categories
+    .categories__link
+      margin-bottom: 20px
 
 @media (max-width: 576px)
   .shop-items-layout.layout

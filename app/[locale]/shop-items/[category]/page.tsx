@@ -4,10 +4,21 @@ import {CategoryItem} from 'app/[locale]/_common/types/types'
 import {apiCall} from 'app/[locale]/_common/utils/api/api-v2.utils'
 
 const ShopItemsPage = async (props: ShopItemsPageProps) => {
-    const {params} = props
+    const {params, searchParams} = props
 
     let {category} = params as Record<string, string>
-    const {data} = await apiCall<{ items: CategoryItem[]}>(`shop-item/category/${category}`, {
+
+    const paramUrl = Object.entries(searchParams).reduce((paramUrl, [name, value]) => {
+        if (paramUrl === '') {
+            paramUrl = `?${name}=${value}`
+        } else {
+            paramUrl += `&${name}=${value}`
+        }
+
+        return paramUrl
+    }, '')
+
+    const {data} = await apiCall<{ items: CategoryItem[]}>(`shop-item/category/${category}${paramUrl}`, {
         cache: 'no-cache'
     })
     let items = data?.items

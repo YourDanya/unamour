@@ -10,7 +10,7 @@ import {useDebounce} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 
 const useSortFilter = (props: FilterProps) => {
-    const {createFilter, params} = props
+    const {createParams, params} = props
 
     const transl = useLocale(dictionary)
 
@@ -24,7 +24,7 @@ const useSortFilter = (props: FilterProps) => {
             value = name
         }
         setSortValue(value)
-        createFilter({value, name: 'sort'})
+        createParams({value, name: 'sort'})
     }
 
     useEffect(() => {

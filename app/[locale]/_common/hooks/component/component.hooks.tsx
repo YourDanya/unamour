@@ -191,10 +191,10 @@ export const useResponsive = () => {
 
     const resize = () => {
         const width = window.innerWidth
-        if (width > 991 && deviceRef.current !== 'large') {
+        if (width > 992 && deviceRef.current !== 'large') {
             deviceRef.current = 'large'
             setDevice('large')
-        } else if (width <= 991 && width > 768 && deviceRef.current !== 'medium') {
+        } else if (width <= 992 && width > 768 && deviceRef.current !== 'medium') {
             deviceRef.current = 'medium'
             setDevice('medium')
         } else if (width <= 768 && width > 576 && deviceRef.current !== 'small') {

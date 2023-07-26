@@ -5,7 +5,8 @@ export const dictionary = {
         size: 'розмір',
         color: 'колір',
         reset: 'скинути',
-        all: 'подивитись усе'
+        all: 'подивитись усе',
+        filters: 'фільтри'
     },
     eng: {
         sort: 'sort',
@@ -13,7 +14,8 @@ export const dictionary = {
         size: 'size',
         color: 'color',
         reset: 'reset',
-        all: 'view all'
+        all: 'view all',
+        filters: 'filters'
     },
     ru: {
         sort: 'сортировка',
@@ -21,7 +23,8 @@ export const dictionary = {
         size: 'размер',
         color: 'цвет',
         reset: 'сбросить',
-        all: 'посмотреть все'
+        all: 'посмотреть все',
+        filters: 'фильтры'
     }
 }
 

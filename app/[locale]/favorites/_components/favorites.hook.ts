@@ -27,7 +27,7 @@ const useFavorites = () => {
     const calcWidth = () => {
         const containerWidth = elemRef.current?.getBoundingClientRect().width as number
         let width = 0
-        if (window.innerWidth > 991) {
+        if (window.innerWidth > 992) {
             width = (containerWidth - 3 * 5) / 4
         } else {
             width = (containerWidth - 5) / 2

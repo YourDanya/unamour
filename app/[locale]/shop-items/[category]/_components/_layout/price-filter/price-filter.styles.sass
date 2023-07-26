@@ -4,6 +4,7 @@
   display: flex
   justify-content: space-between
   flex-wrap: wrap
+  position: relative
   .price__block
     padding: 0 5px
     width: 95px
@@ -23,16 +24,17 @@
     margin-left: 10px
     .input__field
       font-size: 11px
-  //.price__input
-  //  font-size: 11px
-  //  border: none
-  //  outline: none
-  //  height: auto
-  //  width: 40%
-  //  text-align: center
-  //  padding: 0
-  //  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
-  //    -webkit-appearance: none
-  //    margin: 0
-  //  &[type=number]
-  //    -moz-appearance: textfield
+
+@media (max-width: 992px)
+  .shop-items-price-filter.price
+    padding: 0 0 20px 0
+    .price__block
+      border: none
+      padding: 0
+      width: auto
+      height: auto
+    .price__label
+      display: none
+    .price__input
+      margin-left: 0
+      width: 50px

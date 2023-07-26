@@ -1,6 +1,7 @@
 .range-slider
   margin-top: 30px
   width: 100%
+  //margin: 30px 8px 0
   height: 2.5px
   position: relative
   z-index: 1
@@ -14,12 +15,18 @@
     padding: 0
     opacity: 1
     position: absolute
-    width: 16px
-    height: 16px
-    background-color: black
-    border-radius: 50%
     top: 50%
     left: 0
     transform: translateY(-50%)
-    cursor: pointer
+    &:before
+      width: 16px
+      height: 16px
+      background-color: black
+      border-radius: 50%
+      cursor: pointer
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translateY(-50%) translateX(-50%)
+      content: ''
 

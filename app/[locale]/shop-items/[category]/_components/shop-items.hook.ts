@@ -18,24 +18,10 @@ import {useLayoutEffect} from 'react'
 
 export const useShopItems = (props: ShopItemsProps) => {
     const [transl] = useLocale(shopItemsContent)
-    const clothingCategories = useLocale(categoriesContent)
+    const clothing = useLocale(categoriesContent)
     const otherCategories = useLocale(otherCategoriesContent)
 
-    const searchParams = useSearchParams()
-
-    const queryCategory = searchParams.get('category') as string
-
-    let index = clothingCategories[1].findIndex(category => category === queryCategory)
-    let title: string
-    if (index !== -1) {
-        title = clothingCategories[0][index]
-    } else {
-        index = otherCategories[1].findIndex(category => category === queryCategory)
-        title = otherCategories[0][index]
-    }
-
-    const filters = {} as Record<string, string>
-    const items = props.items ? filterItems(props.items, filters) : []
+    const items = props.items ?? []
 
     const locale = useParams().locale as Locale
 
@@ -48,7 +34,7 @@ export const useShopItems = (props: ShopItemsProps) => {
         setHeight(width * 4 / 3)
     })
 
-    return {transl: {...transl, title}, items, elemRef, locale, height}
+    return {transl, items, elemRef, locale, height, props}
 }
 
 export default useShopItems

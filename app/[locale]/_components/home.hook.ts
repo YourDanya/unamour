@@ -19,11 +19,11 @@ const useHome = () => {
         const containerWidth = containerRef.current?.getBoundingClientRect().width ?? 0
         const width = window.innerWidth
 
-        if (width > 991) {
+        if (width > 992) {
             setAllLinkHeight(0.85 * allLinkWidth)
             setLogoHeight(0.3 * containerWidth)
             setBestLinkHeight(0.6 * containerWidth)
-        } else if (width > 576 && width <= 991) {
+        } else if (width > 576 && width <= 992) {
             setAllLinkHeight(1.2 * allLinkWidth)
             setLogoHeight(0.6 * containerWidth)
             setBestLinkHeight(0.6 * containerWidth)

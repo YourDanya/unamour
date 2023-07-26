@@ -12,7 +12,7 @@ import {useEffect} from 'react'
 import {MutableRefObject} from 'react'
 
 const usePriceFilter = (props: FilterProps) => {
-    const {createFilter} = props
+    const {createParams} = props
     const state = useGetState(props)
     const {values, valuesRef, setValues, paramValue} = state
 
@@ -34,7 +34,7 @@ const usePriceFilter = (props: FilterProps) => {
     }
 
     const onMouseDown = () => {
-        createFilter({suspend: true})
+        createParams({suspend: true})
     }
 
     useGetParamValues(state)
@@ -104,13 +104,13 @@ const getParamValues = (state: {
 }
 
 const priceFilter = (state: ReturnType<typeof useGetState>) => {
-    const {props: {createFilter}, valuesRef} = state
+    const {props: {createParams}, valuesRef} = state
     const {min, max} = valuesRef.current
 
     const paramValues = getParamValues(state)
 
     if (min !== paramValues.min || max !== paramValues.max) {
         const filterValue = `min=${min},max=${max}`
-        createFilter({value: filterValue, name: 'price'})
+        createParams({value: filterValue, name: 'price'})
     }
 }

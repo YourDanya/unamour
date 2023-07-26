@@ -20,7 +20,7 @@ export type CheckFilterState = {
 }
 
 const useCheckFilter = (state: CheckFilterState) => {
-    const {props: {createFilter}, name: filterName,} = state
+    const {props: {createParams}, name: filterName,} = state
 
     const checkState = useGetState(state)
     const {values, valuesRef, setValues} = checkState
@@ -32,7 +32,7 @@ const useCheckFilter = (state: CheckFilterState) => {
         setValues(values)
 
         const filterValue = createFilterValue({values})
-        createFilter({value: filterValue, name: filterName})
+        createParams({value: filterValue, name: filterName})
     }
 
     useGetParamValues(checkState)

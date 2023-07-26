@@ -5,7 +5,9 @@ import {RangeSliderProps} from 'app/[locale]/_common/components/range-slider/ran
 import {FC} from 'react'
 
 const RangeSlider: FC<RangeSliderProps> = (props) => {
-    const {elemsRef, onTrackDown, onThumbDown, gradient, leftWidth, rightWidth} = useRangeSlider(props)
+    const {
+        elemsRef, onTrackDown, onThumbDown, gradient, leftWidth, rightWidth, leftPercent, rightPercent
+    } = useRangeSlider(props)
 
     return (
         <div className="range-slider">
@@ -24,7 +26,6 @@ const RangeSlider: FC<RangeSliderProps> = (props) => {
                 ref={elem => elemsRef.current.min = elem}
                 style={{
                     left: leftWidth
-                    // zIndex: state.left.zIndex
                 }}
             />
             <button
@@ -35,7 +36,6 @@ const RangeSlider: FC<RangeSliderProps> = (props) => {
                 ref={elem => elemsRef.current.max = elem}
                 style={{
                     left: rightWidth
-                    // zIndex: state.right.zIndex,
                 }}
             />
         </div>

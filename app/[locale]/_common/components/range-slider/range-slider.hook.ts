@@ -82,16 +82,16 @@ export const doCalc = (state: ReturnType<typeof useGetState>) => {
 
     const gradient = `linear-gradient(to right, #e2e2e2 ${leftPercent}, black ${leftPercent} ${rightPercent}, #e2e2e2 ${rightPercent})`
 
-    const leftWidth = leftPart * 184
-    const rightWidth = rightPart * 184
+    const leftWidth = `${leftPercent}`
+    const rightWidth = `${rightPercent}`
 
-    return {...state, gradient, leftWidth, rightWidth}
+    return {...state, gradient, leftWidth, rightWidth, leftPercent, rightPercent}
 }
 
 export const calcValue = (params: {
     defMin: number, defMax: number, targetX: number, trackWidth: number, startX: number, thumbWidth: number
 }) => {
-    const {defMin, defMax, targetX, trackWidth, startX, thumbWidth} = params
+    const {defMin, defMax, targetX, trackWidth, startX} = params
 
-    return Math.round(defMin + (targetX - startX) / (trackWidth - thumbWidth) * (defMax - defMin))
+    return Math.round(defMin + (targetX - startX) / (trackWidth) * (defMax - defMin))
 }

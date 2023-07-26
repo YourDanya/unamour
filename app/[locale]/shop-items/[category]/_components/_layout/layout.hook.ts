@@ -22,20 +22,31 @@ import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
 import {useParams} from 'next/navigation'
 import {Locale} from 'app/[locale]/_common/types/types'
 import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
+import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
+import {useResponsive} from 'app/[locale]/_common/hooks/helpers/responsive/responsive.hook'
+import {createParams} from 'app/[locale]/shop-items/[category]/_components/_layout/create-params'
+import {categories} from 'app/[locale]/_content/categories/categories.content'
+import {clothing} from 'app/[locale]/_content/categories/categories.content'
+import {clothingDictionary} from 'app/[locale]/_content/categories/categories.content'
+import {categoriesDictionary} from 'app/[locale]/_content/categories/categories.content'
 
 const useLayout = (props: LayoutProps) => {
-    const transl = useLocale(dictionary)
-    const categories = useDeprLocale(categoriesContent)
+
+    const mainState = useMain()
+    const mobileState = useMobile(mainState)
+    const paramsState = useParamsState(mobileState)
+
+    return {...paramsState}
+}
+
+export default useLayout
+
+const useMain = () => {
+    const mainTransl = useLocale(dictionary)
+    const clothingTransl = useLocale(clothingDictionary)
+    const categoriesTransl = useLocale(categoriesDictionary)
+
     const locale = useParams().locale as Locale
-
-    const state = useCreateFilter()
-    const {pathname, router, paramsUrl} = state
-
-    const onReset: MouseAction = () => {
-        if (paramsUrl !== '') {
-            router.push(pathname)
-        }
-    }
 
     const [resize, setResize] = useState(false)
 
@@ -43,12 +54,77 @@ const useLayout = (props: LayoutProps) => {
         setResize(true)
     }
 
-    return {...state, transl, onReset, categories, locale, resize, setResize, onDropdown}
+    const params = useParams()
+
+    const queryCategory = params.category as string
+
+    let index = clothing.findIndex(category => category === queryCategory)
+    let title: string
+
+    if (index !== -1) {
+        title = clothingTransl[index]
+    } else {
+        index = categories.findIndex(category => category === queryCategory)
+        title = categoriesTransl[index]
+    }
+
+    const transl = {...mainTransl, title, clothing: clothingTransl}
+
+    return {transl, locale, resize, setResize, onDropdown}
 }
 
-export default useLayout
+const useMobile = (state: ReturnType<typeof useMain>) => {
+    let mobile: boolean | undefined
 
-const useCreateFilterState = () => {
+    const respState = useResponsive()
+    
+    if (respState && respState.breakpoint <= 992) {
+        mobile = true
+    } else if (respState) {
+        mobile = false
+    }
+
+    const [modalActive, setModalActive] = useState(false)
+
+    const onShowModal = () => {
+        setModalActive(true)
+    }
+
+    const onHideModal = () => {
+        setModalActive(false)
+    }
+
+    return {...state, mobile, modalActive, onShowModal, onHideModal}
+}
+
+const useParamsState = (mainState: ReturnType<typeof useMobile>) => {
+    const state = useGetParamsState()
+    const {paramValuesRef, paramsUrl, pathname} = state
+
+    const createFilterDebounced = useDebounce( ({suspend}: {suspend?: boolean}) => {
+        createParams({...state, suspend})
+    })
+
+    const doCreateParams = (state: {value?: string, name?: string, suspend?: boolean}) => {
+        const {suspend} = state
+        if (!suspend) {
+            const {name, value} = state as {value: string, name: string}
+            paramValuesRef.current[name] = value
+        }
+
+        createFilterDebounced({suspend})
+    }
+
+    const onReset: MouseAction = () => {
+        if (paramsUrl !== '') {
+            router.push(pathname)
+        }
+    }
+
+    return {...mainState, ...state, createParams: doCreateParams, onReset}
+}
+
+export const useGetParamsState = () => {
     const params = useSearchParams()
     const router = useRouter()
     const paramValuesRef = useRef<Record<string, string>>({})
@@ -64,64 +140,3 @@ const useCreateFilterState = () => {
     return {params, router, paramValuesRef, pathname, paramsUrl, setParamsUrl}
 }
 
-const useCreateFilter = () => {
-    const state = useCreateFilterState()
-    const {paramValuesRef} = state
-
-    const createFilterDebounced = useDebounce( ({suspend}: {suspend?: boolean}) => {
-        createFilter({...state, suspend})
-    })
-
-    const doCreateFilter = (state: {value?: string, name?: string, suspend?: boolean}) => {
-        const {suspend} = state
-        if (!suspend) {
-            const {name, value} = state as {value: string, name: string}
-            paramValuesRef.current[name] = value
-        }
-
-        createFilterDebounced({suspend})
-    }
-
-    return {...state, createFilter: doCreateFilter, paramValuesRef}
-}
-
-const createFilter = (state: ReturnType<typeof useCreateFilterState> & {suspend?: boolean}) => {
-    const {params, router, paramValuesRef, pathname, setParamsUrl, suspend} = state
-
-    if (suspend) {
-        return
-    }
-
-    const paramsUrl = filterNames.reduce((url, filterName) => {
-        let filterValue = paramValuesRef.current[filterName]
-        if (filterValue) {
-            const newValue = `${filterName}=${filterValue}`
-            url = addValueToUrl({value: newValue, url})
-        } else if (params.get(filterName)) {
-            const newValue = `${filterName}=${params.get(filterName)}`
-            url = addValueToUrl({value: newValue, url})
-        }
-        return url
-    }, '')
-
-    const newUrl = `${pathname}/${paramsUrl}`
-    router.push(newUrl)
-    setParamsUrl(paramsUrl)
-}
-
-const getInitParamsUrl = (paramValues: Record<string, string>) => {
-    return getEntries(paramValues).reduce((paramUrl, [name, value]) => {
-        const paramValue = `${name}=${value}`
-        paramUrl = addValueToUrl({ url: paramUrl, value: paramValue})
-        return paramUrl
-    }, '')
-}
-
-const addValueToUrl = ({value, url}: { value: string, url: string }) => {
-    if (url === '') {
-        url += `?${value}`
-    } else {
-        url += `&${value}`
-    }
-    return url
-}
