@@ -1,0 +1,1 @@
+export type UseTimer = (params: {timer: string, setTimer: (timer: string) => void}) => void

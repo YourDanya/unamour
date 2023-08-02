@@ -11,6 +11,7 @@ const ShopItemPage = async (props: ShopItemPageProps) => {
     const {data} = await apiCall<{ item: FetchedItem }>(`shop-item/${slug}?color=${color}`,{
         cache: 'no-cache'
     })
+
     const item = data?.item
     if (!item) {
         return notFound()

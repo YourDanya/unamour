@@ -1,6 +1,6 @@
 import useItemActions from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.hook'
 import Button from 'app/[locale]/_common/components/button/button.component'
-import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
 import ItemMessage from 'app/[locale]/admin/items/_components/item-form/item-actions/item-message/item-message.component'
 import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
 import {ItemActionsProps} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'

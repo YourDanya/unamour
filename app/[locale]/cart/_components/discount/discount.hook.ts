@@ -1,6 +1,6 @@
 import {DiscountProps} from 'app/[locale]/cart/_components/discount/discount.types'
 import discountContent from 'app/[locale]/cart/_components/discount/discount.content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useState} from 'react'
 import {MouseAction} from 'app/[locale]/_common/types/types'

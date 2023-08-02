@@ -4,8 +4,8 @@ import {LinksProps} from 'app/[locale]/shop-items/[category]/[item]/_components/
 import useLinks from 'app/[locale]/shop-items/[category]/[item]/_components/links/links.hook'
 
 const Links: FC<LinksProps> = (props) => {
-    const {category, slugCategory} = props
-    const {transl} = useLinks()
+    const {props: {common: {slugCategory}}} = props
+    const {transl} = useLinks(props)
 
     return (
         <div className="shop-item__links">
@@ -18,10 +18,10 @@ const Links: FC<LinksProps> = (props) => {
             </Link>
             <span className={'shop-item__links-slash'}>/</span>
             <Link href={`/${slugCategory}`} className={'shop-item__link'}>
-                {category}
+                {transl.category}
             </Link>
         </div>
-    );
+    )
 }
 
 export default Links

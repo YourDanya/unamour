@@ -20,12 +20,6 @@ const useInput = (props: InputProps) => {
         onValidate && onValidate(name)
     }
 
-    useDebounceEffect(() => {
-        if (onValidate && error) {
-            onValidate(name)
-        }
-    }, [value, validateDeps])
-
     const autoComplete = useMemo(() => {
         const value = name.toLowerCase()
         if (value.includes('email')) {

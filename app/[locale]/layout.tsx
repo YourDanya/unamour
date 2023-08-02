@@ -20,7 +20,7 @@ import 'app/[locale]/_common/components/modal/modal.styles.sass'
 import 'app/[locale]/_common/components/sidebar/sidebar.styles.sass'
 import 'app/[locale]/_common/components/modal-content/modal-content.styles.sass'
 import 'app/[locale]/_common/components/pagination/pagination/pagination.styles.sass'
-import 'app/[locale]/_common/components/slider/slider-v2.styles.sass'
+import 'app/[locale]/_common/components/slider-v2/slider-v2.styles.sass'
 import 'app/[locale]/_common/components/cart-item/cart-item.styles.sass'
 import 'app/[locale]/_common/components/spinner-v2/spinner.styles.sass'
 //home

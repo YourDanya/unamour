@@ -8,7 +8,7 @@ import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.
 
 const Images: FC<ImagesProps> = (props) => {
     const {images} = props
-    const {current, onTab, setCurrent, elemRef, width, height} = useImages()
+    const {current, onTab, setCurrent, elemRef, height} = useImages()
 
     return (
         <div className="shop-item__images">

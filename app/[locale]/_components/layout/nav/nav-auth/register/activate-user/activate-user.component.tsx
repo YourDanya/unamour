@@ -2,7 +2,6 @@
 
 import {FC} from 'react'
 import {ActivateProps} from 'app/[locale]/_components/layout/nav/nav-auth/register/activate-user/activate-user.types'
-import Timer from 'app/[locale]/_common/components/timer/timer.component'
 import useActivateUser from 'app/[locale]/_components/layout/nav/nav-auth/register/activate-user/activate-user.hook'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'

@@ -5,10 +5,9 @@ import {ButtonsProps} from 'app/[locale]/shop-items/[category]/[item]/_component
 import useButtons from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.hook'
 
 const Buttons: FC<ButtonsProps> = (props) => {
-    const {id, color} = props
     const {
         isCart, onCartEnter, onCartClick, onCartLeave, isPresent, onPresentClick, onPresentLeave, transl, liked,
-        onFavoriteLike
+        onFavoriteLike, id, color
     } = useButtons(props)
 
     return (

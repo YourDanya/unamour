@@ -17,12 +17,6 @@ const useTextArea = (props: TextareaProps) => {
         setFocused(!focused)
     }
 
-    useDebounceEffect(() => {
-        if (onValidate && error) {
-            onValidate(name)
-        }
-    }, [value, validateDeps])
-
     return {onFocus, onBlur, focused}
 }
 

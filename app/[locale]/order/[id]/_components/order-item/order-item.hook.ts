@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import orderItemContent from 'app/[locale]/order/[id]/_components/order-item/order-item.content'
 
 const useOrderItem = () => {

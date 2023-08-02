@@ -5,12 +5,14 @@ import {RangeSliderProps} from 'app/[locale]/_common/components/range-slider/ran
 import {FC} from 'react'
 
 const RangeSlider: FC<RangeSliderProps> = (props) => {
+    const {className} = props
+
     const {
         elemsRef, onTrackDown, onThumbDown, gradient, leftWidth, rightWidth, leftPercent, rightPercent
     } = useRangeSlider(props)
 
     return (
-        <div className="range-slider">
+        <div className={`range-slider ${className ?? ''}`}>
             <div
                 className="range-slider__track"
                 ref={elem => elemsRef.current.track = elem}

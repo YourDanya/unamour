@@ -1,42 +1,71 @@
 import {useMemo, useRef, useState} from 'react'
+import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useViewedStore} from 'app/[locale]/_store/viewed/viewed.store'
+import {useEffect} from 'react'
+import {FetchedItem} from 'app/[locale]/_common/types/types'
+import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
+import {CategoryItem} from 'app/[locale]/_common/types/types'
+import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
+import {dictionary} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.content'
+import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
 
-const useAdditional = () => {
+const useAdditional = (props: ReturnType<typeof useShopItem>) => {
+    const {props: {_id, common: {slugCategory}}, currentVariant: {color}} = props
 
-    // let items: ClientItem[] = (selectClientItems)
-    //
-    // const similarItems: ClientItem[] = useMemo(() => {
-    //     const arr = []
-    //     for (let i = 0; i < items.length; i++) {
-    //         if (i < 10) arr.push(items[i])
-    //     }
-    //     return arr
-    // }, [items])
-    //
-    // const viewedItems: ClientItem[] = useMemo(() => {
-    //     const arr = []
-    //     for (let i=items.length-1; i>=0; i--) {
-    //         if (i > items.length - 10) arr.push(items[i])
-    //     }
-    //     return arr
-    // }, [items])
-    //
-    // const [perSlide, setPerSlide] = useState(4)
-    // const stateRef = useRef({perSlide: 4})
-    //
-    // const handleResize = () => {
-    //     if (stateRef.current.perSlide!==2 && window.innerWidth<=992) {
-    //         stateRef.current.perSlide=2
-    //         setPerSlide(2)
-    //     }
-    //     if (stateRef.current.perSlide!==4 && window.innerWidth>992) {
-    //         stateRef.current.perSlide=4
-    //         setPerSlide(4)
-    //     }
-    // }
-    //
-    // useResizeObserve(handleResize)
-    //
-    // return {similarItems, viewedItems, perSlide}
+    const transl = useLocale(dictionary)
+
+    const viewedSaved = useViewedStore(state => state.saved)
+    const setViewedSaved = useViewedStore(state => state.setSaved)
+
+    const getViewedItems = useApiCall<{ items: CategoryItem[] }>('shop-item/saved', {
+        method: 'POST',
+    })
+    const viewedItems = getViewedItems.data?.items
+
+    const getSimilarItems = useApiCall<{items: CategoryItem[]}>(`shop-item/category/all`)
+    const similarItems = getSimilarItems.data?.items
+
+    useEffect(() => {
+        getViewedItems.start(viewedSaved)
+        getSimilarItems.start()
+
+        if (viewedSaved.length > 10) {
+            viewedSaved.push({_id, color})
+        }
+
+        const findIndex = viewedSaved.findIndex((viewSave) => {
+            return (viewSave._id === _id && viewSave.color === color)
+        })
+
+        if (findIndex === -1) {
+            viewedSaved.push({_id, color})
+        }
+
+        if (viewedSaved.length > 10) {
+            viewedSaved.shift()
+        }
+
+        if (findIndex === -1) {
+            setViewedSaved([...viewedSaved])
+        }
+
+    }, [])
+
+    const onResize = () => {
+        if (!elemRef.current) {
+            return
+        }
+
+        const width = elemRef.current.getBoundingClientRect().width
+        setHeight(width * 4 / 3)
+    }
+
+    const [height, setHeight] = useState(0)
+    const elemRef = useRef<HTMLDivElement | null>(null)
+
+    useResize(onResize)
+
+    return {getViewedItems, viewedItems, getSimilarItems, similarItems, transl, height, elemRef, onResize}
 }
 
 export default useAdditional

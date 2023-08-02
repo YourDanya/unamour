@@ -14,20 +14,17 @@ import Image from 'next/image'
 const Layout: FC<LayoutProps> = (props) => {
     const {children} = props
     const {
-        user, transl, content, modalState, hideModal, showModal, onLogout, logout, width, height, elemRef
+        user, transl, content, modalState, hideModal, showModal, onLogout, logout
     } = useLayout()
 
     return (
         <>
             <div className={`profile ${!user ? 'profile--hidden' : ''}`}>
-                <div className={'profile__top'} ref={elemRef}>
-                    <Image
+                <div className={'profile__top'}>
+                    <img
                         src={profileBg.src}
-                        width={width}
-                        height={elemRef.current?.getBoundingClientRect().height ?? 0}
                         className={'profile__bg'}
                         alt={'profile bg'}
-                        quality={100}
                     />
                     <div className={'profile__sign-out'}>
                         <Button className={'profile__sign-out-btn'} onClick={onLogout} loading={logout.loading}>

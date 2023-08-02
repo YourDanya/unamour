@@ -1,5 +1,5 @@
 import orderTrackingContent from 'app/[locale]/client-service/order-tracking/_components/order-tracking.content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useOrderTracking = () => {
     const [transl] = useLocale(orderTrackingContent)

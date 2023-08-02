@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import privacyContent from 'app/[locale]/client-service/privacy/_components/privacy.content'
 import {useServiceMap} from 'app/[locale]/_common/hooks/mappers/mappers.hooks'
 

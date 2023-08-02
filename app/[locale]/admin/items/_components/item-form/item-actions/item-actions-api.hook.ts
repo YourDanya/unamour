@@ -2,7 +2,7 @@ import {useRef} from 'react'
 import {ItemActionsValues} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {itemActionsContent} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
 import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
-import {peek} from 'app/[locale]/_common/utils/main/main.utils'
+import {peek} from 'app/[locale]/_common/utils/helpers/peek/peek.util'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {FetchedItem} from 'app/[locale]/_common/types/types'
 import {useCallback} from 'react'
@@ -11,9 +11,9 @@ import {ItemActionsMessages} from 'app/[locale]/admin/items/_components/item-for
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {usePaginationStore} from 'app/[locale]/_common/components/pagination/store/pagination.stote'
 import {useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {shallow} from 'zustand/shallow'
-import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
+import getKeys from 'app/[locale]/_common/utils/typescript/get-keys/get-keys.utils'
 
 const useItemActionsApi = () => {
     let actions: ItemActionsValues = {} as ItemActionsValues

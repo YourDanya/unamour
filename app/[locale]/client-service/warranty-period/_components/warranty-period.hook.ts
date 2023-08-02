@@ -1,5 +1,5 @@
 import warrantyPeriodContent from 'app/[locale]/client-service/warranty-period/_components/warranty-period.content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useWarrantyPeriod = () => {
     const [transl] = useLocale(warrantyPeriodContent)

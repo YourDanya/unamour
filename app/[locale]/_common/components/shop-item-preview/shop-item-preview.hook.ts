@@ -1,19 +1,20 @@
 import React, {useState} from 'react'
 import {MouseAction} from 'app/[locale]/_common/types/types'
+import {useEffect} from 'react'
+import {ShopItemPreviewProps} from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.types'
 
-const useShopItemPreview = () => {
+const useShopItemPreview = (props: ShopItemPreviewProps) => {
     const [hovered, setHovered] = useState(false)
-    // const [loaded, handleLoaded, _, loadRef] = useToggleMany({0: false, 1: false} , 'data-attr')
-    //
-    //
+
     const onMouse: MouseAction = () => {
         setHovered(!hovered)
     }
-    //
-    // const onClick: MouseAction = (event) => {
-    //     const loaded = Object.values(loadRef.current).reduce((accum, current) => accum && current)
-    //     if (!loaded) event.preventDefault()
-    // }
+
+    useEffect(() => {
+        if (props.onMount) {
+            props.onMount()
+        }
+    }, [])
 
     return {hovered, onMouse}
 }

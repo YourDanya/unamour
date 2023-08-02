@@ -6,7 +6,7 @@ import {
     ItemImageProps
 } from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-image/item-image.types'
 import {useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useItemImage = (props: ItemImageProps) => {
     const {id, onDeleteImage, onUpdateImage, file} = props

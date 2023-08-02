@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useRouter} from 'next/navigation'
 import {useState} from 'react'
 import {ChangeEvent} from 'react'
@@ -48,9 +48,9 @@ const useSearch = () => {
         setInput(event.currentTarget.value)
     }
 
-    const {width, height, elemRef} = useGetParamForImages()
+    const {height, elemRef} = useGetParamForImages()
 
-    return {items, input, onChange, transl, locale, onSubmit, first, width, height, elemRef, searchItems}
+    return {items, input, onChange, transl, locale, onSubmit, first, height, elemRef, searchItems}
 }
 
 export default useSearch

@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
 import updateUserSettingsContent from 'app/[locale]/profile/update-user/components/other/settings.content'
 

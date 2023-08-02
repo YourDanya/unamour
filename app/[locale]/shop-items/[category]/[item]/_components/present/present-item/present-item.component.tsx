@@ -7,12 +7,11 @@ import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.
 
 const PresentItem: FC<PresentItemProps> = (props) => {
     const {images, name, activeSize, price} = props
-    const {transl, code, width, height, elemRef} = usePresentItem(props)
+    const {transl, code} = usePresentItem(props)
 
     return (
-        <div className="present__item" ref={elemRef}>
+        <div className="present__item">
             <LoadImage
-                height={height}
                 className={'present__img'}
                 src={`${images[0].url}`}
                 alt={'present img'}

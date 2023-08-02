@@ -4,7 +4,7 @@ import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useRef} from 'react'
 import {useEffect} from 'react'
 import {useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useRouter} from 'next/navigation'
 import useSearch from 'app/[locale]/search/_components/search.hook'
 import {useSearchParams} from 'next/navigation'
@@ -91,7 +91,7 @@ export const useShopItem = (props: FetchedItem) => {
     }, [activeSize])
 
     return {
-        activeSize, onActiveSize, modalState, showModal, hideModal, transl, onCurrentVariant, currentVariant,
+        props, activeSize, onActiveSize, modalState, showModal, hideModal, transl, onCurrentVariant, currentVariant,
         onAddItem
     }
 }

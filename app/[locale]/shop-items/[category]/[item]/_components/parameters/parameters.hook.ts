@@ -2,12 +2,17 @@ import {ParametersProps} from 'app/[locale]/shop-items/[category]/[item]/_compon
 import parametersContent from 'app/[locale]/shop-items/[category]/[item]/_components/parameters/parameters.content'
 import {useMemo} from 'react'
 import {colorContent} from 'app/[locale]/_content/content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
-import {Color} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {Color} from 'app/[locale]/_common/types/types'
 
 const useParameters = (props: ParametersProps) => {
-    const {variants, color, showModal} = props
+    const {props: item, showModal, currentVariant, transl: itemTransl} = props
+    const {name} = itemTransl
+    const {variants} = item.common
+    const {color} = currentVariant
+
     const [transl] = useLocale(parametersContent)
+
     const colors = useLocale(colorContent)
 
     const colorCodes = useMemo(() => {
@@ -25,7 +30,7 @@ const useParameters = (props: ParametersProps) => {
         showModal('size')
     }
 
-    return {transl, colorCodes, currentColor, onShowModal}
+    return {transl, colorCodes, currentColor, onShowModal, name}
 }
 
 export default useParameters

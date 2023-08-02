@@ -11,7 +11,9 @@ const PriceFilter: FC<FilterProps> = (props) => {
     return (
         <div className={'shop-items-price-filter price'}>
             <div className='price__block'>
-                <label className={'price__label'}>{transl.from}</label>
+                <label className={'price__label'}>
+                    {transl.from}
+                </label>
                 <Input
                     className={'price__input'}
                     name='min'
@@ -21,8 +23,10 @@ const PriceFilter: FC<FilterProps> = (props) => {
                 />
                 <div className={'price__currency'}>₴</div>
             </div>
-            <div className='price__block'>
-                <label className={'price__label'}>{transl.to}</label>
+            <div className='price__block price__block--second'>
+                <label className={'price__label'}>
+                    {transl.to}
+                </label>
                 <Input
                     className='price__input'
                     name='max'
@@ -33,6 +37,7 @@ const PriceFilter: FC<FilterProps> = (props) => {
                 <div className={'price__currency'}>₴</div>
             </div>
             <RangeSlider
+                className={'price__slider'}
                 onChange={onRangeChange}
                 valuesRef={valuesRef}
                 onMouseUp={onMouseUp}

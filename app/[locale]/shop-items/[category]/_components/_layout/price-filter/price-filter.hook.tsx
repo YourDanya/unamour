@@ -6,7 +6,7 @@ import {priceParams} from 'app/[locale]/shop-items/[category]/_components/_layou
 import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.content'
 import {ChangeValue} from 'app/[locale]/_common/components/input-v2/input.types'
-import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 import {useEffect} from 'react'
 import {MutableRefObject} from 'react'

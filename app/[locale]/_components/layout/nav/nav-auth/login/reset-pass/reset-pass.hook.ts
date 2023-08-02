@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {resetPassContent} from 'app/[locale]/_components/layout/nav/nav-auth/login/reset-pass/reset-pass.content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'

@@ -14,7 +14,6 @@ const ShopItemsPage = async (props: ShopItemsPageProps) => {
         } else {
             paramUrl += `&${name}=${value}`
         }
-
         return paramUrl
     }, '')
 

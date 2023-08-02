@@ -1,5 +1,5 @@
 import socialsContent from 'app/[locale]/_components/layout/nav/nav-auth/socials/socials.content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useSocials = () => {
     const [transl] = useLocale(socialsContent)

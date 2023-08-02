@@ -10,7 +10,7 @@ import {
 } from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-images.types'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useItemImages = (props: ItemImagesProps) => {
     const [transl] = useLocale(itemImagesContent)

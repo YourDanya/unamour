@@ -1,6 +1,6 @@
 import {useMemo} from 'react'
 import {colorContent} from 'app/[locale]/_content/content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {Color} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 import orderInfoContent from 'app/[locale]/order/[id]/_components/order-info/order-info.content'
 import {Order} from 'app/[locale]/_store/cart/cart.types'

@@ -1,9 +1,4 @@
 import {MouseAction} from 'app/[locale]/_common/types/types'
+import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
 
-export type ButtonsProps = {
-    activeSize: string | null,
-    showModal: (prop: string) => void,
-    onAddItem: () => void,
-    id: string,
-    color: string
-}
+export type ButtonsProps = ReturnType<typeof useShopItem>

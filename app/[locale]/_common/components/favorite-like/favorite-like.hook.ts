@@ -4,7 +4,7 @@ import {useEffect} from 'react'
 import {useRouter} from 'next/navigation'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useOmitFirstEffect} from 'app/[locale]/_common/hooks/component/component.hooks'
-import {useDebounce} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
+import useDebounce from 'app/[locale]/_common/hooks/helpers/debounce/debounce.hook'
 import useFavoritesStore from 'app/[locale]/_store/favorites/favorites.store'
 import {FavoriteLikeProps} from 'app/[locale]/_common/components/favorite-like/favorite-like.types'
 
@@ -61,9 +61,7 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
 
     useEffect(() => {
         window.addEventListener('beforeunload', toggleFavorite)
-        // router.events.on('routeChangeStart', toggleFavorite)
         return () => {
-            // router.events.off('routeChangeStart', toggleFavorite)
             window.removeEventListener('beforeunload', toggleFavorite)
         }
     },[])

@@ -2,7 +2,6 @@ import {FC} from 'react'
 import {
     ActivateEmailProps
 } from 'app/[locale]/profile/update-user/components/other/update-email/activate-email/activate-email.types'
-import Timer from 'app/[locale]/_common/components/timer/timer.component'
 import Button from 'app/[locale]/_common/components/button/button.component'
 import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
 import useActivateEmail

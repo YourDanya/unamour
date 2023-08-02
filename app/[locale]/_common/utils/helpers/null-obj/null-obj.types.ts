@@ -1,0 +1,1 @@
+export type NullObj = <TObj> (obj: TObj) => TObj

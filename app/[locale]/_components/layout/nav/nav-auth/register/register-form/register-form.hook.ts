@@ -1,5 +1,5 @@
 import registerFormContent from 'app/[locale]/_components/layout/nav/nav-auth/register/register-form/register-form.content'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useUserStore} from 'app/[locale]/_store/user/user.store'

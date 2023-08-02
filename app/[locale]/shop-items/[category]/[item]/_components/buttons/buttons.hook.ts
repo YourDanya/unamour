@@ -5,11 +5,13 @@ import useModalStore from 'app/[locale]/_store/modal/modal.store'
 import {ButtonsProps} from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.types'
 import {useMemo} from 'react'
 import {useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useUserStore} from 'app/[locale]/_store/user/user.store'
 
 const useButtons = (props: ButtonsProps) => {
-    const {activeSize, showModal, onAddItem, color, id} = props
+    const {props: {_id: id}, currentVariant: {color}} = props
+
+    const {activeSize, showModal, onAddItem} = props
     const [transl] = useLocale(buttonsContent)
 
     const [isCart, setIsCart] = useState(true)
@@ -69,7 +71,7 @@ const useButtons = (props: ButtonsProps) => {
 
     return {
         isCart, onCartEnter, onCartLeave, onCartClick, isPresent, onPresentClick, onPresentLeave, transl, liked,
-        onFavoriteLike
+        onFavoriteLike, id, color
     }
 }
 

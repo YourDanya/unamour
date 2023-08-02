@@ -17,7 +17,7 @@ import {
 import {
     adminValidations
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
-import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
 import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {
     ReviewFormProps

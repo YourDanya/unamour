@@ -1,10 +1,11 @@
 import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useLayoutResizeObserve} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {CategoryItem} from 'app/[locale]/_common/types/types'
 import favoritesContent from 'app/[locale]/favorites/_components/favorites.content'
 import useModalStore from 'app/[locale]/_store/modal/modal.store'
+import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
 
 const useFavorites = () => {
     const [transl] = useLocale(favoritesContent)
@@ -35,13 +36,7 @@ const useFavorites = () => {
         setWidth(width)
     }
 
-    useLayoutEffect(() => {
-        if (items && items.length > 0) {
-            calcWidth()
-        }
-    }, [items])
-
-    useLayoutResizeObserve(calcWidth)
+    useResize(calcWidth)
 
     const {modalState, showModal} = useModalStore()
 

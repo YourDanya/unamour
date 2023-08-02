@@ -10,7 +10,7 @@ import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.
 
 const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
     const {images, slug, slugCategory, color, itemRef, height, width, className} = props
-    const {onMouse, hovered} = useShopItemPreview()
+    const {onMouse, hovered} = useShopItemPreview(props)
 
     return (
         <div className={`shop-item-preview ${className ? className : ''}`} ref={itemRef}>

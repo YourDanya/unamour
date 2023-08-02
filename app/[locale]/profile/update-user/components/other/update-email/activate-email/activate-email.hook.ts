@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useEffect} from 'react'
 import activateEmailContent
@@ -11,8 +11,8 @@ import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
 import {useUserStore} from 'app/[locale]/_store/user/user.store'
 import {useRef} from 'react'
 import {useState} from 'react'
-import {parseTimer} from 'app/[locale]/_common/utils/main/main.utils'
-import {useTimer} from 'app/[locale]/_common/hooks/component/component.hooks'
+import parseTimer from 'app/[locale]/_common/utils/helpers/parse-timer/parse-timer.util'
+import useTimer from 'app/[locale]/_common/hooks/helpers/timer/timer.hook'
 
 const useActivateEmail = (props: ActivateEmailProps) => {
     const {hideModal} = props

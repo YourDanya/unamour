@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import itemTranslationsContent from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translations.content'
 
 const useItemTranslations = () => {

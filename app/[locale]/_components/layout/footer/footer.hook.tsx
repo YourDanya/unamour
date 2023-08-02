@@ -2,7 +2,7 @@ import React from 'react'
 import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
 import {useRef} from 'react'
 import {useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import footerContent from 'app/[locale]/_components/layout/footer/footer.content'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 

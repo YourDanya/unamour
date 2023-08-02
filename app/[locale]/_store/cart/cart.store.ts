@@ -1,8 +1,8 @@
 import {ModalStore} from 'app/[locale]/_store/modal/modal.types'
-import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
+import getKeys from 'app/[locale]/_common/utils/typescript/get-keys/get-keys.utils'
 import {ModalState} from 'app/[locale]/_store/modal/modal.types'
 import {CartState} from 'app/[locale]/_store/cart/cart.types'
-import {peek} from 'app/[locale]/_common/utils/main/main.utils'
+import {peek} from 'app/[locale]/_common/utils/helpers/peek/peek.util'
 import {persist} from 'zustand/middleware'
 import {create} from 'zustand'
 

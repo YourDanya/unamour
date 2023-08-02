@@ -11,7 +11,7 @@ import {useMemo} from 'react'
 import {InputsMap} from 'app/[locale]/_common/hooks/input/input-v2.types'
 import {Locale} from 'app/[locale]/_common/types/types'
 import {validate} from 'app/[locale]/_common/hooks/input/input.hooks'
-import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
 import {useParams} from 'next/navigation'
 
 export const useValidateInput: UseValidateInput = (params) => {

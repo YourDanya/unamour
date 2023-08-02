@@ -4,17 +4,9 @@
     margin-top: 20px
 
 .shop-items-collection.collection
-  width: 100%
-  position: relative
-  .collection__title
-    font-size: 12px
-    top: -50px
-    position: absolute
-    text-transform: uppercase
-  .collection__items
-    display: grid
-    grid-gap: 50px 5px
-    grid-template-columns: 1fr 1fr 1fr
+  display: grid
+  grid-gap: 50px 5px
+  grid-template-columns: 1fr 1fr 1fr
 
 .shop-items-item.item
   .item__bottom
@@ -26,17 +18,9 @@
 
 @media (max-width: 992px)
   .shop-items-collection.collection
-    .collection__title
-      top: -40px
-    .collection__items
-      grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr 1fr
 
 @media (max-width: 768px)
-  .shop-items-collection.collection
-    .collection__title
-      right: 0
-      font-size: 11px
-      top: -25px
   .shop-items-item.item
     .item__bottom
       padding: 10px 20px

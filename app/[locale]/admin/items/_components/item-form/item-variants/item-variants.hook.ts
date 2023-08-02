@@ -2,7 +2,7 @@ import {ItemVariant} from 'app/[locale]/admin/items/_components/item-form/item-f
 import {MouseAction} from 'app/[locale]/_common/types/types'
 import itemVariantsContent from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variants.content'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useItemVariants = () => {
     const [transl] = useLocale(itemVariantsContent)

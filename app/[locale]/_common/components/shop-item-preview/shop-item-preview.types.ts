@@ -9,5 +9,6 @@ export type ShopItemPreviewProps = {
     width?: number,
     height: number,
     itemRef?: MutableRefObject<HTMLDivElement | null>,
-    className?: string
+    className?: string,
+    onMount?: () => void
 }

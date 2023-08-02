@@ -1,7 +1,7 @@
 import {create} from 'zustand'
 import {ModalStore} from 'app/[locale]/_store/modal/modal.types'
 import {ModalState} from 'app/[locale]/_store/modal/modal.types'
-import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
+import getKeys from 'app/[locale]/_common/utils/typescript/get-keys/get-keys.utils'
 
 const useModalStore = create<ModalStore>((set) => ({
     modalState: {hamburger: false, search: false, shopping: false, sign: false, modal: false},

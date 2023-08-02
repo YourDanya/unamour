@@ -29,14 +29,9 @@ const ItemsCollection = (props: ReturnType<typeof useShopItems>) => {
 
     return (
         <div className={'shop-items-collection collection'}>
-            <div className="collection__title">
-                {transl.title}
-            </div>
-            <div className={'collection__items'}>
-                {items && items.map((_, index) => (
-                    <Item {...props} index={index} key={index}/>
-                ))}
-            </div>
+            {items && items.map((_, index) => (
+                <Item {...props} index={index} key={index}/>
+            ))}
         </div>
     )
 }

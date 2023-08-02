@@ -19,17 +19,6 @@ export const apiCall: ApiCall = async (url, params) => {
         body = JSON.stringify(params?.body)
     }
 
-    // const options = {
-    //     method: params?.method,
-    //     body,
-    //     credentials: 'include',
-    //     headers: {
-    //         ...typeof body === 'string' && {'Content-Type': 'application/json'},
-    //         ...params?.headers
-    //     },
-    //     keepalive: true
-    // } as RequestInit
-
     const {headers: _, body: __, ...otherParams} = params ?? {}
 
     const options = {
@@ -47,15 +36,12 @@ export const apiCall: ApiCall = async (url, params) => {
     let code
     try {
         const response = await fetch(`${baseURL}/${url}`, options)
-        // console.log('response', response)
         data = await response?.json()
         code = response?.status?.toString()[0] ?? '5'
     } catch (err) {
         code = '5'
         data = err
     }
-
-    // console.log('data', data)
 
     if (code === '4' || code === '5') {
         return {data: null, error: {code, ...data}}

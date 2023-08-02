@@ -10,8 +10,8 @@ import itemTranslationContent
 import {ChangeCallback} from 'app/[locale]/_common/hooks/input/input-v2.types'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {useInputChange} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
-import {peek} from 'app/[locale]/_common/utils/main/main.utils'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {peek} from 'app/[locale]/_common/utils/helpers/peek/peek.util'
 
 const useItemTranslation = (props: ItemTranslationProps) => {
     const {locale} = props
@@ -44,9 +44,6 @@ const useItemTranslation = (props: ItemTranslationProps) => {
             setErrorCount(errorCountRef.current + afterCount - beforeCount)
         }
     }
-
-    // const {itemIndex} = usePaginationStore(state => peek(state, ['itemIndex']))
-    // itemIndex === 0 && console.log('render item translation')
 
     const {onChange} = useInputChange({values, changeCallback})
 

@@ -10,7 +10,7 @@ import {useRouter} from 'next/navigation'
 import {Locale} from 'app/[locale]/_common/types/types'
 import {Entry} from 'app/[locale]/_common/types/types'
 import {Mapped} from 'app/[locale]/_common/types/types'
-import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
+import getKeys from 'app/[locale]/_common/utils/typescript/get-keys/get-keys.utils'
 import {useParams} from 'next/navigation'
 
 export const useInput: UseInput = (inputsObj, translInputs) => {

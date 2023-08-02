@@ -1,6 +1,6 @@
 import {NavMenuProps} from 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.types'
 import {MouseAction} from 'app/[locale]/_common/types/types'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import navMenuContent from 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.content'
 import {ModalState} from 'app/[locale]/_store/modal/modal.types'
 import {useState} from 'react'

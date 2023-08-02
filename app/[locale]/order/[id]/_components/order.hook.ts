@@ -1,5 +1,5 @@
 import {useEffect} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useRouter} from 'next/navigation'
 import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
 import orderContent from 'app/[locale]/order/[id]/_components/order.content'

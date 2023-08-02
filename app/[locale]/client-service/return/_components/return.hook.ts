@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import returnContent from 'app/[locale]/client-service/return/_components/return.content'
 
 const useReturn = () => {

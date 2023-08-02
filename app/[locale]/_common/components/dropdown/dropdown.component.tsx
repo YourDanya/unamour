@@ -15,9 +15,11 @@ const Dropdown: FC<DropdownProps> = (props) => {
                 <div className={'dropdown__name'}>{name}</div>
             </button>
             <div className={`dropdown__content  ${show ? 'dropdown__content--show' : ''}`} ref={elemRef}>
-                <div className={'dropdown__children'}>
-                    {children}
-                </div>
+                {/*<div className={'dropwodn__children-first'}>*/}
+                    <div className={'dropdown__children'}>
+                        {children}
+                    </div>
+                {/*</div>*/}
             </div>
         </div>
     )

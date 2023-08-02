@@ -26,8 +26,6 @@ const LoadImage: FC<LoadImageProps> = (props) => {
                 ref={imgRef}
                 onLoad={onLoaded}
                 {...otherProps}
-                // fill={true}
-                // onLoadingComplete={onLoaded}
             />
         </div>
     )

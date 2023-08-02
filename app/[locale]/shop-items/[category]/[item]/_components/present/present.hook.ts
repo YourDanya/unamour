@@ -1,6 +1,6 @@
 import {presentContent} from "./present.content"
 import {PresentProps} from 'app/[locale]/shop-items/[category]/[item]/_components/present/present.types'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 
 const usePresent = (props: PresentProps) => {

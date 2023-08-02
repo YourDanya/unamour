@@ -5,12 +5,9 @@ import {useLayoutEffect} from 'react'
 import {EffectCallback} from 'react'
 import {UseModal} from 'app/[locale]/_common/hooks/component/component.types'
 import {useState} from 'react'
-import {UseFirstRender} from 'app/[locale]/_common/hooks/component/component.types'
 import {MouseEvent} from 'react'
-import {UseTimer} from 'app/[locale]/_common/hooks/component/component.types'
-import {parseTimer} from 'app/[locale]/_common/utils/main/main.utils'
-import {Device} from 'app/[locale]/_common/hooks/component/component.types'
-import useThrottle from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
+import parseTimer from 'app/[locale]/_common/utils/helpers/parse-timer/parse-timer.util'
+import useThrottle from 'app/[locale]/_common/hooks/helpers/throttle/throttle.hook'
 
 export const useModal: UseModal = (_initState, attribute = 'name') => {
     type ModalProp = keyof typeof _initState & 'modal'
@@ -75,25 +72,6 @@ export const useExternalState = <T, K>(state: T | undefined, setState: ((state: 
     else return [state_, setState_]
 }
 
-export const useResizeObserve = (callback: (() => void), ...elements: HTMLElement []) => {
-    useEffect(() => {
-        if (elements.length > 0) {
-            const resizeObserver = new ResizeObserver(callback)
-            elements.forEach(elem => resizeObserver.observe(elem))
-            return () => {
-                elements.forEach(elem => resizeObserver.unobserve(elem))
-            }
-        }
-        else {
-            window.addEventListener('resize', callback)
-            return () => {
-                window.removeEventListener('resize', callback)
-            }
-        }
-    }, [])
-
-}
-
 export const useLayoutResizeObserve = (callback: (() => void), ...elements: HTMLElement []) => {
     useLayoutEffect(() => {
         if (elements.length > 0) {
@@ -136,100 +114,5 @@ export const useOmitFirstLayoutEffect = <T extends any[], >(effect: EffectCallba
     }, deps)
 }
 
-export const useDebounceEffect = <T extends any[], >(effect: EffectCallback, deps: DependencyList, delay = 1000, condition = true) => {
-    let timeout = useRef<NodeJS.Timeout>()
 
-    useEffect(() => {
-        if (timeout.current && condition) {
-            clearTimeout(timeout.current)
-        }
-        timeout.current = setTimeout(() => {
-            effect()
-        }, delay)
-    }, deps)
-}
 
-export const useFirsRender: UseFirstRender = (callback) => {
-    const isFirstRef = useRef(true)
-
-    if (isFirstRef.current) {
-        isFirstRef.current = false
-        callback()
-    }
-}
-
-export const useTimer: UseTimer = (params) => {
-    const {timer, setTimer} = params
-
-    const check = useRef<symbol>()
-
-    useEffect(() => {
-        if (!timer || timer === '00:00') {
-            return
-        }
-        let [minutes, seconds] = timer.split(':').map((elem) => +elem)
-        const allSeconds = (minutes * 60 + seconds) - 1
-        minutes = Math.floor( allSeconds / 60)
-        seconds = allSeconds % 60
-        const newTimer = `${minutes < 10? `0${minutes}`: `${minutes}`}:${seconds < 10 ? `0${seconds}`: `${seconds}`}`
-
-        const symbol = Symbol('id')
-        check.current = symbol
-
-        setTimeout(() => {
-            if (check.current !== symbol) {
-                return
-            }
-            setTimer(newTimer)
-        }, 1000)
-    }, [timer])
-}
-
-export const useResponsive = () => {
-    const [device, setDevice] = useState<Device>('')
-    const deviceRef = useRef<Device>('')
-
-    const resize = () => {
-        const width = window.innerWidth
-        if (width > 992 && deviceRef.current !== 'large') {
-            deviceRef.current = 'large'
-            setDevice('large')
-        } else if (width <= 992 && width > 768 && deviceRef.current !== 'medium') {
-            deviceRef.current = 'medium'
-            setDevice('medium')
-        } else if (width <= 768 && width > 576 && deviceRef.current !== 'small') {
-            deviceRef.current = 'small'
-            setDevice('small')
-        } else if (width <= 576 && deviceRef.current !== 'tiny') {
-            deviceRef.current = 'tiny'
-            setDevice('tiny')
-        }
-    }
-
-    useLayoutEffect(() => {
-        resize()
-    }, [])
-
-    useLayoutEffect(() => {
-        window.addEventListener('resize', resize)
-        return () => {
-            window.removeEventListener('resize', resize)
-        }
-    }, [])
-
-    return {device}
-}
-
-const useResize = (callback: () => void) => {
-    const onResize = useThrottle(callback, 500)
-
-    useLayoutEffect(() => {
-        onResize()
-        window.addEventListener('resize', onResize)
-        return () => {
-            window.removeEventListener('resize', onResize)
-        }
-    }, [])
-}
-
-export default useResize

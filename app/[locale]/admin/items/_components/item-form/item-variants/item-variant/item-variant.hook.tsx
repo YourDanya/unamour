@@ -8,11 +8,11 @@ import {colorContent} from 'app/[locale]/_content/content'
 import itemVariantContent from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-variant.content'
 import {useInputChange} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
 import {useValidateInput} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
-import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
 import {useEffect} from 'react'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {useState} from 'react'
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useItemVariant = (props: ItemVariantProps) => {
     const [colorsTransl, colorsContent] = useLocale(colorContent)

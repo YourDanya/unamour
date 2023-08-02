@@ -15,14 +15,14 @@ import {ReadonlyURLSearchParams} from 'next/navigation'
 import {AppRouterInstance} from 'next/dist/shared/lib/app-router-context'
 import {useRef} from 'react'
 import {FilterValues} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
-import {useDebounce} from 'app/[locale]/_common/hooks/enhanced/enhanced.hooks'
+import useDebounce from 'app/[locale]/_common/hooks/helpers/debounce/debounce.hook'
 import {usePathname} from 'next/navigation'
 import {useEffect} from 'react'
-import {getEntries} from 'app/[locale]/_common/utils/main/main.utils'
+import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
 import {useParams} from 'next/navigation'
 import {Locale} from 'app/[locale]/_common/types/types'
-import {getKeys} from 'app/[locale]/_common/utils/main/main.utils'
-import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
+import getKeys from 'app/[locale]/_common/utils/typescript/get-keys/get-keys.utils'
+import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
 import {useResponsive} from 'app/[locale]/_common/hooks/helpers/responsive/responsive.hook'
 import {createParams} from 'app/[locale]/shop-items/[category]/_components/_layout/create-params'
 import {categories} from 'app/[locale]/_content/categories/categories.content'
@@ -30,8 +30,14 @@ import {clothing} from 'app/[locale]/_content/categories/categories.content'
 import {clothingDictionary} from 'app/[locale]/_content/categories/categories.content'
 import {categoriesDictionary} from 'app/[locale]/_content/categories/categories.content'
 
-const useLayout = (props: LayoutProps) => {
+export const useLayout = () => {
+    const params = useParams()
+    const isItem = !!params.item
 
+    return {isItem}
+}
+
+export const useShopItemsLayout = (props: LayoutProps) => {
     const mainState = useMain()
     const mobileState = useMobile(mainState)
     const paramsState = useParamsState(mobileState)
@@ -39,7 +45,7 @@ const useLayout = (props: LayoutProps) => {
     return {...paramsState}
 }
 
-export default useLayout
+
 
 const useMain = () => {
     const mainTransl = useLocale(dictionary)
@@ -127,7 +133,19 @@ const useParamsState = (mainState: ReturnType<typeof useMobile>) => {
 export const useGetParamsState = () => {
     const params = useSearchParams()
     const router = useRouter()
-    const paramValuesRef = useRef<Record<string, string>>({})
+
+    const initParamsValues =  useMemo(() => {
+        const paramsObj: Record<string, string> = {}
+
+        params.forEach((value, key) => {
+            paramsObj[key] = value
+        })
+
+        return paramsObj
+    }, [])
+
+    const paramValuesRef = useRef<Record<string, string>>(initParamsValues)
+
     const pathname = usePathname()
     const [paramsUrl, setParamsUrl] = useState(params.toString().replaceAll('%2C', ','))
 

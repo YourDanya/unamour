@@ -1,16 +1,4 @@
 import {MouseAction} from 'app/[locale]/_common/types/types'
+import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
 
-export type ParametersProps = {
-    name: string,
-    oldPrice: string,
-    price: string,
-    sizes: string[],
-    activeSize: string | null,
-    showModal: (param: string) => void,
-    onActiveSize: MouseAction,
-    onActiveColor: MouseAction,
-    color: string,
-    variants: {
-        color: string
-    }[]
-}
+export type ParametersProps = ReturnType<typeof useShopItem>

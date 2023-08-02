@@ -1,8 +1,7 @@
 import {useRef, useState} from 'react'
 import {useLayoutEffect} from 'react'
 import {useLayoutResizeObserve} from 'app/[locale]/_common/hooks/component/component.hooks'
-import {useResponsive} from 'app/[locale]/_common/hooks/component/component.hooks'
-import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
+import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
 import {useEffect} from 'react'
 import useNavStore from 'app/[locale]/_store/nav/nav.store'
 
@@ -47,38 +46,3 @@ const useHome = () => {
 
 export default useHome
 
-
-// let allLinkHeight = 0, bestLinkWidth = 0, logoWidth = 0
-//
-// const allLinkWidth = allLinkRef.current?.getBoundingClientRect().width ?? 0
-// const containerWidth = containerRef.current?.getBoundingClientRect().width ?? 0
-//
-// if (device === 'large') {
-//     allLinkHeight = allLinkWidth * 0.85
-//     bestLinkWidth = containerWidth * 0.4
-//     logoWidth = 0.3 * containerWidth
-// }
-// if (device === 'medium') {
-//     bestLinkWidth = containerWidth
-//     allLinkHeight = allLinkWidth
-//     logoWidth = 0.5 * containerWidth
-// }
-// if (device === 'small') {
-//     bestLinkWidth = containerWidth
-//     allLinkHeight = allLinkWidth * 1.2
-//     logoWidth = 0.8 * containerWidth
-// }
-// if (device === 'tiny') {
-//     bestLinkWidth = containerWidth
-//     allLinkHeight = allLinkWidth * 1.3
-//     logoWidth = containerWidth
-// }
-
-//
-// useLayoutEffect(() => {
-//     calc()
-// }, [])
-//
-// useLayoutResizeObserve(() => {
-//     calc()
-// })

@@ -8,7 +8,7 @@ import Modal from 'app/[locale]/_common/components/modal/modal.component'
 import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
 import {useEffect} from 'react'
 import {useState} from 'react'
-import useResize from 'app/[locale]/_common/hooks/component/component.hooks'
+import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
 import {useRef} from 'react'
 import ImageModal
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/image-modal/image-modal.component'

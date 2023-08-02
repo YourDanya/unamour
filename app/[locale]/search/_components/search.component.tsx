@@ -9,7 +9,7 @@ import useSearch from 'app/[locale]/search/_components/search.hook'
 import Input from 'app/[locale]/_common/components/input/input.component'
 
 const Search: NextPage = () => {
-    const {items, onChange, transl, input, onSubmit, searchItems, first, width, height, elemRef} = useSearch()
+    const {items, onChange, transl, input, onSubmit, searchItems, first, height, elemRef} = useSearch()
 
     return (
         <div className={'search'}>
@@ -36,7 +36,6 @@ const Search: NextPage = () => {
                                 <ShopItemPreview
                                     {...item.common}
                                     key={item.common.slug + index}
-                                    width={width}
                                     height={height}
                                     itemRef={index === 0 ? elemRef : undefined}
                                 />

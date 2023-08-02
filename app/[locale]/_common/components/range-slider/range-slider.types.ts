@@ -18,5 +18,6 @@ export type RangeSliderProps = {
     values: {min: number, max: number},
     valuesRef: MutableRefObject<{ min: number, max: number}>
     defMin: number,
-    defMax: number
+    defMax: number,
+    className?: string
 }

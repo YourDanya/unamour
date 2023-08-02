@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
 import {useEffect} from 'react'
 import {UpdatePassProps} from 'app/[locale]/profile/update-user/components/other/update-pass/update-pass.types'

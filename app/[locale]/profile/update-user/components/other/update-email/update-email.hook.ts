@@ -1,4 +1,4 @@
-import {useLocale} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useEffect} from 'react'
 import {useRef} from 'react'
 import updateEmailContent from 'app/[locale]/profile/update-user/components/other/update-email/update-email.content'

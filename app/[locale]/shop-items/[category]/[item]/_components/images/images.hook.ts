@@ -10,9 +10,9 @@ const useImages = () => {
         setCurrent(+name)
     }
 
-    const {width, height, elemRef} = useGetParamForImages()
+    const {height, elemRef} = useGetParamForImages()
 
-    return {current, onTab, setCurrent, elemRef, width, height}
+    return {current, onTab, setCurrent, elemRef, height}
 }
 
 export default useImages

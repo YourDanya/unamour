@@ -32,13 +32,3 @@ const AdminItems: FC = () => {
 }
 
 export default AdminItems
-
-{/*    {items.map((item, index) => index === 0 && (*/}
-{/*        <ItemForm*/}
-{/*            key={item._id}*/}
-{/*            className={index === items.length - 1 ? 'admin-items__last-item' : ''}*/}
-{/*            itemIndex={index}*/}
-{/*            item={item}*/}
-{/*        />*/}
-{/*    ))}*/}
-{/*</PaginationArray>*/}

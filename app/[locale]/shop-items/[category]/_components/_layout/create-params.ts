@@ -10,13 +10,12 @@ export const createParams = (state: ReturnType<typeof useGetParamsState> & {susp
 
     const paramsUrl = filterNames.reduce((url, filterName) => {
         let filterValue = paramValuesRef.current[filterName]
+
         if (filterValue) {
             const newValue = `${filterName}=${filterValue}`
             url = addValueToUrl({value: newValue, url})
-        } else if (params.get(filterName)) {
-            const newValue = `${filterName}=${params.get(filterName)}`
-            url = addValueToUrl({value: newValue, url})
         }
+
         return url
     }, '')
 
@@ -26,10 +25,12 @@ export const createParams = (state: ReturnType<typeof useGetParamsState> & {susp
 }
 
 const addValueToUrl = ({value, url}: { value: string, url: string }) => {
+
     if (url === '') {
         url += `?${value}`
     } else {
         url += `&${value}`
     }
+
     return url
 }
