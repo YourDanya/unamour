@@ -3,7 +3,7 @@ import useItemTranslations from 'app/[locale]/admin/items/_components/item-form/
 import ItemTranslation
     from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.component'
 import {memo} from 'react'
-import getKeys from 'app/[locale]/_common/utils/typescript/get-keys/get-keys.utils'
+import getKeys from 'app/_common/utils/typescript/get-keys/get-keys.utils'
 
 const ItemTranslations: FC = () => {
     const {transl, translations} = useItemTranslations()

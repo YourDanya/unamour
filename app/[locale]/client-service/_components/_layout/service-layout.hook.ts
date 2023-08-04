@@ -1,6 +1,6 @@
-import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
+import useModal from 'app/_common/hooks/helpers/modal/modal.hook'
 import clientServiceContent from 'app/[locale]/client-service/_components/_layout/service-layout.content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const useServiceLayout = () => {
     const [transl] = useLocale(clientServiceContent)

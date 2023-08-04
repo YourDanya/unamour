@@ -1,4 +1,4 @@
-import IIcon from 'app/[locale]/_common/svg/i-icon/i-icon.component'
+import IIcon from 'app/_common/svg/i-icon/i-icon.component'
 import {IconProps} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.types'
 import {FC} from 'react'
 

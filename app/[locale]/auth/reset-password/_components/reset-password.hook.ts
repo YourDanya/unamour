@@ -1,11 +1,11 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import {useRouter} from 'next/navigation'
 import {useEffect} from 'react'
 import resetPasswordContent from 'app/[locale]/auth/reset-password/_components/reset-password.content'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {useSearchParams} from 'next/navigation'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
 
 const useResetPass = () => {
     const [transl, content] = useLocale(resetPasswordContent)

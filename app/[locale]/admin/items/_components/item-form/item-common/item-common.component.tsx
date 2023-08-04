@@ -1,11 +1,11 @@
 import {FC} from 'react'
 import {memo} from 'react'
 import {ItemCommonProps} from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.types'
-import Checkbox from 'app/[locale]/_common/components/checkbox/checkbox.component'
-import Dropdown from 'app/[locale]/_common/components/dropdown/dropdown.component'
-import RadioButtons from 'app/[locale]/_common/components/radio-buttons/radio-buttons.component'
+import Checkbox from 'app/_common/components/checkbox/checkbox.component'
+import Dropdown from 'app/_common/components/dropdown/dropdown.component'
+import RadioButtons from 'app/_common/components/radio-buttons/radio-buttons.component'
 import useItemCommon from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.hook'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const ItemCommon: FC<ItemCommonProps> = (props) => {
     const {} = props

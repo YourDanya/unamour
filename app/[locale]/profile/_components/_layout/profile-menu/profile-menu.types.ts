@@ -1,4 +1,4 @@
-import {User} from 'app/[locale]/_store/user/user.types'
+import {User} from 'app/_common/store/user/user.types'
 
 export type MenuProps = {
     className?: string,

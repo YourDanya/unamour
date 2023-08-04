@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import useFileInput
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import usePhotoInput
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.hook'
 import usePhotos from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.hook'

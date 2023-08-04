@@ -1,11 +1,11 @@
 import {FC} from 'react'
-import Textarea from 'app/[locale]/_common/components/textarea/textarea.component'
+import Textarea from 'app/_common/components/textarea/textarea.component'
 import {
     ItemTranslationProps
 } from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.types'
 import useItemTranslation
     from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.hook'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const ItemTranslation: FC<ItemTranslationProps> = (props) => {
     const {locale} = props

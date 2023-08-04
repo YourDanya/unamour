@@ -1,11 +1,11 @@
 import {FC} from 'react'
 import {AdditionalProps} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.types'
 import useAdditional from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.hook'
-import Slider from 'app/[locale]/_common/components/slider/slider.component'
-import ShopItemPreview from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.component'
-import {FetchedItem} from 'app/[locale]/_common/types/types'
-import {CategoryItem} from 'app/[locale]/_common/types/types'
-import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
+import Slider from 'app/_common/components/slider/slider.component'
+import ShopItemPreview from 'app/_common/components/shop-item-preview/shop-item-preview.component'
+import {FetchedItem} from 'app/_common/types/types'
+import {CategoryItem} from 'app/_common/types/types'
+import Spinner from 'app/_common/components/spinner/spinner.component'
 import {LoadedProps} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.types'
 
 const Additional: FC<AdditionalProps> = (props) => {
@@ -14,7 +14,7 @@ const Additional: FC<AdditionalProps> = (props) => {
     const loadedState = state as LoadedProps
 
     return (
-        <div className='container shop-items-additional additional'>
+        <div className='shop-items-additional additional'>
             {getViewedItems.loading || getSimilarItems.loading ? (
                 <Spinner className={'additional__spinner'}/>
             ) : (

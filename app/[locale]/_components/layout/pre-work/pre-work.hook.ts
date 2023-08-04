@@ -1,13 +1,13 @@
 import {useEffect} from 'react'
 import {useRef} from 'react'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/_common/store/user/user.store'
 import {useCallback} from 'react'
-import {peek} from 'app/[locale]/_common/utils/helpers/peek/peek.util'
+import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {shallow} from 'zustand/shallow'
-import {User} from 'app/[locale]/_store/user/user.types'
-import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
-import {Order} from 'app/[locale]/_store/cart/cart.types'
+import {User} from 'app/_common/store/user/user.types'
+import {useCartStore} from 'app/_common/store/cart/cart.store'
+import {Order} from 'app/_common/store/cart/cart.types'
 
 const usePreWork = () => {
     const user = useUserStore(state => state.user)

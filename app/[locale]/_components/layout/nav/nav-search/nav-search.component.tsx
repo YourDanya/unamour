@@ -2,11 +2,11 @@
 
 import {FC} from 'react'
 import search from 'public/icons/search.svg'
-import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
+import {baseURL} from 'app/_common/utils/api/api.utils'
 import useNavSearch from 'app/[locale]/_components/layout/nav/nav-search/nav-search.hook'
-import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
+import Spinner from 'app/_common/components/spinner/spinner.component'
 import Link from 'next/link'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const NavSearch: FC = () => {
     const {items, input, onChange, transl, locale, searchItems} = useNavSearch()

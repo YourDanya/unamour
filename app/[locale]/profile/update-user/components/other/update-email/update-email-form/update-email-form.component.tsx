@@ -2,12 +2,12 @@ import {FC} from 'react'
 import React from 'react'
 import useUpdateEmailForm
     from 'app/[locale]/profile/update-user/components/other/update-email/update-email-form/update-email-form.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {
     UpdateEmailFormProps
 } from 'app/[locale]/profile/update-user/components/other/update-email/update-email-form/update-email.form.types'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
+import Input from 'app/_common/components/input/input.component'
 
 const UpdateEmailForm: FC<UpdateEmailFormProps> = (props) => {
     const {transl, onChange, onValidate, inputs, onSubmit, mappedUpdateEmail} = useUpdateEmailForm()

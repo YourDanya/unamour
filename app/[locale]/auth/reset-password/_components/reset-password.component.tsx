@@ -1,10 +1,10 @@
 'use client'
 
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {NextPage} from 'next'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
 import useResetPass from 'app/[locale]/auth/reset-password/_components/reset-password.hook'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const ResetPass: NextPage = () => {
     const {transl, mappedResetPass, inputs, onChange, onValidate, onSubmit} = useResetPass()

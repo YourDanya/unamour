@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import presentImg from 'public/icons/present.svg'
-import FavoriteLike from 'app/[locale]/_common/components/favorite-like/favorite-like.component'
+import FavoriteLike from 'app/_common/components/favorite-like/favorite-like.component'
 import {ButtonsProps} from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.types'
 import useButtons from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.hook'
 

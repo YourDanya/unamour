@@ -2,8 +2,8 @@
 
 import {FC} from 'react'
 import {NavMenuProps} from 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.types'
-import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import NavLink from 'app/_common/components/nav-link/nav-link.component'
+import Button from 'app/_common/components/button/button.component'
 import useNavMenu from 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.hook'
 import {Fragment} from 'react'
 

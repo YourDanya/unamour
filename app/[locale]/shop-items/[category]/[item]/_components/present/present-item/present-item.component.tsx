@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
+import {baseURL} from 'app/_common/utils/api/api.utils'
 import {PresentItemProps} from 'app/[locale]/shop-items/[category]/[item]/_components/present/present-item/present-item.types'
 import usePresentItem from 'app/[locale]/shop-items/[category]/[item]/_components/present/present-item/present-item.hook'
 import {FC} from 'react'
-import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.component'
+import LoadImage from 'app/_common/components/load-image-v2/load-image.component'
 
 const PresentItem: FC<PresentItemProps> = (props) => {
     const {images, name, activeSize, price} = props

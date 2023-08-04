@@ -1,7 +1,7 @@
 import useReview from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.hook'
 import {useState} from 'react'
 import {useRef} from 'react'
-import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
+import useResize from 'app/_common/hooks/helpers/resize/resize.hook'
 import {useEffect} from 'react'
 
 const useImageModal = (props: ReturnType<typeof useReview>) => {

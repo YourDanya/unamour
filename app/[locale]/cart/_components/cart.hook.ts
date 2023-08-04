@@ -1,14 +1,14 @@
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {MouseAction} from 'app/_common/types/types'
 import {useRef} from 'react'
 import cartContent from 'app/[locale]/cart/_components/cart.content'
 import {useEffect} from 'react'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import {useRouter} from 'next/navigation'
-import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {PaymentData} from 'app/[locale]/_store/cart/cart.types'
-import {CreateOrderData} from 'app/[locale]/_store/cart/cart.types'
+import {useCartStore} from 'app/_common/store/cart/cart.store'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {PaymentData} from 'app/_common/store/cart/cart.types'
+import {CreateOrderData} from 'app/_common/store/cart/cart.types'
 
 const useCart = () => {
     const cartItems = useCartStore(state => state.items)

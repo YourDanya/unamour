@@ -1,5 +1,5 @@
 import React from 'react'
-import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component'
+import NavLink from 'app/_common/components/nav-link/nav-link.component'
 import {FC} from 'react'
 import {MenuProps} from 'app/[locale]/profile/_components/_layout/profile-menu/profile-menu.types'
 

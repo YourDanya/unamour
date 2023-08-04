@@ -1,11 +1,11 @@
 'use client'
 
 import {NextPage} from 'next'
-import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
+import Spinner from 'app/_common/components/spinner/spinner.component'
 import useOrder from 'app/[locale]/order/[id]/_components/order.hook'
-import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
+import ModalContent from 'app/_common/components/modal-content/modal-content.component'
 import OrderInfo from 'app/[locale]/order/[id]/_components/order-info/order-info.component'
-import Modal from 'app/[locale]/_common/components/modal/modal.component'
+import Modal from 'app/_common/components/modal/modal.component'
 import Link from 'next/link'
 
 const Order = () => {

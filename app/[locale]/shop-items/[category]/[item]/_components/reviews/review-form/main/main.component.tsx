@@ -1,11 +1,11 @@
 import {getStarsArr} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.utils'
 import Star from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.component'
-import Input from 'app/[locale]/_common/components/input-v2/input.component'
+import Input from 'app/_common/components/input-v2/input.component'
 import Description
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.component'
 import Photos from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/photos/photos.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import Photo from 'app/[locale]/_common/svg/photo/photo.component'
+import Button from 'app/_common/components/button/button.component'
+import Photo from 'app/_common/svg/photo/photo.component'
 import useReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.hook'
 import {FC} from 'react'
 

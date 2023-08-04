@@ -1,9 +1,9 @@
 import {ParametersProps} from 'app/[locale]/shop-items/[category]/[item]/_components/parameters/parameters.types'
 import parametersContent from 'app/[locale]/shop-items/[category]/[item]/_components/parameters/parameters.content'
 import {useMemo} from 'react'
-import {colorContent} from 'app/[locale]/_content/content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {Color} from 'app/[locale]/_common/types/types'
+import {colorContent} from 'app/_common/content/content'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {Color} from 'app/_common/types/types'
 
 const useParameters = (props: ParametersProps) => {
     const {props: item, showModal, currentVariant, transl: itemTransl} = props

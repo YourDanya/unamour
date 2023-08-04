@@ -4,11 +4,11 @@ import {FC} from 'react'
 import telegram from 'public/icons/telegram.svg'
 import react from 'public/logo/next.svg'
 import useFooter from 'app/[locale]/_components/layout/footer/footer.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import Links from 'app/[locale]/_components/layout/footer/links/links.component'
-import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
+import ModalContent from 'app/_common/components/modal-content/modal-content.component'
 import Link from 'next/link'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const Footer: FC = () => {
     const {onChange, modal, showModal, hideModal, content, inputs, transl, onFocus, focused} = useFooter()

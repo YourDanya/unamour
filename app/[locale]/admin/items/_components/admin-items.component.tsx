@@ -2,9 +2,9 @@
 
 import useAdminItems from 'app/[locale]/admin/items/_components/admin-items.hook'
 import ItemForm from 'app/[locale]/admin/items/_components/item-form/item-form.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
-import PaginationArray from 'app/[locale]/_common/components/pagination/pagination-array/pagination-array.component'
+import Button from 'app/_common/components/button/button.component'
+import Spinner from 'app/_common/components/spinner/spinner.component'
+import PaginationArray from 'app/_common/components/pagination/pagination-array/pagination-array.component'
 import {FC} from 'react'
 
 const AdminItems: FC = () => {

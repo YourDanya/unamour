@@ -1,12 +1,12 @@
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {MouseAction} from 'app/_common/types/types'
 import {buttonsContent} from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.content'
-import useFavoritesStore from 'app/[locale]/_store/favorites/favorites.store'
-import useModalStore from 'app/[locale]/_store/modal/modal.store'
+import useFavoritesStore from 'app/_common/store/favorites/favorites.store'
+import useModalStore from 'app/_common/store/modal/modal.store'
 import {ButtonsProps} from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.types'
 import {useMemo} from 'react'
 import {useState} from 'react'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useUserStore} from 'app/_common/store/user/user.store'
 
 const useButtons = (props: ButtonsProps) => {
     const {props: {_id: id}, currentVariant: {color}} = props

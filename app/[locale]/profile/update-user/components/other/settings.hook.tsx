@@ -1,5 +1,5 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useModal from 'app/_common/hooks/helpers/modal/modal.hook'
 import updateUserSettingsContent from 'app/[locale]/profile/update-user/components/other/settings.content'
 
 const useUpdateUserSettings = () => {

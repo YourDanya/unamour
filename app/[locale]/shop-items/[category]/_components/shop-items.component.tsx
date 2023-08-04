@@ -1,6 +1,6 @@
 'use client'
 
-import ShopItemPreview from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.component'
+import ShopItemPreview from 'app/_common/components/shop-item-preview/shop-item-preview.component'
 import {FC} from 'react'
 import {ShopItemsProps} from 'app/[locale]/shop-items/[category]/_components/shop-items.types'
 import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-items.hook'

@@ -1,8 +1,8 @@
 import {DiscountProps} from 'app/[locale]/cart/_components/discount/discount.types'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {FC} from 'react'
 import useDiscount from 'app/[locale]/cart/_components/discount/discount.hook'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const Discount: FC<DiscountProps> = (props) => {
     const {active, onActive, found, onFound, inputs, onChange, onValidate, transl} = useDiscount(props)

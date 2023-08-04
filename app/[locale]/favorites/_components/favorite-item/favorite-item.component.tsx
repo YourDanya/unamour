@@ -1,8 +1,8 @@
 import {FC} from 'react'
-import ShopItemPreview from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.component'
+import ShopItemPreview from 'app/_common/components/shop-item-preview/shop-item-preview.component'
 import {FavoriteItemProps} from 'app/[locale]/favorites/_components/favorite-item/favorite-item.types'
 import useFavoriteItem from 'app/[locale]/favorites/_components/favorite-item/favorite-item.hook'
-import FavoriteLike from 'app/[locale]/_common/components/favorite-like/favorite-like.component'
+import FavoriteLike from 'app/_common/components/favorite-like/favorite-like.component'
 
 const FavoriteItem: FC<FavoriteItemProps> = (props) => {
     const {item, width} = props

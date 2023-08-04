@@ -1,6 +1,6 @@
 import {FC} from 'react'
-import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import {baseURL} from 'app/_common/utils/api/api.utils'
+import Button from 'app/_common/components/button/button.component'
 import {
     ItemImageProps
 } from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-image/item-image.types'

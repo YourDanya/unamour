@@ -1,5 +1,5 @@
 import {ChangeEvent} from 'react'
-import {UseInputInputs} from 'app/[locale]/_common/hooks/input/input.types'
+import {UseInputInputs} from 'app/_common/hooks/input/input.types'
 import CartContent from 'app/[locale]/cart/_components/cart.content'
 
 export type CartFormProps = {

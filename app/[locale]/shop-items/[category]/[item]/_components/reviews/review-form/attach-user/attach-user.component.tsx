@@ -3,7 +3,7 @@ import useAttachUser
 import useReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.hook'
 import Description
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.component'
-import Input from 'app/[locale]/_common/components/input-v2/input.component'
+import Input from 'app/_common/components/input-v2/input.component'
 
 const AttachUser = (props: ReturnType<typeof useReviewForm>) => {
     const {admin: { onAdminChange, adminValues, adminErrors, onAdminBlur}, main: {transl}} = props

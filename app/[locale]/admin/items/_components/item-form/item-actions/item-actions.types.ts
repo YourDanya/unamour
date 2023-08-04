@@ -1,4 +1,4 @@
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {itemActionsContent} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
 
 export type ItemActionsProps = {

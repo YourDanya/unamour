@@ -1,6 +1,6 @@
-import {useGetParamForImages} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useGetParamForImages from 'app/_common/hooks/helpers/get-param-for-images/get-param-for-images.hook'
 import {useState} from 'react'
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {MouseAction} from 'app/_common/types/types'
 
 const useImages = () => {
     const [current, setCurrent] = useState(0)

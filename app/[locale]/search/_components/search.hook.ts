@@ -1,15 +1,15 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useRouter} from 'next/navigation'
 import {useState} from 'react'
 import {ChangeEvent} from 'react'
 import {useEffect} from 'react'
-import {useGetParamForImages} from 'app/[locale]/_common/hooks/other/other.hooks'
+import useGetParamForImages from 'app/_common/hooks/helpers/get-param-for-images/get-param-for-images.hook'
 import searchContent from 'app/[locale]/search/_components/search.content'
 import {useParams} from 'next/navigation'
-import {Locale} from 'app/[locale]/_common/types/types'
+import {Locale} from 'app/_common/types/types'
 import {useSearchParams} from 'next/navigation'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {CategoryItem} from 'app/[locale]/_common/types/types'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {CategoryItem} from 'app/_common/types/types'
 
 const useSearch = () => {
     const [transl] = useLocale(searchContent)

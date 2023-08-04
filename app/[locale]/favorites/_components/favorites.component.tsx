@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import {FC} from 'react'
 import useFavorites from 'app/[locale]/favorites/_components/favorites.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
+import Button from 'app/_common/components/button/button.component'
+import Spinner from 'app/_common/components/spinner/spinner.component'
 import FavoriteItem from 'app/[locale]/favorites/_components/favorite-item/favorite-item.component'
 
 const Favorites: FC = () => {

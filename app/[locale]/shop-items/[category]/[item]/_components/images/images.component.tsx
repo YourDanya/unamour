@@ -1,10 +1,10 @@
 import {FC} from 'react'
 import Image from 'next/image'
-import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
-import Slider from 'app/[locale]/_common/components/slider/slider.component'
+import {baseURL} from 'app/_common/utils/api/api.utils'
+import Slider from 'app/_common/components/slider/slider.component'
 import {ImagesProps} from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.types'
 import useImages from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.hook'
-import LoadImage from 'app/[locale]/_common/components/load-image-v2/load-image.component'
+import LoadImage from 'app/_common/components/load-image-v2/load-image.component'
 
 const Images: FC<ImagesProps> = (props) => {
     const {images} = props

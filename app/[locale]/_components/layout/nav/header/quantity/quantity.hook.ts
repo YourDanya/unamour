@@ -1,4 +1,4 @@
-import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
+import {useCartStore} from 'app/_common/store/cart/cart.store'
 import {useCallback} from 'react'
 
 const useQuantity = () => {

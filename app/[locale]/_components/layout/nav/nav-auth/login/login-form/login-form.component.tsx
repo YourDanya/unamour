@@ -1,9 +1,9 @@
 import {FC} from 'react'
 import {LoginProps} from 'app/[locale]/_components/layout/nav/nav-auth/login/login-form/login-form.types'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
+import Button from 'app/_common/components/button/button.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
 import useLoginForm from 'app/[locale]/_components/layout/nav/nav-auth/login/login-form/login-form.hook'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const LoginForm: FC<LoginProps> = (props) => {
     const {handleResetPass} = props

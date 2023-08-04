@@ -5,9 +5,9 @@ import Hamburger from 'app/[locale]/_components/layout/nav/hamburger/hamburger.c
 import NavSearch from 'app/[locale]/_components/layout/nav/nav-search/nav-search.component'
 import NavHeader from 'app/[locale]/_components/layout/nav/header/header.component'
 import useNav from 'app/[locale]/_components/layout/nav/nav.hook'
-import Modal from 'app/[locale]/_common/components/modal/modal.component'
+import Modal from 'app/_common/components/modal/modal.component'
 import NavMenu from 'app/[locale]/_components/layout/nav/nav-menu/nav-menu.component'
-import Sidebar from 'app/[locale]/_common/components/sidebar/sidebar.component'
+import Sidebar from 'app/_common/components/sidebar/sidebar.component'
 import dynamic from 'next/dynamic'
 import NavAuth from 'app/[locale]/_components/layout/nav/nav-auth/nav-auth.component'
 

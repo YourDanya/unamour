@@ -1,11 +1,11 @@
 import {useRouter} from 'next/navigation'
 import {useEffect} from 'react'
-import {useModal} from 'app/[locale]/_common/hooks/component/component.hooks'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useModal from 'app/_common/hooks/helpers/modal/modal.hook'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import layoutContent from 'app/[locale]/profile/_components/_layout/layout.content'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {useUserStore} from 'app/_common/store/user/user.store'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {MouseAction} from 'app/_common/types/types'
 
 const useLayout = () => {
     const user = useUserStore(state => state.user)

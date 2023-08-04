@@ -1,4 +1,4 @@
-import {FetchedItem} from 'app/[locale]/_common/types/types'
+import {FetchedItem} from 'app/_common/types/types'
 import {MutableRefObject} from 'react'
 
 export type ItemFormProps = {

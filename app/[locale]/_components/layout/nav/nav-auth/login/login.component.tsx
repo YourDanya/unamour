@@ -1,7 +1,7 @@
 'use client'
 
 import useLogin from 'app/[locale]/_components/layout/nav/nav-auth/login/login.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {SignInProps} from 'app/[locale]/_components/layout/nav/nav-auth/login/login.types'
 import LoginForm from 'app/[locale]/_components/layout/nav/nav-auth/login/login-form/login-form.component'
 import ResetPass from 'app/[locale]/_components/layout/nav/nav-auth/login/reset-pass/reset-pass.component'

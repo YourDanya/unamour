@@ -1,11 +1,11 @@
 'use client'
 
 import {NextPage} from 'next'
-import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component'
+import NavLink from 'app/_common/components/nav-link/nav-link.component'
 import useLogin from 'app/[locale]/auth/login/_components/login.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Button from 'app/_common/components/button/button.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
+import Input from 'app/_common/components/input/input.component'
 
 const Login: NextPage = () => {
     const {transl, inputs, onChange, onValidate, onSubmit, mappedLogin} = useLogin()

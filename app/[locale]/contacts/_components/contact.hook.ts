@@ -1,6 +1,6 @@
 
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import contactsContent from 'app/[locale]/contacts/_components/contacts.content'
 
 const useContact = () => {

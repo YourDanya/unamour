@@ -7,7 +7,7 @@ import shoppingCart from '/public/icons/big-shopping-cart.svg'
 import useCart from 'app/[locale]/cart/_components/cart.hook'
 import Discount from 'app/[locale]/cart/_components/discount/discount.component'
 import CartForm from 'app/[locale]/cart/_components/cart-form/cart-form.component'
-import CartItem from 'app/[locale]/_common/components/cart-item/cart-item.component'
+import CartItem from 'app/_common/components/cart-item/cart-item.component'
 import CartOrder from 'app/[locale]/cart/_components/cart-order/cart-order.component'
 
 const Cart: NextPage = () => {

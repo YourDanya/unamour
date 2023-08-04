@@ -1,10 +1,10 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import updateEmailFormContent
     from 'app/[locale]/profile/update-user/components/other/update-email/update-email-form/update-email-form.content'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/_common/store/user/user.store'
 
 const useUpdateEmailForm = () => {
     const [transl, content] = useLocale(updateEmailFormContent)

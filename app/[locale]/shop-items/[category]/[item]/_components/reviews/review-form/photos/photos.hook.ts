@@ -4,7 +4,7 @@ import {
 import {useState} from 'react'
 import {ChangeEvent} from 'react'
 import {useEffect} from 'react'
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {MouseAction} from 'app/_common/types/types'
 import {MouseEvent} from 'react'
 import useReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.hook'
 

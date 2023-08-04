@@ -1,7 +1,7 @@
 import {ShopItemPageProps} from 'app/[locale]/shop-items/[category]/[item]/shop-item.types'
-import {FetchedItem} from 'app/[locale]/_common/types/types'
+import {FetchedItem} from 'app/_common/types/types'
 import ShopItem from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.component'
-import {apiCall} from 'app/[locale]/_common/utils/api/api-v2.utils'
+import {apiCall} from 'app/_common/utils/api/api-v2.utils'
 import {notFound} from 'next/navigation'
 
 const ShopItemPage = async (props: ShopItemPageProps) => {

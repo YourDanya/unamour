@@ -1,11 +1,10 @@
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useLayoutResizeObserve} from 'app/[locale]/_common/hooks/component/component.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {CategoryItem} from 'app/[locale]/_common/types/types'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {CategoryItem} from 'app/_common/types/types'
 import favoritesContent from 'app/[locale]/favorites/_components/favorites.content'
-import useModalStore from 'app/[locale]/_store/modal/modal.store'
-import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
+import useModalStore from 'app/_common/store/modal/modal.store'
+import useResize from 'app/_common/hooks/helpers/resize/resize.hook'
 
 const useFavorites = () => {
     const [transl] = useLocale(favoritesContent)

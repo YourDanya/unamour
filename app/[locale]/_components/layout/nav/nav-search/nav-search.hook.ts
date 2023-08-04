@@ -1,12 +1,12 @@
 import {useState, ChangeEvent} from 'react'
 import {useRouter} from 'next/navigation'
-import useDebounce from 'app/[locale]/_common/hooks/helpers/debounce/debounce.hook'
+import useDebounce from 'app/_common/hooks/helpers/debounce/debounce.hook'
 import navSearchContent from 'app/[locale]/_components/layout/nav/nav-search/nav-search.content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {Locale} from 'app/[locale]/_common/types/types'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {Locale} from 'app/_common/types/types'
 import {useParams} from 'next/navigation'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {CategoryItem} from 'app/[locale]/_common/types/types'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {CategoryItem} from 'app/_common/types/types'
 
 const useNavSearch = () => {
     const [transl] = useLocale(navSearchContent)

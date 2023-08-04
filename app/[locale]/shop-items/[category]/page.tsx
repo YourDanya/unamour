@@ -1,7 +1,7 @@
 import {ShopItemsPageProps} from 'app/[locale]/shop-items/[category]/shop-items.types'
 import ShopItems from 'app/[locale]/shop-items/[category]/_components/shop-items.component'
-import {CategoryItem} from 'app/[locale]/_common/types/types'
-import {apiCall} from 'app/[locale]/_common/utils/api/api-v2.utils'
+import {CategoryItem} from 'app/_common/types/types'
+import {apiCall} from 'app/_common/utils/api/api-v2.utils'
 
 const ShopItemsPage = async (props: ShopItemsPageProps) => {
     const {params, searchParams} = props

@@ -1,4 +1,4 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import menuContent from 'app/[locale]/client-service/_components/_layout/menu/menu.content'
 import {useRouter} from 'next/navigation'
 import {usePathname} from 'next/navigation'

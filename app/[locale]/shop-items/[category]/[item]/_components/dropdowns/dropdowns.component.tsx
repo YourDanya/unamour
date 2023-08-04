@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import Dropdown from 'app/[locale]/_common/components/dropdown/dropdown.component'
+import Dropdown from 'app/_common/components/dropdown/dropdown.component'
 import {DropdownsProps} from 'app/[locale]/shop-items/[category]/[item]/_components/dropdowns/dropdowns.types'
 import useDropdowns from 'app/[locale]/shop-items/[category]/[item]/_components/dropdowns/dropdowns.hook'
 

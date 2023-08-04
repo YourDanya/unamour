@@ -1,6 +1,6 @@
 import presentImg from '/public/icons/present.svg'
 import {CartOrderProps} from 'app/[locale]/cart/_components/cart-order/cart-order.types'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {FC} from 'react'
 import Link from 'next/link'
 import useCartOrder from 'app/[locale]/cart/_components/cart-order/cart-order.hook'

@@ -1,6 +1,6 @@
 import presentFormContent from 'app/[locale]/shop-items/[category]/[item]/_components/present/present-form/present-form.content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 
 const usePresentForm= () => {
     const [transl, content] = useLocale(presentFormContent)

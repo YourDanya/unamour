@@ -1,10 +1,10 @@
 import {FC} from 'react'
 import {PresentFormProps} from 'app/[locale]/shop-items/[category]/[item]/_components/present/present-form/present-form.types'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import Checkbox from 'app/[locale]/_common/components/checkbox/checkbox.component'
-import RadioButtons from 'app/[locale]/_common/components/radio-buttons/radio-buttons.component'
+import Button from 'app/_common/components/button/button.component'
+import Checkbox from 'app/_common/components/checkbox/checkbox.component'
+import RadioButtons from 'app/_common/components/radio-buttons/radio-buttons.component'
 import usePresentForm from 'app/[locale]/shop-items/[category]/[item]/_components/present/present-form/present-form.hook'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const PresentForm: FC<PresentFormProps> = (props) => {
     const {price} = props

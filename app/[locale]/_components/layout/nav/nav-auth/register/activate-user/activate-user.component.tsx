@@ -3,10 +3,10 @@
 import {FC} from 'react'
 import {ActivateProps} from 'app/[locale]/_components/layout/nav/nav-auth/register/activate-user/activate-user.types'
 import useActivateUser from 'app/[locale]/_components/layout/nav/nav-auth/register/activate-user/activate-user.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
-import Input from 'app/[locale]/_common/components/input/input.component'
-import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
+import Button from 'app/_common/components/button/button.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
+import Input from 'app/_common/components/input/input.component'
+import Spinner from 'app/_common/components/spinner/spinner.component'
 
 const ActivateUser: FC<ActivateProps> = (props) => {
     const {

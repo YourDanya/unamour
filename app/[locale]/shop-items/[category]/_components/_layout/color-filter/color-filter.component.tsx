@@ -1,8 +1,8 @@
 import {FC} from 'react'
 import useColorFilter from 'app/[locale]/shop-items/[category]/_components/_layout/color-filter/color-filter.hook'
-import Checkbox from 'app/[locale]/_common/components/checkbox/checkbox.component'
+import Checkbox from 'app/_common/components/checkbox/checkbox.component'
 import {ColorsFilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/color-filter/color-filter.types'
-import {colorValues} from 'app/[locale]/_content/color/color.content'
+import {colorValues} from 'app/_common/content/color/color.content'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 
 const ColorFilter: FC<FilterProps> = (props) => {

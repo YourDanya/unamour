@@ -1,17 +1,17 @@
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {MouseAction} from 'app/[locale]/_common/types/types'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {MouseAction} from 'app/_common/types/types'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {
     dictionary
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.content'
-import {ChangeValue} from 'app/[locale]/_common/components/input-v2/input.types'
+import {ChangeValue} from 'app/_common/components/input-v2/input.types'
 import {useState} from 'react'
 import {useRef} from 'react'
 import {
     initValues
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.content'
-import {useValidateInput} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
+import {useValidateInput} from 'app/_common/hooks/input/input-v2.hooks'
 import {
     validations
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.content'

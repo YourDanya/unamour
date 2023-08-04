@@ -1,10 +1,10 @@
 import {useEffect} from 'react'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useRouter} from 'next/navigation'
-import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
+import {useCartStore} from 'app/_common/store/cart/cart.store'
 import orderContent from 'app/[locale]/order/[id]/_components/order.content'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {Order} from 'app/[locale]/_store/cart/cart.types'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {Order} from 'app/_common/store/cart/cart.types'
 import {useParams} from 'next/navigation'
 
 const useOrder = () => {

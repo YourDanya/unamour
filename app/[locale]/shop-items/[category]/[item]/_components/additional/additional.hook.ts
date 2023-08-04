@@ -1,13 +1,13 @@
 import {useMemo, useRef, useState} from 'react'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useViewedStore} from 'app/[locale]/_store/viewed/viewed.store'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {useViewedStore} from 'app/_common/store/viewed/viewed.store'
 import {useEffect} from 'react'
-import {FetchedItem} from 'app/[locale]/_common/types/types'
+import {FetchedItem} from 'app/_common/types/types'
 import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
-import {CategoryItem} from 'app/[locale]/_common/types/types'
-import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
+import {CategoryItem} from 'app/_common/types/types'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.content'
-import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
+import useResize from 'app/_common/hooks/helpers/resize/resize.hook'
 
 const useAdditional = (props: ReturnType<typeof useShopItem>) => {
     const {props: {_id, common: {slugCategory}}, currentVariant: {color}} = props

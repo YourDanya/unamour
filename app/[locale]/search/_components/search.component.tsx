@@ -2,11 +2,11 @@
 
 import {NextPage} from 'next'
 import search from 'public/icons/search.svg'
-import ShopItemPreview from 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import Spinner from 'app/[locale]/_common/components/spinner/spinner.component'
+import ShopItemPreview from 'app/_common/components/shop-item-preview/shop-item-preview.component'
+import Button from 'app/_common/components/button/button.component'
+import Spinner from 'app/_common/components/spinner/spinner.component'
 import useSearch from 'app/[locale]/search/_components/search.hook'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const Search: NextPage = () => {
     const {items, onChange, transl, input, onSubmit, searchItems, first, height, elemRef} = useSearch()

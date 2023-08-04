@@ -8,11 +8,11 @@ import {createItemImagesMap} from 'app/[locale]/admin/items/_components/item-for
 import {UseItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.types'
 import {createItemImagesValues} from 'app/[locale]/admin/items/_components/item-form/utils/item-form.utils'
 import {SelectItemFormMain} from 'app/[locale]/admin/items/_components/item-form/store/item-form.types'
-import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
+import getEntries from 'app/_common/utils/typescript/get-entries/get-entries.util'
 import {ItemFormInitState} from 'app/[locale]/admin/items/_components/item-form/store/item-form.types'
 import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/store/item-form.types'
 import {ModalState} from 'app/[locale]/admin/items/_components/item-form/store/item-form.types'
-import createFromEntries from 'app/[locale]/_common/utils/typescript/create-from-entries/create-from-entries.util'
+import createFromEntries from 'app/_common/utils/typescript/create-from-entries/create-from-entries.util'
 
 export const ItemFormContext = createContext<StoreApi<ItemFormState>>({} as StoreApi<ItemFormState>)
 

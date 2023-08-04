@@ -1,4 +1,4 @@
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {MouseAction} from 'app/_common/types/types'
 import {useState} from 'react'
 
 const useCookie = () => {

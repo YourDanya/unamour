@@ -1,6 +1,6 @@
-import {useServiceMap} from 'app/[locale]/_common/hooks/mappers/mappers.hooks'
+import useServiceMap from 'app/_common/hooks/mappers/service-map/service-map.hook'
 import policyContent from 'app/[locale]/client-service/policy/_components/policy.content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 
 const usePolicy = () => {
     const [transl] = useLocale(policyContent)

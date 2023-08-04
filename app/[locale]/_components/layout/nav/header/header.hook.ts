@@ -1,7 +1,7 @@
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {MouseAction} from 'app/_common/types/types'
 import {NavHeaderProps} from 'app/[locale]/_components/layout/nav/header/header.types'
-import {ModalState} from 'app/[locale]/_store/modal/modal.types'
-import {useCartStore} from 'app/[locale]/_store/cart/cart.store'
+import {ModalState} from 'app/_common/store/modal/modal.types'
+import {useCartStore} from 'app/_common/store/cart/cart.store'
 import {useCallback} from 'react'
 
 const useNavHeader = (props: NavHeaderProps) => {

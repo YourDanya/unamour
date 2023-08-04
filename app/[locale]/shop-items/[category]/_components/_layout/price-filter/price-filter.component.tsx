@@ -1,8 +1,8 @@
 import {FC} from 'react'
 import usePriceFilter from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.hook'
-import RangeSlider from 'app/[locale]/_common/components/range-slider/range-slider.component'
+import RangeSlider from 'app/_common/components/range-slider/range-slider.component'
 import {FilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
-import Input from 'app/[locale]/_common/components/input-v2/input.component'
+import Input from 'app/_common/components/input-v2/input.component'
 import {priceParams} from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.content'
 
 const PriceFilter: FC<FilterProps> = (props) => {

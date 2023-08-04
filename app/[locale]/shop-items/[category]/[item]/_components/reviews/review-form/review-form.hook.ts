@@ -1,24 +1,24 @@
 import {useState} from 'react'
 import {useRef} from 'react'
-import {ChangeValue} from 'app/[locale]/_common/components/input-v2/input.types'
+import {ChangeValue} from 'app/_common/components/input-v2/input.types'
 import {initValues} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
-import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
-import {MouseAction} from 'app/[locale]/_common/types/types'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {MouseAction} from 'app/_common/types/types'
+import {useUserStore} from 'app/_common/store/user/user.store'
 import {
     adminInitValues
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useValidateInput} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {useValidateInput} from 'app/_common/hooks/input/input-v2.hooks'
 import {
     validations
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
 import {
     adminValidations
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.content'
-import getEntries from 'app/[locale]/_common/utils/typescript/get-entries/get-entries.util'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import getEntries from 'app/_common/utils/typescript/get-entries/get-entries.util'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
 import {
     ReviewFormProps
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.types'

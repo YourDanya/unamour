@@ -1,11 +1,11 @@
 import useNavRoute from 'app/[locale]/_components/layout/nav/nav-route.hook'
-import {MouseAction} from 'app/[locale]/_common/types/types'
-import useModalStore from 'app/[locale]/_store/modal/modal.store'
-import {ModalState} from 'app/[locale]/_store/modal/modal.types'
+import {MouseAction} from 'app/_common/types/types'
+import useModalStore from 'app/_common/store/modal/modal.store'
+import {ModalState} from 'app/_common/store/modal/modal.types'
 import {useLayoutEffect} from 'react'
 import {useRef} from 'react'
 import {useState} from 'react'
-import useNavStore from 'app/[locale]/_store/nav/nav.store'
+import useNavStore from 'app/_common/store/nav/nav.store'
 
 const useNav = () => {
     const {modalState, showModal, hideModal, hideTopModal} = useModalStore()

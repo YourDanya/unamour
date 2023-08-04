@@ -1,5 +1,5 @@
 import useReview from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.hook'
-import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
+import ModalContent from 'app/_common/components/modal-content/modal-content.component'
 import useImageModal from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/image-modal/image-modal.hook'
 
 const ImageModal = (props: ReturnType<typeof useReview>) => {

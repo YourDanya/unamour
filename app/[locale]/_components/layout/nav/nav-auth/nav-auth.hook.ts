@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {MouseAction} from 'app/[locale]/_common/types/types'
+import {MouseAction} from 'app/_common/types/types'
 
 const useSignInUp = () => {
     const [sign, setSign] = useState('login')

@@ -1,13 +1,13 @@
 import {FC} from 'react'
 import ItemImage
     from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-image/item-image.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import useItemImages
     from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-images.hook'
 import {
     ItemImagesProps
 } from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-images.types'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
 
 const ItemImages:FC<ItemImagesProps> = (props) => {
     const {

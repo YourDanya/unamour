@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import {ItemVariantsProps} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variants.types'
 import ItemVariant from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-variant.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import useItemVariants from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variants.hook'
 
 const ItemVariants: FC<ItemVariantsProps> = () => {

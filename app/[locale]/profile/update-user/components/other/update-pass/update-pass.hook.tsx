@@ -1,10 +1,10 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import {useEffect} from 'react'
 import {UpdatePassProps} from 'app/[locale]/profile/update-user/components/other/update-pass/update-pass.types'
 import updatePassContent from 'app/[locale]/profile/update-user/components/other/update-pass/update-pass.content'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
 
 const useUpdatePass = (props: UpdatePassProps) => {
     const {hideModal} = props

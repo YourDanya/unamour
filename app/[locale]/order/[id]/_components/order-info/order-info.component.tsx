@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import OrderItem from 'app/[locale]/order/[id]/_components/order-item/order-item.component'
 import useOrderInfo from 'app/[locale]/order/[id]/_components/order-info/order-info.hook'
-import {Order} from 'app/[locale]/_store/cart/cart.types'
+import {Order} from 'app/_common/store/cart/cart.types'
 
 const OrderInfo: FC<Order> = (props) => {
     const {transl, colors} = useOrderInfo(props)

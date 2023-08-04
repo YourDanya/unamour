@@ -1,7 +1,7 @@
 import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {ItemMessageProps} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-message/item-message.types'
 import {useEffect} from 'react'
-import useTimer from 'app/[locale]/_common/hooks/helpers/timer/timer.hook'
+import useTimer from 'app/_common/hooks/helpers/timer/timer.hook'
 
 const useItemMessage = (props: ItemMessageProps) => {
     const {isSuccess, onTimerExpiration, name} = props

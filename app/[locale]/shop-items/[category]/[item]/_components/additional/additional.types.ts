@@ -1,4 +1,4 @@
-import {CategoryItem} from 'app/[locale]/_common/types/types'
+import {CategoryItem} from 'app/_common/types/types'
 import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
 import useAdditional from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.hook'
 

@@ -1,17 +1,17 @@
 import {useCallback} from 'react'
 import {shallow} from 'zustand/shallow'
-import {useValidateInput} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
-import {useMapInputs} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
+import {useValidateInput} from 'app/_common/hooks/input/input-v2.hooks'
+import {useMapInputs} from 'app/_common/hooks/input/input-v2.hooks'
 import {
     ItemTranslationProps
 } from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.types'
 import itemTranslationContent
     from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.content'
-import {ChangeCallback} from 'app/[locale]/_common/hooks/input/input-v2.types'
+import {ChangeCallback} from 'app/_common/hooks/input/input-v2.types'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import {useInputChange} from 'app/[locale]/_common/hooks/input/input-v2.hooks'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {peek} from 'app/[locale]/_common/utils/helpers/peek/peek.util'
+import {useInputChange} from 'app/_common/hooks/input/input-v2.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 
 const useItemTranslation = (props: ItemTranslationProps) => {
     const {locale} = props

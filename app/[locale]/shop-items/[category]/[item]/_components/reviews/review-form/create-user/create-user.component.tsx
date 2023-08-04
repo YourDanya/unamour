@@ -2,9 +2,9 @@ import useCreateUser
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.hook'
 import Description
     from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/description/description.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
-import Input from 'app/[locale]/_common/components/input-v2/input.component'
+import Button from 'app/_common/components/button/button.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
+import Input from 'app/_common/components/input-v2/input.component'
 
 const CreateUser = () => {
     const {

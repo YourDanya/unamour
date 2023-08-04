@@ -1,11 +1,11 @@
 import useLayout from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
-import ScrollFixed from 'app/[locale]/_common/components/scroll-fixed/scroll-fixed.component'
-import Dropdown from 'app/[locale]/_common/components/dropdown/dropdown.component'
+import ScrollFixed from 'app/_common/components/scroll-fixed/scroll-fixed.component'
+import Dropdown from 'app/_common/components/dropdown/dropdown.component'
 import SortFilter from 'app/[locale]/shop-items/[category]/_components/_layout/sort-filter/sort-filter.component'
 import PriceFilter from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.component'
 import SizesFilter from 'app/[locale]/shop-items/[category]/_components/_layout/size-filter/size-filter.component'
 import ColorsFilter from 'app/[locale]/shop-items/[category]/_components/_layout/color-filter/color-filter.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {Categories} from 'app/[locale]/shop-items/[category]/_components/_layout/common.component'
 
 const Desktop = (props: ReturnType<typeof useLayout>) => {

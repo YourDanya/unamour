@@ -1,12 +1,12 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import {useRouter} from 'next/navigation'
 import {useLayoutEffect} from 'react'
 import {DeleteUserProps} from 'app/[locale]/profile/update-user/components/other/delete-user/delete-user.types'
 import deleteUserContent from 'app/[locale]/profile/update-user/components/other/delete-user/delete-user.content'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/_common/store/user/user.store'
 
 const useDeleteUser = (props: DeleteUserProps) => {
     const {hideModal} = props

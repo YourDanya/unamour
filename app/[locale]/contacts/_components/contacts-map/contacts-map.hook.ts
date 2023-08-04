@@ -1,4 +1,4 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import contactsMapContent from 'app/[locale]/contacts/_components/contacts-map/contacts-map.content'
 
 const useContactsMap = () => {

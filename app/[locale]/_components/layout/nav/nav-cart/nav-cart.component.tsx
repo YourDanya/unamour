@@ -2,9 +2,9 @@
 
 import {FC} from 'react'
 import shoppingCart from '/public/icons/big-shopping-cart.svg'
-import NavLink from 'app/[locale]/_common/components/nav-link/nav-link.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import CartItem from 'app/[locale]/_common/components/cart-item/cart-item.component'
+import NavLink from 'app/_common/components/nav-link/nav-link.component'
+import Button from 'app/_common/components/button/button.component'
+import CartItem from 'app/_common/components/cart-item/cart-item.component'
 import useNavCart from 'app/[locale]/_components/layout/nav/nav-cart/nav-cart.hook'
 import {NavCartProps} from 'app/[locale]/_components/layout/nav/nav-cart/nav-cart.types'
 

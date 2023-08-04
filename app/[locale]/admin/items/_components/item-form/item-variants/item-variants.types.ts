@@ -1,6 +1,6 @@
 import {MutableRefObject} from 'react'
-import {FetchedItem} from 'app/[locale]/_common/types/types'
-import {DoubleNode} from 'app/[locale]/_common/utils/main/main.types'
+import {FetchedItem} from 'app/_common/types/types'
+import {DoubleNode} from 'app/_common/utils/main/main.types'
 
 export type ItemVariantsProps = {}
 

@@ -2,9 +2,9 @@
 
 import useServiceLayout from 'app/[locale]/client-service/_components/_layout/service-layout.hook'
 import ServiceMenu from 'app/[locale]/client-service/_components/_layout/menu/menu.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
-import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
-import Modal from 'app/[locale]/_common/components/modal/modal.component'
+import Button from 'app/_common/components/button/button.component'
+import ModalContent from 'app/_common/components/modal-content/modal-content.component'
+import Modal from 'app/_common/components/modal/modal.component'
 import {ReactNode} from 'react'
 
 const ServiceLayout = (props: {children: ReactNode}) => {

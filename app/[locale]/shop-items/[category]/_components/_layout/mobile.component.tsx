@@ -3,10 +3,10 @@ import SortFilter from 'app/[locale]/shop-items/[category]/_components/_layout/s
 import PriceFilter from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.component'
 import SizesFilter from 'app/[locale]/shop-items/[category]/_components/_layout/size-filter/size-filter.component'
 import ColorsFilter from 'app/[locale]/shop-items/[category]/_components/_layout/color-filter/color-filter.component'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {ReactNode} from 'react'
-import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
-import Modal from 'app/[locale]/_common/components/modal/modal.component'
+import ModalContent from 'app/_common/components/modal-content/modal-content.component'
+import Modal from 'app/_common/components/modal/modal.component'
 import {Categories} from 'app/[locale]/shop-items/[category]/_components/_layout/common.component'
 
 const Mobile = (props: ReturnType<typeof useLayout>) => {

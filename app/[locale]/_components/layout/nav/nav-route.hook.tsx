@@ -1,7 +1,7 @@
 import {useRouter} from 'next/navigation'
 import {useEffect, useState} from 'react'
 import {usePathname} from 'next/navigation'
-import {useOmitFirstEffect} from 'app/[locale]/_common/hooks/component/component.hooks'
+import useOmitFirstEffect from 'app/_common/hooks/helpers/omit-first-effect/omit-first-effect.hook'
 
 const useNavRoute = (hideModal: () => void) => {
     const path = usePathname()

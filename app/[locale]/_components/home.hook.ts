@@ -1,9 +1,8 @@
 import {useRef, useState} from 'react'
 import {useLayoutEffect} from 'react'
-import {useLayoutResizeObserve} from 'app/[locale]/_common/hooks/component/component.hooks'
-import useResize from 'app/[locale]/_common/hooks/helpers/resize/resize.hook'
+import useResize from 'app/_common/hooks/helpers/resize/resize.hook'
 import {useEffect} from 'react'
-import useNavStore from 'app/[locale]/_store/nav/nav.store'
+import useNavStore from 'app/_common/store/nav/nav.store'
 
 const useHome = () => {
     const containerRef = useRef<HTMLDivElement | null>(null)

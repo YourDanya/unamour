@@ -1,14 +1,14 @@
 'use client'
 
 import {useEffect} from 'react'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import loginFormContent from 'app/[locale]/_components/layout/nav/nav-auth/login/login-form/login-form.content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import {useRouter} from 'next/navigation'
-import {User} from 'app/[locale]/_store/user/user.types'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {User} from 'app/_common/store/user/user.types'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
+import {useUserStore} from 'app/_common/store/user/user.store'
 
 const useLoginForm = () => {
     const [transl, content] = useLocale(loginFormContent)

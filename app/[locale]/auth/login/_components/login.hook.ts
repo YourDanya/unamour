@@ -1,8 +1,8 @@
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useInput} from 'app/[locale]/_common/hooks/input/input.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useInput} from 'app/_common/hooks/input/input.hooks'
 import loginContent from 'app/[locale]/auth/login/_components/login.content'
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
-import {useMapApiRes} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
+import {useMapApiRes} from 'app/_common/hooks/api/api.hooks'
 
 const useLogin = () => {
     const [transl, content] = useLocale(loginContent)

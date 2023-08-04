@@ -4,12 +4,12 @@ import trashCan from 'public/icons/trash-can.svg'
 import email from 'public/icons/email.svg'
 import React from 'react'
 import useUpdateUserSettings from 'app/[locale]/profile/update-user/components/other/settings.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import UpdatePass from 'app/[locale]/profile/update-user/components/other/update-pass/update-pass.component'
-import ModalContent from 'app/[locale]/_common/components/modal-content/modal-content.component'
+import ModalContent from 'app/_common/components/modal-content/modal-content.component'
 import DeleteUser from 'app/[locale]/profile/update-user/components/other/delete-user/delete-user.component'
 import UpdateEmail from 'app/[locale]/profile/update-user/components/other/update-email/update-email.component'
-import Modal from 'app/[locale]/_common/components/modal/modal.component'
+import Modal from 'app/_common/components/modal/modal.component'
 
 const UpdateUserSettings: FC = () => {
     const {transl, modalState, showModal, hideModal} = useUpdateUserSettings()

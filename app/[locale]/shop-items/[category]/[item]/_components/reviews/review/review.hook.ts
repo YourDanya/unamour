@@ -1,11 +1,11 @@
 import {useParams} from 'next/navigation'
-import {Locale} from 'app/[locale]/_common/types/types'
+import {Locale} from 'app/_common/types/types'
 import {useState} from 'react'
-import {MouseAction} from 'app/[locale]/_common/types/types'
-import {Review as ReviewType} from 'app/[locale]/_common/types/types'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {MouseAction} from 'app/_common/types/types'
+import {Review as ReviewType} from 'app/_common/types/types'
+import {useUserStore} from 'app/_common/store/user/user.store'
 import {dictionary} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.content'
-import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {ReviewProps} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.types'
 
 const useReview = (props: ReviewProps) => {

@@ -1,11 +1,11 @@
 import {linksContent} from 'app/[locale]/shop-items/[category]/[item]/_components/links/links.content'
-import {categories} from 'app/[locale]/_content/categories/categories.content'
+import {categories} from 'app/_common/content/categories/categories.content'
 import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
-import {categoriesDictionary} from 'app/[locale]/_content/categories/categories.content'
-import {useLocale} from 'app/[locale]/_common/hooks/helpers/locale/locale.hook'
-import {clothingDictionary} from 'app/[locale]/_content/categories/categories.content'
+import {categoriesDictionary} from 'app/_common/content/categories/categories.content'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
+import {clothingDictionary} from 'app/_common/content/categories/categories.content'
 import {useMemo} from 'react'
-import {clothing} from 'app/[locale]/_content/categories/categories.content'
+import {clothing} from 'app/_common/content/categories/categories.content'
 
 const useLinks = (props: ReturnType<typeof useShopItem>) => {
     const transl = useLocale(linksContent)

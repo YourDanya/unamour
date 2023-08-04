@@ -1,10 +1,10 @@
 'use client'
 
 import {FC} from 'react'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import useRegisterForm from 'app/[locale]/_components/layout/nav/nav-auth/register/register-form/register-form.hook'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
+import Input from 'app/_common/components/input/input.component'
 import {RegisterFormProps} from 'app/[locale]/_components/layout/nav/nav-auth/register/register-form/register-form.types'
 
 const RegisterForm: FC<RegisterFormProps> = (props) => {

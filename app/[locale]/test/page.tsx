@@ -1,4 +1,4 @@
-import {CategoryItem} from 'app/[locale]/_common/types/types'
+import {CategoryItem} from 'app/_common/types/types'
 import Test from 'app/[locale]/test/test.component'
 import {useSearchParams} from 'next/navigation'
 

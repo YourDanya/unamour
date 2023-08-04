@@ -1,14 +1,14 @@
-import {useApiCall} from 'app/[locale]/_common/hooks/api/api.hooks'
+import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {ItemVariant} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
-import {FetchedItem} from 'app/[locale]/_common/types/types'
+import {FetchedItem} from 'app/_common/types/types'
 import {useEffect} from 'react'
 import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
 import adminItemsContent from 'app/[locale]/admin/items/_components/admin-items.content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {peek} from 'app/[locale]/_common/utils/helpers/peek/peek.util'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {useRouter} from 'next/navigation'
-import {MouseAction} from 'app/[locale]/_common/types/types'
-import {useUserStore} from 'app/[locale]/_store/user/user.store'
+import {MouseAction} from 'app/_common/types/types'
+import {useUserStore} from 'app/_common/store/user/user.store'
 
 const useAdminItems = () => {
     const router = useRouter()

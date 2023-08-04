@@ -1,9 +1,9 @@
 import {DeleteUserProps} from 'app/[locale]/profile/update-user/components/other/delete-user/delete-user.types'
 import useDeleteUser from 'app/[locale]/profile/update-user/components/other/delete-user/delete-user.hook'
-import Button from 'app/[locale]/_common/components/button/button.component'
+import Button from 'app/_common/components/button/button.component'
 import {FC} from 'react'
-import FormMessage from 'app/[locale]/_common/components/form-message/form-message.component'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import FormMessage from 'app/_common/components/form-message/form-message.component'
+import Input from 'app/_common/components/input/input.component'
 
 const DeleteUser: FC<DeleteUserProps> = (props) => {
     const {transl, onChange, onValidate, inputs, onSubmit, mappedDeleteUser} = useDeleteUser(props)

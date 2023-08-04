@@ -1,28 +1,27 @@
 //global
-import 'app/[locale]/_common/styles/global.sass'
+import 'app/_common/styles/global.sass'
 //common
-import 'app/[locale]/_common/components/button/button.styles.sass'
-import 'app/[locale]/_common/components/form-message/form-message.styles.sass'
-import 'app/[locale]/_common/components/nav-link/nav-link.styles.sass'
-import 'app/[locale]/_common/components/scroll-fixed/scroll-fixed.styles.sass'
-import 'app/[locale]/_common/components/spinner/spinner.styles.sass'
-import 'app/[locale]/_common/components/load-image/load-image.styles.sass'
-import 'app/[locale]/_common/components/range-slider/range-slider.styles.sass'
-import 'app/[locale]/_common/components/checkbox/checkbox.styles.sass'
-import 'app/[locale]/_common/components/dropdown/dropdown.styles.sass'
-import 'app/[locale]/_common/components/slider/slider.styles.sass'
-import 'app/[locale]/_common/components/radio-buttons/radio-buttons.styles.sass'
-import 'app/[locale]/_common/components/button/button.styles.sass'
-import 'app/[locale]/_common/components/textarea/textarea.styles.sass'
-import 'app/[locale]/_common/components/input/input.styles.sass'
-import 'app/[locale]/_common/components/input-v2/input.styles.sass'
-import 'app/[locale]/_common/components/modal/modal.styles.sass'
-import 'app/[locale]/_common/components/sidebar/sidebar.styles.sass'
-import 'app/[locale]/_common/components/modal-content/modal-content.styles.sass'
-import 'app/[locale]/_common/components/pagination/pagination/pagination.styles.sass'
-import 'app/[locale]/_common/components/slider-v2/slider-v2.styles.sass'
-import 'app/[locale]/_common/components/cart-item/cart-item.styles.sass'
-import 'app/[locale]/_common/components/spinner-v2/spinner.styles.sass'
+import 'app/_common/components/button/button.styles.sass'
+import 'app/_common/components/form-message/form-message.styles.sass'
+import 'app/_common/components/nav-link/nav-link.styles.sass'
+import 'app/_common/components/scroll-fixed/scroll-fixed.styles.sass'
+import 'app/_common/components/spinner/spinner.styles.sass'
+import 'app/_common/components/load-image/load-image.styles.sass'
+import 'app/_common/components/range-slider/range-slider.styles.sass'
+import 'app/_common/components/checkbox/checkbox.styles.sass'
+import 'app/_common/components/dropdown/dropdown.styles.sass'
+import 'app/_common/components/slider/slider.styles.sass'
+import 'app/_common/components/radio-buttons/radio-buttons.styles.sass'
+import 'app/_common/components/button/button.styles.sass'
+import 'app/_common/components/textarea/textarea.styles.sass'
+import 'app/_common/components/input/input.styles.sass'
+import 'app/_common/components/input-v2/input.styles.sass'
+import 'app/_common/components/modal/modal.styles.sass'
+import 'app/_common/components/sidebar/sidebar.styles.sass'
+import 'app/_common/components/modal-content/modal-content.styles.sass'
+import 'app/_common/components/pagination/pagination/pagination.styles.sass'
+import 'app/_common/components/slider-v2/slider.styles.sass'
+import 'app/_common/components/cart-item/cart-item.styles.sass'
 //home
 import 'app/[locale]/_components/home.styles.sass'
 //nav layout
@@ -95,7 +94,7 @@ import 'app/[locale]/shop-items/[category]/_components/_layout/sort-filter/sort-
 //vacancies
 import 'app/[locale]/vacancies/components/vacancies.styles.sass'
 // shop-item-preview
-import 'app/[locale]/_common/components/shop-item-preview/shop-item-preview.styles.sass'
+import 'app/_common/components/shop-item-preview/shop-item-preview.styles.sass'
 // reviews
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.styles.sass'
@@ -109,10 +108,12 @@ import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/rev
 
 import {ReactNode} from 'react'
 import {Metadata} from 'next/dist/lib/metadata/types/metadata-interface'
-import {baseURL} from 'app/[locale]/_common/utils/api/api.utils'
+import {baseURL} from 'app/_common/utils/api/api.utils'
 import RootLayout from 'app/[locale]/_components/layout/layout.component'
 import {LayoutProps} from 'app/[locale]/layout.types'
 import localFont from '@next/font/local'
+// test
+import 'app/[locale]/test/test.styles.sass'
 
 export const metadata: Metadata = {
     title: 'UNAMOUR',

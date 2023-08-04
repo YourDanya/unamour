@@ -1,8 +1,8 @@
 import {FC} from 'react'
-import Checkbox from 'app/[locale]/_common/components/checkbox/checkbox.component'
-import RadioButtons from 'app/[locale]/_common/components/radio-buttons/radio-buttons.component'
+import Checkbox from 'app/_common/components/checkbox/checkbox.component'
+import RadioButtons from 'app/_common/components/radio-buttons/radio-buttons.component'
 import {CartFormProps} from 'app/[locale]/cart/_components/cart-form/cart-form.types'
-import Input from 'app/[locale]/_common/components/input/input.component'
+import Input from 'app/_common/components/input/input.component'
 
 const CartForm: FC<CartFormProps> = (props) => {
     const {transl, inputs, onChange, onValidate, content} = props

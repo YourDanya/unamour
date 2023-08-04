@@ -1,6 +1,6 @@
 import deliveryContent from 'app/[locale]/client-service/delivery/_components/delivery.content'
-import useLocale from 'app/[locale]/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {useServiceMap} from 'app/[locale]/_common/hooks/mappers/mappers.hooks'
+import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useServiceMap from 'app/_common/hooks/mappers/service-map/service-map.hook'
 
 const useDelivery = () => {
     const [transl] = useLocale(deliveryContent)
