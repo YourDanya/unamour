@@ -2,7 +2,7 @@ import React from 'react'
 import {ReactEventState} from 'app/_common/components/slider-v2/slider.types'
 
 const down = (state: ReactEventState) => {
-    const {event, moveRef, setTransition} = state
+    const {event, moveRef, setTransition, elemsRef} = state
 
     let clientX
     const mobileEvent = event as React.TouchEvent
@@ -19,6 +19,7 @@ const down = (state: ReactEventState) => {
     moveRef.current.startX = clientX
     moveRef.current.fast = true
     moveRef.current.moving = true
+    moveRef.current.moveCurrent = moveRef.current.current
 
     setTimeout(() => {
         moveRef.current.fast = false

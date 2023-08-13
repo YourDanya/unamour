@@ -10,7 +10,6 @@ const Slider: FC<SliderProps> = (props) => {
     const {className} = props
 
     const state = useSlider(props)
-
     const {perSlide} = state
 
     return (
@@ -68,7 +67,7 @@ const Elements = (props: ReturnType<typeof useSlider>) => {
 
     return (
         <div className={'slider-elements'} style={{transform, transition}}>
-            {/*{infinite && (<LeftHidden {...props}/>)}*/}
+            {infinite && (<LeftHidden {...props}/>)}
             {elements.map((childElement, index) => (
                 <div
                     className={`slider-element ${index === 0 ? 'slider-element--first' : ''}
@@ -81,19 +80,19 @@ const Elements = (props: ReturnType<typeof useSlider>) => {
                     {childElement}
                 </div>
             ))}
-            {/*{infinite && (<RightHidden {...props}/>)}*/}
+            {infinite && (<RightHidden {...props}/>)}
         </div>
     )
 }
 
 const LeftHidden = (state: ReturnType<typeof useSlider>) => {
-    const {elements} = state
+    const {elements, leftElemsRef} = state
 
     const leftElements = []
     let leftCount = elements.length - 1
 
-    while (leftElements.length !== 5) {
-        leftElements.push(elements[leftCount])
+    for (let i = 4; i >= 0 ; i--) {
+        leftElements[i] = {elem: elements[leftCount], index: leftCount}
         leftCount--
         if (leftCount === -1) {
             leftCount = elements.length - 1
@@ -102,12 +101,14 @@ const LeftHidden = (state: ReturnType<typeof useSlider>) => {
 
     return (
         <div className={'slider-left slider'}>
-            {leftElements.map((childElement, index) => (
+            {leftElements.map(({elem, index: dataIndex}, index) => (
                 <div
                     className={`slider-element`}
                     key={index}
+                    data-index={dataIndex}
+                    ref={(elem) => leftElemsRef.current[index] = elem}
                 >
-                    {childElement}
+                    {elem}
                 </div>
             ))}
         </div>
@@ -115,13 +116,13 @@ const LeftHidden = (state: ReturnType<typeof useSlider>) => {
 }
 
 const RightHidden = (state: ReturnType<typeof useSlider>) => {
-    const {elements} = state
+    const {elements, rightElemsRef, elemsRef} = state
 
     const rightElements = []
     let rightCount = 0
 
     while (rightElements.length !== 5) {
-        rightElements.push(elements[rightCount])
+        rightElements.push({elem: elements[rightCount], dataIndex: rightCount})
         rightCount++
         if (rightCount === elements.length) {
             rightCount = 0
@@ -130,12 +131,14 @@ const RightHidden = (state: ReturnType<typeof useSlider>) => {
 
     return (
         <div className={'slider-right slider'}>
-            {rightElements.map((childElement, index) => (
+            {rightElements.map(({elem, dataIndex}, index) => (
                 <div
                     className={`slider-element`}
                     key={index}
+                    data-index={dataIndex}
+                    ref={(elem) => rightElemsRef.current[index] = elem}
                 >
-                    {childElement}
+                    {elem}
                 </div>
             ))}
         </div>

@@ -3,9 +3,7 @@
   position: relative
 
 .slider-content.slider
-  //overflow: hidden
   //width: 100%
-  //overflow-x: hidden
   //-ms-overflow-style: none
   //scrollbar-width: none
   //align-self: start
@@ -22,18 +20,29 @@
   display: block
 
 .slider-track
+  position: relative
+  //overflow: hidden
+  &:before
+    position: absolute
+    z-index: 100
+    content: ''
+    width: 100%
+    height: 100%
+    top: 50%
+    left: 50%
+    transform: translateY(-50%) translateX(-50%)
+    border: 2px solid purple
 
 .slider-track.slider--mounted
   .slider-element
     display: block
 
 .slider-elements
+  position: relative
   display: flex
 
 .slider-right.slider
   display: flex
-  position: absolute
-  transform: translateX(100%)
 
 .slider-left.slider
   display: flex

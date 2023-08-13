@@ -1,12 +1,13 @@
 import {useCalcDimensions} from 'app/_common/components/slider-v2/calc'
 
 export const useArrows = (state: ReturnType<typeof useCalcDimensions>) => {
-    const {current, setCurrent, setTransition, length, props: {infinite}} = state
+    const {current, setCurrent, setTransition, length, props: {infinite}, moveRef, elemsRef} = state
 
     const onBack = () => {
         if (current === 0 && infinite) {
             setCurrent(length)
             setTransition('unset')
+            moveRef.current.limit = 'left'
             return
         }
 
@@ -21,6 +22,7 @@ export const useArrows = (state: ReturnType<typeof useCalcDimensions>) => {
         if (current === length - 1 && infinite) {
             setCurrent(-1)
             setTransition('unset')
+            moveRef.current.limit = 'right'
             return
         }
 
@@ -33,3 +35,9 @@ export const useArrows = (state: ReturnType<typeof useCalcDimensions>) => {
 
     return {...state, onBack, onForward}
 }
+
+
+
+
+
+
