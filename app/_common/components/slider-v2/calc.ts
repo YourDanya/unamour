@@ -20,27 +20,51 @@ export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
     return {...state, transform}
 }
 
-const calc = (state: ReturnType<typeof useGetState>) => {
-    const {elemsRef, current, length, move, mounted, perSlide, setContentStyle, setTranslate} = state
+export const calc = (state: ReturnType<typeof useGetState>) => {
+    const {
+        elemsRef, leftElemsRef, current, length, move, mounted, perSlide, setContentStyle, setTranslate,
+        props: {infinite}, setTransition, moveRef
+    } = state
 
     if (!mounted) {
         return
     }
 
+    if (!moveRef.current.fistCalc) {
+        moveRef.current.fistCalc = true
+        requestAnimationFrame(() => {
+            setTransition('0.4s all')
+        })
+    }
+
     const contentStyle: CSSProperties = {}
     let translate
+    let start = 0
 
-    const {left: start} = (elemsRef.current[0] as HTMLDivElement)?.getBoundingClientRect() ?? {}
+    if (!infinite && elemsRef.current[0]) {
+        start = (elemsRef.current[0] as HTMLDivElement).getBoundingClientRect().left
+    } else if (infinite && leftElemsRef.current[0]){
+        start = (leftElemsRef.current[0] as HTMLDivElement).getBoundingClientRect().left
+    }
+
     let index = current
     const currentElem = getElem({...state, index})
+
+    if (!currentElem) {
+        return
+    }
+
     const rect = (currentElem as HTMLDivElement).getBoundingClientRect()
 
     index = current + perSlide - 1
     const perSlideElem = getElem({...state, index})
-    const perSlideElemRect = (perSlideElem as HTMLDivElement).getBoundingClientRect()
+
+    if (perSlideElem) {
+        const perSlideElemRect = (perSlideElem as HTMLDivElement).getBoundingClientRect()
+        contentStyle.width = `${perSlideElemRect.right - rect.left}px`
+    }
 
     translate = start - rect.left
-    contentStyle.width = `${perSlideElemRect.right - rect.left}px`
     contentStyle.height = `${rect.height}px`
 
     setContentStyle(contentStyle)

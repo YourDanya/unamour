@@ -13,6 +13,7 @@ import move from 'app/_common/components/slider-v2/move'
 import {useArrows} from 'app/_common/components/slider-v2/arrows'
 import {CSSProperties} from 'react'
 import {useCalcDimensions} from 'app/_common/components/slider-v2/calc'
+import {calc} from 'app/_common/components/slider-v2/calc'
 
 export const useSlider = (props: SliderProps) => {
     const {children} = props
@@ -62,11 +63,11 @@ export const useGetState = (props: SliderProps) => {
     const length = elements.length
 
     const slideRef = useRef<HTMLDivElement>(null)
-    const [transition, setTransition] = useState('0.4s all')
+    const [transition, setTransition] = useState('unset')
 
     const moveRef = useRef({
         startX: 0, moving: false, current, fast: false, clientX: 0, moveCurrent: current,
-        limit: ''
+        limit: '', fistCalc: false
     })
     const [move, setMove] = useState(0)
 
@@ -89,7 +90,7 @@ export const useGetState = (props: SliderProps) => {
 const useHandleEffects = (state: ReturnType<typeof useArrows>) => {
     const {
         current, setMounted, shouldCheckLimits, setShouldCheckLimits, elements, setElements, setCurrent, elemsRef,
-        props: {children}
+        props: {children}, perSlide
     } = state
 
     useEffect(() => {
@@ -114,10 +115,11 @@ const useHandleEffects = (state: ReturnType<typeof useArrows>) => {
 
     useEffect(() => {
         const newElements = Children.toArray(children)
-        if (newElements.length === current) {
+        if (newElements.length === current + perSlide - 1) {
             setCurrent(current - 1)
         }
         setElements(newElements)
+        calc(state)
     }, [children])
 
     useEffect(() => {

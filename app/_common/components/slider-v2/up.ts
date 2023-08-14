@@ -28,14 +28,14 @@ const up = (state: EventState) => {
 export default up
 
 const handleCurrent = (state: EventState) => {
-    const {moveRef, elemsRef, rightElemsRef, leftElemsRef, props: {infinite}} = state
+    const {moveRef, elemsRef, rightElemsRef, leftElemsRef, props: {infinite}, perSlide} = state
     const length = elemsRef.current.length
     const {moveCurrent, current, fast, clientX, startX} = moveRef.current
 
     const isFast = moveCurrent === current && fast
     moveRef.current.current = moveCurrent
 
-    const shouldRightStop = moveRef.current.moveCurrent === elemsRef.current.length - 1 && !infinite
+    const shouldRightStop = moveRef.current.moveCurrent === elemsRef.current.length - perSlide && !infinite
     const shouldLeftStop = moveRef.current.moveCurrent === 0 && !infinite
 
     if (isFast && clientX - startX <= -3 && !shouldRightStop) {

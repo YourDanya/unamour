@@ -8,14 +8,15 @@ import {CSSProperties} from 'react'
 import Button from 'app/_common/components/button/button.component'
 
 const contentArr = [
-    {id: 0, color: 'black'},
-    {id: 1, color: 'red'},
-    {id: 2, color: 'blue'},
-    {id: 3, color: 'green'}
+    {id: 0, color: 'black', width: '100px'},
+    {id: 1, color: 'red', width: '200px'},
+    {id: 2, color: 'blue', width: '300px'},
+    {id: 3, color: 'green', width: '400px'},
+    {id: 4, color: 'yellow', width: '200px'}
 ]
 
 const Test = () => {
-    const [arr, setArr] = useState(contentArr.slice(0, 1))
+    const [arr, setArr] = useState(contentArr.slice(0, 4))
 
     const onAdd = () => {
         const index = Math.min(arr.length + 1, contentArr.length)
@@ -29,11 +30,11 @@ const Test = () => {
 
     return (
         <div className={`test`}>
-            <Slider infinite={true} perSlide={2}>
+            <Slider perSlide={2} infinite={true}>
                 {arr.map(elem => (
                     <div
                         className={'elem'}
-                        style={{width: '100px', height: '300px', backgroundColor: elem.color}}
+                        style={{backgroundColor: elem.color}}
                         key={elem.id}
                     >
                         {elem.id}

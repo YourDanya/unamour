@@ -31,14 +31,16 @@ export default move
 const moveForward = (state: EventState) => {
     const {moveRef, elemsRef, slideRef, leftElemsRef, rightElemsRef, props: {infinite}, perSlide} = state
 
-    const shouldStop = moveRef.current.moveCurrent === elemsRef.current.length - 1 && !infinite
+    const shouldStop = moveRef.current.moveCurrent === elemsRef.current.length - perSlide && !infinite
     if (shouldStop) {
         return
     }
 
     const index = moveRef.current.moveCurrent + perSlide
+    const elem = getElem({...state, index})
 
-    const {sliderRight, left, width} = handleElems({...state, index})
+    const {left, width} = (elem as HTMLDivElement).getBoundingClientRect()
+    const sliderRight = slideRef.current?.getBoundingClientRect().right as number
 
     if (sliderRight > left + width / 2) {
         moveRef.current.moveCurrent += 1
@@ -54,19 +56,13 @@ const moveBack = (state: EventState) => {
     }
 
     const index = moveRef.current.moveCurrent + perSlide - 1
-    const {left, width, sliderRight} = handleElems({...state, index})
+    const elem = getElem({...state, index})
+
+    const {left, width} = (elem as HTMLDivElement).getBoundingClientRect()
+    const sliderRight = slideRef.current?.getBoundingClientRect().right as number
 
     if (sliderRight < left + width / 2) {
         moveRef.current.moveCurrent -= 1
     }
 }
 
-const handleElems = (state: EventState & { index: number }) => {
-    const {index, slideRef} = state
-
-    const elem = getElem(state)
-    const {left, width} = (elem as HTMLDivElement).getBoundingClientRect()
-    const sliderRight = slideRef.current?.getBoundingClientRect().right as number
-
-    return {sliderRight, left, width}
-}
