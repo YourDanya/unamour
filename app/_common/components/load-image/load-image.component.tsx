@@ -11,7 +11,7 @@ const LoadImage: FC<LoadImageProps> = (props) => {
 
     return (
         <div
-            className={`load-image ${loaded ? 'load-image--loaded' : ''} ${className}`}
+            className={`load-image-v1 load-image ${loaded ? 'load-image--loaded' : ''} ${className}`}
             style={{height: `${height}px`, width: `${width}px`}}
         >
             <Image

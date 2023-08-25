@@ -1,11 +1,15 @@
 'use client'
 
-import Slider from 'app/_common/components/slider-v2/slider.component'
+import Slider from 'app/_common/components/slider/slider.component'
 import {useRef} from 'react'
 import {useLayoutEffect} from 'react'
 import {useState} from 'react'
 import {CSSProperties} from 'react'
 import Button from 'app/_common/components/button/button.component'
+import profile from 'public/images/profile/profile-bg.jpg'
+import vacancies from 'public/images/vacancies/vacancies-bg.jpg'
+import contacts from 'public/images/contacts/contacts-1.jpg'
+import Arrow from 'app/_common/components/arrow/arrow.component'
 
 const contentArr = [
     {id: 0, color: 'black', width: '100px'},
@@ -30,25 +34,68 @@ const Test = () => {
 
     return (
         <div className={`test`}>
-            <Slider perSlide={2} infinite={true}>
-                {arr.map(elem => (
-                    <div
-                        className={'elem'}
-                        style={{backgroundColor: elem.color}}
-                        key={elem.id}
-                    >
-                        {elem.id}
-                    </div>
-                ))}
-            </Slider>
-            <Button onClick={onAdd} className={'test__button'}>
-                Add
-            </Button>
-            <Button onClick={onRemove} className={'test__button'}>
-                Remove
-            </Button>
+            <div className={'test__container'}>
+                {/*<Slider*/}
+                {/*    perSlide={1}*/}
+                {/*    infinite={true}*/}
+                {/*    slideOffset={10}*/}
+                {/*    container={true}*/}
+                {/*>*/}
+                {/*    <img*/}
+                {/*        className={'test__img'}*/}
+                {/*        src={profile.src}*/}
+                {/*    />*/}
+                {/*    <img*/}
+                {/*        className={'test__img'}*/}
+                {/*        src={vacancies.src}*/}
+                {/*    />*/}
+                {/*    <img*/}
+                {/*        className={'test__img'}*/}
+                {/*        src={contacts.src}*/}
+                {/*    />*/}
+                {/*</Slider>*/}
+                {/*<div className={'test__list'}>*/}
+                {/*    <div className={'test__img-wrapper'}>*/}
+                {/*        <img*/}
+                {/*            className={'test__img'}*/}
+                {/*            src={profile.src}*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*    <div className={'test__img-wrapper'}>*/}
+                {/*        <img*/}
+                {/*            className={'test__img'}*/}
+                {/*            src={vacancies.src}*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*    <div className={'test__img-wrapper'}>*/}
+                {/*        <img*/}
+                {/*            className={'test__img'}*/}
+                {/*            src={contacts.src}*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                <Arrow width={100} type={'right'}/>
+                <Arrow width={100} type={'left'}/>
+                {/*<Arrow width={100} type={'left'}/>*/}
+            </div>
+            {/*<Button onClick={onAdd} className={'test__button'}>*/}
+            {/*    Add*/}
+            {/*</Button>*/}
+            {/*<Button onClick={onRemove} className={'test__button'}>*/}
+            {/*    Remove*/}
+            {/*</Button>*/}
         </div>
     )
 }
 
 export default Test
+
+{/*{arr.map(elem => (*/}
+{/*    <div*/}
+{/*        className={'elem'}*/}
+{/*        style={{backgroundColor: elem.color}}*/}
+{/*        key={elem.id}*/}
+{/*    >*/}
+{/*        {elem.id}*/}
+{/*    </div>*/}
+{/*))}*/}

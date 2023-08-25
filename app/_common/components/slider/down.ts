@@ -1,5 +1,5 @@
 import React from 'react'
-import {ReactEventState} from 'app/_common/components/slider-v2/slider.types'
+import {ReactEventState} from 'app/_common/components/slider/slider.types'
 
 const down = (state: ReactEventState) => {
     const {event, moveRef, setTransition, elemsRef} = state

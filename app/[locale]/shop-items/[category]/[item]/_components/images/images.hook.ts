@@ -12,7 +12,7 @@ const useImages = () => {
 
     const {height, elemRef} = useGetParamForImages()
 
-    return {current, onTab, setCurrent, elemRef, height}
+    return {current, onTab, setCurrent, height, elemRef}
 }
 
 export default useImages

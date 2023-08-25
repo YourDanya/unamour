@@ -1,12 +1,12 @@
 import {CSSProperties} from 'react'
-import {useGetState} from 'app/_common/components/slider-v2/slider.hook'
+import {useGetState} from 'app/_common/components/slider/slider.hook'
 import {useMemo} from 'react'
 import {useEffect} from 'react'
 import {useLayoutEffect} from 'react'
-import {getElem} from 'app/_common/components/slider-v2/get-elem'
+import {getElem} from 'app/_common/components/slider/get-elem'
 
 export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
-    const {current, mounted, move, translate} = state
+    const {current, mounted, move, translate, props} = state
 
     useLayoutEffect(() => {
         calc(state)
@@ -17,13 +17,18 @@ export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
         transform = `translateX(${translate + move}px)`
     }
 
-    return {...state, transform}
+    const slideStyles: CSSProperties = {}
+    if (props.slideOffset) {
+        slideStyles.marginRight = `${props.slideOffset}px`
+    }
+
+    return {...state, transform, slideStyles}
 }
 
 export const calc = (state: ReturnType<typeof useGetState>) => {
     const {
         elemsRef, leftElemsRef, current, length, move, mounted, perSlide, setContentStyle, setTranslate,
-        props: {infinite}, setTransition, moveRef
+        props: {infinite, container}, setTransition, moveRef
     } = state
 
     if (!mounted) {
@@ -66,6 +71,11 @@ export const calc = (state: ReturnType<typeof useGetState>) => {
 
     translate = start - rect.left
     contentStyle.height = `${rect.height}px`
+
+    if (container) {
+        contentStyle.width = `100%`
+        contentStyle.height = `auto`
+    }
 
     setContentStyle(contentStyle)
     setTranslate(translate)

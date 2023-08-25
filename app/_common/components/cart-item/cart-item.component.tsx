@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {CartItem} from 'app/_common/store/cart/cart.types'
 import {baseURL} from 'app/_common/utils/api/api.utils'
 import useCartItem from 'app/_common/components/cart-item/cart-item.hook'
-import LoadImage from 'app/_common/components/load-image/load-image.component'
+import LoadImage from 'app/_common/components/load-image-v2/load-image.component'
 
 const CartItem: FC<CartItem> = (props) => {
     const {common: {slug, slugCategory, price, images, size, color}, quantity} = props

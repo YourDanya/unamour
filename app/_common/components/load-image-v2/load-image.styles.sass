@@ -3,6 +3,7 @@
   width: 100%
   &:before
     position: absolute
+    left: 0
     opacity: 1
     content: ''
     width: 100%
@@ -11,12 +12,15 @@
     animation: loading 1.5s ease infinite
     background-size: 200%
   .load-image__image
-    opacity: 0
+    object-fit: cover
+    width: 100%
+    display: none
 .load-image--loaded
   &:before
     display: none
   .load-image__image
     opacity: 1
+    display: block
 
 
 @keyframes loading

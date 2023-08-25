@@ -1,12 +1,14 @@
 //global
 import 'app/_common/styles/global.sass'
 //common
+import 'app/_common/components/arrow/arrow.styles.sass'
 import 'app/_common/components/button/button.styles.sass'
 import 'app/_common/components/form-message/form-message.styles.sass'
 import 'app/_common/components/nav-link/nav-link.styles.sass'
 import 'app/_common/components/scroll-fixed/scroll-fixed.styles.sass'
 import 'app/_common/components/spinner/spinner.styles.sass'
 import 'app/_common/components/load-image/load-image.styles.sass'
+import 'app/_common/components/load-image-v2/load-image.styles.sass'
 import 'app/_common/components/range-slider/range-slider.styles.sass'
 import 'app/_common/components/checkbox/checkbox.styles.sass'
 import 'app/_common/components/dropdown/dropdown.styles.sass'
@@ -20,7 +22,6 @@ import 'app/_common/components/modal/modal.styles.sass'
 import 'app/_common/components/sidebar/sidebar.styles.sass'
 import 'app/_common/components/modal-content/modal-content.styles.sass'
 import 'app/_common/components/pagination/pagination/pagination.styles.sass'
-import 'app/_common/components/slider-v2/slider.styles.sass'
 import 'app/_common/components/cart-item/cart-item.styles.sass'
 //home
 import 'app/[locale]/_components/home.styles.sass'

@@ -1,7 +1,6 @@
 import {FC} from 'react'
 import {AdditionalProps} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.types'
 import useAdditional from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.hook'
-import Slider from 'app/_common/components/slider/slider.component'
 import ShopItemPreview from 'app/_common/components/shop-item-preview/shop-item-preview.component'
 import {FetchedItem} from 'app/_common/types/types'
 import {CategoryItem} from 'app/_common/types/types'
@@ -45,17 +44,17 @@ const Similar = (props: LoadedProps) => {
             <div className="additional__title">
                 {transl.similarItems}
             </div>
-            <Slider perSlide={3} className={'additional__slider'}>
-                {similarItems.map((props, index) => (
-                    <ShopItemPreview
-                        onMount={index === 0 ? onResize : undefined}
-                        itemRef={index === 0 ? elemRef : undefined}
-                        key={props.common.slug}
-                        {...props.common}
-                        height={height}
-                    />
-                ))}
-            </Slider>
+            {/*<Slider perSlide={3} className={'additional__slider'}>*/}
+            {/*    {similarItems.map((props, index) => (*/}
+            {/*        <ShopItemPreview*/}
+            {/*            onMount={index === 0 ? onResize : undefined}*/}
+            {/*            itemRef={index === 0 ? elemRef : undefined}*/}
+            {/*            key={props.common.slug}*/}
+            {/*            {...props.common}*/}
+            {/*            height={height}*/}
+            {/*        />*/}
+            {/*    ))}*/}
+            {/*</Slider>*/}
         </div>
     )
 }
@@ -68,16 +67,16 @@ const Viewed = (props: LoadedProps) => {
             <div className="additional__title">
                 {transl.viewedItems}
             </div>
-            <Slider perSlide={3} className={'additional__slider'}>
-                {viewedItems.map((props, index) => (
-                    <ShopItemPreview
-                        itemRef={index === 0 && similarItems.length === 0 ? elemRef : undefined}
-                        key={props.common.slug}
-                        {...props.common}
-                        height={height}
-                    />
-                ))}
-            </Slider>
+            {/*<Slider perSlide={3} className={'additional__slider'}>*/}
+            {/*    {viewedItems.map((props, index) => (*/}
+            {/*        <ShopItemPreview*/}
+            {/*            itemRef={index === 0 && similarItems.length === 0 ? elemRef : undefined}*/}
+            {/*            key={props.common.slug}*/}
+            {/*            {...props.common}*/}
+            {/*            height={height}*/}
+            {/*        />*/}
+            {/*    ))}*/}
+            {/*</Slider>*/}
         </div>
     )
 }

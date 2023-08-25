@@ -1,5 +1,5 @@
-import {EventState} from 'app/_common/components/slider-v2/slider.types'
-import {getElem} from 'app/_common/components/slider-v2/get-elem'
+import {EventState} from 'app/_common/components/slider/slider.types'
+import {getElem} from 'app/_common/components/slider/get-elem'
 
 const move = (state: EventState) => {
     const {moveRef, setMove, elemsRef, slideRef} = state

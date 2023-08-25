@@ -25,6 +25,7 @@ const LoadImage: FC<LoadImageProps> = (props) => {
                 className={'load-image__image'}
                 ref={imgRef}
                 onLoad={onLoaded}
+                style={style}
                 {...otherProps}
             />
         </div>

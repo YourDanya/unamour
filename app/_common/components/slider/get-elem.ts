@@ -1,4 +1,4 @@
-import {useGetState} from 'app/_common/components/slider-v2/slider.hook'
+import {useGetState} from 'app/_common/components/slider/slider.hook'
 
 export const getElem = (state: ReturnType<typeof useGetState> & { index: number }) => {
     const {elemsRef, leftElemsRef, rightElemsRef, index} = state

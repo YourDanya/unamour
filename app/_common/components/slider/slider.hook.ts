@@ -1,138 +1,29 @@
-import React, {Children, useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {Children} from 'react'
+import {useRef} from 'react'
+import {useState} from 'react'
+import {useEffect} from 'react'
 import {SliderProps} from 'app/_common/components/slider/slider.types'
+import {useCallback} from 'react'
+import React from 'react'
+import {MoveRef} from 'app/_common/components/slider/slider.types'
+import {useLayoutEffect} from 'react'
+import down from 'app/_common/components/slider/down'
+import up from 'app/_common/components/slider/up'
+import move from 'app/_common/components/slider/move'
+import {useArrows} from 'app/_common/components/slider/arrows'
+import {CSSProperties} from 'react'
+import {useCalcDimensions} from 'app/_common/components/slider/calc'
+import {calc} from 'app/_common/components/slider/calc'
 
-const useExternalState = <T, K>(state: T | undefined, setState: ((state: T) => void) | undefined, defaultState: T):
-    [state: T, setState: ((state: T) => void)] => {
-
-    const [state_, setState_] = useState(state ?? defaultState)
-    if (state !== undefined) return [state, setState as (state: T) => void]
-    else return [state_, setState_]
-}
-
-const useSlider = (props: SliderProps) => {
+export const useSlider = (props: SliderProps) => {
     const {children} = props
 
-    const perSlide = props.perSlide ?? 1
-
-    const [current, setCurrent] = useExternalState(props.current, props.setCurrent, 0)
-
-    const elements = Children.toArray(children)
-    const length = elements.length
-
-    const slideRef = useRef<HTMLDivElement>(null)
-    const transitionRef = useRef<{ now: boolean, add: null | number }>({now: false, add: null})
-    const [transition, setTransition] = useState(400)
-
-    // console.log('transition', transition)
-
-    const onBack = () => {
-        if (transitionRef.current.now) {
-            return
-        }
-        if (transitionRef.current.add) {
-            setTransition(400)
-            transitionRef.current.add = null
-        }
-        if (current === 0 && perSlide === 1) {
-            transitionRef.current.add = length - 1
-        }
-        setCurrent(current - 1)
-    }
-
-    const onForward = () => {
-        if (transitionRef.current.now) {
-            return
-        }
-        if (transitionRef.current.add !== null) {
-            setTransition(400)
-            transitionRef.current.add = null
-        }
-        if (perSlide !== 1 && current === length - perSlide) {
-            return
-        }
-        if (current === length - 1) {
-            transitionRef.current.add = 0
-        }
-        setCurrent(current + 1)
-    }
-
-    const onTransitionStart = (event: TransitionEvent) => {
-        // console.log('transition start')
-        if (event.target !== event.currentTarget) {
-            return
-        }
-        transitionRef.current.now = true
-    }
-
-    const onTransitionEnd = (event: TransitionEvent) => {
-        // console.log('transition end')
-        // debugger
-        if (event.target !== event.currentTarget) {
-            return
-        }
-        if (transitionRef.current.add !== null) {
-            setCurrent(transitionRef.current.add)
-            setTransition(0)
-            // transitionRef.current.add = NaN
-        }
-        transitionRef.current.now = false
-        moveRef.current.blocking = false
-    }
-
-    const elemWidth = useMemo(() => `(${100 / perSlide}% - ${(perSlide - 1) * 5 / perSlide}px)`, [perSlide])
-    const indent = useMemo(() => perSlide === 1 ? '0px' : '5px', [perSlide])
-
-    const moveRef = useRef<{ startX: number, moving: false, current: number, fast: boolean, clientX: number, blocking: boolean }>(
-        {startX: 0, moving: false, current: current, fast: false, clientX: 0, blocking: false}
-    )
-    const [moveState, setMoveState] = useState({translate: 0, moving: false})
+    const mainState = useGetState(props)
+    const calcState = useCalcDimensions(mainState)
+    const arrowsState = useArrows(calcState)
 
     const onUp = useCallback((event: MouseEvent | TouchEvent) => {
-        let clientX
-        const mobileEvent = event as TouchEvent
-        const descEvent = event as MouseEvent
-        if (mobileEvent.changedTouches) {
-            clientX = mobileEvent.changedTouches[0].clientX
-        } else {
-            event.preventDefault()
-            clientX = descEvent.clientX
-        }
-
-        const translate = moveRef.current.startX - clientX
-        const width = slideRef.current?.children[0].getBoundingClientRect().width as number
-
-        let toMove: number
-        if (moveRef.current.fast) {
-            if (translate > 0) {
-                toMove = Math.ceil(translate / width)
-            } else {
-                toMove = Math.floor(translate / width)
-            }
-        } else {
-            toMove = Math.round(translate / width)
-        }
-
-        let current = moveRef.current.current + toMove
-
-        if (current < 0) {
-            if (perSlide > 1) {
-                current = 0
-            } else {
-                transitionRef.current.add = length - 1
-            }
-        }
-        if (current > length - perSlide) {
-            if (perSlide > 1) {
-                current = length - perSlide
-            } else transitionRef.current.add = 0
-        }
-
-        setMoveState({translate: 0, moving: false})
-        setTransition(400)
-
-        if (Math.abs(toMove) > 0 && !transitionRef.current.now) {
-            setCurrent(current)
-        }
+        up({...mainState, event})
 
         document.removeEventListener('mousemove', onMove)
         document.removeEventListener('mouseup', onUp)
@@ -141,61 +32,11 @@ const useSlider = (props: SliderProps) => {
     }, [])
 
     const onMove = useCallback((event: MouseEvent | TouchEvent) => {
-        let clientX
-        const mobileEvent = event as TouchEvent
-        const descEvent = event as MouseEvent
-
-        if (mobileEvent.touches) {
-            clientX = mobileEvent.touches[0].clientX
-        } else {
-            clientX = descEvent.clientX
-        }
-
-        moveRef.current.blocking = true
-
-        const translate = clientX - moveRef.current.startX
-        moveRef.current.clientX = clientX
-        setMoveState({translate, moving: true})
-
-    }, [])
-
-    const onBlock = useCallback((event: MouseEvent) => {
-        moveRef.current.blocking = true
-        // setTimeout(() => moveRef.current.blocking=false)
-        document.removeEventListener('mouseup', onBlock)
+        move({...mainState, event})
     }, [])
 
     const onDown = useCallback((event: React.MouseEvent | React.TouchEvent) => {
-        let clientX
-        const mobileEvent = event as React.TouchEvent
-        const descEvent = event as React.MouseEvent
-
-        if (mobileEvent.touches) {
-            clientX = mobileEvent.touches[0].clientX
-        } else {
-            clientX = descEvent.clientX
-            event.preventDefault()
-        }
-
-        if (transitionRef.current.now) {
-            document.addEventListener('mouseup', onBlock)
-            return
-        }
-
-        if (transitionRef.current.add !== null) {
-            transitionRef.current.add = null
-        }
-
-        moveRef.current.clientX = clientX
-        moveRef.current.startX = clientX
-        moveRef.current.fast = true
-
-        setTimeout(() => {
-            moveRef.current.fast = false
-        }, 200)
-
-        setMoveState({translate: 0, moving: true})
-        setTransition(0)
+        down({...mainState, event})
 
         document.addEventListener('mousemove', onMove)
         document.addEventListener('mouseup', onUp)
@@ -203,42 +44,106 @@ const useSlider = (props: SliderProps) => {
         document.addEventListener('touchend', onUp)
     }, [])
 
-    const onCapture = useCallback((event: React.MouseEvent) => {
-        if (moveRef.current.blocking) {
-            event.preventDefault()
-            if (!transitionRef.current.now) {
-                moveRef.current.blocking = false
-            }
-        }
-    }, [])
-
-    useEffect(() => {
-        // if (current === elements.length - 1 && moveRef.current.current === -1) {
-        //     setTransition(400)
-        // }
-        // console.log('current', current)
-        moveRef.current.current = current
-    }, [current])
-
-    // useEffect(() => {
-    //     if (transition !== 400 && !moveState.moving) {
-    //         setTransition(400)
-    //     }
-    // }, [transition])
-
-    useEffect(() => {
-        slideRef.current?.addEventListener('transitionstart', onTransitionStart)
-        slideRef.current?.addEventListener('transitionend', onTransitionEnd)
-        return () => {
-            slideRef.current?.removeEventListener('transitionstart', onTransitionStart)
-            slideRef.current?.removeEventListener('transitionend', onTransitionEnd)
-        }
-    }, [])
+    useHandleEffects(arrowsState)
 
     return {
-        ...props, indent, elements, length, slideRef, transition, onForward, onBack, current,
-        perSlide, elemWidth, onDown, onUp, onMove, moveState, transitionRef, moveRef, onCapture
+        ...arrowsState, onDown, onUp, onMove
     }
 }
 
 export default useSlider
+
+export const useGetState = (props: SliderProps) => {
+    const perSlide = props.perSlide ?? 1
+    const {children} = props
+
+    const [current, setCurrent] = useState(0)
+
+    const [elements, setElements] = useState(Children.toArray(children))
+    const length = elements.length
+
+    const slideRef = useRef<HTMLDivElement>(null)
+    const [transition, setTransition] = useState('unset')
+
+    const moveRef = useRef({
+        startX: 0, moving: false, current, fast: false, clientX: 0, moveCurrent: current,
+        limit: '', fistCalc: false
+    })
+    const [move, setMove] = useState(0)
+
+    const elemsRef = useRef<(HTMLDivElement | null)[]>([])
+    const leftElemsRef = useRef<(HTMLDivElement | null)[]>([])
+    const rightElemsRef = useRef<(HTMLDivElement | null)[]>([])
+
+    const [mounted, setMounted] = useState(false)
+    const [shouldCheckLimits, setShouldCheckLimits] = useState(false)
+    const [translate, setTranslate] = useState(0)
+    const [contentStyle, setContentStyle] = useState<CSSProperties>({})
+
+    return {
+        transition, perSlide, elements, setElements, moveRef, current, setCurrent, setTransition, move, setMove,
+        slideRef, length, props, elemsRef, mounted, setMounted, leftElemsRef, rightElemsRef, shouldCheckLimits,
+        setShouldCheckLimits, translate, setTranslate, contentStyle, setContentStyle
+    }
+}
+
+const useHandleEffects = (state: ReturnType<typeof useArrows>) => {
+    const {
+        current, setMounted, shouldCheckLimits, setShouldCheckLimits, elements, setElements, setCurrent, elemsRef,
+        props: {children}, perSlide
+    } = state
+
+    useEffect(() => {
+        requestAnimationFrame(() => {
+            calcLimits(state)
+        })
+    }, [current])
+
+    useEffect(() => {
+        if (!shouldCheckLimits) {
+            return
+        }
+        requestAnimationFrame(() => {
+            calcLimits(state)
+            setShouldCheckLimits(false)
+        })
+    }, [shouldCheckLimits])
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    useEffect(() => {
+        const newElements = Children.toArray(children)
+        if (newElements.length === current + perSlide - 1) {
+            setCurrent(current - 1)
+        }
+        setElements(newElements)
+        calc(state)
+    }, [children])
+
+    useEffect(() => {
+        if (elemsRef.current[elemsRef.current.length - 1] === null) {
+            elemsRef.current.pop()
+        }
+    })
+}
+
+const calcLimits = (state: ReturnType<typeof useGetState>) => {
+    const {current, length, setCurrent, setTransition, moveRef, setMove} = state
+
+    if (current === length) {
+        setCurrent(length - 1)
+    }
+    if (current === -1) {
+        setCurrent(0)
+    }
+
+    if (moveRef.current.limit) {
+        moveRef.current.limit = ''
+        setMove(0)
+        setTransition('0.4s all')
+    }
+    
+    moveRef.current.current = current
+}
