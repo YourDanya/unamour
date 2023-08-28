@@ -6,6 +6,7 @@ import {FetchedItem} from 'app/_common/types/types'
 import {CategoryItem} from 'app/_common/types/types'
 import Spinner from 'app/_common/components/spinner/spinner.component'
 import {LoadedProps} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.types'
+import Slider from 'app/_common/components/slider/slider.component'
 
 const Additional: FC<AdditionalProps> = (props) => {
     const state = useAdditional(props)
@@ -44,17 +45,17 @@ const Similar = (props: LoadedProps) => {
             <div className="additional__title">
                 {transl.similarItems}
             </div>
-            {/*<Slider perSlide={3} className={'additional__slider'}>*/}
-            {/*    {similarItems.map((props, index) => (*/}
-            {/*        <ShopItemPreview*/}
-            {/*            onMount={index === 0 ? onResize : undefined}*/}
-            {/*            itemRef={index === 0 ? elemRef : undefined}*/}
-            {/*            key={props.common.slug}*/}
-            {/*            {...props.common}*/}
-            {/*            height={height}*/}
-            {/*        />*/}
-            {/*    ))}*/}
-            {/*</Slider>*/}
+            <Slider perSlide={3} className={'additional__slider'} container={true} infinite={true}>
+                {similarItems.map((props, index) => (
+                    <ShopItemPreview
+                        onMount={index === 0 ? onResize : undefined}
+                        itemRef={index === 0 ? elemRef : undefined}
+                        key={props.common.slug}
+                        {...props.common}
+                        height={height}
+                    />
+                ))}
+            </Slider>
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import {EventState} from 'app/_common/components/slider/slider.types'
-import {getElem} from 'app/_common/components/slider/get-elem'
+import {getElem} from 'app/_common/components/slider/utils/get-elem'
 
 const move = (state: EventState) => {
-    const {moveRef, setMove, elemsRef, slideRef} = state
+    const {moveRef, setMove, elemsRef, slideRef, event} = state
 
     let clientX
     const mobileEvent = event as TouchEvent

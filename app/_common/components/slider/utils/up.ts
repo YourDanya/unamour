@@ -1,6 +1,6 @@
 import {useGetState} from 'app/_common/components/slider/slider.hook'
 import {EventState} from 'app/_common/components/slider/slider.types'
-import move from 'app/_common/components/slider/move'
+import move from 'app/_common/components/slider/utils/move'
 
 const up = (state: EventState) => {
     const {moveRef, setCurrent, setMove, elemsRef, setTransition, setShouldCheckLimits} = state

@@ -3,10 +3,12 @@ import {useGetState} from 'app/_common/components/slider/slider.hook'
 import {useMemo} from 'react'
 import {useEffect} from 'react'
 import {useLayoutEffect} from 'react'
-import {getElem} from 'app/_common/components/slider/get-elem'
+import {getElem} from 'app/_common/components/slider/utils/get-elem'
 
 export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
-    const {current, mounted, move, translate, props} = state
+    const {current, mounted, move, translate, props, perSlide} = state
+
+    const {slideOffset} = props
 
     useLayoutEffect(() => {
         calc(state)
@@ -18,8 +20,13 @@ export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
     }
 
     const slideStyles: CSSProperties = {}
-    if (props.slideOffset) {
-        slideStyles.marginRight = `${props.slideOffset}px`
+    if (slideOffset) {
+        slideStyles.marginRight = `${slideOffset}px`
+    }
+
+    if (props.container) {
+        const calcOffset = `${slideOffset ? slideOffset * (perSlide - 1) / perSlide : 0}px`
+        slideStyles.width = `calc(${1 / perSlide * 100}% - ${calcOffset})`
     }
 
     return {...state, transform, slideStyles}
@@ -28,7 +35,7 @@ export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
 export const calc = (state: ReturnType<typeof useGetState>) => {
     const {
         elemsRef, leftElemsRef, current, length, move, mounted, perSlide, setContentStyle, setTranslate,
-        props: {infinite, container}, setTransition, moveRef
+        props: {infinite, container}, setTransition, moveRef, resizing
     } = state
 
     if (!mounted) {
@@ -75,6 +82,10 @@ export const calc = (state: ReturnType<typeof useGetState>) => {
     if (container) {
         contentStyle.width = `100%`
         contentStyle.height = `auto`
+    }
+
+    if (resizing) {
+        translate = 0
     }
 
     setContentStyle(contentStyle)

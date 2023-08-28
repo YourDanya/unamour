@@ -5,15 +5,15 @@ import {useEffect} from 'react'
 import {SliderProps} from 'app/_common/components/slider/slider.types'
 import {useCallback} from 'react'
 import React from 'react'
-import {MoveRef} from 'app/_common/components/slider/slider.types'
 import {useLayoutEffect} from 'react'
-import down from 'app/_common/components/slider/down'
-import up from 'app/_common/components/slider/up'
-import move from 'app/_common/components/slider/move'
-import {useArrows} from 'app/_common/components/slider/arrows'
+import down from 'app/_common/components/slider/utils/down'
+import up from 'app/_common/components/slider/utils/up'
+import move from 'app/_common/components/slider/utils/move'
+import {useArrows} from 'app/_common/components/slider/utils/arrows'
 import {CSSProperties} from 'react'
-import {useCalcDimensions} from 'app/_common/components/slider/calc'
-import {calc} from 'app/_common/components/slider/calc'
+import {useCalcDimensions} from 'app/_common/components/slider/utils/calc'
+import {calc} from 'app/_common/components/slider/utils/calc'
+import {useHandleEffects} from 'app/_common/components/slider/utils/effects'
 
 export const useSlider = (props: SliderProps) => {
     const {children} = props
@@ -64,10 +64,11 @@ export const useGetState = (props: SliderProps) => {
 
     const slideRef = useRef<HTMLDivElement>(null)
     const [transition, setTransition] = useState('unset')
+    const [resizing, setResizing] = useState(false)
 
     const moveRef = useRef({
-        startX: 0, moving: false, current, fast: false, clientX: 0, moveCurrent: current,
-        limit: '', fistCalc: false
+        startX: 0, moving: false, current, fast: false, clientX: 0, moveCurrent: current, mounted: false,
+        limit: '', fistCalc: false, resizing: false
     })
     const [move, setMove] = useState(0)
 
@@ -83,67 +84,8 @@ export const useGetState = (props: SliderProps) => {
     return {
         transition, perSlide, elements, setElements, moveRef, current, setCurrent, setTransition, move, setMove,
         slideRef, length, props, elemsRef, mounted, setMounted, leftElemsRef, rightElemsRef, shouldCheckLimits,
-        setShouldCheckLimits, translate, setTranslate, contentStyle, setContentStyle
+        setShouldCheckLimits, translate, setTranslate, contentStyle, setContentStyle, resizing, setResizing
     }
 }
 
-const useHandleEffects = (state: ReturnType<typeof useArrows>) => {
-    const {
-        current, setMounted, shouldCheckLimits, setShouldCheckLimits, elements, setElements, setCurrent, elemsRef,
-        props: {children}, perSlide
-    } = state
 
-    useEffect(() => {
-        requestAnimationFrame(() => {
-            calcLimits(state)
-        })
-    }, [current])
-
-    useEffect(() => {
-        if (!shouldCheckLimits) {
-            return
-        }
-        requestAnimationFrame(() => {
-            calcLimits(state)
-            setShouldCheckLimits(false)
-        })
-    }, [shouldCheckLimits])
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-
-    useEffect(() => {
-        const newElements = Children.toArray(children)
-        if (newElements.length === current + perSlide - 1) {
-            setCurrent(current - 1)
-        }
-        setElements(newElements)
-        calc(state)
-    }, [children])
-
-    useEffect(() => {
-        if (elemsRef.current[elemsRef.current.length - 1] === null) {
-            elemsRef.current.pop()
-        }
-    })
-}
-
-const calcLimits = (state: ReturnType<typeof useGetState>) => {
-    const {current, length, setCurrent, setTransition, moveRef, setMove} = state
-
-    if (current === length) {
-        setCurrent(length - 1)
-    }
-    if (current === -1) {
-        setCurrent(0)
-    }
-
-    if (moveRef.current.limit) {
-        moveRef.current.limit = ''
-        setMove(0)
-        setTransition('0.4s all')
-    }
-    
-    moveRef.current.current = current
-}

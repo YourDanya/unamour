@@ -66,11 +66,11 @@ const Content = (props: ReturnType<typeof useSlider>) => {
 }
 
 const Elements = (props: ReturnType<typeof useSlider>) => {
-    const {transform, transition, props: {infinite}} = props
+    const {transform, transition, props: {infinite}, resizing} = props
 
     return (
         <div className={'slider-elements'} style={{transform, transition}}>
-            {infinite && (<LeftHidden {...props}/>)}
+            {infinite && !resizing && (<LeftHidden {...props}/>)}
             <Featured {...props}/>
             {infinite && (<RightHidden {...props}/>)}
         </div>
@@ -78,7 +78,7 @@ const Elements = (props: ReturnType<typeof useSlider>) => {
 }
 
 const PreviewElements = (props: ReturnType<typeof useSlider>) => {
-    const {current, perSlide, elements, props: {infinite}} = props
+    const {current, perSlide, elements, props: {infinite}, slideStyles} = props
 
     const arr = []
     let i = current
@@ -97,7 +97,7 @@ const PreviewElements = (props: ReturnType<typeof useSlider>) => {
     return (
         <div className={'slider-elements'}>
             {arr.map((childElement, index) => (
-                <div className={'slider-element'} key={index}>
+                <div className={'slider-element'} key={index} style={slideStyles}>
                     {childElement}
                 </div>
             ))}
@@ -106,14 +106,16 @@ const PreviewElements = (props: ReturnType<typeof useSlider>) => {
 }
 
 const Featured = (props: ReturnType<typeof useSlider>) => {
-    const {elements, current, length, elemsRef, slideStyles} = props
+    const {elements, current, length, elemsRef, slideStyles, resizing} = props
 
     return (<>
         {elements.map((childElement, index) => (
             <div
                 className={`slider-element ${index === 0 ? 'slider-element--first' : ''}
                                 ${index === current ? 'slider-element--current' : ''}
-                                ${index === length - 1 ? 'slider-element--last' : ''}`}
+                                ${index === length - 1 ? 'slider-element--last' : ''}
+                                ${resizing && index < current ? 'slider-element--resizing-hidden' : ''}
+                                `}
                 key={index}
                 data-value={index}
                 style={slideStyles}

@@ -12,14 +12,6 @@ export type SliderProps = {
     perSlide?: number,
     className?: string,
     infinite?: boolean,
-    container?: boolean
-}
-
-export type MoveRef = {
-    startX: number,
-    moving: boolean,
-    current: number,
-    fast: boolean,
-    clientX: number,
-    blocking: boolean
+    container?: boolean,
+    slideOffset?: number
 }

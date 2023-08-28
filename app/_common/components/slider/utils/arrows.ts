@@ -1,4 +1,4 @@
-import {useCalcDimensions} from 'app/_common/components/slider/calc'
+import {useCalcDimensions} from 'app/_common/components/slider/utils/calc'
 
 export const useArrows = (state: ReturnType<typeof useCalcDimensions>) => {
     const {current, setCurrent, setTransition, length, props: {infinite}, moveRef, elemsRef, perSlide} = state

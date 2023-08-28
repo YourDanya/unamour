@@ -20,7 +20,7 @@ const contentArr = [
 ]
 
 const Test = () => {
-    const [arr, setArr] = useState(contentArr.slice(0, 4))
+    const [arr, setArr] = useState(contentArr.slice(0, 5))
 
     const onAdd = () => {
         const index = Math.min(arr.length + 1, contentArr.length)
@@ -35,48 +35,17 @@ const Test = () => {
     return (
         <div className={`test`}>
             <div className={'test__container'}>
-                {/*<Slider*/}
-                {/*    perSlide={1}*/}
-                {/*    infinite={true}*/}
-                {/*    slideOffset={10}*/}
-                {/*    container={true}*/}
-                {/*>*/}
-                {/*    <img*/}
-                {/*        className={'test__img'}*/}
-                {/*        src={profile.src}*/}
-                {/*    />*/}
-                {/*    <img*/}
-                {/*        className={'test__img'}*/}
-                {/*        src={vacancies.src}*/}
-                {/*    />*/}
-                {/*    <img*/}
-                {/*        className={'test__img'}*/}
-                {/*        src={contacts.src}*/}
-                {/*    />*/}
-                {/*</Slider>*/}
-                {/*<div className={'test__list'}>*/}
-                {/*    <div className={'test__img-wrapper'}>*/}
-                {/*        <img*/}
-                {/*            className={'test__img'}*/}
-                {/*            src={profile.src}*/}
-                {/*        />*/}
-                {/*    </div>*/}
-                {/*    <div className={'test__img-wrapper'}>*/}
-                {/*        <img*/}
-                {/*            className={'test__img'}*/}
-                {/*            src={vacancies.src}*/}
-                {/*        />*/}
-                {/*    </div>*/}
-                {/*    <div className={'test__img-wrapper'}>*/}
-                {/*        <img*/}
-                {/*            className={'test__img'}*/}
-                {/*            src={contacts.src}*/}
-                {/*        />*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                <Arrow width={100} type={'right'}/>
-                <Arrow width={100} type={'left'}/>
-                {/*<Arrow width={100} type={'left'}/>*/}
+                <Slider className={'test__slider'} container={true} perSlide={3} infinite={true} slideOffset={5}>
+                    {arr.map(elem => (
+                        <div
+                            className={'elem'}
+                            style={{backgroundColor: elem.color, height: '300px'}}
+                            key={elem.id}
+                        >
+                            {elem.id}
+                        </div>
+                    ))}
+                </Slider>
             </div>
             {/*<Button onClick={onAdd} className={'test__button'}>*/}
             {/*    Add*/}
@@ -90,12 +59,23 @@ const Test = () => {
 
 export default Test
 
-{/*{arr.map(elem => (*/}
-{/*    <div*/}
-{/*        className={'elem'}*/}
-{/*        style={{backgroundColor: elem.color}}*/}
-{/*        key={elem.id}*/}
-{/*    >*/}
-{/*        {elem.id}*/}
-{/*    </div>*/}
-{/*))}*/}
+
+// <Slider
+//     perSlide={1}
+//     infinite={true}
+//     slideOffset={10}
+//     container={true}
+// >
+//     <img
+//         className={'test__img'}
+//         src={profile.src}
+//     />
+//     <img
+//         className={'test__img'}
+//         src={vacancies.src}
+//     />
+//     <img
+//         className={'test__img'}
+//         src={contacts.src}
+//     />
+// </Slider>

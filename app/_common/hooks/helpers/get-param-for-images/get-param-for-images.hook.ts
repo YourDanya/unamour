@@ -3,19 +3,18 @@ import {useRef} from 'react'
 import useResize from 'app/_common/hooks/helpers/resize/resize.hook'
 
 const useGetParamForImages = (ratio = 4 / 3) => {
-    const onResize = () => {
+    const onResize = () => setTimeout( () => {
         if (!elemRef.current) {
             return
         }
-
         const width = elemRef.current.getBoundingClientRect().width
         setHeight(width * ratio)
-    }
+    })
 
     const [height, setHeight] = useState(0)
     const elemRef = useRef<HTMLDivElement | null>(null)
 
-    useResize(onResize)
+    useResize(onResize, [], {delay: 200})
 
     return {onResize, height, elemRef}
 }
