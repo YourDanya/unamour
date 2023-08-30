@@ -1,6 +1,7 @@
 //global
 import 'app/_common/styles/global.sass'
 //common
+import 'app/_common/components/responsive-slider/responsive-slider.styles.sass'
 import 'app/_common/components/arrow/arrow.styles.sass'
 import 'app/_common/components/button/button.styles.sass'
 import 'app/_common/components/form-message/form-message.styles.sass'

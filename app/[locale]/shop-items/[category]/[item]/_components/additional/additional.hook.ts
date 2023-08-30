@@ -51,14 +51,14 @@ const useAdditional = (props: ReturnType<typeof useShopItem>) => {
 
     }, [])
 
-    const onResize = () => {
+    const onResize = () => setTimeout( () => {
         if (!elemRef.current) {
             return
         }
 
         const width = elemRef.current.getBoundingClientRect().width
         setHeight(width * 4 / 3)
-    }
+    })
 
     const [height, setHeight] = useState(0)
     const elemRef = useRef<HTMLDivElement | null>(null)

@@ -24,6 +24,7 @@ const move = (state: EventState) => {
 
     setMove(translate)
     moveRef.current.clientX = clientX
+    moveRef.current.wasMoved = true
 }
 
 export default move

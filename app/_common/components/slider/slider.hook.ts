@@ -21,6 +21,7 @@ export const useSlider = (props: SliderProps) => {
     const mainState = useGetState(props)
     const calcState = useCalcDimensions(mainState)
     const arrowsState = useArrows(calcState)
+    const {moveRef} = arrowsState
 
     const onUp = useCallback((event: MouseEvent | TouchEvent) => {
         up({...mainState, event})
@@ -44,10 +45,16 @@ export const useSlider = (props: SliderProps) => {
         document.addEventListener('touchend', onUp)
     }, [])
 
+    const onCapture = (event: React.MouseEvent | React.TouchEvent) => {
+        if (moveRef.current.wasMoved) {
+            event.preventDefault()
+        }
+    }
+
     useHandleEffects(arrowsState)
 
     return {
-        ...arrowsState, onDown, onUp, onMove
+        ...arrowsState, onDown, onUp, onMove, onCapture
     }
 }
 
@@ -68,8 +75,10 @@ export const useGetState = (props: SliderProps) => {
 
     const moveRef = useRef({
         startX: 0, moving: false, current, fast: false, clientX: 0, moveCurrent: current, mounted: false,
-        limit: '', fistCalc: false, resizing: false
+        limit: '', fistCalc: false, wasMoved: false
     })
+    const propsRef = useRef(props)
+
     const [move, setMove] = useState(0)
 
     const elemsRef = useRef<(HTMLDivElement | null)[]>([])
@@ -87,5 +96,3 @@ export const useGetState = (props: SliderProps) => {
         setShouldCheckLimits, translate, setTranslate, contentStyle, setContentStyle, resizing, setResizing
     }
 }
-
-

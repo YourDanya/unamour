@@ -20,6 +20,7 @@ const down = (state: ReactEventState) => {
     moveRef.current.fast = true
     moveRef.current.moving = true
     moveRef.current.moveCurrent = moveRef.current.current
+    moveRef.current.wasMoved = false
 
     setTimeout(() => {
         moveRef.current.fast = false

@@ -10,6 +10,7 @@ import profile from 'public/images/profile/profile-bg.jpg'
 import vacancies from 'public/images/vacancies/vacancies-bg.jpg'
 import contacts from 'public/images/contacts/contacts-1.jpg'
 import Arrow from 'app/_common/components/arrow/arrow.component'
+import ResponsiveSlider from 'app/_common/components/responsive-slider/responsive-slider.component'
 
 const contentArr = [
     {id: 0, color: 'black', width: '100px'},
@@ -35,7 +36,10 @@ const Test = () => {
     return (
         <div className={`test`}>
             <div className={'test__container'}>
-                <Slider className={'test__slider'} container={true} perSlide={3} infinite={true} slideOffset={5}>
+                <ResponsiveSlider
+                    defaultProps={{container: true, perSlide: 3, infinite: true, slideOffset: 5}}
+                    breakpoints={{992: {perSlide: 2}}}
+                >
                     {arr.map(elem => (
                         <div
                             className={'elem'}
@@ -45,7 +49,18 @@ const Test = () => {
                             {elem.id}
                         </div>
                     ))}
-                </Slider>
+                </ResponsiveSlider>
+                {/*<Slider className={'test__slider'} container={true} perSlide={3} infinite={true} slideOffset={5}>*/}
+                {/*    {arr.map(elem => (*/}
+                {/*        <div*/}
+                {/*            className={'elem'}*/}
+                {/*            style={{backgroundColor: elem.color, height: '300px'}}*/}
+                {/*            key={elem.id}*/}
+                {/*        >*/}
+                {/*            {elem.id}*/}
+                {/*        </div>*/}
+                {/*    ))}*/}
+                {/*</Slider>*/}
             </div>
             {/*<Button onClick={onAdd} className={'test__button'}>*/}
             {/*    Add*/}

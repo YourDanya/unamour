@@ -20,6 +20,6 @@ const Modal: FC<ModalProps> = (props) => {
     )
 }
 
-const areEqual = (prevProps: ModalProps, currentProps: ModalProps) => prevProps.active===currentProps.active
+const areEqual = (prevProps: ModalProps, currentProps: ModalProps) => prevProps.active === currentProps.active
 
 export default memo(Modal, areEqual)

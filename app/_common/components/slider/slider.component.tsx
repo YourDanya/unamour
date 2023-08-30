@@ -49,7 +49,7 @@ const Arrows = (props: ReturnType<typeof useSlider>) => {
 }
 
 const Content = (props: ReturnType<typeof useSlider>) => {
-    const {slideRef, onDown, mounted, contentStyle, transform, props: {infinite}} = props
+    const {slideRef, onDown, mounted, contentStyle, transform, props: {infinite}, onCapture} = props
 
     return (
         <div
@@ -58,6 +58,7 @@ const Content = (props: ReturnType<typeof useSlider>) => {
             ref={slideRef}
             onMouseDown={onDown}
             onTouchStart={onDown}
+            onClickCapture={onCapture}
         >
             {mounted && (<Elements {...props}/>)}
             {!mounted && (<PreviewElements {...props}/>)}

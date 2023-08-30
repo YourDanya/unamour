@@ -45,7 +45,7 @@ const Similar = (props: LoadedProps) => {
             <div className="additional__title">
                 {transl.similarItems}
             </div>
-            <Slider perSlide={3} className={'additional__slider'} container={true} infinite={true}>
+            <Slider perSlide={4} className={'additional__slider'} container={true} slideOffset={5}>
                 {similarItems.map((props, index) => (
                     <ShopItemPreview
                         onMount={index === 0 ? onResize : undefined}
