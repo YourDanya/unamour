@@ -10,7 +10,7 @@ export const useCartStore = create<CartState>()(
     persist(
         (set, get) => ({
             items: [],
-            setCartItems: (items) => set({items}),
+            setCartItems: (items) => set({items: items}),
             orderId: '',
             setOrderId: (orderId) => set({orderId}),
             userFormData: null,
@@ -21,7 +21,8 @@ export const useCartStore = create<CartState>()(
             setPaymentData: (paymentData) =>set({paymentData}),
             addItem: (addItem) => set(({items}) => {
                 const itemIndex = items.findIndex(item => {
-                    return item.common._id === addItem.common._id
+                    return item.shopItemId === addItem.shopItemId 
+                        && item.color === addItem.color && item.size === addItem.size
                 })
                 if (itemIndex === -1) {
                     items.push(addItem)
@@ -30,27 +31,30 @@ export const useCartStore = create<CartState>()(
                 }
                 return {items}
             }),
-            removeItem: (_id) => set(({items}) => {
+            removeItem: (removeItem) => set(({items}) => {
                 const itemIndex = items.findIndex(item => {
-                    return item.common._id === _id
+                    return item.shopItemId === removeItem.shopItemId
+                        && item.color === removeItem.color && item.size === removeItem.size
                 })
                 if (itemIndex !== -1) {
                     items.splice(itemIndex, 1)
                 }
                 return {items}
             }),
-            increaseQuantity: (_id) => set(({items}) => {
+            increaseQuantity: (increaseItem) => set(({items}) => {
                 const itemIndex = items.findIndex(item => {
-                    return item.common._id === _id
+                    return item.shopItemId === increaseItem.shopItemId
+                        && item.color === increaseItem.color && item.size === increaseItem.size
                 })
                 if (itemIndex !== -1) {
                     items[itemIndex].quantity++
                 }
-                return {items}
+                return {items: [...items]}
             }),
-            decreaseQuantity: (_id) => set(({items}) => {
+            decreaseQuantity: (decreaseItem) => set(({items}) => {
                 const itemIndex = items.findIndex(item => {
-                    return item.common._id === _id
+                    return item.shopItemId === decreaseItem.shopItemId
+                        && item.color === decreaseItem.color && item.size === decreaseItem.size
                 })
                 if (itemIndex !== -1) {
                     items[itemIndex].quantity--
@@ -58,20 +62,20 @@ export const useCartStore = create<CartState>()(
                 if (items[itemIndex].quantity === 0) {
                     items.splice(itemIndex, 1)
                 }
-                return {items}
+                return {items: [...items]}
             }),
             getItemsQuantity: () => {
                 return get().items.reduce((quantity, item) => quantity + item.quantity, 0)
             },
             getTotalPrice: () => {
-                return get().items.reduce((totalPrice, {quantity, common: {price}}) => {
-                    return  + quantity * +price
+                return get().items.reduce((totalPrice, {quantity, price}) => {
+                    return totalPrice + quantity * price
                 }, 0)
             }
         }),
         {
             name: 'cart',
-            partialize: (state) => peek(state,  ['items', 'orderId', 'userFormData']),
+            partialize: (state) => peek(state,  ['orderId', 'userFormData']),
         }
     )
 )

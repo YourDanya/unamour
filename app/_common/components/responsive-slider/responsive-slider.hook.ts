@@ -81,7 +81,7 @@ const getSliderProps = (state: ReturnType<typeof useGetState>
         hideClass = `responsive-slider-hidden-40000 ${hideClass}`
     }
 
-    newProps.className = `${showClass} ${hideClass} ${sliderProps.className}`
+    newProps.className = `${showClass} ${hideClass} ${newProps.className}`
 
     return newProps
 }

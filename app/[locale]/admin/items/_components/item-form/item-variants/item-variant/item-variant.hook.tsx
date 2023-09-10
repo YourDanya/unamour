@@ -25,7 +25,7 @@ const useItemVariant = (props: ItemVariantProps) => {
 
     const itemValue = useItemFormStore(({itemValue}) => itemValue)
 
-    const {sizes, color, price} = itemValue.common.variants[variantIndex]
+    const {sizes, color, price} = itemValue.variants[variantIndex]
 
     const {validations, errors: initErrors} = useMapInputs(content.inputs)
     const [errors, setErrors] = useState(initErrors)
@@ -48,7 +48,7 @@ const useItemVariant = (props: ItemVariantProps) => {
         values: sizeValues,
         changeCallback: ({changeValues}) => {
             const sizes = Object.entries(changeValues).filter(([_, value]) => value).map(([key]) => key)
-            itemValueRef.current.common.variants[variantIndex].sizes = sizes
+            itemValueRef.current.variants[variantIndex].sizes = sizes
             setItemValue(itemValueRef.current)
         }
     })
@@ -67,9 +67,9 @@ const useItemVariant = (props: ItemVariantProps) => {
     const {onChange: onInputsChange} = useInputChange({
         values: {color, price},
         changeCallback: ({changeValues, name}) => {
-            const {variants} = itemValueRef.current.common
+            const {variants} = itemValueRef.current
             variants[variantIndex][name] = changeValues[name]
-            itemValueRef.current.common.variants = [...variants]
+            itemValueRef.current.variants = [...variants]
             setItemValue(itemValueRef.current)
         }
     })
@@ -77,13 +77,13 @@ const useItemVariant = (props: ItemVariantProps) => {
     useEffect(() => {
         const beforeCount = errRef.current.count
 
-        const {color, price} = itemValueRef.current.common.variants[variantIndex]
+        const {color, price} = itemValueRef.current.variants[variantIndex]
         const values = {color, price}
 
         getEntries(values).forEach(([name, value]) => onValidate(name, value))
 
         if (!errRef.current.errors.color) {
-            const isColorNotUnique = itemValueRef.current.common.variants.reduce((count, {color}) => {
+            const isColorNotUnique = itemValueRef.current.variants.reduce((count, {color}) => {
                 if (color === values.color) {
                     count++
                 }
@@ -116,22 +116,21 @@ const useItemVariant = (props: ItemVariantProps) => {
             errorCountRef.current+= afterCount - beforeCount
             setErrorCount(errorCountRef.current)
         }
-    }, [itemValue.common.variants, sizes])
+    }, [itemValue.variants, sizes])
 
     const onDeleteVariant:MouseAction = (event) => {
         event.preventDefault()
-        if (itemValueRef.current.common.variants.length === 1) {
+        if (itemValueRef.current.variants.length === 1) {
             return
         }
-        itemValueRef.current.common.variants.splice(variantIndex, 1)
-        itemValueRef.current.common.variants = [...itemValueRef.current.common.variants]
+        itemValueRef.current.variants.splice(variantIndex, 1)
+        itemValueRef.current.variants = [...itemValueRef.current.variants]
         setItemValue(itemValueRef.current)
     }
 
     useEffect(() => {
         return () => {
             if (errRef.current.count !== 0) {
-                console.log('error count')
                 errorCountRef.current -= errRef.current.count
                 setErrorCount(errorCountRef.current)
             }

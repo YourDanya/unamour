@@ -1,17 +1,16 @@
 export type CartItem = {
-    common: {
-        itemId: string
-        slug: string,
-        slugCategory: string,
-        price: string,
-        images: {path: string, url: string}[],
-        size: string,
-        color: string,
-        _id: string
-    },
+    shopItemId: string,
+    _id: string,
+    color: string,
+    size: string,
+    quantity: number,
+    price: number,
+    slug: string,
+    slugCategory: string,
+    images: {path: string, url: string}[],
     translations: {
         ua: {
-            name: string,
+            name: string
         },
         eng: {
             name: string
@@ -19,8 +18,7 @@ export type CartItem = {
         ru: {
             name: string
         }
-    },
-    quantity: number
+    }
 }
 
 export type UserFormData = {
@@ -147,11 +145,12 @@ export type CartState = {
     order: null | Order,
     setOrder: (order: null | Order) => void,
     addItem: (addItem: CartItem) => void,
-    removeItem: (_id: string) => void,
-    increaseQuantity: (_id: string) => void,
-    decreaseQuantity: (_id: string) => void,
+    removeItem: (removeItem: CartItem) => void,
+    increaseQuantity: (increaseItem: CartItem) => void,
+    decreaseQuantity: (decreaseItem: CartItem) => void,
     setOrderId: (orderId: string) => void,
     setCartItems: (items: CartItem[]) => void,
     getItemsQuantity: () => number,
     getTotalPrice: () => number
 }
+

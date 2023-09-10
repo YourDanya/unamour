@@ -5,7 +5,7 @@ import {useRef} from 'react'
 import {StoreApi} from 'zustand'
 import {ItemFormProps} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {createItemImagesValues} from 'app/[locale]/admin/items/_components/item-form/utils/item-form.utils'
 import {useCallback} from 'react'
 import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/store/item-form.types'
@@ -14,6 +14,7 @@ import {createItemFormStore} from 'app/[locale]/admin/items/_components/item-for
 import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import itemFormContent from 'app/[locale]/admin/items/_components/item-form/item-form.content'
 import {shallow} from 'zustand/shallow'
+import {AdminItem} from 'app/[locale]/admin/items/_components/store/admin-items.types'
 
 const useItemForm = (props: ItemFormProps) => {
     const test = useRef(performance.now())
@@ -23,7 +24,7 @@ const useItemForm = (props: ItemFormProps) => {
 
     const {data: itemValue, itemIndex} = usePaginationStore(useCallback((state) => {
         return peek(state, ['data', 'itemIndex'])
-    }, []), shallow) as PaginationState<FetchedItem>
+    }, []), shallow) as PaginationState<AdminItem>
 
     useOmitFirstEffect(() => {
         const itemImagesValues = createItemImagesValues({itemValue})

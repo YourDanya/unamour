@@ -4,7 +4,7 @@ import {DropdownsProps} from 'app/[locale]/shop-items/[category]/[item]/_compone
 import useDropdowns from 'app/[locale]/shop-items/[category]/[item]/_components/dropdowns/dropdowns.hook'
 
 const Dropdowns: FC<DropdownsProps> = (props) => {
-    const {transl: {description, composition, parameters, delivery}} = props
+    const {transl: {description, composition, parameters}} = props
     const {transl} = useDropdowns()
 
     return (
@@ -26,7 +26,7 @@ const Dropdowns: FC<DropdownsProps> = (props) => {
             </Dropdown>
             <Dropdown className={'info__dropdown'} name={transl.delivery}>
                 <div className={'info__text'}>
-                    {delivery}
+                    {transl.delivaryContent}
                 </div>
             </Dropdown>
         </div>

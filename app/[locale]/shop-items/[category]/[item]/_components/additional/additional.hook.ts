@@ -2,15 +2,15 @@ import {useMemo, useRef, useState} from 'react'
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {useViewedStore} from 'app/_common/store/viewed/viewed.store'
 import {useEffect} from 'react'
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
-import {CategoryItem} from 'app/_common/types/types'
+import {CategoryItem} from 'app/_common/types/category-item'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.content'
 import useResize from 'app/_common/hooks/helpers/resize/resize.hook'
 
 const useAdditional = (props: ReturnType<typeof useShopItem>) => {
-    const {props: {_id, common: {slugCategory}}, currentVariant: {color}} = props
+    const {props: {_id, slugCategory}, currentVariant: {color}} = props
 
     const transl = useLocale(dictionary)
 
@@ -26,7 +26,7 @@ const useAdditional = (props: ReturnType<typeof useShopItem>) => {
     const similarItems = getSimilarItems.data?.items
 
     useEffect(() => {
-        getViewedItems.start(viewedSaved)
+        // getViewedItems.start(viewedSaved)
         getSimilarItems.start()
 
         if (viewedSaved.length > 10) {

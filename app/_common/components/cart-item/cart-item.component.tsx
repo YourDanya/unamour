@@ -5,10 +5,10 @@ import Link from 'next/link'
 import {CartItem} from 'app/_common/store/cart/cart.types'
 import {baseURL} from 'app/_common/utils/api/api.utils'
 import useCartItem from 'app/_common/components/cart-item/cart-item.hook'
-import LoadImage from 'app/_common/components/load-image-v2/load-image.component'
+import LoadImage from 'app/_common/components/load-image/load-image.component'
 
 const CartItem: FC<CartItem> = (props) => {
-    const {common: {slug, slugCategory, price, images, size, color}, quantity} = props
+    const {slug, slugCategory, price, images, size, color, quantity} = props
     const {onIncrease, onDecrease, onRemove, transl, name, code} = useCartItem(props)
 
     return (
@@ -17,7 +17,7 @@ const CartItem: FC<CartItem> = (props) => {
             <Link href={`shop-items/${slugCategory}/${slug}?color=${color}`} className='cart-item__link'>
                 <LoadImage
                     className='cart-item__img'
-                    src={`${baseURL}/images/${images[0]}`}
+                    src={images[0].url}
                     alt={'item image'}
                     width={85}
                     height={85 * 4 / 3}
@@ -53,7 +53,7 @@ const CartItem: FC<CartItem> = (props) => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default CartItem

@@ -14,6 +14,7 @@ const useResize = (callback: () => void, deps?: DependencyList, params?: {skip?:
             window.removeEventListener('resize', onResize)
         }
     }, [deps])
+
 }
 
 export default useResize

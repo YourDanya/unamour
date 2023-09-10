@@ -75,7 +75,7 @@ export const useGetState = (props: SliderProps) => {
 
     const moveRef = useRef({
         startX: 0, moving: false, current, fast: false, clientX: 0, moveCurrent: current, mounted: false,
-        limit: '', fistCalc: false, wasMoved: false
+        limit: '', fistCalc: false, wasMoved: false, resizing: false
     })
     const propsRef = useRef(props)
 
@@ -93,6 +93,7 @@ export const useGetState = (props: SliderProps) => {
     return {
         transition, perSlide, elements, setElements, moveRef, current, setCurrent, setTransition, move, setMove,
         slideRef, length, props, elemsRef, mounted, setMounted, leftElemsRef, rightElemsRef, shouldCheckLimits,
-        setShouldCheckLimits, translate, setTranslate, contentStyle, setContentStyle, resizing, setResizing
+        setShouldCheckLimits, translate, setTranslate, contentStyle, setContentStyle, resizing, setResizing,
+        propsRef
     }
 }

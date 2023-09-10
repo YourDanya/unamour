@@ -6,7 +6,6 @@ const itemCommonContent = {
             best: {validations: {}},
             special: {validations: {}},
             coming: {validations: {}},
-            wedding: {validations: {}},
             oldPrice: {validations: {required: true, isNumberGreaterThanZero: true}},
             weight: {validations: {}},
             volume: {validations: {}}
@@ -20,7 +19,6 @@ const itemCommonContent = {
                 best: 'найкращі',
                 special: 'особливі',
                 coming: 'скоро буде',
-                wedding: 'весільная колекція',
                 oldPrice: 'стара ціна',
                 weight: 'вага',
                 volume: 'об\'єм'
@@ -36,7 +34,6 @@ const itemCommonContent = {
                 best: 'best',
                 special: 'special',
                 coming: 'coming',
-                wedding: 'wedding collection',
                 oldPrice: 'old price',
                 weight: 'weight',
                 volume: 'volume'
@@ -52,7 +49,6 @@ const itemCommonContent = {
                 best: 'лучшие',
                 special: 'особые',
                 coming: 'скоро будет',
-                wedding: 'свадебная коллекция',
                 oldPrice: 'старая цена',
                 weight: 'вес',
                 volume: 'объем'

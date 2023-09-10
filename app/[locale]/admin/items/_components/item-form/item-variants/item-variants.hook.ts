@@ -8,17 +8,15 @@ const useItemVariants = () => {
     const [transl] = useLocale(itemVariantsContent)
 
     const {
-        itemValue: {common: {variants}}, itemValueRef, setItemValue, itemImagesValuesRef, setItemImagesValues
+        itemValue: {variants}, itemValueRef, setItemValue, itemImagesValuesRef, setItemImagesValues
     } = useItemFormStore(state => state)
 
     const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
         const newVariant: ItemVariant = {color: '', images: [], sizes: [], price: ''} as unknown as ItemVariant
         itemValueRef.current = {
-            ...itemValueRef.current, common: {
-                ...itemValueRef.current.common,
-                variants: [...itemValueRef.current.common.variants, newVariant]
-            }
+            ...itemValueRef.current,
+            variants: [...itemValueRef.current.variants, newVariant]
         }
         itemImagesValuesRef.current.push({})
         setItemValue(itemValueRef.current)

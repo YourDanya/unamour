@@ -6,9 +6,12 @@ import cartItemContent from 'app/_common/components/cart-item/cart-item.content'
 import {useCartStore} from 'app/_common/store/cart/cart.store'
 import {Color} from 'app/_common/types/types'
 import {usePathname} from 'next/navigation'
+import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 
-const useCartItem = (props: CartItem) => {
-    const {common: {_id, color}, translations} = props
+const useCartItem = (item: CartItem) => {
+    const {shopItemId, color, size, translations, quantity} = item
+
     const [{name}] = useLocale({translations})
     const [transl] = useLocale(cartItemContent)
 
@@ -16,21 +19,38 @@ const useCartItem = (props: CartItem) => {
     const decreaseQuantity = useCartStore(state => state.decreaseQuantity)
     const removeItem = useCartStore(state => state.removeItem)
 
+    const res = useApiCall<{item: CartItem}>({url: 'cart'})
+
+    const sendItem = {shopItemId, color, size, quantity}
+
     const onIncrease = () => {
-        increaseQuantity(_id)
-    }
-    const onDecrease = () => {
-        decreaseQuantity(_id)
-    }
-    const onRemove= () => {
-        removeItem(_id)
+        increaseQuantity(item)
+        const body = {item: {...sendItem, quantity: sendItem.quantity + 1}, option: 'update'}
+        res.start({method: 'POST', body})
     }
 
-    const cartPage = usePathname() ==='/cart'
+    const onDecrease = () => {
+        decreaseQuantity(item)
+        let body
+        if (sendItem.quantity === 1) {
+            body = {item: sendItem, option: 'delete'}
+        } else {
+            body = {item: {...sendItem, quantity: sendItem.quantity - 1}, option: 'update'}
+        }
+        res.start({method: 'POST', body})
+    }
+
+    const onRemove = () => {
+        removeItem(item)
+        const body = {item: sendItem, option: 'delete'}
+        res.start({method: 'POST', body})
+    }
+
+    const cartPage = usePathname() === '/cart'
 
     const code = useMemo(() => {
         return (colorContent.common.find(tempColor => tempColor.slug === color) as Color).code
-    },[])
+    }, [])
 
     return {onIncrease, onDecrease, onRemove, cartPage, transl, name, code}
 }

@@ -1,4 +1,4 @@
-import {Review} from 'app/_common/types/types'
+import {Review} from 'app/_common/types/review'
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 
 export type ReviewProps = Review & {

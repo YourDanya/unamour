@@ -1,4 +1,4 @@
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {MutableRefObject} from 'react'
 
 export type ItemFormProps = {
@@ -7,7 +7,7 @@ export type ItemFormProps = {
     toAddItem?: boolean
 }
 
-export type ItemVariant = { color: string, sizes: string[], images: string[], price: string, _id: string }
+export type ItemVariant = { color: string, sizes: string[], images: {path: string, url: string}[], price: string, _id: string }
 
 export type ItemImagesValues = Record<string, {file: File | null, url: string}> []
 

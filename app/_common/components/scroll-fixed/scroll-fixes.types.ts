@@ -20,7 +20,8 @@ export type StateRef = {
     height: number,
     toBottom: boolean,
     first: boolean,
-    self: boolean
+    self: boolean,
+    marginTop: number
 }
 
 export type ScrollFixedProps = {
@@ -29,4 +30,5 @@ export type ScrollFixedProps = {
     bottomOffset: number,
     resize?: boolean,
     setResize?: Dispatch<SetStateAction<boolean>>
+    width: string
 }

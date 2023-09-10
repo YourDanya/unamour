@@ -1,19 +1,21 @@
 import {useRef} from 'react'
 import {ItemActionsValues} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
-import {itemActionsContent} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
+import {actions as actionsData} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
+import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
 import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {useCallback} from 'react'
 import {useEffect} from 'react'
 import {ItemActionsMessages} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {usePaginationStore} from 'app/_common/components/pagination/store/pagination.stote'
 import {useState} from 'react'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {shallow} from 'zustand/shallow'
 import getKeys from 'app/_common/utils/typescript/get-keys/get-keys.utils'
+import {AdminItem} from 'app/[locale]/admin/items/_components/store/admin-items.types'
 
 const useItemActionsApi = () => {
     let actions: ItemActionsValues = {} as ItemActionsValues
@@ -22,7 +24,7 @@ const useItemActionsApi = () => {
 
     const {_id} = itemValueRef.current
 
-    const [transl, common] = useLocale(itemActionsContent)
+    const transl = useLocale(dictionary)
 
     const {
         setItem, deleteItem, setAddedItemId
@@ -36,19 +38,17 @@ const useItemActionsApi = () => {
         return state.addedItemId === _id
     }, [_id]), shallow)
 
-    itemIndex === 6 && console.log('isItemAdded', isItemAdded)
+    for (let prop in actionsData) {
+        const key = prop as keyof typeof actionsData
 
-    for (let prop in common.actions) {
-        const key = prop as keyof typeof common.actions
-
-        const value = common.actions[key]
+        const value = actionsData[key]
         let url
         if (typeof value.url === 'function') {
             url = value.url(_id)
         } else {
             url = value.url
         }
-        actions[key] = useApiCall<{item: FetchedItem}>(url, {
+        actions[key] = useApiCall<{item: AdminItem}>(url, {
             ...value.options,
             onSuccess: (data) => {
                 console.log('success', key)
@@ -83,7 +83,7 @@ const useItemActionsApi = () => {
     const stackCreateImages = useRef<((args: any) => void)[]>([])
 
     for (let prop in actions) {
-        const key = prop as keyof typeof actions
+        const key = prop as keyof typeof actionsData
         useEffect(() => {
             if (actions[key].error) {
                 setMessages({...messages, [key]: {text: transl.errors[key], isError: true}})

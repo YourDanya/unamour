@@ -1,19 +1,11 @@
-.test
+.test-slider.test
   display: flex
   justify-content: center
   align-items: center
   flex-direction: column
   padding: 100px
   .test__container
-    width: 30%
-  .test__element
-    height: 100%
-    width: 100%
-    flex-shrink: 0
-    display: none
-  .test__slider
-  .test__element--first
-    display: block
+    width: 40%
   .test__button
     margin-top: 20px
     background-color: black
@@ -21,33 +13,3 @@
     height: 50px
     color: white
     text-transform: uppercase
-  .test__list
-    display: flex
-    align-items: start
-  .test__img
-    width: 100%
-  .test__img-wrapper
-    width: 100%
-    flex-shrink: 0
-  .test__arrow
-    width: calc(100px * sqrt(9) / 2)
-    height: calc(100px * sqrt(2))
-    background-color: pink
-    opacity: 0.5
-    position: relative
-    &:after
-      content: ''
-      left: 0
-      position: absolute
-      display: block
-      width: 100px
-      height: 100px
-      border-width: 1px 1px 0 0
-      border-style: solid
-      border-color: black
-      transform: translateX(-50%) rotate(45deg)
-  .test__arrow-button
-
-.test--mounted
-  .test__element
-    display: block

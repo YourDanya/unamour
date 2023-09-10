@@ -4,7 +4,7 @@ import {LinksProps} from 'app/[locale]/shop-items/[category]/[item]/_components/
 import useLinks from 'app/[locale]/shop-items/[category]/[item]/_components/links/links.hook'
 
 const Links: FC<LinksProps> = (props) => {
-    const {props: {common: {slugCategory}}} = props
+    const {props: {slugCategory}} = props
     const {transl} = useLinks(props)
 
     return (

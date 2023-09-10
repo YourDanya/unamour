@@ -30,9 +30,10 @@ const move = (state: EventState) => {
 export default move
 
 const moveForward = (state: EventState) => {
-    const {moveRef, elemsRef, slideRef, leftElemsRef, rightElemsRef, props: {infinite}, perSlide} = state
+    const {moveRef, elemsRef, slideRef, leftElemsRef, rightElemsRef, propsRef} = state
+    const {infinite, perSlide = 1} = propsRef.current
 
-    const shouldStop = moveRef.current.moveCurrent === elemsRef.current.length - perSlide && !infinite
+    const shouldStop = moveRef.current.moveCurrent >= elemsRef.current.length - perSlide && !infinite
     if (shouldStop) {
         return
     }
@@ -49,7 +50,8 @@ const moveForward = (state: EventState) => {
 }
 
 const moveBack = (state: EventState) => {
-    const {moveRef, elemsRef, slideRef, props: {infinite}, perSlide} = state
+    const {moveRef, elemsRef, slideRef, propsRef} = state
+    const {infinite, perSlide = 1} = propsRef.current
 
     const shouldStop = moveRef.current.moveCurrent === 0 && !infinite
     if (shouldStop) {

@@ -17,11 +17,12 @@ const contentArr = [
     {id: 1, color: 'red', width: '200px'},
     {id: 2, color: 'blue', width: '300px'},
     {id: 3, color: 'green', width: '400px'},
-    {id: 4, color: 'yellow', width: '200px'}
+    {id: 4, color: 'yellow', width: '200px'},
+    {id: 5, color: 'brown', width: '200px'}
 ]
 
 const Test = () => {
-    const [arr, setArr] = useState(contentArr.slice(0, 5))
+    const [arr, setArr] = useState(contentArr.slice(0, 6))
 
     const onAdd = () => {
         const index = Math.min(arr.length + 1, contentArr.length)
@@ -37,7 +38,7 @@ const Test = () => {
         <div className={`test`}>
             <div className={'test__container'}>
                 <ResponsiveSlider
-                    defaultProps={{container: true, perSlide: 3, infinite: true, slideOffset: 5}}
+                    defaultProps={{container: true, perSlide: 4, slideOffset: 5, infinite: false}}
                     breakpoints={{992: {perSlide: 2}}}
                 >
                     {arr.map(elem => (
@@ -62,12 +63,12 @@ const Test = () => {
                 {/*    ))}*/}
                 {/*</Slider>*/}
             </div>
-            {/*<Button onClick={onAdd} className={'test__button'}>*/}
-            {/*    Add*/}
-            {/*</Button>*/}
-            {/*<Button onClick={onRemove} className={'test__button'}>*/}
-            {/*    Remove*/}
-            {/*</Button>*/}
+            <Button onClick={onAdd} className={'test__button'}>
+                Add
+            </Button>
+            <Button onClick={onRemove} className={'test__button'}>
+                Remove
+            </Button>
         </div>
     )
 }

@@ -43,7 +43,8 @@ export const useGetState = (props: ScrollFixedProps) => {
 
     const [state, setState] = useState<State>({position: 'static', top: 0, bottom: 'unset', marginTop: 0})
     const stateRef = useRef<StateRef>({
-        position: 'static', toParentTop: 0, scrollY: 0, height: 0, toBottom: false, first: true, self: false
+        position: 'static', toParentTop: 0, scrollY: 0, height: 0, toBottom: false, first: true, self: false,
+        marginTop: 0,
     })
 
     const elemRef = useRef<HTMLDivElement | null>(null)

@@ -1,5 +1,5 @@
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
-import {Review} from 'app/_common/types/types'
+import {Review} from 'app/_common/types/review'
 import {ReviewsProps} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/reviews.types'
 import {useEffect} from 'react'
 import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'

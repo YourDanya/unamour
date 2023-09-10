@@ -21,6 +21,7 @@ export const useShopItems = (props: ShopItemsProps) => {
     const items = props.items ?? []
 
     const locale = useParams().locale as Locale
+    const paramColor = useSearchParams().get('color')
 
     const [height, setHeight] = useState(0)
     const elemRef = useRef<HTMLDivElement | null>(null)
@@ -30,7 +31,7 @@ export const useShopItems = (props: ShopItemsProps) => {
         setHeight(width * 4 / 3)
     })
 
-    return {transl, items, elemRef, locale, height, props}
+    return {transl, items, elemRef, locale, height, props, paramColor}
 }
 
 export default useShopItems

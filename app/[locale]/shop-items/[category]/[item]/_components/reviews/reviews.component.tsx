@@ -9,7 +9,7 @@ import ModalContent from 'app/_common/components/modal-content/modal-content.com
 import ReviewForm from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/review-form.component'
 import Star from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/star/star.component'
 import Spinner from 'app/_common/components/spinner/spinner.component'
-import {Review as ReviewType} from 'app/_common/types/types'
+import {Review as ReviewType} from 'app/_common/types/review'
 import {useReviewsStore} from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/_store/reviews.store'
 import useReview from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.hook'
 

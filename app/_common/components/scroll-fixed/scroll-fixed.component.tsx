@@ -5,7 +5,7 @@ import {ScrollFixedProps} from 'app/_common/components/scroll-fixed/scroll-fixes
 import useScrollHook from 'app/_common/components/scroll-fixed/scroll-fixed.hook'
 
 const ScrollFixed: FC<ScrollFixedProps> = (props) => {
-    const {children} = props
+    const {children, width} = props
     const {state, elemRef} = useScrollHook(props)
 
     return (
@@ -15,7 +15,8 @@ const ScrollFixed: FC<ScrollFixedProps> = (props) => {
                 position: state.position,
                 top: state.top,
                 bottom: state.bottom,
-                marginTop: `${state.marginTop}px`
+                marginTop: `${state.marginTop}px`,
+                width: props.width ?? 'auto'
             }}
             ref={elemRef}
         >

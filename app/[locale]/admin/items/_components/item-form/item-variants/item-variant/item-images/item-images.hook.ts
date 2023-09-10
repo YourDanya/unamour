@@ -21,7 +21,7 @@ const useItemImages = (props: ItemImagesProps) => {
     const {values, setItemImagesValues, itemImagesValuesRef, errorCountRef, setErrorCount} =
         useItemFormStore(useCallback((state) => {
             const {
-                itemValue: {common: {variants}}, itemImagesValues, setItemImagesValues, itemImagesValuesRef,
+                itemValue: {variants}, itemImagesValues, setItemImagesValues, itemImagesValuesRef,
                 errorCountRef, setErrorCount
             } = state
             return {

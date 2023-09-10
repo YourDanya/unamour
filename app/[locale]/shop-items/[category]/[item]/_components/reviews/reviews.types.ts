@@ -1,4 +1,4 @@
-import {Review} from 'app/_common/types/types'
+import {Review} from 'app/_common/types/review'
 
 export type ReviewsProps = {
     color: string,

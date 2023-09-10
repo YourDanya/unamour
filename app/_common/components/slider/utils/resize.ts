@@ -5,21 +5,23 @@ import {useEffect} from 'react'
 import {useLayoutEffect} from 'react'
 
 export const useResize = (state: ReturnType<typeof useArrows>) => {
-    const {resizing, setResizing, mounted, setTransition, elemsRef, transition} = state
+    const {resizing, setResizing, mounted, setTransition, elemsRef, transition, moveRef} = state
 
     const stopResize = useDebounce(() => {
         setResizing(false)
+        moveRef.current.resizing = false
     }, 200)
 
     const calcResize = () => {
-        if (!mounted) {
+        if (!moveRef.current.mounted) {
             return
         }
         stopResize()
-        if (resizing) {
+        if (moveRef.current.resizing) {
             return
         }
         setResizing(true)
+        moveRef.current.resizing = true
         setTransition('unset')
         calc({...state, resizing: true})
     }
@@ -28,12 +30,14 @@ export const useResize = (state: ReturnType<typeof useArrows>) => {
         if (elemsRef.current[elemsRef.current.length - 1] === null) {
             elemsRef.current.pop()
         }
+    })
 
+    useLayoutEffect(() => {
         window.addEventListener('resize', calcResize)
         return () => {
             window.removeEventListener('resize', calcResize)
         }
-    })
+    }, [])
 
     useLayoutEffect(() => {
         if (resizing || !mounted) {

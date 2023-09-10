@@ -35,7 +35,7 @@ const useItemCommon = (props: ItemCommonProps) => {
     }, []), shallow)
 
     const {values} = useItemFormStore(useCallback((state) => {
-        const {variants: _, ...values} = state.itemValue.common
+        const {variants, _id, translations, updateTime, ...values} = state.itemValue
         return {values}
     }, []), shallow)
 
@@ -45,7 +45,7 @@ const useItemCommon = (props: ItemCommonProps) => {
     const {onValidate, errRef} = useValidateInput({validations: initInputs.validations, errors})
 
     const changeCallback: ChangeCallback<typeof values> = ({changeValues, name}) => {
-        itemValueRef.current.common = {...itemValueRef.current.common, ...changeValues}
+        itemValueRef.current = {...itemValueRef.current, ...changeValues}
         setItemValue(itemValueRef.current)
     }
 
@@ -71,7 +71,7 @@ const useItemCommon = (props: ItemCommonProps) => {
         onValidate('slug', values.slug)
 
         if (!errRef.current.errors.slug) {
-            const isSlugNotUnique = Object.values(items).some(({common: {slug}}, index) => {
+            const isSlugNotUnique = Object.values(items).some(({slug}, index) => {
                 return slug === values.slug && itemIndex !== index
             })
 

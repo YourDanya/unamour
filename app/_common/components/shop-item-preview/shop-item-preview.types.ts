@@ -1,4 +1,4 @@
-import {CategoryItem} from 'app/_common/types/types'
+import {CategoryItem} from 'app/_common/types/category-item'
 import {MutableRefObject} from 'react'
 
 export type ShopItemPreviewProps = {

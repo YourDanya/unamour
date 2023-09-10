@@ -10,7 +10,7 @@ import {clothing} from 'app/_common/content/categories/categories.content'
 const useLinks = (props: ReturnType<typeof useShopItem>) => {
     const transl = useLocale(linksContent)
 
-    const {props: {common: {slugCategory}}} = props
+    const {props: {slugCategory}} = props
 
     const categoriesTransl = useLocale(categoriesDictionary)
     const clothingTransl = useLocale(clothingDictionary)

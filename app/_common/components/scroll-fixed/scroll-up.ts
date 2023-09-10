@@ -16,13 +16,38 @@ const upTop = (state: ReturnType<typeof getValues>) => {
 
     stateRef.current.toParentTop = rect.top - parentRect.top
 
+    if (stateRef.current.toParentTop <= topOffset - 5) {
+        return upParentTop(state)
+    } else {
+        return upNotParentTop(state)
+    }
+}
+
+const upParentTop = (state: ReturnType<typeof getValues>) => {
+    const {stateRef, newStateValues, props: {topOffset}} = state
+    let {bottom, position, toUpdate, top, marginTop} = newStateValues
+
+    if (stateRef.current.position !== 'static' || stateRef.current.marginTop !== 0) {
+        position = 'static'
+        bottom = 'unset'
+        top = 'unset'
+        marginTop = 0
+    } else {
+        toUpdate = false
+    }
+
+    return {bottom, position, toUpdate, top, marginTop}
+}
+
+const upNotParentTop = (state: ReturnType<typeof getValues>) => {
+    const {stateRef, newStateValues, props: {topOffset}} = state
+    let {bottom, position, toUpdate, top, marginTop} = newStateValues
+
     if (stateRef.current.position !== 'fixed') {
         bottom = 'unset'
         position = 'fixed'
-        if (stateRef.current.toParentTop <= topOffset - 5) {
-            position = 'static'
-        }
         top = topOffset
+        marginTop = 0
     } else {
         toUpdate = false
     }

@@ -37,7 +37,6 @@ const calcLimits = (state: ReturnType<typeof useGetState>) => {
         setMove(0)
         setTransition('0.4s all')
     }
-    moveRef.current.current = current
 
     if (props.setCurrent && current < length && current >= 0) {
         props.setCurrent(current)

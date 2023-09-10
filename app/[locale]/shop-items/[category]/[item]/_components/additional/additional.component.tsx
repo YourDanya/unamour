@@ -2,11 +2,12 @@ import {FC} from 'react'
 import {AdditionalProps} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.types'
 import useAdditional from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.hook'
 import ShopItemPreview from 'app/_common/components/shop-item-preview/shop-item-preview.component'
-import {FetchedItem} from 'app/_common/types/types'
-import {CategoryItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
+import {CategoryItem} from 'app/_common/types/category-item'
 import Spinner from 'app/_common/components/spinner/spinner.component'
 import {LoadedProps} from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.types'
 import Slider from 'app/_common/components/slider/slider.component'
+import ResponsiveSlider from 'app/_common/components/responsive-slider/responsive-slider.component'
 
 const Additional: FC<AdditionalProps> = (props) => {
     const state = useAdditional(props)
@@ -14,7 +15,7 @@ const Additional: FC<AdditionalProps> = (props) => {
     const loadedState = state as LoadedProps
 
     return (
-        <div className='shop-items-additional additional'>
+        <div className="shop-items-additional additional">
             {getViewedItems.loading || getSimilarItems.loading ? (
                 <Spinner className={'additional__spinner'}/>
             ) : (
@@ -45,17 +46,34 @@ const Similar = (props: LoadedProps) => {
             <div className="additional__title">
                 {transl.similarItems}
             </div>
-            <Slider perSlide={4} className={'additional__slider'} container={true} slideOffset={5}>
-                {similarItems.map((props, index) => (
+            <ResponsiveSlider
+                defaultProps={{
+                    perSlide: 4, className: 'additional__slider', container: true, slideOffset: 5, arrowWidth: 12
+                }}
+                breakpoints={{'992': {perSlide: 2}}}
+            >
+                {similarItems.map((props, index, arr) => (
                     <ShopItemPreview
                         onMount={index === 0 ? onResize : undefined}
-                        itemRef={index === 0 ? elemRef : undefined}
-                        key={props.common.slug}
-                        {...props.common}
+                        itemRef={index === arr.length - 1 ? elemRef : undefined}
+                        key={props.slug}
+                        {...props}
+                        {...props.variants[0]}
                         height={height}
                     />
                 ))}
-            </Slider>
+            </ResponsiveSlider>
+            {/*<Slider perSlide={4} className={'additional__slider'} container={true} slideOffset={5}>*/}
+            {/*    {similarItems.map((props, index) => (*/}
+            {/*        <ShopItemPreview*/}
+            {/*            onMount={index === 0 ? onResize : undefined}*/}
+            {/*            itemRef={index === 0 ? elemRef : undefined}*/}
+            {/*            key={props.slug}*/}
+            {/*            {...props}*/}
+            {/*            height={height}*/}
+            {/*        />*/}
+            {/*    ))}*/}
+            {/*</Slider>*/}
         </div>
     )
 }

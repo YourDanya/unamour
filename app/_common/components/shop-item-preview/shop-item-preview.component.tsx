@@ -6,7 +6,7 @@ import useShopItemPreview from 'app/_common/components/shop-item-preview/shop-it
 import {FC} from 'react'
 import {ShopItemPreviewProps} from 'app/_common/components/shop-item-preview/shop-item-preview.types'
 import Link from 'next/link'
-import LoadImage from 'app/_common/components/load-image-v2/load-image.component'
+import LoadImage from 'app/_common/components/load-image/load-image.component'
 
 const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
     const {images, slug, slugCategory, color, itemRef, height, width, className} = props

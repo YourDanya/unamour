@@ -27,7 +27,7 @@ const Slider: FC<SliderProps> = (props) => {
 export default Slider
 
 const Arrows = (props: ReturnType<typeof useSlider>) => {
-    const {current, onBack, onForward, perSlide, length} = props
+    const {current, onBack, onForward, perSlide, length, props: {arrowWidth = 20}} = props
 
     return (
         <div className={'slider-arrows slider'}>
@@ -35,14 +35,14 @@ const Arrows = (props: ReturnType<typeof useSlider>) => {
                 className={`slider__button slider__back ${current === 0 ? 'slider__arrow--inactive' : ''}`}
                 onClick={onBack}
             >
-                <Arrow className={'slider__arrow'} width={20} type={'left'}/>
+                <Arrow className={'slider__arrow'} width={arrowWidth} type={'left'}/>
             </Button>
             <Button
                 className={`slider__button slider__forward ${current === length - (perSlide) ?
                     'slider__arrow--inactive' : ''}`}
                 onClick={onForward}
             >
-                <Arrow className={'slider__arrow'} width={20} type={'right'}/>
+                <Arrow className={'slider__arrow'} width={arrowWidth} type={'right'}/>
             </Button>
         </div>
     )

@@ -8,19 +8,30 @@ import {shallow} from 'zustand/shallow'
 import {User} from 'app/_common/store/user/user.types'
 import {useCartStore} from 'app/_common/store/cart/cart.store'
 import {Order} from 'app/_common/store/cart/cart.types'
+import {CartItem} from 'app/_common/store/cart/cart.types'
 
 const usePreWork = () => {
     const user = useUserStore(state => state.user)
     const setUser = useUserStore(state => state.setUser)
+    const setCartItems = useCartStore(state => state.setCartItems)
 
-    const getUser = useApiCall<{user: User}>('users/user-data', {
+    const getUser = useApiCall<{ user: User }>('users/user-data', {
         onSuccess: ({user}) => {
             setUser(user ?? null)
         }
     })
 
+    const getCartItems = useApiCall<{items: CartItem[]}>('cart', {
+        onSuccess: ({items}) => {
+            if (items.length > 0) {
+                setCartItems(items)
+            }
+        }
+    })
+
     useEffect(() => {
         getUser.start()
+        getCartItems.start()
     }, [])
 
     const orderId = useCartStore(state => state.orderId)
@@ -47,7 +58,6 @@ const usePreWork = () => {
     }, [orderId])
 
     const setOrderId = useCartStore(state => state.setOrderId)
-    const setCartItems = useCartStore(state => state.setCartItems)
 
     useEffect(() => {
         if (!order || !orderId) {
@@ -62,6 +72,7 @@ const usePreWork = () => {
             setCartItems([])
         }
     }, [order])
+
 }
 
 export default usePreWork

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import {baseURL} from 'app/_common/utils/api/api.utils'
 import {ImagesProps} from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.types'
 import useImages from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.hook'
-import LoadImage from 'app/_common/components/load-image-v2/load-image.component'
+import LoadImage from 'app/_common/components/load-image/load-image.component'
 import Slider from 'app/_common/components/slider/slider.component'
 
 const Images: FC<ImagesProps> = (props) => {

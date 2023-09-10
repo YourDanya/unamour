@@ -26,7 +26,7 @@ export const useArrows = (state: ReturnType<typeof useCalcDimensions>) => {
             return
         }
 
-        if (current === length - perSlide && !infinite) {
+        if (current >= length - perSlide && !infinite) {
             return
         }
 

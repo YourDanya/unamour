@@ -13,7 +13,7 @@ import {useResize} from 'app/_common/components/slider/utils/resize'
 export const useHandleEffects = (state: ReturnType<typeof useArrows>) => {
     const {
         current, setMounted, shouldCheckLimits, setShouldCheckLimits, elements, setElements, setCurrent, elemsRef,
-        props, perSlide, setTransition, mounted, moveRef
+        props, perSlide, setTransition, mounted, moveRef, propsRef
     } = state
 
     const {children} = props
@@ -37,6 +37,14 @@ export const useHandleEffects = (state: ReturnType<typeof useArrows>) => {
             setCurrent(props.current)
         }
 
+        const morePerSlide = (propsRef.current.perSlide ?? 1 ) < (props.perSlide ?? 1)
+        const finish = ((current ?? 1) + (props.perSlide ?? 1) >= elemsRef.current.length)
+
+        if (!props.infinite && morePerSlide && finish) {
+            setCurrent(elemsRef.current.length - (props.perSlide ?? 1))
+        }
+
+        propsRef.current = props
     }, [props])
 
     useCalcLimits(state)

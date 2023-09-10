@@ -1,15 +1,16 @@
 import {MutableRefObject} from 'react'
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {ItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ItemImagesValues} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+import {AdminItem} from 'app/[locale]/admin/items/_components/store/admin-items.types'
 
 export type ItemFormState = {
     errorCount: number,
     errorCountRef: MutableRefObject<number>,
     setErrorCount: (errorCount: number) => void,
     itemValue: FetchedItem,
-    itemValueRef: MutableRefObject<FetchedItem>,
-    setItemValue: (itemValue: FetchedItem) => void,
+    itemValueRef: MutableRefObject<AdminItem>,
+    setItemValue: (itemValue: AdminItem) => void,
     itemImagesValues: ItemImagesValues,
     setItemImagesValues: (itemImagesValues: ItemImagesValues) => void,
     itemImagesValuesRef: MutableRefObject<ItemImagesValues>,

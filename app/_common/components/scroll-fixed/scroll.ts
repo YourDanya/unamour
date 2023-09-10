@@ -31,6 +31,9 @@ export const scroll = (state: ReturnType<typeof useGetState>) => {
 
     if (toUpdate) {
         stateRef.current.position = position
+        if (typeof marginTop === 'number') {
+            stateRef.current.marginTop = marginTop
+        }
         setState({position, top, bottom, marginTop})
     }
 }

@@ -6,7 +6,7 @@ import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {Locale} from 'app/_common/types/types'
 import {useParams} from 'next/navigation'
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
-import {CategoryItem} from 'app/_common/types/types'
+import {CategoryItem} from 'app/_common/types/category-item'
 
 const useNavSearch = () => {
     const [transl] = useLocale(navSearchContent)

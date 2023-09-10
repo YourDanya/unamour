@@ -1,4 +1,4 @@
-import useLayout from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
+
 import ScrollFixed from 'app/_common/components/scroll-fixed/scroll-fixed.component'
 import Dropdown from 'app/_common/components/dropdown/dropdown.component'
 import SortFilter from 'app/[locale]/shop-items/[category]/_components/_layout/sort-filter/sort-filter.component'
@@ -7,6 +7,7 @@ import SizesFilter from 'app/[locale]/shop-items/[category]/_components/_layout/
 import ColorsFilter from 'app/[locale]/shop-items/[category]/_components/_layout/color-filter/color-filter.component'
 import Button from 'app/_common/components/button/button.component'
 import {Categories} from 'app/[locale]/shop-items/[category]/_components/_layout/common.component'
+import {useShopItemsLayout as useLayout} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
 
 const Desktop = (props: ReturnType<typeof useLayout>) => {
     return (<>
@@ -39,6 +40,7 @@ const Main = (props: ReturnType<typeof useLayout>) => {
                 bottomOffset={20}
                 resize={resize}
                 setResize={setResize}
+                width={'200px'}
             >
                 <Categories {...props}/>
                 <Filters {...props}/>

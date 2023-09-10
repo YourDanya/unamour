@@ -4,7 +4,7 @@ import useParameters from 'app/[locale]/shop-items/[category]/[item]/_components
 
 const Parameters: FC<ParametersProps> = (props) => {
     const {props: item, activeSize, onActiveSize, currentVariant, onCurrentVariant} = props
-    const {oldPrice} = item.common
+    const {oldPrice} = item
     const {sizes, price} = currentVariant
 
     const {transl, colorCodes, currentColor, onShowModal, name} = useParameters(props)

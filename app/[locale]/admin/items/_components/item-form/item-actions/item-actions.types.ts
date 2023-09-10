@@ -1,11 +1,11 @@
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
-import {itemActionsContent} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
+import {actions} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
 
 export type ItemActionsProps = {
     deleted: boolean
 }
 
-export type ItemActionName = keyof typeof itemActionsContent.common.actions
+export type ItemActionName = keyof typeof actions
 
 export type ItemActionsValues = Record<ItemActionName, ReturnType<typeof useApiCall>>
 

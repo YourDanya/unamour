@@ -9,7 +9,7 @@ import {useParams} from 'next/navigation'
 import {Locale} from 'app/_common/types/types'
 import {useSearchParams} from 'next/navigation'
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
-import {CategoryItem} from 'app/_common/types/types'
+import {CategoryItem} from 'app/_common/types/category-item'
 
 const useSearch = () => {
     const [transl] = useLocale(searchContent)

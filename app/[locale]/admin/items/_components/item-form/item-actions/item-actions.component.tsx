@@ -38,7 +38,7 @@ const ItemActions: FC<ItemActionsProps> = (props) => {
             <div className="item-form__messages">
                 {getEntries(messages).map(([messageName, messageValue]) => (
                     <ItemMessage
-                        key={messageName}
+                        key={messageName as string}
                         name={messageName}
                         onClose={onClose}
                         message={messageValue.text}

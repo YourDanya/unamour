@@ -13,5 +13,6 @@ export type SliderProps = {
     className?: string,
     infinite?: boolean,
     container?: boolean,
-    slideOffset?: number
+    slideOffset?: number,
+    arrowWidth?: number
 }

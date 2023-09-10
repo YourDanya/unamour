@@ -37,13 +37,23 @@ const ItemsCollection = (props: ReturnType<typeof useShopItems>) => {
 }
 
 const Item = (props: ReturnType<typeof useShopItems> & {index: number}) => {
-    const {items, index, height, elemRef, locale} = props
-    const {common, translations} = items[index]
+    const {items, index, height, elemRef, locale, paramColor} = props
+    const {slug, slugCategory, translations, variants} = items[index]
+    let varitantIndex = 0
+
+    if (paramColor) {
+       varitantIndex = variants.findIndex(variant => variant.color === paramColor)
+    }
+
+    const {images, color, price} = variants[varitantIndex]
 
     return (
-        <div className="shop-items-item item" key={common.slug + index}>
+        <div className="shop-items-item item" key={slug + index}>
             <ShopItemPreview
-                {...common}
+                slug={slug}
+                slugCategory={slugCategory}
+                images={images}
+                color={color}
                 height={height}
                 itemRef={index === 0 ? elemRef : undefined}
             />
@@ -52,7 +62,7 @@ const Item = (props: ReturnType<typeof useShopItems> & {index: number}) => {
                     {translations[locale].name}
                 </div>
                 <div className="item__price">
-                    {common.price} ₴
+                    {price} ₴
                 </div>
             </div>
         </div>

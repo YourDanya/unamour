@@ -8,7 +8,7 @@ import {Color} from 'app/_common/types/types'
 const useParameters = (props: ParametersProps) => {
     const {props: item, showModal, currentVariant, transl: itemTransl} = props
     const {name} = itemTransl
-    const {variants} = item.common
+    const {variants} = item
     const {color} = currentVariant
 
     const [transl] = useLocale(parametersContent)

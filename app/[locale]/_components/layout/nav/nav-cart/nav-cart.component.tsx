@@ -19,7 +19,10 @@ const NavCart: FC<NavCartProps> = (props) => {
                     <div className="nav-cart__title">{transl.cart}</div>
                     <div className={'nav-cart__items'}>
                         {cartItems.map((props) => (
-                            <CartItem key={props.common._id} {...props}/>
+                            <CartItem
+                                key={`${props.shopItemId}_${props.color}_${props.size}`}
+                                {...props}
+                            />
                         ))}
                     </div>
                     <div className="nav-cart__total">

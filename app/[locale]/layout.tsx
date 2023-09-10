@@ -9,7 +9,6 @@ import 'app/_common/components/nav-link/nav-link.styles.sass'
 import 'app/_common/components/scroll-fixed/scroll-fixed.styles.sass'
 import 'app/_common/components/spinner/spinner.styles.sass'
 import 'app/_common/components/load-image/load-image.styles.sass'
-import 'app/_common/components/load-image-v2/load-image.styles.sass'
 import 'app/_common/components/range-slider/range-slider.styles.sass'
 import 'app/_common/components/checkbox/checkbox.styles.sass'
 import 'app/_common/components/dropdown/dropdown.styles.sass'
@@ -116,6 +115,7 @@ import {LayoutProps} from 'app/[locale]/layout.types'
 import localFont from '@next/font/local'
 // test
 import 'app/[locale]/test/test.styles.sass'
+import 'app/[locale]/test/dropdown/test.styles.sass'
 
 export const metadata: Metadata = {
     title: 'UNAMOUR',

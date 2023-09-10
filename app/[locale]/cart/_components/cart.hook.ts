@@ -63,7 +63,6 @@ const useCart = () => {
             for (let prop in errRef.current.errors) {
                 const key = prop as keyof typeof errRef.current.errors
                 if(errRef.current.errors[key] && key!== 'street' && key!== 'apartment' &&  key!== 'house') {
-                    console.log('returning', key)
                     return
                 }
             }
@@ -85,16 +84,15 @@ const useCart = () => {
             deliveryService: 'novaposhta',
             destination,
             products: cartItems.map(cartItem => ({
-                id: cartItem.common.itemId,
-                color: cartItem.common.color,
-                size: cartItem.common.size,
+                id: cartItem.shopItemId,
+                color: cartItem.color,
+                size: cartItem.size,
                 count: cartItem.quantity
             }))
         }
         if (inputs.values.paymentType === 'after') {
             createAfterOrder.start(createOrderData)
         } else {
-            console.log('create online order payment')
             createOnlineOrder.start(createOrderData)
         }
     }
@@ -113,8 +111,6 @@ const useCart = () => {
         if (!paymentData) {
             return
         }
-
-        console.log('paymentData', paymentData)
 
         if (paymentData.orderId) {
             router.push(paymentData.returnUrl)

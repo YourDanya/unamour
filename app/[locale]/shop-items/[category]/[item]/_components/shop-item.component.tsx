@@ -2,7 +2,7 @@
 
 import {FC} from 'react'
 import Sizes from 'app/[locale]/shop-items/[category]/[item]/_components/sizes/sizes.component'
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {useShopItem} from 'app/[locale]/shop-items/[category]/[item]/_components/shop-item.hook'
 import Additional from 'app/[locale]/shop-items/[category]/[item]/_components/additional/additional.component'
 import Images from 'app/[locale]/shop-items/[category]/[item]/_components/images/images.component'
@@ -18,7 +18,7 @@ import Reviews from 'app/[locale]/shop-items/[category]/[item]/_components/revie
 import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-items.hook'
 
 const ShopItem: FC<FetchedItem> = (props) => {
-    const {common: {variants, slugCategory, oldPrice}, _id} = props
+    const {variants, slugCategory, oldPrice, _id} = props
 
     const state = useShopItem(props)
     const {currentVariant: {images, color}, modalState, hideModal, onCurrentVariant} = state

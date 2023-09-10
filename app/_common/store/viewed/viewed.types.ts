@@ -1,5 +1,5 @@
 import {ItemSave} from 'app/_common/types/item-save'
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 
 export type ViewedStore = {
     saved: ItemSave[],

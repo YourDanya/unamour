@@ -1,6 +1,6 @@
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {ItemVariant} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {useEffect} from 'react'
 import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
 import adminItemsContent from 'app/[locale]/admin/items/_components/admin-items.content'
@@ -44,7 +44,7 @@ const useAdminItems = () => {
         event.preventDefault()
         // if (canAddItem) {
         const item = JSON.parse(JSON.stringify(items[items.length - 1]))
-        item.common.variants.forEach((variant: ItemVariant) => {
+        item.variants.forEach((variant: ItemVariant) => {
             delete (variant as any)._id
             variant.images = []
         })

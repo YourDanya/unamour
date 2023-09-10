@@ -1,6 +1,5 @@
 import {createItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/utils/item-form.utils'
 import {MouseAction} from 'app/_common/types/types'
-import {itemActionsContent} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
 import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
@@ -10,14 +9,15 @@ import {DeleteItemImagesData} from 'app/[locale]/admin/items/_components/item-fo
 import {ItemActionsProps} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {usePaginationStore} from 'app/_common/components/pagination/store/pagination.stote'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {shallow} from 'zustand/shallow'
 import {Entry} from 'app/_common/types/types'
 import {ItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {MutableRefObject} from 'react'
+import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 
 const useItemActions = (props: ItemActionsProps) => {
-    const [transl] = useLocale(itemActionsContent)
+    const transl = useLocale(dictionary)
 
     const {
         itemValueRef, errorCount, itemImagesValuesRef, initItemImagesMapRef, _id, modalState, closeModal
@@ -159,31 +159,3 @@ const useItemActions = (props: ItemActionsProps) => {
 }
 
 export default useItemActions
-
-const useCheckActions = (params: {
-    itemImagesMap: ItemImagesMap, initItemImagesMapRef: MutableRefObject<ItemImagesMap>, createData: FormData, updateData: FormData, deleteData: DeleteItemImagesData
-}) => {
-
-    const {itemImagesMap, initItemImagesMapRef, createData, updateData, deleteData} = params
-    let shouldCreate = false
-    let shouldUpdate = false
-    let shouldDelete = false
-
-    for (let imageId in itemImagesMap) {
-        if (!(imageId in initItemImagesMapRef.current)) {
-            shouldCreate = true
-            createData.append(`${imageId}_${itemImagesMap[imageId].color}`, itemImagesMap[imageId].file as File)
-        } else if (itemImagesMap[imageId].file !== null) {
-            shouldUpdate = true
-            updateData.append(imageId, itemImagesMap[imageId].file as File)
-        }
-    }
-    for (let imageId in initItemImagesMapRef.current) {
-        if (!(imageId in itemImagesMap)) {
-            shouldDelete = true
-            deleteData.images.push({id: imageId, color: initItemImagesMapRef.current[imageId].color})
-        }
-    }
-
-    return {shouldDelete, shouldCreate, shouldUpdate}
-}

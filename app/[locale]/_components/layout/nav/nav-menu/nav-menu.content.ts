@@ -5,8 +5,7 @@ const navMenuContent = {
             'new',
             'best',
             'coming',
-            'special-price',
-            'wedding'
+            'special-price'
         ],
         secondLinks: [
             '/favorites',
@@ -28,8 +27,7 @@ const navMenuContent = {
                 'нові надходження',
                 'бестселери',
                 'скоро у продажі',
-                'спеціальна ціна',
-                'весільна колекція'
+                'спеціальна ціна'
             ],
             secondLinks: [
                 'обране',
@@ -54,8 +52,7 @@ const navMenuContent = {
                 'new',
                 'bestseller',
                 'soon for sale',
-                'special price',
-                'wedding collection'
+                'special price'
             ],
             secondLinks: [
                 'framed',
@@ -80,8 +77,7 @@ const navMenuContent = {
                 'новые поступления',
                 'бестселлеры',
                 'скоро в продаже',
-                'специальная цена',
-                'свадебная коллекция'
+                'специальная цена'
             ],
             secondLinks: [
                 'избранное',

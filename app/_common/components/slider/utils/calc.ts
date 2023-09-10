@@ -6,11 +6,12 @@ import {useLayoutEffect} from 'react'
 import {getElem} from 'app/_common/components/slider/utils/get-elem'
 
 export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
-    const {current, mounted, move, translate, props, perSlide} = state
+    const {current, mounted, move, translate, props, perSlide, moveRef, setTransition} = state
 
     const {slideOffset} = props
 
     useLayoutEffect(() => {
+        moveRef.current.current = current
         calc(state)
     }, [current, mounted])
 
@@ -34,19 +35,14 @@ export const useCalcDimensions = (state: ReturnType<typeof useGetState>) => {
 
 export const calc = (state: ReturnType<typeof useGetState>) => {
     const {
-        elemsRef, leftElemsRef, current, length, move, mounted, perSlide, setContentStyle, setTranslate,
-        props: {infinite, container}, setTransition, moveRef, resizing
+        elemsRef, leftElemsRef, setContentStyle, setTranslate, propsRef, setTransition, moveRef
     } = state
 
-    if (!mounted) {
-        return
-    }
+    const {infinite, container, perSlide = 1} = propsRef.current
+    const {resizing, current} = moveRef.current
 
-    if (!moveRef.current.fistCalc) {
-        moveRef.current.fistCalc = true
-        requestAnimationFrame(() => {
-            setTransition('0.4s all')
-        })
+    if (!moveRef.current.mounted) {
+        return
     }
 
     const contentStyle: CSSProperties = {}
@@ -90,5 +86,12 @@ export const calc = (state: ReturnType<typeof useGetState>) => {
 
     setContentStyle(contentStyle)
     setTranslate(translate)
+
+    if (!moveRef.current.fistCalc) {
+        moveRef.current.fistCalc = true
+        requestAnimationFrame(() => {
+            setTransition('0.4s all')
+        })
+    }
 }
 

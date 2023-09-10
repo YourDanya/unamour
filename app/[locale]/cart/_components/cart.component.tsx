@@ -30,7 +30,7 @@ const Cart: NextPage = () => {
                     <div className="cart__content">
                         <div className="cart__items">
                             {cartItems.map((props, index) => (
-                                <CartItem key={props.common.slug + index}  {...props}/>
+                                <CartItem key={props.slug + index}  {...props}/>
                             ))}
                         </div>
                         <Discount/>

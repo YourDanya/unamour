@@ -1,4 +1,4 @@
-import {FetchedItem} from 'app/_common/types/types'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 import {ItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ItemImagesValues} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 
