@@ -18,7 +18,8 @@ export type ItemFormState = {
     modalState: ModalState,
     setModalState: (modalState: ModalState) => void,
     closeModal: () => void,
-    showModal: (name: keyof ModalState) => void
+    showModal: (name: keyof ModalState) => void,
+    itemIndex: number
 }
 
 export type ModalState = {
@@ -28,6 +29,7 @@ export type ModalState = {
 
 export type ItemFormInitState = {
     itemValue: FetchedItem,
+    itemIndex: number
 }
 
 export type UseItemFormStore = <T> (

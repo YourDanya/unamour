@@ -23,6 +23,7 @@
   position: relative
   width: 200px
   margin-right: 30px
+  height: 100%
   .layout__modal
     padding: 30px 20px
     width: 100%
@@ -36,7 +37,7 @@
       top: 10px
       right: 10px
 
-.shop-items-layout-main--mobile.layout
+.shop-items-layout-top--mobile.layout, .shop-items-main--mobile.layout
   display: none
 
 .shop-items-categories.categories
@@ -80,20 +81,22 @@
 @media (max-width: 992px)
   .shop-items-layout.layout
     padding: 40px 20px
+    grid-template-columns: auto
     .layout__page
       width: 100%
+      grid-column: 1 / 2
 
-  .shop-items-layout-main.layout
+  .shop-items-layout-top.layout, .shop-items-layout-main.layout
     display: none
 
-  .shop-items-layout-top.layout
-    justify-self: end
-    margin-bottom: 15px
-
-  .shop-items-layout-main--mobile.layout
-    width: auto
-    margin: 0
+  .shop-items-layout-top--mobile.layout, .shop-items-layout-main--mobile.layout
     display: block
+
+  .shop-items-layout-top--mobile.layout
+    justify-self: end
+    grid-column: 1 / 2
+    margin-bottom: 30px
+    display: flex
 
   .shop-items-filters.filters
     .filters__reset

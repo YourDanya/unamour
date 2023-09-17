@@ -3,13 +3,10 @@ export type CategoryItem = {
     slug: string,
     slugCategory: string,
     oldPrice: number,
-    variants: {
-        color: string,
-        sizes: string[],
-        images: { path: string, url: string } [],
-        price: string,
-        _id: string
-    }[]
+    color: string,
+    sizes: string[],
+    images: { path: string, url: string } [],
+    price: number,
     translations: {
         ua: {
             name: string

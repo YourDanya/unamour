@@ -19,7 +19,8 @@ export const colorDictionary = {
         'перливо-сірий',
         'графітовий',
         'світло-сірий',
-        'верховий'
+        'верховий',
+        'пісочний'
     ],
     eng: [
         'milk',
@@ -41,7 +42,8 @@ export const colorDictionary = {
         'pearl grey',
         'graphite',
         'light grey',
-        'creamy'
+        'creamy',
+        'sand'
     ],
     ru: [
         'молочный',
@@ -63,7 +65,8 @@ export const colorDictionary = {
         'жечужно-серый',
         'графитовый',
         'светло-серый',
-        'сливочный'
+        'сливочный',
+        'песочный'
     ]
 }
 
@@ -147,5 +150,9 @@ export const colorValues = [
     {
         slug: 'creamy',
         code: '#f2e8c9'
+    },
+    {
+        slug: 'sand',
+        code: '#f4a460'
     }
 ]

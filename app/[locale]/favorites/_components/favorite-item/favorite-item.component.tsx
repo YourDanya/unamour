@@ -12,7 +12,7 @@ const FavoriteItem: FC<FavoriteItemProps> = (props) => {
         <div className={'favorites-item'}>
             <ShopItemPreview
                 className={'favorites-item__preview'}
-                {...item.common}
+                {...item}
                 width={width || 0}
                 height={width * 4 / 3 || 0}
             />
@@ -21,11 +21,11 @@ const FavoriteItem: FC<FavoriteItemProps> = (props) => {
                     {item.translations[locale].name}
                 </div>
                 <div className="favorites-item__price">
-                    {item.common.price} ₴
+                    {item.price} ₴
                 </div>
                 <FavoriteLike
                     className={'favorites-item__button'}
-                    color={item.common.color}
+                    color={item.color}
                     id={item._id}
                     liked={true}
                 />

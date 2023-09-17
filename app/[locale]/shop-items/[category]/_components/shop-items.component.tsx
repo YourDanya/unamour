@@ -8,7 +8,7 @@ import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-it
 const ShopItems: FC<ShopItemsProps> = (props) => {
     const state = useShopItems(props)
     const {transl, items, locale} = state
-
+    
     return (
         <div className={'shop-items items'}>
             {items && items.length > 0 ? (
@@ -25,10 +25,10 @@ const ShopItems: FC<ShopItemsProps> = (props) => {
 export default ShopItems
 
 const ItemsCollection = (props: ReturnType<typeof useShopItems>) => {
-    const {transl, items} = props
+    const {transl, items, catalogRef} = props
 
     return (
-        <div className={'shop-items-collection collection'}>
+        <div className={'shop-items-collection collection'} ref={catalogRef}>
             {items && items.map((_, index) => (
                 <Item {...props} index={index} key={index}/>
             ))}
@@ -38,17 +38,10 @@ const ItemsCollection = (props: ReturnType<typeof useShopItems>) => {
 
 const Item = (props: ReturnType<typeof useShopItems> & {index: number}) => {
     const {items, index, height, elemRef, locale, paramColor} = props
-    const {slug, slugCategory, translations, variants} = items[index]
-    let varitantIndex = 0
-
-    if (paramColor) {
-       varitantIndex = variants.findIndex(variant => variant.color === paramColor)
-    }
-
-    const {images, color, price} = variants[varitantIndex]
+    const {slug, slugCategory, translations, images, color, price} = items[index]
 
     return (
-        <div className="shop-items-item item" key={slug + index}>
+        <div className="shop-items-item item">
             <ShopItemPreview
                 slug={slug}
                 slugCategory={slugCategory}

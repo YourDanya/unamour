@@ -9,6 +9,10 @@ import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {useRouter} from 'next/navigation'
 import {MouseAction} from 'app/_common/types/types'
 import {useUserStore} from 'app/_common/store/user/user.store'
+import {AdminItem} from 'app/[locale]/admin/items/_components/store/admin-items.types'
+import {useRef} from 'react'
+import {paginate} from 'app/_common/utils/helpers/paginate/paginate.util'
+import {useState} from 'react'
 
 const useAdminItems = () => {
     const router = useRouter()
@@ -42,18 +46,31 @@ const useAdminItems = () => {
 
     const onAddItem: MouseAction = (event) => {
         event.preventDefault()
-        // if (canAddItem) {
+
         const item = JSON.parse(JSON.stringify(items[items.length - 1]))
         item.variants.forEach((variant: ItemVariant) => {
             delete (variant as any)._id
             variant.images = []
         })
         item._id = ''
+
         addItem(item)
     }
 
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const {pageItems, pagesNumber} = paginate({items, currentPage, perPage: 5})
+
+    const onUpdate = () => {
+
+    }
+
+    const onDelete = () => {
+
+    }
+
     return {
-        user, getItems, onAddItem,  transl, items
+        user, getItems, onAddItem,  transl, items, pageItems, pagesNumber, currentPage, setCurrentPage, onUpdate, onDelete
     }
 }
 

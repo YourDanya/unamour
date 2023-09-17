@@ -22,24 +22,24 @@ const Home: NextPage = () => {
                     src={allLinkImg.src}
                 />
             </Link>
-            <div className={'home__bottom'} ref={containerRef}>
-                <LoadImage
-                    height={logoHeight}
-                    className={'home__logo'}
-                    alt={'logo img'}
-                    src={logo.src}
-                    quality={100}
-                />
-                <Link href={'/shop-items/best'} className={'home__best'}>
-                    <LoadImage
-                        height={bestLinkHeight}
-                        style={{objectFit: 'cover'}}
-                        alt={'best link img'}
-                        src={bestLinkImg.src}
-                        quality={100}
-                    />
-                </Link>
-            </div>
+            {/*<div className={'home__bottom'} ref={containerRef}>*/}
+            {/*    <LoadImage*/}
+            {/*        height={logoHeight}*/}
+            {/*        className={'home__logo'}*/}
+            {/*        alt={'logo img'}*/}
+            {/*        src={logo.src}*/}
+            {/*        quality={100}*/}
+            {/*    />*/}
+            {/*    <Link href={'/shop-items/best'} className={'home__best'}>*/}
+            {/*        <LoadImage*/}
+            {/*            height={bestLinkHeight}*/}
+            {/*            style={{objectFit: 'cover'}}*/}
+            {/*            alt={'best link img'}*/}
+            {/*            src={bestLinkImg.src}*/}
+            {/*            quality={100}*/}
+            {/*        />*/}
+            {/*    </Link>*/}
+            {/*</div>*/}
         </div>
     )
 }

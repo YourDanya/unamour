@@ -15,7 +15,7 @@ const ItemImages:FC<ItemImagesProps> = (props) => {
     } = useItemImages(props)
 
     return (
-        <>
+        <div>
             {values && Object.entries(values).map(([id, {file, url}]) => (
                 <ItemImage
                     key={id}
@@ -38,7 +38,7 @@ const ItemImages:FC<ItemImagesProps> = (props) => {
                 style={{display: 'none'}}
                 value={undefined}
             />
-        </>
+        </div>
     )
 }
 

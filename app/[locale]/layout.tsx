@@ -39,6 +39,7 @@ import 'app/[locale]/_components/layout/footer/links/links.styles.sass'
 //admin
 import 'app/[locale]/admin/items/_components/admin-items.styles.sass'
 import 'app/[locale]/admin/items/_components/item-form/item-form.styles.sass'
+import 'app/[locale]/admin/items/_components/item-preview/item-preview.styles.sass'
 //auth
 import 'app/[locale]/auth/auth.styles.sass'
 //cart

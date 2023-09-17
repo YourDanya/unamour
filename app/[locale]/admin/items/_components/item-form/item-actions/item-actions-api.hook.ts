@@ -32,7 +32,8 @@ const useItemActionsApi = () => {
         return peek(state, ['setItem', 'deleteItem', 'addItem', 'setAddedItemId'])
     }, []), shallow)
 
-    const itemIndex = usePaginationStore(state => state.itemIndex)
+    const itemIndex =
+        useItemFormStore(state => state.itemIndex)
 
     const isItemAdded = useAdminItemsStore(useCallback((state) => {
         return state.addedItemId === _id
@@ -51,7 +52,6 @@ const useItemActionsApi = () => {
         actions[key] = useApiCall<{item: AdminItem}>(url, {
             ...value.options,
             onSuccess: (data) => {
-                console.log('success', key)
                 const {item} = data
                 if (key === 'deleteItem') {
                     setItem({...itemValueRef.current, deleted: true}, itemIndex)
@@ -92,7 +92,6 @@ const useItemActionsApi = () => {
                 setMessages({...messages, [key]: {text: transl.success[key], isSuccess: true}})
             }
             if (stackActions.current.length > 0 && (actions[key].error || actions[key].success)) {
-                console.log('here')
                 const action = stackActions.current.pop() as () => void
                 action()
             }
@@ -101,7 +100,6 @@ const useItemActionsApi = () => {
 
     useEffect(() => {
         if (isItemAdded) {
-            console.log('stackCreateImages.current', stackCreateImages.current)
             setMessages({...messages, createItem: {isSuccess: true, text: transl.success.createItem}})
             setAddedItemId(null)
             const action = stackCreateImages.current.pop() as (_id: string) => void

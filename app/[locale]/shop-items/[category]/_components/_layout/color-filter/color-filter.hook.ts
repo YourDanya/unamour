@@ -1,6 +1,5 @@
 import {ChangeEvent} from 'react'
 import {useRef} from 'react'
-import {ColorsFilterProps} from 'app/[locale]/shop-items/[category]/_components/_layout/color-filter/color-filter.types'
 import {useMemo} from 'react'
 import {useState} from 'react'
 import {colorValues} from 'app/_common/content/color/color.content'

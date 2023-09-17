@@ -1,4 +1,3 @@
-
 import ScrollFixed from 'app/_common/components/scroll-fixed/scroll-fixed.component'
 import Dropdown from 'app/_common/components/dropdown/dropdown.component'
 import SortFilter from 'app/[locale]/shop-items/[category]/_components/_layout/sort-filter/sort-filter.component'
@@ -10,10 +9,12 @@ import {Categories} from 'app/[locale]/shop-items/[category]/_components/_layout
 import {useShopItemsLayout as useLayout} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
 
 const Desktop = (props: ReturnType<typeof useLayout>) => {
-    return (<>
-        <Top {...props}/>
-        <Main {...props}/>
-    </>)
+    return (
+        <>
+            <Top {...props}/>
+            <Main {...props}/>
+        </>
+    )
 }
 
 export default Desktop

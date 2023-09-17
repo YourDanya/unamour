@@ -41,10 +41,10 @@ const Images: FC<ImagesProps> = (props) => {
                     {images.map(({url}, index) => (
                         <LoadImage
                             src={url}
+                            className={'images__slider-image'}
                             alt={`slide image ${index}`}
                             key={url + index}
                             loading={'eager'}
-                            ratio={4 / 3}
                             height={height}
                         />
                     ))}

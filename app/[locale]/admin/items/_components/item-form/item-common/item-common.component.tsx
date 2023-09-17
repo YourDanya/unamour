@@ -6,10 +6,10 @@ import Dropdown from 'app/_common/components/dropdown/dropdown.component'
 import RadioButtons from 'app/_common/components/radio-buttons/radio-buttons.component'
 import useItemCommon from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.hook'
 import Input from 'app/_common/components/input/input.component'
+import {clothing} from 'app/_common/content/categories/categories.content'
 
 const ItemCommon: FC<ItemCommonProps> = (props) => {
-    const {} = props
-    const {transl, values, onChange, categoryTransl, categoryValues, errors} = useItemCommon(props)
+    const {transl, values, onChange, categoryTransl, errors} = useItemCommon(props)
 
     return (
         <div className={'item-form__block'}>
@@ -75,7 +75,7 @@ const ItemCommon: FC<ItemCommonProps> = (props) => {
                 <RadioButtons
                     className={'item-form__radio'}
                     labels={categoryTransl}
-                    values={categoryValues}
+                    values={clothing}
                     onChange={onChange}
                     active={values.slugCategory}
                     name={'slugCategory'}

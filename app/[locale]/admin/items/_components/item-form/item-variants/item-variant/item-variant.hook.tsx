@@ -1,10 +1,8 @@
 import {useMapInputs} from 'app/_common/hooks/input/input-v2.hooks'
 import {MouseAction} from 'app/_common/types/types'
 import {ItemVariantProps} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-variant.types'
-import {sizeContent} from 'app/_common/content/content'
 import {selectItemFormMain} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {useMemo} from 'react'
-import {colorContent} from 'app/_common/content/content'
 import itemVariantContent from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-variant.content'
 import {useInputChange} from 'app/_common/hooks/input/input-v2.hooks'
 import {useValidateInput} from 'app/_common/hooks/input/input-v2.hooks'
@@ -12,11 +10,16 @@ import getEntries from 'app/_common/utils/typescript/get-entries/get-entries.uti
 import {useEffect} from 'react'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {useState} from 'react'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useDeprLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {ChangeValue} from 'app/_common/components/input-v2/input.types'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
+import {colorDictionary} from 'app/_common/content/color/color.content'
+import {colorValues} from 'app/_common/content/color/color.content'
+import {sizes as sizesList} from 'app/_common/content/size/size.content'
 
 const useItemVariant = (props: ItemVariantProps) => {
-    const [colorsTransl, colorsContent] = useLocale(colorContent)
-    const [transl, content] = useLocale(itemVariantContent)
+    const colorsTransl = useLocale(colorDictionary)
+    const [transl, content] = useDeprLocale(itemVariantContent)
 
     const {variantIndex} = props
 
@@ -26,6 +29,8 @@ const useItemVariant = (props: ItemVariantProps) => {
     const itemValue = useItemFormStore(({itemValue}) => itemValue)
 
     const {sizes, color, price} = itemValue.variants[variantIndex]
+
+    const inputValues = {color, price}
 
     const {validations, errors: initErrors} = useMapInputs(content.inputs)
     const [errors, setErrors] = useState(initErrors)
@@ -38,7 +43,7 @@ const useItemVariant = (props: ItemVariantProps) => {
             return sizeMap
         }, {} as Record<string, boolean>)
 
-        return sizeContent.reduce((sizeObject, size) => {
+        return sizesList.reduce((sizeObject, size) => {
             sizeObject[size] = sizeMap[size] ?? false
             return sizeObject
         }, {} as Record<string, boolean>)
@@ -54,7 +59,7 @@ const useItemVariant = (props: ItemVariantProps) => {
     })
 
     const colors = useMemo(() => {
-        return colorsContent.reduce((colors, {slug, code}, index) => {
+        return colorValues.reduce((colors, {slug, code}, index) => {
             colors.values.push(slug)
             colors.styles.push({backgroundColor: code})
             colors.labels.push(colorsTransl[index])
@@ -67,12 +72,19 @@ const useItemVariant = (props: ItemVariantProps) => {
     const {onChange: onInputsChange} = useInputChange({
         values: {color, price},
         changeCallback: ({changeValues, name}) => {
-            const {variants} = itemValueRef.current
-            variants[variantIndex][name] = changeValues[name]
+            const {variants} = itemValueRef.current;
+            (variants[variantIndex][name] as typeof changeValues[typeof name]) = changeValues[name]
             itemValueRef.current.variants = [...variants]
             setItemValue(itemValueRef.current)
         }
     })
+
+    // const onInputsChange = ({value, name}: ChangeValue<typeof inputValues>) => {
+    //     const {variants} = itemValueRef.current;
+    //     (variants[variantIndex][name] as typeof value) = value
+    //     itemValueRef.current.variants = [...variants]
+    //     setItemValue(itemValueRef.current)
+    // }
 
     useEffect(() => {
         const beforeCount = errRef.current.count

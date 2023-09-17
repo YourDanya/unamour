@@ -8,7 +8,7 @@ import Image, {ImageProps} from 'next/image'
 const LoadImage: FC<LoadImageProps> = (props) => {
     const {className, elemRef, height, width, ratio, ...otherProps} = props
     const {loaded, onLoaded, style, imgRef} = useLoadImage(props)
-
+    
     return (
         <div
             className={`load-image ${loaded ? 'load-image--loaded' : ''} ${className ?? ''}`}

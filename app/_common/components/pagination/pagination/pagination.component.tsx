@@ -10,7 +10,7 @@ import PaginationNumber
 import {PaginationProps} from 'app/_common/components/pagination/pagination/pagination.types'
 
 const Pagination: FC<PaginationProps> = (props) => {
-    const {className, children} = props
+    const {className} = props
 
     const {
         onBack, onForward, currentPage, pagesNumber, onPage,
@@ -18,9 +18,6 @@ const Pagination: FC<PaginationProps> = (props) => {
 
     return (
         <div className={`pagination ${className ?? ''}`}>
-            <div className={'pagination__items'}>
-                {children}
-            </div>
             <div className={'pagination__content'}>
                 <Button className={'pagination__elem pagination__back'} onClick={onBack}>
                     &lt;

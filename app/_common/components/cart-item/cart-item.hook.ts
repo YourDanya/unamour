@@ -1,6 +1,5 @@
 import {CartItem} from 'app/_common/store/cart/cart.types'
 import {useMemo} from 'react'
-import {colorContent} from 'app/_common/content/content'
 import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import cartItemContent from 'app/_common/components/cart-item/cart-item.content'
 import {useCartStore} from 'app/_common/store/cart/cart.store'
@@ -8,6 +7,7 @@ import {Color} from 'app/_common/types/types'
 import {usePathname} from 'next/navigation'
 import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
 import {FetchedItem} from 'app/_common/types/fetched-item'
+import {colorValues} from 'app/_common/content/color/color.content'
 
 const useCartItem = (item: CartItem) => {
     const {shopItemId, color, size, translations, quantity} = item
@@ -49,7 +49,7 @@ const useCartItem = (item: CartItem) => {
     const cartPage = usePathname() === '/cart'
 
     const code = useMemo(() => {
-        return (colorContent.common.find(tempColor => tempColor.slug === color) as Color).code
+        return (colorValues.find(tempColor => tempColor.slug === color) as Color).code
     }, [])
 
     return {onIncrease, onDecrease, onRemove, cartPage, transl, name, code}

@@ -40,6 +40,13 @@ const useItemImages = (props: ItemImagesProps) => {
     const onDeleteImage = (id: string) => {
         delete itemImagesValuesRef.current[variantIndex][id]
         setItemImagesValues(itemImagesValuesRef.current)
+
+        if (Object.keys(values).length === 0) {
+            imagesErrRef.current = transl.noImages
+            setImagesError(transl.noImages)
+            errorCountRef.current += 1
+            setErrorCount(errorCountRef.current)
+        }
     }
 
     const onAddImage: MouseAction = (event) => {
@@ -55,6 +62,13 @@ const useItemImages = (props: ItemImagesProps) => {
         }
 
         let {id} = modeRef.current
+
+        if (Object.keys(values).length === 0) {
+            imagesErrRef.current = ''
+            setImagesError('')
+            errorCountRef.current -= 1
+            setErrorCount(errorCountRef.current)
+        }
 
         if (modeRef.current.type === 'create') {
             itemImagesValuesRef.current[variantIndex][id] = {file : null, url: ''}
@@ -72,22 +86,13 @@ const useItemImages = (props: ItemImagesProps) => {
     // variantIndex === 1 && console.log('values', values)
 
     useEffect(() => {
-        const noImages = Object.keys(values ?? {}).length === 0
-        variantIndex === 1 && console.log('noImages', noImages)
-        if (noImages && !imagesError) {
+        if (!values || Object.keys(values).length === 0) {
             imagesErrRef.current = transl.noImages
             setImagesError(transl.noImages)
             errorCountRef.current += 1
             setErrorCount(errorCountRef.current)
-        } else if (!noImages && imagesError) {
-            imagesErrRef.current = ''
-            setImagesError('')
-            errorCountRef.current -= 1
-            setErrorCount(errorCountRef.current)
         }
-    }, [values])
-
-    // variantIndex === 1 && console.log('imagesError', imagesError)
+    }, [])
 
     useEffect(() => {
         return () => {

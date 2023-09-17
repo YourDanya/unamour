@@ -38,7 +38,9 @@
       left: 10px
     .slider__forward
       right: 10px
-
+  .images__slider-image
+    .load-image__thumbnail
+      padding-bottom: calc(400% / 3)
 
 @media (max-width: 1200px)
   .shop-item-images
@@ -52,6 +54,12 @@
       display: none
     .images__slider
       margin: 0
+    .images__slider-image
+      height: calc(100vh - 40px)
+      .load-image__thumbnail
+        padding-bottom: calc(100vh - 40px)
+      .load-image__image
+        height: 100%
       //&-img
       //  object-fit: cover
       //  object-position: 50% 40%

@@ -6,21 +6,22 @@ import {useInputChange} from 'app/_common/hooks/input/input-v2.hooks'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {useValidateInput} from 'app/_common/hooks/input/input-v2.hooks'
 import {ItemCommonProps} from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.types'
-import {categoriesContent} from 'app/_common/content/content'
 import {useCallback} from 'react'
 import getEntries from 'app/_common/utils/typescript/get-entries/get-entries.util'
 import {useEffect} from 'react'
 import {usePaginationStore} from 'app/_common/components/pagination/store/pagination.stote'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {useState} from 'react'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import useDeprLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {shallow} from 'zustand/shallow'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
+import {clothingDictionary} from 'app/_common/content/categories/categories.content'
 
 const useItemCommon = (props: ItemCommonProps) => {
-    const [transl, content] = useLocale(itemCommonContent)
-    const [categoryTransl, categoryValues] = useLocale(categoriesContent)
+    const [transl, content] = useDeprLocale(itemCommonContent)
+    const categoryTransl = useLocale(clothingDictionary)
 
-    const itemIndex = usePaginationStore(state => state.itemIndex)
+    const itemIndex = useItemFormStore(state => state.itemIndex)
 
     const {
         items
@@ -51,6 +52,7 @@ const useItemCommon = (props: ItemCommonProps) => {
 
     const {onChange} = useInputChange({values, changeCallback})
 
+
     useEffect(() => {
         const beforeCount = errRef.current.count
 
@@ -72,7 +74,8 @@ const useItemCommon = (props: ItemCommonProps) => {
 
         if (!errRef.current.errors.slug) {
             const isSlugNotUnique = Object.values(items).some(({slug}, index) => {
-                return slug === values.slug && itemIndex !== index
+                return slug === values.slug
+                    && itemIndex !== index
             })
 
             if (isSlugNotUnique) {
@@ -91,7 +94,7 @@ const useItemCommon = (props: ItemCommonProps) => {
 
     }, [values.slug])
 
-    return {transl, values, onChange, categoryTransl, categoryValues, errors}
+    return {transl, values, onChange, categoryTransl, errors}
 }
 
 export default useItemCommon

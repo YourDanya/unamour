@@ -19,4 +19,4 @@ export type InputEvent = {
 
 export type ChangeValue<T extends InputValues> = {[key in keyof T] : {name: key, value: T[key]}} [keyof T]
 
-export type InputValues = Record<string, string | number>
+export type InputValues = Record<string, string | number | boolean>

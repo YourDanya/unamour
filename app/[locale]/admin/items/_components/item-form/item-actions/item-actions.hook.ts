@@ -29,7 +29,7 @@ const useItemActions = (props: ItemActionsProps) => {
         return {...peeked, _id}
     }, []), shallow)
 
-    const itemIndex = usePaginationStore((state) => state.itemIndex)
+    const itemIndex = useItemFormStore((state) => state.itemIndex)
 
     const {
         deleteItem
@@ -80,15 +80,12 @@ const useItemActions = (props: ItemActionsProps) => {
                 }
             }
             if (shouldCreate) {
-                console.log('createData', createData)
                 stackActions.current.push(() => actions.createImages.start(createData))
             }
             if (shouldUpdate) {
-                console.log('updateData', updateData)
                 stackActions.current.push(() => actions.updateImages.start(updateData))
             }
             if (shouldDelete) {
-                console.log('deleteData', deleteData)
                 stackActions.current.push(() => actions.deleteImages.start(deleteData))
             }
         } else {
@@ -105,9 +102,7 @@ const useItemActions = (props: ItemActionsProps) => {
                 createData.append(`${imageId}_${color}`, file as File)
             }
             if (shouldCreate) {
-                console.log('stackCreateImages', stackCreateImages.current)
                 stackCreateImages.current.push((_id = '') => {
-                    console.log('_id', _id)
                     createData.append('_id', _id)
                     actions.createImages.start(createData)
                 })
@@ -139,7 +134,6 @@ const useItemActions = (props: ItemActionsProps) => {
     const onTimerExpiration = (name: ItemActionName) => {
         setMessages({...messages, [name]: {text: ''}})
         if (name === 'deleteItem') {
-            console.log('deleting item')
             deleteItem(itemIndex)
         }
     }

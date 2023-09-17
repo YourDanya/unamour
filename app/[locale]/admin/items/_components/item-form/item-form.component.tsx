@@ -16,7 +16,7 @@ const ItemForm: FC<ItemFormProps> = (props) => {
     
     return (
         <ItemFormContext.Provider value={storeRef.current}>
-            <form className={`item-form ${className ? className : ''} ${deleted ? 'item-form--deleted' : ''}`}>
+            <form className={`admin-items-item-form item-form ${className ? className : ''} ${deleted ? 'item-form--deleted' : ''}`}>
                 <div className={'item-form__title item-form__title--main'}>
                     {transl.item} №{itemIndex + 1}
                 </div>

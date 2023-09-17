@@ -17,12 +17,14 @@ const ShopItemsPage = async (props: ShopItemsPageProps) => {
         return paramUrl
     }, '')
 
-    const {data} = await apiCall<{ items: CategoryItem[]}>(`shop-item/category/${category}${paramUrl}`, {
+    const {data} = await apiCall<{ items: CategoryItem[], total: number}>(
+        `shop-item/category/${category}${paramUrl}`, {
         cache: 'no-cache'
     })
-    let items = data?.items
+    const items = data?.items
+    const total = data?.total
 
-    return (<ShopItems items={items}/>)
+    return (<ShopItems items={items} total={total}/>)
 }
 
 export default ShopItemsPage

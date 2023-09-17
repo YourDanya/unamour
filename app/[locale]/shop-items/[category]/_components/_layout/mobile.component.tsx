@@ -1,4 +1,3 @@
-import useLayout from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
 import SortFilter from 'app/[locale]/shop-items/[category]/_components/_layout/sort-filter/sort-filter.component'
 import PriceFilter from 'app/[locale]/shop-items/[category]/_components/_layout/price-filter/price-filter.component'
 import SizesFilter from 'app/[locale]/shop-items/[category]/_components/_layout/size-filter/size-filter.component'
@@ -8,12 +7,16 @@ import {ReactNode} from 'react'
 import ModalContent from 'app/_common/components/modal-content/modal-content.component'
 import Modal from 'app/_common/components/modal/modal.component'
 import {Categories} from 'app/[locale]/shop-items/[category]/_components/_layout/common.component'
+import {useShopItemsLayout as useLayout} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
 
 const Mobile = (props: ReturnType<typeof useLayout>) => {
-    return (<>
-        <MobileTop {...props}/>
-        <MobileMain {...props}/>
-    </>)
+
+    return (
+        <>
+            <MobileTop {...props}/>
+            <MobileMain {...props}/>
+        </>
+    )
 }
 
 export default Mobile
@@ -22,7 +25,7 @@ const MobileTop = (props: ReturnType<typeof useLayout>) => {
     const {transl, onShowModal} = props
 
     return (
-        <div className={'shop-items-layout-top layout'}>
+        <div className={'shop-items-layout-top shop-items-layout-top--mobile layout'}>
             <div className={'layout__title'}>
                 {transl.title}
             </div>

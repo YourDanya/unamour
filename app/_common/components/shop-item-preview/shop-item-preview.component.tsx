@@ -26,16 +26,14 @@ const ShopItemPreview: FC<ShopItemPreviewProps> = (props) => {
                     className={`shop-item-preview__img ${hovered? 'shop-item-preview__img--hidden' : ''}`}
                     alt={'shop item preview image'}
                     height={height}
-                    quality={100}
                     ratio={4 / 3}
                 />
                 <LoadImage
                     src={`${images[1].url}`}
                     className={`shop-item-preview__img ${!hovered? 'shop-item-preview__img--hidden' : ''}`}
-                    ratio={4 / 3}
                     alt={'shop item preview image'}
                     height={height}
-                    quality={100}
+                    ratio={4 / 3}
                 />
             </Link>
         </div>

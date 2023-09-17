@@ -13,7 +13,7 @@ const useItemVariants = () => {
 
     const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
-        const newVariant: ItemVariant = {color: '', images: [], sizes: [], price: ''} as unknown as ItemVariant
+        const newVariant: ItemVariant = {color: '', images: [], sizes: [], price: 0} as unknown as ItemVariant
         itemValueRef.current = {
             ...itemValueRef.current,
             variants: [...itemValueRef.current.variants, newVariant]

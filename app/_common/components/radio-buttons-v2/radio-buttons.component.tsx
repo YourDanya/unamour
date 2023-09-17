@@ -1,15 +1,15 @@
 'use client'
 
 import {FC} from 'react'
-import useRadioButtons from 'app/_common/components/radio-buttons/radio-buttons.hook'
-import {RadioButtonProps} from 'app/_common/components/radio-buttons/radio-buttons.types'
+import {RadioButtonProps} from 'app/_common/components/radio-buttons-v2/radio-buttons.types'
+import useRadioButtons from 'app/_common/components/radio-buttons-v2/radio-buttons.hook'
 
-const RadioButtons: FC<RadioButtonProps> = (props) => {
-    const {values, onChange, active, name, className, labels, styles, title, error} = props
-    const {children} = useRadioButtons(props)
+const RadioButtons = <N extends string, V extends string | number> (props: RadioButtonProps<N, V>) => {
+    const {values, active, name, className, labels, styles, title, error} = props
+    const {children, onChange} = useRadioButtons(props)
 
     return (
-        <div className={`radio-group-v1 radio-group ${className ?? ''}`}>
+        <div className={`radio-group-v2 radio-group ${className ?? ''}`}>
             {title && (
                 <div className={'radio-group__title'}>
                     {title}

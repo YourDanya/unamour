@@ -25,6 +25,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
             <Input
                 className={'item-form__input'}
                 name={'price'}
+                type={'number'}
                 placeholder={transl.inputs.price}
                 value={values.price}
                 onChange={onInputsChange}
@@ -45,17 +46,19 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
             </Dropdown>
             {/*sizes*/}
             <Dropdown className={'item-form__dropdown'} name={transl.sizes}>
-                {Object.entries(sizeValues).map(([key, value], index,  arr) => (
-                    <Checkbox
-                        className={`item-form__check ${index === arr.length - 1 ? 'item-form__check--last' : ''}`}
-                        key={key}
-                        name={key}
-                        label={key}
-                        value={value}
-                        onChange={onSizesChange}
-                    />
-                ))}
-                <FormMessage error={errors.size}/>
+                <div>
+                    {Object.entries(sizeValues).map(([key, value], index,  arr) => (
+                        <Checkbox
+                            className={`item-form__check ${index === arr.length - 1 ? 'item-form__check--last' : ''}`}
+                            key={key}
+                            name={key}
+                            label={key}
+                            value={value}
+                            onChange={onSizesChange}
+                        />
+                    ))}
+                    <FormMessage error={errors.size}/>
+                </div>
             </Dropdown>
             {/*images*/}
             <Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>

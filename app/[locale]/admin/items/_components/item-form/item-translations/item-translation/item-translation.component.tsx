@@ -48,14 +48,6 @@ const ItemTranslation: FC<ItemTranslationProps> = (props) => {
                 onChange={onChange}
                 error={errors.parameters}
             />
-            <Textarea
-                className={'item-form__textarea'}
-                name={'delivery'}
-                placeholder={`${transl.inputs.delivery} ${transl[locale]}`}
-                value={values.delivery}
-                onChange={onChange}
-                error={errors.delivery}
-            />
         </div>
     )
 }

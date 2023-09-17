@@ -1,8 +1,6 @@
 import {useState} from 'react'
 import {useMemo} from 'react'
 import {MouseAction} from 'app/_common/types/types'
-import {categoriesContent} from 'app/_common/content/content'
-import {colorContent} from 'app/_common/content/content'
 import {LayoutProps} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.types'
 import {useRouter} from 'next/navigation'
 import {dictionary} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.content'
@@ -43,7 +41,6 @@ export const useShopItemsLayout = (props: LayoutProps) => {
 
     return {...paramsState}
 }
-
 
 
 const useMain = () => {
@@ -120,13 +117,7 @@ const useParamsState = (mainState: ReturnType<typeof useMobile>) => {
         createFilterDebounced({suspend})
     }
 
-    const onReset: MouseAction = () => {
-        if (paramsUrl !== '') {
-            router.push(pathname)
-        }
-    }
-
-    return {...mainState, ...state, createParams: doCreateParams, onReset}
+    return {...mainState, ...state, createParams: doCreateParams}
 }
 
 export const useGetParamsState = () => {
@@ -154,6 +145,12 @@ export const useGetParamsState = () => {
         })
     }, [params])
 
-    return {params, router, paramValuesRef, pathname, paramsUrl, setParamsUrl}
+    const onReset: MouseAction = () => {
+        if (paramsUrl !== '') {
+            router.push(pathname)
+        }
+    }
+
+    return {params, router, paramValuesRef, pathname, paramsUrl, setParamsUrl, onReset}
 }
 

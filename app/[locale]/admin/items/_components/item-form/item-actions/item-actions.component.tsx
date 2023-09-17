@@ -17,7 +17,7 @@ const ItemActions: FC<ItemActionsProps> = (props) => {
 
     return (
         <>
-            {!deleted && (
+            {(
                 <>
                     <Button
                         className={'item-form__button item-form__button--delete'}

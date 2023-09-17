@@ -16,7 +16,7 @@ import createFromEntries from 'app/_common/utils/typescript/create-from-entries/
 
 export const ItemFormContext = createContext<StoreApi<ItemFormState>>({} as StoreApi<ItemFormState>)
 
-export const createItemFormStore = ({itemValue}: ItemFormInitState) => {
+export const createItemFormStore = ({itemValue, itemIndex}: ItemFormInitState) => {
     const itemImagesValues = createItemImagesValues({itemValue})
 
     return create<ItemFormState>((set) => ({
@@ -42,7 +42,8 @@ export const createItemFormStore = ({itemValue}: ItemFormInitState) => {
         showModal: (name: keyof ModalState) => set((state) => {
             let {modalState} = state
             return {modalState: {...modalState, modal: true, [name]: true}}
-        })
+        }),
+        itemIndex
     }))
 }
 

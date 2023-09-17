@@ -1,9 +1,10 @@
 import {ParametersProps} from 'app/[locale]/shop-items/[category]/[item]/_components/parameters/parameters.types'
 import parametersContent from 'app/[locale]/shop-items/[category]/[item]/_components/parameters/parameters.content'
 import {useMemo} from 'react'
-import {colorContent} from 'app/_common/content/content'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {Color} from 'app/_common/types/types'
+import {colorValues} from 'app/_common/content/color/color.content'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
+import {colorDictionary} from 'app/_common/content/color/color.content'
 
 const useParameters = (props: ParametersProps) => {
     const {props: item, showModal, currentVariant, transl: itemTransl} = props
@@ -11,19 +12,19 @@ const useParameters = (props: ParametersProps) => {
     const {variants} = item
     const {color} = currentVariant
 
-    const [transl] = useLocale(parametersContent)
+    const transl = useLocale(parametersContent)
 
-    const colors = useLocale(colorContent)
+    const colorsTransl = useLocale(colorDictionary)
 
     const colorCodes = useMemo(() => {
         return variants.filter((variant) => variant.color !== color).map((variant) => {
-            return colors[1].find(({ slug}) => slug === variant.color) as Color
+            return colorValues.find(({ slug}) => slug === variant.color) as Color
         })
     }, [color])
 
     const currentColor = useMemo(() => {
-        const index = colors[1].findIndex(({slug}) => slug === color)
-        return {code: colors[1][index].code, transl: colors[0][index]}
+        const index = colorValues.findIndex(({slug}) => slug === color)
+        return {code: colorValues[index].code, transl: colorsTransl[index]}
     }, [color])
 
     const onShowModal = () => {

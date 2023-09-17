@@ -15,6 +15,7 @@ import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import itemFormContent from 'app/[locale]/admin/items/_components/item-form/item-form.content'
 import {shallow} from 'zustand/shallow'
 import {AdminItem} from 'app/[locale]/admin/items/_components/store/admin-items.types'
+import {useEffect} from 'react'
 
 const useItemForm = (props: ItemFormProps) => {
     const test = useRef(performance.now())
@@ -22,9 +23,11 @@ const useItemForm = (props: ItemFormProps) => {
 
     const [transl] = useLocale(itemFormContent)
 
-    const {data: itemValue, itemIndex} = usePaginationStore(useCallback((state) => {
-        return peek(state, ['data', 'itemIndex'])
-    }, []), shallow) as PaginationState<AdminItem>
+    // const {data: itemValue, itemIndex} = usePaginationStore(useCallback((state) => {
+    //     return peek(state, ['data', 'itemIndex'])
+    // }, []), shallow) as PaginationState<AdminItem>
+
+    const {data: itemValue, itemIndex} = props
 
     useOmitFirstEffect(() => {
         const itemImagesValues = createItemImagesValues({itemValue})
@@ -35,10 +38,14 @@ const useItemForm = (props: ItemFormProps) => {
 
         initItemImagesMapRef.current = createItemImagesMap({itemImagesValues, itemValue})
 
-        storeRef.current.setState({itemValue, itemImagesValues})
-    }, [itemValue])
+        storeRef.current.setState({itemValue, itemImagesValues, itemIndex})
+    }, [])
 
-    const storeRef = useRef<StoreApi<ItemFormState>>(createItemFormStore({itemValue}))
+    const storeRef = useRef<StoreApi<ItemFormState>>(createItemFormStore({itemValue, itemIndex}))
+
+    useEffect(() => {
+        const diff = performance.now() - test.current
+    }, [])
 
     return {
         storeRef, transl, itemIndex, deleted: itemValue.deleted

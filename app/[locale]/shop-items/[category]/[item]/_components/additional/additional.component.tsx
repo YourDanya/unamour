@@ -58,7 +58,6 @@ const Similar = (props: LoadedProps) => {
                         itemRef={index === arr.length - 1 ? elemRef : undefined}
                         key={props.slug}
                         {...props}
-                        {...props.variants[0]}
                         height={height}
                     />
                 ))}
