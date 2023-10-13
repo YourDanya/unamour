@@ -5,7 +5,6 @@ import {ShopItemPreviewProps} from 'app/_common/components/shop-item-preview/sho
 
 const useShopItemPreview = (props: ShopItemPreviewProps) => {
     const [hovered, setHovered] = useState(false)
-
     const onMouse: MouseAction = () => {
         setHovered(!hovered)
     }

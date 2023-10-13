@@ -7,7 +7,7 @@ import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-it
 
 const ShopItems: FC<ShopItemsProps> = (props) => {
     const state = useShopItems(props)
-    const {transl, items, locale} = state
+    const {transl, items} = state
     
     return (
         <div className={'shop-items items'}>
@@ -25,7 +25,7 @@ const ShopItems: FC<ShopItemsProps> = (props) => {
 export default ShopItems
 
 const ItemsCollection = (props: ReturnType<typeof useShopItems>) => {
-    const {transl, items, catalogRef} = props
+    const { items, catalogRef} = props
 
     return (
         <div className={'shop-items-collection collection'} ref={catalogRef}>

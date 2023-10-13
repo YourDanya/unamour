@@ -3,9 +3,10 @@ import ShopItemPreview from 'app/_common/components/shop-item-preview/shop-item-
 import {FavoriteItemProps} from 'app/[locale]/favorites/_components/favorite-item/favorite-item.types'
 import useFavoriteItem from 'app/[locale]/favorites/_components/favorite-item/favorite-item.hook'
 import FavoriteLike from 'app/_common/components/favorite-like/favorite-like.component'
+import Button from 'app/_common/components/button/button.component'
 
 const FavoriteItem: FC<FavoriteItemProps> = (props) => {
-    const {item, width} = props
+    const {item, height, itemRef} = props
     const {locale} = useFavoriteItem(props)
 
     return (
@@ -13,8 +14,8 @@ const FavoriteItem: FC<FavoriteItemProps> = (props) => {
             <ShopItemPreview
                 className={'favorites-item__preview'}
                 {...item}
-                width={width || 0}
-                height={width * 4 / 3 || 0}
+                height={height}
+                itemRef={itemRef}
             />
             <div className={'favorites-item__bottom'}>
                 <div className="favorites-item__name">
@@ -33,5 +34,4 @@ const FavoriteItem: FC<FavoriteItemProps> = (props) => {
         </div>
     )
 }
-
 export default FavoriteItem

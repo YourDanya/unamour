@@ -1,30 +1,27 @@
 import {useState} from 'react'
 import {useRef} from 'react'
 import {useEffect} from 'react'
-import {useRouter} from 'next/navigation'
-import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import useOmitFirstEffect from 'app/_common/hooks/helpers/omit-first-effect/omit-first-effect.hook'
 import useDebounce from 'app/_common/hooks/helpers/debounce/debounce.hook'
-import useFavoritesStore from 'app/_common/store/favorites/favorites.store'
 import {FavoriteLikeProps} from 'app/_common/components/favorite-like/favorite-like.types'
-
+import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
 const useFavoriteLike = (props: FavoriteLikeProps) => {
     const {id} = props
     const [color, setColor] = useState(props.color)
     const [liked, setLiked] = useState(props.liked)
 
-    const postFavorite = useApiCall('users/favorites', {
+    const postFavorite = useApiCall( {
+        url: 'favorites',
         method: 'POST',
         body: {
-            id,
+            shopItemId: id,
             color
-        },
-        keepalive: true
+        }
     })
 
-    const deleteFavorite = useApiCall(`users/favorites/${id}/${color}`, {
-        method: 'DELETE',
-        keepalive: true
+    const deleteFavorite = useApiCall( {
+        url: `favorites/${id}/${color}`,
+        method: 'DELETE'
     })
 
     const loading = postFavorite.loading || deleteFavorite.loading
@@ -32,24 +29,21 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
     const debouncingRef = useRef(false)
     const likedRef = useRef(props.liked)
 
-    const {addFavorite, removeFavorite} = useFavoritesStore()
-
     const toggleFavorite = () => {
         if (!debouncingRef.current) {
             return
         }
         debouncingRef.current = false
         if (likedRef.current) {
+            console.log('post')
             postFavorite.start()
-            addFavorite({color, id})
         } else {
+            console.log('delete')
             deleteFavorite.start()
-            removeFavorite({color, id})
         }
     }
 
-    const onToggleFavorite = useDebounce(toggleFavorite)
-
+    const onToggleFavorite = useDebounce(toggleFavorite, 10000)
     const onAction = () => {
         debouncingRef.current = true
         likedRef.current = !likedRef.current
@@ -57,11 +51,10 @@ const useFavoriteLike = (props: FavoriteLikeProps) => {
         onToggleFavorite()
     }
 
-    const router = useRouter()
-
     useEffect(() => {
         window.addEventListener('beforeunload', toggleFavorite)
         return () => {
+            toggleFavorite()
             window.removeEventListener('beforeunload', toggleFavorite)
         }
     },[])

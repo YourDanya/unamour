@@ -1,8 +1,8 @@
-import useLayout from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
+import {useShopItemsLayout} from 'app/[locale]/shop-items/[category]/_components/_layout/layout.hook'
 import NavLink from 'app/_common/components/nav-link/nav-link.component'
 import {clothing} from 'app/_common/content/categories/categories.content'
 
-export const Categories = (props: ReturnType<typeof useLayout>) => {
+export const Categories = (props: ReturnType<typeof useShopItemsLayout>) => {
     const {transl, paramsUrl, locale} = props
 
     return (

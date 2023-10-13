@@ -1,4 +1,3 @@
-import useGetParamForImages from 'app/_common/hooks/helpers/get-param-for-images/get-param-for-images.hook'
 import {useState} from 'react'
 import {MouseAction} from 'app/_common/types/types'
 import {useRef} from 'react'

@@ -12,7 +12,7 @@ export const useApiCall = <T> (initParams: UseApiCallParams<T>) => {
     const [data, setData] = useState<T | null>(null)
     const [error, setError] = useState<ServerError | null>(null)
 
-    const start = (params: UseApiCallParams<T>) => {
+    const start = (params?: UseApiCallParams<T>) => {
         setLoading(true)
         setError(null)
         setSuccess(false)
@@ -20,8 +20,9 @@ export const useApiCall = <T> (initParams: UseApiCallParams<T>) => {
         const newParams = {...initParams, ...params}
         const url = newParams.url as string
 
-        apiCall<typeof data>(url, params).then((res) => {
+        apiCall<typeof data>(url, newParams).then((res) => {
             const fetchedData = res.data
+            setLoading(false)
             if (fetchedData) {
                 setData(fetchedData)
                 setError(null)

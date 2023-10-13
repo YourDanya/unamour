@@ -6,45 +6,85 @@ import useFavorites from 'app/[locale]/favorites/_components/favorites.hook'
 import Button from 'app/_common/components/button/button.component'
 import Spinner from 'app/_common/components/spinner/spinner.component'
 import FavoriteItem from 'app/[locale]/favorites/_components/favorite-item/favorite-item.component'
+import {CategoryItem} from 'app/_common/types/category-item'
 
 const Favorites: FC = () => {
-    const {items, transl, width, elemRef, getFavorites, onLogin} = useFavorites()
+    const state = useFavorites()
+    const { transl, user, items} = state
 
     return (
-        <div className={'favorites container'}>
+        <div className={'favorites-page favorites container'}>
             <div className={'favorites__title'}>
                 {transl.favorite}
             </div>
-            {!(getFavorites.error || getFavorites.data) && (<Spinner/>)}
+            {!(user && items) && (<Spinner className={'favorites__spinner'}/>)}
+            {user && items && (<Content {...state}/>)}
+        </div>
+    )
+}
+export default Favorites
+
+const Content = (props: ReturnType<typeof useFavorites>) => {
+    const {items, user} = props
+
+    return (
+        <div className={'favorites-content'}>
             {items && items.length > 0 && (
-                <div className={'favorites__items'} ref={elemRef}>
-                    {items.map((item, index) => (
-                        <FavoriteItem key={index} item={item} width={width}/>
-                    ))}
-                </div>
+                <Items {...props}/>
             )}
             {items && items?.length === 0 && (
-                <div className={'favorites__empty'}>
-                    <div className="favorites__empty-title">
-                        {transl.emptyTitle}
-                    </div>
-                    <Link href={'/shop-items/all'} className={'favorites__empty-button'}>
-                        {transl.emptyButton}
-                    </Link>
-                </div>
+                <Empty {...props}/>
             )}
-            {!items && (getFavorites.error || getFavorites.success) && (
-                <div className="favorites__no-user">
-                    <div className="favorites__no-user-title">
-                        {transl.noUser}
-                    </div>
-                    <Button className={'favorites__no-user-button'} onClick={onLogin}>
-                        {transl.login}
-                    </Button>
-                </div>
+            {user === null && (
+                <NoUser {...props}/>
             )}
         </div>
     )
 }
 
-export default Favorites
+const Items = (props: ReturnType<typeof useFavorites>) => {
+    const {items, height, itemRef} = props
+
+    return (
+        <div className={'favorites-items'}>
+            {(items as CategoryItem[]).map((item, index) => (
+                <FavoriteItem
+                    key={index}
+                    item={item}
+                    height={height}
+                    itemRef={index === 0 ? itemRef : undefined}
+                />
+            ))}
+        </div>
+    )
+}
+
+const Empty = (props: ReturnType<typeof useFavorites>) => {
+    const {transl} = props
+
+    return (
+        <div className={'favorites-empty empty'}>
+            <div className="empty__title">
+                {transl.emptyTitle}
+            </div>
+            <Link href={'/shop-items/all'} className={'empty__button'}>
+                {transl.emptyButton}
+            </Link>
+        </div>
+    )
+}
+
+const NoUser = (props: ReturnType<typeof useFavorites>) => {
+    const {transl, onLogin} = props
+
+    return (
+        <div className="favorites-no-user no-user">
+            <div className="no-user__title">
+                {transl.noUser}
+            </div>
+            <Button className={'no-user__button'} onClick={onLogin}>
+                {transl.login}
+            </Button>
+        </div>
+    )
+}

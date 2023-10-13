@@ -10,10 +10,9 @@ import {onResize} from 'app/_common/components/scroll-fixed/resize'
 import {useLayoutEffect} from 'react'
 
 const useScrollHook = (props: ScrollFixedProps) => {
-    const {topOffset, bottomOffset, resize} = props
+    const { resize} = props
 
     const state = useGetState(props)
-    const {stateRef, elemRef} = state
 
     const onScroll = useCallback(() => {
         scroll(state)
@@ -39,7 +38,6 @@ const useScrollHook = (props: ScrollFixedProps) => {
 export default useScrollHook
 
 export const useGetState = (props: ScrollFixedProps) => {
-    const {topOffset, bottomOffset, children} = props
 
     const [state, setState] = useState<State>({position: 'static', top: 0, bottom: 'unset', marginTop: 0})
     const stateRef = useRef<StateRef>({

@@ -19,15 +19,6 @@ const useFavoritesStore = create<FavoritesStore>((set) => ({
         return {
             favorites
         }
-    }),
-    setFavoritesFromUser: (params) => set((state) => {
-        const favorites = sortFavorites(params.favorites.map((id, index) => ({
-            id, color: params.favoritesColors[index]
-        })))
-
-        return {
-            favorites
-        }
     })
 }))
 

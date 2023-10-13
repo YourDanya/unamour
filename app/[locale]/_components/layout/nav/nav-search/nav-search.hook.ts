@@ -15,14 +15,13 @@ const useNavSearch = () => {
 
     const [input, setInput] = useState('')
 
-    const searchItems = useApiCall<{items: CategoryItem[]}>('shop-item/search', {
-        method: 'POST'
-    })
+    const searchItems = useApiCall<{items: CategoryItem[]}>(`shop-item/search?query=${input}`)
 
     const items = searchItems?.data?.items
 
     const onSubmit = useDebounce((query: string) => {
         if (query) {
+            console.log('submitting')
             searchItems.start({locale, query})
         }
     })

@@ -1,6 +1,8 @@
 import {CategoryItem} from 'app/_common/types/category-item'
+import {MutableRefObject} from 'react'
 
 export type FavoriteItemProps = {
     item: CategoryItem,
-    width: number
+    height: number,
+    itemRef?: MutableRefObject<HTMLDivElement | null>
 }

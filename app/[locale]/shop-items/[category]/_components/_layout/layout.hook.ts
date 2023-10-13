@@ -34,7 +34,7 @@ export const useLayout = () => {
     return {isItem}
 }
 
-export const useShopItemsLayout = (props: LayoutProps) => {
+export const useShopItemsLayout = () => {
     const mainState = useMain()
     const mobileState = useMobile(mainState)
     const paramsState = useParamsState(mobileState)

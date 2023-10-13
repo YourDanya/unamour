@@ -1,12 +1,12 @@
 import {MouseAction} from 'app/_common/types/types'
 import {buttonsContent} from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.content'
-import useFavoritesStore from 'app/_common/store/favorites/favorites.store'
 import useModalStore from 'app/_common/store/modal/modal.store'
 import {ButtonsProps} from 'app/[locale]/shop-items/[category]/[item]/_components/buttons/buttons.types'
-import {useMemo} from 'react'
 import {useState} from 'react'
 import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {useUserStore} from 'app/_common/store/user/user.store'
+import {useEffect} from 'react'
+import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
 
 const useButtons = (props: ButtonsProps) => {
     const {props: {_id: id}, currentVariant: {color}} = props
@@ -35,7 +35,6 @@ const useButtons = (props: ButtonsProps) => {
     }
 
     const [isPresent, setIsPresent] = useState(true)
-
     const onPresentClick: MouseAction = (event) => {
         if (activeSize) {
             showModal('present')
@@ -43,24 +42,34 @@ const useButtons = (props: ButtonsProps) => {
             setIsPresent(false)
         }
     }
-
     const onPresentLeave: MouseAction = () => {
         if (!activeSize) {
             setIsPresent(true)
         }
     }
 
-    const {favorites} = useFavoritesStore()
     const user = useUserStore(state => state.user)
 
-    const liked = useMemo(() => {
-        if (favorites.length === 0) {
-            return false
-        }
-        return !! favorites.find((item) => item.id === id && item.color === color)
-    }, [favorites, color])
+    const [liked, setLiked] = useState(false)
 
     const modalStore = useModalStore()
+
+    const checkLiked = useApiCall<{favorite: boolean}>({
+        url: `favorites/${id}/${color}`,
+        onSuccess: ({favorite}) => {
+            if (favorite) {
+                setLiked(favorite)
+            }
+        }
+    })
+
+    useEffect(() => {
+        if (!user) {
+            return
+        }
+
+        checkLiked.start()
+    }, [user])
 
     const onFavoriteLike: MouseAction = (event) => {
         if (!user) {

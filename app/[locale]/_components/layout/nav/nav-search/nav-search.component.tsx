@@ -10,7 +10,7 @@ import Input from 'app/_common/components/input/input.component'
 
 const NavSearch: FC = () => {
     const {items, input, onChange, transl, locale, searchItems} = useNavSearch()
-
+    
     return (
         <div className={`nav-search`}>
             <div className="nav-search__title">
@@ -32,13 +32,13 @@ const NavSearch: FC = () => {
                 <div className="nav-search__results">
                     {items.filter((item, index) => index < 4).map((item, index) =>
                         <Link
-                            href={`/shop-items/${item.common.slugCategory}/${item.common.slug}`}
+                            href={`/shop-items/${item.slugCategory}/${item.slug}`}
                             key={item.translations[locale].name + index}
                             className="nav-search__item"
                         >
                             <img
                                 className="nav-search__item-img"
-                                src={`${baseURL}/images/${item.common.images[0]}`}
+                                src={item.images[0].url}
                                 alt={'search item image'}
                             />
                             <div className="nav-search__item-name">

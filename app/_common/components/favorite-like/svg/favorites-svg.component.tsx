@@ -6,7 +6,6 @@ const FavoritesSvg = () => {
         </svg>
     )
 }
-
 export default FavoritesSvg
 
 {/*<g filter="url(#a)">*/}
