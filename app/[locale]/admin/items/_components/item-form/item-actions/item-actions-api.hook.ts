@@ -53,10 +53,7 @@ const useItemActionsApi = () => {
             ...value.options,
             onSuccess: (data) => {
                 const {item} = data
-                if (key === 'deleteItem') {
-                    setItem({...itemValueRef.current, deleted: true}, itemIndex)
-                }
-                else if (key === 'updateImages') {
+                if (key === 'updateImages') {
                     setItem({...itemValueRef.current}, itemIndex)
                 }
                 else if (key === 'createItem') {

@@ -1,5 +1,3 @@
-import {FetchedItem} from 'app/_common/types/fetched-item'
-import {MutableRefObject} from 'react'
 import {AdminItem} from 'app/[locale]/admin/items/_components/store/admin-items.types'
 
 export type ItemFormProps = {

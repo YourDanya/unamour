@@ -1,6 +1,5 @@
 import {createItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/utils/item-form.utils'
 import {MouseAction} from 'app/_common/types/types'
-import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {useCallback} from 'react'
@@ -8,11 +7,8 @@ import useItemActionsApi from 'app/[locale]/admin/items/_components/item-form/it
 import {DeleteItemImagesData} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {ItemActionsProps} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import {usePaginationStore} from 'app/_common/components/pagination/store/pagination.stote'
 import {shallow} from 'zustand/shallow'
 import {Entry} from 'app/_common/types/types'
-import {ItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
-import {MutableRefObject} from 'react'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 
@@ -27,14 +23,6 @@ const useItemActions = (props: ItemActionsProps) => {
             'itemValueRef', 'errorCount', 'itemImagesValuesRef', 'initItemImagesMapRef', 'modalState', 'closeModal',
         ])
         return {...peeked, _id}
-    }, []), shallow)
-
-    const itemIndex = useItemFormStore((state) => state.itemIndex)
-
-    const {
-        deleteItem
-    } = useAdminItemsStore(useCallback((state) => {
-        return peek(state, ['deleteItem'])
     }, []), shallow)
 
     const {actions, messages, setMessages, stackActions, stackCreateImages} = useItemActionsApi()
@@ -115,16 +103,6 @@ const useItemActions = (props: ItemActionsProps) => {
         closeModal()
     }
 
-    const onDeleteConfirm: MouseAction = (event) => {
-        event.preventDefault()
-        if (_id) {
-            actions.deleteItem.start({_id})
-        } else {
-            deleteItem(itemIndex)
-        }
-        closeModal()
-    }
-
     const onClose: MouseAction = (event) => {
         event.preventDefault()
         const name = event.currentTarget.getAttribute('data-value') as keyof typeof messages
@@ -133,13 +111,10 @@ const useItemActions = (props: ItemActionsProps) => {
 
     const onTimerExpiration = (name: ItemActionName) => {
         setMessages({...messages, [name]: {text: ''}})
-        if (name === 'deleteItem') {
-            deleteItem(itemIndex)
-        }
     }
 
     const actionsList = Object.entries(actions) as Entry<typeof actions> []
-    const loading = actionsList.some(([name, value]) => value.loading && name !== 'deleteItem')
+    const loading = actionsList.some(([name, value]) => value.loading)
 
     const onCloseModal: MouseAction = (event) => {
         event.preventDefault()
@@ -148,7 +123,7 @@ const useItemActions = (props: ItemActionsProps) => {
 
     return {
         transl, onSave, onDelete, messages, onClose, onTimerExpiration, actions, actionsList, loading, modalState,
-        onCloseModal, closeModal, onDeleteConfirm
+        onCloseModal, closeModal
     }
 }
 

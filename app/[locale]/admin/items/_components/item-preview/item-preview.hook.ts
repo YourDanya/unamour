@@ -3,6 +3,7 @@ import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {clothing} from 'app/_common/content/categories/categories.content'
 import {useMemo} from 'react'
 import {clothingDictionary} from 'app/_common/content/categories/categories.content'
+import {dictionary} from 'app/[locale]/admin/items/_components/item-preview/item-preview.content'
 
 const useItemPreview = (props: ItemPreviewProps) => {
     const {item, itemIndex} = props
@@ -28,7 +29,9 @@ const useItemPreview = (props: ItemPreviewProps) => {
         props.onDelete(itemIndex)
     }
 
-    return {name, image, category, onUpdate, onDelete}
+    const transl = useLocale(dictionary)
+
+    return {name, image, category, onUpdate, onDelete, transl}
 }
 
 export default useItemPreview

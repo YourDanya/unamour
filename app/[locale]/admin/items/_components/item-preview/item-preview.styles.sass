@@ -1,11 +1,20 @@
-.admin-item-preview.item
-  display: flex
-  .item__name
-  .item__category
-  .item__img
-    height: 100px
-  .item__button
+.admin-items-table.table
+  .table__category
+    text-transform: uppercase
+  .table__image
+    .load-image__thumbnail
+      padding-bottom: 100px
+      width: calc(100px * 3 / 4)
+    .load-image__image
+      height: 100px
+      width: calc(100px * 3 / 4)
+  .table__button
     background-color: black
     width: 100px
     height: 30px
     color: white
+    text-transform: uppercase
+  .table__actions
+    display: grid
+    grid-gap: 10px
+    grid-template-columns: auto auto

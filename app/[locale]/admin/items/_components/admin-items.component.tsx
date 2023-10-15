@@ -19,11 +19,11 @@ const AdminItems: FC = () => {
     const {items, user} = state
 
     return (
-        <div className={'admin-items'}>
-            {items.length > 0 && user?.isAdmin ? (
-                <AdminContent {...state}/>
+        <div className={'admin-items admin'}>
+            {items && items.length > 0 && user?.isAdmin ? (
+                <Content {...state}/>
             ) : (
-                <Spinner className={'admin-items__spinner'}/>
+                <Spinner className={'admin__spinner'}/>
             )}
         </div>
     )
@@ -31,23 +31,12 @@ const AdminItems: FC = () => {
 
 export default AdminItems
 
-const AdminContent = (props: ReturnType<typeof useAdminItems>) => {
-
-    const {pageItems, onUpdate, onDelete, pagesNumber, setCurrentPage, currentPage, onAddItem, transl} = props
+const Content = (props: ReturnType<typeof useAdminItems>) => {
+    const {pagesNumber, setCurrentPage, currentPage, onAddItem, transl} = props
 
     return (
-        <div className={'admin-items-list admin container'}>
-            <div className={'admin__items'}>
-                {pageItems.map(({item, itemIndex}) => (
-                    <ItemPreview
-                        item={item}
-                        itemIndex={itemIndex}
-                        onUpdate={onUpdate}
-                        onDelete={onDelete}
-                        key={item._id}
-                    />
-                ))}
-            </div>
+        <div className={'admin-items-content admin container'}>
+            <Table {...props}/>
             <Pagination
                 className={'admin__pagination'}
                 pagesNumber={pagesNumber}
@@ -58,6 +47,36 @@ const AdminContent = (props: ReturnType<typeof useAdminItems>) => {
                 {transl.create}
             </Button>
             {/*<FormMessage error={itemError}/>*/}
+        </div>
+    )
+}
+
+const Table = (props: ReturnType<typeof useAdminItems>) => {
+    const {pageItems, onUpdate, onDelete, transl} = props
+
+    return (
+        <div className={'admin-items-table table'}>
+            <div className={'table__col table__name'}>
+                {transl.name}
+            </div>
+            <div className={'table__col table__category'}>
+                {transl.category}
+            </div>
+            <div className={'table__col table__img'}>
+                {transl.image}
+            </div>
+            <div className={'table__col table__actions'}>
+                {transl.actions}
+            </div>
+            {pageItems.map(({item, itemIndex}) => (
+                <ItemPreview
+                    item={item}
+                    itemIndex={itemIndex}
+                    onUpdate={onUpdate}
+                    onDelete={onDelete}
+                    key={item._id}
+                />
+            ))}
         </div>
     )
 }

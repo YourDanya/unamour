@@ -7,7 +7,7 @@ import Image, {ImageProps} from 'next/image'
 
 const LoadImage: FC<LoadImageProps> = (props) => {
     const {className, elemRef, height, width, ratio, ...otherProps} = props
-    const {loaded, onLoaded, style, imgRef} = useLoadImage(props)
+    const {loaded, onLoaded, style, thumbStyle, imgRef} = useLoadImage(props)
     
     return (
         <div
@@ -18,7 +18,7 @@ const LoadImage: FC<LoadImageProps> = (props) => {
             {!loaded && (
                 <div
                     className={'load-image__thumbnail'}
-                    style={{...ratio && {paddingBottom: `${ratio * 100}%`}}}
+                    style={thumbStyle}
                 />
             )}
             <img

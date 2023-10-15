@@ -1,17 +1,17 @@
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {LoadImageProps} from 'app/_common/components/load-image/load-image.types'
 import {CSSProperties} from 'react'
-import {ImgHTMLAttributes} from 'react'
 
 const useLoadImage = (props: LoadImageProps) => {
-    const {width, height} = props
+    const {width, height, ratio} = props
     const [loaded, setLoaded] = useState(false)
 
     const onLoaded = () => {
         setLoaded(true)
     }
 
-    let style: CSSProperties = {}
+    const style: CSSProperties = {}
+    const thumbStyle: CSSProperties = {}
 
     if (width) {
         style.width = `${width}px`
@@ -19,6 +19,11 @@ const useLoadImage = (props: LoadImageProps) => {
 
     if (height) {
         style.height = `${height}px`
+        thumbStyle.paddingBottom = `${height}px`
+    }
+
+    if (ratio && !height) {
+        thumbStyle.paddingBottom = `${ratio * 100}%`
     }
 
     const imgRef = useRef<HTMLImageElement | null>(null)
@@ -34,7 +39,7 @@ const useLoadImage = (props: LoadImageProps) => {
     }, [])
 
     return {
-        loaded, onLoaded, style, imgRef
+        loaded, onLoaded, style, imgRef, thumbStyle
     }
 }
 

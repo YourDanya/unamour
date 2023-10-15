@@ -1,37 +1,56 @@
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
-import {ItemVariant} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {FetchedItem} from 'app/_common/types/fetched-item'
 import {useEffect} from 'react'
-import {useAdminItemsStore} from 'app/[locale]/admin/items/_components/store/admin-items.store'
 import adminItemsContent from 'app/[locale]/admin/items/_components/admin-items.content'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {useRouter} from 'next/navigation'
 import {MouseAction} from 'app/_common/types/types'
 import {useUserStore} from 'app/_common/store/user/user.store'
-import {AdminItem} from 'app/[locale]/admin/items/_components/store/admin-items.types'
-import {useRef} from 'react'
-import {paginate} from 'app/_common/utils/helpers/paginate/paginate.util'
 import {useState} from 'react'
+import {createPaginationParams} from 'app/_common/utils/helpers/create-pagination-params/create-pagination-params.util'
+import {paginateItems} from 'app/_common/utils/helpers/paginate-items/paginate-items.util'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 
 const useAdminItems = () => {
+    const initState = useGetState()
+    useHandleEffects(initState)
+    const withActionsState= useGetActions(initState)
+
+    return withActionsState
+}
+
+export default useAdminItems
+
+const useGetState = () => {
     const router = useRouter()
     const user = useUserStore(user => user.user)
-    const [transl] = useLocale(adminItemsContent)
+    const transl = useLocale(adminItemsContent)
 
     const getUser = useApiCall('users/user-data')
 
-    const {
-        items, addItem, setItems,
-    } = useAdminItemsStore((state) => {
-        return peek(state, ['items', 'addItem', 'setItems'])
-    })
+    const [items, setItems] = useState<FetchedItem[]>([])
+    const [totalCount, setTotalCount] = useState(0)
 
-    const getItems = useApiCall<{ items: FetchedItem[] }>('shop-item/all', {
-        onSuccess: ({items}) => {
+    const getItems = useApiCall<{ items: FetchedItem[], totalCount: number }>('shop-item', {
+        onSuccess: ({items, totalCount}) => {
             setItems(items)
+            setTotalCount(totalCount)
         }
     })
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const {startIndex, endIndex, pagesNumber} = createPaginationParams({totalCount, currentPage, perPage: 5})
+    const {pageItems} = paginateItems({items, startIndex, endIndex})
+
+    console.log('pageItems', pageItems)
+
+    return {
+        transl, items, pagesNumber, currentPage, setCurrentPage, setItems, getUser, router, user, getItems,
+        pageItems
+    }
+}
+
+const useHandleEffects = (state: ReturnType<typeof useGetState>) => {
+    const {getUser, router, user, getItems} = state
 
     useEffect(() => {
         if (getUser.error || (getUser.success && !user?.isAdmin)) {
@@ -43,35 +62,29 @@ const useAdminItems = () => {
         getUser.start()
         getItems.start()
     }, [])
+}
+
+const useGetActions = (state: ReturnType<typeof useGetState>) => {
+    const {items} = state
 
     const onAddItem: MouseAction = (event) => {
         event.preventDefault()
 
-        const item = JSON.parse(JSON.stringify(items[items.length - 1]))
-        item.variants.forEach((variant: ItemVariant) => {
-            delete (variant as any)._id
-            variant.images = []
-        })
-        item._id = ''
+        // const item = JSON.parse(JSON.stringify(items[items.length - 1]))
+        // item.variants.forEach((variant: ItemVariant) => {
+        //     delete (variant as any)._id
+        //     variant.images = []
+        // })
+        // item._id = ''
 
-        addItem(item)
+        // addItem(item)
     }
-
-    const [currentPage, setCurrentPage] = useState(1)
-
-    const {pageItems, pagesNumber} = paginate({items, currentPage, perPage: 5})
-
     const onUpdate = () => {
 
     }
-
     const onDelete = () => {
 
     }
 
-    return {
-        user, getItems, onAddItem,  transl, items, pageItems, pagesNumber, currentPage, setCurrentPage, onUpdate, onDelete
-    }
+    return {...state, onAddItem, onUpdate, onDelete}
 }
-
-export default useAdminItems
