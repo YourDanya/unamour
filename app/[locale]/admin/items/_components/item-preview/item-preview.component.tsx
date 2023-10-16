@@ -4,25 +4,29 @@ import {ItemPreviewProps} from 'app/[locale]/admin/items/_components/item-previe
 import useItemPreview from 'app/[locale]/admin/items/_components/item-preview/item-preview.hook'
 
 const ItemPreview = (props: ItemPreviewProps) => {
-    const {itemIndex} = props
+    const {itemIndex, style} = props
     const {
         name, image, category, onUpdate, onDelete, transl
     } = useItemPreview(props)
 
     return (
         <>
-            <div className={'table__name'}>
+            <div className={'table__number'} style={style.num}>
+                {itemIndex}
+            </div>
+            <div className={'table__name'} style={style.name}>
                 {name}
             </div>
-            <div className={'table__category'}>
+            <div className={'table__category'} style={style.category}>
                 {category}
             </div>
             <LoadImage
                 className={'table__image'}
                 src={image.url}
                 alt={"admin item preview"}
+                containerStyle={style.image}
             />
-            <div className={'table__actions'}>
+            <div className={'table__actions'} style={style.actions}>
                 <Button onClick={onUpdate} className={'table__button'}>
                     {transl.update}
                 </Button>

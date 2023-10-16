@@ -5,8 +5,8 @@
 
 .admin-items-content.admin
   padding: 50px
+  max-width: 1250px
   .admin__pagination
-    width: 300px
     position: sticky
     bottom: 0
     z-index: 10
@@ -17,15 +17,18 @@
     text-transform: uppercase
     height: 40px
     margin-top: 20px
+  .admin__button-wrapper
+    display: flex
+    justify-content: end
   .admin__last-item
     margin-bottom: 20px
 
 .admin-items-table.table
   display: grid
-  grid-template-columns: 1fr 1fr 1fr 1fr
+  grid-template-columns: 20px auto 1fr auto 1fr auto 1fr auto
   margin-bottom: 20px
   align-items: center
-  justify-items: start
+  justify-content: space-between
   row-gap: 10px
   .table__col
     font-weight: 700

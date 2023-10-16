@@ -43,26 +43,31 @@ const Content = (props: ReturnType<typeof useAdminItems>) => {
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
             />
-            <Button className={'admin__button'} onClick={onAddItem}>
-                {transl.create}
-            </Button>
+            <div className={'admin__button-wrapper'}>
+                <Button className={'admin__button'} onClick={onAddItem}>
+                    {transl.create}
+                </Button>
+            </div>
             {/*<FormMessage error={itemError}/>*/}
         </div>
     )
 }
 
 const Table = (props: ReturnType<typeof useAdminItems>) => {
-    const {pageItems, onUpdate, onDelete, transl} = props
+    const {pageItems, onUpdate, onDelete, transl, pagesNumber, currentPage, setCurrentPage, onAddItem, itemsStyles, tableStyles} = props
 
     return (
-        <div className={'admin-items-table table'}>
+        <div className={'admin-items-table table'} style={tableStyles}>
+            <div className={'table__col table__number'}>
+                №
+            </div>
             <div className={'table__col table__name'}>
                 {transl.name}
             </div>
             <div className={'table__col table__category'}>
                 {transl.category}
             </div>
-            <div className={'table__col table__img'}>
+            <div className={'table__col table__image'}>
                 {transl.image}
             </div>
             <div className={'table__col table__actions'}>
@@ -70,6 +75,7 @@ const Table = (props: ReturnType<typeof useAdminItems>) => {
             </div>
             {pageItems.map(({item, itemIndex}) => (
                 <ItemPreview
+                    style={itemsStyles[itemIndex]}
                     item={item}
                     itemIndex={itemIndex}
                     onUpdate={onUpdate}
@@ -77,6 +83,7 @@ const Table = (props: ReturnType<typeof useAdminItems>) => {
                     key={item._id}
                 />
             ))}
+
         </div>
     )
 }

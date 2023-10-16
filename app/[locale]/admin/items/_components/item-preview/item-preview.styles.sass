@@ -1,20 +1,28 @@
 .admin-items-table.table
+  .table__number
+    grid-area: num
+  .table__name
+    grid-area: name
   .table__category
     text-transform: uppercase
+    grid-area: category
   .table__image
+    grid-area: image
     .load-image__thumbnail
       padding-bottom: 100px
       width: calc(100px * 3 / 4)
     .load-image__image
       height: 100px
       width: calc(100px * 3 / 4)
+  .table__actions
+    grid-area: actions
+    display: grid
+    grid-gap: 10px
+    grid-template-columns: auto auto
+    grid-area: actions
   .table__button
     background-color: black
     width: 100px
     height: 30px
     color: white
     text-transform: uppercase
-  .table__actions
-    display: grid
-    grid-gap: 10px
-    grid-template-columns: auto auto

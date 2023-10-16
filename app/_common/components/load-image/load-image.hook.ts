@@ -3,14 +3,14 @@ import {LoadImageProps} from 'app/_common/components/load-image/load-image.types
 import {CSSProperties} from 'react'
 
 const useLoadImage = (props: LoadImageProps) => {
-    const {width, height, ratio} = props
+    const {width, height, ratio, containerStyle} = props
     const [loaded, setLoaded] = useState(false)
 
     const onLoaded = () => {
         setLoaded(true)
     }
 
-    const style: CSSProperties = {}
+    const style: CSSProperties = {...containerStyle}
     const thumbStyle: CSSProperties = {}
 
     if (width) {
