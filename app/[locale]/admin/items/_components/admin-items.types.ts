@@ -1,4 +1,5 @@
 import {CSSProperties} from 'react'
+import {FetchedItem} from 'app/_common/types/fetched-item'
 
 export type ItemPreviewStyles = {
     num: CSSProperties,
@@ -6,4 +7,10 @@ export type ItemPreviewStyles = {
     category: CSSProperties,
     image: CSSProperties,
     actions: CSSProperties
+}
+
+export type FormValue = {
+    action: '' | 'update' | 'delete',
+    item: FetchedItem,
+    itemIndex: number
 }

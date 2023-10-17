@@ -1,3 +1,2 @@
-export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://api.unamour.com.ua'
-
-export const url = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://unamour.com.ua'
+export const baseURL = 'http://localhost:5000'
+export const url =  'http://localhost:3000'

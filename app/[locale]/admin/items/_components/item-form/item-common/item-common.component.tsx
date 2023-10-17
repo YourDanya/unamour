@@ -7,8 +7,9 @@ import RadioButtons from 'app/_common/components/radio-buttons/radio-buttons.com
 import useItemCommon from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.hook'
 import Input from 'app/_common/components/input/input.component'
 import {clothing} from 'app/_common/content/categories/categories.content'
+import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
 
-const ItemCommon: FC<ItemCommonProps> = (props) => {
+const ItemCommon: FC<ItemFormState> = (props) => {
     const {transl, values, onChange, categoryTransl, errors} = useItemCommon(props)
 
     return (

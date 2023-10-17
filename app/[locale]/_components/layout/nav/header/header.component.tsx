@@ -12,17 +12,18 @@ import NavLink from 'app/_common/components/nav-link/nav-link.component'
 import {NavHeaderProps} from 'app/[locale]/_components/layout/nav/header/header.types'
 import Button from 'app/_common/components/button/button.component'
 import dynamic from 'next/dynamic'
-const Quantity = dynamic(() => import('app/[locale]/_components/layout/nav/header/quantity/quantity.component'), {ssr: false})
+import {seasonsRegular} from 'app/[locale]/_components/layout/layout.component'
 
+const Quantity = dynamic(() => import('app/[locale]/_components/layout/nav/header/quantity/quantity.component'), {ssr: false})
 const NavHeader: FC<NavHeaderProps> = (props) => {
     const {home} = props
     const {onShowModal} = useNavHeader(props)
     
     return (
         <div className="container nav__header">
-            <NavLink href={'/'} className={`nav__title`}>
+            <div style={seasonsRegular.style} className={`nav__title`}>
                 UNAMOUR
-            </NavLink>
+            </div>
             <div className="nav__icons">
                 <Button name="search" onClick={onShowModal}>
                     <img

@@ -1,6 +1,4 @@
 import {useCallback, useEffect, useRef, useState} from 'react'
-import {Property} from 'csstype'
-import Position = Property.Position
 import {ScrollFixedProps} from 'app/_common/components/scroll-fixed/scroll-fixes.types'
 import {StateRef} from 'app/_common/components/scroll-fixed/scroll-fixes.types'
 import {useRoute} from 'app/_common/components/scroll-fixed/route.hook'
@@ -8,7 +6,6 @@ import {State} from 'app/_common/components/scroll-fixed/scroll-fixes.types'
 import {scroll} from 'app/_common/components/scroll-fixed/scroll'
 import {onResize} from 'app/_common/components/scroll-fixed/resize'
 import {useLayoutEffect} from 'react'
-
 const useScrollHook = (props: ScrollFixedProps) => {
     const { resize} = props
 

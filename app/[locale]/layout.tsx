@@ -1,6 +1,7 @@
 //global
 import 'app/_common/styles/global.sass'
 //common
+import 'app/_common/components/button/button.styles.sass'
 import 'app/_common/components/responsive-slider/responsive-slider.styles.sass'
 import 'app/_common/components/arrow/arrow.styles.sass'
 import 'app/_common/components/form-message/form-message.styles.sass'
@@ -13,14 +14,13 @@ import 'app/_common/components/checkbox/checkbox.styles.sass'
 import 'app/_common/components/dropdown/dropdown.styles.sass'
 import 'app/_common/components/slider/slider.styles.sass'
 import 'app/_common/components/radio-buttons/radio-buttons.styles.sass'
-import 'app/_common/components/button/button.styles.sass'
 import 'app/_common/components/textarea/textarea.styles.sass'
 import 'app/_common/components/input/input.styles.sass'
 import 'app/_common/components/input-v2/input.styles.sass'
 import 'app/_common/components/modal/modal.styles.sass'
 import 'app/_common/components/sidebar/sidebar.styles.sass'
 import 'app/_common/components/modal-content/modal-content.styles.sass'
-import 'app/_common/components/pagination/pagination/pagination.styles.sass'
+import 'app/_common/components/pagination/pagination.styles.sass'
 import 'app/_common/components/cart-item/cart-item.styles.sass'
 //home
 import 'app/[locale]/_components/home.styles.sass'
@@ -123,7 +123,6 @@ export const metadata: Metadata = {
     description: 'Магазин UNAMOUR',
     viewport: 'width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
 }
-
 const Layout = (props: LayoutProps) => {
     const {children, params: {locale}} = props
 

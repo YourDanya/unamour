@@ -1,14 +1,11 @@
 'use client'
 
-import {ReactNode} from 'react'
 import {LayoutProps} from 'app/[locale]/_components/layout/layout.types'
-import {useLayout} from 'app/[locale]/_components/layout/layout.hook'
 import Nav from 'app/[locale]/_components/layout/nav/nav.component'
 import PreWork from 'app/[locale]/_components/layout/pre-work/pre-work.component'
 import Footer from 'app/[locale]/_components/layout/footer/footer.component'
-import localFont from '@next/font/local'
-
-const sesonsRegular = localFont({
+import localFont from 'next/font/local'
+export const seasonsRegular = localFont({
     src: './../../../../public/fonts/SeasonsRegular.ttf',
     variable: '--season-regular',
     preload: true
@@ -23,7 +20,7 @@ const Layout = (props: LayoutProps) => {
         <body>
         <style jsx global>{`
           :root {
-            --seasons-regular: ${sesonsRegular.style.fontFamily};
+            --seasons-regular: ${seasonsRegular.style.fontFamily};
           }
         `}</style>
         <PreWork/>

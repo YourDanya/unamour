@@ -1,9 +1,8 @@
 import {useGetState} from 'app/_common/components/scroll-fixed/scroll-fixed.hook'
-import {Property} from 'csstype'
-import Position = Property.Position
 import {NewStateValues} from 'app/_common/components/scroll-fixed/scroll-fixes.types'
 import {scrollDown} from 'app/_common/components/scroll-fixed/scroll-down'
 import {scrollUp} from 'app/_common/components/scroll-fixed/scroll-up'
+import {Property} from 'csstype'
 
 export const scroll = (state: ReturnType<typeof useGetState>) => {
     const {stateRef, elemRef, setState} = state
@@ -48,7 +47,7 @@ export const getValues = (state: ReturnType<typeof useGetState>) => {
     const parentElement = elemRef.current?.parentElement
     const parentRect = parentElement?.getBoundingClientRect() as DOMRect
 
-    let position: Position = 'static'
+    let position: Property.Position = 'static'
     let top = 'unset'
     let bottom = 'unset'
     let toUpdate = true

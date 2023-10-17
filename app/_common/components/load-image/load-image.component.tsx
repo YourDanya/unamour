@@ -6,7 +6,7 @@ import useLoadImage from 'app/_common/components/load-image/load-image.hook'
 import Image, {ImageProps} from 'next/image'
 
 const LoadImage: FC<LoadImageProps> = (props) => {
-    const {className, elemRef, height, width, ratio, ...otherProps} = props
+    const {className, elemRef, height, width, ratio, containerStyle: _, ...otherProps} = props
     const {loaded, onLoaded, style, thumbStyle, imgRef} = useLoadImage(props)
     
     return (

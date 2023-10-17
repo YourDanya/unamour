@@ -1,4 +1,3 @@
-import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {FetchedItem} from 'app/_common/types/fetched-item'
 import {useEffect} from 'react'
 import adminItemsContent from 'app/[locale]/admin/items/_components/admin-items.content'
@@ -11,7 +10,9 @@ import {paginateItems} from 'app/_common/utils/helpers/paginate-items/paginate-i
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {CSSProperties} from 'react'
 import {ItemPreviewStyles} from 'app/[locale]/admin/items/_components/admin-items.types'
-
+import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
+import {useLayoutEffect} from 'react'
+import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
 const useAdminItems = () => {
     const initState = useGetState()
     useHandleEffects(initState)
@@ -29,57 +30,48 @@ const useGetState = () => {
     const user = useUserStore(user => user.user)
     const transl = useLocale(adminItemsContent)
 
-    const getUser = useApiCall('users/user-data')
-
     const [items, setItems] = useState<FetchedItem[]>([])
     const [totalCount, setTotalCount] = useState(0)
-
-    const getItems = useApiCall<{ items: FetchedItem[], totalCount: number }>('shop-item', {
-        onSuccess: ({items, totalCount}) => {
-            setItems(items)
-            setTotalCount(totalCount)
-        }
-    })
 
     const [currentPage, setCurrentPage] = useState(1)
     const {startIndex, endIndex, pagesNumber} = createPaginationParams({totalCount, currentPage, perPage: 10})
     const {pageItems} = paginateItems({items, startIndex, endIndex})
 
+    const getItems = useApiCall<{ items: FetchedItem[], totalCount: number }>( {
+        url: `shop-item?page=${currentPage}`,
+        onSuccess: ({items, totalCount}) => {
+            console.log('success')
+            setItems(items)
+            setTotalCount(totalCount)
+        }
+    })
+
+    const [formValue, setFormValue] = useState<FormValue | null>(null)
+
     return {
-        transl, items, pagesNumber, currentPage, setCurrentPage, setItems, getUser, router, user, getItems,
-        pageItems
+        transl, items, pagesNumber, currentPage, setCurrentPage, setItems, router, user, getItems,
+        pageItems, formValue, setFormValue
     }
 }
 
 const useHandleEffects = (state: ReturnType<typeof useGetState>) => {
-    const {getUser, router, user, getItems} = state
+    const { router, user, getItems, currentPage, setItems} = state
 
     useEffect(() => {
-        if (getUser.error || (getUser.success && !user?.isAdmin)) {
+        if (user === null || (user && !user.isAdmin)) {
             router.push('/')
         }
-    }, [getUser])
+    }, [user])
 
-    useEffect(() => {
-        getUser.start()
+    useLayoutEffect(() => {
         getItems.start()
-    }, [])
+    }, [currentPage])
 }
 
 const useGetActions = (state: ReturnType<typeof useGetState>) => {
-    const {items} = state
-
+    const {items, setCurrentPage, setItems} = state
     const onAddItem: MouseAction = (event) => {
         event.preventDefault()
-
-        // const item = JSON.parse(JSON.stringify(items[items.length - 1]))
-        // item.variants.forEach((variant: ItemVariant) => {
-        //     delete (variant as any)._id
-        //     variant.images = []
-        // })
-        // item._id = ''
-        //
-        // addItem(item)
     }
     const onUpdate = () => {
 
@@ -87,8 +79,12 @@ const useGetActions = (state: ReturnType<typeof useGetState>) => {
     const onDelete = () => {
 
     }
+    const onCurrentPage = (page: number) => {
+        setItems([])
+        setCurrentPage(page)
+    }
 
-    return {...state, onAddItem, onUpdate, onDelete}
+    return {...state, onAddItem, onUpdate, onDelete, onCurrentPage}
 }
 
 const createStyle = (state: ReturnType<typeof useGetActions>) => {
@@ -108,7 +104,6 @@ const createStyle = (state: ReturnType<typeof useGetActions>) => {
             image: {gridArea: `image-${i}`},
             actions: {gridArea: `actions-${i}`}
         }
-
         gridTemplateAreas += `"num-${i} name-${i} . category-${i} . image-${i} . actions-${i}" `
     }
 

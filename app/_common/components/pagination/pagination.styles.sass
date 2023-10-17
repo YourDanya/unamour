@@ -1,17 +1,14 @@
 .pagination
-  &__items
-    margin-bottom: 20px
-  &__content
-    border-radius: 2px
-    z-index: 10
-    bottom: 0
-    position: sticky
-    display: flex
-    justify-content: center
-    align-items: center
-    background-color: white
-    height: 40px
-  &__elem
+  border-radius: 2px
+  z-index: 10
+  bottom: 0
+  position: sticky
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: white
+  height: 40px
+  .pagination__elem
     display: flex
     align-items: center
     justify-content: center
@@ -21,21 +18,19 @@
     font-size: 12px
     height: 25px
     width: 25px
-  &__active
+  .pagination__active
     background-color: black
     color: white
     border-color: black
-  &__forward, &__back
+  .pagination__forward, .pagination__back
     color: #4f4f4f
     font-size: 14px
-  &__ellipsis
+  .pagination__ellipsis
     border: none
     width: auto
-    &-elem
+  .pagination__ellepsis-elem
       background-color: black
       margin: 8px 2px 0 2px
       width: 1.44px
       height: 1.44px
       border-radius: 50px
-  &__input
-    display: none
