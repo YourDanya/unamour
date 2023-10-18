@@ -1,53 +1,95 @@
-import {useCallback} from 'react'
-import {shallow} from 'zustand/shallow'
-import {useValidateInput} from 'app/_common/hooks/input/input-v2.hooks'
 import {useMapInputs} from 'app/_common/hooks/input/input-v2.hooks'
 import {
     ItemTranslationProps
 } from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.types'
-import itemTranslationContent
-    from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.content'
-import {ChangeCallback} from 'app/_common/hooks/input/input-v2.types'
-import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import {useInputChange} from 'app/_common/hooks/input/input-v2.hooks'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
-import {peek} from 'app/_common/utils/helpers/peek/peek.util'
+import {
+    dictionary
+} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.content'
+import {
+    initValues
+} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.content'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
+import {useState} from 'react'
+import {validateInputAndCount} from 'app/_common/utils/form/validate-input-and-count/validate-input-and-count'
+import {useRef} from 'react'
+import {useParams} from 'next/navigation'
+import {Locale} from 'app/_common/types/types'
+import {
+    ValidateValuesState
+} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.types'
+import {useEffect} from 'react'
+import {ChangeEvent} from 'react'
+import {inputChange} from 'app/_common/utils/form/input-change/input-change.util'
+import {updateErrorCount} from 'app/_common/utils/form/update-error-count/update-error-count.util'
 
 const useItemTranslation = (props: ItemTranslationProps) => {
-    const {locale} = props
-    const [transl, content] = useLocale(itemTranslationContent)
 
-    const {
-        itemValueRef, setItemValue, errorCountRef, setErrorCount
-    } = useItemFormStore(useCallback((state) => {
-        return peek(state, ['itemValueRef', 'setItemValue', 'errorCountRef', 'setErrorCount'])
-    }, []), shallow)
+    const state = useGetState(props)
+    const withActionsState = useHandleActions(state)
 
-    const values = useItemFormStore(useCallback((state) => {
-        return state.itemValue.translations[locale]
-    }, []))
-
-    const {errors, validations} = useMapInputs(content.inputs)
-
-    const {onValidate, errRef} = useValidateInput({validations, errors})
-
-    const changeCallback: ChangeCallback<typeof values> = ({changeValues, name}) => {
-        itemValueRef.current.translations[locale] = {...changeValues}
-        setItemValue(itemValueRef.current)
-
-        const beforeCount = errRef.current.count
-        onValidate(name, changeValues[name])
-        const afterCount = errRef.current.count
-
-        if (afterCount !== beforeCount) {
-            errorCountRef.current += afterCount - beforeCount
-            setErrorCount(errorCountRef.current + afterCount - beforeCount)
-        }
-    }
-
-    const {onChange} = useInputChange({values, changeCallback})
-
-    return {values, errors, onChange, transl}
+    return withActionsState
 }
 
 export default useItemTranslation
+
+export const useGetState = (props: ItemTranslationProps) => {
+    const {itemValue} = props
+
+    const transl = useLocale(dictionary)
+
+    const values = itemValue.translations[props.locale]
+    const {errors: initErrors, validations} = useMapInputs(initValues)
+
+    const [errors, setErrors] = useState({...initErrors})
+    const errorCountRef = useRef(0)
+
+    const locale = useParams().locale as Locale
+
+    const changeRef = useRef((event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
+    })
+
+    return {transl, props, values, errors, setErrors, validations, errorCountRef, locale, changeRef}
+}
+const useHandleActions = (state: ReturnType<typeof useGetState>) => {
+    const {changeRef, values, props} = state
+    const {setItemValue, itemValue} = props
+
+    changeRef.current = (event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
+        const {value, name} = inputChange<typeof values>(event);
+        (values[name] as typeof value) = value
+        setItemValue({...itemValue, ...values})
+        validateValuesAndCount({...state, validateName: name})
+    }
+
+    const onChange = (event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
+        changeRef.current(event)
+    }
+
+    useEffect(() => {
+        validateValuesAndCount(state)
+    }, [])
+
+    return {...state, onChange}
+}
+
+const validateValuesAndCount = (state: ValidateValuesState) => {
+    const {errorCountRef, props: {setErrorCount, errorCount}} = state
+
+    const callback = () => {
+        validateValues(state)
+    }
+
+    updateErrorCount({
+        errorCountRef, setErrorCount, errorCount, callback
+    })
+}
+
+const validateValues = (state: ValidateValuesState) => {
+    const {errors, setErrors, validations, validateName, values, errorCountRef, locale} = state
+
+    validateInputAndCount({
+        validations, errors, errorCountRef, locale, name: validateName, values
+    })
+
+    setErrors({...errors})
+}

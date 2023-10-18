@@ -69,12 +69,13 @@ const useHandleEffects = (state: ReturnType<typeof useGetState>) => {
 }
 
 const useGetActions = (state: ReturnType<typeof useGetState>) => {
-    const {items, setCurrentPage, setItems} = state
+    const {items, setCurrentPage, setItems, setFormValue} = state
     const onAddItem: MouseAction = (event) => {
         event.preventDefault()
     }
-    const onUpdate = () => {
-
+    const onUpdate = (itemIndex: number) => {
+        const item = items[itemIndex]
+        setFormValue({action: 'update', itemIndex, item})
     }
     const onDelete = () => {
 

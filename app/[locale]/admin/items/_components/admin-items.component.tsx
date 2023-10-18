@@ -7,7 +7,6 @@ import {FC} from 'react'
 import ItemPreview from 'app/[locale]/admin/items/_components/item-preview/item-preview.component'
 import Pagination from 'app/_common/components/pagination/pagination.component'
 import ItemForm from 'app/[locale]/admin/items/_components/item-form/item-form.component'
-
 const AdminItems: FC = () => {
     const state = useAdminItems()
     const {items, user} = state
@@ -29,20 +28,20 @@ const Content = (props: ReturnType<typeof useAdminItems>) => {
     const {formValue, setFormValue} = props
 
     return (
-        <>
+        <div className={'admin-items-content admin container'}>
             {formValue ? (
                 <ItemForm {...formValue}/>
             ) : (
                 <Main {...props}/>
             )}
-        </>
+        </div>
     )
 }
 const Main = (props: ReturnType<typeof useAdminItems>) => {
     const {pagesNumber, onCurrentPage, currentPage, onAddItem, transl} = props
 
     return (
-        <div className={'admin-items-main admin container'}>
+        <div className={'admin-items-main admin'}>
             <Table {...props}/>
             <Pagination
                 className={'admin__pagination'}
@@ -85,6 +84,7 @@ const Table = (props: ReturnType<typeof useAdminItems>) => {
                     style={itemsStyles[index]}
                     item={item}
                     itemIndex={itemIndex}
+                    pageIndex={index}
                     onUpdate={onUpdate}
                     onDelete={onDelete}
                     key={item._id}

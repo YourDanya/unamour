@@ -1,9 +1,4 @@
-import {ReactNode} from 'react'
-import {NextPage} from 'next'
-import {ReactElement} from 'react'
-import {AppProps} from 'next/app'
 import {MouseEvent} from 'react'
-import {User} from 'app/_common/store/user/user.types'
 
 export type ElementContent = Record<string, string | string[] | object | object[]>
 

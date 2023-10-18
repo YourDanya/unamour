@@ -1,45 +1,39 @@
 import {validate} from 'app/_common/hooks/input/input.hooks'
-import {Locale} from 'app/_common/types/types'
-import {Validations} from 'app/_common/hooks/input/input.types'
-import {MutableRefObject} from 'react'
 import getKeys from 'app/_common/utils/typescript/get-keys/get-keys.utils'
+import {ValidateInputParams} from 'app/_common/utils/form/validate-input-and-count/validate-input-and-count.types'
+import {ValidateInputOneParams} from 'app/_common/utils/form/validate-input-and-count/validate-input-and-count.types'
 
-export const validateInputAndCount = <T extends string>(params: {
-    validations: Record<T, Validations>, name: T, values: Record<T, string | number | boolean>, errors: Record<T,string>, locale: Locale,
-    errCountRef: MutableRefObject<number>, shouldSetErr?: boolean
-}) => {
-    const {validations, locale, name, values, errCountRef, errors, shouldSetErr} = params
+export const validateInputAndCount = <T extends string>(params: ValidateInputParams<T>) => {
+    const {name} = params
+    if (name) {
+        validateOne({...params as ValidateInputOneParams<T>})
+    }
+    else {
+        validateAll({...params})
+    }
+}
+
+const validateOne = <T extends string> (params: ValidateInputOneParams<T>) => {
+    const {validations, locale, name, values, errorCountRef, errors} = params
     const value = values[name]
 
     const beforeError = errors[name]
     const error = validate({name, value, validations: validations[name]}, locale)
 
     if (beforeError && !error ) {
-        errCountRef.current++
+        errorCountRef.current++
     }
     if (!beforeError && error) {
-        errCountRef.current--
+        errorCountRef.current--
     }
 
-    if (shouldSetErr) {
-
-    }
-
-    return {error}
+    errors[name] = error
 }
 
-export const ValidateInputAndCountAll = <T extends string>(params: {
-    validations: Record<T, Validations>, values: Record<T, string | number | boolean>, errors: Record<T,string>, locale: Locale,
-    errCountRef: MutableRefObject<number>
-}) => {
-    const {validations, locale, values, errCountRef, errors} = params
-
-    const newErrors = {...errors}
+const validateAll = <T extends string>(params: ValidateInputParams<T>) => {
+    const {values} = params
 
     getKeys(values).forEach((name) => {
-        const {error} = validateInputAndCount({validations, errors: newErrors, values, errCountRef, name, locale})
-        newErrors[name] = error
+        validateOne({...params, name})
     })
-
-    return {newErrors}
 }

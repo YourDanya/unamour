@@ -1,7 +1,3 @@
-import {MutableRefObject} from 'react'
-import {FetchedItem} from 'app/_common/types/fetched-item'
-import {DoubleNode} from 'app/_common/utils/main/main.types'
+import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
 
-export type ItemVariantsProps = {}
-
-export type ItemNode = DoubleNode<FetchedItem>
+export type ItemVariantsProps = ItemFormState

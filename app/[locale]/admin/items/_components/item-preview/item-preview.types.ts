@@ -4,6 +4,7 @@ import {ItemPreviewStyles} from 'app/[locale]/admin/items/_components/admin-item
 export type ItemPreviewProps = {
     item: FetchedItem,
     itemIndex: number,
+    pageIndex: number
     onUpdate: (itemIndex: number) => void,
     onDelete: (itemIndex: number) => void,
     style: ItemPreviewStyles

@@ -1,6 +1,5 @@
 import {FC} from 'react'
 import {memo} from 'react'
-import {ItemCommonProps} from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.types'
 import Checkbox from 'app/_common/components/checkbox/checkbox.component'
 import Dropdown from 'app/_common/components/dropdown/dropdown.component'
 import RadioButtons from 'app/_common/components/radio-buttons/radio-buttons.component'

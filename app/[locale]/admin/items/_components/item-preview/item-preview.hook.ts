@@ -6,7 +6,7 @@ import {clothingDictionary} from 'app/_common/content/categories/categories.cont
 import {dictionary} from 'app/[locale]/admin/items/_components/item-preview/item-preview.content'
 
 const useItemPreview = (props: ItemPreviewProps) => {
-    const {item, itemIndex} = props
+    const {item, pageIndex} = props
 
     const {translations, variants, slugCategory} = item
 
@@ -22,11 +22,11 @@ const useItemPreview = (props: ItemPreviewProps) => {
     }, [])
 
     const onUpdate = () => {
-        props.onUpdate(itemIndex)
+        props.onUpdate(pageIndex)
     }
 
     const onDelete = () => {
-        props.onDelete(itemIndex)
+        props.onDelete(pageIndex)
     }
 
     const transl = useLocale(dictionary)

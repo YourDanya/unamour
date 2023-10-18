@@ -2,17 +2,18 @@ import {FC} from 'react'
 import useItemTranslations from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translations.hook'
 import ItemTranslation
     from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.component'
-import {memo} from 'react'
-import getKeys from 'app/_common/utils/typescript/get-keys/get-keys.utils'
+import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
+import {locales} from 'app/_common/content/locale/locale.content'
 
-const ItemTranslations: FC = () => {
-    const {transl, translations} = useItemTranslations()
+const ItemTranslations: FC<ItemFormState> = (props) => {
+    const {transl} = useItemTranslations()
 
     return (
         <div className={'item-form__block'}>
             <div className={'item-form__title'}>{transl.title}</div>
-            {getKeys(translations).map((locale) => (
+            {locales.map((locale) => (
                 <ItemTranslation
+                    {...props}
                     key={locale}
                     locale={locale}
                 />
@@ -21,4 +22,4 @@ const ItemTranslations: FC = () => {
     )
 }
 
-export default memo(ItemTranslations)
+export default ItemTranslations

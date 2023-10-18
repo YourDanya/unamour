@@ -11,15 +11,16 @@ import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
 
 const ItemForm: FC<FormValue> = (props) => {
     const {itemIndex} = props
-    const {transl} = useItemForm(props)
+    const state = useItemForm(props)
+    const {transl} = state
 
     return (
         <form className={`admin-items-item-form item-form ${false ? 'item-form--deleted' : ''}`}>
             <div className={'item-form__title item-form__title--main'}>
                 {transl.item} №{itemIndex + 1}
             </div>
-            <ItemCommon {...props}/>
-            {/*<ItemTranslations/>*/}
+            <ItemCommon {...state}/>
+            <ItemTranslations {...state}/>
             {/*<ItemVariants/>*/}
             {/*<ItemActions deleted={false}/>*/}
         </form>

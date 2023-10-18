@@ -1,18 +1,10 @@
-import {useCallback} from 'react'
-import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
-import itemTranslationsContent from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translations.content'
+import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translations.content'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 
 const useItemTranslations = () => {
-    const [transl] = useLocale(itemTranslationsContent)
+    const transl = useLocale(dictionary)
 
-    const translations = useItemFormStore(useCallback((state) => {
-        return state.itemValue.translations
-    }, []))
-
-    return {transl, translations}
+    return {transl}
 }
-
-
 
 export default useItemTranslations
