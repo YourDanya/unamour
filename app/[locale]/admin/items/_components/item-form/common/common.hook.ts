@@ -3,9 +3,9 @@ import {useEffect} from 'react'
 import {useState} from 'react'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {clothingDictionary} from 'app/_common/content/categories/categories.content'
-import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.content'
+import {dictionary} from 'app/[locale]/admin/items/_components/item-form/common/common.content'
 import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
-import {initValues} from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.content'
+import {initValues} from 'app/[locale]/admin/items/_components/item-form/common/common.content'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
 import {ChangeEvent} from 'react'
@@ -15,15 +15,16 @@ import {useParams} from 'next/navigation'
 import {Locale} from 'app/_common/types/types'
 import {validateInputAndCount} from 'app/_common/utils/form/validate-input-and-count/validate-input-and-count'
 import {updateErrorCount} from 'app/_common/utils/form/update-error-count/update-error-count.util'
+import {CommonProps} from 'app/[locale]/admin/items/_components/item-form/common/common.types'
 
-const useItemCommon = (props: ItemFormState) => {
+const useCommon = (props: CommonProps) => {
     const state = useGetState(props)
     const actionsState = useHandleActions(state)
 
     return actionsState
 }
 
-export default useItemCommon
+export default useCommon
 
 const useGetState = (props: ItemFormState) => {
     const transl = useLocale(dictionary)

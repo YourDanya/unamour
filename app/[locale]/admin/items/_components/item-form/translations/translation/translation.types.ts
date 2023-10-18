@@ -2,10 +2,10 @@ import {Locale} from 'app/_common/types/types'
 import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
 import {
     initValues
-} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.content'
+} from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.content'
 import {
     useGetState
-} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.hook'
+} from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.hook'
 
 export type ItemTranslationProps = {
     locale: Locale

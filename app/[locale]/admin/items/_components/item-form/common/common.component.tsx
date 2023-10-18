@@ -3,12 +3,13 @@ import {memo} from 'react'
 import Checkbox from 'app/_common/components/checkbox/checkbox.component'
 import Dropdown from 'app/_common/components/dropdown/dropdown.component'
 import RadioButtons from 'app/_common/components/radio-buttons/radio-buttons.component'
-import useItemCommon from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.hook'
+import useItemCommon from 'app/[locale]/admin/items/_components/item-form/common/common.hook'
 import Input from 'app/_common/components/input/input.component'
 import {clothing} from 'app/_common/content/categories/categories.content'
 import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
+import {CommonProps} from 'app/[locale]/admin/items/_components/item-form/common/common.types'
 
-const ItemCommon: FC<ItemFormState> = (props) => {
+const Common: FC<CommonProps> = (props) => {
     const {transl, values, onChange, categoryTransl, errors} = useItemCommon(props)
 
     return (
@@ -85,4 +86,4 @@ const ItemCommon: FC<ItemFormState> = (props) => {
     )
 }
 
-export default memo(ItemCommon)
+export default Common

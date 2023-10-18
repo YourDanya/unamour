@@ -3,9 +3,9 @@ import {baseURL} from 'app/_common/utils/api/api.utils'
 import Button from 'app/_common/components/button/button.component'
 import {
     ItemImageProps
-} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-image/item-image.types'
+} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.types'
 import useItemImage
-    from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-image/item-image.hook'
+    from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.hook'
 
 const ItemImage: FC<ItemImageProps> = (props) => {
     const {transl, onUpdate, url, onDelete} = useItemImage(props)

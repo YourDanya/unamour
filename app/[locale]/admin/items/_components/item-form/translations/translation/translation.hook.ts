@@ -1,13 +1,13 @@
 import {useMapInputs} from 'app/_common/hooks/input/input-v2.hooks'
 import {
     ItemTranslationProps
-} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.types'
+} from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.types'
 import {
     dictionary
-} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.content'
+} from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.content'
 import {
     initValues
-} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.content'
+} from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.content'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {useState} from 'react'
 import {validateInputAndCount} from 'app/_common/utils/form/validate-input-and-count/validate-input-and-count'
@@ -16,13 +16,13 @@ import {useParams} from 'next/navigation'
 import {Locale} from 'app/_common/types/types'
 import {
     ValidateValuesState
-} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.types'
+} from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.types'
 import {useEffect} from 'react'
 import {ChangeEvent} from 'react'
 import {inputChange} from 'app/_common/utils/form/input-change/input-change.util'
 import {updateErrorCount} from 'app/_common/utils/form/update-error-count/update-error-count.util'
 
-const useItemTranslation = (props: ItemTranslationProps) => {
+const useTranslation = (props: ItemTranslationProps) => {
 
     const state = useGetState(props)
     const withActionsState = useHandleActions(state)
@@ -30,7 +30,7 @@ const useItemTranslation = (props: ItemTranslationProps) => {
     return withActionsState
 }
 
-export default useItemTranslation
+export default useTranslation
 
 export const useGetState = (props: ItemTranslationProps) => {
     const {itemValue} = props

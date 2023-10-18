@@ -1,4 +1,4 @@
-const itemImagesContent = {
+const imagesContent = {
     translations: {
         ua: {
             noImages: 'Кількість картинок не може дорівнювати нулю.',
@@ -15,4 +15,4 @@ const itemImagesContent = {
     }
 }
 
-export default itemImagesContent
+export default imagesContent

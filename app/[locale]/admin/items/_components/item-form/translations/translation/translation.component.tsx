@@ -2,14 +2,13 @@ import {FC} from 'react'
 import Textarea from 'app/_common/components/textarea/textarea.component'
 import {
     ItemTranslationProps
-} from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.types'
-import useItemTranslation
-    from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.hook'
+} from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.types'
 import Input from 'app/_common/components/input/input.component'
+import useTranslation from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.hook'
 
-const ItemTranslation: FC<ItemTranslationProps> = (props) => {
+const Translation: FC<ItemTranslationProps> = (props) => {
     const {locale} = props
-    const {transl, values, errors, onChange} = useItemTranslation(props)
+    const {transl, values, errors, onChange} = useTranslation(props)
     
     return (
         <div className={'item-form__block'}>
@@ -52,4 +51,4 @@ const ItemTranslation: FC<ItemTranslationProps> = (props) => {
     )
 }
 
-export default ItemTranslation
+export default Translation

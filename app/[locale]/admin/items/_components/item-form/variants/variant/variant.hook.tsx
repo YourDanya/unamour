@@ -1,22 +1,21 @@
 import {useMapInputs} from 'app/_common/hooks/input/input-v2.hooks'
 import {MouseAction} from 'app/_common/types/types'
-import {ItemVariantProps} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-variant.types'
+import {ItemVariantProps} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.types'
 import {useMemo} from 'react'
-import {useInputChange} from 'app/_common/hooks/input/input-v2.hooks'
 import getEntries from 'app/_common/utils/typescript/get-entries/get-entries.util'
 import {useEffect} from 'react'
 import {useState} from 'react'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {colorDictionary} from 'app/_common/content/color/color.content'
-import {colorValues} from 'app/_common/content/color/color.content'
-import {sizes as sizesList} from 'app/_common/content/size/size.content'
-import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-variant.content'
+import {dictionary} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.content'
 import {useRef} from 'react'
 import {
     initInputs
-} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-variant.content'
+} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.content'
 import {ChangeEvent} from 'react'
 import {inputChange} from 'app/_common/utils/form/input-change/input-change.util'
+import {mapSizes} from 'app/[locale]/admin/items/_components/item-form/variants/variant/mappers'
+import {mapColors} from 'app/[locale]/admin/items/_components/item-form/variants/variant/mappers'
 const useItemVariant = (props: ItemVariantProps) => {
 
     useEffect(() => {
@@ -66,14 +65,14 @@ const useItemVariant = (props: ItemVariantProps) => {
 
 export default useItemVariant
 
-const useGetState = (props: ItemVariantProps) => {
+export const useGetState = (props: ItemVariantProps) => {
     const colorsTransl = useLocale(colorDictionary)
     const transl = useLocale(dictionary)
 
     const errorCountRef = useRef(0)
 
     const {itemValue, variantIndex} = props
-    const {color, price} = itemValue.variants[variantIndex]
+    const {color, price, sizes} = itemValue.variants[variantIndex]
     const values = {color, price}
 
     const {validations, errors: initErrors} = useMapInputs(initInputs)
@@ -81,40 +80,31 @@ const useGetState = (props: ItemVariantProps) => {
 
     const changeRef = useRef((event: ChangeEvent<HTMLInputElement>) => {})
 
-    const sizeValues = useMemo(() => {
-        const sizeMap = sizes.reduce((sizeMap, size) => {
-            sizeMap[size] = true
-            return sizeMap
-        }, {} as Record<string, boolean>)
-
-        return sizesList.reduce((sizeObject, size) => {
-            sizeObject[size] = sizeMap[size] ?? false
-            return sizeObject
-        }, {} as Record<string, boolean>)
-    }, [sizes])
-
-    const colors = useMemo(() => {
-        return colorValues.reduce((colors, {slug, code}, index) => {
-            colors.values.push(slug)
-            colors.styles.push({backgroundColor: code})
-            colors.labels.push(colorsTransl[index])
-            return colors
-        }, {
-            styles: [], labels: [], values: []
-        } as { styles: { backgroundColor: string }[], labels: string[], values: string[] })
-    }, [])
-
     return {
-        colorsTransl, transl, errorCountRef, props, values, validations, errors, setErrors, changeRef
+        colorsTransl, transl, errorCountRef, props, values, validations, errors, setErrors, changeRef, sizes
     }
 }
 
 const useHandleEffects = (state: ReturnType<typeof useGetState>) => {
+    const {sizes} = state
+
     useEffect(() => {
         return () => {
             clearErrors(state)
         }
     }, [])
+
+    const sizeValues = useMemo(() => {
+        mapSizes(state)
+    }, [sizes])
+
+    const colors = useMemo(() => {
+        mapColors(state)
+    }, [])
+
+    return {
+        sizeValues, colors
+    }
 }
 
 const useActions = (state: ReturnType<typeof useGetState>) => {
@@ -123,9 +113,11 @@ const useActions = (state: ReturnType<typeof useGetState>) => {
     const {variants} = itemValue
     const onDeleteVariant:MouseAction = (event) => {
         event.preventDefault()
+
         if (variants.length === 1) {
             return
         }
+
         variants.splice(variantIndex, 1)
         setItemValue({...itemValue, variants})
     }
@@ -133,6 +125,7 @@ const useActions = (state: ReturnType<typeof useGetState>) => {
     changeRef.current = (event: ChangeEvent<HTMLInputElement>) => {
         const {value, name} = inputChange<typeof values>(event);
         (variants[variantIndex][name] as typeof value) = value
+
         setItemValue({...itemValue, variants})
     }
 
@@ -144,7 +137,4 @@ const clearErrors = (state: ReturnType<typeof useGetState>) => {
     if (errorCountRef.current !== 0) {
         setErrorCount(errorCount - errorCountRef.current)
     }
-}
-const mapSizes = () => {
-
 }

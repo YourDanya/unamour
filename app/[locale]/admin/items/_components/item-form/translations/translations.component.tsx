@@ -1,18 +1,17 @@
 import {FC} from 'react'
-import useItemTranslations from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translations.hook'
-import ItemTranslation
-    from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translation/item-translation.component'
+
 import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
 import {locales} from 'app/_common/content/locale/locale.content'
-
-const ItemTranslations: FC<ItemFormState> = (props) => {
-    const {transl} = useItemTranslations()
+import Translation from 'app/[locale]/admin/items/_components/item-form/translations/translation/translation.component'
+import useTranslations from 'app/[locale]/admin/items/_components/item-form/translations/translations.hook'
+const Translations: FC<ItemFormState> = (props) => {
+    const {transl} = useTranslations()
 
     return (
         <div className={'item-form__block'}>
             <div className={'item-form__title'}>{transl.title}</div>
             {locales.map((locale) => (
-                <ItemTranslation
+                <Translation
                     {...props}
                     key={locale}
                     locale={locale}
@@ -22,4 +21,4 @@ const ItemTranslations: FC<ItemFormState> = (props) => {
     )
 }
 
-export default ItemTranslations
+export default Translations

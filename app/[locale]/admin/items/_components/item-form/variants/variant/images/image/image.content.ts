@@ -1,4 +1,4 @@
-const itemImageContent = {
+const imageContent = {
     translations: {
         ua: {
             updateImage: 'змінити картинку',
@@ -15,4 +15,4 @@ const itemImageContent = {
     }
 }
 
-export default itemImageContent
+export default imageContent

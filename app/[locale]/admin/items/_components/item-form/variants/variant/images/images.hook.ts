@@ -1,13 +1,13 @@
 import {useRef} from 'react'
 import itemImagesContent
-    from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-images.content'
+    from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.content'
 import {MouseAction} from 'app/_common/types/types'
 import {ChangeEvent} from 'react'
 import {useCallback} from 'react'
 import {useEffect} from 'react'
 import {
     ItemImagesProps
-} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-images.types'
+} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
 import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
 import {useState} from 'react'
 import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'

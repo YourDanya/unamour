@@ -1,12 +1,9 @@
 'use client'
 
 import {FC} from 'react'
-import ItemVariants from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variants.component'
 import useItemForm from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
-import ItemCommon from 'app/[locale]/admin/items/_components/item-form/item-common/item-common.component'
-import ItemTranslations
-    from 'app/[locale]/admin/items/_components/item-form/item-translations/item-translations.component'
-import ItemActions from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.component'
+import Common from 'app/[locale]/admin/items/_components/item-form/common/common.component'
+import Translations from 'app/[locale]/admin/items/_components/item-form/translations/translations.component'
 import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
 
 const ItemForm: FC<FormValue> = (props) => {
@@ -19,8 +16,8 @@ const ItemForm: FC<FormValue> = (props) => {
             <div className={'item-form__title item-form__title--main'}>
                 {transl.item} №{itemIndex + 1}
             </div>
-            <ItemCommon {...state}/>
-            <ItemTranslations {...state}/>
+            <Common {...state}/>
+            <Translations {...state}/>
             {/*<ItemVariants/>*/}
             {/*<ItemActions deleted={false}/>*/}
         </form>

@@ -1,10 +1,10 @@
 import {MouseAction} from 'app/_common/types/types'
 import itemImageContent
-    from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-image/item-image.content'
+    from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.content'
 import {useEffect} from 'react'
 import {
     ItemImageProps
-} from 'app/[locale]/admin/items/_components/item-form/item-variants/item-variant/item-images/item-image/item-image.types'
+} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.types'
 import {useState} from 'react'
 import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 
