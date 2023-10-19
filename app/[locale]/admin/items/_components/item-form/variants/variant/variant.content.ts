@@ -44,7 +44,6 @@ export const dictionary = {
 }
 
 export const initInputs = {
-    price: {validations: {required: true, isNumber: true}},
-    color: {validations: {required: true}},
-    size: {validations: {}}
+    price: {validations: {required: true, isNumber: true, isNumberGreaterThanZero: true}},
+    color: {validations: {required: true}}
 }

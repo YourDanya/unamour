@@ -135,6 +135,7 @@ export const useInput: UseInput = (inputsObj, translInputs) => {
 
 export const validate = <T extends ValidationInput, >(input: T, locale: Locale) => {
     const value = input.value as string
+    const numValue = input.value as number
     const {validations, values, name, translInputs} = input
     const length = value?.length
     const errors: string[] = []
@@ -162,7 +163,7 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 break
             }
             case ('isNumber') : {
-                if (!/^\d+(\.\d{1,2})?$/.test(value)) errors.push({
+                if (typeof input.value === 'number' && !/^\d+(\.\d{1,2})?$/.test(numValue.toString())) errors.push({
                     ua: 'Введіть число.',
                     eng: 'Enter a number.',
                     ru: 'Введите число.'
@@ -170,9 +171,7 @@ export const validate = <T extends ValidationInput, >(input: T, locale: Locale) 
                 break
             }
             case ('isNumberGreaterThanZero') : {
-                // console.log('check isNumberGreaterThanZero')
-                // console.log('value', value)
-                if (!/(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)/.test(value)) errors.push({
+                if (numValue <= 0) errors.push({
                     ua: 'Введіть число більше нуля.',
                     eng: 'Enter a number greater than zero.',
                     ru: 'Введите число больше нуля.'

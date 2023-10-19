@@ -1,34 +1,17 @@
 import {useRef} from 'react'
-import itemImagesContent
-    from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.content'
 import {MouseAction} from 'app/_common/types/types'
 import {ChangeEvent} from 'react'
-import {useCallback} from 'react'
 import {useEffect} from 'react'
-import {
-    ItemImagesProps
-} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
-import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
+import {ItemImagesProps} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
 import {useState} from 'react'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
+import {dictionary} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.content'
 
 const useItemImages = (props: ItemImagesProps) => {
-    const [transl] = useLocale(itemImagesContent)
+    const transl = useLocale(dictionary)
     const {variantIndex} = props
 
     const modeRef = useRef({type: '', id: ''})
-
-    const {values, setItemImagesValues, itemImagesValuesRef, errorCountRef, setErrorCount} =
-        useItemFormStore(useCallback((state) => {
-            const {
-                itemValue: {variants}, itemImagesValues, setItemImagesValues, itemImagesValuesRef,
-                errorCountRef, setErrorCount
-            } = state
-            return {
-                variants, values: itemImagesValues[variantIndex], setItemImagesValues, itemImagesValuesRef, errorCountRef,
-                setErrorCount
-            }
-        }, [variantIndex]))
 
     const btnRef = useRef<HTMLInputElement>(null)
 
@@ -83,8 +66,6 @@ const useItemImages = (props: ItemImagesProps) => {
     const [imagesError, setImagesError] = useState('')
     const imagesErrRef = useRef('')
 
-    // variantIndex === 1 && console.log('values', values)
-
     useEffect(() => {
         if (!values || Object.keys(values).length === 0) {
             imagesErrRef.current = transl.noImages
@@ -105,7 +86,7 @@ const useItemImages = (props: ItemImagesProps) => {
         }
     }, [])
 
-    return {onUpdateImage, onDeleteImage, onAddImage, onSelect, values, btnRef, transl, imagesError}
+    return {onUpdateImage, onDeleteImage, onAddImage, onSelect, btnRef, transl, imagesError}
 }
 
 export default useItemImages

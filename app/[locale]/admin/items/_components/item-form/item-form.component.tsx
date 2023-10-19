@@ -5,6 +5,7 @@ import useItemForm from 'app/[locale]/admin/items/_components/item-form/item-for
 import Common from 'app/[locale]/admin/items/_components/item-form/common/common.component'
 import Translations from 'app/[locale]/admin/items/_components/item-form/translations/translations.component'
 import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
+import Variants from 'app/[locale]/admin/items/_components/item-form/variants/variants.component'
 
 const ItemForm: FC<FormValue> = (props) => {
     const {itemIndex} = props
@@ -18,7 +19,7 @@ const ItemForm: FC<FormValue> = (props) => {
             </div>
             <Common {...state}/>
             <Translations {...state}/>
-            {/*<ItemVariants/>*/}
+            <Variants {...state}/>
             {/*<ItemActions deleted={false}/>*/}
         </form>
     )

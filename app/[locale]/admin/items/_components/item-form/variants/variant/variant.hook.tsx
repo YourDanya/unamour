@@ -2,65 +2,29 @@ import {useMapInputs} from 'app/_common/hooks/input/input-v2.hooks'
 import {MouseAction} from 'app/_common/types/types'
 import {ItemVariantProps} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.types'
 import {useMemo} from 'react'
-import getEntries from 'app/_common/utils/typescript/get-entries/get-entries.util'
 import {useEffect} from 'react'
 import {useState} from 'react'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {colorDictionary} from 'app/_common/content/color/color.content'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.content'
 import {useRef} from 'react'
-import {
-    initInputs
-} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.content'
+import {initInputs} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.content'
 import {ChangeEvent} from 'react'
 import {inputChange} from 'app/_common/utils/form/input-change/input-change.util'
 import {mapSizes} from 'app/[locale]/admin/items/_components/item-form/variants/variant/mappers'
 import {mapColors} from 'app/[locale]/admin/items/_components/item-form/variants/variant/mappers'
+import {useParams} from 'next/navigation'
+import {Locale} from 'app/_common/types/types'
+import {clearErrors} from 'app/[locale]/admin/items/_components/item-form/variants/variant/validations'
+import {sizes as sizeList} from 'app/_common/content/size/size.content'
+import {validateValuesAndCount} from 'app/[locale]/admin/items/_components/item-form/variants/variant/validations'
+
 const useItemVariant = (props: ItemVariantProps) => {
+    const state = useGetState(props)
+    const withMemosState = useHandleEffectsAndMemos(state)
+    const withActionsState = useActions(withMemosState)
 
-    useEffect(() => {
-        const beforeCount = errRef.current.count
-
-        const {color, price} = itemValueRef.current.variants[variantIndex]
-        const values = {color, price}
-
-        getEntries(values).forEach(([name, value]) => onValidate(name, value))
-
-        if (!errRef.current.errors.color) {
-            const isColorNotUnique = itemValueRef.current.variants.reduce((count, {color}) => {
-                if (color === values.color) {
-                    count++
-                }
-                return count
-            }, 0) > 1
-
-            if (isColorNotUnique) {
-                errRef.current.count++
-                errRef.current.errors.color = transl.colorError
-            }
-        }
-
-        const beforeSizeError = errRef.current.errors.size
-        if (sizes.length !== 0) {
-            errRef.current.errors.size = ''
-            if (beforeSizeError) {
-                errRef.current.count--
-            }
-        } else {
-            errRef.current.errors.size = transl.sizeError
-            if (!beforeSizeError) {
-                errRef.current.count++
-            }
-        }
-
-        setErrors({...errRef.current.errors})
-
-        const afterCount = errRef.current.count
-        if (afterCount!==beforeCount) {
-            errorCountRef.current+= afterCount - beforeCount
-            setErrorCount(errorCountRef.current)
-        }
-    }, [itemValue.variants, sizes])
+    return withActionsState
 }
 
 export default useItemVariant
@@ -72,43 +36,50 @@ export const useGetState = (props: ItemVariantProps) => {
     const errorCountRef = useRef(0)
 
     const {itemValue, variantIndex} = props
-    const {color, price, sizes} = itemValue.variants[variantIndex]
+    const {variants} = itemValue
+    const {color, price, sizes} = variants[variantIndex]
     const values = {color, price}
 
     const {validations, errors: initErrors} = useMapInputs(initInputs)
     const [errors, setErrors] = useState({...initErrors})
+    const [sizeError, setSizeError] = useState('')
 
     const changeRef = useRef((event: ChangeEvent<HTMLInputElement>) => {})
+    const sizeChangeRef = useRef((event: ChangeEvent<HTMLInputElement>) => {})
+
+    const locale = useParams().locale as Locale
 
     return {
-        colorsTransl, transl, errorCountRef, props, values, validations, errors, setErrors, changeRef, sizes
+        colorsTransl, transl, errorCountRef, props, values, validations, errors, setErrors, changeRef, sizes,
+        locale, variants, sizeError, setSizeError, sizeChangeRef
     }
 }
 
-const useHandleEffects = (state: ReturnType<typeof useGetState>) => {
+const useHandleEffectsAndMemos = (state: ReturnType<typeof useGetState>) => {
     const {sizes} = state
 
     useEffect(() => {
+        validateValuesAndCount(state)
         return () => {
             clearErrors(state)
         }
     }, [])
 
     const sizeValues = useMemo(() => {
-        mapSizes(state)
+        return mapSizes(state)
     }, [sizes])
 
     const colors = useMemo(() => {
-        mapColors(state)
+        return mapColors(state)
     }, [])
 
     return {
-        sizeValues, colors
+        ...state, sizeValues, colors
     }
 }
 
-const useActions = (state: ReturnType<typeof useGetState>) => {
-    const {props, changeRef, values} = state
+const useActions = (state: ReturnType<typeof useHandleEffectsAndMemos>) => {
+    const {props, changeRef, values, sizeChangeRef, sizeValues} = state
     const {itemValue, setItemValue, variantIndex} = props
     const {variants} = itemValue
     const onDeleteVariant:MouseAction = (event) => {
@@ -124,17 +95,33 @@ const useActions = (state: ReturnType<typeof useGetState>) => {
 
     changeRef.current = (event: ChangeEvent<HTMLInputElement>) => {
         const {value, name} = inputChange<typeof values>(event);
-        (variants[variantIndex][name] as typeof value) = value
+        (values[name] as typeof value) = value;
+        (variants[variantIndex]) = {...variants[variantIndex], ...values}
 
         setItemValue({...itemValue, variants})
+        validateValuesAndCount({...state, validateName: name})
+    }
+    const onInputsChange = (event: ChangeEvent<HTMLInputElement>) => {
+        changeRef.current(event)
     }
 
-    return {...state, onDeleteVariant}
+    sizeChangeRef.current = (event: ChangeEvent<HTMLInputElement>) => {
+        const {value, name} = inputChange<Record<string, boolean>>(event);
+        sizeValues[name] = value
+
+        const sizes = sizeList.filter((size) => sizeValues[size])
+        variants[variantIndex]['sizes'] = sizes
+
+        setItemValue({...itemValue, variants})
+        validateValuesAndCount({...state, sizes, validateName: 'size'})
+    }
+
+    const onSizesChange = (event: ChangeEvent<HTMLInputElement>) => {
+        sizeChangeRef.current(event)
+    }
+
+    return {...state, onDeleteVariant, onInputsChange, onSizesChange}
 }
 
-const clearErrors = (state: ReturnType<typeof useGetState>) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}} = state
-    if (errorCountRef.current !== 0) {
-        setErrorCount(errorCount - errorCountRef.current)
-    }
-}
+
+

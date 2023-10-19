@@ -13,9 +13,9 @@ import {useRef} from 'react'
 import {inputChange} from 'app/_common/utils/form/input-change/input-change.util'
 import {useParams} from 'next/navigation'
 import {Locale} from 'app/_common/types/types'
-import {validateInputAndCount} from 'app/_common/utils/form/validate-input-and-count/validate-input-and-count'
-import {updateErrorCount} from 'app/_common/utils/form/update-error-count/update-error-count.util'
 import {CommonProps} from 'app/[locale]/admin/items/_components/item-form/common/common.types'
+import {validateSlugAndCount} from 'app/[locale]/admin/items/_components/item-form/common/validation'
+import {validateValuesAndCount} from 'app/[locale]/admin/items/_components/item-form/common/validation'
 
 const useCommon = (props: CommonProps) => {
     const state = useGetState(props)
@@ -26,7 +26,7 @@ const useCommon = (props: CommonProps) => {
 
 export default useCommon
 
-const useGetState = (props: ItemFormState) => {
+export const useGetState = (props: ItemFormState) => {
     const transl = useLocale(dictionary)
     const categoryTransl = useLocale(clothingDictionary)
 
@@ -41,8 +41,7 @@ const useGetState = (props: ItemFormState) => {
         'slug', 'slugCategory', 'oldPrice', 'best', 'special', 'coming', 'weight', 'volume'
     ])
 
-    const changeRef = useRef((event: ChangeEvent<HTMLInputElement>) => {
-    })
+    const changeRef = useRef((event: ChangeEvent<HTMLInputElement>) => {})
 
     const locale = useParams().locale as Locale
 
@@ -80,46 +79,3 @@ const useHandleActions = (state: ReturnType<typeof useGetState>) => {
     return {...state, onChange, checkSlug}
 }
 
-const validateSlugAndCount = (state: ReturnType<typeof useGetState> & { valid: boolean }) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}, valid} = state
-
-    const callback = () => {
-        validateSlug({...state, valid})
-    }
-
-    updateErrorCount({
-        errorCountRef, setErrorCount, errorCount, callback
-    })
-}
-
-const validateSlug = (state: ReturnType<typeof useGetState> & { valid: boolean }) => {
-    const {valid, errors, transl} = state
-
-    if (valid && errors.slug) {
-        errors.slug = ''
-    }
-    if (!valid && !errors.slug) {
-        errors.slug = transl.uniqueSlug
-    }
-}
-
-const validateValuesAndCount = (state: ReturnType<typeof useGetState> & { validateName?: keyof typeof initValues }) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}} = state
-
-    const callback = () => {
-        validateValues(state)
-    }
-
-    updateErrorCount({
-        errorCountRef, setErrorCount, errorCount, callback
-    })
-}
-
-const validateValues = (state: ReturnType<typeof useGetState> & { validateName?: keyof typeof initValues }) => {
-    const {errors, setErrors, validations, locale, validateName, values, errorCountRef} = state
-
-    validateInputAndCount({
-        validations, errors, errorCountRef, locale, name: validateName, values
-    })
-    setErrors({...errors})
-}

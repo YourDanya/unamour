@@ -28,6 +28,7 @@ const Common: FC<CommonProps> = (props) => {
             <Input
                 className={'item-form__input'}
                 name={'oldPrice'}
+                type={'number'}
                 placeholder={transl.inputs.oldPrice}
                 value={values.oldPrice}
                 onChange={onChange}
