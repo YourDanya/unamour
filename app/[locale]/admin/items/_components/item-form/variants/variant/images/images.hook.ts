@@ -2,91 +2,116 @@ import {useRef} from 'react'
 import {MouseAction} from 'app/_common/types/types'
 import {ChangeEvent} from 'react'
 import {useEffect} from 'react'
-import {ItemImagesProps} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
+import {ImagesProps} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
 import {useState} from 'react'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.content'
+import {ImagesState} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
+import {WithEventState} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
+import {NewImageValue} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 
-const useItemImages = (props: ItemImagesProps) => {
+const useItemImages = (props: ImagesProps) => {
+    const state = useGestState(props)
+    const withStateActions = useActions(state)
+    useHandleEffets(state)
+
+    return withStateActions
+}
+
+export default useItemImages
+
+export const useGestState = (props: ImagesProps) => {
+    const {imageValues, variantIndex} = props
+    const values = imageValues[variantIndex]
+
     const transl = useLocale(dictionary)
-    const {variantIndex} = props
 
-    const modeRef = useRef({type: '', id: ''})
-
+    const updateIndexRef = useRef(- 1)
     const btnRef = useRef<HTMLInputElement>(null)
+    const unmountRef = useRef(() => {})
 
-    const onUpdateImage = (id: string) => {
-        modeRef.current = {type: 'update', id}
+    const [imagesError, setImagesError] = useState('')
+
+    return {props, transl, updateIndexRef, btnRef, imagesError, setImagesError, values, unmountRef}
+}
+const useActions = (state: ImagesState) => {
+    const {updateIndexRef, btnRef, values, setImagesError, transl, props: {imageValues, setImageValues}} = state
+    const onUpdateImage = (index: number) => {
+        updateIndexRef.current = index
         btnRef?.current?.click()
     }
 
-    const onDeleteImage = (id: string) => {
-        delete itemImagesValuesRef.current[variantIndex][id]
-        setItemImagesValues(itemImagesValuesRef.current)
+    const onDeleteImage = (imageIndex: number) => {
+        values.splice(imageIndex, 1)
+        setImageValues([...imageValues])
 
-        if (Object.keys(values).length === 0) {
-            imagesErrRef.current = transl.noImages
+        if (values.length === 0) {
             setImagesError(transl.noImages)
-            errorCountRef.current += 1
-            setErrorCount(errorCountRef.current)
         }
     }
 
     const onAddImage: MouseAction = (event) => {
         event.preventDefault()
-        modeRef.current = {type: 'create', id: new Date().toString()}
         btnRef?.current?.click()
     }
 
     const onSelect = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]
-        if (!file) {
-            return
-        }
-
-        let {id} = modeRef.current
-
-        if (Object.keys(values).length === 0) {
-            imagesErrRef.current = ''
-            setImagesError('')
-            errorCountRef.current -= 1
-            setErrorCount(errorCountRef.current)
-        }
-
-        if (modeRef.current.type === 'create') {
-            itemImagesValuesRef.current[variantIndex][id] = {file : null, url: ''}
-        }
-
-        itemImagesValuesRef.current[variantIndex][id].file = file
-        setItemImagesValues({...itemImagesValuesRef.current})
-
-        modeRef.current = {type: '', id: ''}
+        select({...state, event})
     }
 
-    const [imagesError, setImagesError] = useState('')
-    const imagesErrRef = useRef('')
+    return {
+        ...state, onUpdateImage, onDeleteImage, onAddImage, onSelect
+    }
+}
+const select = (state: WithEventState) => {
+    const {event, values, setImagesError, props, updateIndexRef} = state
+    const {errorCount, setErrorCount, imageValues, setImageValues} = props
 
-    useEffect(() => {
-        if (!values || Object.keys(values).length === 0) {
-            imagesErrRef.current = transl.noImages
-            setImagesError(transl.noImages)
-            errorCountRef.current += 1
-            setErrorCount(errorCountRef.current)
+    const file = event.target.files?.[0]
+    if (!file) {
+        return
+    }
+    if (values.length === 0) {
+        setImagesError('')
+        setErrorCount(errorCount - 1)
+    }
+
+    const url = URL.createObjectURL(file)
+
+    if (updateIndexRef.current === -1) {
+        values.push({url, file})
+    } else {
+        const value = values[updateIndexRef.current] as NewImageValue
+        if (value.file) {
+            URL.revokeObjectURL(value.url)
         }
-    }, [])
+        values[updateIndexRef.current] = {url, file}
+    }
 
-    useEffect(() => {
-        return () => {
-            itemImagesValuesRef.current.splice(variantIndex, 1)
-            setItemImagesValues(itemImagesValuesRef.current)
-            if (imagesErrRef.current) {
-                errorCountRef.current -= 1
-                setErrorCount(errorCountRef.current)
-            }
-        }
-    }, [])
-
-    return {onUpdateImage, onDeleteImage, onAddImage, onSelect, btnRef, transl, imagesError}
+    setImageValues([...imageValues])
 }
 
-export default useItemImages
+const useHandleEffets = (state: ImagesState) => {
+    const {unmountRef, imagesError, values, setImagesError, transl, props: {setErrorCount, errorCount}} = state
+
+    unmountRef.current = () => {
+        if (imagesError) {
+            setErrorCount(errorCount - 1)
+        }
+        values.forEach((value) => {
+            if ('file' in value) {
+                URL.revokeObjectURL(value.url)
+            }
+        })
+    }
+
+    useEffect(() => {
+        if (values.length === 0) {
+            setImagesError(transl.noImages)
+            setErrorCount(errorCount + 1)
+        }
+        return () => {
+            unmountRef.current()
+        }
+    }, [])
+}

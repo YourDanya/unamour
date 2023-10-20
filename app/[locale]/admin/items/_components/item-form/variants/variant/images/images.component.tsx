@@ -1,27 +1,23 @@
 import {FC} from 'react'
-import ItemImage
-    from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.component'
+import ItemImage from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.component'
 import Button from 'app/_common/components/button/button.component'
-import useItemImages
-    from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.hook'
-import {
-    ItemImagesProps
-} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
+import useItemImages from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.hook'
+import {ImagesProps} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
 import FormMessage from 'app/_common/components/form-message/form-message.component'
 
-const ItemImages:FC<ItemImagesProps> = (props) => {
+const ItemImages:FC<ImagesProps> = (props) => {
     const {
         onUpdateImage, onDeleteImage, onAddImage, onSelect, values, btnRef, transl, imagesError
     } = useItemImages(props)
 
     return (
         <div>
-            {values && Object.entries(values).map(([id, {file, url}]) => (
+            {values.map((value, index) => (
                 <ItemImage
-                    key={id}
-                    id={id}
-                    file={file}
-                    url={url}
+                    index={index}
+                    key={value.url}
+                    file={value.file}
+                    url={value.url}
                     onUpdateImage={onUpdateImage}
                     onDeleteImage={onDeleteImage}
                 />

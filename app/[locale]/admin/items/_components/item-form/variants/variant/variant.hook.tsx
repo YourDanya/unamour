@@ -80,7 +80,7 @@ const useHandleEffectsAndMemos = (state: ReturnType<typeof useGetState>) => {
 
 const useActions = (state: ReturnType<typeof useHandleEffectsAndMemos>) => {
     const {props, changeRef, values, sizeChangeRef, sizeValues} = state
-    const {itemValue, setItemValue, variantIndex} = props
+    const {itemValue, setItemValue, variantIndex, imageValues, setImageValues} = props
     const {variants} = itemValue
     const onDeleteVariant:MouseAction = (event) => {
         event.preventDefault()
@@ -91,6 +91,9 @@ const useActions = (state: ReturnType<typeof useHandleEffectsAndMemos>) => {
 
         variants.splice(variantIndex, 1)
         setItemValue({...itemValue, variants})
+
+        imageValues.splice(variantIndex, 1)
+        setImageValues([...imageValues])
     }
 
     changeRef.current = (event: ChangeEvent<HTMLInputElement>) => {

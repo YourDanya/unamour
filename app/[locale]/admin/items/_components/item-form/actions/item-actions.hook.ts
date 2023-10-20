@@ -1,29 +1,9 @@
-import {createItemImagesMap} from 'app/[locale]/admin/items/_components/item-form/utils/item-form.utils'
 import {MouseAction} from 'app/_common/types/types'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
-import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
-import {useCallback} from 'react'
-import useItemActionsApi from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions-api.hook'
-import {DeleteItemImagesData} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
-import {ItemActionsProps} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
-import {useItemFormStore} from 'app/[locale]/admin/items/_components/item-form/store/item-form.store'
-import {shallow} from 'zustand/shallow'
-import {Entry} from 'app/_common/types/types'
-import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.content'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 
 const useItemActions = (props: ItemActionsProps) => {
     const transl = useLocale(dictionary)
-
-    const {
-        itemValueRef, errorCount, itemImagesValuesRef, initItemImagesMapRef, _id, modalState, closeModal
-    } = useItemFormStore(useCallback((state) => {
-        const {_id} = state.itemValue
-        const peeked = peek(state, [
-            'itemValueRef', 'errorCount', 'itemImagesValuesRef', 'initItemImagesMapRef', 'modalState', 'closeModal',
-        ])
-        return {...peeked, _id}
-    }, []), shallow)
 
     const {actions, messages, setMessages, stackActions, stackCreateImages} = useItemActionsApi()
 

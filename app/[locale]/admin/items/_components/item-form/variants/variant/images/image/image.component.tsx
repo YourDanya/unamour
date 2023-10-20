@@ -7,8 +7,9 @@ import {
 import useItemImage
     from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.hook'
 
-const ItemImage: FC<ItemImageProps> = (props) => {
-    const {transl, onUpdate, url, onDelete} = useItemImage(props)
+const Image: FC<ItemImageProps> = (props) => {
+    const {url} = props
+    const {transl, onUpdate, onDelete} = useItemImage(props)
 
     return (
         <div className={'item-form__image-wrapper'}>
@@ -27,4 +28,4 @@ const ItemImage: FC<ItemImageProps> = (props) => {
     )
 }
 
-export default ItemImage
+export default Image

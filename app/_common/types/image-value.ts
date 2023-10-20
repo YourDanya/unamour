@@ -1,0 +1,1 @@
+export type ImageValue = {path: string, url: string}

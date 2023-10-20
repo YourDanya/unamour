@@ -1,15 +1,10 @@
-import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
 import {useState} from 'react'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-form.content'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
-import {useRef} from 'react'
-import {useEffect} from 'react'
-const useItemForm = (props: FormValue) => {
-
-    const time = useRef(0)
-
-    // time.current = performance.now()
-
+import {FormImageValue} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+import {ItemFormProps} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+import {AdminItem} from 'app/_common/types/admin-item'
+const useItemForm = (props: ItemFormProps) => {
     const transl = useLocale(dictionary)
     const {item} = props
 
@@ -18,17 +13,27 @@ const useItemForm = (props: FormValue) => {
     const [itemValue, setItemValue] = useState(item)
     const [errorCount, setErrorCount] = useState(0)
 
-    console.log('itemValue', itemValue)
+    const [imageValues, setImageValues] = useState(() => mapImages(itemValue))
 
-    // useEffect(() => {
-    //     console.log(performance.now() - time.current)
-    // })
+    console.log('imageValues', imageValues)
 
     return {
-        transl, itemValue, setItemValue, errorCount, setErrorCount, initSlug
+        transl, itemValue, setItemValue, errorCount, setErrorCount, initSlug, imageValues, setImageValues
     }
 }
 
 export default useItemForm
 
 export type ItemFormState = ReturnType<typeof useItemForm>
+
+const mapImages = (itemValue: AdminItem): FormImageValue[][] => {
+    return itemValue.variants.map(({images}) => {
+        return images
+    })
+}
+
+// const time = useRef(0)
+// time.current = performance.now()
+// useEffect(() => {
+//     console.log(performance.now() - time.current)
+// })

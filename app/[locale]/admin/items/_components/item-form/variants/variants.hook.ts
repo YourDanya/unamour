@@ -1,16 +1,22 @@
-import {ItemVariant} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {MouseAction} from 'app/_common/types/types'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/variants/variants.content'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
-import {ItemVariantsProps} from 'app/[locale]/admin/items/_components/item-form/variants/variants.types'
-const useItemVariants = (props: ItemVariantsProps) => {
+import {VariantsProps} from 'app/[locale]/admin/items/_components/item-form/variants/variants.types'
+const useItemVariants = (props: VariantsProps) => {
     const transl = useLocale(dictionary)
+
+    const {itemValue, setItemValue, imageValues, setImageValues} = props
+    const {variants} = itemValue
     const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
-        const newVariant: ItemVariant = {color: '', images: [], sizes: [], price: 0} as unknown as ItemVariant
-    }
 
-    const {itemValue: {variants}} = props
+        const newVariant = {color: '', images: [], sizes: [], price: 0}
+        variants.push(newVariant)
+        setItemValue({...itemValue})
+
+        imageValues.push([])
+        setImageValues([...imageValues])
+    }
 
     return {transl, onAddVariant, variants}
 }

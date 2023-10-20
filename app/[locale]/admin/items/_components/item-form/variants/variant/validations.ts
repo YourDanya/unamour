@@ -59,8 +59,6 @@ const validateValues = (state: VariantWithValidateState) => {
         validateSize(state)
     }
 
-    console.log('values', values)
-
     setErrors({...errors})
 }
 

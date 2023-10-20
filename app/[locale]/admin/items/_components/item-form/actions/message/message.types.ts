@@ -1,7 +1,7 @@
-import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
 import {MouseAction} from 'app/_common/types/types'
+import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/actions/item-actions.types'
 
-export type ItemMessageProps = {
+export type MessageProps = {
     isSuccess: boolean | undefined,
     isError: boolean | undefined,
     onClose: MouseAction,

@@ -1,10 +1,10 @@
-import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-actions.types'
-import {ItemMessageProps} from 'app/[locale]/admin/items/_components/item-form/item-actions/item-message/item-message.types'
 import {useEffect} from 'react'
 import useTimer from 'app/_common/hooks/helpers/timer/timer.hook'
 import {useState} from 'react'
+import {MessageProps} from 'app/[locale]/admin/items/_components/item-form/actions/message/message.types'
+import {ItemActionName} from 'app/[locale]/admin/items/_components/item-form/actions/item-actions.types'
 
-const useItemMessage = (props: ItemMessageProps) => {
+const useMessage = (props: MessageProps) => {
     const {isSuccess, onTimerExpiration, name} = props
 
     const [timer, setTimer] = useState('')
@@ -19,4 +19,4 @@ const useItemMessage = (props: ItemMessageProps) => {
     return {timer}
 }
 
-export default useItemMessage
+export default useMessage

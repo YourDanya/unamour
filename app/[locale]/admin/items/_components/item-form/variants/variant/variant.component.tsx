@@ -62,7 +62,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
             </Dropdown>
             {/*images*/}
             <Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>
-                {/*<ItemImages variantIndex={variantIndex}/>*/}
+                <ItemImages {...props}/>
             </Dropdown>
             <Button className={'item-form__button'} onClick={onDeleteVariant} data-value={variantIndex}>
                 {transl.delete}
