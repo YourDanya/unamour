@@ -11,12 +11,12 @@ const Translation: FC<ItemTranslationProps> = (props) => {
     const {transl, values, errors, onChange} = useTranslation(props)
     
     return (
-        <div className={'item-form__block'}>
-            <div className={'item-form__subtitle'}>
+        <div className={'admin-item-form-block form'}>
+            <div className={'form__subtitle'}>
                 {transl[locale]}
             </div>
             <Input
-                className={'item-form__input'}
+                className={'form__input'}
                 name={'name'}
                 placeholder={`${transl.inputs.name} ${transl[locale]}`}
                 value={values.name}
@@ -24,7 +24,7 @@ const Translation: FC<ItemTranslationProps> = (props) => {
                 error={errors.name}
             />
             <Textarea
-                className={'item-form__textarea'}
+                className={'form__textarea'}
                 name={'description'}
                 placeholder={`${transl.inputs.description} ${transl[locale]}`}
                 value={values.description}
@@ -32,7 +32,7 @@ const Translation: FC<ItemTranslationProps> = (props) => {
                 error={errors.description}
             />
             <Textarea
-                className={'item-form__textarea'}
+                className={'form__textarea'}
                 name={'composition'}
                 placeholder={`${transl.inputs.composition} ${transl[locale]}`}
                 value={values.composition}
@@ -40,7 +40,7 @@ const Translation: FC<ItemTranslationProps> = (props) => {
                 error={errors.composition}
             />
             <Textarea
-                className={'item-form__textarea'}
+                className={'form__textarea'}
                 name={'parameters'}
                 placeholder={`${transl.inputs.parameters} ${transl[locale]}`}
                 value={values.parameters}

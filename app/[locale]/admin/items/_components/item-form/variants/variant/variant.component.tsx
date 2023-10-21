@@ -17,13 +17,13 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
     } = useItemVariant(props)
 
     return (
-        <div className={'item-form__variant'}>
-            <div className={'item-form__subtitle'}>
+        <div className={'admin-item-form-block admin-item-form-variant form'}>
+            <div className={'form__subtitle'}>
                 {transl.variant} {variantIndex + 1}
             </div>
             {/*price*/}
             <Input
-                className={'item-form__input'}
+                className={'form__input'}
                 name={'price'}
                 type={'number'}
                 placeholder={transl.inputs.price}
@@ -32,9 +32,9 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 error={errors.price}
             />
             {/*color*/}
-            <Dropdown className={'item-form__dropdown'} name={transl.color}>
+            <Dropdown className={'form__dropdown'} name={transl.color}>
                 <RadioButtons
-                    className={'item-form__radio item-form__radio--color'}
+                    className={'form__radio form__radio--color'}
                     name={'color'}
                     labels={colors.labels}
                     values={colors.values}
@@ -45,11 +45,11 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 />
             </Dropdown>
             {/*sizes*/}
-            <Dropdown className={'item-form__dropdown'} name={transl.sizes}>
+            <Dropdown className={'form__dropdown'} name={transl.sizes}>
                 <div>
                     {Object.entries(sizeValues).map(([key, value], index,  arr) => (
                         <Checkbox
-                            className={`item-form__check ${index === arr.length - 1 ? 'item-form__check--last' : ''}`}
+                            className={`form__check ${index === arr.length - 1 ? 'form__check--last' : ''}`}
                             key={key}
                             name={key}
                             label={key}
@@ -61,7 +61,7 @@ const ItemVariant: FC<ItemVariantProps> = (props) => {
                 </div>
             </Dropdown>
             {/*images*/}
-            <Dropdown className={'item-form__dropdown item-form__dropdown--images'} name={transl.images}>
+            <Dropdown className={'form__dropdown'} name={transl.images}>
                 <ItemImages {...props}/>
             </Dropdown>
             <Button className={'item-form__button'} onClick={onDeleteVariant} data-value={variantIndex}>

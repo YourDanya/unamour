@@ -23,7 +23,6 @@ import {inputChange} from 'app/_common/utils/form/input-change/input-change.util
 import {updateErrorCount} from 'app/_common/utils/form/update-error-count/update-error-count.util'
 
 const useTranslation = (props: ItemTranslationProps) => {
-
     const state = useGetState(props)
     const withActionsState = useHandleActions(state)
 

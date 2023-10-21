@@ -7,8 +7,8 @@ const Variants: FC<VariantsProps> = (props) => {
     const {transl, onAddVariant, variants} = useVariants(props)
 
     return (
-        <div className={'item-form__block'}>
-            <div className={'item-form__title'}>{transl.title}</div>
+        <div className={'admin-item-form-block form'}>
+            <div className={'form__title'}>{transl.title}</div>
             {variants.length > 0 && variants.map((_, index) => (
                 <ItemVariant
                     {...props}
@@ -16,7 +16,7 @@ const Variants: FC<VariantsProps> = (props) => {
                     variantIndex={index}
                 />
             ))}
-            <Button className={'item-form__button item-form__button--add'} onClick={onAddVariant}>
+            <Button className={'form__button form__button--add'} onClick={onAddVariant}>
                 {transl.addVariant}
             </Button>
         </div>

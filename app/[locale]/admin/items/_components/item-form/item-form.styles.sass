@@ -1,56 +1,41 @@
-.admin-items-item-form.item-form
+.admin-item-form.form
   padding: 10px 0
   width: 300px
   grid-template-columns: minmax(0, auto) minmax(0, auto)
   grid-template-rows: repeat(5, auto)
-  //position: relative
   display: grid
-  margin-bottom: 50px
   z-index: 1
-  border-color: black
-  border-style: dashed
-  border-width: 0 0 1px 0
-  .item-form__image
-    width: 100%
-    margin-bottom: 10px
-  .item-form__image-wrapper
-    display: flex
-    flex-wrap: wrap
-    margin-bottom: 20px
-    justify-content: space-between
-    .item-form__button
-      width: 135px
-  .item-form__image--deleted
-    .item-form__title, .item-form__block
-      opacity: 0
-  .item-form__block
-    grid-column: 1 / 3
-    margin-bottom: 50px
-  .item-form__title
+  .form__title
     text-transform: uppercase
     font-size: 15px
     margin-bottom: 30px
-  .item-form__title--main
-      grid-column: 1 / 3
-  .item-form__dropdown
-    width: 300px
-    margin-bottom: 20px
-    .dropdown__top
-      padding: 10px 0
-    .dropdown__children
-      >div
-        padding: 10px
-  .item-form__input
+
+.admin-item-form-block.form
+  grid-column: 1 / 3
+  margin-bottom: 50px
+  .form__title
+    text-transform: uppercase
+    font-size: 15px
+    margin-bottom: 30px
+  .form__subtitle
+    text-transform: uppercase
+    font-size: 12px
+    margin-bottom: 25px
+  .form__input
     width: 300px
     margin-bottom: 20px
     .input__state--focused, .input__state--full
       .input__placeholder
         opacity: 1
         transform: translateY(-22px)
-  .item-form__radio
+  .form__radio
     .radio-group__elem
       margin-bottom: 10px
-  .item-form__radio--color
+  .form__check
+    margin-bottom: 10px
+    .checkbox__label
+      text-transform: uppercase
+  .form__radio--color
     .radio-group__button
       &--active
         &:after
@@ -58,11 +43,15 @@
           height: 20.25px
           border: 1px solid #4f4f4f
           background-color: transparent
-  .item-form__check
-    margin-bottom: 10px
-    .checkbox__label
-      text-transform: uppercase
-  .item-form__textarea
+  .form__dropdown
+    width: 100%
+    margin-bottom: 20px
+    .dropdown__top
+      padding: 10px 0
+    .dropdown__children
+      >div
+        padding: 10px
+  .form__textarea
     width: 300px
     margin-bottom: 30px
     .textarea__state--full, .textarea__state--focused
@@ -71,21 +60,27 @@
         transform: translateY(-15px)
     .textarea__input
       min-height: 150px
-  .item-form__subtitle
-    text-transform: uppercase
-    font-size: 12px
-    margin-bottom: 25px
-  .item-form__label
+  .form__image
+    width: 100%
+    margin-bottom: 10px
+  .form__image-wrapper
+    display: flex
+    flex-wrap: wrap
+    margin-bottom: 20px
+    justify-content: space-between
+    .form__button
+      width: 135px
+  .form__label
     text-transform: uppercase
     margin-top: 20px
     margin-bottom: 10px
-  .item-form__variant
+  .form__variant
     margin-bottom: 30px
-  .item-form__buttons
+  .form__buttons
     width: 300px
     display: flex
     justify-content: space-between
-  .item-form__button
+  .form__button
     background-color: black
     color: white
     width: 140px
@@ -98,12 +93,12 @@
       position: sticky
       justify-self: end
       grid-column: 2 / 3
-  .item-form__color
+  .form__color
     width: 16px
     height: 16px
     border-radius: 50px
     position: absolute
-  .item-form__messages
+  .form__messages
     width: 300px
     display: flex
     flex-direction: column
@@ -112,7 +107,7 @@
     position: sticky
     top: 60px
     grid-column: 1 / 3
-  .item-form__message
+  .form__message
     word-wrap: break-word
     margin-bottom: 20px
     .form-message__error, .form-message__success
@@ -123,37 +118,37 @@
       background-color: red
     .form-message__success
       background-color: #00ff00
-  .item-form__message-close
+  .form__message-close
     position: absolute
     right: 5px
     top: 50%
     transform: translateY(-50%)
     height: 20px
-  .item-form__message-close-img
+  .form__message-close-img
       height: 100%
-  .item-form__modal
+  .form__modal
     height: 120px
     width: 330px
     .modal-content__close
       top: 10px
       right: 10px
-  .item-form__modal-content
+  .form__modal-content
       height: 100%
       display: grid
       align-content: space-between
       justify-content: space-between
       grid-template-columns: auto auto
-  .item-form__modal-title
+  .form__modal-title
       justify-self: center
       grid-column: 1 / 3
       text-transform: uppercase
-  .item-form__modal-button
+  .form__modal-button
       grid-row: 3
       margin-bottom: 0
 
 @media (max-width: 992px)
   .item-form
-    .item-form__messages
+    .form__messages
       top: 40px
 
 @media (max-width: 576px)
