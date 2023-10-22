@@ -21,17 +21,19 @@ const Message: FC<MessageProps> = (props) => {
                 success={success}
                 error={error}
             />
-            <Button
-                className={'form__close'}
-                onClick={onClose}
-                data-value={name}
-            >
-                <img
-                    className={'form__close-img'}
-                    src={closeGreen.src}
-                    alt={'close'}
-                />
-            </Button>
+            {error || success && (
+                <Button
+                    className={'form__close'}
+                    onClick={onClose}
+                    data-value={name}
+                >
+                    <img
+                        className={'form__close-img'}
+                        src={error? closeRed.src : closeGreen.src}
+                        alt={'close'}
+                    />
+                </Button>
+            )}
         </div>
     )
 }

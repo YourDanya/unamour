@@ -33,23 +33,23 @@ const ItemForm: FC<ItemFormProps> = (props) => {
 export default ItemForm
 
 const Buttons = (state: ItemFormState) => {
-    const {onSave, transl} = state
+    const {onSave, transl, loading} = state
 
     return (
-        <div className={'admin-item-form-block form'}>
-            <Button
-                className={'form__button form__button--save'}
-                onClick={onSave}
-                loading={loading}
-            >
-                {transl.save}
-            </Button>
+        <div className={'admin-item-form-block admin-item-form-buttons form'}>
             <Button
                 className={'form__button form__button--save'}
                 onClick={onSave}
                 loading={loading}
             >
                 {transl.back}
+            </Button>
+            <Button
+                className={'form__button form__button--save'}
+                onClick={onSave}
+                loading={loading}
+            >
+                {transl.save}
             </Button>
         </div>
     )

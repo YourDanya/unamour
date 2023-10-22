@@ -9,7 +9,6 @@ import {dictionary} from 'app/[locale]/admin/items/_components/item-form/variant
 import {ImagesState} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
 import {WithEventState} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/images.types'
 import {NewImageValue} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
-
 const useItemImages = (props: ImagesProps) => {
     const state = useGestState(props)
     const withStateActions = useActions(state)

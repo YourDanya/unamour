@@ -6,6 +6,7 @@ import {apiActions} from 'app/[locale]/admin/items/_components/item-form/item-fo
 import {ActionsValues} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ApiSuccessState} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ApiErrorState} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+import getValues from 'app/_common/utils/typescript/get-values/get-values.utils'
 export const useApi = (state: ItemFormMainState) => {
     const {itemValue} = state
 
@@ -31,7 +32,9 @@ export const useApi = (state: ItemFormMainState) => {
         })
     }
 
-    return {...state, actions}
+    const loading = getValues(actions).some(value => value.loading)
+
+    return {...state, actions, loading}
 }
 
 const success = (state: ApiSuccessState) => {
@@ -42,8 +45,8 @@ const success = (state: ApiSuccessState) => {
     setMessages({...messages})
 
     if (stackActions.current.length > 0) {
-        const action = stackActions.current.pop() as () => void
-        action()
+        const action = stackActions.current.pop() as (item: FetchedItem) => void
+        action(data.item)
     }
 }
 

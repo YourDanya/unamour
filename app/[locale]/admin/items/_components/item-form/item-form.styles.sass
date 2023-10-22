@@ -5,6 +5,7 @@
   grid-template-rows: repeat(5, auto)
   display: grid
   z-index: 1
+  position: relative
   .form__title
     text-transform: uppercase
     font-size: 15px
@@ -60,16 +61,6 @@
         transform: translateY(-15px)
     .textarea__input
       min-height: 150px
-  .form__image
-    width: 100%
-    margin-bottom: 10px
-  .form__image-wrapper
-    display: flex
-    flex-wrap: wrap
-    margin-bottom: 20px
-    justify-content: space-between
-    .form__button
-      width: 135px
   .form__label
     text-transform: uppercase
     margin-top: 20px
@@ -98,34 +89,6 @@
     height: 16px
     border-radius: 50px
     position: absolute
-  .form__messages
-    width: 300px
-    display: flex
-    flex-direction: column
-    z-index: 100
-    grid-row: 1
-    position: sticky
-    top: 60px
-    grid-column: 1 / 3
-  .form__message
-    word-wrap: break-word
-    margin-bottom: 20px
-    .form-message__error, .form-message__success
-      padding: 10px 5px
-      font-size: 12px
-      color: white
-    .form-message__error
-      background-color: red
-    .form-message__success
-      background-color: #00ff00
-  .form__message-close
-    position: absolute
-    right: 5px
-    top: 50%
-    transform: translateY(-50%)
-    height: 20px
-  .form__message-close-img
-      height: 100%
   .form__modal
     height: 120px
     width: 330px
@@ -145,6 +108,62 @@
   .form__modal-button
       grid-row: 3
       margin-bottom: 0
+
+.admin-item-form-variant.form, .admin-item-form-variants.form
+  margin-bottom: 20px
+  .form__button
+    width: 130px
+    height: 35px
+
+.admin-item-form-images.form
+  margin-bottom: 0
+
+.admin-item-form-image.form
+  display: flex
+  flex-wrap: wrap
+  margin-bottom: 20px
+  justify-content: space-between
+  .form__image
+    width: 100%
+    margin-bottom: 10px
+  .form__button
+    width: 135px
+    height: 35px
+
+.admin-item-form-buttons.form
+  display: flex
+  position: sticky
+  bottom: 0
+  z-index: 100
+  justify-content: space-between
+
+.admin-item-form-messages.form
+  position: absolute
+  top: 60px
+  display: flex
+  flex-direction: column
+
+.admin-item-form-message.form
+  word-wrap: break-word
+  margin-bottom: 20px
+  .form__message, .form__message
+    padding: 10px 5px
+    font-size: 12px
+    color: white
+  .form__close
+    position: absolute
+    right: 5px
+    top: 50%
+    transform: translateY(-50%)
+    height: 20px
+  .form__close-img
+    height: 100%
+
+.admin-item-form-message--error.form
+  background-color: red
+
+.admin-item-form-message--success.form
+  background-color: #00ff00
 
 @media (max-width: 992px)
   .item-form

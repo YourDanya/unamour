@@ -11,7 +11,7 @@ const ItemImages:FC<ImagesProps> = (props) => {
     } = useItemImages(props)
 
     return (
-        <div>
+        <div className={'admin-item-form-block admin-item-form-images form'}>
             {values.map((value, index) => (
                 <ItemImage
                     index={index}
@@ -22,7 +22,7 @@ const ItemImages:FC<ImagesProps> = (props) => {
                     onDeleteImage={onDeleteImage}
                 />
             ))}
-            <Button className={'item-form__button'} onClick={onAddImage}>
+            <Button className={'form__button'} onClick={onAddImage}>
                 {transl.addImage}
             </Button>
             <FormMessage error={imagesError}/>

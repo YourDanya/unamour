@@ -14,6 +14,7 @@ import {save} from 'app/[locale]/admin/items/_components/item-form/save'
 import {useApi} from 'app/[locale]/admin/items/_components/item-form/api'
 import {ItemFormApiState} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {useRef} from 'react'
+import {useEffect} from 'react'
 
 const useItemForm = (props: ItemFormProps) => {
     const state = useGestState(props)
@@ -37,11 +38,10 @@ export const useGestState = (props: ItemFormProps) => {
     const [messages, setMessages] = useState(mapMessages)
 
     const stackActions = useRef<((args: any) => void)[]>([])
-    const stackCreateImages = useRef<((args: any) => void)[]>([])
 
     return {
         transl, itemValue, setItemValue, errorCount, setErrorCount, initSlug, imageValues, setImageValues, props,
-        messages, setMessages, stackActions, stackCreateImages
+        messages, setMessages, stackActions
     }
 }
 
@@ -64,7 +64,7 @@ const useGetActions = (state: ItemFormApiState) => {
     const {setMessages, messages} = state
     const onSave: MouseAction = (event) => {
         event.preventDefault()
-        save()
+        save(state)
     }
     const onClose = (name: MessageName) => {
         setMessages({...messages, [name]: {}})

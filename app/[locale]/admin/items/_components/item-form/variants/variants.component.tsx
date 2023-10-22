@@ -7,7 +7,7 @@ const Variants: FC<VariantsProps> = (props) => {
     const {transl, onAddVariant, variants} = useVariants(props)
 
     return (
-        <div className={'admin-item-form-block form'}>
+        <div className={'admin-item-form-block admin-item-form-variants form'}>
             <div className={'form__title'}>{transl.title}</div>
             {variants.length > 0 && variants.map((_, index) => (
                 <ItemVariant

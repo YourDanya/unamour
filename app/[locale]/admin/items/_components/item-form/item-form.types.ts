@@ -7,7 +7,7 @@ import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {FetchedItem} from 'app/_common/types/fetched-item'
 
 export type ItemFormProps = {
-    action: 'update' | 'delete',
+    action: 'update' | 'create',
     item: AdminItem,
     itemIndex: number
 }
@@ -27,3 +27,5 @@ export type MessageName = ActionName | 'client'
 export type MessageValues = Record<MessageName, {error?: string, success?: string}>
 
 export type ActionsValues = Record<MessageName, ReturnType<typeof useApiCall>>
+
+export type ShouldActions = {create: boolean, update: boolean, delete: boolean}

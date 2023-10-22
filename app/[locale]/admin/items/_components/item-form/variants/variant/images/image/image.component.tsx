@@ -12,9 +12,9 @@ const Image: FC<ItemImageProps> = (props) => {
     const {transl, onUpdate, onDelete} = useItemImage(props)
 
     return (
-        <div className={'item-form__image-wrapper'}>
+        <div className={'admin-item-form-image form'}>
             <img
-                className={'item-form__image'}
+                className={'form__image'}
                 src={url.includes('http') ? url : `${baseURL}/images/${url}`}
                 alt={'preview image'}
             />

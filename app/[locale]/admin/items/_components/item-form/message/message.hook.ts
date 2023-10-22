@@ -14,7 +14,6 @@ const useMessage = (props: MessageProps) => {
             onTimerExpiration && onTimerExpiration(name)
         }
     }, [timer])
-
     const onClose = () => {
         props.onClose(name)
     }
