@@ -33,6 +33,9 @@ export const useGestState = (props: ItemFormProps) => {
 
     const [itemValue, setItemValue] = useState(item)
     const [errorCount, setErrorCount] = useState(0)
+    const formErrCountRef = useRef(0)
+
+    console.log('errorCount', errorCount)
 
     const [imageValues, setImageValues] = useState(() => mapImages(itemValue))
     const [messages, setMessages] = useState(mapMessages)
@@ -41,7 +44,7 @@ export const useGestState = (props: ItemFormProps) => {
 
     return {
         transl, itemValue, setItemValue, errorCount, setErrorCount, initSlug, imageValues, setImageValues, props,
-        messages, setMessages, stackActions
+        messages, setMessages, stackActions, formErrCountRef
     }
 }
 

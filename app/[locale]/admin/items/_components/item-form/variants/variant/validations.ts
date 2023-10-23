@@ -5,14 +5,14 @@ import {useGetState} from 'app/[locale]/admin/items/_components/item-form/varian
 import {VariantState} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.types'
 import {ValuesName} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.types'
 export const validateValuesAndCount = (state: VariantWithValidateState) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}} = state
+    const {errorCountRef, props: {setErrorCount, formErrCountRef}} = state
 
     const callback = () => {
         validateValues(state)
     }
 
     updateErrorCount({
-        errorCountRef, setErrorCount, errorCount, callback
+        errorCountRef, setErrorCount, formErrCountRef, callback
     })
 }
 
@@ -63,8 +63,9 @@ const validateValues = (state: VariantWithValidateState) => {
 }
 
 export const clearErrors = (state: ReturnType<typeof useGetState>) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}} = state
+    const {errorCountRef, props: {setErrorCount, formErrCountRef}} = state
     if (errorCountRef.current !== 0) {
-        setErrorCount(errorCount - errorCountRef.current)
+        formErrCountRef.current -= errorCountRef.current
+        setErrorCount(formErrCountRef.current)
     }
 }

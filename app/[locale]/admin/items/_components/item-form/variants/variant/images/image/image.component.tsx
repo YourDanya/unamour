@@ -18,10 +18,10 @@ const Image: FC<ItemImageProps> = (props) => {
                 src={url.includes('http') ? url : `${baseURL}/images/${url}`}
                 alt={'preview image'}
             />
-            <Button className={'item-form__button'} onClick={onUpdate}>
+            <Button className={'form__button'} onClick={onUpdate}>
                 {transl.updateImage}
             </Button>
-            <Button className={'item-form__button'} onClick={onDelete}>
+            <Button className={'form__button'} onClick={onDelete}>
                 {transl.deleteImage}
             </Button>
         </div>

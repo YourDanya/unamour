@@ -34,7 +34,8 @@ export const useGestState = (props: ImagesProps) => {
     return {props, transl, updateIndexRef, btnRef, imagesError, setImagesError, values, unmountRef}
 }
 const useActions = (state: ImagesState) => {
-    const {updateIndexRef, btnRef, values, setImagesError, transl, props: {imageValues, setImageValues}} = state
+    const {updateIndexRef, btnRef, values, setImagesError, transl, props} = state
+    const {imageValues, setImageValues, formErrCountRef, setErrorCount} = props
     const onUpdateImage = (index: number) => {
         updateIndexRef.current = index
         btnRef?.current?.click()
@@ -46,6 +47,7 @@ const useActions = (state: ImagesState) => {
 
         if (values.length === 0) {
             setImagesError(transl.noImages)
+            setErrorCount(formErrCountRef.current++)
         }
     }
 
@@ -91,11 +93,12 @@ const select = (state: WithEventState) => {
 }
 
 const useHandleEffets = (state: ImagesState) => {
-    const {unmountRef, imagesError, values, setImagesError, transl, props: {setErrorCount, errorCount}} = state
+    const {unmountRef, imagesError, values, setImagesError, transl, props} = state
+    const {setErrorCount, formErrCountRef} = props
 
     unmountRef.current = () => {
         if (imagesError) {
-            setErrorCount(errorCount - 1)
+            setErrorCount(--formErrCountRef.current)
         }
         values.forEach((value) => {
             if ('file' in value) {
@@ -107,7 +110,7 @@ const useHandleEffets = (state: ImagesState) => {
     useEffect(() => {
         if (values.length === 0) {
             setImagesError(transl.noImages)
-            setErrorCount(errorCount + 1)
+            setErrorCount(formErrCountRef.current++)
         }
         return () => {
             unmountRef.current()

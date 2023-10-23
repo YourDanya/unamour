@@ -4,7 +4,6 @@ import {useState} from 'react'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {clothingDictionary} from 'app/_common/content/categories/categories.content'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/common/common.content'
-import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
 import {initValues} from 'app/[locale]/admin/items/_components/item-form/common/common.content'
 import {peek} from 'app/_common/utils/helpers/peek/peek.util'
 import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
@@ -16,6 +15,7 @@ import {Locale} from 'app/_common/types/types'
 import {CommonProps} from 'app/[locale]/admin/items/_components/item-form/common/common.types'
 import {validateSlugAndCount} from 'app/[locale]/admin/items/_components/item-form/common/validation'
 import {validateValuesAndCount} from 'app/[locale]/admin/items/_components/item-form/common/validation'
+import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 
 const useCommon = (props: CommonProps) => {
     const state = useGetState(props)

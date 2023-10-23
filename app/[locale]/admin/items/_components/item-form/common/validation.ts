@@ -4,14 +4,14 @@ import {CommonValidateState} from 'app/[locale]/admin/items/_components/item-for
 import {CommonValidateSlugState} from 'app/[locale]/admin/items/_components/item-form/common/common.types'
 
 export const validateSlugAndCount = (state: CommonValidateSlugState) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}, valid} = state
+    const {errorCountRef, props: {setErrorCount, formErrCountRef}, valid} = state
 
     const callback = () => {
         validateSlug({...state, valid})
     }
 
     updateErrorCount({
-        errorCountRef, setErrorCount, errorCount, callback
+        errorCountRef, setErrorCount, formErrCountRef, callback
     })
 }
 
@@ -27,14 +27,14 @@ const validateSlug = (state: CommonValidateSlugState) => {
 }
 
 export const validateValuesAndCount = (state: CommonValidateState) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}} = state
+    const {errorCountRef, props: {setErrorCount, formErrCountRef}} = state
 
     const callback = () => {
         validateValues(state)
     }
 
     updateErrorCount({
-        errorCountRef, setErrorCount, errorCount, callback
+        errorCountRef, setErrorCount, formErrCountRef, callback
     })
 }
 

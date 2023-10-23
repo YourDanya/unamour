@@ -22,10 +22,10 @@ const validateOne = <T extends string> (params: ValidateInputOneParams<T>) => {
     const error = validate({name, value, validations: validations[name]}, locale)
 
     if (beforeError && !error ) {
-        errorCountRef.current++
+        errorCountRef.current--
     }
     if (!beforeError && error) {
-        errorCountRef.current--
+        errorCountRef.current++
     }
 
     errors[name] = error

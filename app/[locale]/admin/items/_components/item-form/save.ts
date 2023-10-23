@@ -11,11 +11,11 @@ export const save = (state: ItemFormApiState) => {
     if (errorCount > 0) {
         return setErrors(state)
     }
-    if (action === 'update') {
-        update(state)
-    } else {
-        create(state)
-    }
+    // if (action === 'update') {
+    //     update(state)
+    // } else {
+    //     create(state)
+    // }
 }
 
 const setErrors = (state: ItemFormApiState) => {

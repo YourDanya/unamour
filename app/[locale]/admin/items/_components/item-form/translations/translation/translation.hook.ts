@@ -72,14 +72,14 @@ const useHandleActions = (state: ReturnType<typeof useGetState>) => {
 }
 
 const validateValuesAndCount = (state: ValidateValuesState) => {
-    const {errorCountRef, props: {setErrorCount, errorCount}} = state
+    const {errorCountRef, props: {setErrorCount, formErrCountRef}} = state
 
     const callback = () => {
         validateValues(state)
     }
 
     updateErrorCount({
-        errorCountRef, setErrorCount, errorCount, callback
+        errorCountRef, setErrorCount, formErrCountRef, callback
     })
 }
 

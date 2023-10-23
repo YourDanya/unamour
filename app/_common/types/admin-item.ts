@@ -14,7 +14,8 @@ export type AdminItem = {
         sizes: string[],
         images: { path: string, url: string } [],
         price: number,
-        _id?: string
+        _id?: string,
+        tempId?: string
     }[]
     translations: {
         ua: {

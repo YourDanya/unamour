@@ -1,6 +1,6 @@
-import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
 import {useGetState} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.hook'
 import {initInputs} from 'app/[locale]/admin/items/_components/item-form/variants/variant/variant.content'
+import {ItemFormState} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 
 export type ItemVariantProps = {
     variantIndex: number
