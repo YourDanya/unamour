@@ -81,7 +81,7 @@ export const apiActions = {
         }
     },
     updateImages: {
-        url: 'edit-files-by-ids',
+        url: 'shop-item/update-images',
         options: {
             method: 'POST'
         }

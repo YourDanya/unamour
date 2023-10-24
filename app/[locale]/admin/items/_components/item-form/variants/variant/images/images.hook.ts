@@ -50,7 +50,6 @@ const useActions = (state: ImagesState) => {
             setErrorCount(formErrCountRef.current++)
         }
     }
-
     const onAddImage: MouseAction = (event) => {
         event.preventDefault()
         btnRef?.current?.click()
@@ -66,7 +65,7 @@ const useActions = (state: ImagesState) => {
 }
 const select = (state: WithEventState) => {
     const {event, values, setImagesError, props, updateIndexRef} = state
-    const {errorCount, setErrorCount, imageValues, setImageValues} = props
+    const {formErrCountRef, setErrorCount, imageValues, setImageValues} = props
 
     const file = event.target.files?.[0]
     if (!file) {
@@ -74,7 +73,7 @@ const select = (state: WithEventState) => {
     }
     if (values.length === 0) {
         setImagesError('')
-        setErrorCount(errorCount - 1)
+        setErrorCount(--formErrCountRef.current)
     }
 
     const url = URL.createObjectURL(file)
@@ -87,6 +86,7 @@ const select = (state: WithEventState) => {
             URL.revokeObjectURL(value.url)
         }
         values[updateIndexRef.current] = {url, file}
+        updateIndexRef.current = -1
     }
 
     setImageValues([...imageValues])

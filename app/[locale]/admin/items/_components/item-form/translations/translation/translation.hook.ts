@@ -44,8 +44,7 @@ export const useGetState = (props: ItemTranslationProps) => {
 
     const locale = useParams().locale as Locale
 
-    const changeRef = useRef((event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
-    })
+    const changeRef = useRef((event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {})
 
     return {transl, props, values, errors, setErrors, validations, errorCountRef, locale, changeRef}
 }

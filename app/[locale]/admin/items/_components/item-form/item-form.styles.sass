@@ -141,14 +141,18 @@
   background-color: white
 
 .admin-item-form-messages.form
-  position: absolute
+  position: fixed
   top: 60px
   display: flex
   flex-direction: column
+  z-index: 10
+  width: 300px
 
 .admin-item-form-message.form
   word-wrap: break-word
   margin-bottom: 20px
+  position: relative
+  display: none
   .form__message, .form__message
     padding: 10px 5px
     font-size: 12px
@@ -161,12 +165,18 @@
     height: 20px
   .form__close-img
     height: 100%
+  .form-message__success
+    color: white
+  .form-message__error
+    color: white
 
 .admin-item-form-message--error.form
   background-color: red
+  display: block
 
 .admin-item-form-message--success.form
   background-color: #00ff00
+  display: block
 
 @media (max-width: 992px)
   .item-form

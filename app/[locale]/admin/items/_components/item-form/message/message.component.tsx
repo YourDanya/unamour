@@ -21,7 +21,7 @@ const Message: FC<MessageProps> = (props) => {
                 success={success}
                 error={error}
             />
-            {error || success && (
+            {(error || success) && (
                 <Button
                     className={'form__close'}
                     onClick={onClose}

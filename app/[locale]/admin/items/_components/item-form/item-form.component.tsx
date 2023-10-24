@@ -39,8 +39,7 @@ const Buttons = (state: ItemFormState) => {
         <div className={'admin-item-form-block admin-item-form-buttons form'}>
             <Button
                 className={'form__button form__button--save'}
-                onClick={onSave}
-                loading={loading}
+                onClick={() => {}}
             >
                 {transl.back}
             </Button>

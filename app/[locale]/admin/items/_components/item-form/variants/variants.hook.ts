@@ -10,7 +10,8 @@ const useItemVariants = (props: VariantsProps) => {
     const onAddVariant: MouseAction = (event) => {
         event.preventDefault()
 
-        const newVariant = {color: '', images: [], sizes: [], price: 0}
+        const tempId = (Date.now() * Math.random() * 100).toString()
+        const newVariant = {color: '', images: [], sizes: [], price: 0, tempId}
         variants.push(newVariant)
         setItemValue({...itemValue})
 

@@ -11,9 +11,9 @@ export const useApi = (state: ItemFormMainState) => {
     const {itemValue} = state
 
     let actions = {} as ActionsValues
-    let name: ActionName
 
-    for (name in apiActions) {
+    for (let prop in apiActions) {
+        const name = prop as ActionName
         const value = apiActions[name]
         let url
         if (typeof value.url === 'function') {

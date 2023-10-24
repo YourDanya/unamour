@@ -11,28 +11,30 @@ export const save = (state: ItemFormApiState) => {
     if (errorCount > 0) {
         return setErrors(state)
     }
-    // if (action === 'update') {
-    //     update(state)
-    // } else {
-    //     create(state)
-    // }
+    if (action === 'update') {
+        update(state)
+    } else {
+        create(state)
+    }
 }
 
-const setErrors = (state: ItemFormApiState) => {
-    const {setMessages, messages, transl, errorCount} = state
-
+export const setErrors = (state: ItemFormApiState) => {
+    const {setMessages, messages, transl, errorCount, shouldCheck} = state
     messages.client.error = transl.clientError(errorCount)
+
     setMessages({...messages})
+    shouldCheck.current = true
 }
 
 const update = (state: ItemFormApiState) => {
-    const {actions, itemValue} = state
+    const {actions, itemValue, imageValues, initImagesRef} = state
     const {variants} = itemValue
 
     actions.updateItem.start({item: itemValue})
     const withDataState = getData(state)
 
-    for (let i = 0; i < variants.length; i++) {
+    const lastIndex = Math.max(imageValues.length, initImagesRef.current.length)
+    for (let i = 0; i < lastIndex; i++) {
         mapImagesActions(appendObj(withDataState, {variantIndex: i}))
     }
 
@@ -54,19 +56,28 @@ const getData = (state: ItemFormApiState) => {
     return appendObj(state, {updateData, createData, deleteData, should})
 }
 const mapImagesActions = (state: ReturnType<typeof getData> & { variantIndex: number }) => {
-    const {imageValues, itemValue, variantIndex} = state
+    const {imageValues, itemValue, variantIndex, createData, deleteData, updateData, initImagesRef} = state
     const {variants} = itemValue
 
-    const variant = variants[variantIndex]
-    const imageValue = imageValues[variantIndex]
-    const lastImageIndex = Math.max(variant.images.length, imageValue.length)
+    const initImageArr = initImagesRef.current[variantIndex] ?? []
+    const imageArr = imageValues[variantIndex] ?? []
+
+    const lastImageIndex = Math.max(imageArr.length, initImageArr.length)
 
     for (let i = 0; i < lastImageIndex; i++) {
-        const oldImage = variant.images[i]
-        const newImage = imageValue[i]
+        const oldImage = initImageArr[i] as ImageValue
+        const newImage = imageArr[i]
 
         appendImageData(appendObj(state, {oldImage, newImage, variantIndex, imageIndex: i}))
     }
+
+    // updateData.forEach((value, key) => {
+    //     console.log(`value = ${value}, key = ${key}`)
+    // })
+    // createData.forEach((value, key) => {
+    //     console.log(`value = ${value}, key = ${key}`)
+    // })
+    // console.log(deleteData)
 }
 
 const pushActions = (state: ReturnType<typeof getData>) => {
@@ -88,13 +99,16 @@ const appendImageData = (params: ReturnType<typeof getData> & {
 }) => {
     const {should, createData, updateData, deleteData, newImage, oldImage, variantIndex, imageIndex} = params
 
+    // debugger
+
     if (newImage && !oldImage) {
         should.create = true
+        console.log(`${variantIndex}_${imageIndex}`, newImage.file)
         createData.append(`${variantIndex}_${imageIndex}`, newImage.file as File)
     }
-    if (newImage && oldImage) {
+    if (newImage && oldImage && newImage.url !== oldImage.url) {
         should.update = true
-        updateData.append(`${variantIndex}_${imageIndex}`, newImage.file as File)
+        updateData.append(oldImage.path, newImage.file as File)
     }
     if (!newImage && oldImage) {
         should.delete = true
