@@ -6,6 +6,7 @@ import {ImagesProps} from 'app/[locale]/admin/items/_components/item-form/varian
 import FormMessage from 'app/_common/components/form-message/form-message.component'
 
 const ItemImages:FC<ImagesProps> = (props) => {
+    const {imagesTimeStamp} = props
     const {
         onUpdateImage, onDeleteImage, onAddImage, onSelect, values, btnRef, transl, imagesError
     } = useItemImages(props)
@@ -20,6 +21,7 @@ const ItemImages:FC<ImagesProps> = (props) => {
                     url={value.url}
                     onUpdateImage={onUpdateImage}
                     onDeleteImage={onDeleteImage}
+                    timeStamp={imagesTimeStamp}
                 />
             ))}
             <Button className={'form__button'} onClick={onAddImage}>

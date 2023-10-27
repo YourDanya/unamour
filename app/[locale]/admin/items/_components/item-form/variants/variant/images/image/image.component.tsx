@@ -8,14 +8,13 @@ import useItemImage
     from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.hook'
 
 const Image: FC<ItemImageProps> = (props) => {
-    const {url} = props
-    const {transl, onUpdate, onDelete} = useItemImage(props)
+    const {transl, onUpdate, onDelete, src} = useItemImage(props)
 
     return (
         <div className={'admin-item-form-image form'}>
             <img
                 className={'form__image'}
-                src={url.includes('http') ? url : `${baseURL}/images/${url}`}
+                src={src}
                 alt={'preview image'}
             />
             <Button className={'form__button'} onClick={onUpdate}>

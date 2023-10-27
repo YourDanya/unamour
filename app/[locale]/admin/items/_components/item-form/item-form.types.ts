@@ -5,6 +5,8 @@ import {useGestState} from 'app/[locale]/admin/items/_components/item-form/item-
 import {useApi} from 'app/[locale]/admin/items/_components/item-form/api'
 import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {FetchedItem} from 'app/_common/types/fetched-item'
+import {ImageValue} from 'app/_common/types/image-value'
+import {getData} from 'app/[locale]/admin/items/_components/item-form/save'
 
 export type ItemFormProps = {
     action: 'update' | 'create',
@@ -29,3 +31,9 @@ export type MessageValues = Record<MessageName, {error?: string, success?: strin
 export type ActionsValues = Record<MessageName, ReturnType<typeof useApiCall>>
 
 export type ShouldActions = {create: boolean, update: boolean, delete: boolean}
+
+export type DeleteData = {_id: string, images: string[]}
+
+export type AppendImageDataParams = ReturnType<typeof getData> & {
+    newImage: FormImageValue, oldImage: ImageValue, variantIndex: number, imageIndex: number
+}

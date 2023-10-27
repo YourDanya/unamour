@@ -3,5 +3,6 @@ export type ItemImageProps = {
     onUpdateImage: (index: number) => void,
     onDeleteImage: (index: number) => void,
     file: File | undefined,
-    url: string
+    url: string,
+    timeStamp: number
 }

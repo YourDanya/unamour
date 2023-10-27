@@ -4,7 +4,7 @@ import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/variants/variant/images/image/image.content'
 
 const useItemImage = (props: ItemImageProps) => {
-    const {index, onDeleteImage, onUpdateImage} = props
+    const {index, onDeleteImage, onUpdateImage, url, file, timeStamp} = props
     const transl = useLocale(dictionary)
     const onUpdate:MouseAction = (event) => {
         event.preventDefault()
@@ -15,7 +15,15 @@ const useItemImage = (props: ItemImageProps) => {
         onDeleteImage(index)
     }
 
-    return {transl, onUpdate, onDelete}
+    let src = ''
+
+    if (!file) {
+        src = `${url}&t=${timeStamp}`
+    } else {
+        src = url
+    }
+
+    return {transl, onUpdate, onDelete, src}
 }
 
 export default useItemImage

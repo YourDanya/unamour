@@ -17,7 +17,7 @@ export const validateValuesAndCount = (state: VariantWithValidateState) => {
 }
 
 const validateColor = (state: VariantState) => {
-    const {values, variants, props: {variantIndex}, errors, errorCountRef} = state
+    const {values, variants, props: {variantIndex}, errors, errorCountRef, transl} = state
 
     if (errors.color) {
         return
@@ -29,6 +29,7 @@ const validateColor = (state: VariantState) => {
 
     if (isColorNotUnique) {
         errorCountRef.current++
+        errors.color = transl.colorError
     }
 }
 export const validateSize = (state: VariantState) => {

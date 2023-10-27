@@ -22,7 +22,7 @@ const ItemPreview = (props: ItemPreviewProps) => {
             </div>
             <LoadImage
                 className={'table__image'}
-                src={image.url}
+                src={image?.url}
                 alt={"admin item preview"}
                 containerStyle={style.image}
             />

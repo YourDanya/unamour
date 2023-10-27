@@ -1,9 +1,7 @@
 import {useState} from 'react'
 import {dictionary} from 'app/[locale]/admin/items/_components/item-form/item-form.content'
 import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
-import {FormImageValue} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ItemFormProps} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
-import {AdminItem} from 'app/_common/types/admin-item'
 import {MouseAction} from 'app/_common/types/types'
 import getKeys from 'app/_common/utils/typescript/get-keys/get-keys.utils'
 import {apiActions} from 'app/[locale]/admin/items/_components/item-form/item-form.content'
@@ -15,6 +13,7 @@ import {ItemFormApiState} from 'app/[locale]/admin/items/_components/item-form/i
 import {useRef} from 'react'
 import {useEffect} from 'react'
 import {setErrors} from 'app/[locale]/admin/items/_components/item-form/save'
+import {mapImages} from 'app/[locale]/admin/items/_components/item-form/api'
 
 const useItemForm = (props: ItemFormProps) => {
     const state = useGestState(props)
@@ -41,20 +40,16 @@ export const useGestState = (props: ItemFormProps) => {
     const initImagesRef = useRef(mapImages(itemValue))
     const [messages, setMessages] = useState(mapMessages)
 
+    const [imagesTimeStamp, setImagesTimeStamp] = useState(Date.now())
+
     const stackActions = useRef<((args: any) => void)[]>([])
 
     return {
         transl, itemValue, setItemValue, errorCount, setErrorCount, initSlug, imageValues, setImageValues, props,
-        messages, setMessages, stackActions, formErrCountRef, shouldCheck, initImagesRef
+        messages, setMessages, stackActions, formErrCountRef, shouldCheck, initImagesRef, imagesTimeStamp,
+        setImagesTimeStamp
     }
 }
-
-const mapImages = (itemValue: AdminItem): FormImageValue[][] => {
-    return itemValue.variants.map(({images}) => {
-        return [...images]
-    })
-}
-
 const mapMessages = () => {
     const keys: MessageName[] = [...getKeys(apiActions), 'client']
 

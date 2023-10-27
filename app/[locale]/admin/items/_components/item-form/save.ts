@@ -3,9 +3,12 @@ import {ImageValue} from 'app/_common/types/image-value'
 import {appendObj} from 'app/_common/utils/helpers/append-obj/append-obj.util'
 import {FormImageValue} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {FetchedItem} from 'app/_common/types/fetched-item'
+import {DeleteData} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+import {AppendImageDataParams} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+import {appendImageData} from 'app/[locale]/admin/items/_components/item-form/append-image-data'
 
 export const save = (state: ItemFormApiState) => {
-    const {errorCount, props} = state
+    const {errorCount, props, itemValue} = state
     const {action} = props
 
     if (errorCount > 0) {
@@ -30,8 +33,9 @@ const update = (state: ItemFormApiState) => {
     const {actions, itemValue, imageValues, initImagesRef} = state
     const {variants} = itemValue
 
-    actions.updateItem.start({item: itemValue})
     const withDataState = getData(state)
+
+    filterImages(withDataState)
 
     const lastIndex = Math.max(imageValues.length, initImagesRef.current.length)
     for (let i = 0; i < lastIndex; i++) {
@@ -41,7 +45,7 @@ const update = (state: ItemFormApiState) => {
     pushActions(withDataState)
 }
 
-const getData = (state: ItemFormApiState) => {
+export const getData = (state: ItemFormApiState) => {
     const {itemValue} = state
 
     const _id = itemValue._id!
@@ -49,15 +53,16 @@ const getData = (state: ItemFormApiState) => {
     let updateData = new FormData()
     let createData = new FormData()
     createData.append('_id', _id)
-    let deleteData = {_id, images: []}
+    let deleteData: DeleteData = {_id, images: []}
 
     const should = {create: false, update: false, delete: false}
 
-    return appendObj(state, {updateData, createData, deleteData, should})
+    const replaceMap: Record<string, boolean> = {}
+
+    return appendObj(state, {updateData, createData, deleteData, should, replaceMap})
 }
 const mapImagesActions = (state: ReturnType<typeof getData> & { variantIndex: number }) => {
-    const {imageValues, itemValue, variantIndex, createData, deleteData, updateData, initImagesRef} = state
-    const {variants} = itemValue
+    const {imageValues, itemValue, variantIndex, initImagesRef} = state
 
     const initImageArr = initImagesRef.current[variantIndex] ?? []
     const imageArr = imageValues[variantIndex] ?? []
@@ -71,49 +76,39 @@ const mapImagesActions = (state: ReturnType<typeof getData> & { variantIndex: nu
         appendImageData(appendObj(state, {oldImage, newImage, variantIndex, imageIndex: i}))
     }
 
-    // updateData.forEach((value, key) => {
-    //     console.log(`value = ${value}, key = ${key}`)
-    // })
-    // createData.forEach((value, key) => {
-    //     console.log(`value = ${value}, key = ${key}`)
-    // })
-    // console.log(deleteData)
 }
-
+const filterImages = (state: ReturnType<typeof getData>) => {
+    const {itemValue: {variants}} = state
+    for (let variant of variants) {
+        variant.images = []
+    }
+}
 const pushActions = (state: ReturnType<typeof getData>) => {
-    const {should, stackActions, actions, createData, deleteData, updateData} = state
+    const {should, stackActions, actions, createData, deleteData, updateData, itemValue} = state
+
+    // console.log('stackActions.length', stackActions.current.length)
 
     if (should.create) {
         stackActions.current.push(() => actions.createImages.start(createData))
     }
+    stackActions.current.push(() => actions.updateItem.start({item: itemValue}));
     if (should.update) {
         stackActions.current.push(() => actions.updateImages.start(updateData))
     }
     if (should.delete) {
         stackActions.current.push(() => actions.deleteImages.start(deleteData))
     }
-}
 
-const appendImageData = (params: ReturnType<typeof getData> & {
-    newImage: FormImageValue, oldImage: ImageValue, variantIndex: number, imageIndex: number
-}) => {
-    const {should, createData, updateData, deleteData, newImage, oldImage, variantIndex, imageIndex} = params
+    (stackActions.current.pop() as () => void)()
 
-    // debugger
-
-    if (newImage && !oldImage) {
-        should.create = true
-        console.log(`${variantIndex}_${imageIndex}`, newImage.file)
-        createData.append(`${variantIndex}_${imageIndex}`, newImage.file as File)
-    }
-    if (newImage && oldImage && newImage.url !== oldImage.url) {
-        should.update = true
-        updateData.append(oldImage.path, newImage.file as File)
-    }
-    if (!newImage && oldImage) {
-        should.delete = true
-        deleteData.images.push(`${variantIndex}_${imageIndex}` as never)
-    }
+    // updateData.forEach((value, key) => {
+    //     console.log(`value = ${value}, key = ${key}`)
+    // })
+    // createData.forEach((value, key) => {
+    //     console.log(`value = ${value}, key = ${key}`)
+    // })
+    console.log(deleteData)
+    console.log(itemValue.variants[1]?.images)
 }
 
 const create = (state: ItemFormApiState) => {

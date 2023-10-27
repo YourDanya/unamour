@@ -7,6 +7,8 @@ import {ActionsValues} from 'app/[locale]/admin/items/_components/item-form/item
 import {ApiSuccessState} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import {ApiErrorState} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 import getValues from 'app/_common/utils/typescript/get-values/get-values.utils'
+import {AdminItem} from 'app/_common/types/admin-item'
+import {FormImageValue} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
 export const useApi = (state: ItemFormMainState) => {
     const {itemValue} = state
 
@@ -38,7 +40,10 @@ export const useApi = (state: ItemFormMainState) => {
 }
 
 const success = (state: ApiSuccessState) => {
-    const {data, name, stackActions, transl, setMessages, messages} = state
+    const {
+        data, name, stackActions, transl, setMessages, messages, setItemValue, setImageValues, initImagesRef,
+        setImagesTimeStamp
+    } = state
 
     const message = transl.success[name]
     messages[name] = {success: message}
@@ -48,6 +53,25 @@ const success = (state: ApiSuccessState) => {
         const action = stackActions.current.pop() as (item: FetchedItem) => void
         action(data.item)
     }
+
+    if (name === 'updateItem') {
+        setItemValue(data.item)
+    }
+
+    if (data.item) {
+        setImageValues(mapImages(data.item))
+        initImagesRef.current=mapImages(data.item)
+    }
+
+    if (name === 'updateImages') {
+        setImagesTimeStamp(Date.now())
+    }
+}
+
+export const mapImages = (itemValue: AdminItem): FormImageValue[][] => {
+    return itemValue.variants.map(({images}) => {
+        return [...images]
+    })
 }
 
 const error = (state: ApiErrorState) => {

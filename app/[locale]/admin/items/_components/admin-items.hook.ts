@@ -78,7 +78,7 @@ const useGetActions = (state: ReturnType<typeof useGetState>) => {
         setFormValue({action: 'update', itemIndex, item})
     }
     const onDelete = () => {
-
+        
     }
     const onCurrentPage = (page: number) => {
         setItems([])
