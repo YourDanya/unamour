@@ -7,11 +7,13 @@ import {useApiCall} from 'app/_common/hooks/api/api.hooks'
 import {FetchedItem} from 'app/_common/types/fetched-item'
 import {ImageValue} from 'app/_common/types/image-value'
 import {getData} from 'app/[locale]/admin/items/_components/item-form/save'
+import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
+import {SetStateAction} from 'react'
+import {Dispatch} from 'react'
 
 export type ItemFormProps = {
-    action: 'update' | 'create',
-    item: AdminItem,
-    itemIndex: number
+    formValue: FormValue,
+    setFormValue: Dispatch<SetStateAction<FormValue | null>>
 }
 
 export type ItemFormState = ReturnType<typeof useItemForm>

@@ -54,7 +54,6 @@ const useActions = (state: ImagesState) => {
         event.preventDefault()
         btnRef?.current?.click()
     }
-
     const onSelect = (event: ChangeEvent<HTMLInputElement>) => {
         select({...state, event})
     }
@@ -94,7 +93,7 @@ const select = (state: WithEventState) => {
 
 const useHandleEffets = (state: ImagesState) => {
     const {unmountRef, imagesError, values, setImagesError, transl, props} = state
-    const {setErrorCount, formErrCountRef} = props
+    const {setErrorCount, formErrCountRef, imagesTimeStamp, variantIndex} = props
 
     unmountRef.current = () => {
         if (imagesError) {
@@ -108,10 +107,17 @@ const useHandleEffets = (state: ImagesState) => {
     }
 
     useEffect(() => {
-        if (values.length === 0) {
+        if (values.length === 0 && !imagesError) {
             setImagesError(transl.noImages)
             setErrorCount(formErrCountRef.current++)
         }
+        if (values.length !== 0 && imagesError) {
+            setImagesError('')
+            setErrorCount(formErrCountRef.current--)
+        }
+    }, [imagesTimeStamp])
+
+    useEffect(() => {
         return () => {
             unmountRef.current()
         }

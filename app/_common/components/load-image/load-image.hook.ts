@@ -28,15 +28,15 @@ const useLoadImage = (props: LoadImageProps) => {
 
     const imgRef = useRef<HTMLImageElement | null>(null)
 
-    useEffect(() => {
-        const image = new Image()
-        image.src = props.src as string
-        image.onload = onLoaded
-
-        return () => {
-            image.onload = null
-        }
-    }, [])
+    // useEffect(() => {
+    //     const image = new Image()
+    //     image.src = props.src as string
+    //     image.onload = onLoaded
+    //
+    //     return () => {
+    //         image.onload = null
+    //     }
+    // }, [])
 
     return {
         loaded, onLoaded, style, imgRef, thumbStyle

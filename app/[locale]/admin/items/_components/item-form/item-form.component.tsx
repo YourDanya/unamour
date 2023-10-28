@@ -13,7 +13,7 @@ import Variants from 'app/[locale]/admin/items/_components/item-form/variants/va
 import Button from 'app/_common/components/button/button.component'
 
 const ItemForm: FC<ItemFormProps> = (props) => {
-    const {itemIndex} = props
+    const {itemIndex} = props.formValue
     const state = useItemForm(props)
     const {transl} = state
 
@@ -33,13 +33,13 @@ const ItemForm: FC<ItemFormProps> = (props) => {
 export default ItemForm
 
 const Buttons = (state: ItemFormState) => {
-    const {onSave, transl, loading} = state
+    const {onSave, transl, loading, onBack} = state
 
     return (
         <div className={'admin-item-form-block admin-item-form-buttons form'}>
             <Button
                 className={'form__button form__button--save'}
-                onClick={() => {}}
+                onClick={onBack}
             >
                 {transl.back}
             </Button>

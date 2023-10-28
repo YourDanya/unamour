@@ -9,6 +9,7 @@ import {ApiErrorState} from 'app/[locale]/admin/items/_components/item-form/item
 import getValues from 'app/_common/utils/typescript/get-values/get-values.utils'
 import {AdminItem} from 'app/_common/types/admin-item'
 import {FormImageValue} from 'app/[locale]/admin/items/_components/item-form/item-form.types'
+
 export const useApi = (state: ItemFormMainState) => {
     const {itemValue} = state
 
@@ -23,7 +24,7 @@ export const useApi = (state: ItemFormMainState) => {
         } else {
             url = value.url
         }
-        actions[name] = useApiCall<{item: FetchedItem}>(url, {
+        actions[name] = useApiCall<{ item: FetchedItem }>(url, {
             ...value.options,
             onSuccess: (data) => {
                 success({...state, data, name})
@@ -60,10 +61,10 @@ const success = (state: ApiSuccessState) => {
 
     if (data.item) {
         setImageValues(mapImages(data.item))
-        initImagesRef.current=mapImages(data.item)
+        initImagesRef.current = mapImages(data.item)
     }
 
-    if (name === 'updateImages') {
+    if (name === 'updateImages' || name === 'createImages') {
         setImagesTimeStamp(Date.now())
     }
 }

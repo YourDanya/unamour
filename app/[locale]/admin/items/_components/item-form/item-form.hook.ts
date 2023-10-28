@@ -14,6 +14,7 @@ import {useRef} from 'react'
 import {useEffect} from 'react'
 import {setErrors} from 'app/[locale]/admin/items/_components/item-form/save'
 import {mapImages} from 'app/[locale]/admin/items/_components/item-form/api'
+import {MouseEvent} from 'react'
 
 const useItemForm = (props: ItemFormProps) => {
     const state = useGestState(props)
@@ -27,7 +28,7 @@ const useItemForm = (props: ItemFormProps) => {
 export default useItemForm
 export const useGestState = (props: ItemFormProps) => {
     const transl = useLocale(dictionary)
-    const {item} = props
+    const {item} = props.formValue
 
     const initSlug = item.slug
 
@@ -77,7 +78,7 @@ const useHandleEffects = (state: ItemFormApiState) => {
 }
 
 const useGetActions = (state: ItemFormApiState) => {
-    const {setMessages, messages} = state
+    const {setMessages, messages, props: {setFormValue}} = state
     const onSave: MouseAction = (event) => {
         event.preventDefault()
         save(state)
@@ -88,8 +89,12 @@ const useGetActions = (state: ItemFormApiState) => {
     const onTimerExpiration = (name: MessageName) => {
         setMessages({...messages, [name]: {}})
     }
+    const onBack = (event: MouseEvent) => {
+        event.preventDefault()
+        setFormValue(null)
+    }
 
-    return {...state, onSave, onClose, onTimerExpiration}
+    return {...state, onSave, onClose, onTimerExpiration, onBack}
 }
 
 

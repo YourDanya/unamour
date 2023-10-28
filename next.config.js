@@ -10,12 +10,6 @@ const nextConfig = {
                 hostname: 'localhost',
                 port: '5000',
                 pathname: '/**'
-            },
-            {
-                protocol: 'https',
-                hostname: 'api.unamour.com.ua',
-                port: '',
-                pathname: '/**'
             }
         ],
     },

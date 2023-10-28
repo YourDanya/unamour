@@ -30,7 +30,7 @@ const Content = (props: ReturnType<typeof useAdminItems>) => {
     return (
         <div className={'admin-items-content admin container'}>
             {formValue ? (
-                <ItemForm {...formValue}/>
+                <ItemForm formValue={formValue} setFormValue={setFormValue}/>
             ) : (
                 <Main {...props}/>
             )}

@@ -12,7 +12,6 @@ export class Model {
     values = {...initValues}
 
     elem: HTMLDivElement | null = null
-
     onChange (event: ChangeEvent<HTMLInputElement>) {
         const {name, value} = inputChange<typeof initValues>(event)
         this.values[name] = value
@@ -22,3 +21,4 @@ export class Model {
         console.log('elem', this.elem)
     }
 }
+

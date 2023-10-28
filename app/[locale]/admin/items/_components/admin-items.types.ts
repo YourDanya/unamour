@@ -10,7 +10,7 @@ export type ItemPreviewStyles = {
 }
 
 export type FormValue = {
-    action: '' | 'update' | 'delete',
+    action: '' | 'update' | 'create',
     item: FetchedItem,
     itemIndex: number
 }
