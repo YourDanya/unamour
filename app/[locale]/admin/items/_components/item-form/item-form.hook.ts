@@ -78,7 +78,7 @@ const useHandleEffects = (state: ItemFormApiState) => {
 }
 
 const useGetActions = (state: ItemFormApiState) => {
-    const {setMessages, messages, props: {setFormValue}} = state
+    const {setMessages, messages, props} = state
     const onSave: MouseAction = (event) => {
         event.preventDefault()
         save(state)
@@ -91,13 +91,11 @@ const useGetActions = (state: ItemFormApiState) => {
     }
     const onBack = (event: MouseEvent) => {
         event.preventDefault()
-        setFormValue(null)
+        props.onBack()
     }
 
     return {...state, onSave, onClose, onTimerExpiration, onBack}
 }
-
-
 
 // const time = useRef(0)
 // time.current = performance.now()

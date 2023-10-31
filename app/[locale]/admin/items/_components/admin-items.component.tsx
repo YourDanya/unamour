@@ -25,12 +25,17 @@ const AdminItems: FC = () => {
 export default AdminItems
 
 const Content = (props: ReturnType<typeof useAdminItems>) => {
-    const {formValue, setFormValue} = props
+    const {formValue, setFormValue, onBack, onCreate} = props
 
     return (
         <div className={'admin-items-content admin container'}>
             {formValue ? (
-                <ItemForm formValue={formValue} setFormValue={setFormValue}/>
+                <ItemForm
+                    formValue={formValue}
+                    setFormValue={setFormValue}
+                    onBack={onBack}
+                    onCreate={onCreate}
+                />
             ) : (
                 <Main {...props}/>
             )}
@@ -60,7 +65,7 @@ const Main = (props: ReturnType<typeof useAdminItems>) => {
 }
 
 const Table = (props: ReturnType<typeof useAdminItems>) => {
-    const { items, pageItems, onUpdate, onDelete, transl, pagesNumber, currentPage, setCurrentPage, onAddItem, itemsStyles, tableStyles} = props
+    const {pageItems, onUpdate, onDelete, transl, itemsStyles, tableStyles} = props
 
     return (
         <div className={'admin-items-table table'} style={tableStyles}>

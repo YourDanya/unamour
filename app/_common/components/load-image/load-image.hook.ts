@@ -4,11 +4,6 @@ import {CSSProperties} from 'react'
 
 const useLoadImage = (props: LoadImageProps) => {
     const {width, height, ratio, containerStyle} = props
-    const [loaded, setLoaded] = useState(false)
-
-    const onLoaded = () => {
-        setLoaded(true)
-    }
 
     const style: CSSProperties = {...containerStyle}
     const thumbStyle: CSSProperties = {}
@@ -28,15 +23,21 @@ const useLoadImage = (props: LoadImageProps) => {
 
     const imgRef = useRef<HTMLImageElement | null>(null)
 
-    // useEffect(() => {
-    //     const image = new Image()
-    //     image.src = props.src as string
-    //     image.onload = onLoaded
-    //
-    //     return () => {
-    //         image.onload = null
-    //     }
-    // }, [])
+    const [loaded, setLoaded] = useState(false)
+    const onLoaded = () => {
+        setLoaded(true)
+    }
+
+    useLayoutEffect(() => {
+        const image = new Image()
+        image.src = props.src as string
+
+        image.onload = onLoaded
+
+        return () => {
+            image.onload = null
+        }
+    }, [])
 
     return {
         loaded, onLoaded, style, imgRef, thumbStyle

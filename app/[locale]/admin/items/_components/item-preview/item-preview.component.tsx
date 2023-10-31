@@ -12,7 +12,7 @@ const ItemPreview = (props: ItemPreviewProps) => {
     return (
         <>
             <div className={'table__number'} style={style.num}>
-                {itemIndex+1}
+                {itemIndex + 1}
             </div>
             <div className={'table__name'} style={style.name}>
                 {name}

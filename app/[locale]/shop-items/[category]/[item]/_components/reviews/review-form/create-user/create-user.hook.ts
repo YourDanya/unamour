@@ -18,9 +18,6 @@ import {
 import {
     initErrors
 } from 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.content'
-import {useEffect} from 'react'
-import {MutableRefObject} from 'react'
-import {FocusEvent} from 'react'
 
 const useCreateUser = () => {
     const state = useGetState()

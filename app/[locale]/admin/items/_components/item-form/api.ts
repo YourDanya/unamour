@@ -43,7 +43,7 @@ export const useApi = (state: ItemFormMainState) => {
 const success = (state: ApiSuccessState) => {
     const {
         data, name, stackActions, transl, setMessages, messages, setItemValue, setImageValues, initImagesRef,
-        setImagesTimeStamp
+        setImagesTimeStamp, props
     } = state
 
     const message = transl.success[name]
@@ -55,7 +55,7 @@ const success = (state: ApiSuccessState) => {
         action(data.item)
     }
 
-    if (name === 'updateItem') {
+    if (name === 'updateItem' || name === 'createItem') {
         setItemValue(data.item)
     }
 
@@ -66,6 +66,10 @@ const success = (state: ApiSuccessState) => {
 
     if (name === 'updateImages' || name === 'createImages') {
         setImagesTimeStamp(Date.now())
+    }
+
+    if (name === 'createItem') {
+        props.onCreate(data.item)
     }
 }
 
@@ -79,6 +83,6 @@ const error = (state: ApiErrorState) => {
     const {transl, name, messages, setMessages} = state
 
     const message = transl.errors[name]
-    messages[name] = {success: message}
+    messages[name] = {error: message}
     setMessages({...messages})
 }

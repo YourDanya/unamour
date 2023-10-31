@@ -12,7 +12,7 @@ export type AdminItem = {
     variants: {
         color: string,
         sizes: string[],
-        images: { path: string, url: string } [],
+        images: { path: string, url: string, _id?: string } [],
         price: number,
         _id?: string,
         tempId?: string

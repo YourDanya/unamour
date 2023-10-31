@@ -1,14 +1,8 @@
 import {MapApiRes} from 'app/_common/utils/api/api-v2.types'
-import {ServerError} from 'app/_common/types/types'
 import {MapApiError} from 'app/_common/utils/api/api-v2.types'
 import {baseURL} from 'app/_common/utils/api/api.utils'
 import {apiErrorContent} from 'app/_common/utils/api/api-v2.content'
-import {useEffect} from 'react'
-import {useState} from 'react'
 import {ApiCall} from 'app/_common/utils/api/api-v2.types'
-import {useRouter} from 'next/navigation'
-import {Locale} from 'app/_common/types/types'
-import {useParams} from 'next/navigation'
 
 export const apiCall: ApiCall = async (url, params) => {
     let body: string | FormData

@@ -13,11 +13,11 @@ import {ItemPreviewStyles} from 'app/[locale]/admin/items/_components/admin-item
 import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
 import {useLayoutEffect} from 'react'
 import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
+import {AdminItem} from 'app/_common/types/admin-item'
 const useAdminItems = () => {
     const initState = useGetState()
     useHandleEffects(initState)
-    const withActionsState= useGetActions(initState)
-
+    const withActionsState = useGetActions(initState)
     const withStylesState = createStyle(withActionsState)
 
     return withStylesState
@@ -39,10 +39,9 @@ const useGetState = () => {
 
     const getItems = useApiCall<{ items: FetchedItem[], totalCount: number }>( {
         url: `shop-item?page=${currentPage}`,
-        onSuccess: ({items, totalCount}) => {
-            console.log('success')
-            setItems(items)
-            setTotalCount(totalCount)
+        onSuccess: (data) => {
+            setItems(data.items)
+            setTotalCount(data.totalCount)
         }
     })
 
@@ -50,10 +49,9 @@ const useGetState = () => {
 
     return {
         transl, items, pagesNumber, currentPage, setCurrentPage, setItems, router, user, getItems,
-        pageItems, formValue, setFormValue
+        pageItems, formValue, setFormValue, totalCount, setTotalCount
     }
 }
-
 const useHandleEffects = (state: ReturnType<typeof useGetState>) => {
     const { router, user, getItems, currentPage, setItems} = state
 
@@ -69,23 +67,51 @@ const useHandleEffects = (state: ReturnType<typeof useGetState>) => {
 }
 
 const useGetActions = (state: ReturnType<typeof useGetState>) => {
-    const {items, setCurrentPage, setItems, setFormValue} = state
+    const {
+        items, setCurrentPage, setItems, setFormValue, currentPage, totalCount, pagesNumber, formValue, getItems
+    } = state
     const onAddItem: MouseAction = (event) => {
         event.preventDefault()
+        createItem(state)
     }
     const onUpdate = (itemIndex: number) => {
-        const item = items[itemIndex]
+        const item = JSON.parse(JSON.stringify(items[itemIndex]))
         setFormValue({action: 'update', itemIndex, item})
     }
-    const onDelete = () => {
+    const onDelete = (index: number) => {
 
     }
     const onCurrentPage = (page: number) => {
         setItems([])
         setCurrentPage(page)
     }
+    const onBack = () => {
+        setItems([])
+        setFormValue(null)
+        getItems.start()
+    }
+    const onCreate = () => {
+        const newPagesNumber = Math.ceil((totalCount + 1) / 10)
+        setCurrentPage(newPagesNumber)
 
-    return {...state, onAddItem, onUpdate, onDelete, onCurrentPage}
+        setFormValue({...formValue, action: 'update'} as FormValue)
+    }
+
+    return {...state, onAddItem, onUpdate, onDelete, onCurrentPage, onBack, onCreate}
+}
+
+const createItem = (state: ReturnType<typeof useGetState>) => {
+    const {items, setFormValue, totalCount} = state
+
+    const item: AdminItem = JSON.parse(JSON.stringify(items[items.length - 1]))
+    delete item._id
+
+    item.variants = item.variants.filter((_, index) => index === 0)
+
+    item.variants[0].tempId = (Date.now() * Math.random() * 100).toString()
+    item.variants[0].images = []
+
+    setFormValue({action: 'create', item, itemIndex: totalCount})
 }
 
 const createStyle = (state: ReturnType<typeof useGetActions>) => {

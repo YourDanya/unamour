@@ -1,5 +1,6 @@
 .load-image
   width: 100%
+  position: relative
   .load-image__thumbnail
     position: relative
     &:before
@@ -13,11 +14,13 @@
       animation: loading 1.5s ease infinite
       background-size: 200%
   .load-image__image
+    top: 0
     object-fit: cover
     width: 100%
     display: none
 .load-image--loaded
   .load-image__thumbnail
+    display: none
     &:before
       display: none
   .load-image__image

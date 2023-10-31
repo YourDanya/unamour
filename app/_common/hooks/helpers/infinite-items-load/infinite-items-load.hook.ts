@@ -9,8 +9,6 @@ export const useInfiniteItemsLoad = <ItemT,> (params: {
 
     const {items, setItems, url, nextPage, setNextPage, elemRef} = params
 
-    console.log('items', items)
-
     const getItems = useApiCall<{ items: ItemT[], total: number }>({
         onSuccess: ({items: newItems}) => {
             setItems([...items, ...newItems])

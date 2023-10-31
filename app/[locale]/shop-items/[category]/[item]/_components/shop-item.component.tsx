@@ -18,10 +18,10 @@ import Reviews from 'app/[locale]/shop-items/[category]/[item]/_components/revie
 import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-items.hook'
 
 const ShopItem: FC<FetchedItem> = (props) => {
-    const {variants, slugCategory, oldPrice, _id} = props
+    const {_id} = props
 
     const state = useShopItem(props)
-    const {currentVariant: {images, color}, modalState, hideModal, onCurrentVariant} = state
+    const {currentVariant: {images, color}, modalState, hideModal} = state
 
     return (
         <div className="shop-item">

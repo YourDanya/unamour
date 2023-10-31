@@ -12,9 +12,9 @@ const NavLink: FC<NavLinkProps> = (props) => {
     return (
         <Link
             href={href}
-            className={`nav-link ${className} ${path===href ? `nav-link--active ${activeClassName}` : ''}`}
+            className={`nav-link ${className} ${path === href ? `nav-link--active ${activeClassName}` : ''}`}
             onClick={onClick}
-            prefetch={false}
+            prefetch={true}
         >
             {children}
         </Link>

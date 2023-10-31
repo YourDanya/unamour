@@ -12,7 +12,7 @@ const useItemPreview = (props: ItemPreviewProps) => {
 
     const {name} = useLocale(translations)
 
-    const image = variants[0].images[0]
+    const image = variants[1]?.images?.[0] || variants[0].images[0]
 
     const clothingTransl = useLocale(clothingDictionary)
 

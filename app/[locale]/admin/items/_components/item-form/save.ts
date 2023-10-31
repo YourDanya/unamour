@@ -8,15 +8,17 @@ import {AppendImageDataParams} from 'app/[locale]/admin/items/_components/item-f
 import {appendImageData} from 'app/[locale]/admin/items/_components/item-form/append-image-data'
 
 export const save = (state: ItemFormApiState) => {
-    const {errorCount, props, itemValue} = state
-    const {action} = props
+    const {errorCount, props} = state
+    const {formValue: {action}} = props
 
     if (errorCount > 0) {
         return setErrors(state)
     }
     if (action === 'update') {
+        console.log('update')
         update(state)
     } else {
+        console.log('create')
         create(state)
     }
 }
@@ -30,8 +32,7 @@ export const setErrors = (state: ItemFormApiState) => {
 }
 
 const update = (state: ItemFormApiState) => {
-    const {actions, itemValue, imageValues, initImagesRef} = state
-    const {variants} = itemValue
+    const {imageValues, initImagesRef} = state
 
     const withDataState = getData(state)
 
@@ -62,7 +63,7 @@ export const getData = (state: ItemFormApiState) => {
     return appendObj(state, {updateData, createData, deleteData, should, replaceMap})
 }
 const mapImagesActions = (state: ReturnType<typeof getData> & { variantIndex: number }) => {
-    const {imageValues, itemValue, variantIndex, initImagesRef} = state
+    const {imageValues, variantIndex, initImagesRef} = state
 
     const initImageArr = initImagesRef.current[variantIndex] ?? []
     const imageArr = imageValues[variantIndex] ?? []
@@ -86,8 +87,6 @@ const filterImages = (state: ReturnType<typeof getData>) => {
 const pushActions = (state: ReturnType<typeof getData>) => {
     const {should, stackActions, actions, createData, deleteData, updateData, itemValue} = state
 
-    // console.log('stackActions.length', stackActions.current.length)
-
     if (should.create) {
         stackActions.current.push(() => actions.createImages.start(createData))
     }
@@ -107,21 +106,19 @@ const pushActions = (state: ReturnType<typeof getData>) => {
     // createData.forEach((value, key) => {
     //     console.log(`value = ${value}, key = ${key}`)
     // })
-    console.log(deleteData)
-    console.log(itemValue.variants[1]?.images)
+    // console.log(deleteData)
+    // console.log(itemValue.variants[1]?.images)
 }
 
 const create = (state: ItemFormApiState) => {
     const {actions, itemValue, stackActions, imageValues} = state
-    const {variants} = itemValue
-
-    actions.createItem.start({item: itemValue})
 
     let createData = new FormData()
 
-    for (let variantIdx = 0; variantIdx < variants.length; variantIdx++) {
-        for (let imageIdx = 0; imageIdx < imageValues.length; imageIdx++) {
-            const newImage = imageValues[variantIdx][imageIdx]
+    for (let variantIdx = 0; variantIdx < imageValues.length; variantIdx++) {
+        const imageArr = imageValues[variantIdx]
+        for (let imageIdx = 0; imageIdx < imageArr.length; imageIdx++) {
+            const newImage = imageArr[imageIdx]
             createData.append(`${variantIdx}_${imageIdx}`, newImage.file as File)
         }
     }
@@ -130,4 +127,10 @@ const create = (state: ItemFormApiState) => {
         createData.append('_id', item._id)
         actions.createImages.start(createData)
     })
+
+    createData.forEach((value, key) => {
+        console.log(`value = ${value}, key = ${key}`)
+    })
+
+    actions.createItem.start({item: itemValue})
 }

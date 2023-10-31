@@ -1,4 +1,3 @@
-import {AdminItem} from 'app/_common/types/admin-item'
 import useItemForm from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
 import {apiActions} from 'app/[locale]/admin/items/_components/item-form/item-form.content'
 import {useGestState} from 'app/[locale]/admin/items/_components/item-form/item-form.hook'
@@ -10,10 +9,13 @@ import {getData} from 'app/[locale]/admin/items/_components/item-form/save'
 import {FormValue} from 'app/[locale]/admin/items/_components/admin-items.types'
 import {SetStateAction} from 'react'
 import {Dispatch} from 'react'
+import {AdminItem} from 'app/_common/types/admin-item'
 
 export type ItemFormProps = {
     formValue: FormValue,
-    setFormValue: Dispatch<SetStateAction<FormValue | null>>
+    setFormValue: Dispatch<SetStateAction<FormValue | null>>,
+    onBack: () => void,
+    onCreate: (item: AdminItem) => void
 }
 
 export type ItemFormState = ReturnType<typeof useItemForm>

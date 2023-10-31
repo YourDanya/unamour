@@ -8,7 +8,7 @@ import useShopItems from 'app/[locale]/shop-items/[category]/_components/shop-it
 const ShopItems: FC<ShopItemsProps> = (props) => {
     const state = useShopItems(props)
     const {transl, items} = state
-    
+
     return (
         <div className={'shop-items items'}>
             {items && items.length > 0 ? (
@@ -37,7 +37,7 @@ const ItemsCollection = (props: ReturnType<typeof useShopItems>) => {
 }
 
 const Item = (props: ReturnType<typeof useShopItems> & {index: number}) => {
-    const {items, index, height, elemRef, locale, paramColor} = props
+    const {items, index, height, elemRef, locale} = props
     const {slug, slugCategory, translations, images, color, price} = items[index]
 
     return (

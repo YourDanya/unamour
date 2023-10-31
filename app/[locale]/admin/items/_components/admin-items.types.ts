@@ -1,5 +1,5 @@
 import {CSSProperties} from 'react'
-import {FetchedItem} from 'app/_common/types/fetched-item'
+import {AdminItem} from 'app/_common/types/admin-item'
 
 export type ItemPreviewStyles = {
     num: CSSProperties,
@@ -11,6 +11,6 @@ export type ItemPreviewStyles = {
 
 export type FormValue = {
     action: '' | 'update' | 'create',
-    item: FetchedItem,
+    item: AdminItem,
     itemIndex: number
 }

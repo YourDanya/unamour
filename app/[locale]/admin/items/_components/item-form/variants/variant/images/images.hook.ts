@@ -109,11 +109,11 @@ const useHandleEffets = (state: ImagesState) => {
     useEffect(() => {
         if (values.length === 0 && !imagesError) {
             setImagesError(transl.noImages)
-            setErrorCount(formErrCountRef.current++)
+            setErrorCount(++formErrCountRef.current)
         }
         if (values.length !== 0 && imagesError) {
             setImagesError('')
-            setErrorCount(formErrCountRef.current--)
+            setErrorCount(--formErrCountRef.current)
         }
     }, [imagesTimeStamp])
 
