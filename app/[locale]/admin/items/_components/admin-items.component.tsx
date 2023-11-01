@@ -7,6 +7,8 @@ import {FC} from 'react'
 import ItemPreview from 'app/[locale]/admin/items/_components/item-preview/item-preview.component'
 import Pagination from 'app/_common/components/pagination/pagination.component'
 import ItemForm from 'app/[locale]/admin/items/_components/item-form/item-form.component'
+import Modal from 'app/_common/components/modal/modal.component'
+import ModalContent from 'app/_common/components/modal-content/modal-content.component'
 const AdminItems: FC = () => {
     const state = useAdminItems()
     const {items, user} = state
@@ -43,7 +45,7 @@ const Content = (props: ReturnType<typeof useAdminItems>) => {
     )
 }
 const Main = (props: ReturnType<typeof useAdminItems>) => {
-    const {pagesNumber, onCurrentPage, currentPage, onAddItem, transl} = props
+    const {pagesNumber, onCurrentPage, currentPage, onAddItem, transl, modalActive, onHideModal} = props
 
     return (
         <div className={'admin-items-main admin'}>
@@ -59,13 +61,39 @@ const Main = (props: ReturnType<typeof useAdminItems>) => {
                     {transl.create}
                 </Button>
             </div>
+            <Modal active={modalActive} hideModal={onHideModal}/>
+            <AdminModalContent {...props}/>
             {/*<FormMessage error={itemError}/>*/}
         </div>
     )
 }
 
+const AdminModalContent = (props: ReturnType<typeof useAdminItems>) => {
+    const {modalActive, onHideModal, transl, onYes, onNo} = props
+
+    return (
+        <ModalContent
+            active={modalActive}
+            hideModal={onHideModal}
+            className={'admin-items-modal modal'}
+        >
+            <div className={'modal__title'}>
+                {transl.sureDeleteItem}
+            </div>
+            <Button onClick={onYes} className={'modal__button'}>
+                {transl.yes}
+            </Button>
+            <Button onClick={onNo} className={'modal__button'}>
+                {transl.no}
+            </Button>
+        </ModalContent>
+    )
+}
+
 const Table = (props: ReturnType<typeof useAdminItems>) => {
     const {pageItems, onUpdate, onDelete, transl, itemsStyles, tableStyles} = props
+
+    console.log('pageItems', pageItems)
 
     return (
         <div className={'admin-items-table table'} style={tableStyles}>

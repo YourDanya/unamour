@@ -12,19 +12,18 @@ const useItemPreview = (props: ItemPreviewProps) => {
 
     const {name} = useLocale(translations)
 
-    const image = variants[1]?.images?.[0] || variants[0].images[0]
+    const image = variants[0].images[0]
 
     const clothingTransl = useLocale(clothingDictionary)
 
     const category = useMemo(() => {
-        const index = clothing.findIndex(clothName => slugCategory)
+        const index = clothing.findIndex(clothName => clothName === slugCategory)
         return clothingTransl[index]
     }, [])
 
     const onUpdate = () => {
         props.onUpdate(pageIndex)
     }
-
     const onDelete = () => {
         props.onDelete(pageIndex)
     }
