@@ -102,7 +102,7 @@ const deleteSuccess = (state: ReturnType<typeof useApi>) => {
 
 const useGetActions = (state: ReturnType<typeof useApi>) => {
     const {
-        items, setCurrentPage, setItems, setFormValue, totalCount, getItems, setModalActive, currentPage, deleteItem,
+        items, setCurrentPage, setItems, setFormValue, totalCount, getItems, setModalActive, deleteItem, formValue,
         setDeleteIndex
     } = state
     const onAddItem: MouseAction = (event) => {
@@ -129,6 +129,7 @@ const useGetActions = (state: ReturnType<typeof useApi>) => {
     const onCreate = () => {
         const newPagesNumber = Math.ceil((totalCount + 1) / 10)
         setCurrentPage(newPagesNumber)
+        setFormValue({...formValue, action: 'update'} as FormValue)
     }
     const onHideModal = () => {
         setModalActive(false)

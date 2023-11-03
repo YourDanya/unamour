@@ -20,7 +20,8 @@ export const colorDictionary = {
         'графітовий',
         'світло-сірий',
         'верховий',
-        'пісочний'
+        'пісочний',
+        'теракотовий'
     ],
     eng: [
         'milk',
@@ -43,7 +44,8 @@ export const colorDictionary = {
         'graphite',
         'light grey',
         'creamy',
-        'sand'
+        'sand',
+        'terracotta'
     ],
     ru: [
         'молочный',
@@ -66,7 +68,8 @@ export const colorDictionary = {
         'графитовый',
         'светло-серый',
         'сливочный',
-        'песочный'
+        'песочный',
+        'терракотовый'
     ]
 }
 
@@ -154,5 +157,9 @@ export const colorValues = [
     {
         slug: 'sand',
         code: '#f4a460'
+    },
+    {
+        slug: 'terracotta',
+        code: '#b05331'
     }
 ]

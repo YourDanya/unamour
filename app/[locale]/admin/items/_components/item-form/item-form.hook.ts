@@ -61,7 +61,7 @@ const mapMessages = () => {
 }
 
 const useHandleEffects = (state: ItemFormApiState) => {
-    const {errorCount, shouldCheck, messages, setMessages} = state
+    const {errorCount, shouldCheck, setMessages} = state
 
     useEffect(() => {
         if (!shouldCheck.current) {

@@ -18,7 +18,6 @@ export const save = (state: ItemFormApiState) => {
         console.log('update')
         update(state)
     } else {
-        console.log('create')
         create(state)
     }
 }

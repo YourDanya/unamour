@@ -43,6 +43,10 @@ export const useShopItems = (props: ShopItemsProps) => {
 
     const {getItems} = useInfiniteItemsLoad({items, setItems, nextPage,  setNextPage, url, elemRef: catalogRef})
 
+    // console.log('items', items)
+    // console.log('nextPage', nextPage)
+    // console.log('getItems', getItems.loading)
+
     useOmitFirstEffect(() => {
         setNextPage(2)
         setItems(props.items ?? [])

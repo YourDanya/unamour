@@ -5,6 +5,7 @@ export const sizes = [
     's',
     's-m',
     'm',
+    'm-l',
     'l',
     'onesize'
 ]

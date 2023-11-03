@@ -1,6 +1,5 @@
 import {MutableRefObject, useEffect, useRef, useState} from "react"
-import {useApiCall} from "../../api/api-call/api-call.hook"
-import {useSearchParams} from "next/navigation";
+import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
 
 export const useInfiniteItemsLoad = <ItemT,> (params: {
     items: ItemT[], setItems: (items: ItemT[]) => void, url: string, elemRef: MutableRefObject<HTMLDivElement | null>,
@@ -17,13 +16,15 @@ export const useInfiniteItemsLoad = <ItemT,> (params: {
         }
     })
 
+    const itemsLengthRef = useRef(items.length)
+
     const shouldSkipRef = useRef(false)
 
     const scrollRef = useRef<() => void>(() => {})
 
-    const searchParams = useSearchParams()
-
     scrollRef.current = () => {
+        console.log('shouldSkipRef.current', shouldSkipRef.current)
+
         if (!elemRef.current || shouldSkipRef.current) {
             return
         }
@@ -36,16 +37,9 @@ export const useInfiniteItemsLoad = <ItemT,> (params: {
 
         shouldSkipRef.current = true
 
-        const params = new URLSearchParams(searchParams)
-        let newUrl = url
-
-        if (params.toString() === '') {
-            newUrl += `?page=${nextPage}`
-        } else {
-            newUrl += `&page=${nextPage}`
-        }
-
-        console.log('newUrl', newUrl)
+        const urlObj = new URL(`https://${url}`)
+        urlObj.searchParams.append('page', `${nextPage}`)
+        const newUrl = urlObj.href.split('https://')[1]
 
         getItems.start({url: newUrl})
     }
@@ -60,6 +54,13 @@ export const useInfiniteItemsLoad = <ItemT,> (params: {
             window.removeEventListener('scroll', onScroll)
         }
     }, [])
+
+    useEffect(() => {
+        if (items.length < itemsLengthRef.current) {
+            shouldSkipRef.current = false
+        }
+        itemsLengthRef.current = items.length
+    }, [items])
 
     return {getItems}
 }
