@@ -23,8 +23,6 @@ export const useInfiniteItemsLoad = <ItemT,> (params: {
     const scrollRef = useRef<() => void>(() => {})
 
     scrollRef.current = () => {
-        console.log('shouldSkipRef.current', shouldSkipRef.current)
-
         if (!elemRef.current || shouldSkipRef.current) {
             return
         }
