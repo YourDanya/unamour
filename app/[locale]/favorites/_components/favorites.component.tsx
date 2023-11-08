@@ -10,35 +10,64 @@ import {CategoryItem} from 'app/_common/types/category-item'
 
 const Favorites: FC = () => {
     const state = useFavorites()
-    const { transl, user, items} = state
+    const {transl, user, getFavorites} = state
 
     return (
         <div className={'favorites-page favorites container'}>
             <div className={'favorites__title'}>
                 {transl.favorite}
             </div>
-            {!(user && items) && (<Spinner className={'favorites__spinner'}/>)}
-            {user && items && (<Content {...state}/>)}
+            {user === undefined || (user && !getFavorites.success && !getFavorites.error) ? (
+                <Spinner className={'favorites__spinner'}/>
+            ) : (
+                <Content {...state}/>
+            )}
         </div>
     )
 }
 export default Favorites
 
 const Content = (props: ReturnType<typeof useFavorites>) => {
-    const {items, user} = props
+    const {user} = props
 
     return (
         <div className={'favorites-content'}>
-            {items && items.length > 0 && (
-                <Items {...props}/>
-            )}
-            {items && items?.length === 0 && (
-                <Empty {...props}/>
-            )}
             {user === null && (
                 <NoUser {...props}/>
             )}
+            {user && (
+                <WithUser {...props}/>
+            )}
         </div>
+    )
+}
+
+const NoUser = (props: ReturnType<typeof useFavorites>) => {
+    const {transl, onLogin} = props
+
+    return (
+        <div className="favorites-no-user no-user">
+            <div className="no-user__title">
+                {transl.noUser}
+            </div>
+            <Button className={'no-user__button'} onClick={onLogin}>
+                {transl.login}
+            </Button>
+        </div>
+    )
+}
+
+const WithUser = (props: ReturnType<typeof useFavorites>) => {
+    const {items} = props
+
+    return (
+        <>
+            {!items || items.length === 0 ? (
+                <Empty {...props}/>
+            ) : (
+                <Items {...props}/>
+            )}
+        </>
     )
 }
 
@@ -74,17 +103,3 @@ const Empty = (props: ReturnType<typeof useFavorites>) => {
     )
 }
 
-const NoUser = (props: ReturnType<typeof useFavorites>) => {
-    const {transl, onLogin} = props
-
-    return (
-        <div className="favorites-no-user no-user">
-            <div className="no-user__title">
-                {transl.noUser}
-            </div>
-            <Button className={'no-user__button'} onClick={onLogin}>
-                {transl.login}
-            </Button>
-        </div>
-    )
-}

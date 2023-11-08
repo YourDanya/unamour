@@ -90,10 +90,12 @@ export const useGetState = (props: SliderProps) => {
     const [translate, setTranslate] = useState(0)
     const [contentStyle, setContentStyle] = useState<CSSProperties>({})
 
+    const windowWidthRef = useRef(0)
+
     return {
         transition, perSlide, elements, setElements, moveRef, current, setCurrent, setTransition, move, setMove,
         slideRef, length, props, elemsRef, mounted, setMounted, leftElemsRef, rightElemsRef, shouldCheckLimits,
         setShouldCheckLimits, translate, setTranslate, contentStyle, setContentStyle, resizing, setResizing,
-        propsRef
+        propsRef, windowWidthRef
     }
 }

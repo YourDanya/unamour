@@ -10,7 +10,7 @@ import useHome from 'app/[locale]/_components/home.hook'
 import LoadImage from 'app/_common/components/load-image/load-image.component'
 
 const Home: NextPage = () => {
-    const {allLinkRef, containerRef, bestLinkHeight, logoHeight, allLinkHeight} = useHome()
+    const {allLinkRef, allLinkHeight} = useHome()
 
     return (
         <div className="home" ref={allLinkRef}>
@@ -22,24 +22,6 @@ const Home: NextPage = () => {
                     src={allLinkImg.src}
                 />
             </Link>
-            {/*<div className={'home__bottom'} ref={containerRef}>*/}
-            {/*    <LoadImage*/}
-            {/*        height={logoHeight}*/}
-            {/*        className={'home__logo'}*/}
-            {/*        alt={'logo img'}*/}
-            {/*        src={logo.src}*/}
-            {/*        quality={100}*/}
-            {/*    />*/}
-            {/*    <Link href={'/shop-items/best'} className={'home__best'}>*/}
-            {/*        <LoadImage*/}
-            {/*            height={bestLinkHeight}*/}
-            {/*            style={{objectFit: 'cover'}}*/}
-            {/*            alt={'best link img'}*/}
-            {/*            src={bestLinkImg.src}*/}
-            {/*            quality={100}*/}
-            {/*        />*/}
-            {/*    </Link>*/}
-            {/*</div>*/}
         </div>
     )
 }

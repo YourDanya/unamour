@@ -1,5 +1,4 @@
 const favoritesContent = {
-    translations: {
         ua: {
             favorite: 'обране',
             emptyTitle: 'тут будуть зібрані товари,\n які ви додате у вішлист',
@@ -21,7 +20,6 @@ const favoritesContent = {
             noUser: 'вишлист доступен только авторизованным пользователям. пожалуйста войдите в свой профиль.',
             login: 'войти'
         }
-    }
 }
 
 export default favoritesContent

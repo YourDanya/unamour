@@ -13,7 +13,8 @@ const useUpdatePass = (props: UpdatePassProps) => {
     const {inputs, onChange, onValidate, withSubmit, resetValues} = useInput(content.inputs, transl.inputs)
 
     const updatePass = useApiCall( 'auth/update-password', {
-        method: 'POST'
+        method: 'POST',
+        body: inputs.values
     })
 
     const onSubmit = withSubmit(() => {

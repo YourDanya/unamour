@@ -1,6 +1,5 @@
 import {NextRequest} from 'next/server'
 import {NextResponse} from 'next/server'
-import {NextConfig} from 'next'
 
 const locales = ['ua', 'eng', 'ru']
 

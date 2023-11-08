@@ -106,16 +106,14 @@ import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-for
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/create-user/create-user.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review-form/attach-user/attach-user.styles.sass'
 import 'app/[locale]/shop-items/[category]/[item]/_components/reviews/review/review.styles.sass'
+// test
+import 'app/[locale]/test/test.styles.sass'
+import 'app/[locale]/test/dropdown/test.styles.sass'
 
-import {ReactNode} from 'react'
 import {Metadata} from 'next/dist/lib/metadata/types/metadata-interface'
 import {baseURL} from 'app/_common/utils/api/api.utils'
 import RootLayout from 'app/[locale]/_components/layout/layout.component'
 import {LayoutProps} from 'app/[locale]/layout.types'
-import localFont from '@next/font/local'
-// test
-import 'app/[locale]/test/test.styles.sass'
-import 'app/[locale]/test/dropdown/test.styles.sass'
 
 export const metadata: Metadata = {
     title: 'UNAMOUR',

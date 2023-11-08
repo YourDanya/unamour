@@ -35,11 +35,28 @@ const Test = () => {
     }
 
     return (
-        <div className={`test`}>
+        <div className={`test-slider test`}>
             <div className={'test__container'}>
-                <ResponsiveSlider
-                    defaultProps={{container: true, perSlide: 4, slideOffset: 5, infinite: false}}
-                    breakpoints={{992: {perSlide: 2}}}
+                {/*<ResponsiveSlider*/}
+                {/*    defaultProps={{container: true, perSlide: 4, slideOffset: 5, infinite: true}}*/}
+                {/*    breakpoints={{992: {perSlide: 2}}}*/}
+                {/*>*/}
+                {/*    {arr.map(elem => (*/}
+                {/*        <div*/}
+                {/*            className={'elem'}*/}
+                {/*            style={{backgroundColor: elem.color, height: '300px'}}*/}
+                {/*            key={elem.id}*/}
+                {/*        >*/}
+                {/*            {elem.id}*/}
+                {/*        </div>*/}
+                {/*    ))}*/}
+                {/*</ResponsiveSlider>*/}
+                <Slider
+                    className={'test__slider'}
+                    container={true}
+                    perSlide={1}
+                    infinite={true}
+                    slideOffset={5}
                 >
                     {arr.map(elem => (
                         <div
@@ -50,18 +67,7 @@ const Test = () => {
                             {elem.id}
                         </div>
                     ))}
-                </ResponsiveSlider>
-                {/*<Slider className={'test__slider'} container={true} perSlide={3} infinite={true} slideOffset={5}>*/}
-                {/*    {arr.map(elem => (*/}
-                {/*        <div*/}
-                {/*            className={'elem'}*/}
-                {/*            style={{backgroundColor: elem.color, height: '300px'}}*/}
-                {/*            key={elem.id}*/}
-                {/*        >*/}
-                {/*            {elem.id}*/}
-                {/*        </div>*/}
-                {/*    ))}*/}
-                {/*</Slider>*/}
+                </Slider>
             </div>
             <Button onClick={onAdd} className={'test__button'}>
                 Add

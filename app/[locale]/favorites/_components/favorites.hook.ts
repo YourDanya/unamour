@@ -1,28 +1,21 @@
 import {useEffect, useRef, useState} from 'react'
-import useLocale from 'app/_common/hooks/helpers/locale-deprecated/locale.hook'
 import {CategoryItem} from 'app/_common/types/category-item'
-import favoritesContent from 'app/[locale]/favorites/_components/favorites.content'
 import useModalStore from 'app/_common/store/modal/modal.store'
 import useResize from 'app/_common/hooks/helpers/resize/resize.hook'
 import {useApiCall} from 'app/_common/hooks/api/api-call/api-call.hook'
 import {useUserStore} from 'app/_common/store/user/user.store'
+import favoritesContent from 'app/[locale]/favorites/_components/favorites.content'
+import {useLocale} from 'app/_common/hooks/helpers/locale/locale.hook'
 const useFavorites = () => {
-    const [transl] = useLocale(favoritesContent)
-
-    const [items, setItems] = useState<CategoryItem[] | null>(null)
+    const transl = useLocale(favoritesContent)
 
     const getFavorites = useApiCall<{items: CategoryItem[] }>( {
-        url: 'favorites',
-        onSuccess: ({items}) => {
-            setItems(items)
-        }
+        url: 'favorites'
     })
 
-    const user = useUserStore(state => state.user)
+    const items = getFavorites.data?.items
 
-    useEffect(() => {
-        getFavorites.start()
-    }, [])
+    const user = useUserStore(state => state.user)
 
     const itemRef = useRef<HTMLDivElement | null>(null)
 
@@ -46,6 +39,12 @@ const useFavorites = () => {
             calcWidth()
         }
     }, [items])
+
+    useEffect(() => {
+        if (user) {
+            getFavorites.start()
+        }
+    }, [user])
 
     return {transl, height, itemRef, getFavorites, useApiCall, onLogin, items, user}
 }
